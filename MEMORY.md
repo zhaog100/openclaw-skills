@@ -124,9 +124,11 @@ _精心维护的记忆，提炼后的精华_
 
 **2026-02-28 Visual Studio Code安装**：
 - ✅ **VS Code安装成功**（版本1.109.5）
+- ✅ **PlantUML插件安装成功**（插件ID: jebbs.plantuml）
 - ✅ **安装位置**: C:\Users\zhaog\AppData\Local\Programs\Microsoft VS Code
 - 📝 **官家偏好**: 以后软件安装在 D:\Program Files (x86)\
 - 📚 **配置文档**: SOFTWARE-INSTALLATION-CONFIG.md（3333字节）
+- 📚 **插件文档**: PLANTUML-PLUGIN-INSTALLATION-REPORT.md（3207字节）
 - 🎯 **下次安装**: 使用官家偏好路径
 
 ---
