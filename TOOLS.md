@@ -19,6 +19,36 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## 📂 软件安装配置
+
+### 默认安装路径（重要）⭐⭐⭐
+```
+默认路径: D:\Program Files (x86)\
+64位软件: D:\Program Files\
+便携软件: D:\Tools\
+```
+
+### 已安装软件
+```
+✅ Visual Studio Code
+   当前: C:\Users\zhaog\AppData\Local\Programs\Microsoft VS Code
+   未来: D:\Program Files (x86)\Microsoft VS Code
+
+✅ Node.js
+   路径: [待记录]
+```
+
+### 安装原则
+```
+1. 优先使用 D:\Program Files (x86)\
+2. 64位专用软件用 D:\Program Files\
+3. 便携软件用 D:\Tools\
+4. 安装前确认路径
+5. 安装后验证环境变量
+```
+
+---
+
 ## 🖥️ 系统环境
 
 ### 虚拟机配置
