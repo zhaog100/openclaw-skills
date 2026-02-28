@@ -1,0 +1,66 @@
+# Git忽略文件配置
+
+# 依赖目录
+node_modules/
+package-lock.json
+bun.lock
+
+# 临时文件
+*.log
+*.tmp
+*.temp
+puppeteer-test.png
+moltbook-check.png
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 构建输出
+dist/
+build/
+.cache/
+
+# 测试文件
+test-*.js
+test-*.sh
+*-test.js
+*-test.sh
+
+# 临时脚本
+*.test.js
+*.test.sh
+verify-*.js
+check-*.js
+scrape-*.js
+
+# 调试文件
+qmd-*.log
+*-debug.log
+*.log.*
+
+# 临时文档
+TEST-*.md
+CURRENT-*.md
+TEMP-*.md
+*-TEMP.md
+
+# 备份文件
+*.backup
+*.bak
+*~
