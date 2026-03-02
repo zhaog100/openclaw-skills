@@ -140,7 +140,7 @@ _精心维护的记忆，提炼后的精华_
 **Playwright技能**：✅ 已创建（skills/playwright-scraper）
 **AIHubMix检查**：✅ 自动提醒（每周一10:00）+ 手动检查脚本（scripts/check-aihubmix-models.js）
 **Puppeteer**：✅ 已安装替代Playwright
-**Playwright提醒**：✅ 自动提醒（每周一10:00，任务ID: b0e05c96-c700-42c3-bb08-cce90e21aa84）
+**Playwright**：✅ **安装成功**（2026-03-02，版本1.58.2，Chromium+Firefox+WebKit）
 **Moltbook检查**：✅ 自动提醒（每周一10:00，任务ID: 56dd5f3d）+ 手动脚本（scripts/check-moltbook.js）
 
 ---
@@ -270,6 +270,26 @@ _精心维护的记忆，提炼后的精华_
 - ✅ **免费优先策略确认**：日常用AIHubMix，复杂任务用官方API
 - 📊 **系统状态**：恢复完成，运行正常
 - 📝 **Daily Log**：memory/2026-02-28.md（1937字节）
+
+---
+
+**2026-03-02 AIHubMix模型测试**：
+- ⚠️ **测试结果**：1个成功，2个失败，第3个触发限流
+- ✅ **可用模型**：coding-glm-5-free（3922ms响应）
+- ❌ **失败模型**：coding-minimax-m2.5-free（模型不存在）
+- ❌ **限流触发**：gemini-3.1-flash-image-preview-free（仅测试3个就限流）
+- 📊 **结论**：AIHubMix免费模型限流严重，不适合主力使用
+- 💡 **建议**：继续使用官方API（zai/glm-5、deepseek/deepseek-chat）
+
+---
+
+**2026-03-02 Playwright安装成功**：
+- ✅ **Playwright安装成功**（版本1.58.2）
+- ✅ **浏览器下载完成**（Chromium、Firefox、WebKit）
+- ✅ **功能验证通过**（测试脚本运行正常）
+- ✅ **知识库新增**：AI自动化测试实战指南（4585字节）
+- 📊 **系统状态**：Playwright可用于网页自动化测试
+- 📝 **应用场景**：AI自动化测试、网页爬取、浏览器自动化
 
 ---
 
