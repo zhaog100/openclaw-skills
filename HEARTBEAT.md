@@ -48,6 +48,8 @@
 
 **2026-03-05**：
 - [x] 启动优化方案实施 ⭐⭐⭐⭐⭐（MEMORY-LITE.md，23%占用）
+- [x] Context Manager v2.1发布 ⭐⭐⭐⭐⭐（ClawHub，k973mh80nanfam7pj32786qbax8293gz）
+- [x] 2026-03-04学习总结 ⭐⭐⭐⭐（10大模块，6.5KB）
 
 ### 🔴 高优先级
 
