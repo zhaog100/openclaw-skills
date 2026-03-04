@@ -1,4 +1,4 @@
-# Git忽略文件配置
+# Git忽略文件配置（优化版）
 
 # 依赖目录
 node_modules/
@@ -15,11 +15,18 @@ moltbook-check.png
 *.jpg
 *.jpeg
 *.gif
+*.mp3
+*.wav
+*.silk
+*.b64
 
-# 环境变量
+# 环境变量和配置
 .env
 .env.local
 .env.*.local
+*.json
+!.gitignore
+!package.json
 
 # 系统文件
 .DS_Store
@@ -39,6 +46,7 @@ build/
 # 测试文件
 test-*.js
 test-*.sh
+test-*.mjs
 *-test.js
 *-test.sh
 
@@ -48,19 +56,85 @@ test-*.sh
 verify-*.js
 check-*.js
 scrape-*.js
+screenshot-*.js
 
 # 调试文件
 qmd-*.log
 *-debug.log
 *.log.*
+*-debug-*.md
 
 # 临时文档
 TEST-*.md
 CURRENT-*.md
 TEMP-*.md
 *-TEMP.md
+*-PLAN.md
+*-REPORT.md
+*-COMPLETE.md
+*-REMINDER.md
+*-FAILURE.md
+*-TODO.md
+*-CHECK-*.md
+*-GUIDE.md
+!DAILY-REVIEW-GUIDE.md
+!OPTIMIZE-PLAN.md
 
 # 备份文件
 *.backup
 *.bak
 *~
+
+# 知识库（独立维护）
+knowledge-base/
+
+# 平台配置（包含敏感信息）
+.clawhub/
+.clawtasks/
+.moltbook/
+.openclaw/
+backups/
+config/
+
+# 输出和临时目录
+output/
+screenshots/
+diagrams/
+test-env/
+tests/
+practice/
+scripts/
+tools/
+skills/
+qmd/
+projects/
+
+# 临时HTML查看器
+*.html
+
+# 临时Shell脚本
+*.sh
+*.ps1
+!install.sh
+
+# 临时JS脚本
+*.js
+!screenshot-dashboard.js
+
+# 临时音频文件
+*.mp3
+*.wav
+*.silk
+
+# 中文命名的临时文档
+*配置*.md
+*完成*.md
+*报告*.md
+*指南*.md
+*状态*.md
+*方案*.md
+*计划*.md
+*检查*.md
+!用户*.md
+!需求*.md
+!测试*.md
