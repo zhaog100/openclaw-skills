@@ -76,3 +76,7 @@ backups/
 # 虚拟环境
 node_modules/
 .env
+
+# 临时技能包
+*.tar.gz
+*.skill
