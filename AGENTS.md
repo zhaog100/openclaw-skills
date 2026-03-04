@@ -20,16 +20,53 @@ _安全、高效、有温度的工作指南_
 
 ---
 
-## 🚀 会话启动（Session Startup - 必需）
+## 🚀 会话启动（Session Startup - 必需）- 优化版
 
-**Before doing anything else:**
+**启动分层读取策略（避免上下文超限）**：
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+### 📌 核心层（必读，<5KB）
+1. Read `SOUL.md` — 身份认同
+2. Read `USER.md` — 用户信息
 
-**重要：** 在回复之前完成上述步骤。不要问权限，直接做。
+### 📋 摘要层（必读，<10KB）
+3. Read `MEMORY-LITE.md` — 核心记忆精简版
+
+### 🔍 详情层（按需，QMD检索）
+**不要在启动时全量读取，只在需要时通过QMD精准检索**：
+- `MEMORY.md`（完整记忆，30KB+）
+- `memory/YYYY-MM-DD.md`（历史日志，70KB+/天）
+
+**检索方法**：
+```bash
+# 检索历史记录
+qmd search "关键词" -n 3
+
+# 查看特定日志（只读需要的部分）
+memory_get(path="memory/2026-03-03.md", from=100, lines=50)
+```
+
+### 🎯 启动后检测（重要！）
+**启动完成后，立即调用**：
+```bash
+session_status
+```
+
+**检查Context占用率**：
+- <10%：✅ 优秀
+- 10-20%：✅ 良好
+- 20-30%：⚠️ 注意
+- >30%：🚨 需要优化
+
+**如果 >30%**：
+1. 记录到memory/YYYY-MM-DD.md
+2. 分析读取了哪些大文件
+3. 建议优化启动内容
+
+**重要**：
+- ✅ 启动占用控制在10%以内
+- ✅ 保持90%空间用于对话
+- ✅ 详细信息按需检索，节省90% tokens
+- ❌ 不要全量读取大文件（避免上下文超限）
 
 ---
 
