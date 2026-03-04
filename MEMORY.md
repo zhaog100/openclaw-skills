@@ -131,17 +131,18 @@ _精心维护的记忆，提炼后的精华_
 13. kimi-for-coding-free（Kimi）
 14. mimo-v2-flash-free（Mimo）
 
-**系统状态**：正常生产使用
+**系统状态**：正常生产使用 🟢
 **检索模式**：向量搜索 + 关键词搜索（双模式）
 **向量状态**：✅ 110个向量已生成（2026-02-28 13:52完成，耗时11分44秒）
 **模型策略**：**官方优先 + 免费备选**（2026-03-01调整）
 **知识库文件**：22个（项目管理6个、软件测试4个、内容创作3个、系统文档3个、其他6个）
-**索引文件**：31个（knowledge 22个 + memory 9个）
+**索引文件**：32个（knowledge 22个 + memory 10个，含2026-03-04）
 **Playwright技能**：✅ 已创建（skills/playwright-scraper）
 **AIHubMix检查**：✅ 自动提醒（每周一10:00）+ 手动检查脚本（scripts/check-aihubmix-models.js）
 **Puppeteer**：✅ 已安装替代Playwright
 **Playwright**：✅ **安装成功**（2026-03-02，版本1.58.2，Chromium+Firefox+WebKit）
 **Moltbook检查**：✅ 自动提醒（每周一10:00，任务ID: 56dd5f3d）+ 手动脚本（scripts/check-moltbook.js）
+**薅羊毛系统**：✅ **v2.1.0上线**（2026-03-03，27个定时任务，月收益390-1598元）
 
 ---
 
