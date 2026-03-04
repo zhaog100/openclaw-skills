@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ethers": "^6.16.0",
+    "pi-qmd": "^1.0.0",
+    "playwright": "^1.58.2",
+    "puppeteer": "^24.37.5",
+    "qmd": "^0.0.0"
+  }
+}
