@@ -1,66 +1,78 @@
-# Git忽略文件配置
-
-# 依赖目录
-node_modules/
-package-lock.json
-bun.lock
-
 # 临时文件
+.vector-search-status.md
+Z:/
+
+# 记忆文件（已备份到MEMORY.md）
+memory/*.md
+!memory/README.md
+memory/*.json
+
+# 历史报告文档
+*报告.md
+*REPORT*.md
+*COMPLETE*.md
+*PLAN*.md
+*GUIDE.md
+*STATUS*.md
+*CHECK*.md
+*CONFIGURED.md
+*SETUP.md
+*SUMMARY.md
+*TODO*.md
+
+# 保留核心文档
+!AGENTS.md
+!SOUL.md
+!USER.md
+!IDENTITY.md
+!BOOT.md
+!HEARTBEAT.md
+!CRON-CONFIG.md
+!DOCS-INDEX.md
+!MEMORY.md
+!TOOLS.md
+
+# 平台配置（包含敏感信息）
+.clawhub/
+.clawtasks/
+.moltbook/
+.openclaw/
+
+# 开发和测试
+test-*.mjs
+test-*.js
 *.log
 *.tmp
-*.temp
-puppeteer-test.png
-moltbook-check.png
-*.png
-*.jpg
-*.jpeg
-*.gif
 
-# 环境变量
+# 脚本（已备份）
+scripts/
+tools/
+*.sh
+*.ps1
+
+# 知识库（独立维护）
+knowledge/
+knowledge-base/
+
+# 青龙系统（独立维护）
+qinglong/
+
+# QMD系统（独立维护）
+qmd/
+
+# 配置文件（包含敏感信息）
+openclaw.json
+package.json
+*.json
+
+# 图表和视图
+diagrams/
+*.html
+*.puml
+
+# 备份
+backups/
+
+# 虚拟环境
+node_modules/
 .env
-.env.local
-.env.*.local
-
-# 系统文件
-.DS_Store
-Thumbs.db
-
-# IDE配置
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# 构建输出
-dist/
-build/
-.cache/
-
-# 测试文件
-test-*.js
-test-*.sh
-*-test.js
-*-test.sh
-
-# 临时脚本
-*.test.js
-*.test.sh
-verify-*.js
-check-*.js
-scrape-*.js
-
-# 调试文件
-qmd-*.log
-*-debug.log
-*.log.*
-
-# 临时文档
-TEST-*.md
-CURRENT-*.md
-TEMP-*.md
-*-TEMP.md
-
-# 备份文件
-*.backup
-*.bak
-*~
