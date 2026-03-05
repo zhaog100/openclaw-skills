@@ -14,16 +14,11 @@ description: "薅羊毛综合技能 - 自动签到、价格监控、优惠券推
 ### 1. **京东薅羊毛系统**（✅ 已上线，v2.3.0）
 - ✅ 22个定时任务运行中
 - ✅ 双账号支持（收益翻倍）
-- ✅ 领京豆（35-85元/月/账号）
-- ✅ 农场浇水（5-15元/月）
-- ✅ 嘉年华城（5-10元/月）
-- ✅ 每日Bonus（2-3元/月）
-- ✅ 省钱卡兑换（5-10元/月）
-- ✅ 积分换话费（2-5元/月）
-- ✅ PLUS盲盒（5-15元/月）
-- ✅ PLUS专属礼（10-20元/月）
-- ✅ Cookie检查、京豆通知、账号解绑
-- 📊 预期月收益：110-258元（双账号，+30-58元）
+- ✅ 核心收益任务（8个）：领京豆、农场浇水、嘉年华城、每日Bonus、省钱卡、话费、PLUS盲盒、PLUS专属礼
+- ✅ PLUS会员专区（2个）：PLUS盲盒（5-15元/月）+ PLUS专属礼（10-20元/月）
+- ✅ 维护工具（4个）：Cookie检查、京豆通知、账号解绑、其他任务
+- 📊 预期月收益：110-258元（双账号，+35%提升）
+- 📄 专属文档：JD_PLUS_GUIDE.md（PLUS会员指南）、JD_EARNINGS_REPORT.md（收益报告）
 
 ### 2. **任务监控优化系统**（✅ 已上线）
 - ✅ 日志监控脚本（任务执行状态监控）
@@ -56,15 +51,21 @@ description: "薅羊毛综合技能 - 自动签到、价格监控、优惠券推
 
 ```
 wool-gathering/
-├── SKILL.md (本文件)
+├── SKILL.md                   # 技能主文档（v2.3.0）
+├── README.md                  # 完整指南（已更新）
+├── JD_PLUS_GUIDE.md          # ✅ PLUS会员专区指南（新增）
+├── JD_EARNINGS_REPORT.md     # ✅ 收益统计报告（新增）
+│
 ├── scripts/ (可执行脚本)
 │   ├── price_monitor.py (价格监控)
 │   ├── push_notification.py (推送通知)
 │   └── coupon_fetcher.py (优惠券获取)
+│
 ├── references/ (参考文档)
 │   ├── qinglong-setup.md (青龙面板配置)
 │   ├── platform-apis.md (平台API文档)
 │   └── price-history-schema.md (数据库设计)
+│
 └── assets/ (配置文件)
     ├── config_template.json (配置模板)
     └── docker-compose.yml (Docker配置)
