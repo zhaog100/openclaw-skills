@@ -70,6 +70,7 @@ _精心维护的记忆，提炼后的精华_
 40. **ClawHub成功发布第2-3个技能** - smart-model-switch v1.1.0 + quote-reader v1.0.0 ⭐⭐⭐⭐⭐
 41. **Context Manager版本合并** - v1.0+v2.0+v2.1合并为v2.1.0，清理旧版本，发布到ClawHub ⭐⭐⭐⭐⭐
 42. **MEMORY-LITE极简版** - 从5.8KB压缩到1.4KB（节省76%），启动占用从33%降至目标<15% ⭐⭐⭐⭐⭐
+43. **quote-reader v1.1.0真实API调用** - 删除模拟数据，真实获取飞书交互式卡片内容，Token自动管理 ⭐⭐⭐⭐⭐
 
 ---
 
