@@ -414,6 +414,13 @@ _精心维护的记忆，提炼后的精华_
 - 📊 **发布成功**：2个技能（miliger-playwright-scraper、qmd-manager）
 - ⏳ **扫描中**：1个技能（wool-gathering）
 
+**2026-03-06 context-manager v2.2.2发布**（21:21）：
+- ✅ **发布到ClawHub**：miliger-context-manager@2.2.2
+- ✅ **发布ID**：k971xyg16mgmadk5ykt0c0939182c1rj
+- ✅ **更新内容**：修复监控盲区 + OpenClaw实时日志 + 双重通知
+- 📊 **版本历史**：v2.2.1 → v2.2.2
+- 🎯 **影响**：所有用户自动获得监控盲区修复
+
 **2026-03-06 重要里程碑**：
 - ⚠️ **发现问题**：AIHubMix 免费模型也会限流（"API rate limit reached"）
 - ✅ **策略调整**：免费优先 → 官方优先
