@@ -4,30 +4,39 @@
     "contrast_enhancement": 1.5,
     "binary_threshold": 150,
     "max_width": 2000,
-    "max_height": 10000
+    "max_height": 50000,
+    "overlap_height": 100,
+    "min_block_height": 500
   },
   "ocr_engines": {
     "tesseract": {
       "enabled": true,
-      "languages": ["eng", "chi_sim"],
-      "psm_mode": 6,
-      "oem_mode": 1
+      "languages": ["chi_sim", "eng"],
+      "config": "--psm 6 --oem 3",
+      "timeout": 30
     },
     "ai_vision": {
       "enabled": true,
-      "model": "gemini-vision",
-      "confidence_threshold": 0.7
+      "fallback": true,
+      "model": "default"
     }
   },
   "output": {
-    "format": "text",
+    "format": "markdown",
     "preserve_formatting": true,
-    "detect_encoding": true,
-    "auto_correct": true
+    "merge_blocks": true,
+    "add_structure": true
+  },
+  "content_analysis": {
+    "detect_headers": true,
+    "detect_lists": true,
+    "detect_tables": true,
+    "detect_code_blocks": true
   },
   "performance": {
-    "max_concurrent_blocks": 4,
-    "timeout_seconds": 30,
-    "memory_limit_mb": 512
+    "parallel_processing": true,
+    "max_workers": 4,
+    "cache_enabled": true,
+    "cache_ttl": 3600
   }
 }

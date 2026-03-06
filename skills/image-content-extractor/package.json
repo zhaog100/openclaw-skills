@@ -1,0 +1,34 @@
+{
+  "name": "image-content-extractor",
+  "version": "1.0.0",
+  "description": "智能图片内容提取技能。专门处理超长截图、复杂图表，自动识别结构，输出Markdown格式。",
+  "author": "miliger",
+  "created": "2026-03-06",
+  "keywords": [
+    "ocr",
+    "image",
+    "content-extraction",
+    "markdown",
+    "knowledge-base"
+  ],
+  "skills": [
+    "image-analysis",
+    "text-extraction",
+    "structure-detection"
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "tesseract-ocr": ">=4.0",
+    "opencv-python": ">=4.5",
+    "pillow": ">=8.0",
+    "pytesseract": ">=0.3"
+  },
+  "config": {
+    "config_file": "config/extractor-config.json",
+    "main_script": "scripts/extract-content.py"
+  },
+  "repository": {
+    "type": "local",
+    "path": "~/.openclaw/workspace/skills/image-content-extractor"
+  }
+}
