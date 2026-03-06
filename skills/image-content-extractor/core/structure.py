@@ -4,7 +4,7 @@ Structure Analyzer Module
 """
 
 import re
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 class StructureAnalyzer:
     """结构分析器"""
