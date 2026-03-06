@@ -212,6 +212,22 @@ _精心维护的记忆，提炼后的精华_
 - 📊 **预期月收益**：300-600元（阿里云盘+百度网盘+B站+爱奇艺）
 - ⏸️ **待配置**：B站、爱奇艺、什么值得买、百度贴吧Cookie
 
+**2026-03-06 技能去重合并**：
+- ✅ **深度分析完成**：13个技能全面对比
+- ✅ **发现重复**：agent-browser vs playwright-scraper（浏览器自动化）
+- ✅ **合并执行**：删除agent-browser，保留playwright-scraper
+- 📊 **合并效果**：
+  - 技能数量：13个 → 12个（-7.7%）
+  - 功能完整：playwright-scraper功能完全覆盖agent-browser
+  - 维护简化：减少重复维护
+- 🛠️ **保留技能**（12个）：
+  - 浏览器自动化：playwright-scraper（功能更强）
+  - 搜索类：qmd-manager, find-skills, tavily-search（功能互补）
+  - 云服务：tencentcloud-lighthouse-skill
+  - 其他：github, notion, obsidian, summarize, weather
+  - 自定义：miliger-context-manager, wool-gathering
+- 📝 **合并文档**：logs/skills-merge-plan.md（完整分析）
+
 ---
 
 **2026-02-28 输出文件配置**：
