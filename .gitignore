@@ -126,6 +126,9 @@ projects/
 *.wav
 *.silk
 
+# 临时处理目录
+processed/
+
 # 中文命名的临时文档
 *配置*.md
 *完成*.md
