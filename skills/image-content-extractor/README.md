@@ -1,41 +1,43 @@
-# 图片内容提取技能
+# Image Content Extractor v2.0
 
-智能图片内容提取技能，专门用于处理超长截图、复杂图表，自动识别内容结构并输出Markdown格式。
+统一图片内容提取技能 - 支持终端/文档/通用三种模式
 
-## 快速开始
+## 🎯 快速开始
 
-### 安装依赖
+### 安装
 ```bash
+cd ~/.openclaw/workspace/skills/image-content-extractor
 bash install.sh
 ```
 
-### 基础使用
+### 使用
 ```bash
-# 提取图片内容
-python3 scripts/extract-content.py /path/to/image.png
+# 自动检测模式
+python3 scripts/extract.py /path/to/image.png
+
+# 指定模式
+python3 scripts/extract.py /path/to/terminal.png --mode terminal
 
 # 保存到知识库
-python3 scripts/extract-content.py /path/to/image.png -k -c testing -t "测试用例设计"
+python3 scripts/extract.py /path/to/image.png -k -c testing -t "标题"
 ```
 
-## 核心特性
+## ✨ 核心特性
 
-✅ **智能内容识别** - 自动检测标题、段落、列表、代码块
-✅ **超长图片处理** - 智能分块，自动合并
-✅ **多格式输出** - Markdown、纯文本、JSON
-✅ **知识库集成** - 自动更新索引
+✅ **三种模式** - Terminal（终端）/ Document（文档）/ General（通用）
+✅ **自动检测** - 智能识别图片类型
+✅ **统一接口** - 一个技能，多场景使用
+✅ **知识库集成** - 自动更新QMD索引
 
-## 使用场景
-
-- DeepSeek分享截图提取
-- 技术文档数字化
-- 知识库建设
-- 批量图片处理
-
-## 文档
+## 📚 文档
 
 详细文档请查看 [SKILL.md](./SKILL.md)
 
+## 🔄 变更
+
+**v2.0** - 集成terminal-ocr，统一三大模式
+**v1.0** - 初始版本
+
 ---
-版本: 1.0.0
-创建: 2026-03-06
+版本: 2.0.0
+更新: 2026-03-06
