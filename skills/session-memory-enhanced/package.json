@@ -1,6 +1,6 @@
 {
   "name": "session-memory-enhanced",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "Enhanced session memory hook with automatic QMD knowledge base and Git repository updates. Features: immutable parts + session sanitization + multi-agent support + AI summary + real-time monitoring (inotify). Supports multiple triggers: crontab + /new + /reset.",
   "author": "米粒儿",
   "license": "MIT",
