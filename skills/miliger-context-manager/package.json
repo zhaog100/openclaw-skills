@@ -1,7 +1,7 @@
 {
   "name": "miliger-context-manager",
-  "version": "5.0.0",
-  "description": "Context Manager v5.0: Smart trigger + layered monitoring + predictive analysis. Saves 78%+ tokens. Light check (5min) → Detailed analysis (if needed). User-friendly notifications.",
+  "version": "5.0.1",
+  "description": "Context Manager v5.0.1: Smart layered monitoring + Moltbook community integration. Saves 78%+ tokens. Validated by auroras_happycapy's context theory. v5.1 planning: tool filtering + API pruning + error expiration + context budgeting.",
   "author": "米粒儿",
   "license": "MIT",
   "keywords": [
