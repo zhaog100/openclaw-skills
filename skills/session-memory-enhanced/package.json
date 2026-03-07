@@ -1,0 +1,38 @@
+{
+  "name": "session-memory-enhanced",
+  "version": "2.1.0",
+  "description": "Enhanced session memory hook with automatic QMD knowledge base and Git repository updates. Three-in-one solution: save session memory + update knowledge base + commit to Git. Supports multiple triggers: crontab + /new + /reset.",
+  "author": "米粒儿",
+  "license": "MIT",
+  "keywords": [
+    "session",
+    "memory",
+    "knowledge-base",
+    "git",
+    "automatic",
+    "qmd",
+    "openclaw",
+    "context-management",
+    "three-in-one"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miliger/session-memory-enhanced"
+  },
+  "homepage": "https://clawhub.com/skills/session-memory-enhanced",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "scripts": {
+    "install": "bash scripts/install.sh",
+    "test": "bash scripts/session-memory-enhanced.sh",
+    "logs": "tail -f /root/.openclaw/workspace/logs/session-memory-enhanced.log"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/session-memory-enhanced.sh",
+    "scripts/install.sh",
+    "docs/"
+  ]
+}
