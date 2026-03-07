@@ -2,6 +2,10 @@
 # 无感会话切换脚本
 # 功能：上下文超过85%时，自动保存记忆并创建新会话
 # 创建时间：2026-03-04
+# 更新时间：2026-03-07 v3.0 - 修复假实现，使用真实API
+
+# 修复PATH问题（cron环境）
+export PATH="/root/.nvm/versions/node/v22.22.0/bin:/root/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
 THRESHOLD=85
 LOG_FILE="$HOME/.openclaw/workspace/logs/seamless-switch.log"
@@ -19,9 +23,37 @@ log() {
 
 # 获取当前上下文使用率
 get_context_usage() {
-    # 实际应该从OpenClaw获取
-    # 这里返回模拟值，实际实现需要调用API
-    echo "39"
+    # 调用OpenClaw API获取真实上下文使用率
+    local sessions_json
+    sessions_json=$(openclaw sessions --active 120 --json 2>&1)
+
+    if [ $? -ne 0 ]; then
+        log "⚠️ 获取会话信息失败"
+        echo "0"
+        return 1
+    fi
+
+    # 提取QQ会话信息
+    local session_info=$(echo "$sessions_json" | jq -r '.sessions[] | select(.key | contains("qqbot")) | @base64' | head -1)
+
+    if [ -z "$session_info" ]; then
+        log "⚠️ 未找到QQ会话"
+        echo "0"
+        return 1
+    fi
+
+    # 解码并提取tokens信息
+    local total_tokens=$(echo "$session_info" | base64 -d | jq -r '.totalTokens // 0')
+    local context_tokens=$(echo "$session_info" | base64 -d | jq -r '.contextTokens // 205000')
+
+    if [ "$context_tokens" -eq 0 ]; then
+        echo "0"
+        return 1
+    fi
+
+    # 计算使用率
+    local usage=$((total_tokens * 100 / context_tokens))
+    echo "$usage"
 }
 
 # 提取当前会话关键信息
