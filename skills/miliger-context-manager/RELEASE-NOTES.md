@@ -127,8 +127,9 @@ clawhub update miliger-context-manager
 crontab -l | grep -v "context-monitor" | crontab -
 echo "0 * * * * /root/.openclaw/workspace/skills/miliger-context-manager/scripts/context-monitor-enhanced.sh >> /root/.openclaw/workspace/logs/cron.log 2>&1" | crontab -
 
-# 3. 验证QQ号
-grep -r "B1094AAA95C73C22C921453D5AC680F2" /root/.openclaw/workspace/scripts/
+# 3. 验证QQ号（示例）
+# 检查是否还有旧QQ号
+grep -r "旧QQ号" /root/.openclaw/workspace/scripts/
 # 应该返回空（已修复）
 ```
 
