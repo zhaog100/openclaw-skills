@@ -1,5 +1,68 @@
 # Context Manager 发布说明
 
+## v3.0.1 (2026-03-07 08:37) ⭐⭐⭐⭐
+
+### 🎉 问题修复：核心功能完善
+
+#### 修复内容
+- ⭐ **修复seamless-switch.sh假实现**：从固定返回39% → 真实API调用
+- ⭐ **修复auto-maintenance.sh并发冲突**：添加文件锁（flock），防止12:00/23:50任务冲突
+- ⭐ **修复auto-maintenance.sh PATH问题**：解决cron环境中qmd命令不存在
+- ⭐ **修复seamless-switch.sh QQ号错误**：C099848DC9A60BF60A7BE31626822790 → 官家ID
+- ⭐ **移除RELEASE-NOTES.md示例QQ号**：清理文档中的敏感信息
+
+#### 技术改进
+```bash
+# seamless-switch.sh：假实现 → 真实API
+# 旧版（假实现）
+get_context_usage() {
+    echo "39"  # ⚠️ 固定值，永远不会触发
+}
+
+# 新版（真实API）
+get_context_usage() {
+    sessions_json=$(openclaw sessions --active 120 --json)
+    total_tokens=$(echo "$sessions_json" | jq '.sessions[0].totalTokens')
+    context_tokens=$(echo "$sessions_json" | jq '.sessions[0].contextTokens')
+    echo $((total_tokens * 100 / context_tokens))
+}
+```
+
+```bash
+# auto-maintenance.sh：添加文件锁
+LOCK_FILE="/tmp/auto-maintenance.lock"
+flock -xn "$LOCK_FILE" -c "main" || exit 0
+```
+
+#### 测试结果
+```log
+[08:28:42] 🔍 开始无感会话切换检查
+[08:28:49] 📊 当前上下文使用率: 40%  ✅ 真实值
+[08:28:49] ✅ 上下文正常（40% < 85%）
+
+[08:29:18] ✓ All collections updated.  ✅ QMD正常
+[08:29:18] ✅ 今日记忆文件已创建
+[08:29:22] ✅ ===== 自动维护完成 =====
+```
+
+#### 影响评估
+- **会话切换**：从完全失效 → 正常工作（⭐⭐⭐⭐⭐）
+- **自动维护**：从可能冲突 → 文件锁保护（⭐⭐⭐⭐）
+- **QMD更新**：从命令不存在 → 正常更新（⭐⭐⭐）
+- **通知发送**：从失败 → 正常（⭐⭐⭐）
+
+#### 升级建议
+```bash
+# 从v3.0.0升级到v3.0.1
+clawhub update miliger-context-manager
+
+# 验证修复
+bash /root/.openclaw/workspace/skills/miliger-context-manager/scripts/seamless-switch.sh
+# 应该显示真实上下文使用率（不是固定39%）
+```
+
+---
+
 ## v3.0.0 (2026-03-07 08:12) ⭐⭐⭐⭐⭐
 
 ### 🎉 重大更新：三重监控 + 主动预防
@@ -277,8 +340,8 @@ bash install.sh
 
 ---
 
-**当前版本**：3.0.0
-**发布时间**：2026-03-07 08:12
+**当前版本**：3.0.1
+**发布时间**：2026-03-07 08:37
 **作者**：米粒儿
 **许可**：MIT
 
