@@ -411,8 +411,19 @@ _精心维护的记忆，提炼后的精华_
 - ✅ **命名规范**：个人定制用 `miliger-<功能名>`
 - ✅ **版本管理**：语义化版本控制
 - ✅ **发布记录**：MEMORY.md添加完整流程
-- 📊 **发布成功**：2个技能（miliger-playwright-scraper、qmd-manager）
+- 📊 **发布成功**：3个技能（miliger-playwright-scraper、qmd-manager、miliger-context-manager v3.0.0）
 - ⏳ **扫描中**：1个技能（wool-gathering）
+
+**2026-03-07 Context Manager v3.0.0发布**：
+- ✅ **重大更新**：三重监控 + 主动预防
+- ✅ **核心功能**：
+  - 会话时长监控（6小时阈值）
+  - 工具调用计数（50次/小时）
+  - 上下文使用率（85%阈值）
+- ✅ **双重通知**：飞书（紧急）+ QQ（用户友好）
+- ✅ **QQ号修复**：4个脚本统一修正为官家ID
+- ✅ **发布ID**：k9727awwa40mbw57enj85xbbfh82ebhy
+- 📊 **版本历史**：v2.2.0 → v3.0.0（重大版本升级）
 
 **2026-03-06 context-manager v2.2.2发布**（21:21）：
 - ✅ **发布到ClawHub**：miliger-context-manager@2.2.2
