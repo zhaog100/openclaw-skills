@@ -376,7 +376,8 @@ git commit -m "手动提交"
 **安装命令**：`clawhub install session-memory-enhanced`
 
 **版本**：3.4.0
-**发布时间**：2026-03-07 22:45
+**Package ID**：k97d4m6m5hpwd33g64j2g12zxs82ezj1
+**发布时间**：2026-03-07 22:50
 **作者**：米粒儿
 **许可**：MIT
 
