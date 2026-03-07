@@ -1,0 +1,2 @@
+# 增强版Session-Memory Hook（每小时自动更新知识库+Git）
+0 * * * * /root/.openclaw/workspace/scripts/enhanced-session-memory.sh >> /root/.openclaw/workspace/logs/enhanced-session-memory.log 2>&1
