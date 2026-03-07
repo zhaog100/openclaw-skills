@@ -226,6 +226,28 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
+**2026-03-07 Session-Memory Enhanced v3.1.0 多代理支持发布** 🌟🌟🌟🌟🌟
+- ✅ **多代理隔离**：agents/main、research、trial 完全独立
+- ✅ **共享文档库**：memory/shared 统一管理
+- ✅ **检索权限控制**：searchableStores 精确授权
+  - main: self + shared + research
+  - research: self + shared
+  - trial: self（完全隔离）
+- ✅ **配置文件**：config/agents.json（灵活配置）
+- ✅ **向后兼容**：100% 兼容 v3.0.0
+- 📊 **目录结构**：
+  ```
+  memory/
+  ├── agents/
+  │   ├── main/
+  │   ├── research/
+  │   └── trial/
+  └── shared/
+  ```
+- 🎯 **使用方式**：`AGENT_NAME=research bash session-memory-enhanced-v3.1.sh`
+
+---
+
 **2026-03-07 Context Manager v4.0.0 + Session-Memory Enhanced v3.0.0 联动发布** 🌟🌟🌟🌟🌟
 - ✅ **核心突破**：上下文管理 + 记忆固化深度整合
 - ✅ **自动记忆固化**：
