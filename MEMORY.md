@@ -226,6 +226,29 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
+**2026-03-07 Session-Memory Enhanced v3.3.0 实时监控发布** 🌟🌟🌟🌟🌟
+- ✅ **实时监控**：inotify 监听文件变化，实时触发更新
+- ✅ **双模式支持**：
+  - inotify 模式：实时响应，资源占用极低 ⭐
+  - 轮询模式：5分钟检查，无需依赖
+- ✅ **自动降级**：inotify-tools 未安装时自动切换轮询
+- ✅ **systemd 服务**：memory-watcher@.service（可选）
+- ✅ **多代理支持**：每个代理独立监控
+- 📊 **对比 crontab**：
+  - 响应速度：实时 vs 1小时 ⭐
+  - 精准度：按需触发 vs 固定时间 ⭐
+  - 资源占用：极低 vs 低 ⭐
+- 🎯 **使用方式**：
+  ```bash
+  # 前台运行
+  bash memory-watcher.sh
+
+  # systemd 服务
+  sudo systemctl start memory-watcher@main
+  ```
+
+---
+
 **2026-03-07 Session-Memory Enhanced v3.2.0 AI 摘要系统发布** 🌟🌟🌟🌟🌟
 - ✅ **AI 摘要系统**：自动关键词提取 + 重要性评估 + 摘要生成
 - ✅ **关键词提取**：基于频率统计，提取中文词汇（2-10字）
