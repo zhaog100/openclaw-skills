@@ -8,7 +8,7 @@
 - ⭐ **修复seamless-switch.sh假实现**：从固定返回39% → 真实API调用
 - ⭐ **修复auto-maintenance.sh并发冲突**：添加文件锁（flock），防止12:00/23:50任务冲突
 - ⭐ **修复auto-maintenance.sh PATH问题**：解决cron环境中qmd命令不存在
-- ⭐ **修复seamless-switch.sh QQ号错误**：C099848DC9A60BF60A7BE31626822790 → 官家ID
+- ⭐ **修复seamless-switch.sh QQ号错误**：错误ID → 官家ID
 - ⭐ **移除RELEASE-NOTES.md示例QQ号**：清理文档中的敏感信息
 
 #### 技术改进
