@@ -1,5 +1,102 @@
 # Context Manager 发布说明
 
+## v3.0.2 (2026-03-07 09:10) ⭐⭐⭐⭐⭐
+
+### 🎉 问题修复：跨天检测 + 更保守阈值
+
+#### 问题背景
+- **官家再次反馈**："上一个会话又出现这个问题了"
+- **根本原因**：
+  1. stop-reason监控只检查当天日志（跨天错误未检测）
+  2. 上下文使用率不准确（隐藏上下文不计入）
+  3. 只能监控当前会话（无法检测已结束会话）
+
+#### 核心突破
+
+**1. stop-reason监控跨天检测** ⭐⭐⭐⭐⭐
+```bash
+# 旧版：只检查当天
+OPENCLAW_LOG="/tmp/openclaw/openclaw-$(date +%Y-%m-%d).log"
+
+# 新版：检查最近3天
+for i in 0 1 2; do
+    log_date=$(date -d "$i days ago" +%Y-%m-%d)
+    OPENCLAW_LOGS+=("/tmp/openclaw/openclaw-${log_date}.log")
+done
+```
+
+**2. context监控更保守阈值** ⭐⭐⭐⭐⭐
+```bash
+# 旧版：被动检测
+CONTEXT_THRESHOLD=85      # 等到85%才预警（太晚）
+TIME_THRESHOLD=21600      # 6小时（太长）
+TOOL_CALL_THRESHOLD=50    # 单一阈值
+
+# 新版：主动预防
+CONTEXT_THRESHOLD=60      # 60%就开始预警
+TIME_WARNING=7200         # 2小时提醒
+TIME_THRESHOLD=10800      # 3小时警告
+TOOL_CALL_AGGRESSIVE=30   # 30次提醒
+TOOL_CALL_THRESHOLD=50    # 50次警告
+```
+
+**3. 分级预警机制** ⭐⭐⭐⭐
+- **INFO级**：2小时会话 / 30次工具调用 / 60%上下文
+- **WARNING级**：3小时会话 / 50次工具调用
+- **ERROR级**：stop_reason错误
+
+#### 测试结果（09:06）
+```log
+[09:06:50] 📄 检查日志：/tmp/openclaw/openclaw-2026-03-06.log
+[09:06:50] 🚨 发现stop_reason错误：model_context_window_exceeded
+[09:06:50] 📤 发送飞书紧急通知
+[09:07:00] 📤 发送QQ通知
+```
+
+#### 监控能力对比
+| 功能 | v3.0.1 | v3.0.2 | 说明 |
+|------|--------|--------|------|
+| 跨天检测 | ❌ 只检查当天 | ✅ 最近3天 | 检测跨天的错误 |
+| 上下文阈值 | 85% | 60% | 更早预警 |
+| 会话预警 | 6小时 | 2小时/3小时 | 分级提醒 |
+| 工具调用 | 50次 | 30次/50次 | 分级提醒 |
+| 预警策略 | 被动检测 | 主动预防 | 不等错误出现 |
+
+#### 预警策略改进
+- ✅ **主动预防**：不等错误出现就预警
+- ✅ **多重保险**：时间 + 工具调用 + 使用率
+- ✅ **更可靠**：不依赖不准确的上下文使用率
+- ✅ **分级提醒**：INFO → WARNING → ERROR
+
+#### 效果预期
+- 2小时会话 → 自动提醒
+- 30次工具调用 → 自动提醒
+- 60%上下文 → 自动预警
+- **提前预防，不再事后补救**
+
+#### 文件变更
+- ✅ `scripts/stop-reason-monitor-v2.sh`：新增跨天检测
+- ✅ `scripts/context-monitor-enhanced.sh`：优化阈值和分级预警
+- ✅ `SKILL.md`：更新v3.0.2说明
+- ✅ `RELEASE-NOTES.md`：新增v3.0.2发布说明
+
+#### 升级建议
+```bash
+# 从v3.0.1升级到v3.0.2
+clawhub update miliger-context-manager
+
+# 验证修复
+tail -20 /root/.openclaw/workspace/logs/stop-reason-monitor.log
+# 应该看到：📄 检查日志：/tmp/openclaw/openclaw-2026-03-06.log
+```
+
+#### 影响评估
+- **跨天检测**：从完全失效 → 正常工作（⭐⭐⭐⭐⭐）
+- **预警时机**：从被动 → 主动（⭐⭐⭐⭐⭐）
+- **可靠性**：从不准确 → 更可靠（⭐⭐⭐⭐）
+
+---
+
 ## v3.0.1 (2026-03-07 08:37) ⭐⭐⭐⭐
 
 ### 🎉 问题修复：核心功能完善
