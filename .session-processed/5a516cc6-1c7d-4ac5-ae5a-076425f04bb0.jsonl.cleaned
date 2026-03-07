@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "[cron:6ec88bc7-c81d-45e3-a07e-6c6958522f52 每周一综合检查] 你是一个暖心的提醒助手。请用温暖、有趣的方式提醒用户进行每周检查：\n\n📋 本周待检查事项：\n\n1️⃣ **AIHubMix模型状态**\n   - 检查14个免费模型是否正常响应\n   - 如有异常，建议切换到官方API\n\n2️⃣ **Playwright安装状态**\n   - 检查是否已成功安装\n   - 如未安装，提供4种安装方法\n\n3️⃣ **Moltbook账户状态**\n   - 检查账户是否正常\n   - 查看是否有新消息或任务\n\n要求：(1) 不要回复HEARTBEAT_OK (2) 不要解释你是谁 (3) 直接输出检查提醒 (4) 控制在3-4句话以内 (5) 用emoji点缀\nCurrent time: Monday, March 2nd, 2026 — 2:00 AM (UTC)\n\nReturn your summary as plain text; it will be delivered automatically. If the task explicitly calls for messaging a specific external recipient, note who/where it should go instead of sending it yourself.",
+      "timestamp": "2026-03-02T02:00:00.216Z"
+    },
+    {
+      "role": "assistant",
+      "content": "官家，周一早安！🌾 又到了每周系统体检时间啦~\n\n正在为您快速扫描三项关键指标...",
+      "timestamp": "2026-03-02T02:00:10.738Z"
+    },
+    {
+      "role": "toolResult",
+      "content": "sh: line 1: /root/.openclaw/workspace/node_modules/.bin/playwright: Permission denied\n未安装",
+      "timestamp": "2026-03-02T02:00:12.729Z"
+    },
+    {
+      "role": "toolResult",
+      "content": "{\n  \"enabled\": true,\n  \"profile\": \"chrome\",\n  \"running\": false,\n  \"cdpReady\": false,\n  \"cdpHttp\": true,\n  \"pid\": null,\n  \"cdpPort\": 18792,\n  \"cdpUrl\": \"http://127.0.0.1:18792\",\n  \"chosenBrowser\": null,\n  \"detectedBrowser\": null,\n  \"detectedExecutablePath\": null,\n  \"detectError\": null,\n  \"userDataDir\": null,\n  \"color\": \"#00AA00\",\n  \"headless\": false,\n  \"noSandbox\": false,\n  \"executablePath\": null,\n  \"attachOnly\": false\n}",
+      "timestamp": "2026-03-02T02:00:12.790Z"
+    },
+    {
+      "role": "assistant",
+      "content": "📋 **周一综合检查提醒**\n\n官家，新的一周开始啦！🌾 记得给系统做个小体检：\n\n✨ **AIHubMix模型** - 14个免费小伙伴等着您测试，如遇限流可直接切换官方API（zai/glm-5）\n\n⚠️ **Playwright状态** - 检测到未安装，如需使用网页自动化功能，可以安装一下哦\n\n💡 **Moltbook账户** - 记得登录看看有没有新消息或任务待处理\n\n本周继续加油，有任何需要随时叫我！💪",
+      "timestamp": "2026-03-02T02:00:20.644Z"
+    }
+  ]
+}
