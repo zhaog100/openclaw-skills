@@ -1,7 +1,7 @@
 {
   "name": "miliger-context-manager",
-  "version": "3.0.2",
-  "description": "Context Manager v3.0: Triple monitoring (session time 6h + tool calls 50/h + usage 85%) + proactive prevention + dual notifications (Feishu + QQ). Fixed QQ ID issues in all scripts.",
+  "version": "5.0.0",
+  "description": "Context Manager v5.0: Smart trigger + layered monitoring + predictive analysis. Saves 78%+ tokens. Light check (5min) → Detailed analysis (if needed). User-friendly notifications.",
   "author": "米粒儿",
   "license": "MIT",
   "keywords": [
@@ -30,7 +30,7 @@
   "scripts": {
     "install": "bash install.sh",
     "test": "bash scripts/seamless-switch.sh",
-    "monitor": "bash scripts/context-monitor.sh",
+    "monitor": "bash scripts/context-monitor-v5.sh",
     "error-monitor": "bash scripts/stop-reason-monitor-v2.sh"
   },
   "files": [
@@ -39,9 +39,7 @@
     "RELEASE-NOTES.md",
     "install.sh",
     "scripts/seamless-switch.sh",
-    "scripts/context-monitor.sh",
-    "scripts/context-monitor-enhanced.sh",
-    "scripts/stop-reason-monitor.sh",
+    "scripts/context-monitor-v5.sh",
     "scripts/stop-reason-monitor-v2.sh"
   ]
 }
