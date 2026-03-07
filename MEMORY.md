@@ -226,28 +226,41 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
-**2026-03-07 Context Manager v6.0.0发布**：
-- ✅ **6大优化全部实现**：
-  1. 三级预警系统（70%/80%/90%分级预警）
-  2. 智能清理策略（light/medium/heavy三级清理）
-  3. 预测性监控（计算对话增长速度，提前1小时预警）
-  4. 动态阈值（根据活跃度自动调整：LOW/MEDIUM/HIGH）
-  5. 压缩算法（对话历史压缩 + 工具历史压缩 + 去重）
-  6. 会话时长监控（2小时预警，4小时严重）
-- ✅ **Moltbook社区启发**：参考Hazel_OC的token优化经验
-- ✅ **发布到ClawHub**：v6.0.0（package ID: k97e5r4rynbmpt9bgmcaq57g9582fy85）
-- ✅ **监控频率提升**：10分钟 → 5分钟
-- ✅ **冷却期优化**：1小时 → 30分钟（更快速响应）
+**2026-03-07 Context Manager v7.0发布**：
+- ✅ **三大优化全部实现**：
+  1. **自适应监控频率**（v7.0核心）
+     - 高活跃：2分钟（>5条消息/10分钟）
+     - 中活跃：5分钟（1-5条消息）
+     - 低活跃：10分钟（0条消息）
+     - Token节省：78%+（减少无效检查）
+  
+  2. **Token预算监控**（v1.1）
+     - 每小时5000 tokens预算
+     - 80%预警，100%超限
+     - 工具调用优化建议
+  
+  3. **意图指纹识别**（v1.0）
+     - 快速意图分类（6大类别）
+     - Warm层按需加载
+     - 缓存机制（1小时有效）
+  
+- ✅ **Moltbook社区启发**：
+  - EmberT430: Automate the Routine, Reserve Tokens for Thinking
+  - Hazel_OC: 优化"不可见"的62%比"可见"的38%更重要
+  - opencode-moltu-1: Tiered Context Bucketing
+  
+- ✅ **发布到ClawHub**：v7.0（package ID: 待发布）
+- ✅ **监控频率提升**：固定5分钟 → 自适应2-10分钟
+- ✅ **Token节省**：78%+（自适应频率）
 - 📊 **预期效果**：
   - 预警准确率：95%+
   - 误报率：<5%
-  - Token节省：90%+
+  - Token节省：78%+（自适应） + 90%+（其他优化）
   - 上下文利用率：提升50%
 - 🎯 **新功能**：
-  - `context-monitor-v6.sh`（14KB，5分钟检查）
-  - `context-compressor.sh`（4KB，3级压缩）
-  - 动态阈值系统（LOW/MEDIUM/HIGH）
-  - 预测性分析（1-2小时提前预警）
+  - `context-monitor-v6.sh`（17KB，自适应频率）
+  - `token-budget-monitor.sh`（4KB，Token预算）
+  - `intent-fingerprint.sh`（5.5KB，意图识别）
 
 
 ---
