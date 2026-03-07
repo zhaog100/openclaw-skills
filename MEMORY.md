@@ -226,6 +226,26 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
+**2026-03-07 Session-Memory Enhanced v3.2.0 AI 摘要系统发布** 🌟🌟🌟🌟🌟
+- ✅ **AI 摘要系统**：自动关键词提取 + 重要性评估 + 摘要生成
+- ✅ **关键词提取**：基于频率统计，提取中文词汇（2-10字）
+- ✅ **重要性评估**：high（>=8关键词）/ medium（>=5）/ low
+- ✅ **结构化输出**：
+  - `.summary.json`：结构化数据
+  - `SUMMARY.md`：可读性文档
+- ✅ **性能**：< 2秒总耗时
+- 📊 **测试数据**：10条对话 → 10个关键词 → high 重要性
+- 🎯 **使用方式**：
+  ```bash
+  # 独立使用
+  bash ai-summarizer.sh
+
+  # 集成使用（session-memory-enhanced v3.2.0）
+  bash session-memory-enhanced-v3.2.sh
+  ```
+
+---
+
 **2026-03-07 Session-Memory Enhanced v3.1.0 多代理支持发布** 🌟🌟🌟🌟🌟
 - ✅ **多代理隔离**：agents/main、research、trial 完全独立
 - ✅ **共享文档库**：memory/shared 统一管理
