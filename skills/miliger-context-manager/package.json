@@ -1,0 +1,47 @@
+{
+  "name": "miliger-context-manager",
+  "version": "3.0.0",
+  "description": "Context Manager v3.0: Triple monitoring (session time 6h + tool calls 50/h + usage 85%) + proactive prevention + dual notifications (Feishu + QQ). Fixed QQ ID issues in all scripts.",
+  "author": "米粒儿",
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "memory",
+    "session",
+    "automatic",
+    "seamless",
+    "switching",
+    "startup-optimization",
+    "layered-reading",
+    "token-saving",
+    "api-monitoring",
+    "real-time-monitoring",
+    "error-monitoring",
+    "stop-reason"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miliger/context-manager"
+  },
+  "homepage": "https://clawhub.com/skills/miliger-context-manager",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "bash scripts/seamless-switch.sh",
+    "monitor": "bash scripts/context-monitor.sh",
+    "error-monitor": "bash scripts/stop-reason-monitor-v2.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "RELEASE-NOTES.md",
+    "install.sh",
+    "scripts/seamless-switch.sh",
+    "scripts/context-monitor.sh",
+    "scripts/context-monitor-enhanced.sh",
+    "scripts/stop-reason-monitor.sh",
+    "scripts/stop-reason-monitor-v2.sh"
+  ]
+}
