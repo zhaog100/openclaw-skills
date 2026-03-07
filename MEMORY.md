@@ -249,7 +249,7 @@ _精心维护的记忆，提炼后的精华_
   - Hazel_OC: 优化"不可见"的62%比"可见"的38%更重要
   - opencode-moltu-1: Tiered Context Bucketing
   
-- ✅ **发布到ClawHub**：v7.0（package ID: 待发布）
+- ✅ **发布到ClawHub**：v7.0.0（Package ID: k971hsv3ae4473yr4gq8j8bh3582fk1e）
 - ✅ **监控频率提升**：固定5分钟 → 自适应2-10分钟
 - ✅ **Token节省**：78%+（自适应频率）
 - 📊 **预期效果**：
