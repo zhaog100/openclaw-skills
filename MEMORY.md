@@ -264,3 +264,24 @@ _精心维护的记忆，提炼后的精华_
 - 📊 **性能**：<15秒/次（QMD <10秒 + Git <5秒）
 - 🎯 **优势**：比旧版更自动化（三种触发方式 vs 一种）
 
+
+---
+
+**2026-03-07 Session-Memory Enhanced技能发布**：
+- ✅ **技能名称**：session-memory-enhanced
+- ✅ **版本**：2.0.0
+- ✅ **发布到ClawHub**：Package ID: k97fgzb8qxgkg391ewq7n05b0x82e4xn
+- ✅ **技能位置**：`/root/.openclaw/workspace/skills/session-memory-enhanced/`
+- ✅ **三位一体功能**：
+  1. 保存会话记忆（原生session-memory hook）
+  2. 更新QMD知识库（`qmd update`）
+  3. 提交Git仓库（自动提交）
+- ✅ **三种触发方式**：
+  1. 自动模式：每小时（crontab）
+  2. 手动模式：用户执行 `/new` 或 `/reset`
+  3. 定时模式：自定义crontab配置
+- ✅ **详细日志**：记录每次更新和变更统计（+X ~X -X）
+- ✅ **性能优化**：QMD更新 <10秒 + Git提交 <5秒 = 总计 <15秒
+- 📊 **技能大小**：4.5KB（SKILL.md）+ 3.5KB（README.md）+ 2KB（脚本）= 10KB
+- 🎯 **技能链接**：https://clawhub.com/skills/session-memory-enhanced
+
