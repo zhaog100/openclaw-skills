@@ -61,6 +61,21 @@ _系统配置、迁移、优化相关记录_
 - 📝 **待配置**：B站、小红书签到需要Cookie
 - 💡 **建议**：继续使用官方API（zai/glm-5、deepseek/deepseek-chat）
 
+## 2026-03-07：记忆系统重构（13:34）
+- ✅ **MEMORY.md优化**：48KB → 8KB（-83%）
+- ✅ **新增里程碑文件**：6个（666行）
+  - system.md（83行）
+  - skills.md（80行）
+  - wool-gathering.md（185行）
+  - context-monitor.md（150行）
+  - moltbook.md（94行）
+  - tools.md（74行）
+- ✅ **新增索引文件**：INDEX.md（98行）
+- ✅ **Token节省**：90%+（按需读取）
+- ✅ **Git提交**：579d789（44个文件变更）
+- 📊 **检索效率**：按主题/时间/关键词检索
+- 🎯 **维护难度**：高（大文件）→ 低（模块化）
+
 ## 2026-03-06：Context Manager技能修复
 - ✅ **技能发现**：context-manager（v2.2.1）
 - ✅ **核心功能**：
