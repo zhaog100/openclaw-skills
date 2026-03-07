@@ -1,6 +1,6 @@
 {
   "name": "miliger-context-manager",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Context Manager v3.0: Triple monitoring (session time 6h + tool calls 50/h + usage 85%) + proactive prevention + dual notifications (Feishu + QQ). Fixed QQ ID issues in all scripts.",
   "author": "米粒儿",
   "license": "MIT",
