@@ -1,7 +1,7 @@
 {
   "name": "session-memory-enhanced",
-  "version": "3.4.0",
-  "description": "Enhanced session memory hook with automatic QMD knowledge base and Git repository updates. Features: immutable parts + session sanitization + multi-agent support + AI summary + real-time monitoring (inotify). Supports multiple triggers: crontab + /new + /reset.",
+  "version": "4.0.0",
+  "description": "Session-Memory Enhanced v4.0 - 统一增强版。融合 session-memory + memu-engine 核心功能。特性：结构化提取 + 向量检索 + 不可变分片 + 三位一体自动化 + 多代理隔离 + AI 摘要 + 零配置启动。",
   "author": "米粒儿",
   "license": "MIT",
   "keywords": [
@@ -18,27 +18,73 @@
     "session-sanitization",
     "multi-agent",
     "ai-summary",
-    "realtime-monitoring",
-    "inotify"
+    "structured-extraction",
+    "vector-search",
+    "memu-engine",
+    "openai-embeddings",
+    "semantic-search",
+    "enterprise-grade"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/miliger/session-memory-enhanced"
   },
+  "bugs": {
+    "url": "https://github.com/miliger/session-memory-enhanced/issues"
+  },
   "homepage": "https://clawhub.com/skills/session-memory-enhanced",
   "engines": {
-    "openclaw": ">=2026.3.0"
+    "openclaw": ">=1.0.0"
   },
   "scripts": {
     "install": "bash scripts/install.sh",
-    "test": "bash scripts/session-memory-enhanced.sh",
-    "logs": "tail -f /root/.openclaw/workspace/logs/session-memory-enhanced.log"
+    "start": "bash scripts/session-memory-enhanced-v4.sh",
+    "test": "python3 python/extractor.py --help"
   },
-  "files": [
-    "SKILL.md",
-    "README.md",
-    "scripts/session-memory-enhanced.sh",
-    "scripts/install.sh",
-    "docs/"
-  ]
+  "dependencies": {
+    "python": ">=3.8.0",
+    "openai": ">=1.0.0",
+    "numpy": ">=1.20.0"
+  },
+  "optionalDependencies": {
+    "qmd": ">=1.0.0",
+    "git": ">=2.0.0"
+  },
+  "config": {
+    "defaultAgent": "main",
+    "flushIdleSeconds": 1800,
+    "maxMessagesPerPart": 60,
+    "features": {
+      "structuredExtraction": false,
+      "vectorSearch": false,
+      "aiSummary": true,
+      "gitBackup": true,
+      "qmdUpdate": true
+    }
+  },
+  "changelog": {
+    "4.0.0": {
+      "date": "2026-03-09",
+      "changes": [
+        "吸收 memu-engine 的结构化记忆提取",
+        "吸收 memu-engine 的向量检索系统",
+        "吸收 memu-engine 的多代理隔离架构",
+        "吸收 memu-engine 的去重机制",
+        "保留 session-memory 的所有优势",
+        "统一配置文件（unified.json）",
+        "可选 Python 集成",
+        "智能降级方案（向量检索 → QMD 检索）"
+      ]
+    },
+    "3.4.0": {
+      "date": "2026-03-07",
+      "changes": [
+        "版本号统一",
+        "防抖机制（20秒防抖，减少90%重复触发）",
+        "PID锁机制（防止多进程冲突）",
+        "去重检查（.processed标记）",
+        "配置管理（config/agents.json）"
+      ]
+    }
+  }
 }
