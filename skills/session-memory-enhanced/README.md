@@ -1,155 +1,145 @@
-# Session Memory Enhanced v2.0.0
+# Session-Memory Enhanced v4.0.0
 
-> Three-in-one solution: Save session memory + Update QMD + Commit Git
+> **统一增强版 - 融合 session-memory + memu-engine 核心功能**
 
-## 🎯 What It Does
+## 🎯 核心特性
 
-Automatically manages your OpenClaw session memory, knowledge base, and Git repository in one seamless operation.
+### 吸收的 memu-engine 优势 ⭐⭐⭐⭐⭐
 
-**Three Actions, One Trigger**:
-1. ✅ Save session context (native hook)
-2. ✅ Update QMD knowledge base (`qmd update`)
-3. ✅ Commit to Git repository (auto-commit)
+1. **结构化记忆提取**（Python）
+   - LLM 提取用户画像
+   - 事件识别与记录
+   - 知识点提取
+   - 决策追踪
+   - 经验教训总结
 
-## ✨ Key Features
+2. **向量检索系统**（Python）
+   - OpenAI Embeddings API
+   - 语义搜索（不仅仅是关键词）
+   - 相似度计算
+   - 智能排序
 
-- **Multiple Triggers**: Crontab (hourly) + /new + /reset
-- **Detailed Logging**: Track every update with statistics
-- **Smart Commits**: Only commit when changes exist
-- **Performance**: <15 seconds total execution time
-- **Zero Configuration**: Works out of the box
+3. **多代理隔离架构**
+   - 目录隔离（memory/agents/<agent>/）
+   - 数据库隔离（<agent>/memu.db）
+   - 权限控制（searchableStores）
 
-## 🚀 Quick Start
+4. **去重机制**
+   - .processed 标记文件
+   - 防止重复处理
+   - 减少系统负载
 
-### Install
+### 保留的 session-memory 优势 ⭐⭐⭐⭐⭐
+
+1. **不可变分片策略** - Token 节省 90%+
+2. **三位一体自动化** - 记忆 + QMD + Git
+3. **AI 摘要系统** - 关键词 + 重要性评估
+4. **零配置启动** - 开箱即用
+
+## 🚀 快速开始
+
+### 安装
 
 ```bash
-# From ClawHub
+# 从 ClawHub 安装
 clawhub install session-memory-enhanced
 
-# Or manual installation
-bash /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+# 或手动安装
+cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cp config/unified.json.example config/unified.json
 ```
 
-### Configure Crontab
+### 启用高级功能（可选）
 
 ```bash
-# Edit crontab
+# 1. 安装 Python 依赖
+cd python
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# 2. 配置 API Key
+export OPENAI_API_KEY="your_key"
+
+# 3. 启用功能
+jq '.features.structuredExtraction = true' config/unified.json > tmp.json
+mv tmp.json config/unified.json
+
+jq '.features.vectorSearch = true' config/unified.json > tmp.json
+mv tmp.json config/unified.json
+```
+
+## 📋 使用方式
+
+### 自动模式（推荐）
+
+```bash
+# 每小时自动运行
 crontab -e
-
-# Add hourly execution
-0 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+# 添加：
+0 * * * * /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 ```
 
-## 📊 How It Works
-
-```
-Trigger (/new or /reset or crontab)
-    ↓
-Save session memory (2s wait)
-    ↓
-Update QMD knowledge base (<10s)
-    ↓
-Check Git changes
-    ↓
-Auto commit if needed (<5s)
-    ↓
-Log with statistics
-```
-
-## 📈 Performance Impact
-
-- **QMD Update**: <10 seconds
-- **Git Commit**: <5 seconds
-- **Total**: <15 seconds
-- **Frequency**: 1x/hour (configurable)
-- **System Impact**: Negligible
-
-## 🔧 Configuration
-
-### Change Update Frequency
+### 手动模式
 
 ```bash
-# Every 30 minutes
-*/30 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+# 立即执行
+bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
-# Every 10 minutes
-*/10 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+# 检索
+python3 /root/.openclaw/workspace/skills/session-memory-enhanced/python/searcher.py \
+    --query "查询关键词" \
+    --db /root/.openclaw/workspace/memory/agents/main/vectors.db \
+    --agent main \
+    --api-key "your_key"
 ```
 
-### View Logs
+## 📊 功能对比
 
-```bash
-# Real-time monitoring
-tail -f /root/.openclaw/workspace/logs/session-memory-enhanced.log
+| 功能 | v3.4.0 | v4.0.0 |
+|------|--------|--------|
+| **结构化提取** | ❌ | ✅ |
+| **向量检索** | ❌ | ✅ |
+| **不可变分片** | ✅ | ✅ |
+| **三位一体** | ✅ | ✅ |
+| **AI 摘要** | ✅ | ✅ |
+| **零配置** | ✅ | ✅ |
 
-# Recent 30 entries
-tail -30 /root/.openclaw/workspace/logs/session-memory-enhanced.log
-```
+## 🌟 优势总结
 
-## 🎯 Use Cases
+### 来自 memu-engine 的优势
+1. ⭐ **结构化记忆** - 深度理解对话内容
+2. ⭐ **向量检索** - 语义搜索，更智能
+3. ⭐ **多代理隔离** - 企业级架构
+4. ⭐ **去重机制** - 避免重复处理
 
-### Case 1: Long Conversations
-- User chats with AI for hours
-- Session memory automatically saved
-- Knowledge base stays updated
-- Git repository synced
+### 来自 session-memory 的优势
+1. ⭐ **不可变分片** - Token 节省 90%+
+2. ⭐ **三位一体** - 一次触发，三件事完成
+3. ⭐ **Git 备份** - 自动备份，安全可靠
+4. ⭐ **零配置** - 开箱即用
 
-### Case 2: Development Work
-- Make changes to workspace
-- Automatic Git commits
-- No manual intervention needed
+### 融合后的优势
+1. ⭐⭐⭐ **功能完整** - 两大系统所有功能
+2. ⭐⭐⭐ **灵活配置** - 可选择启用功能
+3. ⭐⭐⭐ **向下兼容** - 不启用时与 v3.4.0 一致
+4. ⭐⭐⭐ **平滑升级** - 无缝从 v3.4.0 升级
 
-### Case 3: Knowledge Management
-- Add new documents
-- QMD automatically indexes
-- Knowledge base stays current
+## 📝 更新日志
 
-## 💡 Comparison
-
-| Feature | Native Hook | Enhanced Hook |
-|---------|------------|---------------|
-| Save memory | ✅ | ✅ |
-| Triggers | /new, /reset | /new, /reset + crontab ⭐ |
-| Update QMD | ❌ | ✅ ⭐ |
-| Git commit | ❌ | ✅ ⭐ |
-| Detailed logs | ❌ | ✅ ⭐ |
-| Statistics | ❌ | ✅ ⭐ |
-
-## 📁 Files
-
-```
-/root/.openclaw/workspace/
-├── scripts/
-│   └── session-memory-enhanced.sh    # Main script (1.97KB)
-├── logs/
-│   └── session-memory-enhanced.log   # Execution log
-└── skills/
-    └── session-memory-enhanced/
-        ├── SKILL.md                   # This file
-        └── README.md                  # Documentation
-```
-
-## 📞 Support
-
-**Issues?**
-1. Check logs: `tail -50 logs/session-memory-enhanced.log`
-2. Test manually: `bash scripts/session-memory-enhanced.sh`
-3. Verify crontab: `crontab -l`
-
-**Community**:
-- ClawHub: https://clawhub.com/skills/session-memory-enhanced
-- Discord: https://discord.com/invite/clawd
-- Docs: https://docs.openclaw.ai
-
-## 📝 Changelog
-
-### v2.0.0 (2026-03-07)
-- Unified session-memory + enhanced-session-memory
-- Three trigger methods
-- Detailed logging
-- Performance optimization
+### v4.0.0 (2026-03-09)
+- ✅ 吸收 memu-engine 的结构化提取
+- ✅ 吸收 memu-engine 的向量检索
+- ✅ 吸收 memu-engine 的多代理隔离
+- ✅ 吸收 memu-engine 的去重机制
+- ✅ 保留 session-memory 的所有优势
+- ✅ 统一配置文件（unified.json）
+- ✅ 可选 Python 集成
+- ✅ 智能降级方案（向量检索 → QMD 检索）
 
 ---
 
-**Install now**: `clawhub install session-memory-enhanced`
+**作者**：米粒儿  
+**版本**：v4.0.0  
+**创建时间**：2026-03-09 19:30  
+**更新时间**：2026-03-09 19:50
