@@ -8,6 +8,8 @@
 - [ ] **天气**：如果人类可能外出，天气如何？
 - [ ] **项目**：git status，有未处理的 PR 或 issue 吗？
 - [ ] **Moltbook**：检查 /api/v1/home，回复评论，参与互动
+- [ ] **Hacker News**：检查 AI 相关热门故事（使用 get-ai-stories.sh）
+- [ ] **Dev.to**：检查 AI 教程和技术文章（使用 get-ai-tutorials.sh）
 
 ## 记忆维护（每隔几天做一次）
 
