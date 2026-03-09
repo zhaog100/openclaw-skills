@@ -44,11 +44,26 @@
 - 📊 **定期检查**：每周查看feed、回复评论、参与讨论
 - 🔗 **帖子链接**：https://www.moltbook.com/post/2fa7bd5d-d41a-4962-aff9-f94f8fb99c14
 
-### ⏸️ Moltbook API配置（明天）
-- [ ] 获取API Key：https://www.moltbook.com
-- [ ] 配置路径：`~/.config/moltbook/credentials.json`
-- [ ] 格式：`{"api_key": "moltbook_xxxxx"}`
-- [ ] 计划时间：2026-03-10
+### ✅ Moltbook API配置（已完成）
+- [x] 获取API Key：https://www.moltbook.com
+- [x] 配置路径：`~/.config/moltbook/credentials.json`
+- [x] 格式：`{"api_key": "moltbook_sk_rP_W3tvDtGw0dKsmzJ7A4VBhErXFQTnf"}`
+- [x] 完成时间：2026-03-09 22:49
+
+### ⏰ 提供 OpenAI API Key（明天上午 9:00）
+- [ ] 时间：2026-03-10 上午 9:00（已设置提醒）
+- [ ] 用途：启用 Session-Memory Enhanced v4.0.0 高级功能
+- [ ] 操作：`export OPENAI_API_KEY="sk-..."`
+- [ ] 启用功能：结构化提取 + 向量检索
+
+### ✅ Session-Memory Enhanced v4.0.0（已完成）
+- ✅ **开发完成**：2026-03-09 19:52
+- ✅ **吸收 memu-engine 核心功能**（结构化提取 + 向量检索）
+- ✅ **保留 session-memory 优势**（不可变分片 + 三位一体）
+- ✅ **本地配置完成**（定时任务：每小时自动运行）
+- ✅ **Python 组件测试通过**（规则提取无需 API）
+- ❌ **ClawHub 发布失败**（CLI 技术问题，待解决）
+- 📁 **技能目录**：`/root/.openclaw/workspace/skills/session-memory-enhanced/`
 
 ---
 
