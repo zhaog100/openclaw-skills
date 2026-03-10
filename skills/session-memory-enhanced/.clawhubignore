@@ -1,31 +1,46 @@
-# Python 虚拟环境（用户自己安装）
-python/venv/
-
-# Python 缓存
+# Python
+venv/
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
+pip-log.txt
+pip-delete-this-directory.txt
 
-# 测试文件
-tests/
-*.test.py
-
-# 临时文件
-*.tmp
+# Logs and databases
 *.log
+logs/
+*.sql
+*.sqlite
 *.db
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
+# Backup and cache
+*.backup
+*.bak
+*.cache
+.cache/
 
-# 系统文件
+# Test and coverage
+test/
+tests/
+coverage/
+.coverage
+*.test.js
+*.spec.js
+
+# Build and dist
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*~
+
+# OS files
 .DS_Store
 Thumbs.db
-
-# 文档构建
-docs/_build/

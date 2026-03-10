@@ -487,3 +487,106 @@ _精心维护的记忆，提炼后的精华_
 - 📊 **技能大小**：4.5KB（SKILL.md）+ 3.5KB（README.md）+ 2KB（脚本）= 10KB
 - 🎯 **技能链接**：https://clawhub.com/skills/session-memory-enhanced
 
+
+---
+
+## 2026-03-10 重大更新
+
+### 🎉 ClawHub 发布问题解决
+
+**问题根源**：
+1. **acceptLicenseTerms 缺失** - CLI v0.7.0 payload 缺少此字段
+2. **文件过多** - venv 目录包含 3905 个文件
+3. **误导性错误** - "SKILL.md required" 实际是文件过多导致
+
+**解决方案**：
+1. **临时修改 CLI**：
+   ```javascript
+   // /usr/lib/node_modules/clawhub/dist/cli/commands/publish.js
+   form.set('payload', JSON.stringify({
+       slug,
+       acceptLicenseTerms: true,  // 添加这一行
+       displayName,
+       version,
+       ...
+   }));
+   ```
+
+2. **创建 .clawhubignore**：
+   ```
+   venv/
+   __pycache__/
+   *.log
+   logs/
+   ```
+
+3. **发布命令**：
+   ```bash
+   clawhub publish /完整路径 --slug xxx --version x.x.x
+   ```
+
+**发布成果**：
+- ✅ Session-Memory Enhanced v4.0.0 (Package ID: k979cbsga7mwmn9dqdanchpvt582mdcq)
+- ✅ Session-Memory Enhanced v4.0.1 完整版 (Package ID: k97carwxs0htme5y071ye69ykx82mmwg)
+- ✅ Issue #671 已更新解决方案
+
+**待发布技能**（14个）：
+```
+chart-generator, devto-surfer, diagram-generator, find-skills,
+github, hacker-news-surfer, miliger-context-manager, notion,
+obsidian, playwright-scraper, smart-model-switch, summarize,
+tavily-search, tencentcloud-lighthouse-skill, weather
+```
+
+### ⚠️ OpenAI API 配额不足
+
+**现象**：
+```
+You exceeded your current quota, please check your plan and billing details.
+```
+
+**影响范围**：
+- ❌ AI 智能查漏补缺
+- ❌ 结构化记忆提取
+- ❌ 向量检索
+- ✅ 基础功能正常（降级模式）
+
+**解决方案**：
+- 方案1：等待配额重置（每月1日）
+- 方案2：升级 OpenAI 计划（最低 $5）
+- 方案3：继续使用降级模式（当前状态）
+
+### 📦 Smart Model Switch 已配置
+
+**安装信息**：
+- 来源：ClawHub
+- 版本：v1.3.0
+- 所有者：zhaog100（官家）
+- 安装时间：2026-03-10 14:27
+
+**配置模式**：混合模式（方式3）
+- 定时任务：每5分钟检查
+- AI主动检测：integrate-check.sh
+- 日志：/root/.openclaw/workspace/logs/smart-model-switch.log
+
+**支持模型**：
+- Flash（0-3分）- 快速问答
+- Main（4-6分）- 常规对话
+- Coding - 代码任务
+- Vision - 图片/视频
+- Complex（8-10分）- 深度分析
+- Long-Context（Kimi）- 超长对话
+
+### 🧹 系统优化
+
+**清理内容**（2026-03-10 15:04-15:17）：
+- ✅ 临时文件：6个（458KB）
+- ✅ 日志压缩：19个文件
+- ✅ Python缓存：~10个目录
+- ✅ 释放空间：~3MB
+
+**下次清理**：1周后
+
+---
+
+**更新时间**：2026-03-10 22:48

@@ -62,22 +62,24 @@
   - 语义搜索（相似度计算）
 - ✅ **测试通过**：所有 Python 组件正常工作
 
-### ✅ ClawHub 发布问题（Issue 已提交）
+### ✅ ClawHub 发布问题（已解决！2026-03-10 22:40）
 - ✅ **问题已记录**：`acceptLicenseTerms: invalid value`
 - ✅ **Issue 已提交**：#671 (2026-03-10 10:09)
 - 🔗 **Issue 链接**：https://github.com/openclaw/clawhub/issues/671
-- ⏳ **等待修复**：ClawHub 团队处理中
-- [ ] **重新发布**：v4.0.0（修复后）
-- 📊 **影响范围**：14个技能更新 + Session-Memory Enhanced v4.0.0
+- ✅ **临时解决方案**：修改 publish.js 添加 acceptLicenseTerms
+- ✅ **v4.0.0 已发布**：Package ID `k979cbsga7mwmn9dqdanchpvt582mdcq`
+- ✅ **Issue 已更新**：添加解决方法评论
+- 📊 **待发布**：14个技能更新
 
-### ✅ Session-Memory Enhanced v4.0.0（已完成）
+### ✅ Session-Memory Enhanced v4.0.0（已完成 + 已发布）
 - ✅ **开发完成**：2026-03-09 19:52
 - ✅ **吸收 memu-engine 核心功能**（结构化提取 + 向量检索）
 - ✅ **保留 session-memory 优势**（不可变分片 + 三位一体）
 - ✅ **本地配置完成**（定时任务：每小时自动运行）
 - ✅ **Python 组件测试通过**（规则提取无需 API）
-- ❌ **ClawHub 发布失败**（CLI 技术问题，待解决）
+- ✅ **ClawHub 已发布**：v4.0.0 (2026-03-10 22:40)
 - 📁 **技能目录**：`/root/.openclaw/workspace/skills/session-memory-enhanced/`
+- 🔗 **ClawHub 链接**：https://clawhub.com/skills/session-memory-enhanced
 
 ---
 
