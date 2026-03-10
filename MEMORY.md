@@ -48,6 +48,8 @@ bun /path/to/qmd.ts search daily-logs "关键词" --hybrid
 4. image-content-extractor - 图片内容提取
 5. quote-reader - 引用前文读取
 6. speech-recognition - 语音识别
+7. memory-sync-protocol - 记忆优化（2026-03-10 新增）
+8. github-bounty-hunter - GitHub 赚钱（2026-03-10 新增）
 
 ### 核心配置
 7. agents.json - 代理配置
@@ -77,9 +79,13 @@ bun /path/to/qmd.ts search daily-logs "关键词" --hybrid
 25. MCP 集成 - Agent 自主调用工具
 
 ### 重要决策
-26. 软件安装路径：D:\Program Files (x86)27. 输出文件目录：Z:\OpenClaw28. 默认模型：百炼 qwen3.5-plus
+26. 软件安装路径：D:\Program Files (x86)\
+27. 输出文件目录：Z:\OpenClaw\
+28. 默认模型：百炼 qwen3.5-plus
 29. 上下文监控阈值：60%
 30. 定时任务频率：11 个任务
+31. 免费额度组合：百炼 + 智谱+Codex+Gemini（2026-03-10）
+32. MEMORY.md 精简策略：<10K（2026-03-10）
 
 ---
 
