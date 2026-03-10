@@ -290,31 +290,36 @@
 - **参考文章**：`memory/2026-03-10_OpenClaw 再没有 token 焦虑！Gemini API 白嫖指南.md`
 - **预期收益**：3 个月免费使用 Gemini 2.5 Flash/Pro，$300 赠金
 
-#### GitHub Bounty Hunter 发布 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:53）
-- [ ] **发布前准备**（明天完成）
-  - [ ] 完善 SKILL.md 和 README.md
-  - [ ] 创建 ClawHub 发布包
-  - [ ] 编写发布说明
-  - [ ] 测试完整功能
+#### 米粒儿技能套装发布 ⭐⭐⭐⭐⭐ 新增（2026-03-10 23:30）
+- [ ] **创建技能套装包**（新方案）
+  - [ ] 创建 miliger-skill-pack 目录
+  - [ ] 复制 7 个技能到 skills/
+  - [ ] 创建 pack.json 配置
+  - [ ] 创建 README.md 套装说明
+  - [ ] 打包成 tar.gz
 - [ ] **上传到 ClawHub**
   - [ ] 访问 https://clawhub.com/publish
-  - [ ] 上传技能包
+  - [ ] 上传 1 个套装包（包含 7 个技能）
   - [ ] 填写发布信息
   - [ ] 提交审核
-- [ ] **等待审核通过**
-  - [ ] 预计 1-2 个工作日
-  - [ ] 审核通过后验证安装
-- **技能信息**：
-  - 名称：github-bounty-hunter
-  - 版本：1.0.0
-  - 核心功能：GitHub bounty 监控 + 自动开发 + 自动提交
-  - 预期收益：$200-2000/月
-  - 文件数：5 个
-  - 总大小：40KB
-- **状态**：📋 待发布（明天）
+- [ ] **后续自动化**
+  - [ ] 配置 GitHub Actions
+  - [ ] 实现自动发布
+- **套装内容**：
+  - context-manager v2.2.2
+  - smart-memory-sync v1.0.0
+  - smart-model-switch v1.3.0
+  - quote-reader v1.1.0
+  - image-content-extractor v2.0
+  - memory-sync-protocol v1.0.0（新增）
+  - github-bounty-hunter v1.0.0（新增）
+- **优势**：
+  - 一次上传 7 个技能
+  - 品牌效应（米粒儿套装）
+  - 易于维护
+- **状态**：📋 待执行
 - **优先级**：高
-- **技能位置**：`skills/github-bounty-hunter/`
-- **实现文档**：`docs/github-bounty-hunter-implementation.md`
+- **技能位置**：`skills/*/`
 
 #### GitHub 找任务实战 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:55）
 - [ ] **手动寻找第一个任务**
