@@ -136,6 +136,89 @@
 
 ---
 
+### 🆕 新增待办（2026-03-10 16:35）
+
+#### 论坛冲浪探索 ⭐⭐⭐⭐⭐ 新增
+- [ ] **第 1 期冲浪探索**（预计 2 小时）
+  - [ ] GitHub Discussions - OpenClaw 官方讨论
+  - [ ] Discord - OpenClaw 官方社区
+  - [ ] V2EX - AI 版中文讨论
+  - [ ] Reddit - r/LocalLLaMA 技术深度
+- [ ] **探索主题**：
+  - [ ] 智能模型切换优化（3-5 种策略）
+  - [ ] 上下文管理最佳实践（5+ 技巧）
+  - [ ] 技能开发标准化（模板参考）
+  - [ ] 创新应用场景（10+ 案例）
+- [ ] **产出文档**：
+  - [ ] 8+ 份发现记录
+  - [ ] 1 份探索总结报告
+  - [ ] 技能开发优先级清单
+- [ ] **后续行动**：
+  - [ ] 筛选高价值内容（≥80 分）
+  - [ ] 优化现有技能（smart-model-switch v2.0）
+  - [ ] 开发新技能（基于社区灵感）
+- **状态**：📋 待执行
+- **优先级**：高
+- **参考文档**：`docs/forum-surfing-session-1.md`
+
+#### 社区技能探索 ⭐⭐⭐⭐ 新增
+- [ ] **浏览 ClawHub**（30 分钟）
+  - [ ] 收集 10 个候选技能
+  - [ ] 评估前 5 个技能
+- [ ] **浏览 GitHub**（30 分钟）
+  - [ ] 搜索 openclaw-skill topic
+  - [ ] 查看高星技能仓库
+- [ ] **产出**：
+  - [ ] 5 份技能评估报告
+  - [ ] 技能推荐清单（TOP 10）
+- **状态**：📋 待执行
+- **优先级**：高
+- **参考文档**：`docs/community-skills-exploration-plan.md`
+
+#### 技能开发标准化应用 ⭐⭐⭐ 新增
+- [ ] **对照标准优化现有技能**
+  - [ ] smart-model-switch（按标准重构）
+  - [ ] context-manager（补充测试）
+  - [ ] quote-reader（完善文档）
+- [ ] **按标准开发新技能**
+  - [ ] 技能模板创建
+  - [ ] 测试用例编写
+  - [ ] 文档完善
+- [ ] **发布到 ClawHub**
+  - [ ] 每月 1 个新技能
+  - [ ] 社区反馈收集
+- **状态**：📋 待执行
+- **优先级**：中
+- **参考文档**：`docs/skill-development-standard.md`
+
+#### Google Antigravity 配置 ⭐⭐⭐⭐⭐ 新增（2026-03-10 16:56）
+- [ ] **安装 Gemini CLI**
+  - [ ] npm install -g @google/gemini-cli
+  - [ ] 验证安装：gemini --version
+- [ ] **安装 Antigravity**
+  - [ ] npm install -g @google/antigravity
+  - [ ] 验证安装：antigravity --version
+- [ ] **登录 Google 账号**
+  - [ ] gemini auth login
+  - [ ] 验证状态：gemini auth status
+- [ ] **配置 Skills 目录**
+  - [ ] 创建全局目录：~/.gemini/antigravity/skills/
+  - [ ] 创建项目目录：.agent/skills/
+- [ ] **与 OpenClaw 集成**
+  - [ ] 方案 1：备用模型源
+  - [ ] 方案 2：Skill 互认
+  - [ ] 方案 3：额度互补
+- [ ] **测试免费额度**
+  - [ ] 简单问答测试
+  - [ ] 代码生成测试
+  - [ ] 额度使用情况
+- **状态**：📋 待执行
+- **优先级**：高
+- **参考文档**：`docs/google-antigravity-setup.md`
+- **预期收益**：节省 30%+ 主力模型额度
+
+---
+
 **保持精简。每项检查都消耗 token。**
 
-*最后更新：2026-03-10 10:01*
+*最后更新：2026-03-10 16:56*
