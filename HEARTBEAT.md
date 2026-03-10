@@ -217,8 +217,107 @@
 - **参考文档**：`docs/google-antigravity-setup.md`
 - **预期收益**：节省 30%+ 主力模型额度
 
+#### Memory Sync Protocol 发布 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:02）
+- [ ] **手动上传到 ClawHub**
+  - [ ] 访问 https://clawhub.com/publish
+  - [ ] 上传技能包：memory-sync-protocol-v1.0.0.tar.gz
+  - [ ] 填写发布信息（名称/版本/描述/标签）
+  - [ ] 提交审核
+- [ ] **等待审核通过**
+  - [ ] 预计 1-2 个工作日
+  - [ ] 审核通过后验证安装
+- [ ] **发布后验证**
+  - [ ] clawhub install memory-sync-protocol
+  - [ ] 测试功能是否正常
+  - [ ] 收集用户反馈
+- **技能信息**：
+  - 名称：memory-sync-protocol
+  - 版本：1.0.0
+  - 核心功能：MEMORY.md 自动精简 + QMD 检索 + Token 监控
+  - Token 节省：92.5%
+  - 准确率提升：29%
+- **状态**：📋 待发布
+- **优先级**：高
+- **技能包位置**：`/home/zhaog/.openclaw/workspace/skills/memory-sync-protocol-v1.0.0.tar.gz`
+- **发布指南**：`docs/CLAWHUB-PUBLISH-GUIDE.md`
+
+#### OpenAI Codex 免费额度接入 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:18）
+- [ ] **完成 OAuth 授权流程**
+  - [ ] 在终端中选择 Yes 确认安全警告
+  - [ ] 选择 openai-codex 认证方式
+  - [ ] 打开浏览器完成 OAuth 授权
+  - [ ] 登录 OpenAI 账号
+  - [ ] 授权 OpenClaw 访问 Codex
+- [ ] **配置模型**
+  - [ ] 设置模型为 openai-codex/gpt-5.4
+  - [ ] 验证配置：openclaw config get model
+- [ ] **测试免费额度**
+  - [ ] 简单问答测试
+  - [ ] 代码生成测试
+  - [ ] 额度使用情况检查
+- **核心价值**：
+  - 免费使用 GPT-5.4
+  - Codex 额度与聊天额度独立
+  - 预计每月节省 $20-200
+- **状态**：⏸️ 进行中（等待终端确认）
+- **优先级**：高
+- **参考文章**：`memory/wechat-article-别买_API_了_ChatGPT_接入_OpenClaw_GPT_5_4_养_龙虾__保姆级教程_-1773147971392.md`
+- **预期收益**：免费使用 GPT-5.4，节省 API 费用
+
+#### Gemini API 免费额度接入 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:22）
+- [ ] **方案选择**
+  - [ ] Tier 0 免费层（只需 Google 账号）
+  - [ ] Tier 1 付费层（绑卡送$300 赠金，推荐）
+- [ ] **Tier 1 配置流程**
+  - [ ] 访问 https://makersuite.google.com/app/apikey
+  - [ ] 创建 Google Cloud 项目
+  - [ ] 绑定信用卡（获取$300 赠金）
+  - [ ] 获取 API Key
+  - [ ] 在 OpenClaw 中配置
+- [ ] **配置模型**
+  - [ ] 设置模型为 gemini/gemini-2.5-flash
+  - [ ] 验证配置：openclaw config get model
+- [ ] **测试免费额度**
+  - [ ] 简单问答测试
+  - [ ] 长文本处理测试
+  - [ ] 额度使用情况检查
+- **核心价值**：
+  - $300 美元赠金（有效期 3 个月）
+  - TPM 100 万 -400 万
+  - API 绑卡≠网页包月（账单独立）
+- **状态**：📋 待执行
+- **优先级**：高
+- **参考文章**：`memory/2026-03-10_OpenClaw 再没有 token 焦虑！Gemini API 白嫖指南.md`
+- **预期收益**：3 个月免费使用 Gemini 2.5 Flash/Pro，$300 赠金
+
+#### GitHub Bounty Hunter 发布 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:53）
+- [ ] **发布前准备**（明天完成）
+  - [ ] 完善 SKILL.md 和 README.md
+  - [ ] 创建 ClawHub 发布包
+  - [ ] 编写发布说明
+  - [ ] 测试完整功能
+- [ ] **上传到 ClawHub**
+  - [ ] 访问 https://clawhub.com/publish
+  - [ ] 上传技能包
+  - [ ] 填写发布信息
+  - [ ] 提交审核
+- [ ] **等待审核通过**
+  - [ ] 预计 1-2 个工作日
+  - [ ] 审核通过后验证安装
+- **技能信息**：
+  - 名称：github-bounty-hunter
+  - 版本：1.0.0
+  - 核心功能：GitHub bounty 监控 + 自动开发 + 自动提交
+  - 预期收益：$200-2000/月
+  - 文件数：5 个
+  - 总大小：40KB
+- **状态**：📋 待发布（明天）
+- **优先级**：高
+- **技能位置**：`skills/github-bounty-hunter/`
+- **实现文档**：`docs/github-bounty-hunter-implementation.md`
+
 ---
 
 **保持精简。每项检查都消耗 token。**
 
-*最后更新：2026-03-10 16:56*
+*最后更新：2026-03-10 21:53*
