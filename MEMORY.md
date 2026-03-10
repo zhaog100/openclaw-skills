@@ -634,6 +634,19 @@ You exceeded your current quota, please check your plan and billing details.
 | 京东 Cookie 更新 | 每月 | 2026-04-10 |
 | 系统全面备份 | 每周 | 2026-03-17 |
 
+### 📋 待办任务（TODO）
+
+**短期（本周）**：
+1. ⏳ 等待 Session-Memory Enhanced v4.0.1 安全扫描完成
+2. ⏳ 创建 `clawhub-publisher` 技能（自动化发布流程）
+3. 📦 发布其他 13 个技能（使用相同方法）
+4. ✅ 验证京东 Cookie 更新效果
+
+**中期（本月）**：
+1. 📈 升级 OpenAI 计划（如需启用 AI 增强功能）
+2. 🔧 优化 ClawHub 发布流程（等待 CLI v0.7.1）
+3. 📚 完善知识库内容
+
 ---
 
-**更新时间**：2026-03-10 22:50
+**更新时间**：2026-03-10 22:59
