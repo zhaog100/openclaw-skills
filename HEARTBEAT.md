@@ -59,6 +59,14 @@
 - [ ] 启用功能：结构化提取 + 向量检索
 - ⏰ **已提醒**：7:09 AM（提前2小时通知）
 
+### ⏸️ ClawHub 发布问题（等待修复）
+- ✅ **问题已记录**：`acceptLicenseTerms: invalid value`
+- ✅ **Issue 已准备**：`/tmp/clawhub-issue.md`
+- [ ] **提交 issue**：https://github.com/openclaw/clawhub/issues/new
+- [ ] **等待修复**：ClawHub 团队处理
+- [ ] **重新发布**：v4.0.0（修复后）
+- 📊 **影响范围**：14个技能更新 + Session-Memory Enhanced v4.0.0
+
 ### ✅ Session-Memory Enhanced v4.0.0（已完成）
 - ✅ **开发完成**：2026-03-09 19:52
 - ✅ **吸收 memu-engine 核心功能**（结构化提取 + 向量检索）
