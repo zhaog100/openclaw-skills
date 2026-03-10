@@ -316,8 +316,45 @@
 - **技能位置**：`skills/github-bounty-hunter/`
 - **实现文档**：`docs/github-bounty-hunter-implementation.md`
 
+#### GitHub 找任务实战 ⭐⭐⭐⭐⭐ 新增（2026-03-10 21:55）
+- [ ] **手动寻找第一个任务**
+  - [ ] 访问 GitHub Issues
+  - [ ] 搜索关键词：bounty, grant, paid, sponsor
+  - [ ] 筛选标签：good first issue, help wanted
+  - [ ] 选择适合的任务（难度⭐⭐，奖励$50-200）
+- [ ] **申请任务**
+  - [ ] 在 Issue 下留言申请
+  - [ ] 说明自己的能力和计划
+  - [ ] 等待维护者确认
+- [ ] **开发任务**
+  - [ ] Fork 仓库
+  - [ ] 创建分支
+  - [ ] 开发功能/修复 bug
+  - [ ] 运行测试
+- [ ] **提交 PR**
+  - [ ] 提交 Pull Request
+  - [ ] 回复评论
+  - [ ] 修改代码
+  - [ ] 等待合并
+- [ ] **领取奖励**
+  - [ ] 任务完成后领取 bounty
+  - [ ] 记录收益
+- **目标平台**：
+  - GitHub Issues（github.com/issues）
+  - GitCoin（gitcoin.co）
+  - IssueHunt（issuehunt.io）
+  - Bountysource（bountysource.com）
+- **预期收益**：
+  - 第一个任务：$50-200
+  - 每月：2-3 个小任务
+  - 预计：$200-500/月
+- **状态**：📋 待执行
+- **优先级**：高
+- **参考文档**：`docs/github-bounty-hunter-implementation.md`
+- **相关技能**：`skills/github-bounty-hunter/`
+
 ---
 
 **保持精简。每项检查都消耗 token。**
 
-*最后更新：2026-03-10 21:53*
+*最后更新：2026-03-10 21:55*
