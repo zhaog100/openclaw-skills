@@ -80,3 +80,6 @@ node_modules/
 # 临时技能包
 *.tar.gz
 *.skill
+
+# OpenAI API Key (sensitive)
+config/openai.env
