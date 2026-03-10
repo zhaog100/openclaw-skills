@@ -52,11 +52,12 @@
 - [x] 格式：`{"api_key": "moltbook_sk_rP_W3tvDtGw0dKsmzJ7A4VBhErXFQTnf"}`
 - [x] 完成时间：2026-03-09 22:49
 
-### ⏰ 提供 OpenAI API Key（明天上午 9:00）
-- [ ] 时间：2026-03-10 上午 9:00（已设置提醒）
+### ⏰ 提供 OpenAI API Key（今天上午 9:00）
+- [ ] 时间：2026-03-10 上午 9:00（还有约2小时）
 - [ ] 用途：启用 Session-Memory Enhanced v4.0.0 高级功能
 - [ ] 操作：`export OPENAI_API_KEY="sk-..."`
 - [ ] 启用功能：结构化提取 + 向量检索
+- ⏰ **已提醒**：7:09 AM（提前2小时通知）
 
 ### ✅ Session-Memory Enhanced v4.0.0（已完成）
 - ✅ **开发完成**：2026-03-09 19:52
