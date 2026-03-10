@@ -590,3 +590,50 @@ You exceeded your current quota, please check your plan and billing details.
 ---
 
 **更新时间**：2026-03-10 22:48
+
+---
+
+## 🚨 风险评估与应急预案（2026-03-10 22:50）
+
+### 📊 当前风险状态
+
+| 风险等级 | 数量 | 状态 |
+|---------|------|------|
+| 🔴 高风险 | 1 | OpenAI API 配额不足（已降级） |
+| 🟡 中风险 | 2 | 京东 Cookie（已更新）、Git 仓库（正常） |
+| 🟢 低风险 | 3 | 定时任务、QMD、其他 |
+
+### 🛡️ 应急预案文档
+
+**文档位置**：
+- `/root/.openclaw/workspace/docs/EMERGENCY-PLAN.md`（应急预案）
+- `/root/.openclaw/workspace/docs/RISK-ASSESSMENT.md`（风险评估）
+
+**关键场景**：
+1. 🔴 **OpenAI API 配额耗尽**（已发生）
+   - Plan A：升级计划（推荐）
+   - Plan B：等待重置（当前使用）
+   - Plan C：切换到其他 API
+
+2. 🔴 **主力模型不可用**
+   - Plan A：切换 DeepSeek
+   - Plan B：切换 AIHubMix
+   - Plan C：本地模型
+
+3. 🟡 **Git 仓库损坏**
+   - Plan A：从远程恢复
+   - Plan B：从备份恢复
+   - Plan C：手动重建
+
+### 📋 定期演练计划
+
+| 演练场景 | 频率 | 下次时间 |
+|---------|------|---------|
+| OpenAI API 切换 | 每月 | 2026-04-10 |
+| Git 仓库恢复 | 每季度 | 2026-06-10 |
+| 京东 Cookie 更新 | 每月 | 2026-04-10 |
+| 系统全面备份 | 每周 | 2026-03-17 |
+
+---
+
+**更新时间**：2026-03-10 22:50
