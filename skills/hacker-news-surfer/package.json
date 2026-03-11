@@ -1,0 +1,16 @@
+{
+  "name": "hacker-news-surfer",
+  "version": "1.0.0",
+  "description": "Surf Hacker News for AI and tech discussions",
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "copyright": "© 2026 米粒儿 (miliger). All rights reserved.",
+  "keywords": ["hacker-news", "tech-news", "ai", "surfing"],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "USAGE.md"
+  ]
+}

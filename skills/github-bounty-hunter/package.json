@@ -1,0 +1,29 @@
+{
+  "name": "github-bounty-hunter",
+  "version": "1.0.0",
+  "description": "GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！",
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "copyright": "© 2026 米粒儿 (miliger). All rights reserved.",
+  "keywords": [
+    "github",
+    "bounty",
+    "money",
+    "automation",
+    "openclaw",
+    "skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miliger/github-bounty-hunter"
+  },
+  "homepage": "https://clawhub.ai/skill/github-bounty-hunter",
+  "bugs": {
+    "url": "https://github.com/miliger/github-bounty-hunter/issues"
+  },
+  "commercialUse": {
+    "personal": "free",
+    "business": "paid",
+    "contact": "miliger@example.com"
+  }
+}
