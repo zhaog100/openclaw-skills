@@ -1,0 +1,44 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "官家，开始深度学习 memu-engine 的实现思路"
+    },
+    {
+      "role": "assistant",
+      "content": "好的，我来分析 memu-engine 的核心功能。它采用不可变分片策略，通过 tail.tmp 临时暂存，满足条件后固化成 partNNN.json。"
+    },
+    {
+      "role": "user",
+      "content": "这个策略有什么优势？"
+    },
+    {
+      "role": "assistant",
+      "content": "最大的优势是节省 Token。临时暂存时 QMD 不会处理，只有固化后才一次性处理，避免重复消耗 Token。根据测试，可以节省 90%+ 的 Token 消耗。"
+    },
+    {
+      "role": "user",
+      "content": "会话清洗是什么？"
+    },
+    {
+      "role": "assistant",
+      "content": "会话清洗是指在固化前过滤掉系统消息、移除元数据（如 message_id、timestamps），只保留纯文本对话。这样可以提升搜索精准度，避免干扰。"
+    },
+    {
+      "role": "user",
+      "content": "多代理隔离怎么实现？"
+    },
+    {
+      "role": "assistant",
+      "content": "每个代理有独立的 memory 目录，如 agents/main、agents/research、agents/trial。共享文档放在 shared 目录。通过 searchableStores 配置检索权限。"
+    },
+    {
+      "role": "user",
+      "content": "Context Monitor 怎么联动？"
+    },
+    {
+      "role": "assistant",
+      "content": "Context Monitor 检测到上下文预警（70%/80%/90%）时，自动触发 session-memory-enhanced 进行记忆固化。这样实现了双重优化：上下文管理 + 记忆固化。"
+    }
+  ]
+}

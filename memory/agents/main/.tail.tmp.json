@@ -1,0 +1,6 @@
+{
+  "messages": [
+    {"role": "user", "content": "测试1"},
+    {"role": "assistant", "content": "测试2"}
+  ]
+}

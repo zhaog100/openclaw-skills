@@ -1,0 +1,14 @@
+{
+  "tool_name": "web_search",
+  "params": {
+    "query": "test",
+    "limit": 10
+  },
+  "result": {
+    "results": [
+      "result1",
+      "result2"
+    ]
+  },
+  "timestamp": 1772863834.0767632
+}

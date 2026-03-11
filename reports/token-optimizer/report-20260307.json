@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-03-07T14:10:33+08:00",
+  "audit_type": "weekly",
+  "components": {
+    "token_optimizer": "✅ 运行成功",
+    "cache_cleanup": "✅ 运行成功",
+    "budget_monitor": "✅ 运行成功"
+  },
+  "log_file": "/root/.openclaw/workspace/logs/token-optimizer/audit-20260307-141033.log",
+  "next_audit": "2026-03-14T10:00:00+08:00",
+  "monitoring_config": {
+    "weekly_cron": "0 10 * * 1",
+    "daily_cron": "0 0 * * *",
+    "metrics": {
+      "json_error_rate": {
+        "target": "<3%",
+        "threshold": ">5% 告警"
+      },
+      "cache_hit_rate": {
+        "target": ">60%",
+        "threshold": "<40% 告警"
+      },
+      "budget_violations": {
+        "target": "<5次/周",
+        "threshold": ">10次 告警"
+      },
+      "cache_size": {
+        "target": "<100MB",
+        "threshold": ">200MB 告警"
+      }
+    }
+  },
+  "status": "✅ 集成完成",
+  "next_steps": [
+    "观察7天监控数据",
+    "根据数据优化参数",
+    "添加飞书通知（可选）"
+  ]
+}

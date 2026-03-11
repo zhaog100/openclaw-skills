@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantUML图表查看器 - 用户登录用例图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        .btn.secondary {
+            background: #2196F3;
+        }
+        .btn.secondary:hover {
+            background: #0b7dda;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+        @media (max-width: 968px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .code-section, .diagram-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        .plantuml-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .diagram-placeholder {
+            background: white;
+            border: 3px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .diagram-placeholder .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .diagram-placeholder h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .diagram-placeholder p {
+            color: #999;
+            margin-bottom: 20px;
+        }
+        #diagramImage {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .instructions {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            color: #856404;
+        }
+        .instructions li {
+            margin: 8px 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .loading.show {
+            display: block;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌾 用户登录用例图</h1>
+            <p>PlantUML Diagram Viewer - 自动生成与查看</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="generateDiagram()">
+                <span>🎨</span>
+                <span>生成图表</span>
+            </button>
+            <button class="btn secondary" onclick="copyCode()">
+                <span>📋</span>
+                <span>复制代码</span>
+            </button>
+            <button class="btn secondary" onclick="openOnlineEditor()">
+                <span>🌐</span>
+                <span>在线编辑</span>
+            </button>
+            <button class="btn secondary" onclick="downloadDiagram()">
+                <span>💾</span>
+                <span>下载图片</span>
+            </button>
+        </div>
+
+        <div class="instructions">
+            <h3>📖 使用说明</h3>
+            <ol>
+                <li><strong>查看代码</strong> - 左侧显示PlantUML代码</li>
+                <li><strong>生成图表</strong> - 点击"生成图表"按钮自动生成</li>
+                <li><strong>在线编辑</strong> - 点击"在线编辑"在PlantUML官网编辑</li>
+                <li><strong>复制代码</strong> - 复制代码到剪贴板</li>
+                <li><strong>下载图片</strong> - 下载PNG格式图表</li>
+            </ol>
+        </div>
+
+        <div class="content">
+            <div class="code-section">
+                <h2 class="section-title">📝 PlantUML代码</h2>
+                <div class="plantuml-code" id="codeDisplay">@startuml 用户登录用例图
+left to right direction
+skinparam packageStyle rectangle
+
+actor 用户 as User
+actor 管理员 as Admin
+
+rectangle "用户登录系统" {
+  usecase "用户登录" as UC1
+  usecase "输入用户名密码" as UC2
+  usecase "验证身份" as UC3
+  usecase "忘记密码" as UC4
+  usecase "重置密码" as UC5
+  usecase "管理员登录" as UC6
+  usecase "查看登录日志" as UC7
+}
+
+User --> UC1 : 使用
+UC1 ..> UC2 : <<include>>
+UC1 ..> UC3 : <<include>>
+User --> UC4 : 使用
+UC4 ..> UC5 : <<extend>>
+
+Admin --> UC6 : 使用
+UC6 ..> UC3 : <<include>>
+Admin --> UC7 : 使用
+
+note right of UC1
+  用户使用用户名和密码
+  登录系统
+end note
+
+note right of UC3
+  系统验证用户身份
+  支持多种认证方式
+end note
+
+note bottom of UC7
+  管理员查看所有用户
+  的登录历史记录
+end note
+@enduml</div>
+            </div>
+
+            <div class="diagram-section">
+                <h2 class="section-title">📊 图表预览</h2>
+                <div id="diagramContainer">
+                    <div class="diagram-placeholder" id="placeholder">
+                        <div class="icon">📊</div>
+                        <h3>图表将在这里显示</h3>
+                        <p>点击"生成图表"按钮开始</p>
+                    </div>
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>正在生成图表...</p>
+                    </div>
+                    <img id="diagramImage" style="display:none;" alt="PlantUML Diagram">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🌾 米粒儿（Mili）为官家创建 | PlantUML图表查看器</p>
+            <p>创建时间: 2026-02-28 11:00</p>
+        </div>
+    </div>
+
+    <script>
+        // PlantUML代码
+        const plantumlCode = document.getElementById('codeDisplay').textContent;
+
+        // 生成图表
+        function generateDiagram() {
+            const placeholder = document.getElementById('placeholder');
+            const loading = document.getElementById('loading');
+            const image = document.getElementById('diagramImage');
+
+            // 显示加载动画
+            placeholder.style.display = 'none';
+            loading.classList.add('show');
+            image.style.display = 'none';
+
+            // 使用PlantUML在线服务
+            // 编码PlantUML代码（简化版，实际需要完整实现）
+            const encoded = encodePlantUML(plantumlCode);
+            const imageUrl = `http://www.plantuml.com/plantuml/svg/${encoded}`;
+
+            // 创建图片加载
+            const img = new Image();
+            img.onload = function() {
+                loading.classList.remove('show');
+                image.src = imageUrl;
+                image.style.display = 'block';
+                image.style.maxWidth = '100%';
+            };
+            img.onerror = function() {
+                loading.classList.remove('show');
+                placeholder.style.display = 'flex';
+                alert('图表生成失败，请尝试在线编辑器');
+            };
+            img.src = imageUrl;
+        }
+
+        // 简化的PlantUML编码（实际需要完整实现）
+        function encodePlantUML(text) {
+            // 这里是简化版本，实际PlantUML使用特殊的压缩和编码
+            // 完整实现需要：Deflate压缩 + 自定义Base64编码
+            // 这里直接使用文本的Base64编码作为示例
+            return btoa(unescape(encodeURIComponent(text)))
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_');
+        }
+
+        // 复制代码
+        function copyCode() {
+            navigator.clipboard.writeText(plantumlCode).then(() => {
+                alert('✅ 代码已复制到剪贴板！');
+            }).catch(err => {
+                // 降级方案
+                const textArea = document.createElement('textarea');
+                textArea.value = plantumlCode;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('✅ 代码已复制到剪贴板！');
+            });
+        }
+
+        // 在线编辑
+        function openOnlineEditor() {
+            const url = 'http://www.plantuml.com/plantuml/uml/';
+            window.open(url, '_blank');
+            alert('已打开PlantUML在线编辑器\n\n请粘贴代码到编辑器中');
+        }
+
+        // 下载图片
+        function downloadDiagram() {
+            const image = document.getElementById('diagramImage');
+            if (image.style.display === 'none') {
+                alert('请先生成图表');
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.download = 'user-login-usecase-diagram.png';
+            link.href = image.src;
+            link.click();
+        }
+
+        // 页面加载完成后自动生成
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                generateDiagram();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-03-07T14:10:34.030287",
+  "summary": {
+    "total_tokens": 25,
+    "categories": {
+      "human": 11,
+      "tool_orchestration": 3,
+      "agent_delegation": 5,
+      "community": 3,
+      "logs": 3
+    },
+    "percentages": {
+      "human": 44.0,
+      "tool_orchestration": 12.0,
+      "agent_delegation": 20.0,
+      "community": 12.0,
+      "logs": 12.0
+    }
+  },
+  "waste_points": [],
+  "suggestions": [
+    {
+      "category": "agent_delegation",
+      "priority": "medium",
+      "suggestion": "减少不必要的委托，简化任务描述",
+      "expected_saving": "20%"
+    }
+  ],
+  "comparison": {
+    "hazel_oc": {
+      "human": 38,
+      "tool_orchestration": 27,
+      "agent_delegation": 19,
+      "community": 11,
+      "logs": 5
+    },
+    "current": {
+      "human": 44.0,
+      "tool_orchestration": 12.0,
+      "agent_delegation": 20.0,
+      "community": 12.0,
+      "logs": 12.0
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+actor 用户 as User
+actor 管理员 as Admin
+
+package 用户登录系统 {
+  usecase "用户登录" as UC1
+  usecase "输入用户名密码" as UC2
+  usecase "验证身份" as UC3
+  usecase "忘记密码" as UC4
+  usecase "重置密码" as UC5
+  usecase "管理员登录" as UC6
+  usecase "查看登录日志" as UC7
+}
+
+User --> UC1
+UC1 ..> UC2 : include
+UC1 ..> UC3 : include
+User --> UC4
+UC4 ..> UC5 : extend
+
+Admin --> UC6
+UC6 ..> UC3 : include
+Admin --> UC7
+
+note right of UC1
+  用户使用用户名和密码
+  登录系统
+end note
+
+note right of UC3
+  系统验证用户身份
+  支持多种认证方式
+end note
+@enduml
