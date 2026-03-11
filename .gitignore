@@ -83,3 +83,4 @@ node_modules/
 
 # OpenAI API Key (sensitive)
 config/openai.env
+memu-engine-for-OpenClaw/
