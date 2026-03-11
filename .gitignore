@@ -1,18 +1,15 @@
-<<<<<<< HEAD
-# Git忽略文件配置（优化版）
+# Git 忽略文件配置（合并版）
 
 # 依赖目录
 node_modules/
 package-lock.json
 bun.lock
 
-=======
->>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 # 临时文件
 .vector-search-status.md
 Z:/
 
-# 记忆文件（已备份到MEMORY.md）
+# 记忆文件（已备份到 MEMORY.md）
 memory/*.md
 !memory/README.md
 memory/*.json
@@ -48,15 +45,27 @@ memory/*.json
 .moltbook/
 .openclaw/
 
-# 开发和测试
-test-*.mjs
-test-*.js
-*.log
-*.tmp
-<<<<<<< HEAD
-*.temp
-puppeteer-test.png
-moltbook-check.png
+# 会话处理文件
+.session-processed/
+
+# 日志文件（自动生成的）
+skills/*/logs/*.log
+skills/*/data/*.json
+
+# 但保留技能核心文件
+!skills/*/package.json
+!skills/*/SKILL.md
+!skills/*/README.md
+!skills/*/install.sh
+!skills/**/*.py
+!skills/**/*.js
+!skills/**/*.sh
+!skills/**/config/**
+!skills/**/scripts/**
+!skills/**/core/**
+!skills/**/modes/**
+
+# 图片文件
 *.png
 *.jpg
 *.jpeg
@@ -64,170 +73,7 @@ moltbook-check.png
 *.mp3
 *.wav
 *.silk
-*.b64
-
-# 环境变量和配置
-.env
-.env.local
-.env.*.local
-*.json
-!.gitignore
-!package.json
-=======
-
-# 脚本（已备份）
-scripts/
-tools/
-*.sh
-*.ps1
-
-# 知识库（独立维护）
-knowledge/
-knowledge-base/
-
-# 青龙系统（独立维护）
-qinglong/
-
-# QMD系统（独立维护）
-qmd/
-
-# 配置文件（包含敏感信息）
-openclaw.json
-package.json
-*.json
-
-# 允许技能的 package.json
-!skills/*/package.json
-
-# 图表和视图
-diagrams/
-*.html
-*.puml
-
-# 备份
-backups/
-
-# 虚拟环境
-node_modules/
-.env
->>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
-
-# 临时技能包
-*.tar.gz
-*.skill
-
-<<<<<<< HEAD
-# IDE配置
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# 构建输出
-dist/
-build/
-.cache/
 
 # 测试文件
-test-*.js
-test-*.sh
-test-*.mjs
-*-test.js
-*-test.sh
-
-# 临时脚本
-*.test.js
-*.test.sh
-verify-*.js
-check-*.js
-scrape-*.js
-screenshot-*.js
-
-# 调试文件
-qmd-*.log
-*-debug.log
-*.log.*
-*-debug-*.md
-
-# 临时文档
-TEST-*.md
-CURRENT-*.md
-TEMP-*.md
-*-TEMP.md
-*-PLAN.md
-*-REPORT.md
-*-COMPLETE.md
-*-REMINDER.md
-*-FAILURE.md
-*-TODO.md
-*-CHECK-*.md
-*-GUIDE.md
-!DAILY-REVIEW-GUIDE.md
-!OPTIMIZE-PLAN.md
-
-# 备份文件
-*.backup
-*.bak
-*~
-
-# 知识库（独立维护）
-knowledge-base/
-
-# 平台配置（包含敏感信息）
-.clawhub/
-.clawtasks/
-.moltbook/
-.openclaw/
-backups/
-config/
-
-# 输出和临时目录
-output/
-screenshots/
-diagrams/
-test-env/
-tests/
-practice/
-scripts/
-tools/
-skills/
-qmd/
-projects/
-
-# 临时HTML查看器
-*.html
-
-# 临时Shell脚本
-*.sh
-*.ps1
-!install.sh
-
-# 临时JS脚本
-*.js
-!screenshot-dashboard.js
-
-# 临时音频文件
-*.mp3
-*.wav
-*.silk
-
-# 临时处理目录
-processed/
-
-# 中文命名的临时文档
-*配置*.md
-*完成*.md
-*报告*.md
-*指南*.md
-*状态*.md
-*方案*.md
-*计划*.md
-*检查*.md
-!用户*.md
-!需求*.md
-!测试*.md
-=======
-# OpenAI API Key (sensitive)
-config/openai.env
-memu-engine-for-OpenClaw/
->>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
+puppeteer-test.png
+moltbook-check.png
