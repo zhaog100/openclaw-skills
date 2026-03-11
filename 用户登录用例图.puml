@@ -1,0 +1,40 @@
+@startuml 用户登录用例图
+left to right direction
+skinparam packageStyle rectangle
+
+actor 用户 as User
+actor 管理员 as Admin
+
+rectangle "用户登录系统" {
+  usecase "登录" as UC1
+  usecase "输入用户名" as UC2
+  usecase "输入密码" as UC3
+  usecase "验证码验证" as UC4
+  usecase "记住密码" as UC5
+  usecase "忘记密码" as UC6
+  usecase "修改密码" as UC7
+  usecase "查看登录日志" as UC8
+}
+
+User --> UC1
+UC1 ..> UC2 : include
+UC1 ..> UC3 : include
+UC1 ..> UC4 : include
+UC1 ..> UC5 : extend
+UC1 ..> UC6 : extend
+
+Admin --> UC1
+Admin --> UC7
+Admin --> UC8
+
+note right of UC4
+  防止暴力破解
+  增强安全性
+end note
+
+note left of UC5
+  7天内免登录
+  使用Cookie存储
+end note
+
+@enduml
