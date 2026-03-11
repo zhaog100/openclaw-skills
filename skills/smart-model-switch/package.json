@@ -1,6 +1,10 @@
 {
   "name": "smart-model-switch",
+<<<<<<< HEAD
   "version": "1.3.0",
+=======
+  "version": "1.4.0",
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
   "description": "智能模型自动切换技能，根据消息复杂度、文件类型和上下文使用率自动选择最优模型，支持AI主动检测",
   "author": "miliger",
   "license": "MIT",

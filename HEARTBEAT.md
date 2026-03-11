@@ -7,6 +7,12 @@
 - [ ] **社交**：Twitter/微信/社交通知？
 - [ ] **天气**：如果人类可能外出，天气如何？
 - [ ] **项目**：git status，有未处理的 PR 或 issue 吗？
+<<<<<<< HEAD
+=======
+- [ ] **Moltbook**：检查 /api/v1/home，回复评论，参与互动
+- [ ] **Hacker News**：检查 AI 相关热门故事（使用 get-ai-stories.sh）
+- [ ] **Dev.to**：检查 AI 教程和技术文章（使用 get-ai-tutorials.sh）
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 
 ## 记忆维护（每隔几天做一次）
 
@@ -28,6 +34,7 @@
 - [x] Talk Mode 开发
 - [x] 性能优化方案
 
+<<<<<<< HEAD
 **2026-03-04**：
 - [x] 旅行客项目文档整理
 - [x] Chrome 扩展安装流程梳理
@@ -133,6 +140,64 @@
 #### 快手 Cookies 获取 ❌ 已取消
 - 状态：已取消（2026-03-04 18:34）
 - 原因：官家决定取消
+=======
+### 向量生成（已完成）
+- ✅ **向量生成完成**（2026-02-28 13:52）
+- ✅ **110个向量**（31个文档，11分44秒）
+- ✅ **双模式检索**：向量搜索 + 关键词搜索
+- ⚠️ **CPU模式**：无GPU加速，速度较慢但功能完整
+
+### Moltbook 互动（已完成 ✅）
+- ✅ **认证完成**：2026-03-05
+- ✅ **首发帖子**：Token优化经验分享
+- ✅ **关注3个作者**：Hazel_OC、GanglionMinion、trader_anya
+- 📊 **定期检查**：每周查看feed、回复评论、参与讨论
+- 🔗 **帖子链接**：https://www.moltbook.com/post/2fa7bd5d-d41a-4962-aff9-f94f8fb99c14
+
+### ✅ Moltbook API配置（已完成）
+- [x] 获取API Key：https://www.moltbook.com
+- [x] 配置路径：`~/.config/moltbook/credentials.json`
+- [x] 格式：`{"api_key": "moltbook_sk_rP_W3tvDtGw0dKsmzJ7A4VBhErXFQTnf"}`
+- [x] 完成时间：2026-03-09 22:49
+
+### ✅ OpenAI API Key 已配置（2026-03-10 10:17）
+- ✅ **API Key 已提供**
+- ✅ **配置文件**：`~/.openclaw/workspace/config/openai.env`
+- ✅ **Python 环境已配置**（venv + openai + numpy）
+- ✅ **高级功能已启用**：
+  - 结构化记忆提取（LLM）
+  - 向量检索系统（OpenAI Embeddings）
+  - 语义搜索（相似度计算）
+- ✅ **测试通过**：所有 Python 组件正常工作
+
+### ✅ ClawHub 发布问题（已解决！2026-03-10 22:40）
+- ✅ **问题已记录**：`acceptLicenseTerms: invalid value`
+- ✅ **Issue 已提交**：#671 (2026-03-10 10:09)
+- 🔗 **Issue 链接**：https://github.com/openclaw/clawhub/issues/671
+- ✅ **临时解决方案**：修改 publish.js 添加 acceptLicenseTerms
+- ✅ **v4.0.0 已发布**：Package ID `k979cbsga7mwmn9dqdanchpvt582mdcq`
+- ✅ **Issue 已更新**：添加解决方法评论
+- 📊 **待发布**：14个技能更新
+
+### ✅ Session-Memory Enhanced v4.0.0（已完成 + 已发布）
+- ✅ **开发完成**：2026-03-09 19:52
+- ✅ **吸收 memu-engine 核心功能**（结构化提取 + 向量检索）
+- ✅ **保留 session-memory 优势**（不可变分片 + 三位一体）
+- ✅ **本地配置完成**（定时任务：每小时自动运行）
+- ✅ **Python 组件测试通过**（规则提取无需 API）
+- ✅ **ClawHub 已发布**：v4.0.0 (2026-03-10 22:40)
+- 📁 **技能目录**：`/root/.openclaw/workspace/skills/session-memory-enhanced/`
+- 🔗 **ClawHub 链接**：https://clawhub.com/skills/session-memory-enhanced
+
+### ✅ clawhub-publisher 技能（已完成 2026-03-11）
+- ✅ **开发完成**：2026-03-11 12:40
+- ✅ **核心功能**：先检查后发布、智能整合、版本对比
+- ✅ **ClawHub 已发布**：v1.0.0 (2026-03-11 12:51)
+- 📦 **Package ID**：k97ec33qhh3f28jd6q0jckdf2982pa3h
+- 📁 **技能目录**：`/root/.openclaw/workspace/skills/clawhub-publisher/`
+- 🔗 **ClawHub 链接**：https://clawhub.com/skills/miliger-clawhub-publisher
+- ✅ **GitHub 已推送**：https://github.com/zhaog100/miliger-openclaw-skills (2026-03-11 13:14)
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 
 ---
 

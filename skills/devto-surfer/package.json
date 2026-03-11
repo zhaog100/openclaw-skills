@@ -2,9 +2,14 @@
   "name": "devto-surfer",
   "version": "1.0.0",
   "description": "Surf Dev.to for AI tutorials and tech articles",
+<<<<<<< HEAD
   "author": "米粒儿 (miliger)",
   "license": "MIT",
   "copyright": "© 2026 米粒儿 (miliger). All rights reserved.",
+=======
+  "author": "米粒儿",
+  "license": "MIT",
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
   "keywords": ["dev.to", "tutorials", "ai", "tech-articles", "surfing"],
   "engines": {
     "node": ">=14.0.0"

@@ -1,0 +1,15 @@
+[Unit]
+Description=Memory Watcher Service for Agent %i
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace
+Environment="AGENT_NAME=%i"
+ExecStart=/root/.openclaw/workspace/skills/session-memory-enhanced/scripts/memory-watcher.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
