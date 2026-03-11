@@ -1,6 +1,6 @@
 {
   "name": "miliger-context-manager",
-  "version": "7.0.0",
+  "version": "1.1.0",
   "description": "Context Manager v6.0.0: Three-level warning + smart cleanup + predictive monitoring + dynamic threshold + compression. 6 major optimizations from Moltbook community. Saves 90%+ tokens. Based on Hazel_OC's token optimization experience.",
   "author": "米粒儿",
   "license": "MIT",
