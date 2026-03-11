@@ -1,7 +1,7 @@
 {
   "name": "miliger-context-manager",
-  "version": "1.1.0",
-  "description": "Context Manager v6.0.0: Three-level warning + smart cleanup + predictive monitoring + dynamic threshold + compression. 6 major optimizations from Moltbook community. Saves 90%+ tokens. Based on Hazel_OC's token optimization experience.",
+  "version": "7.0.0",
+  "description": "Context Manager v7.0.0: Adaptive monitoring + Token budget + Intent fingerprint. Three major optimizations from Moltbook community. Saves 90%+ tokens. Based on Hazel_OC's token optimization experience.",
   "author": "米粒儿",
   "license": "MIT",
   "keywords": [
@@ -11,13 +11,12 @@
     "automatic",
     "seamless",
     "switching",
+    "adaptive-monitoring",
+    "token-budget",
+    "intent-fingerprint",
     "startup-optimization",
     "layered-reading",
-    "token-saving",
-    "api-monitoring",
-    "real-time-monitoring",
-    "error-monitoring",
-    "stop-reason"
+    "token-saving"
   ],
   "repository": {
     "type": "git",
@@ -30,22 +29,6 @@
   "scripts": {
     "install": "bash install.sh",
     "test": "bash scripts/test-context-monitor.sh",
-    "monitor": "bash scripts/context-monitor-v6.sh",
-    "compress": "bash scripts/context-compressor.sh",
-    "error-monitor": "bash scripts/stop-reason-monitor-v2.sh"
-  },
-  "files": [
-    "SKILL.md",
-    "README.md",
-    "RELEASE-NOTES.md",
-    "RELEASE-NOTES-v7.md",
-    "install.sh",
-    "scripts/seamless-switch.sh",
-    "scripts/context-monitor-v6.sh",
-    "scripts/context-compressor.sh",
-    "scripts/stop-reason-monitor-v2.sh",
-    "scripts/test-context-monitor.sh",
-    "scripts/token-budget-monitor.sh",
-    "scripts/intent-fingerprint.sh"
-  ]
+    "monitor": "bash scripts/context-monitor-v6.sh"
+  }
 }
