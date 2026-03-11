@@ -58,6 +58,34 @@ _精心维护的记忆，提炼后的精华_
   - ✅ 操作日志可追溯
   - ✅ 零额外成本
 
+**Review思路传递方案**（2026-03-11 确定）🌟🌟🌟🌟🌟
+- **推荐方案**：方案B（独立Review文档）
+- **核心机制**：
+  - 米粒儿创建详细Review文档（Markdown格式）
+  - 保存到 `/reviews/` 目录
+  - 提交到Git仓库
+  - 小米粒读取学习
+- **Review文档内容**：
+  - Review结果（批准/拒绝）
+  - Review思路（代码质量、功能实现、最佳实践）
+  - 技术要点（关键技术点、风险点）
+  - 改进建议（短期、长期）
+  - 学习要点（优点、需要改进）
+  - 给小米粒的建议（技术、协作）
+  - 总体评价（星级、原因）
+- **脚本文件**：
+  - Review模板：`.clawhub/review_template.md`
+  - 米粒儿脚本：`scripts/mili_review_simple.sh`
+  - 小米粒脚本：`scripts/xiaomi_learn_review.sh`
+- **使用方法**：
+  - 米粒儿：`bash scripts/mili_review_simple.sh`
+  - 小米粒：`bash scripts/xiaomi_learn_review.sh`
+- **优势**：
+  - ✅ 详细完整的Review思路
+  - ✅ Git版本管理
+  - ✅ 易于维护
+  - ✅ 可追溯历史
+
 **ClawHub技能发布流程**（2026-03-06 确定）
 - **核心理念**：先检查后发布，避免覆盖他人工作
 - **标准流程**：
