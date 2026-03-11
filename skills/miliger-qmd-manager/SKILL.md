@@ -29,7 +29,7 @@ homepage: https://github.com/miliger/qmd-manager
 # 安装Bun（如果未安装）
 brew install oven-sh/bun/bun  # macOS
 # 或
-curl -fsSL https://bun.sh/install | bash  # Linux
+访问 https://bun.sh 下载安装  # Linux
 
 # 安装qmd
 bun install -g https://github.com/tobi/qmd
