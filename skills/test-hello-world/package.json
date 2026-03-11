@@ -1,0 +1,7 @@
+{
+  "name": "test-hello-world",
+  "version": "1.0.0",
+  "description": "测试技能，用于演示智能体协作流程",
+  "author": "agent-a",
+  "license": "MIT"
+}
