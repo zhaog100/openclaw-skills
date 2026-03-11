@@ -6,6 +6,7 @@
 
 ## 📚 主要分类
 
+<<<<<<< HEAD
 ### 软件测试（258KB）⭐⭐⭐⭐⭐
 - **路径**：`software-testing/`
 - **内容**：测试工具、自动化测试、移动测试、桌面测试
@@ -43,6 +44,13 @@
 - **路径**：`tools/`
 - **内容**：OpenClaw使用、QMD配置、技能开发
 - **检索**：`qmd search "工具" -c knowledge -n 5`
+=======
+**总文件数**: 19个（knowledge-base collection）
+**最后更新**: 2026年3月2日 07:45
+**索引状态**: ✅ 已索引
+**向量状态**: ⏸️ 待嵌入（0/24）
+**今日新增**: AI自动化测试实战指南
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 
 ---
 
@@ -62,7 +70,133 @@
 
 ## 🔍 快速检索
 
+<<<<<<< HEAD
 ### 按主题搜索
+=======
+#### 内容策略
+4. **内容策略指南.md**
+   - 路径: `knowledge/content-creation/content-strategy/内容策略指南.md`
+   - 类型: 专业内容
+   - 领域: 内容创作
+   - 状态: ✅ 已索引
+
+#### 视频创作
+5. **视频创作指南.md**
+   - 路径: `knowledge/content-creation/video-creation/视频创作指南.md`
+   - 类型: 专业内容
+   - 领域: 内容创作
+   - 状态: ✅ 已索引
+
+#### 微信公众号
+6. **公众号运营指南.md**
+   - 路径: `knowledge/content-creation/wechat-public/公众号运营指南.md`
+   - 类型: 专业内容
+   - 领域: 内容创作
+   - 状态: ✅ 已索引
+
+---
+
+### 项目管理（6个）
+
+#### 项目管理与测试结合
+7. **项目管理与测试结合实践指南.md**
+   - 路径: `knowledge/project-management/项目管理与测试结合实践指南.md`
+   - 类型: 专业内容
+   - 领域: 项目管理
+   - 状态: ✅ 已索引
+
+#### 敏捷方法论
+8. **敏捷项目管理实战指南.md**
+   - 路径: `knowledge/project-management/agile-methodology/敏捷项目管理实战指南.md`
+   - 类型: 专业内容
+   - 领域: 项目管理
+   - 状态: ✅ 已索引
+
+9. **敏捷项目管理完整指南.md**
+   - 路径: `knowledge/project-management/agile-methodology/敏捷项目管理完整指南.md`
+   - 类型: 专业内容
+   - 领域: 项目管理
+   - 状态: ✅ 已索引
+
+#### PMP认证
+10. **PMP认证完整指南.md**
+    - 路径: `knowledge/project-management/pmp-certification/PMP认证完整指南.md`
+    - 类型: 专业内容
+    - 领域: 项目管理
+    - 状态: ✅ 已索引
+
+11. **PMP认证指南.md**
+    - 路径: `knowledge/project-management/pmp-certification/PMP认证指南.md`
+    - 类型: 专业内容
+    - 领域: 项目管理
+    - 状态: ✅ 已索引
+
+#### 项目规划
+12. **项目规划指南.md**
+    - 路径: `knowledge/project-management/project-planning/项目规划指南.md`
+    - 类型: 专业内容
+    - 领域: 项目管理
+    - 状态: ✅ 已索引
+
+---
+
+### 软件测试（4个）
+
+#### 测试自动化
+13. **自动化测试指南.md**
+    - 路径: `knowledge/software-testing/test-automation/自动化测试指南.md`
+    - 类型: 专业内容
+    - 领域: 软件测试
+    - 状态: ✅ 已索引
+
+#### 测试管理
+14. **测试管理指南.md**
+    - 路径: `knowledge/software-testing/test-management/测试管理指南.md`
+    - 类型: 专业内容
+    - 领域: 软件测试
+    - 状态: ✅ 已索引
+
+#### 测试工具
+15. **测试工具对比.md**
+    - 路径: `knowledge/software-testing/test-tools/测试工具对比.md`
+    - 类型: 专业内容
+    - 领域: 软件测试
+    - 状态: ✅ 已索引
+
+16. **测试工具指南.md**
+    - 路径: `knowledge/software-testing/test-tools/测试工具指南.md`
+    - 类型: 专业内容
+    - 领域: 软件测试
+    - 状态: ✅ 已索引
+
+17. **测试结果管理工具.md**
+    - 路径: `knowledge/software-testing/test-tools/测试结果管理工具.md`
+    - 类型: 专业内容
+    - 领域: 软件测试
+    - 状态: ✅ 已索引
+
+---
+
+## 📚 知识库分类
+
+### 按领域分类
+- **项目管理**: 6个文件（32%）
+- **软件测试**: 4个文件（21%）
+- **内容创作**: 3个文件（16%）
+- **AI系统设计**: 5个文件（26%）
+- **系统文档**: 1个文件（5%）
+
+### 按类型分类
+- **专业内容**: 14个文件（78%）
+- **系统文档**: 3个文件（17%）
+- **测试文档**: 1个文件（6%）
+
+---
+
+## 🔍 搜索建议
+
+### 关键词搜索（BM25）
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 ```bash
 # 软件测试
 qmd search "测试用例" -c knowledge -n 5
@@ -112,6 +246,7 @@ qmd query "如何设计自动化测试框架" -c knowledge -n 5
 
 ---
 
+<<<<<<< HEAD
 ## 🔧 维护指南
 
 ### 日维护
@@ -127,6 +262,28 @@ qmd query "如何设计自动化测试框架" -c knowledge -n 5
 - 归档旧文件（移至archives/）
 - 重新生成向量（`qmd embed`）
 - 审查知识库结构
+=======
+## 🆕 今日新增（2026-03-02）
+
+### AI系统设计新增
+19. **AI自动化测试实战指南.md**
+   - 路径: `knowledge/ai-system-design/AI自动化测试实战指南.md`
+   - 类型: 专业内容
+   - 领域: AI系统设计
+   - 大小: 4585字节
+   - 内容: Playwright MCP、四步测试法、先规划再执行、人机协作
+   - 来源: 《尝试了几十次后，终于让AI实现了自动化功能测试》（LSP做AI，2026年1月26日）
+   - 状态: ✅ 已索引
+
+### 历史新增（2026-02-28）
+18. **PlantUML图表创建完整指南.md**
+   - 路径: `knowledge/ai-system-design/PlantUML图表创建完整指南.md`
+   - 类型: 专业内容
+   - 领域: AI系统设计
+   - 大小: 4170字节
+   - 内容: PlantUML语法、6种图表类型、自动化工具
+   - 状态: ✅ 已索引
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 
 ---
 
