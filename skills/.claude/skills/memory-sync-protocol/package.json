@@ -1,0 +1,52 @@
+{
+  "name": "memory-sync-protocol",
+  "version": "1.0.0",
+  "description": "记忆同步协议。自动精简 MEMORY.md，集成 QMD 检索，监控 Token 使用",
+  "main": "scripts/memory-optimizer.py",
+  "scripts": {
+    "optimize": "python3 scripts/memory-optimizer.py",
+    "search": "python3 scripts/qmd-search.py",
+    "report": "python3 scripts/token-monitor.py",
+    "schedule": "python3 scripts/scheduled-tasks.py",
+    "test": "python3 -m pytest tests/",
+    "install": "bash install.sh"
+  },
+  "keywords": [
+    "memory",
+    "optimization",
+    "qmd",
+    "token-savings",
+    "openclaw",
+    "skill"
+  ],
+  "author": "米粒儿",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miliger/memory-sync-protocol"
+  },
+  "homepage": "https://clawhub.com/skill/memory-sync-protocol",
+  "bugs": {
+    "url": "https://github.com/miliger/memory-sync-protocol/issues"
+  },
+  "engines": {
+    "python": ">=3.8",
+    "node": ">=16"
+  },
+  "dependencies": {
+    "pandas": "^2.0.0",
+    "evidently": "^0.4.0"
+  },
+  "devDependencies": {
+    "pytest": "^7.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "install.sh",
+    "scripts/",
+    "config/",
+    "templates/"
+  ]
+}
