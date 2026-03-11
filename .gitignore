@@ -77,3 +77,28 @@ skills/*/data/*.json
 # 测试文件
 puppeteer-test.png
 moltbook-check.png
+
+# 忽略日志文件
+logs/*.log
+logs/*/
+*.log
+
+# 忽略临时文件
+*.tmp
+*.bak
+*.swp
+*~
+
+# 忽略青龙面板文件
+qinglong/
+
+# 忽略缓存
+__pycache__/
+*.pyc
+*.pyo
+.node_modules/
+venv/
+
+# 忽略临时测试文件
+test-*.sh
+*-test.sh

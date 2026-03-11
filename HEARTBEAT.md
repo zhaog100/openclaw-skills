@@ -103,3 +103,32 @@
 **保持精简。每项检查都消耗 token。**
 
 *最后更新：2026-03-11 19:05*
+
+---
+
+## 🔄 Git更新策略（2026-03-11）
+
+**核心原则**：合并优先，避免覆盖
+
+**标准流程**：
+1. ✅ 更新前检查（git status）
+2. ✅ 冲突检测（git fetch + diff）
+3. ✅ 智能合并（保留双方优点）
+4. ✅ 验证结果（无冲突标记）
+5. ✅ 及时推送（git push）
+
+**快速命令**：
+```bash
+# 标准更新
+git pull --rebase origin master
+
+# 冲突解决
+git checkout --ours <file>   # 本地优先
+git checkout --theirs <file> # 远程优先
+```
+
+**详细文档**：`docs/GIT_UPDATE_STRATEGY.md`
+
+---
+
+*更新时间：2026-03-11 19:43*
