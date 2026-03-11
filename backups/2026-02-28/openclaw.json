@@ -1,0 +1,617 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.12",
+    "lastTouchedAt": "2026-02-28T02:17:10.293Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-28T02:17:10.257Z",
+    "lastRunVersion": "2026.2.12",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "zai:default": {
+        "provider": "zai",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "hunyuan": {
+        "baseUrl": "https://api.hunyuan.cloud.tencent.com/v1",
+        "apiKey": "sk-rOVcjk0GF0QfAyIBbt8OfXFRWPIrai1TSK5jQ1cvad0xzeDg",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "hunyuan-turbos-latest",
+            "name": "hunyuan Turbos",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "hunyuan-t1-latest",
+            "name": "hunyuan T1",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "qcloudlkeap": {
+        "baseUrl": "https://api.lkeap.cloud.tencent.com/v1",
+        "apiKey": "sk-lbbhb2zdJ2q8bRlkjoLWkcfqMgi4Ud9w9emu1ncqRGfqAUd8",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-v3.2",
+            "name": "DeepSeek V3.2",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek-v3.1-terminus",
+            "name": "DeepSeek V3.1 Terminus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek-v3-0324",
+            "name": "DeepSeek V3 0324",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek-r1-0528",
+            "name": "DeepSeek R1 0528",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "zai": {
+        "baseUrl": "https://api.z.ai/api/coding/paas/v4",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-5",
+            "name": "GLM-5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "glm-4.7",
+            "name": "GLM-4.7",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "glm-4.7-flash",
+            "name": "GLM-4.7 Flash",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "glm-4.7-flashx",
+            "name": "GLM-4.7 FlashX",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          }
+        ]
+      },
+      "aihubmix": {
+        "baseUrl": "https://aihubmix.com/v1",
+        "apiKey": "sk-4jtor2CGkm0JJwC3917eE29c6cB1408d985d51Ea159a92B8",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "coding-glm-5-free",
+            "name": "Coding GLM-5 Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "gemini-3.1-flash-image-preview-free",
+            "name": "Gemini 3.1 Flash Image Preview Free",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 2048
+          },
+          {
+            "id": "gemini-3-flash-preview-free",
+            "name": "Gemini 3 Flash Preview Free",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 2048
+          },
+          {
+            "id": "gpt-4.1-free",
+            "name": "GPT-4.1 Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "gpt-4.1-mini-free",
+            "name": "GPT-4.1 Mini Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "gpt-4o-free",
+            "name": "GPT-4o Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "glm-4.7-flash-free",
+            "name": "GLM-4.7 Flash Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "coding-glm-4.7-free",
+            "name": "Coding GLM-4.7 Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "step-3.5-flash-free",
+            "name": "Step 3.5 Flash Free",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 2048
+          },
+          {
+            "id": "coding-minimax-m2.1-free",
+            "name": "Coding MiniMax M2.1 Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "coding-glm-4.6-free",
+            "name": "Coding GLM-4.6 Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          },
+          {
+            "id": "coding-minimax-m2-free",
+            "name": "Coding MiniMax M2 Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "kimi-for-coding-free",
+            "name": "Kimi For Coding Free",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "mimo-v2-flash-free",
+            "name": "Mimo V2 Flash Free",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 2048
+          }
+        ]
+      },
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "sk-84c972a2f025484c8d6f7419b24c186e",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek Chat",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 64000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "deepseek-coder",
+            "name": "DeepSeek Coder",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 64000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "deepseek-reasoner",
+            "name": "DeepSeek Reasoner",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 64000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "zai/glm-5"
+      },
+      "models": {
+        "aihubmix/coding-glm-5-free": {
+          "alias": "Coding GLM-5"
+        },
+        "aihubmix/gemini-3.1-flash-image-preview-free": {
+          "alias": "Gemini Vision"
+        },
+        "aihubmix/gemini-3-flash-preview-free": {
+          "alias": "Gemini Preview"
+        },
+        "aihubmix/gpt-4.1-free": {
+          "alias": "GPT-4.1"
+        },
+        "aihubmix/gpt-4.1-mini-free": {
+          "alias": "GPT-4.1 Mini"
+        },
+        "aihubmix/gpt-4o-free": {
+          "alias": "GPT-4o"
+        },
+        "aihubmix/glm-4.7-flash-free": {
+          "alias": "GLM-4.7 Flash"
+        },
+        "aihubmix/coding-glm-4.7-free": {
+          "alias": "Coding GLM-4.7"
+        },
+        "aihubmix/step-3.5-flash-free": {
+          "alias": "Step"
+        },
+        "aihubmix/coding-minimax-m2.1-free": {
+          "alias": "MiniMax M2.1"
+        },
+        "aihubmix/coding-glm-4.6-free": {
+          "alias": "Coding GLM-4.6"
+        },
+        "aihubmix/coding-minimax-m2-free": {
+          "alias": "MiniMax M2"
+        },
+        "aihubmix/kimi-for-coding-free": {
+          "alias": "Kimi"
+        },
+        "aihubmix/mimo-v2-flash-free": {
+          "alias": "Mimo"
+        },
+        "hunyuan/hunyuan-turbos-latest": {},
+        "qcloudlkeap/deepseek-v3.2": {},
+        "deepseek/deepseek-chat": {
+          "alias": "DeepSeek Chat"
+        },
+        "deepseek/deepseek-coder": {
+          "alias": "DeepSeek Coder"
+        },
+        "deepseek/deepseek-reasoner": {
+          "alias": "DeepSeek Reasoner"
+        },
+        "zai/glm-5": {
+          "alias": "GLM"
+        }
+      },
+      "workspace": "C:\\Users\\zhaog\\.openclaw\\workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "channels": {
+    "qqbot": {
+      "enabled": true,
+      "allowFrom": [
+        "*"
+      ],
+      "appId": "102845238",
+      "clientSecret": "sFd1QqGh8a2VySwRwSzW4cBkKuV6iLyc"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "34902ee8e6fc61bebf8eb2bcf74a61acde6c9e516814ef20"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "qqbot": {
+        "enabled": true
+      }
+    }
+  }
+}

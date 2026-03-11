@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "qmd": {
+      "command": "C:\\Users\\zhaog\\.bun\\bin\\qmd.cmd",
+      "args": ["mcp"]
+    }
+  }
+}
