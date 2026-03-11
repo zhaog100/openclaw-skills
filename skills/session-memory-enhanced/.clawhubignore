@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python 虚拟环境（用户自己安装）
 python/venv/
 
@@ -29,3 +30,51 @@ Thumbs.db
 
 # 文档构建
 docs/_build/
+=======
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Logs and databases
+*.log
+logs/
+*.sql
+*.sqlite
+*.db
+
+# Backup and cache
+*.backup
+*.bak
+*.cache
+.cache/
+
+# Test and coverage
+test/
+tests/
+coverage/
+.coverage
+*.test.js
+*.spec.js
+
+# Build and dist
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911

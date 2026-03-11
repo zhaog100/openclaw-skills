@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "[cron:05f15d82-8c6c-4e78-9fb9-20dac134118b 提醒配置Cookie（美团+快手+抖音）] 你是一个暖心的提醒助手。请用温暖、有趣的方式提醒用户：官家，今天该配置Cookie啦！📱 需要获取3个平台的Cookie：1️⃣ 美团果园（收益+3-8元/月）2️⃣ 快手极速版（收益+5-15元/月）3️⃣ 抖音极速版（收益+5-15元/月）💰 总收益：+13-38元/月！工具：Packet Capture（免证书，超简单）下载：https://packetcapture.net/ 抓包流程：打开APP → 操作任务 → Packet Capture抓包 → 复制Cookie → 发给我配置。准备好了就告诉我，我详细指导！💪 要求：(1) 不要回复HEARTBEAT_OK (2) 不要解释你是谁 (3) 直接输出一条暖心的提醒消息 (4) 可以加一句简短的鸡汤或关怀的话 (5) 控制在2-3句话以内 (6) 用emoji点缀\nCurrent time: Wednesday, March 4th, 2026 — 1:00 AM (UTC)\n\nReturn your summary as plain text; it will be delivered automatically. If the task explicitly calls for messaging a specific external recipient, note who/where it should go instead of sending it yourself.",
+      "timestamp": "2026-03-04T01:00:00.954Z"
+    },
+    {
+      "role": "assistant",
+      "content": "官家，今天该配置Cookie啦！📱 美团果园+快手+抖音极速版，一个月能多薅13-38元呢，工具用Packet Capture超简单～ 别忘了，小钱也是钱，积少成多才是生活的智慧呀✨",
+      "timestamp": "2026-03-04T01:00:16.157Z"
+    }
+  ]
+}

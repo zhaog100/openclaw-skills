@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 name: playwright-scraper
 description: Playwright网页爬取技能。使用真实浏览器操作（点击、滚动、等待JS渲染）来爬取复杂动态网页。支持多Tab、懒加载、SPA单页应用。适用于会议议程、展会信息等公开信息型网站。
@@ -311,3 +312,21 @@ npx playwright install chromium
 **创建时间**: 2026-02-27
 **版本**: 1.0.0
 **维护者**: 米粒儿（AI Agent）
+=======
+# Playwright Stealth Scraper
+
+A high-performance MCP skill for OpenClaw that bypasses anti-bot measures using Playwright Extra and Stealth plugin.
+
+## Features
+- **Stealth Mode**: Uses `puppeteer-extra-plugin-stealth` to mimic real browser behavior.
+- **Dynamic Content**: Full JavaScript execution support for SPA and React-based sites.
+- **Flexible Options**: Custom viewport and User-Agent spoofing.
+
+## Tools
+### stealth_scrape
+Scrapes any URL with advanced bot detection bypass.
+- `url`: The target website address.
+
+## Installation
+Requires Playwright and Chromium to be installed in the skill directory.
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911

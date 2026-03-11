@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Git忽略文件配置（优化版）
 
 # 依赖目录
@@ -5,9 +6,54 @@ node_modules/
 package-lock.json
 bun.lock
 
+=======
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
 # 临时文件
+.vector-search-status.md
+Z:/
+
+# 记忆文件（已备份到MEMORY.md）
+memory/*.md
+!memory/README.md
+memory/*.json
+
+# 历史报告文档
+*报告.md
+*REPORT*.md
+*COMPLETE*.md
+*PLAN*.md
+*GUIDE.md
+*STATUS*.md
+*CHECK*.md
+*CONFIGURED.md
+*SETUP.md
+*SUMMARY.md
+*TODO*.md
+
+# 保留核心文档
+!AGENTS.md
+!SOUL.md
+!USER.md
+!IDENTITY.md
+!BOOT.md
+!HEARTBEAT.md
+!CRON-CONFIG.md
+!DOCS-INDEX.md
+!MEMORY.md
+!TOOLS.md
+
+# 平台配置（包含敏感信息）
+.clawhub/
+.clawtasks/
+.moltbook/
+.openclaw/
+
+# 开发和测试
+test-*.mjs
+test-*.js
 *.log
 *.tmp
+<<<<<<< HEAD
 *.temp
 puppeteer-test.png
 moltbook-check.png
@@ -27,11 +73,50 @@ moltbook-check.png
 *.json
 !.gitignore
 !package.json
+=======
 
-# 系统文件
-.DS_Store
-Thumbs.db
+# 脚本（已备份）
+scripts/
+tools/
+*.sh
+*.ps1
 
+# 知识库（独立维护）
+knowledge/
+knowledge-base/
+
+# 青龙系统（独立维护）
+qinglong/
+
+# QMD系统（独立维护）
+qmd/
+
+# 配置文件（包含敏感信息）
+openclaw.json
+package.json
+*.json
+
+# 允许技能的 package.json
+!skills/*/package.json
+
+# 图表和视图
+diagrams/
+*.html
+*.puml
+
+# 备份
+backups/
+
+# 虚拟环境
+node_modules/
+.env
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
+
+# 临时技能包
+*.tar.gz
+*.skill
+
+<<<<<<< HEAD
 # IDE配置
 .vscode/
 .idea/
@@ -141,3 +226,8 @@ processed/
 !用户*.md
 !需求*.md
 !测试*.md
+=======
+# OpenAI API Key (sensitive)
+config/openai.env
+memu-engine-for-OpenClaw/
+>>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
