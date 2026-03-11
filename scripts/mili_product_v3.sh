@@ -1,7 +1,7 @@
 #!/bin/bash
-# 米粒儿协作脚本 v3.0 - 统一整合版
+# 米粒儿协作脚本 v3.1 - 社区启发增强版
 # 角色：产品经理 + 质量官
-# 功能：产品构思、需求文档、并行分析、12维度Review、5层验收、双向思考
+# 功能：产品构思、需求文档、并行分析、12维度Review（含反对意见）、5层验收、系统状态检查
 
 set -e
 
@@ -15,6 +15,7 @@ NOTIFY_FILE="/tmp/notify_mili.txt"
 APPROVED_FILE="/tmp/review_approved.txt"
 REJECTED_FILE="/tmp/review_rejected.txt"
 RELEASE_FILE="/tmp/release_approved.txt"
+SYSTEM_STATUS_FILE="/tmp/system_status.txt"
 
 # 颜色输出
 GREEN='\033[0;32m'
@@ -40,6 +41,80 @@ ensure_dirs() {
     mkdir -p "$PRODUCTS_DIR"
     mkdir -p "$REVIEWS_DIR"
     mkdir -p "$TEMPLATES_DIR"
+}
+
+# 检查Git状态
+check_git_status() {
+    log_blue "检查Git状态..."
+    cd "$WORKSPACE"
+    
+    # 检查是否有未提交的变更
+    if ! git diff-index --quiet HEAD --; then
+        log_warn "发现未提交的变更"
+        git status --short
+        return 1
+    fi
+    
+    # 检查是否有未推送的提交
+    local ahead=$(git rev-list --count origin/master..HEAD 2>/dev/null || echo "0")
+    if [ "$ahead" != "0" ]; then
+        log_warn "有 $ahead 个未推送的提交"
+        return 1
+    fi
+    
+    log_info "Git状态正常"
+    return 0
+}
+
+# 检查网络连接
+check_network() {
+    log_blue "检查网络连接..."
+    
+    if ping -c 1 github.com &> /dev/null; then
+        log_info "网络连接正常"
+        return 0
+    else
+        log_warn "网络连接异常"
+        return 1
+    fi
+}
+
+# 检查系统状态
+check_system() {
+    log_blue "================================"
+    log_blue "系统状态检查"
+    log_blue "================================"
+    
+    local git_ok=true
+    local network_ok=true
+    local all_ok=true
+    
+    # 检查Git
+    if ! check_git_status; then
+        git_ok=false
+        all_ok=false
+    fi
+    
+    # 检查网络
+    if ! check_network; then
+        network_ok=false
+        all_ok=false
+    fi
+    
+    # 保存系统状态
+    cat > "$SYSTEM_STATUS_FILE" <<EOF
+git_ok=$git_ok
+network_ok=$network_ok
+check_time=$(date '+%Y-%m-%d %H:%M:%S')
+EOF
+    
+    if $all_ok; then
+        log_info "系统状态检查通过"
+        return 0
+    else
+        log_warn "系统状态检查发现问题，但不影响协作"
+        return 0
+    fi
 }
 
 # 检查通知文件
@@ -496,6 +571,43 @@ review() {
 ### 亮点
 1. [亮点1]
 2. [亮点2]
+
+---
+
+## 13. 反对意见（必填）⭐⭐⭐⭐⭐
+
+**启发来源**：Dev.to文章 "Your AI code reviewer has no one to disagree with"
+
+### 米粒儿的反对意见
+1. [反对点1：为什么这个方案不够好？]
+2. [反对点2：有什么潜在风险？]
+3. [反对点3：是否有更好的实现方式？]
+
+### 为什么这些反对意见重要
+[解释为什么这些反对意见值得关注...]
+
+### 可能的解决方案
+1. [方案1：如何解决反对点1？]
+2. [方案2：如何解决反对点2？]
+3. [方案3：如何解决反对点3？]
+
+---
+
+## 14. 系统约束检查
+
+**启发来源**："The Four-Party Problem"（四方问题）
+
+### Git状态
+- ✅ / ⚠️ / ❌ [状态：是否有冲突？是否需要合并？]
+
+### ClawHub配额
+- ✅ / ⚠️ / ❌ [状态：是否有发布配额？]
+
+### 网络依赖
+- ✅ / ⚠️ / ❌ [状态：是否依赖外部API？网络是否稳定？]
+
+### API限流风险
+- ✅ / ⚠️ / ❌ [评估：是否可能触发限流？备用方案？]
 
 ---
 

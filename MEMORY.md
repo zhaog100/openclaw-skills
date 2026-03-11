@@ -56,31 +56,31 @@ bun /path/to/qmd.ts search daily-logs "关键词" --hybrid
 
 ## 💡 核心洞察
 
-**双米粒协作系统v3.0**（2026-03-12 整合）🌟🌟🌟🌟🌟
-- **版本升级**：v2.0（分离） → v3.0（统一整合）
-- **三大系统整合**：
-  - 协作框架（角色+流程+工具）
-  - Review系统（12维度评价）
-  - 双向思考（开发前自检 + Review后思考）
-- **统一流程**（6个阶段）：
-  1. 产品构思（米粒儿）
-  2. 需求文档（米粒儿）
-  3. 双向并行分析（双方）
-  4. 开发与自检（小米粒）
-  5. Review与思考（米粒儿+小米粒）
-  6. 5层验收（米粒儿）
-  7. 发布与归档（小米粒）
+**双米粒协作系统v3.1**（2026-03-12 社区启发增强）🌟🌟🌟🌟🌟
+- **版本升级**：v3.0（统一整合） → v3.1（社区启发增强）
+- **核心启发**（来源：Hacker News + Dev.to）：
+  - "Your AI code reviewer has no one to disagree with"（反对意见）
+  - "The Four-Party Problem"（四方问题）
+  - "I Let an AI Agent Review My GitHub Repos"（AI审查实践）
+  - "BitNet: 100B Param 1-Bit model"（本地模型）
+  - "Klaus – OpenClaw on a VM"（生态扩展）
+- **v3.1增强**：
+  - ✅ **强制反对意见**：Review必须有反对意见章节
+  - ✅ **质疑清单**：双向思考必须回答"Review是否全面？"
+  - ✅ **系统状态检查**：协作前检查Git、网络、API配额
+  - ✅ **系统约束文档**：明确记录环境限制
 - **脚本文件**：
-  - 米粒儿：`scripts/mili_product_v3.sh`
-  - 小米粒：`scripts/xiaomi_dev_v3.sh`
+  - 米粒儿：`scripts/mili_product_v3.sh`（v3.1）
+  - 小米粒：`scripts/xiaomi_dev_v3.sh`（v3.1）
 - **文档**：
-  - 详细文档：`docs/DUAL_MILI_SYSTEM_V3_INTEGRATED.md`
+  - 详细文档：`docs/DUAL_MILI_SYSTEM_V3_INTEGRATED.md`（v3.1）
   - 快速开始：`docs/DUAL_MILI_SYSTEM_V3_README.md`
 - **优势**：
+  - ✅ 解决AI审查"无反对意见"问题
   - ✅ 减少67%文档（3个→1个）
-  - ✅ 减少50%脚本（4个→2个）
   - ✅ 降低70%学习成本
   - ✅ 提升40%协作效率
+  - ✅ 增强系统健壮性（状态检查）
 
 **Review思路传递方案**（2026-03-11 确定）🌟🌟🌟🌟🌟
 - **推荐方案**：方案B（独立Review文档）
@@ -262,9 +262,19 @@ bun /path/to/qmd.ts search daily-logs "关键词" --hybrid
 ### 待验证事项
 - ⏳ 京豆任务执行（下次00:06/06:30）
 
+### 关键教训
+1. 青龙面板多账号Cookie必须合并成一个export语句
+2. crontab任务需要显式加载环境变量（. /ql/data/config/env.sh）
+3. ClawHub占位符格式要明显（YOUR_TOKEN_HERE）
+4. Git冲突要智能合并（保留详细 + 简洁）
+5. Review系统要实用（方案B+D）
+6. 双向思考要真正互补（开发前 + Review后）
+7. **AI审查需要反对意见**（v3.1核心启发）
+8. **AI-to-AI协作要考虑系统约束**（四方问题）
+
 ---
 
-*更新时间：2026-03-12 07:30*
+*更新时间：2026-03-12 08:00*
 - **触发条件**：
   - 出现 "API rate limit reached" 错误
   - AIHubMix 响应超过 5 秒

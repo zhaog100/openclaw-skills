@@ -1,7 +1,7 @@
 #!/bin/bash
-# 小米粒协作脚本 v3.0 - 统一整合版
+# 小米粒协作脚本 v3.1 - 社区启发增强版
 # 角色：开发者 + 测试者
-# 功能：并行分析、开发实现、开发前自检、Review后思考、Git管理、ClawHub发布
+# 功能：并行分析、开发实现、开发前自检、Review后思考（含质疑清单）、Git管理、ClawHub发布、系统状态检查
 
 set -e
 
@@ -15,6 +15,7 @@ NOTIFY_FILE="/tmp/notify_mili.txt"
 APPROVED_FILE="/tmp/review_approved.txt"
 REJECTED_FILE="/tmp/review_rejected.txt"
 RELEASE_FILE="/tmp/release_approved.txt"
+SYSTEM_STATUS_FILE="/tmp/system_status.txt"
 
 # 颜色输出
 GREEN='\033[0;32m'
@@ -41,6 +42,80 @@ ensure_dirs() {
     mkdir -p "$PRODUCTS_DIR"
     mkdir -p "$REVIEWS_DIR"
     mkdir -p "$TEMPLATES_DIR"
+}
+
+# 检查Git状态
+check_git_status() {
+    log_blue "检查Git状态..."
+    cd "$WORKSPACE"
+    
+    # 检查是否有未提交的变更
+    if ! git diff-index --quiet HEAD --; then
+        log_warn "发现未提交的变更"
+        git status --short
+        return 1
+    fi
+    
+    # 检查是否有未推送的提交
+    local ahead=$(git rev-list --count origin/master..HEAD 2>/dev/null || echo "0")
+    if [ "$ahead" != "0" ]; then
+        log_warn "有 $ahead 个未推送的提交"
+        return 1
+    fi
+    
+    log_info "Git状态正常"
+    return 0
+}
+
+# 检查网络连接
+check_network() {
+    log_blue "检查网络连接..."
+    
+    if ping -c 1 github.com &> /dev/null; then
+        log_info "网络连接正常"
+        return 0
+    else
+        log_warn "网络连接异常"
+        return 1
+    fi
+}
+
+# 检查系统状态
+check_system() {
+    log_blue "================================"
+    log_blue "系统状态检查"
+    log_blue "================================"
+    
+    local git_ok=true
+    local network_ok=true
+    local all_ok=true
+    
+    # 检查Git
+    if ! check_git_status; then
+        git_ok=false
+        all_ok=false
+    fi
+    
+    # 检查网络
+    if ! check_network; then
+        network_ok=false
+        all_ok=false
+    fi
+    
+    # 保存系统状态
+    cat > "$SYSTEM_STATUS_FILE" <<EOF
+git_ok=$git_ok
+network_ok=$network_ok
+check_time=$(date '+%Y-%m-%d %H:%M:%S')
+EOF
+    
+    if $all_ok; then
+        log_info "系统状态检查通过"
+        return 0
+    else
+        log_warn "系统状态检查发现问题，但不影响协作"
+        return 0
+    fi
 }
 
 # 检查Git状态
@@ -349,44 +424,62 @@ think() {
 
 **思考时间**：$(date '+%Y-%m-%d %H:%M:%S')
 
-### 1. Review完整性评估
+### 1. Review完整性质疑清单 ⭐⭐⭐⭐⭐
 
-**米粒儿考虑全面吗？**  
-[评估...]
+**启发来源**：Dev.to文章 "Your AI code reviewer has no one to disagree with"
 
-**有遗漏的技术点吗？**  
-[分析...]
+#### 1.1 技术点覆盖
+- [ ] 是否遗漏性能优化？
+- [ ] 是否遗漏安全风险？
+- [ ] 是否遗漏兼容性问题？
+- [ ] 是否遗漏依赖管理？
+- [ ] 是否遗漏错误处理？
 
-**有更好的实现方式吗？**  
-[思考...]
+#### 1.2 反对意见
+- [ ] 是否有不同意见？
+- [ ] 是否有更好的实现方式？
+- [ ] 是否有潜在风险被忽略？
+- [ ] 是否有边界情况未考虑？
 
-**需要补充什么信息吗？**  
-[补充...]
+#### 1.3 系统约束
+- [ ] 是否考虑Git冲突？
+- [ ] 是否考虑ClawHub限流？
+- [ ] 是否考虑网络异常？
+- [ ] 是否考虑API配额？
 
-### 2. 思路补充（如有遗漏）
+**质疑结果**：
+[评估：Review是否全面？有哪些遗漏？]
 
-**遗漏的点**：[点1]  
+### 2. 技术点补充（如有遗漏）
+
+**遗漏的技术点1**：[点]  
 **为什么重要**：[原因]  
 **补充建议**：[建议]
 
-**遗漏的点**：[点2]  
+**遗漏的技术点2**：[点]  
 **为什么重要**：[原因]  
 **补充建议**：[建议]
 
-### 3. 不同意见（如有）
+### 3. 反对意见（如有不同意见）
 
 **不同意哪个点**：[点]  
 **理由**：[理由]  
 **建议如何讨论**：[建议]
 
-### 4. 学习收获
+### 4. 更好的实现方式（如有）
+
+**当前实现**：[当前方案]  
+**更好的方式**：[改进方案]  
+**优势**：[优势分析]
+
+### 5. 学习收获
 
 **从Review中学到的**：
 1. [收获1]
 2. [收获2]
 3. [收获3]
 
-### 5. 自我反思
+### 6. 自我反思
 
 **做得好的地方**：
 - [优点1]
