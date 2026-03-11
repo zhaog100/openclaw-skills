@@ -65,6 +65,9 @@ openclaw.json
 package.json
 *.json
 
+# 允许技能的 package.json
+!skills/*/package.json
+
 # 图表和视图
 diagrams/
 *.html

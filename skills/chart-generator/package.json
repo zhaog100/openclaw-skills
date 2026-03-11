@@ -1,0 +1,14 @@
+{
+  "name": "chart-generator",
+  "version": "1.0.0",
+  "description": "Python chart generation skill with matplotlib, plotly, and seaborn",
+  "author": "米粒儿",
+  "license": "MIT",
+  "keywords": ["chart", "graph", "visualization", "matplotlib", "plotly", "seaborn"],
+  "engines": {
+    "python": ">=3.8"
+  },
+  "files": [
+    "USAGE.md"
+  ]
+}
