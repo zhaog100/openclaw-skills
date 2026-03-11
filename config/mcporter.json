@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "qmd": {
+      "command": "C:\\Users\\zhaog\\.bun\\bin\\qmd.cmd",
+      "args": ["mcp"]
+    },
+    "trends-hub": {
+      "command": "npx",
+      "args": ["-y", "mcp-trends-hub@1.6.2"]
+    }
+  }
+}

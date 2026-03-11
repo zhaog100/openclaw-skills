@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-02-28T02:27:42.814Z",
+  "backupDir": "C:\\Users\\zhaog\\.openclaw\\workspace\\backups\\2026-02-28",
+  "files": [
+    {
+      "name": "OpenClaw配置",
+      "source": "C:\\Users\\zhaog\\.openclaw\\openclaw.json",
+      "target": "openclaw.json"
+    },
+    {
+      "name": "Moltbook凭证",
+      "source": "C:\\Users\\zhaog\\.openclaw\\workspace\\.moltbook\\credentials.json",
+      "target": "moltbook-credentials.json"
+    },
+    {
+      "name": "ClawTasks配置",
+      "source": "C:\\Users\\zhaog\\.openclaw\\workspace\\.clawtasks\\config.json",
+      "target": "clawtasks-config.json"
+    },
+    {
+      "name": "MCP配置",
+      "source": "C:\\Users\\zhaog\\.openclaw\\workspace\\config\\mcporter.json",
+      "target": "mcporter.json"
+    }
+  ],
+  "stats": {
+    "total": 4,
+    "success": 4,
+    "failed": 0
+  }
+}
