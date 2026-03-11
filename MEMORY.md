@@ -32,6 +32,23 @@ bun /path/to/qmd.ts search daily-logs "关键词" --hybrid
 4. **精准检索** - QMD 搜索 + 片段读取 = 节省 92.5% tokens
 5. **模型优先级** - 官方 API 优先（稳定可靠）→ AIHubMix 备选（免费但限流），以服务连续性为主
 
+### QMD 检索命令
+```bash
+# 检索知识库
+qmd search knowledge "关键词" -n 5
+
+# 检索记忆日志
+qmd search daily-logs "关键词" --hybrid
+
+# 查看特定日志（只读必要的行）
+memory_get(path="memory/2026-03-11.md", from=1, lines=50)
+```
+
+### Token 节省效果
+- 传统方式：读取整个 MEMORY.md（2000+ tokens）
+- QMD 方式：精准回忆（~150 tokens）
+- **节省：92.5%**
+
 ---
 
 ## 📚 核心教训
