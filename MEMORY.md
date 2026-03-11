@@ -985,3 +985,35 @@ You exceeded your current quota, please check your plan and billing details.
 
 *更新时间：2026-03-11 17:31*
 >>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
+
+---
+
+## 🆕 2026-03-11 新增记忆
+
+### 技能发布成果
+- ✅ Memory Sync Protocol v1.0.0（ClawHub）
+- ✅ context-manager v2.2.2（ClawHub）
+- ✅ smart-memory-sync v1.0.0（ClawHub）
+- ✅ smart-model-switch v1.3.0（ClawHub）
+- ✅ quote-reader v1.1.0（ClawHub）
+- ✅ image-content-extractor v2.0.0（ClawHub）
+- ✅ github-bounty-hunter v1.0.0（ClawHub）
+
+### GitHub 仓库
+- ✅ 仓库地址：https://github.com/zhaog100/openclaw-skills
+- ✅ 合并技能：24 个
+- ✅ 上传统计：4056 个对象，207.85 MiB
+
+### 双向思考策略
+- ✅ Review 脚本：`/home/zhaog/.openclaw/workspace/scripts/mili_review_optimized.sh`
+- ✅ 工作流程：小米粒自检 → 米粒儿 Review → 小米粒补充 → 最终决定
+- ✅ 核心文件：
+  - 自检清单：`/tmp/self_review_checklist.md`
+  - 补充建议：`/tmp/review_supplement.md`
+  - Review 文档：`/home/zhaog/.openclaw/workspace/reviews/`
+
+### 免费额度配置
+- ✅ Gemini API Key（已配置到~/.bashrc）
+- ✅ OpenAI Codex OAuth（已授权）
+- ✅ AIHubMix（已有配置）
+
