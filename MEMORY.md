@@ -1034,3 +1034,82 @@ You exceeded your current quota, please check your plan and billing details.
 ---
 
 *更新时间：2026-03-11 19:31*
+
+---
+
+### 19:43-22:33 - Git更新策略完善
+
+**新增内容**：
+1. ✅ Git库更新策略文档（docs/GIT_UPDATE_STRATEGY.md）
+2. ✅ 智能合并脚本（scripts/smart-git-merge.sh）
+3. ✅ 更新HEARTBEAT.md（添加Git更新策略引用）
+4. ✅ Git提交：876fae5 + 60da1cf
+
+**核心原则**：
+- 合并优先，避免覆盖
+- 冲突检查 → 智能合并 → 保留双方优点
+
+**标准更新流程**：
+1. 更新前检查（git status）
+2. 冲突检测（git fetch + diff）
+3. 智能合并（保留双方优点）
+4. 验证结果（无冲突标记）
+5. 及时推送（git push）
+
+**个人仓库特殊策略**：
+- 强制推送最简单（git push origin master --force）
+- 适用场景：个人技能仓库，无协作冲突
+
+**实战经验**：
+- 208个未跟踪文件 → 智能分类（重要提交 + 临时忽略）
+- Git冲突 → 智能合并（保留本地详细 + 远程简洁）
+- 子模块处理 → 添加到.gitignore（memu-engine-for-OpenClaw, qmd）
+
+**关键教训**：
+1. 个人仓库：强制推送最简单高效
+2. 团队仓库：智能合并保留双方优点
+3. 冲突解决：本地优先（JSON/脚本） + 智能合并（Markdown）
+4. 文件分类：重要提交 + 临时忽略
+
+---
+
+**今日最终统计**（2026-03-11）：
+
+**主要成就**（11项）：
+1. ✅ ClawHub技能发布（7个新 + 1个修复 + 1个更新）
+2. ✅ GitHub仓库恢复（Push Protection解决）
+3. ✅ GitHub token重新认证（设备码：8067-4359）
+4. ✅ 京豆Cookie修复（发现正确位置：/ql/data/config/env.sh）
+5. ✅ wool-gathering重新发布（扫描通过）
+6. ✅ 双米粒协作系统建立（方案B+D）
+7. ✅ Review系统设计（12维度评价）
+8. ✅ 双向思考策略（开发前自检 + Review后思考）
+9. ✅ 京豆任务crontab配置修复（方案A）
+10. ✅ Git仓库差异比较和智能合并
+11. ✅ miliger-context-manager v7.0.1发布
+
+**关键发现**（10项）：
+1. 青龙面板配置位置：/ql/data/config/env.sh
+2. 多账号Cookie必须合并成一个export语句
+3. GitHub设备码认证：服务器环境友好
+4. crontab任务需要显式加载环境变量
+5. ClawHub占位符格式：YOUR_TOKEN_HERE 更安全
+6. Git冲突要智能合并（保留详细 + 简洁）
+7. Review系统要实用（方案B+D）
+8. 双向思考要真正互补
+9. miliger-context-manager v7.0功能强大
+10. 个人仓库强制推送最简单
+
+**统计数据**：
+- Git提交：18个（最终）
+- 新建文件：29个
+- 代码行数：1200+ 行
+- Token节省：90%+
+- 技能发布：9个
+
+**待验证事项**：
+- ⏳ 京豆任务执行（下次00:06/06:30）
+
+---
+
+*更新时间：2026-03-11 22:35*
