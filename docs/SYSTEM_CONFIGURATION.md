@@ -194,7 +194,7 @@
 **配置路径**：`/root/.openclaw/workspace/config/openai.env`
 
 ```bash
-export OPENAI_API_KEY="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"
+export OPENAI_API_KEY="YOUR_OPENAI_API_KEY_HERE"
 ```
 
 **用途**：
@@ -208,7 +208,7 @@ export OPENAI_API_KEY="sk-proj-fI7TJ3KpGuLdqqTUsvOBqIB2lyjlrNxNx8HGdwXmSQl0krBU-
 
 ### GitHub Token
 
-**Token**：`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`
+**Token**：`YOUR_GITHUB_TOKEN_HERE`
 
 **权限**：
 - ✅ repo（仓库访问）
@@ -468,7 +468,7 @@ bash skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 gh auth status
 
 # 重新登录
-echo "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" | gh auth login --with-token
+echo "YOUR_GITHUB_TOKEN_HERE" | gh auth login --with-token
 ```
 
 ---
