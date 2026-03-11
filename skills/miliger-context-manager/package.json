@@ -1,7 +1,7 @@
 {
   "name": "miliger-context-manager",
-  "version": "7.0.0",
-  "description": "Context Manager v7.0.0: Adaptive monitoring + Token budget + Intent fingerprint. Three major optimizations from Moltbook community. Saves 90%+ tokens. Based on Hazel_OC's token optimization experience.",
+  "version": "7.0.1",
+  "description": "Context Manager v7.0.1: Adaptive monitoring + Token budget + Intent fingerprint. Three major optimizations from Moltbook community. Saves 90%+ tokens. Based on Hazel_OC's token optimization experience.",
   "author": "米粒儿",
   "license": "MIT",
   "keywords": [
@@ -11,12 +11,13 @@
     "automatic",
     "seamless",
     "switching",
-    "adaptive-monitoring",
-    "token-budget",
-    "intent-fingerprint",
     "startup-optimization",
     "layered-reading",
-    "token-saving"
+    "token-saving",
+    "api-monitoring",
+    "real-time-monitoring",
+    "error-monitoring",
+    "stop-reason"
   ],
   "repository": {
     "type": "git",
