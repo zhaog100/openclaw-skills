@@ -1,0 +1,35 @@
+{
+  "agents": {
+    "main": {
+      "flushIdleSeconds": 1800,
+      "maxMessagesPerPart": 60,
+      "searchableStores": ["self", "shared", "research"],
+      "description": "主代理 - 可以搜索自己和共享文档库以及研究代理"
+    },
+    "research": {
+      "flushIdleSeconds": 3600,
+      "maxMessagesPerPart": 100,
+      "searchableStores": ["self", "shared"],
+      "description": "研究代理 - 可以搜索自己和共享文档库"
+    },
+    "trial": {
+      "flushIdleSeconds": 1800,
+      "maxMessagesPerPart": 30,
+      "searchableStores": ["self"],
+      "description": "试用代理 - 完全隔离，只能搜索自己"
+    }
+  },
+  "shared": {
+    "chunkSize": 512,
+    "chunkOverlap": 50,
+    "description": "共享文档库配置"
+  },
+  "global": {
+    "debounceSeconds": 20,
+    "lockTimeout": 3600,
+    "logLevel": "info",
+    "description": "全局配置"
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-07T22:50:00+08:00"
+}
