@@ -81,6 +81,15 @@
 - 📁 **技能目录**：`/root/.openclaw/workspace/skills/session-memory-enhanced/`
 - 🔗 **ClawHub 链接**：https://clawhub.com/skills/session-memory-enhanced
 
+### ✅ clawhub-publisher 技能（已完成 2026-03-11）
+- ✅ **开发完成**：2026-03-11 12:40
+- ✅ **核心功能**：先检查后发布、智能整合、版本对比
+- ✅ **ClawHub 已发布**：v1.0.0 (2026-03-11 12:51)
+- 📦 **Package ID**：k97ec33qhh3f28jd6q0jckdf2982pa3h
+- 📁 **技能目录**：`/root/.openclaw/workspace/skills/clawhub-publisher/`
+- 🔗 **ClawHub 链接**：https://clawhub.com/skills/miliger-clawhub-publisher
+- ✅ **GitHub 已推送**：https://github.com/zhaog100/miliger-openclaw-skills (2026-03-11 13:14)
+
 ---
 
 **注意**：保持精简。每项检查都消耗 token。
