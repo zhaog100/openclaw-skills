@@ -1113,3 +1113,71 @@ You exceeded your current quota, please check your plan and billing details.
 ---
 
 *更新时间：2026-03-11 22:35*
+
+**双米粒协作系统v2.0**（2026-03-11 23:30确定）🌟🌟🌟🌟🌟
+- **版本升级**：v1.0 → v2.0（借鉴4个优秀项目）
+- **4大核心改进**：
+  1. 双向分析机制（借鉴Mysti）：米粒儿+小米粒并行分析 → 讨论 → 综合
+  2. GitHub Issues讨论（借鉴OpenAgents）：可追溯、可搜索、可关联
+  3. 5层架构设计（借鉴SuperLocalMemory）：需求→设计→开发→验收→发布
+  4. 无状态协作（借鉴Bluemarz）：每次从GitHub同步最新状态
+- **脚本文件**：
+  - 小米粒脚本：`scripts/xiaomi_dev_v2.sh`（开发+集成+发布）
+  - 米粒儿脚本：`scripts/mili_product_v2.sh`（产品+测试+客户）
+- **协作流程**：
+  1. 米粒儿创建产品构思
+  2. 双方并行分析
+  3. GitHub Issues讨论
+  4. 综合方案
+  5. 小米粒实现
+  6. 米粒儿5层验收
+  7. 批准发布
+  8. 小米粒发布到ClawHub
+- **5层质量验收**：
+  - Layer 1: 需求完整性
+  - Layer 2: 设计合理性
+  - Layer 3: 代码质量
+  - Layer 4: 功能完整性
+  - Layer 5: 用户体验
+- **优势**：
+  - ✅ 专业分工（产品+技术）
+  - ✅ 双向思考（并行分析）
+  - ✅ 质量保证（5层验收）
+  - ✅ 可追溯性（Git+Issues）
+  - ✅ 易扩展（无状态设计）
+
+---
+
+## 📂 记忆系统结构
+
+**核心记忆**（本文件）：
+- 关于用户、关键决策、核心教训、核心洞察
+
+**里程碑记录**（memory/milestones/）：
+- **system.md**：系统配置、迁移、优化
+- **skills.md**：技能开发、发布
+- **wool-gathering.md**：薅羊毛系统
+- **context-monitor.md**：上下文监控系统
+- **moltbook.md**：Moltbook相关
+- **tools.md**：工具配置
+
+**快速导航**：
+- 索引文件：`memory/INDEX.md`
+- QMD检索：`qmd search "关键词" -c knowledge-base`
+- Memory搜索：`memory_search "关键词"`
+
+---
+
+**2026-03-11 23:43：双米粒协作系统v2.0发布** 🌟🌟🌟🌟🌟
+- **成就**：3个文档（1252行）+ 2个脚本（976行）+ 1个指南
+- **关键改进**：双向分析、GitHub Issues、5层架构、无状态协作
+- **论坛调研**：4个优秀项目（Mysti、OpenAgents、SuperLocalMemory、Bluemarz）
+- **脚本完成**：小米粒脚本 + 米粒儿脚本（分工明确）
+- **里程碑**：双米粒协作系统正式上线v2.0
+
+---
+
+*最后更新：2026-03-11 23:43*
+*Token优化：92.5%（QMD精准检索）*
+*总行数：1200+ 行*
+
