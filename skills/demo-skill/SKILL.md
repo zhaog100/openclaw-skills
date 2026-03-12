@@ -101,9 +101,18 @@ cd skills/demo-skill
 - **ClawHub**：待发布
 - **创建者**：小米粒
 
-## 📄 许可证
+## 📄 许可证与版权声明
 
 MIT License
+
+Copyright (c) 2026 小米粒
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- ClawHub: 待发布
+- 创建者: 小米粒
 
 ---
 

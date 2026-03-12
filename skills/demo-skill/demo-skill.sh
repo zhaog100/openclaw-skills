@@ -3,6 +3,12 @@
 # 版本：v1.0.0
 # 创建者：小米粒
 # 创建时间：2026-03-12
+#
+# 版权声明：
+# MIT License
+# Copyright (c) 2026 小米粒
+# 免费使用、修改和重新分发时，需注明出处。
+# GitHub: https://github.com/zhaog100/openclaw-skills
 
 set -e
 

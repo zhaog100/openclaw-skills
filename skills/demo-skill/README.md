@@ -335,7 +335,7 @@ demo-skill/
 - **创建者**：小米粒
 - **创建时间**：2026-03-12
 
-## 📄 许可证
+## 📄 许可证与版权声明
 
 MIT License
 
@@ -350,6 +350,23 @@ furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
+### ⚠️ 重要声明
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处信息**：
+- **GitHub仓库**：https://github.com/zhaog100/openclaw-skills
+- **ClawHub页面**：待发布
+- **创建者**：小米粒
+- **联系方式**：GitHub Issues
+
+**引用格式**：
+```
+来源：小米粒 - OpenClaw技能库
+GitHub：https://github.com/zhaog100/openclaw-skills
+许可证：MIT License
+```
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
