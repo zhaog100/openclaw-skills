@@ -227,3 +227,39 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 
 *更新时间：2026-03-12 11:25*
 
+
+---
+
+## 📄 版权声明要求（2026-03-12 11:55）
+
+**官家要求**：以后发布或更新技能时，需注明版权声明
+
+**标准要求**：
+- ✅ **免费使用、修改和重新分发时，需注明出处**
+- ✅ **备注版权**（MIT License）
+- ✅ **注明出处**：GitHub + ClawHub + 创建者
+
+**适用文件**：
+1. SKILL.md（简短版）
+2. README.md（完整版）
+3. package.json（license字段）
+4. 主脚本（头部注释）
+
+**版权模板**：
+- 位置：`docs/COPYRIGHT_TEMPLATE.md`
+- 大小：3.4KB
+
+**引用格式**：
+```
+来源：小米粒/米粒儿 - OpenClaw技能库
+GitHub：https://github.com/zhaog100/openclaw-skills
+许可证：MIT License
+```
+
+**已更新技能**：
+- ✅ demo-skill（v1.0.0）
+
+---
+
+*更新时间：2026-03-12 11:55*
+
