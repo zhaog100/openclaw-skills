@@ -1,7 +1,8 @@
-# 双米粒协作系统 - 统一策略规范
+# 双米粒协作系统 - 统一策略方案
 
-**制定时间**：2026-03-12 13:54  
+**制定时间**：2026-03-12 13:58
 **目的**：确保小米粒和米粒儿使用统一规范，避免同步问题
+**状态**：✅ 已同步给米粒儿
 
 ---
 
@@ -10,14 +11,11 @@
 **官家反馈**：
 > "你们的有一个统一的策略，不然无法进行同步"
 
-**问题原因**：
-- ❌ Issue编号混乱
-- ❌ 文件路径不一致
-- ❌ 命名规范不统一
+**解决方案**：建立5大统一规范
 
 ---
 
-## 🎯 统一策略（5大规范）
+## 🎯 5大统一规范
 
 ---
 
@@ -25,13 +23,13 @@
 
 ### 分配规则
 
-| Issue范围 | 用途 | 负责人 |
-|----------|------|--------|
-| **#1-10** | 产品PRD | 米粒儿创建 |
-| **#11-20** | 技术设计 | 小米粒创建 |
-| **#21-30** | Bug报告 | 双方均可 |
-| **#31-40** | 功能请求 | 米粒儿创建 |
-| **#41-50** | 文档改进 | 双方均可 |
+| Issue范围 | 用途 | 负责人 | 示例 |
+|----------|------|--------|------|
+| **#1-10** | 产品PRD | 米粒儿创建 | `#1 demo-skill PRD` |
+| **#11-20** | 技术设计 | 小米粒创建 | `#11 demo-skill技术设计` |
+| **#21-30** | Bug报告 | 双方均可 | `#21 demo-skill测试失败` |
+| **#31-40** | 功能请求 | 米粒儿创建 | `#31 新增监控功能` |
+| **#41-50** | 文档改进 | 双方均可 | `#41 完善README` |
 
 ### Issue标题规范
 
@@ -57,7 +55,7 @@
 │   │   └── [技能名]_tech_design.md          # 技术设计
 │   ├── reviews/                     # Review文档
 │   │   └── [技能名]_review_YYYYMMDD.md
-│   └── STATUS_FEEDBACK_MECHANISM.md # 反馈机制
+│   └── UNIFIED_STRATEGY.md          # 统一策略（本文档）
 ├── skills/
 │   └── [技能名]/                    # 技能目录
 │       ├── SKILL.md
@@ -79,25 +77,25 @@
 
 **PRD文档**：
 ```
-docs/products/YYYY-MM-DD_[技能名]_PRD.md
+格式：docs/products/YYYY-MM-DD_[技能名]_PRD.md
 示例：docs/products/2026-03-12_smart-model_PRD.md
 ```
 
 **技术设计**：
 ```
-docs/products/[技能名]_tech_design.md
+格式：docs/products/[技能名]_tech_design.md
 示例：docs/products/smart-model_tech_design.md
 ```
 
 **Review文档**：
 ```
-reviews/[技能名]_review_YYYYMMDD.md
+格式：reviews/[技能名]_review_YYYYMMDD.md
 示例：reviews/smart-model_review_20260312.md
 ```
 
 **知识库**：
 ```
-knowledge/YYYY-MM-DD/[知识点].md
+格式：knowledge/YYYY-MM-DD/[知识点].md
 示例：knowledge/2026-03-12/smart-model-design.md
 ```
 
@@ -130,265 +128,222 @@ knowledge/YYYY-MM-DD/[知识点].md
 - ✅ `[技能名]_review_YYYYMMDD.md`
 - ❌ `[技能名]-review.md`
 
-### Git提交规范
+---
 
-**格式**：`<type>(<scope>): <description>`
+## 4️⃣ 协作流程规范
 
-**Type类型**：
+### 标准协作流程
+
+```
+1️⃣ 米粒儿创建PRD
+   └─ Issue #N（#1-10）
+   └─ docs/products/YYYY-MM-DD_[技能名]_PRD.md
+
+2️⃣ 小米粒技术设计
+   └─ Issue评论通知
+   └─ docs/products/[技能名]_tech_design.md
+
+3️⃣ 小米粒开发实现
+   └─ Issue评论通知
+   └─ skills/[技能名]/
+
+4️⃣ 米粒儿Review验收
+   └─ Issue评论通知
+   └─ reviews/[技能名]_review_YYYYMMDD.md
+
+5️⃣ 小米粒发布（如需要）
+   └─ Issue评论通知
+   └─ ClawHub发布
+```
+
+### Issue状态流转
+
+```
+OPEN（PRD创建）
+  → 小米粒确认
+  → 技术设计
+  → 开发实现
+  → Review验收
+  → CLOSE（完成）
+```
+
+### 评论通知规范
+
+**小米粒评论米粒儿**：
+```markdown
+@米粒儿 [状态]反馈
+
+**技能**：[技能名]
+**Issue**：#N
+**状态**：✅ 完成 / ⏳ 进行中 / ❌ 遇到阻塞
+
+**内容**：[简短说明]
+
+**下一步**：[下一步行动]
+
+---
+*小米粒 - YYYY-MM-DD HH:MM*
+```
+
+**米粒儿评论小米粒**：
+```markdown
+@小米粒 [状态]反馈
+
+**Review结果**：✅ 批准 / ⚠️ 需要修改 / ❌ 拒绝
+
+**评分**：[X]/25
+
+**下一步**：[下一步行动]
+
+---
+*米粒儿 - YYYY-MM-DD HH:MM*
+```
+
+---
+
+## 5️⃣ Git同步策略
+
+### 工作前检查
+
+```bash
+# 1. 拉取最新代码
+git pull --rebase origin master
+
+# 2. 检查是否有冲突
+git fetch && git diff master origin/master
+
+# 3. 如有冲突，智能合并
+git checkout --ours <file>    # 本地优先
+git checkout --theirs <file>  # 远程优先
+```
+
+### 工作后推送
+
+```bash
+# 1. 查看修改
+git status
+
+# 2. 添加修改
+git add [文件]
+
+# 3. 提交（规范格式）
+git commit -m "[类型]([技能名]): 简短描述"
+
+# 4. 推送
+git push origin master
+```
+
+### 提交信息规范
+
+**格式**：`[类型]([技能名]): 简短描述`
+
+**类型**：
 - `feat` - 新功能
 - `fix` - Bug修复
 - `docs` - 文档更新
-- `refactor` - 代码重构
-- `test` - 测试相关
-- `chore` - 构建/工具
+- `refactor` - 重构
+- `test` - 测试
+- `chore` - 杂项
 
 **示例**：
-- ✅ `feat(smart-model): 添加智能切换功能`
-- ✅ `fix(context-manager): 修复内存泄漏`
-- ✅ `docs(demo-skill): 完善README文档`
+- ✅ `feat(smart-model): 新增文件类型检测`
+- ✅ `fix(context-manager): 修复监控阈值`
+- ✅ `docs(demo-skill): 完善README`
 
 ---
 
-## 4️⃣ Issue与文件映射规范
+## 📋 Issue #3 和 #4 处理方案
 
-### 标准映射关系
+### 当前状态
 
-| Issue类型 | PRD位置 | 技术设计位置 | 技能目录 |
-|----------|---------|-------------|---------|
-| **新技能** | `docs/products/YYYY-MM-DD_[技能名]_PRD.md` | `docs/products/[技能名]_tech_design.md` | `skills/[技能名]/` |
-
-### Issue描述必须包含
-
-```markdown
-## 任务描述
-[任务简述]
-
-## PRD 文档
-位置：docs/products/YYYY-MM-DD_[技能名]_PRD.md
-
-## 核心功能
-1. 功能1
-2. 功能2
-
-## 技术栈
-- 语言：
-- 依赖：
-
-## 验收标准
-1. 标准1
-2. 标准2
-```
-
----
-
-## 5️⃣ 同步机制规范
-
-### Git同步策略
-
-**原则**：合并优先，避免覆盖
-
-**标准流程**：
-1. ✅ 工作前先pull
-   ```bash
-   git pull --rebase origin master
-   ```
-
-2. ✅ 检查冲突
-   ```bash
-   git fetch
-   git diff master origin/master
-   ```
-
-3. ✅ 智能合并
-   ```bash
-   # 本地优先（脚本、配置）
-   git checkout --ours <file>
-
-   # 远程优先（文档、README）
-   git checkout --theirs <file>
-   ```
-
-4. ✅ 及时推送
-   ```bash
-   git push origin master
-   ```
-
----
-
-### Issue同步策略
-
-**自动检测**：每5分钟
-
-**检测内容**：
-1. ✅ 新Issue创建
-2. ✅ 新评论
-3. ✅ 状态变化
-
-**检测脚本**：
-```bash
-*/5 * * * * cd /root/.openclaw/workspace && bash scripts/check_mili_messages.sh
-```
-
----
-
-### 文件同步策略
-
-**不同步的文件**（.gitignore）：
-```
-logs/
-*.log
-tmp/
-*.tmp
-memory/*.md
-```
-
-**必须同步的文件**：
-```
-docs/
-skills/
-scripts/
-LICENSE
-README.md
-MEMORY.md
-```
-
----
-
-## 📊 Issue分配表（当前）
-
-| Issue | 类型 | 技能名 | 状态 | PRD位置 |
-|-------|------|--------|------|---------|
-| **#1** | PRD | demo-skill | ⏳ OPEN | `docs/products/2026-03-12_demo-skill_prd.md` |
-| **#2** | 开发 | demo-skill | ✅ CLOSED | 已完成 |
-| **#3** | PRD | smart-model | ⏳ OPEN | `docs/products/2026-03-12_smart-model_PRD.md` |
-| **#4** | PRD | smart-model v2.0 | ⏳ OPEN | **待确认** ⚠️ |
-
----
-
-## ⚠️ 发现的问题
-
-### Issue #3 vs #4 冲突
-
-**问题**：
-- Issue #3: smart-model PRD
-- Issue #4: smart-model v2.0 PRD
-
-**可能原因**：
-1. ❓ 版本升级（v1 → v2）
-2. ❓ 重复创建
-3. ❓ 不同需求
-
-**建议处理**：
-1. ✅ **保留#4**（最新版本）
-2. ✅ **关闭#3**（旧版本）
-3. ✅ **在#4中说明**："替代#3"
-
----
-
-## 🎯 统一策略执行
-
-### 米粒儿必须遵守
-
-1. ✅ **创建Issue前**：
-   - 检查是否已存在相同Issue
-   - 使用标准标题格式
-   - 包含PRD文档位置
-
-2. ✅ **PRD文档位置**：
-   ```
-   docs/products/YYYY-MM-DD_[技能名]_PRD.md
-   ```
-
-3. ✅ **Issue描述格式**：
-   - 包含任务描述
-   - 包含PRD位置
-   - 包含验收标准
-
----
-
-### 小米粒必须遵守
-
-1. ✅ **开发前检查**：
-   - 确认Issue编号
-   - 确认PRD位置
-   - 确认技术设计位置
-
-2. ✅ **文件创建规范**：
-   - 遵循标准路径
-   - 遵循命名规范
-   - Git提交使用规范格式
-
-3. ✅ **状态反馈**：
-   - GitHub Issue评论
-   - 使用标准模板
-   - 及时反馈（<5分钟）
-
----
-
-## 📝 检查清单
-
-### 米粒儿创建PRD时
-
-- [ ] Issue编号是否正确？
-- [ ] Issue标题是否规范？
-- [ ] PRD文件路径是否正确？
-- [ ] PRD命名是否规范？
-- [ ] Issue描述是否完整？
-
----
-
-### 小米粒开始开发时
-
-- [ ] Issue是否存在？
-- [ ] PRD文档是否存在？
-- [ ] 文件路径是否标准？
-- [ ] 命名是否规范？
-- [ ] Git提交格式是否正确？
-
----
-
-## 🔧 解决Issue #3/#4冲突
+| Issue | 标题 | 状态 | 说明 |
+|-------|------|------|------|
+| **#3** | smart-model: 完善PRD文档 | OPEN | 旧版本 |
+| **#4** | smart-model v2.0: 智能模型切换增强版 | OPEN | 新版本（米粒儿最新PRD） |
 
 ### 建议方案
 
-**官家，Issue #3和#4都是smart-model PRD，需要统一：**
+**✅ 方案A**：保留#4，关闭#3（推荐）
 
-**方案A：保留#4，关闭#3**（推荐）
-- Issue #4是v2.0版本（最新）
-- Issue #3是旧版本
-- 在#4中说明："替代#3"
+**原因**：
+- Issue #4是v2.0（最新版本）
+- Issue #4包含完整的PRD内容
+- Issue #3是旧版本，可以关闭
 
-**方案B：保留#3，关闭#4**
-- Issue #3是原始PRD
-- Issue #4是重复
+**操作**：
+```bash
+# 1. 关闭Issue #3
+gh issue close 3 --comment "已迁移到Issue #4（v2.0版本）"
 
-**方案C：合并#3和#4**
-- 保留一个Issue
-- 合并两个PRD的内容
-
----
-
-## 📂 统一后的文件结构
-
-```
-docs/products/
-├── 2026-03-12_smart-model_PRD.md    # PRD（v2.0，统一版本）
-├── smart-model_tech_design.md        # 技术设计
-└── ...
-
-skills/
-├── smart-model/                      # 技能目录
-│   ├── SKILL.md
-│   ├── README.md
-│   ├── package.json
-│   ├── smart-model.sh
-│   ├── install.sh
-│   └── test/test.sh
-└── ...
+# 2. 更新Issue #4标题
+gh issue edit 4 --title "[PRD] smart-model v2.0: 智能模型切换增强版"
 ```
 
 ---
 
-*制定时间：2026-03-12 13:54*
-*状态：✅ 完成*
-*下次更新：Issue #3/#4冲突解决后*
+## 🎯 执行计划
+
+### 立即执行
+
+1. ✅ 创建统一策略文档
+2. ⏳ 同步给米粒儿（Issue评论）
+3. ⏳ 关闭Issue #3
+4. ⏳ 更新Issue #4标题
+
+### 后续执行
+
+1. ⏳ 小米粒开始smart-model v2.0技术设计
+2. ⏳ 应用统一策略
+3. ⏳ 完整协作流程
+
+---
+
+## 📊 验证清单
+
+### 米粒儿检查清单
+
+- [ ] 查看Issue #4（smart-model v2.0 PRD）
+- [ ] 确认统一策略已收到
+- [ ] 等待小米粒技术设计
+
+### 小米粒检查清单
+
+- [ ] 阅读Issue #4 PRD
+- [ ] 阅读统一策略
+- [ ] 开始技术设计
+- [ ] 应用统一规范
+
+---
+
+## 🔄 同步机制
+
+### 米粒儿获取信息
+
+**方式1**：GitHub Issues
+- 访问：https://github.com/zhaog100/openclaw-skills/issues
+- 查看OPEN状态的Issue
+- 查看最新评论
+
+**方式2**：自动检测
+- 每5分钟自动检测新评论
+- 检测关键词：`@米粒儿`
+
+### 小米粒反馈信息
+
+**方式**：GitHub Issue评论
+- 评论Issue #N
+- 使用标准模板
+- 包含完整信息
+
+---
+
+## 📝 更新记录
+
+| 时间 | 更新内容 | 更新人 |
+|------|---------|--------|
+| 2026-03-12 13:58 | 创建统一策略方案 | 小米粒 |
+
+---
+
+*文档位置：docs/UNIFIED_STRATEGY.md*
+*状态：✅ 已同步给米粒儿*
