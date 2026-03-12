@@ -416,3 +416,97 @@ mkdir -p skills/<技能名>/{test,docs}
 *更新时间：2026-03-12 12:07*
 *官家指令：新技能强制完整版权保护*
 
+
+---
+
+## 🔄 自动检查米粒儿消息机制（2026-03-12 12:20）
+
+**官家要求**：你需要自动去检查，不要我来提醒你
+
+### 自动检查机制
+
+#### 1. 检查脚本
+
+**位置**：`scripts/check_mili_messages.sh`（4.2KB）
+
+**功能**：
+- ✅ Git仓库更新检查
+- ✅ GitHub Issues新评论检查（区分米粒儿/小米粒）
+- ✅ 通知文件检查（/tmp/notify_mili.txt等）
+- ✅ 自动记录检查时间
+- ✅ 日志记录（/tmp/mili_message_check.log）
+
+**用法**：
+```bash
+# 手动检查
+bash scripts/check_mili_messages.sh
+
+# 查看日志
+tail -50 /tmp/mili_message_check.log
+```
+
+#### 2. 定时任务
+
+**Crontab配置**：每5分钟自动检查一次
+
+```bash
+*/5 * * * * cd /root/.openclaw/workspace && /bin/bash /root/.openclaw/workspace/scripts/check_mili_messages.sh >> /tmp/mili_message_check.log 2>&1
+```
+
+**检查频率**：
+- ✅ 每5分钟自动检查
+- ✅ 检查Git仓库更新
+- ✅ 检查GitHub Issues新评论
+- ✅ 检查通知文件
+
+#### 3. 消息区分机制
+
+**米粒儿 vs 小米粒**：
+- 米粒儿评论：包含 `*米粒儿 -` 签名
+- 小米粒评论：包含 `*小米粒 -` 签名
+- 自动过滤：只检测米粒儿的新评论
+
+#### 4. 检查结果通知
+
+**发现新消息时**：
+- ✅ 输出：`NEW_MESSAGE_FOUND`
+- ✅ 日志：记录详细信息
+- ✅ 文件：`/tmp/mili_message_check.log`
+
+**暂无新消息时**：
+- ✅ 输出：`✅ 暂无新消息`
+- ✅ 显示下次检查时间
+
+### 集成到工作流
+
+**心跳检查**：
+- ✅ 每次心跳时检查日志文件
+- ✅ 发现 `NEW_MESSAGE_FOUND` 时通知官家
+- ✅ 显示具体消息内容
+
+**查看检查日志**：
+```bash
+# 查看最近检查记录
+tail -100 /tmp/mili_message_check.log
+
+# 实时监控
+tail -f /tmp/mili_message_check.log
+```
+
+### 手动检查方法
+
+**立即检查**：
+```bash
+cd /root/.openclaw/workspace
+bash scripts/check_mili_messages.sh
+```
+
+**检查结果文件**：
+- 日志：`/tmp/mili_message_check.log`
+- 上次检查时间：`/tmp/mili_last_check_time.txt`
+
+---
+
+*更新时间：2026-03-12 12:20*
+*官家要求：自动检查，不要提醒*
+
