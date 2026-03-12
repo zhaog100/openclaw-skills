@@ -179,3 +179,30 @@ git checkout --theirs <file> # 远程优先
 ---
 
 *更新时间：2026-03-11 19:43*
+
+---
+
+## 📄 版权声明标准（2026-03-12）
+
+**要求**：所有技能发布/更新时必须包含版权声明
+
+**核心要求**：
+- ✅ 免费使用、修改和重新分发
+- ✅ 需注明出处（GitHub + ClawHub + 创建者）
+- ✅ MIT License
+
+**模板位置**：`docs/COPYRIGHT_TEMPLATE.md`
+
+**已更新**：
+- ✅ demo-skill（README.md + SKILL.md + demo-skill.sh）
+
+**检查清单**：
+- [ ] SKILL.md包含简短版权声明
+- [ ] README.md包含完整版权声明
+- [ ] package.json包含license字段
+- [ ] 主脚本包含版权注释
+
+---
+
+*更新时间：2026-03-12 11:55*
+
