@@ -15,7 +15,7 @@
 
 MIT License
 
-Copyright (c) 2026 小米粒/米粒儿
+Copyright (c) 2026 思捷娅科技/米粒儿
 
 **免费使用、修改和重新分发时，需注明出处。**
 
@@ -32,7 +32,7 @@ Copyright (c) 2026 小米粒/米粒儿
 
 MIT License
 
-Copyright (c) 2026 小米粒/米粒儿
+Copyright (c) 2026 思捷娅科技/米粒儿
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -100,7 +100,7 @@ SOFTWARE.
 
 MIT License
 
-Copyright (c) 2026 小米粒
+Copyright (c) 2026 思捷娅科技
 
 **免费使用、修改和重新分发时，需注明出处。**
 
@@ -124,7 +124,7 @@ Copyright (c) 2026 小米粒
 {
   "name": "demo-skill",
   "license": "MIT",
-  "copyright": "Copyright (c) 2026 小米粒 - 免费使用、修改和重新分发时，需注明出处"
+  "copyright": "Copyright (c) 2026 思捷娅科技 - 免费使用、修改和重新分发时，需注明出处"
 }
 ```
 
@@ -141,7 +141,7 @@ Copyright (c) 2026 小米粒
 #
 # 版权声明：
 # MIT License
-# Copyright (c) 2026 小米粒
+# Copyright (c) 2026 思捷娅科技
 # 免费使用、修改和重新分发时，需注明出处。
 # GitHub: https://github.com/zhaog100/openclaw-skills
 ```
