@@ -104,14 +104,18 @@
 
 ### 2026-03-12
 
-- [ ] **完善demo-skill PRD**（米粒儿）
+- [ ] **完善demo-skill PRD**（米粒儿）⚠️ **未完善**
   - 位置：`docs/products/2026-03-12_demo-skill_prd.md`
   - Issue：#1
+  - 状态：⚠️ 模板状态（无具体内容）
   - 待办：填充具体功能需求
+  - 建议：演示双米粒协作完整流程
 
-- [ ] **完善smart-model PRD**（米粒儿）
+- [ ] **完善smart-model PRD**（米粒儿）⚠️ **未完善**
   - 位置：`docs/products/2026-03-12_smart-model_PRD.md`
+  - 状态：⚠️ 模板状态（无具体内容）
   - 待办：填充具体功能需求
+  - 建议：智能选择最优AI模型
 
 - [ ] **开发multi-platform-notifier**（新技能）
   - 功能：多平台通知集成（企业微信+钉钉+飞书）
