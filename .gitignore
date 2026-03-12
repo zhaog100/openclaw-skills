@@ -65,10 +65,8 @@ skills/*/data/*.json
 !skills/**/core/**
 !skills/**/modes/**
 
-# 图片文件
-*.png
-*.jpg
-*.jpeg
+# 图片文件（由 Git LFS 管理）
+# *.png, *.jpg, *.jpeg 已通过 .gitattributes 由 LFS 追踪
 *.gif
 *.mp3
 *.wav
