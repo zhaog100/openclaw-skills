@@ -1050,3 +1050,83 @@ bash scripts/add_copyright.sh skills/skill-name
 
 *建立时间：2026-03-12 上午*
 
+
+---
+
+## 📋 统一策略应用（2026-03-12 14:18）
+
+### ✅ 已应用的规范
+
+**文档位置**：`docs/UNIFIED_STRATEGY.md`（7.2KB）  
+**索引位置**：`docs/FILE_NAMING_STANDARDS.md`（2.4KB）
+
+---
+
+### 1️⃣ Issue标题规范化 ✅
+
+**更新内容**：
+- ✅ Issue #1：`[demo-skill] PRD - 需求文档评审` → `[PRD] demo-skill: 需求文档评审`
+- ✅ Issue #2：`demo-skill: 双米粒协作系统演示技能` → `[PRD] demo-skill: 双米粒协作系统演示技能`
+- ✅ Issue #3：`smart-model: 完善PRD文档` → `[PRD] smart-model: 完善PRD文档`
+
+---
+
+### 2️⃣ 统一命名规范
+
+**PRD文档**：`docs/products/YYYY-MM-DD_[技能名]_PRD.md`
+**技术设计**：`docs/products/[技能名]_tech_design.md`
+**Review文档**：`reviews/[技能名]_review_YYYYMMDD.md`
+**知识库**：`knowledge/YYYY-MM-DD/[知识点].md`
+
+---
+
+### 3️⃣ Issue编号分配
+
+| 范围 | 用途 | 负责人 |
+|------|------|--------|
+| **#1-10** | 产品PRD | 米粒儿创建 |
+| **#11-20** | 技术设计 | 小米粒创建 |
+| **#21-30** | Bug报告 | 双方均可 |
+| **#31-40** | 功能请求 | 米粒儿创建 |
+| **#41-50** | 文档改进 | 双方均可 |
+
+---
+
+### 4️⃣ 协作流程确认
+
+```
+1️⃣ 米粒儿创建PRD → Issue #1-10 + PRD文档
+2️⃣ 小米粒技术设计 → Issue评论 + 设计文档
+3️⃣ 小米粒开发实现 → Issue评论 + 技能目录
+4️⃣ 米粒儿Review → Issue评论 + Review文档
+5️⃣ 小米粒发布（如需要）→ ClawHub发布
+```
+
+---
+
+### 5️⃣ Git同步策略
+
+```bash
+# 工作前pull
+git pull --rebase origin master
+
+# 检查冲突
+git fetch && git diff master origin/master
+
+# 及时推送
+git push origin master
+```
+
+---
+
+## 📊 应用效果
+
+**预期效果**：
+- ✅ Issue清晰：编号分配明确
+- ✅ 文件规范：命名格式统一
+- ✅ 协作顺畅：流程标准化
+- ✅ 同步高效：Git策略统一
+
+---
+
+*应用时间：2026-03-12 14:18*
