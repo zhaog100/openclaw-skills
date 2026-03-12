@@ -478,3 +478,68 @@ gh issue edit 4 --title "[PRD] smart-model v2.0: 智能模型切换增强版"
 ---
 
 *更新时间：2026-03-12 14:21*
+
+---
+
+## 7️⃣ 检查频率调整（新增）
+
+**调整时间**：2026-03-12 14:28  
+**官家要求**：前期频繁检查，稳定后恢复5分钟
+
+---
+
+### 当前检查频率
+
+| 任务 | 当前频率 | 备注 |
+|------|---------|------|
+| **检查米粒儿消息** | **每1分钟** | 前期频繁检查 ⭐ |
+| **上下文监控** | 每5分钟 | 保持不变 |
+
+---
+
+### 调整历史
+
+| 时间 | 频率 | 阶段 |
+|------|------|------|
+| **2026-03-12 12:20** | 每5分钟 | 初始设置 |
+| **2026-03-12 14:28** | **每1分钟** | 前期频繁检查 ⭐ |
+| ⏳ **稳定后** | 每5分钟 | 恢复正常频率 |
+
+---
+
+### Crontab配置
+
+```bash
+# 检查米粒儿消息（当前：每1分钟）
+* * * * * cd /root/.openclaw/workspace && /bin/bash /root/.openclaw/workspace/scripts/check_mili_messages.sh >> /tmp/mili_message_check.log 2>&1
+
+# 上下文监控（每5分钟，保持不变）
+*/5 * * * * /root/.openclaw/workspace/skills/miliger-context-manager/scripts/context-monitor-v6.sh >> /root/.openclaw/workspace/logs/context-monitor-v7.log 2>&1
+```
+
+---
+
+### 恢复正常频率（稳定后）
+
+```bash
+# 恢复为每5分钟
+crontab -l | sed 's/^\* \* \* \* \* cd \/root\/\.openclaw\/workspace/\/5 * * * * cd \/root\/\.openclaw\/workspace/' | crontab -
+```
+
+---
+
+### 检查目的
+
+**前期（现在）**：
+- ✅ 快速发现问题
+- ✅ 及时响应米粒儿反馈
+- ✅ 验证协作流程
+
+**稳定后**：
+- ✅ 减少资源占用
+- ✅ 提高效率
+- ✅ 保持可靠
+
+---
+
+*更新时间：2026-03-12 14:28*
