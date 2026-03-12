@@ -206,3 +206,90 @@ git checkout --theirs <file> # 远程优先
 
 *更新时间：2026-03-12 11:55*
 
+
+---
+
+## 🛡️ 新技能版权保护检查清单（强制）
+
+**官家指令**：以后开发的新技能也要加上完整的版权保护
+
+### 发布前必须检查
+
+#### 版权保护内容
+
+- [ ] **LICENSE文件**（根目录已存在）
+- [ ] **SKILL.md** - 末尾包含完整版权声明
+- [ ] **README.md** - 末尾包含完整版权声明
+- [ ] **package.json** - license字段（MIT）
+- [ ] **主脚本** - 头部版权注释
+
+#### 商业授权定价
+
+| 类型 | 年费 | 适用范围 |
+|------|------|---------|
+| 个人/开源 | 免费 | 个人、年收入<50万 |
+| 小微企业 | ¥999/年 | <10人，50-500万 |
+| 中型企业 | ¥4,999/年 | 10-50人，500-5000万 |
+| 大型企业 | ¥19,999/年 | >50人，>5000万 |
+| 源码买断 | ¥99,999一次性 | 集团/上市公司 |
+
+### 自动化工具
+
+**脚本位置**：`scripts/add_copyright.sh`
+
+**用法**：
+```bash
+bash scripts/add_copyright.sh <技能名>
+```
+
+**示例**：
+```bash
+bash scripts/add_copyright.sh my-new-skill
+```
+
+### 版权声明模板
+
+**SKILL.md/README.md末尾**：
+```markdown
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 米粒儿 (miliger)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- ClawHub: https://clawhub.com
+- 创建者: 米粒儿 (miliger)
+
+**商业使用授权**：
+- 小微企业（<10人）：¥999/年
+- 中型企业（10-50人）：¥4,999/年
+- 大型企业（>50人）：¥19,999/年
+- 企业定制版：¥99,999一次性（源码买断）
+
+详情请查看：[LICENSE](../../LICENSE)
+```
+
+**主脚本头部**：
+```bash
+#!/bin/bash
+# <技能名> - <技能描述>
+# 版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+# GitHub: https://github.com/zhaog100/openclaw-skills
+```
+
+### 完整文档
+
+- **LICENSE**：根目录LICENSE文件
+- **商业授权协议**：`docs/COMMERCIAL_LICENSE.md`
+- **版权模板**：`docs/COPYRIGHT_TEMPLATE.md`
+- **自动化脚本**：`scripts/add_copyright.sh`
+
+---
+
+*更新时间：2026-03-12 12:07*
+*官家指令：新技能强制完整版权保护*
+
