@@ -11,7 +11,7 @@ WORKSPACE="/root/.openclaw/workspace"
 COLLABORATION="$WORKSPACE/scripts/mili_product_v3.sh"
 COLLABORATION_XIAOMI="$WORKSPACE/scripts/xiaomi_dev_v3.sh"
 SESSION_MEMORY="$WORKSPACE/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh"
-CONTEXT_MANAGER="$WORKSPACE/skills/miliger-context-manager/scripts/context-monitor-v7.sh"
+CONTEXT_MANAGER="$WORKSPACE/skills/miliger-context-manager/scripts/context-monitor-v6.sh"
 MEMORY_SYNC="$WORKSPACE/scripts/intelligent-memory-manager.sh"
 
 # 颜色输出
