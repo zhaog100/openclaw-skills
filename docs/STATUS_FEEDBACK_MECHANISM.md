@@ -148,7 +148,7 @@ NEXT_STEP=review" > /tmp/notify_mili.txt
 
 ---
 
-### 模板3：发布完成反馈 ✅
+### 模板3：发布完成反馈（完整版）✅
 
 ```markdown
 @米粒儿 发布完成反馈 ✨
@@ -159,29 +159,130 @@ NEXT_STEP=review" > /tmp/notify_mili.txt
 
 ---
 
-## 📦 发布信息
+## 📦 发布详情
 
+### 1️⃣ 基本信息
+- ✅ **技能名称**：[skill-name]
+- ✅ **版本号**：v[X.X.X]
+- ✅ **发布时间**：[YYYY-MM-DD HH:MM]
+- ✅ **开发者**：小米粒
+
+---
+
+### 2️⃣ 下载信息
 - ✅ **ClawHub ID**：[package-id]
 - ✅ **ClawHub链接**：https://clawhub.com/skills/[slug]
-- ✅ **版本**：v[X.X.X]
-- ✅ **发布时间**：[时间]
+- ✅ **下载命令**：
+  ```bash
+  clawhub install [slug]
+  ```
+
+---
+
+### 3️⃣ 版本信息
+- ✅ **当前版本**：v[X.X.X]
+- ✅ **更新内容**：
+  1. 新功能1：[说明]
+  2. 新功能2：[说明]
+  3. Bug修复：[说明]
+
+---
+
+### 4️⃣ 发布内容
+**文件列表**：
+```
+skills/[skill-name]/
+├── SKILL.md ([X]KB)
+├── README.md ([X]KB)
+├── package.json ([X]KB)
+├── [skill-name].sh ([X]KB, [X]行)
+├── install.sh ([X]KB)
+└── test/test.sh ([X]KB)
+```
+
+**统计信息**：
+- 📁 文件数：[X]个
+- 📝 代码行数：[X]行
+- 📄 文档大小：[X]KB
+- 🧪 测试覆盖率：[X]%
+
+---
+
+### 5️⃣ 安装和使用
+
+**安装步骤**：
+```bash
+# 1. 安装技能
+clawhub install [slug]
+
+# 2. 验证安装
+clawhub list | grep [skill-name]
+
+# 3. 使用技能
+[skill-name] [command]
+```
+
+**使用示例**：
+```bash
+# 示例1：[功能说明]
+[skill-name] [command1]
+
+# 示例2：[功能说明]
+[skill-name] [command2]
+
+# 示例3：[功能说明]
+[skill-name] --help
+```
+
+---
+
+### 6️⃣ 注意事项
+
+**系统要求**：
+- ✅ 操作系统：Linux / macOS
+- ✅ 依赖：[依赖列表]
+- ✅ 权限：[权限要求]
+
+**已知限制**：
+- ⚠️ [限制1]
+- ⚠️ [限制2]
+
+**常见问题**：
+- Q: [问题1]
+  A: [答案1]
+- Q: [问题2]
+  A: [答案2]
 
 ---
 
 ## 🎉 发布成果
 
-- ✅ 功能完整
-- ✅ 测试覆盖率：[X%]
-- ✅ 文档齐全
-- ✅ Review评分：[X]/25
+**质量指标**：
+- ✅ 功能完整性：100%
+- ✅ 测试覆盖率：[X]%
+- ✅ 文档完整性：100%
+- ✅ Review评分：[X]/25 ⭐⭐⭐⭐⭐
+
+**协作效率**：
+- ⏱️ 开发时间：[X]小时
+- ⏱️ Review时间：[X]分钟
+- ⏱️ 总耗时：[X]小时
 
 ---
 
 ## 🎯 下一步
 
 - ✅ 此Issue已关闭
-- ✅ 更新MEMORY.md
+- ✅ 更新MEMORY.md（记录发布详情）
+- ✅ 更新知识库（如有新知识点）
 - ✅ 继续开发下一个技能
+
+---
+
+**附件**：
+- 📄 技术设计文档：`docs/products/[skill-name]_tech_design.md`
+- 📄 Review报告：`reviews/[skill-name]_review_[date].md`
+- 📄 测试报告：`skills/[skill-name]/test/test_report.md`
 
 ---
 *小米粒 - [时间]*
