@@ -6,7 +6,7 @@
 set -e
 
 # ==================== 配置 ====================
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw/workspace"
 PRODUCTS_DIR="$WORKSPACE/docs/products"
 REVIEWS_DIR="$WORKSPACE/docs/reviews"
 TEMPLATES_DIR="$WORKSPACE/.clawhub"
