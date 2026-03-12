@@ -62,6 +62,8 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 - **SSH 认证配置** - 2026-03-11：SSH 密钥认证比 Token 更稳定，一次配置永久使用，需要添加 GitHub 到 known_hosts
 - **Review 系统设计** - 2026-03-11：方案 B+D（独立 Review 文档 + 增强协作脚本）最实用，12 维度评价，Git 版本管理，易于维护
 - **双向思考策略** - 2026-03-11：小米粒开发前自检 + Review 后思考，米粒儿接受小米粒的补充建议，真正实现双向互补
+- **新产品确认规则** - 2026-03-12：所有新产品分析必须先和官家确认，得到批准后再给小米粒 PRD（demo-skill 等演示技能除外）
+- **技能包打包规范** - 2026-03-12：排除 API Keys/venv/凭证，包含源代码/配置模板/文档，445KB 包含 30 个技能
 
 ---
 
@@ -93,6 +95,41 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 - ✅ Gemini API Key（已配置到~/.bashrc）
 - ✅ OpenAI Codex OAuth（已授权）
 - ✅ AIHubMix（已有配置）
+
+---
+
+## 🆕 2026-03-12 新增记忆
+
+### 技能包打包成果
+- ✅ 完整备份：30 个技能（7 个核心 + 23 个工具）
+- ✅ 打包大小：445KB
+- ✅ 输出位置：`/tmp/openclaw-skills-full-backup-2026-03-12.tar.gz`
+- ✅ 排除内容：API Keys、venv、个人凭证
+
+### 待开发技能清单
+- ✅ 总计：10 个技能
+- ✅ P0（2 个）：demo-skill, smart-model
+- ✅ P1（3 个）：multi-platform-notifier, auto-document-generator, test-case-generator
+- ✅ P2（3 个）：code-review-assistant, project-progress-tracker, knowledge-graph-builder
+- ✅ P3（2 个）：meeting-minutes-generator, email-auto-responder
+- ✅ 清单位置：`docs/pending-skills-list.md`
+
+### demo-skill 进展
+- ✅ PRD 完成：`docs/products/2026-03-12_demo-skill_prd.md`
+- ✅ Issue 创建：https://github.com/zhaog100/openclaw-skills/issues/2
+- ✅ 通知小米粒：inbox 投递 + Issue 评论
+- ⏳ 状态：等待小米粒技术设计和开发
+
+### 重要规则确认
+- ✅ 新产品开发流程：Concept → 官家确认 → PRD → 小米粒开发
+- ✅ 官家确认是必需步骤（不能跳过）
+- ✅ 例外：demo-skill 等演示/模板技能可直接开始
+
+### 双米粒协作文件规范
+- ✅ `.mili_comm/issues.txt` - Issue 记录
+- ✅ `.mili_comm/inbox/` - 接收任务
+- ✅ `.mili_comm/outbox/` - 发送任务
+- ✅ `.mili_comm/status.json` - 协作状态
 
 ---
 

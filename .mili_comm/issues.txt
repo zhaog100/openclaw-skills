@@ -1,4 +1,7 @@
-# 双米粒Issue记录
+# 双米粒 Issue 记录
 # 格式：issue_[功能名]=[issue-number]
 # 创建时间：2026-03-12 09:51:36
 
+# 2026-03-12 新增
+issue_demo-skill=1
+issue_smart-model=2
