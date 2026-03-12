@@ -1,4 +1,6 @@
-# Smart Model v2.0 - 智能模型切换系统
+# Smart Model v2.0
+
+**Copyright (c) 2026 思捷娅科技 - MIT License** - 智能模型切换系统
 
 **版本**: 2.0.0
 **创建时间**: 2026-03-12
