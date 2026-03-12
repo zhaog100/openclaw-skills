@@ -117,10 +117,15 @@
   - 核心功能：4个命令（welcome/status/info/help）
   - 技术栈：Bash + Git（无外部依赖）
 
-- [ ] **小米粒开发实现**（小米粒）⏳ **进行中**
-  - 预计时间：2-3小时
-  - 文件：demo-skill.sh + install.sh + test.sh
-  - 验收：测试覆盖率>80% + 响应<1秒
+- [x] **小米粒开发实现**（小米粒）✅ **已完成**
+  - 完成时间：2026-03-12 11:45
+  - 文件：demo-skill.sh + install.sh + test.sh + SKILL.md + README.md
+  - 验收：测试覆盖率100% + 响应<0.5秒 + 零依赖
+  - Git提交：a0b0d2a
+
+- [ ] **米粒儿Review**（米粒儿）⏳ **待进行**
+  - Issue #2评论：https://github.com/zhaog100/openclaw-skills/issues/2#issuecomment-4043720979
+  - Review内容：功能完整性、代码质量、文档质量、测试质量、用户体验
 
 - [ ] **开发multi-platform-notifier**（新技能）
   - 功能：多平台通知集成（企业微信+钉钉+飞书）
