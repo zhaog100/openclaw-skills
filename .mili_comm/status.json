@@ -1,11 +1,20 @@
 {
-  "smart-model": {
-    "stage": "acceptance",
-    "updated_at": "2026-03-12T10:25:32+08:00"
-  },
-  "demo-skill": {
-    "status": "concept",
-    "last_update": "2026-03-12 11:06:15",
-    "updater": "米粒儿"
-  }
+    "smart-model": {
+        "stage": "review",
+        "issue": 4,
+        "updated_at": "2026-03-12T19:44:00+08:00",
+        "updater": "小米粒",
+        "status": "开发完成，等待米粒儿Review",
+        "git_commits": ["bf25032", "7a22629", "c9d7e10"],
+        "files": 9,
+        "lines": 3304,
+        "size": "89.6KB"
+    },
+    "demo-skill": {
+        "status": "publish",
+        "issue": 2,
+        "last_update": "2026-03-12T12:50:00+08:00",
+        "updater": "米粒儿",
+        "note": "已完成开发和Review，等待发布到ClawHub"
+    }
 }
