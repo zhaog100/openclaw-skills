@@ -1,20 +1,43 @@
-# Git 忽略文件配置（合并版）
+# Git 忽略文件配置（精简版 v2.0）
+# 最后更新：2026-03-12
 
-# 依赖目录
+# ===== 依赖和构建 =====
 node_modules/
 package-lock.json
 bun.lock
+__pycache__/
+*.pyc
+*.pyo
+.node_modules/
+venv/
 
-# 临时文件
+# ===== 临时文件 =====
+*.tmp
+*.bak
+*.swp
+*~
 .vector-search-status.md
-Z:/
 
-# 记忆文件（已备份到 MEMORY.md）
+# ===== 敏感配置 =====
+.clawhub/
+.clawtasks/
+.moltbook/
+.openclaw/
+.env
+.env.local
+
+# ===== 日志和数据 =====
+logs/*.log
+skills/*/logs/*.log
+skills/*/data/*.json
+*.log
+
+# ===== 记忆文件（已备份到 MEMORY.md）=====
 memory/*.md
 !memory/README.md
 memory/*.json
 
-# 历史报告文档
+# ===== 历史报告文档 =====
 *报告.md
 *REPORT*.md
 *COMPLETE*.md
@@ -27,76 +50,15 @@ memory/*.json
 *SUMMARY.md
 *TODO*.md
 
-# 保留核心文档
-!AGENTS.md
-!SOUL.md
-!USER.md
-!IDENTITY.md
-!BOOT.md
-!HEARTBEAT.md
-!CRON-CONFIG.md
-!DOCS-INDEX.md
-!MEMORY.md
-!TOOLS.md
-
-# 平台配置（包含敏感信息）
-.clawhub/
-.clawtasks/
-.moltbook/
-.openclaw/
-
-# 会话处理文件
-.session-processed/
-
-# 日志文件（自动生成的）
-skills/*/logs/*.log
-skills/*/data/*.json
-
-# 但保留技能核心文件
-!skills/*/package.json
-!skills/*/SKILL.md
-!skills/*/README.md
-!skills/*/install.sh
-!skills/**/*.py
-!skills/**/*.js
-!skills/**/*.sh
-!skills/**/config/**
-!skills/**/scripts/**
-!skills/**/core/**
-!skills/**/modes/**
-
-# 图片文件（由 Git LFS 管理）
-# *.png, *.jpg, *.jpeg 已通过 .gitattributes 由 LFS 追踪
+# ===== 媒体文件（GIF 和音频由 Git 忽略，图片由 LFS 管理）=====
 *.gif
 *.mp3
 *.wav
 *.silk
 
-# 测试文件
-puppeteer-test.png
-moltbook-check.png
-
-# 忽略日志文件
-logs/*.log
-logs/*/
-*.log
-
-# 忽略临时文件
-*.tmp
-*.bak
-*.swp
-*~
-
-# 忽略青龙面板文件
-qinglong/
-
-# 忽略缓存
-__pycache__/
-*.pyc
-*.pyo
-.node_modules/
-venv/
-
-# 忽略临时测试文件
+# ===== 临时测试文件 =====
 test-*.sh
 *-test.sh
+
+# ===== 青龙面板 =====
+qinglong/
