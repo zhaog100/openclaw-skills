@@ -253,6 +253,26 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 - ✅ **Crontab 版本**：v3.0.0 - 高频期
 - ✅ **检查类型**：本地文件/Git 提交/Issue 评论/超时提醒/上下文监控/三库同步
 
+### Git 协作命名规则建立（2026-03-12 22:28）⭐⭐⭐⭐⭐
+- ✅ **规则文档**：`docs/双米粒-Git-协作命名规则.txt`（13.7KB，15 个规范）
+- ✅ **PRD 文档规范**：YYYY-MM-DD_[技能名]_PRD.md（docs/products/）
+- ✅ **技术设计规范**：[技能名]_tech_design.md（docs/products/）
+- ✅ **Review 文档规范**：[技能名]_review_YYYYMMDD.md（reviews/）
+- ✅ **技能目录规范**：[技能名]/（skills/）
+- ✅ **Issue 命名规范**：[类型] 技能名：简短描述
+- ✅ **Git 提交规范**：[类型]([范围]): 简短描述
+- ✅ **小米粒确认**：23:03 回复确认（4 项全部✅）
+
+### smart-model v2.0 Review 完成（2026-03-12 21:24）⭐⭐⭐⭐⭐
+- ✅ **Review 评分**：5.00/5.00 ⭐⭐⭐⭐⭐（满分）
+- ✅ **12 维度评价**：全部 5/5 满分
+- ✅ **5 层验收**：全部通过
+- ✅ **结论**：通过 Review，批准发布
+- ✅ **Review 文档**：`reviews/smart-model-v2.0_review_20260312.md`（3.3KB）
+- ✅ **Issue 评论**：已发送（21:19）
+- ✅ **Git 推送**：已完成（0b9bb24）
+- ⏳ **发布到 ClawHub**：等待小米粒执行
+
 ### 双米粒协作文件规范
 - ✅ `.mili_comm/issues.txt` - Issue 记录
 - ✅ `.mili_comm/inbox/` - 接收任务
