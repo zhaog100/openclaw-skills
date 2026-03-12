@@ -144,6 +144,40 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 - smart-model v2.0（Issue #4）：⏳ 开发中（OPEN）
 - 所有双米粒协作相关技能和文档
 
+### AI-to-AI 协作理论（2026-03-12 14:06 整合）
+- ✅ **四方问题理论**：5 个实体（米粒儿 + 官家 + 小米粒 + 官家 + 系统）
+- ✅ **涌现词汇管理**：追踪协作中产生的共享语言
+- ✅ **协作约束设计**：4 条约束（为互动设计 + 假设公开 + 拥抱涌现 + 管理操作员）
+- ✅ **BitNet 本地推理**：智能路由（简单任务→BitNet，复杂任务→API）
+- ✅ **词汇考古工具**：scripts/vocabulary_archaeology.py（已实现）
+
+**涌现词汇表**：
+- 协作词汇：反对意见、系统约束、质疑清单
+- 技术词汇：Token 节省、自适应监控、三层架构
+- 工具词汇：词汇考古、四方问题、BitNet
+
+**相关文档**：
+- docs/AI_TO_AI_DIALOGUE_RESEARCH.md
+- docs/DUAL_MILI_SYSTEM_V3.2_INTEGRATED.md
+- scripts/vocabulary_archaeology.py
+
+### 统一策略方案（2026-03-12 14:05 小米粒建立）
+- ✅ **Issue 编号分配**：#1-10 产品 PRD（米粒儿），#11-20 技术设计（小米粒），#21-30 Bug 报告
+- ✅ **文件路径规范**：PRD（docs/products/YYYY-MM-DD_[技能名]_PRD.md）+ 设计（docs/products/[技能名]_tech_design.md）+ Review（reviews/[技能名]_review_YYYYMMDD.md）
+- ✅ **命名规范**：技能名（小写 + 连字符）+ 文档名（[技能名]_PRD.md）
+- ✅ **协作流程**：PRD 创建→技术设计→开发实现→Review 验收→发布
+- ✅ **Git 同步策略**：工作前 pull --rebase + 工作后及时 push
+
+**相关文档**：
+- docs/UNIFIED_STRATEGY.md（7.2KB）
+- Issue #4 评论：https://github.com/zhaog100/openclaw-skills/issues/4#issuecomment-4044229091
+
+**Issue 状态**：
+- Issue #1：demo-skill PRD ✅ 已完成
+- Issue #2：demo-skill 开发 ✅ 已关闭
+- Issue #3：smart-model PRD（旧版）⏳ 待关闭
+- Issue #4：smart-model v2.0 PRD ⏳ 开发中
+
 ### 技能包打包成果
 - ✅ 完整备份：30 个技能（7 个核心 + 23 个工具）
 - ✅ 打包大小：445KB
