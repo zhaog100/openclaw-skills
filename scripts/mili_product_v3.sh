@@ -10,12 +10,15 @@ WORKSPACE="/root/.openclaw/workspace"
 PRODUCTS_DIR="$WORKSPACE/docs/products"
 REVIEWS_DIR="$WORKSPACE/docs/reviews"
 TEMPLATES_DIR="$WORKSPACE/.clawhub"
+COMM_DIR="$WORKSPACE/.mili_comm"
 GIT_REPO="github.com/zhaog100/openclaw-skills"
 NOTIFY_FILE="/tmp/notify_mili.txt"
 APPROVED_FILE="/tmp/review_approved.txt"
 REJECTED_FILE="/tmp/review_rejected.txt"
 RELEASE_FILE="/tmp/release_approved.txt"
 SYSTEM_STATUS_FILE="/tmp/system_status.txt"
+ISSUES_FILE="$COMM_DIR/issues.txt"
+STATUS_FILE="$COMM_DIR/status.json"
 
 # 颜色输出
 GREEN='\033[0;32m'
@@ -41,6 +44,134 @@ ensure_dirs() {
     mkdir -p "$PRODUCTS_DIR"
     mkdir -p "$REVIEWS_DIR"
     mkdir -p "$TEMPLATES_DIR"
+    mkdir -p "$COMM_DIR"
+    mkdir -p "$COMM_DIR/inbox"
+    mkdir -p "$COMM_DIR/outbox"
+    mkdir -p "$COMM_DIR/archive"
+    
+    if [ ! -f "$ISSUES_FILE" ]; then
+        echo "# 双米粒Issue记录" > "$ISSUES_FILE"
+        echo "# 格式：issue_[功能名]=[issue-number]" >> "$ISSUES_FILE"
+        echo "# 创建时间：$(date '+%Y-%m-%d %H:%M:%S')" >> "$ISSUES_FILE"
+    fi
+    
+    if [ ! -f "$STATUS_FILE" ]; then
+        echo '{}' > "$STATUS_FILE"
+    fi
+}
+
+# ==================== Git通信函数 ====================
+
+# 创建GitHub Issue
+create_github_issue() {
+    local feature=$1
+    local stage=$2
+    local body_file=$3
+    
+    if [ ! -f "$body_file" ]; then
+        log_error "文件不存在：$body_file"
+        return 1
+    fi
+    
+    log_blue "创建GitHub Issue：[$feature] $stage"
+    
+    cd "$WORKSPACE"
+    
+    if ! command -v gh &> /dev/null; then
+        log_warn "GitHub CLI未安装，跳过Issue创建"
+        return 0
+    fi
+    
+    local issue_url=$(gh issue create \
+        --title "[$feature] $stage - $(date '+%Y-%m-%d %H:%M')" \
+        --body-file "$body_file" \
+        --label "米粒儿,$stage" \
+        2>&1)
+    
+    if [[ "$issue_url" == https://* ]]; then
+        local issue_number=$(echo "$issue_url" | grep -oP 'issues/\K[0-9]+')
+        log_info "Issue创建成功：#$issue_number"
+        log_info "URL：$issue_url"
+        
+        # 记录Issue编号
+        echo "issue_$feature=$issue_number" >> "$ISSUES_FILE"
+        
+        return 0
+    else
+        log_warn "Issue创建失败，但不影响流程"
+        return 0
+    fi
+}
+
+# 评论GitHub Issue
+comment_github_issue() {
+    local feature=$1
+    local message=$2
+    
+    if ! command -v gh &> /dev/null; then
+        log_warn "GitHub CLI未安装，跳过Issue评论"
+        return 0
+    fi
+    
+    local issue_number=$(grep "issue_$feature=" "$ISSUES_FILE" 2>/dev/null | tail -1 | cut -d'=' -f2)
+    
+    if [ -n "$issue_number" ]; then
+        log_blue "评论Issue：#$issue_number"
+        cd "$WORKSPACE"
+        gh issue comment "$issue_number" --body "$message" 2>/dev/null || log_warn "Issue评论失败"
+    else
+        log_warn "未找到Issue编号"
+    fi
+}
+
+# Git同步
+git_sync() {
+    local action=$1
+    local message=${2:-"update"}
+    
+    cd "$WORKSPACE"
+    
+    case "$action" in
+        pull)
+            log_blue "Git拉取最新代码..."
+            git pull origin master 2>/dev/null || log_warn "Git拉取失败"
+            ;;
+        push)
+            log_blue "Git推送代码..."
+            git add -A
+            git commit -m "$message" 2>/dev/null || log_warn "没有变更需要提交"
+            git push origin master 2>/dev/null || log_warn "Git推送失败"
+            ;;
+    esac
+}
+
+# 更新状态
+update_status() {
+    local feature=$1
+    local stage=$2
+    
+    if command -v python3 &> /dev/null; then
+        python3 <<EOF
+import json
+import os
+
+status_file = '$STATUS_FILE'
+if os.path.exists(status_file):
+    with open(status_file, 'r') as f:
+        status = json.load(f)
+else:
+    status = {}
+
+status['$feature'] = {
+    'status': '$stage',
+    'last_update': '$(date '+%Y-%m-%d %H:%M:%S')',
+    'updater': '米粒儿'
+}
+
+with open(status_file, 'w') as f:
+    json.dump(status, f, indent=2, ensure_ascii=False)
+EOF
+    fi
 }
 
 # 检查Git状态
@@ -222,6 +353,16 @@ create_concept() {
 EOF
     
     log_info "产品构思已创建：$concept_file"
+    
+    # 创建GitHub Issue（Git通信）
+    create_github_issue "$feature_name" "concept" "$concept_file"
+    
+    # 更新状态
+    update_status "$feature_name" "concept"
+    
+    # Git同步
+    git_sync push "feat($feature_name): 产品构思"
+    
     log_blue "下一步：bash $0 $feature_name prd"
 }
 
@@ -367,21 +508,16 @@ EOF
     
     log_info "需求文档已创建：$prd_file"
     
-    # 创建GitHub Issue（如果配置了gh CLI）
-    if command -v gh &> /dev/null; then
-        log_blue "创建GitHub Issue..."
-        cd "$WORKSPACE"
-        issue_url=$(gh issue create \
-            --title "需求：$feature_name" \
-            --body "详见：$prd_file" \
-            --label "需求" \
-            2>/dev/null || echo "GitHub Issue创建失败（可能未配置）")
-        
-        if [[ "$issue_url" == https://* ]]; then
-            log_info "GitHub Issue已创建：$issue_url"
-            echo "issue_url=$issue_url" >> "$prd_file"
-        fi
+    # 创建GitHub Issue（如果concept阶段未创建）
+    if [ ! -f "$ISSUES_FILE" ] || ! grep -q "issue_$feature_name=" "$ISSUES_FILE"; then
+        create_github_issue "$feature_name" "prd" "$prd_file"
     fi
+    
+    # 更新状态
+    update_status "$feature_name" "prd"
+    
+    # Git同步
+    git_sync push "feat($feature_name): 需求文档"
     
     log_blue "下一步："
     log_blue "1. 官家审核PRD"
@@ -659,6 +795,16 @@ review() {
 EOF
     
     log_info "Review文档已创建：$review_file"
+    
+    # 评论GitHub Issue（Git通信）
+    comment_github_issue "$feature_name" "Review完成，✅ 批准发布"
+    
+    # 更新状态
+    update_status "$feature_name" "review"
+    
+    # Git同步
+    git_sync push "feat($feature_name): Review通过"
+    
     log_blue "请完成Review评价后，运行："
     log_blue "bash $0 $feature_name accept（5层验收）"
 }
@@ -737,6 +883,15 @@ EOF
     echo "feature=$feature_name" >> "$APPROVED_FILE"
     echo "date=$date" >> "$APPROVED_FILE"
     echo "review_file=$review_file" >> "$APPROVED_FILE"
+    
+    # 评论GitHub Issue（Git通信）
+    comment_github_issue "$feature_name" "5层验收完成，✅ 批准发布"
+    
+    # 更新状态
+    update_status "$feature_name" "accept"
+    
+    # Git同步
+    git_sync push "feat($feature_name): 5层验收通过"
     
     log_info "5层验收已完成"
     log_blue "已通知小米粒验收结果"

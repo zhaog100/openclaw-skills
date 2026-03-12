@@ -10,12 +10,15 @@ WORKSPACE="/root/.openclaw/workspace"
 PRODUCTS_DIR="$WORKSPACE/docs/products"
 REVIEWS_DIR="$WORKSPACE/docs/reviews"
 TEMPLATES_DIR="$WORKSPACE/.clawhub"
+COMM_DIR="$WORKSPACE/.mili_comm"
 GIT_REPO="github.com/zhaog100/openclaw-skills"
 NOTIFY_FILE="/tmp/notify_mili.txt"
 APPROVED_FILE="/tmp/review_approved.txt"
 REJECTED_FILE="/tmp/review_rejected.txt"
 RELEASE_FILE="/tmp/release_approved.txt"
 SYSTEM_STATUS_FILE="/tmp/system_status.txt"
+ISSUES_FILE="$COMM_DIR/issues.txt"
+STATUS_FILE="$COMM_DIR/status.json"
 
 # 颜色输出
 GREEN='\033[0;32m'
@@ -42,6 +45,96 @@ ensure_dirs() {
     mkdir -p "$PRODUCTS_DIR"
     mkdir -p "$REVIEWS_DIR"
     mkdir -p "$TEMPLATES_DIR"
+    mkdir -p "$COMM_DIR"
+}
+
+# ==================== Git通信函数 ====================
+
+# 查询GitHub Issue
+query_github_issue() {
+    local feature=$1
+    local state=${2:-open}
+    
+    if ! command -v gh &> /dev/null; then
+        log_warn "GitHub CLI未安装"
+        return 0
+    fi
+    
+    log_blue "查询Issue：[$feature]"
+    cd "$WORKSPACE"
+    gh issue list --search "[$feature]" --state "$state" --limit 5
+}
+
+# 评论GitHub Issue
+comment_github_issue() {
+    local feature=$1
+    local message=$2
+    
+    if ! command -v gh &> /dev/null; then
+        log_warn "GitHub CLI未安装，跳过Issue评论"
+        return 0
+    fi
+    
+    local issue_number=$(grep "issue_$feature=" "$ISSUES_FILE" 2>/dev/null | tail -1 | cut -d'=' -f2)
+    
+    if [ -n "$issue_number" ]; then
+        log_blue "评论Issue：#$issue_number"
+        cd "$WORKSPACE"
+        gh issue comment "$issue_number" --body "$message" 2>/dev/null || log_warn "Issue评论失败"
+    else
+        log_warn "未找到Issue编号"
+    fi
+}
+
+# Git同步
+git_sync() {
+    local action=$1
+    local message=${2:-"update"}
+    
+    cd "$WORKSPACE"
+    
+    case "$action" in
+        pull)
+            log_blue "Git拉取最新代码..."
+            git fetch origin 2>/dev/null || true
+            git pull origin master 2>/dev/null || log_warn "Git拉取失败"
+            ;;
+        push)
+            log_blue "Git推送代码..."
+            git add -A 2>/dev/null || true
+            git commit -m "$message" 2>/dev/null || log_warn "没有变更需要提交"
+            git push origin master 2>/dev/null || log_warn "Git推送失败"
+            ;;
+    esac
+}
+
+# 更新状态
+update_status() {
+    local feature=$1
+    local stage=$2
+    
+    if command -v python3 &> /dev/null; then
+        python3 <<EOF
+import json
+import os
+
+status_file = '$STATUS_FILE'
+if os.path.exists(status_file):
+    with open(status_file, 'r') as f:
+        status = json.load(f)
+else:
+    status = {}
+
+status['$feature'] = {
+    'status': '$stage',
+    'last_update': '$(date '+%Y-%m-%d %H:%M:%S')',
+    'updater': '小米粒'
+}
+
+with open(status_file, 'w') as f:
+    json.dump(status, f, indent=2, ensure_ascii=False)
+EOF
+    fi
 }
 
 # 检查Git状态
@@ -218,6 +311,10 @@ analyze_tech() {
 EOF
     
     log_info "技术分析已添加到PRD：$prd_file"
+    
+    # Git同步
+    git_sync push "feat($feature_name): 技术分析"
+    
     log_blue "下一步：开始开发实现"
     log_blue "运行：bash $0 $feature_name dev"
 }
@@ -390,6 +487,15 @@ EOF
     echo "date=$date" >> "$NOTIFY_FILE"
     echo "self_check_file=$self_check_file" >> "$NOTIFY_FILE"
     echo "time=$(date '+%Y-%m-%d %H:%M:%S')" >> "$NOTIFY_FILE"
+    
+    # 评论GitHub Issue（Git通信）
+    comment_github_issue "$feature_name" "开发完成，自检通过，请求Review"
+    
+    # 更新状态
+    update_status "$feature_name" "check"
+    
+    # Git同步
+    git_sync push "feat($feature_name): 开发完成"
     
     log_blue "已通知米粒儿Review请求"
     log_blue "米粒儿运行：bash scripts/mili_product_v3.sh $feature_name review"
@@ -629,6 +735,12 @@ EOF
     
     # 清理通知文件
     rm -f "$NOTIFY_FILE" "$APPROVED_FILE" "$REJECTED_FILE" "$RELEASE_FILE"
+    
+    # 更新状态
+    update_status "$feature_name" "publish"
+    
+    # Git同步
+    git_sync push "feat($feature_name): 发布完成 v$version"
     
     log_info "发布完成！"
     log_blue "Package ID: $package_id"
