@@ -6,7 +6,7 @@
 #
 # 版权声明：
 # MIT License
-# Copyright (c) 2026 小米粒
+# Copyright (c) 2026 思捷娅科技
 # 免费使用、修改和重新分发时，需注明出处。
 # GitHub: https://github.com/zhaog100/openclaw-skills
 
@@ -14,7 +14,7 @@ set -e
 
 # 版本信息
 VERSION="1.0.0"
-AUTHOR="小米粒"
+AUTHOR="思捷娅科技"
 CREATED="2026-03-12"
 
 # 颜色定义
