@@ -900,7 +900,7 @@ skills/demo-skill/
 
 **MIT协议**：
 ```
-Copyright (c) 2026 小米粒
+Copyright (c) 2026 思捷娅科技
 
 Permission is hereby granted, free of charge...
 ```
@@ -931,7 +931,7 @@ Permission is hereby granted, free of charge...
 - ✅ 开源项目集成
 - ✅ 非商业用途
 
-**要求**：使用时需注明出处 "Copyright (c) 2026 小米粒"
+**要求**：使用时需注明出处 "Copyright (c) 2026 思捷娅科技"
 
 ### 商业授权
 企业商业使用需要购买授权，详见 [商业授权说明](../../docs/COMMERCIAL_LICENSE.md)
