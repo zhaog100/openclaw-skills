@@ -1,0 +1,426 @@
+================================================================================
+                    双米粒协作系统 - Git 命名规则完整指南
+================================================================================
+
+创建时间：2026-03-12 22:15
+版本：v1.0
+状态：✅ 已完善
+
+================================================================================
+一、PRD 文档规范（米粒儿创建）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/docs/products/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+
+【命名格式】
+YYYY-MM-DD_[技能名]_PRD.md
+
+【命名规则】
+- 日期：YYYY-MM-DD（创建日期）
+- 技能名：小写 + 连字符（smart-model）
+- 类型：_PRD.md（固定后缀）
+
+【示例】
+2026-03-12_smart-model_PRD.md
+2026-03-12_ai-code-reviewer_PRD.md
+2026-03-12_cli-tool-generator_PRD.md
+
+【提交规范】
+git add docs/products/[文件名]
+git commit -m "docs(prd): [技能名] PRD 文档创建"
+git push origin master
+
+【小米粒查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+Issue 评论：PRD 创建后在对应 Issue 评论通知
+
+================================================================================
+二、技术设计文档规范（小米粒创建）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/docs/products/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+
+【命名格式】
+[技能名]_tech_design.md
+
+【命名规则】
+- 技能名：小写 + 连字符（与 PRD 一致）
+- 类型：_tech_design.md（固定后缀）
+
+【示例】
+smart-model_tech_design.md
+ai-code-reviewer_tech_design.md
+cli-tool-generator_tech_design.md
+
+【提交规范】
+git add docs/products/[文件名]
+git commit -m "docs(design): [技能名] 技术设计文档"
+git push origin master
+
+【米粒儿查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+Issue 评论：技术设计完成后在对应 Issue 评论通知
+
+================================================================================
+三、Review 文档规范（米粒儿创建）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/reviews/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/reviews
+
+【命名格式】
+[技能名]_review_YYYYMMDD.md
+
+【命名规则】
+- 技能名：小写 + 连字符 + 版本号（smart-model-v2.0）
+- 日期：YYYYMMDD（Review 日期）
+- 类型：_review.md（固定后缀）
+
+【示例】
+smart-model-v2.0_review_20260312.md
+demo-skill-v1.0.0_review_20260312.md
+ai-code-reviewer-v1.0_review_20260315.md
+
+【提交规范】
+git add reviews/[文件名]
+git commit -m "docs(review): [技能名] Review 完成（评分/满分）"
+git push origin master
+
+【小米粒查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/reviews
+Issue 评论：Review 完成后在对应 Issue 评论通知
+
+================================================================================
+四、关闭报告规范（米粒儿创建）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/docs/products/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+
+【命名格式】
+[技能名]-closing-report.md
+
+【命名规则】
+- 技能名：小写 + 连字符
+- 类型：-closing-report.md（固定后缀）
+
+【示例】
+demo-skill-closing-report.md
+smart-model-v2.0-closing-report.md
+
+【提交规范】
+git add docs/products/[文件名]
+git commit -m "docs(closing): [技能名] 关闭报告"
+git push origin master
+
+【小米粒查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+
+================================================================================
+五、技能目录规范（小米粒创建）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/skills/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/skills
+
+【目录命名格式】
+[技能名]/
+
+【目录结构】
+[技能名]/
+├── SKILL.md              # 技能说明
+├── README.md             # 使用指南
+├── package.json          # 包配置
+├── [技能名].sh           # 主脚本
+├── install.sh            # 安装脚本
+└── test/
+    └── test.sh           # 测试脚本
+
+【示例】
+skills/smart-model/
+skills/ai-code-reviewer/
+skills/cli-tool-generator/
+
+【提交规范】
+git add skills/[技能名]/
+git commit -m "feat([技能名]): 功能描述"
+git push origin master
+
+【米粒儿查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/skills
+Issue 评论：开发完成后在对应 Issue 评论通知
+
+================================================================================
+六、Issue 命名规范（双方创建）
+================================================================================
+
+【Issue 编号分配】
+#1-10：产品 PRD（米粒儿创建）
+#11-20：技术设计（小米粒创建）
+#21-30：Bug 报告（双方均可）
+#31-40：功能请求（双方均可）
+#41-50：文档改进（双方均可）
+
+【Issue 标题格式】
+[类型] 技能名：简短描述
+
+【类型标识】
+[PRD] - 产品需求文档
+[设计] - 技术设计
+[Bug] - Bug 报告
+[功能] - 功能请求
+[文档] - 文档改进
+
+【示例】
+[PRD] smart-model v2.0: 智能模型切换增强版
+[设计] smart-model: 技术架构设计
+[PRD] demo-skill: 需求文档评审
+[Bug] smart-model: 文件类型检测失败
+
+【米粒儿创建位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/issues/new
+
+【小米粒查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/issues
+
+================================================================================
+七、Issue 评论规范（双方使用）
+================================================================================
+
+【进度更新格式】
+## 📊 进度更新
+
+**完成模块**：模块名
+**文件**：xxx.sh（X 行，XKB）
+**Git 提交**：commit_hash
+**状态**：✅ 已完成 / ⏳ 测试中
+
+【Review 通知格式】
+@小米粒 📊 Review 完成通知
+
+## ✅ Review 结果
+
+**评分**：X.XX/5.00
+**结论**：✅ 通过 / ❌ 需要修改
+
+【发布通知格式】
+@米粒儿 📢 发布完成通知
+
+**ClawHub ID**：kxxxxxxxxx
+**发布时间**：YYYY-MM-DD HH:MM
+**状态**：✅ 已发布
+
+【米粒儿评论位置】
+GitHub Issue 评论区
+
+【小米粒评论位置】
+GitHub Issue 评论区
+
+================================================================================
+八、Git 提交信息规范（双方使用）
+================================================================================
+
+【提交格式】
+[类型]([范围]): 简短描述
+
+【类型标识】
+feat - 新功能
+fix - Bug 修复
+docs - 文档更新
+review - Review 相关
+design - 技术设计
+prd - PRD 相关
+closing - 关闭报告
+chore - 日常维护
+
+【范围标识】
+smart-model - smart-model 相关
+ai-code-reviewer - AI 代码审查助手相关
+cli-tool-generator - CLI 工具生成器相关
+
+【示例】
+feat(smart-model): 文件类型检测模块完成
+docs(prd): smart-model v2.0 PRD 文档创建
+docs(review): smart-model v2.0 Review 完成（5.00/5.00 满分）
+fix(smart-model): 修复复杂度分析模块 bug
+chore: session-memory 自动更新
+
+【米粒儿提交位置】
+本地：/home/zhaog/.openclaw/workspace/
+GitHub: https://github.com/zhaog100/openclaw-skills
+
+【小米粒提交位置】
+本地：/home/zhaog/.openclaw/workspace/
+GitHub: https://github.com/zhaog100/openclaw-skills
+
+================================================================================
+九、沟通机制文档规范（双方使用）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/docs/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/docs
+
+【命名格式】
+[机制名]_MECHANISM.md
+
+【示例】
+TIMEOUT_ALERT_MECHANISM.md - 超时提醒机制
+EMERGENCY_NOTIFICATION_MECHANISM.md - 紧急通知机制
+ONLINE_STATUS_SYNC_MECHANISM.md - 在线状态同步机制
+ESCALATION_MECHANISM.md - 升级机制
+DAILY_REPORT_MECHANISM.md - 日报机制
+WEEKLY_REPORT_MECHANISM.md - 周报机制
+
+【提交规范】
+git add docs/[文件名]
+git commit -m "docs: [机制名] 文档创建"
+git push origin master
+
+================================================================================
+十、记忆文档规范（米粒儿创建）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/memory/
+GitHub：https://github.com/zhaog100/openclaw-skills/tree/master/memory
+
+【命名格式】
+YYYY-MM-DD.md
+
+【示例】
+2026-03-12.md
+
+【提交规范】
+git add memory/[文件名]
+git commit -m "docs(memory): YYYY-MM-DD 工作记录"
+git push origin master
+
+【小米粒查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/memory
+
+================================================================================
+十一、待开发清单规范（米粒儿维护）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/docs/pending-skills-list.md
+GitHub：https://github.com/zhaog100/openclaw-skills/blob/master/docs/pending-skills-list.md
+
+【更新规范】
+- 新增技能：添加到对应优先级列表
+- 完成技能：标记为 ✅ 已关闭
+- 更新进度：更新状态字段
+
+【提交规范】
+git add docs/pending-skills-list.md
+git commit -m "docs: 更新待开发技能清单"
+git push origin master
+
+【小米粒查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/blob/master/docs/pending-skills-list.md
+
+================================================================================
+十二、统一策略文档（双方参考）
+================================================================================
+
+【存储位置】
+本地：/home/zhaog/.openclaw/workspace/docs/UNIFIED_STRATEGY.md
+GitHub：https://github.com/zhaog100/openclaw-skills/blob/master/docs/UNIFIED_STRATEGY.md
+
+【内容】
+- Issue 编号分配规范
+- 文件路径规范
+- 命名规范
+- 协作流程
+- Git 同步策略
+
+【双方查找位置】
+GitHub: https://github.com/zhaog100/openclaw-skills/blob/master/docs/UNIFIED_STRATEGY.md
+
+================================================================================
+十三、快速查找指南
+================================================================================
+
+【米粒儿提交，小米粒查找】
+
+| 文档类型 | 米粒儿提交位置 | 小米粒查找位置 |
+|---------|--------------|--------------|
+| PRD 文档 | docs/products/ | GitHub docs/products/ + Issue 评论 |
+| Review 文档 | reviews/ | GitHub reviews/ + Issue 评论 |
+| 记忆文档 | memory/ | GitHub memory/ |
+| 待开发清单 | docs/pending-skills-list.md | GitHub pending-skills-list.md |
+
+【小米粒提交，米粒儿查找】
+
+| 文档类型 | 小米粒提交位置 | 米粒儿查找位置 |
+|---------|--------------|--------------|
+| 技术设计 | docs/products/ | GitHub docs/products/ + Issue 评论 |
+| 技能代码 | skills/[技能名]/ | GitHub skills/ + Issue 评论 |
+| 关闭报告 | docs/products/ | GitHub docs/products/ + Issue 评论 |
+
+================================================================================
+十四、GitHub 链接汇总
+================================================================================
+
+【仓库主页】
+https://github.com/zhaog100/openclaw-skills
+
+【PRD 目录】
+https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
+
+【Review 目录】
+https://github.com/zhaog100/openclaw-skills/tree/master/reviews
+
+【技能目录】
+https://github.com/zhaog100/openclaw-skills/tree/master/skills
+
+【记忆目录】
+https://github.com/zhaog100/openclaw-skills/tree/master/memory
+
+【Issues 列表】
+https://github.com/zhaog100/openclaw-skills/issues
+
+【统一策略文档】
+https://github.com/zhaog100/openclaw-skills/blob/master/docs/UNIFIED_STRATEGY.md
+
+【待开发清单】
+https://github.com/zhaog100/openclaw-skills/blob/master/docs/pending-skills-list.md
+
+================================================================================
+十五、检查清单（提交前核对）
+================================================================================
+
+【米粒儿提交前】
+- [ ] 文件名符合命名规则
+- [ ] 内容完整无遗漏
+- [ ] Git 提交信息规范
+- [ ] Issue 评论通知已发送
+
+【小米粒提交前】
+- [ ] 文件名符合命名规则
+- [ ] 代码测试通过
+- [ ] Git 提交信息规范
+- [ ] Issue 评论通知已发送
+
+【双方共同遵守】
+- [ ] 使用小写 + 连字符命名
+- [ ] 日期格式统一（YYYY-MM-DD 或 YYYYMMDD）
+- [ ] 提交后及时 push 到 GitHub
+- [ ] Issue 评论及时通知对方
+
+================================================================================
+                              文档结束
+================================================================================
+
+创建者：米粒儿
+创建时间：2026-03-12 22:15
+版本：v1.0
+状态：✅ 已完善
