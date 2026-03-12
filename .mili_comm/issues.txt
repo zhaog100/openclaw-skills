@@ -3,5 +3,8 @@
 # 创建时间：2026-03-12 09:51:36
 
 # 2026-03-12 新增
-issue_demo-skill=1
-issue_smart-model=2
+issue_demo-skill=2
+issue_smart-model=3
+
+# 2026-03-12 完成
+# demo-skill: 2026-03-12 12:50 完成开发和 Review，等待发布到 ClawHub
