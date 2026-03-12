@@ -488,3 +488,26 @@ LONG_SESSION_CRITICAL=4        # 长会话严重：4小时
 - v3.0：三重监控 + 主动预防（会话时长 + 工具调用 + 使用率）⭐⭐⭐⭐⭐
 - v3.0.2：跨天检测 + 更保守阈值 + 分级预警 ⭐⭐⭐⭐⭐
 - v4.0：Session-Memory 联动 + 自动记忆固化（双重优化 Token）🌟🌟🌟🌟🌟
+
+
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 米粒儿 (miliger)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- ClawHub: https://clawhub.com
+- 创建者: 米粒儿 (miliger)
+
+**商业使用授权**：
+- 小微企业（<10人）：¥999/年
+- 中型企业（10-50人）：¥4,999/年
+- 大型企业（>50人）：¥19,999/年
+- 企业定制版：¥99,999一次性（源码买断）
+
+详情请查看：[LICENSE](../../LICENSE)
+
