@@ -79,6 +79,33 @@ bun /path/to/qmd.ts search daily-logs "关键词" --hybrid
 
 ---
 
+**BitNet本地推理方案**（2026-03-12 规划）🌟🌟🌟🌟
+- **目标**：为小米粒提供本地推理能力（减少60% API成本）
+- **技术选型**：微软BitNet（1-bit LLM，CPU优先）
+- **环境评估**：
+  - ✅ CPU：x86_64 with AVX2
+  - ✅ 磁盘：32GB
+  - ✅ Python/CMake/Git：满足
+  - ⚠️ **内存：1GB（需要8GB+）** ← 核心问题
+- **集成计划**：
+  - 短期（本周）：安装依赖 + 克隆仓库 + 下载模型
+  - 中期（下周）：增加虚拟机内存到8GB
+  - 长期（下月）：本地BitNet + 云端API混合
+- **推荐模型**：BitNet-b1.58-2B-4T（2.4B参数，4GB内存）
+- **文档**：
+  - 集成规划：`docs/BITNET_INTEGRATION_PLAN.md`
+  - 可行性报告：`docs/BITNET_FEASIBILITY_REPORT.md`
+- **脚本**：
+  - 环境检查：`scripts/check_bitnet_env.sh`
+  - 推理封装：`scripts/bitnet_inference.py`
+- **预期效果**：
+  - ✅ API成本节省60%
+  - ✅ 响应延迟降低70%
+  - ✅ 离线可用（无网络依赖）
+- **当前状态**：⏸️ 等待内存升级（1GB→8GB）
+
+---
+
 **双米粒协作系统v3.1**（2026-03-12 社区启发增强）🌟🌟🌟🌟🌟
 - **版本升级**：v3.0（统一整合） → v3.1（社区启发增强）
 - **核心启发**（来源：Hacker News + Dev.to）：
