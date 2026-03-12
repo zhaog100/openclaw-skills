@@ -1,0 +1,24 @@
+{
+  "name": "demo-skill",
+  "version": "1.0.0",
+  "description": "双米粒协作系统演示技能 - 展示完整的协作流程",
+  "author": "小米粒",
+  "license": "MIT",
+  "keywords": [
+    "demo",
+    "collaboration",
+    "双米粒",
+    "协作系统"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaog100/openclaw-skills"
+  },
+  "scripts": {
+    "install": "./install.sh",
+    "test": "./test/test.sh"
+  },
+  "engines": {
+    "bash": ">=4.0"
+  }
+}
