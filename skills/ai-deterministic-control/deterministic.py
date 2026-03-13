@@ -8,6 +8,9 @@ from temperature import TemperatureController
 from consistency import ConsistencyChecker
 from reproducibility import ReproducibilityGuarantor
 from monitor import RandomnessMonitor
+from dynamic_adjuster import DynamicAdjuster
+from diff_analyzer import DiffAnalyzer
+from alert_manager import AlertManager
 
 
 # 版本
@@ -342,7 +345,359 @@ def stats():
     click.echo(f"平均温度: {result.get('average_temperature', 0.0)}")
 
 
+# ========== 动态调整命令组 ==========
+
+@cli.group()
+def adjust():
+    """动态温度调整
+    
+    \b
+    根据任务类型和历史质量自动调整温度
+    
+    \b
+    示例：
+    $ deterministic adjust recommend "生成一个函数"
+    $ deterministic adjust stats
+    """
+    pass
+
+
+@adjust.command()
+@click.argument('prompt')
+@click.option('--current-temp', type=float, help='当前温度（可选）')
+def recommend(prompt, current_temp):
+    """推荐温度
+    
+    \b
+    根据提示词和历史质量推荐最佳温度
+    
+    \b
+    示例：
+    $ deterministic adjust recommend "生成一个Python函数"
+    $ deterministic adjust recommend "写一个故事" --current-temp 0.5
+    """
+    adjuster = DynamicAdjuster()
+    
+    result = adjuster.calculate_dynamic_temperature(prompt, current_temp)
+    
+    click.echo(f"\n🎯 动态温度推荐\n")
+    click.echo(f"推荐温度: {result['recommended_temperature']}")
+    click.echo(f"任务类型: {result['task_description']}")
+    click.echo(f"基础温度: {result['base_temperature']}")
+    
+    if result['adjustments']:
+        click.echo(f"\n调整历史:")
+        for adj in result['adjustments']:
+            click.echo(f"  - {adj['reason']}: {adj['from']:.2f} → {adj['to']:.2f}")
+    
+    click.echo(f"\n原因: {result['reason']}\n")
+
+
+@adjust.command()
+def stats():
+    """调整统计
+    
+    \b
+    显示历史调整统计
+    
+    \b
+    示例：
+    $ deterministic adjust stats
+    """
+    adjuster = DynamicAdjuster()
+    
+    result = adjuster.get_adjustment_stats()
+    
+    click.echo(f"\n📊 调整统计\n")
+    
+    if "message" in result:
+        click.echo(f"{result['message']}\n")
+        return
+    
+    click.echo(f"总记录数: {result['total_records']}")
+    click.echo(f"平均温度: {result['average_temperature']}")
+    click.echo(f"平均相似度: {result['average_similarity']}%")
+    click.echo(f"温度范围: {result['temperature_range']}")
+    click.echo(f"相似度范围: {result['similarity_range']}\n")
+
+
+# ========== 差异分析命令组 ==========
+
+@cli.group()
+def diff():
+    """差异分析
+    
+    \b
+    对比多次输出的差异，生成详细报告
+    
+    \b
+    示例：
+    $ deterministic diff analyze --outputs "输出1" "输出2" "输出3"
+    $ deterministic diff report --format html
+    """
+    pass
+
+
+@diff.command()
+@click.option('--outputs', multiple=True, help='输出文本（可多次指定）')
+@click.option('--labels', multiple=True, help='输出标签（可多次指定）')
+@click.option('--prompt', default='', help='原始提示词')
+def analyze(outputs, labels, prompt):
+    """分析差异
+    
+    \b
+    分析多个输出之间的差异
+    
+    \b
+    示例：
+    $ deterministic diff analyze --outputs "第一个输出" --outputs "第二个输出"
+    """
+    if len(outputs) < 2:
+        click.echo("❌ 至少需要2个输出进行对比", err=True)
+        raise click.Abort()
+    
+    analyzer = DiffAnalyzer()
+    
+    labels_list = list(labels) if labels else None
+    result = analyzer.analyze_outputs(list(outputs), labels_list, prompt)
+    
+    click.echo(f"\n📊 差异分析结果\n")
+    click.echo(f"输出数量: {result['outputs_count']}")
+    click.echo(f"整体相似度: {result['overall_similarity']}%")
+    click.echo(f"一致性等级: {result['consistency_level']}")
+    click.echo(f"\n最相似: {result['most_similar']['pair']} ({result['most_similar']['similarity']}%)")
+    click.echo(f"最不相似: {result['least_similar']['pair']} ({result['least_similar']['similarity']}%)\n")
+
+
+@diff.command()
+@click.option('--outputs', multiple=True, help='输出文本（可多次指定）')
+@click.option('--labels', multiple=True, help='输出标签（可多次指定）')
+@click.option('--prompt', default='', help='原始提示词')
+@click.option('--format', type=click.Choice(['text', 'json', 'html']), default='text', help='报告格式')
+def report(outputs, labels, prompt, format):
+    """生成报告
+    
+    \b
+    生成详细的差异分析报告
+    
+    \b
+    示例：
+    $ deterministic diff report --outputs "输出1" --outputs "输出2" --format html
+    """
+    if len(outputs) < 2:
+        click.echo("❌ 至少需要2个输出进行对比", err=True)
+        raise click.Abort()
+    
+    analyzer = DiffAnalyzer()
+    
+    labels_list = list(labels) if labels else None
+    result = analyzer.generate_report(list(outputs), labels_list, prompt, format)
+    
+    if "error" in result:
+        click.echo(f"❌ {result['error']}", err=True)
+        raise click.Abort()
+    
+    click.echo(f"\n📊 差异分析报告\n")
+    click.echo(f"格式: {result['format']}")
+    click.echo(f"路径: {result['path']}")
+    click.echo(f"整体相似度: {result['analysis']['overall_similarity']}%\n")
+
+
+# ========== 异常检测命令组 ==========
+
+@cli.group()
+def alert():
+    """异常检测告警
+    
+    \b
+    检测异常输出并发送多渠道告警
+    
+    \b
+    示例：
+    $ deterministic alert check --similarity 50 --prompt "测试"
+    $ deterministic alert stats
+    """
+    pass
+
+
+@alert.command()
+@click.option('--similarity', type=float, required=True, help='相似度')
+@click.option('--prompt', required=True, help='提示词')
+@click.option('--output', default='', help='输出内容（可选）')
+def check(similarity, prompt, output):
+    """检测异常
+    
+    \b
+    检测输出是否异常
+    
+    \b
+    示例：
+    $ deterministic alert check --similarity 45 --prompt "生成一个函数"
+    """
+    manager = AlertManager()
+    
+    # 检测异常
+    anomaly = manager.detect_anomaly(similarity, prompt, output)
+    
+    if anomaly is None:
+        click.echo(f"\n✅ 未检测到异常（相似度: {similarity}%）\n")
+        return
+    
+    # 发送告警
+    result = manager.send_alert(anomaly)
+    
+    click.echo(f"\n⚠️  检测到异常！\n")
+    click.echo(f"级别: {anomaly['level']}")
+    click.echo(f"类型: {anomaly['type']}")
+    click.echo(f"消息: {anomaly['message']}")
+    click.echo(f"时间: {anomaly['timestamp']}\n")
+    
+    if result["sent"]:
+        click.echo("告警已发送:")
+        for channel, status in result["channels"].items():
+            status_icon = "✅" if status.get("success") else "❌"
+            click.echo(f"  {status_icon} {channel}: {status.get('message', status.get('error'))}")
+    else:
+        click.echo(f"告警未发送: {result['reason']}")
+    
+    click.echo()
+
+
+@alert.command()
+def stats():
+    """告警统计
+    
+    \b
+    显示告警统计信息
+    
+    \b
+    示例：
+    $ deterministic alert stats
+    """
+    manager = AlertManager()
+    
+    result = manager.get_alert_stats()
+    
+    click.echo(f"\n📊 告警统计\n")
+    
+    if "message" in result:
+        click.echo(f"{result['message']}\n")
+        return
+    
+    click.echo(f"总告警数: {result['total_alerts']}")
+    click.echo(f"最近24小时: {result['recent_24h']}")
+    click.echo(f"\n级别分布:")
+    for level, count in result['level_distribution'].items():
+        click.echo(f"  {level}: {count}")
+    click.echo(f"\n类型分布:")
+    for alert_type, count in result['type_distribution'].items():
+        click.echo(f"  {alert_type}: {count}")
+    click.echo()
+
+
+@alert.command()
+@click.argument('channel', type=click.Choice(['email', 'feishu', 'dingtalk']))
+@click.option('--enabled/--disabled', default=True, help='启用/禁用')
+@click.option('--config', help='配置JSON（可选）')
+def configure(channel, enabled, config):
+    """配置渠道
+    
+    \b
+    配置告警渠道
+    
+    \b
+    示例：
+    $ deterministic alert configure email --enabled
+    $ deterministic alert configure feishu --config '{"webhook_url": "https://..."}'
+    """
+    manager = AlertManager()
+    
+    config_dict = {"enabled": enabled}
+    
+    if config:
+        try:
+            import json
+            config_dict.update(json.loads(config))
+        except Exception as e:
+            click.echo(f"❌ 配置JSON解析失败: {e}", err=True)
+            raise click.Abort()
+    
+    manager.configure_channel(channel, config_dict)
+    
+    click.echo(f"\n✅ {channel} 配置已更新\n")
+
+
 # ========== 主程序入口 ==========
 
 if __name__ == '__main__':
     cli()
+
+
+# ========== 顶层函数包装器（兼容test.sh）==========
+
+# 全局实例（延迟初始化）
+_temperature_controller = None
+_consistency_checker = None
+_reproducibility_guarantor = None
+
+def _get_temperature_controller():
+    """获取温度控制器实例（延迟初始化）"""
+    global _temperature_controller
+    if _temperature_controller is None:
+        _temperature_controller = TemperatureController()
+    return _temperature_controller
+
+def _get_consistency_checker():
+    """获取一致性检查器实例（延迟初始化）"""
+    global _consistency_checker
+    if _consistency_checker is None:
+        _consistency_checker = ConsistencyChecker()
+    return _consistency_checker
+
+def _get_reproducibility_guarantor():
+    """获取可复现性保证器实例（延迟初始化）"""
+    global _reproducibility_guarantor
+    if _reproducibility_guarantor is None:
+        _reproducibility_guarantor = ReproducibilityGuarantor()
+    return _reproducibility_guarantor
+
+def set_temperature(value):
+    """设置温度参数（包装器）
+    
+    Args:
+        value: 温度值（0.0-2.0）
+    
+    Returns:
+        dict: 包含temperature, mode, timestamp的字典
+    
+    Raises:
+        ValueError: 温度超出范围
+    """
+    return _get_temperature_controller().set_temperature(value)
+
+def get_temperature():
+    """获取当前温度（包装器）
+    
+    Returns:
+        float: 当前温度值
+    """
+    return _get_temperature_controller().get_current()
+
+def set_seed(seed):
+    """设置随机种子（包装器）
+    
+    Args:
+        seed: 随机种子（整数）
+    
+    Returns:
+        dict: 包含seed, timestamp的字典
+    """
+    return _get_reproducibility_guarantor().set_seed(seed)
+
+def get_seed():
+    """获取当前种子（包装器）
+    
+    Returns:
+        int: 当前种子值
+    """
+    return _get_reproducibility_guarantor().get_current_seed()

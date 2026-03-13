@@ -26,7 +26,7 @@ class ConfigManager:
             default_config = {
                 "temperature": 0.5,
                 "default_mode": "balance",
-                "api_provider": "zhipu",
+                "api_provider": "mock",  # 默认使用mock（测试模式）
                 "api_key": "",
                 "history_db": str(self.config_path.parent / "history.db"),
                 "seeds_file": str(self.config_path.parent / "seeds.json"),

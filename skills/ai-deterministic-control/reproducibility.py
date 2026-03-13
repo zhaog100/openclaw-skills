@@ -178,3 +178,28 @@ class ReproducibilityGuarantor:
         """清空种子记录"""
         self.seeds = []
         self._save_seeds()
+    
+    def set_seed(self, seed: int) -> Dict:
+        """设置当前种子（用于test.sh兼容）
+        
+        Args:
+            seed: 种子值
+        
+        Returns:
+            dict: 包含seed和timestamp
+        """
+        self._current_seed = seed
+        return {
+            "seed": seed,
+            "timestamp": datetime.now().isoformat()
+        }
+    
+    def get_current_seed(self) -> int:
+        """获取当前种子（用于test.sh兼容）
+        
+        Returns:
+            int: 当前种子值
+        """
+        if not hasattr(self, '_current_seed'):
+            self._current_seed = None
+        return self._current_seed

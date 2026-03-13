@@ -31,6 +31,53 @@
 - **验证机制**：验证复现性
 - **记录管理**：种子历史记录
 
+## 🆕 P0新功能（2026-03-13）
+
+### 1. 动态温度调整 (`deterministic adjust`)
+- **智能推荐**：根据提示词关键词自动识别任务类型
+- **历史学习**：基于历史质量数据自动优化温度
+- **实时调整**：支持实时温度调整建议
+
+**示例**：
+```bash
+# 推荐温度
+deterministic adjust recommend "生成一个Python函数"
+
+# 查看统计
+deterministic adjust stats
+```
+
+### 2. 差异分析报告 (`deterministic diff`)
+- **相似度矩阵**：计算多次输出的两两相似度
+- **关键发现**：识别最相似和最不相似的输出对
+- **多格式报告**：支持text/json/html格式
+
+**示例**：
+```bash
+# 分析差异
+deterministic diff analyze --outputs "输出1" --outputs "输出2"
+
+# 生成HTML报告
+deterministic diff report --outputs "输出1" --outputs "输出2" --format html
+```
+
+### 3. 异常检测告警 (`deterministic alert`)
+- **智能检测**：根据相似度阈值自动检测异常
+- **多渠道通知**：支持邮件/飞书/钉钉
+- **告警聚合**：避免告警轰炸，支持冷却和聚合
+
+**示例**：
+```bash
+# 检测异常
+deterministic alert check --similarity 45 --prompt "生成一个函数"
+
+# 查看统计
+deterministic alert stats
+
+# 配置飞书通知
+deterministic alert configure feishu --enabled --config '{"webhook_url": "https://..."}'
+```
+
 ### 4. 随机性监控 ⭐⭐⭐⭐
 - **趋势分析**：历史趋势分析
 - **异常检测**：自动检测异常输出
