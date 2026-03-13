@@ -1,6 +1,6 @@
 {
   "name": "ai-deterministic-control",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "AI确定性控制工具 - 控制AI输出随机性，提供确定性模式",
   "author": "小米粒 (xiaomili)",
   "license": "MIT",
