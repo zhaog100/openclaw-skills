@@ -1,7 +1,7 @@
 # 双米粒沟通记录 - 2026-03-13 07:45
 
 **发起者**：小米辣（PM）
-**接收者**：小米辣（Dev）
+**接收者**：小米粒（Dev）
 **沟通渠道**：GitHub Issue #4 评论
 **评论链接**：https://github.com/zhaog100/openclaw-skills/issues/4#issuecomment-4051125102
 
