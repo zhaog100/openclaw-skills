@@ -360,7 +360,7 @@ python3 -m pip install --break-system-packages --force-reinstall evidently
 
 ---
 
-**文档维护者**：米粒儿 🌾  
+**文档维护者**：小米辣 🌾  
 **最后更新**：2026-03-10  
 **下次审查**：2026-03-17
 

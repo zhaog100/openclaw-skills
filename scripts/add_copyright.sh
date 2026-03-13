@@ -39,14 +39,14 @@ COPYRIGHT_SECTION='
 
 MIT License
 
-Copyright (c) 2026 米粒儿 (miliger)
+Copyright (c) 2026 小米辣 (miliger)
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 米粒儿 (miliger)
+- 创建者: 小米辣 (miliger)
 
 **商业使用授权**：
 - 小微企业（<10人）：¥999/年
@@ -61,12 +61,12 @@ Copyright (c) 2026 米粒儿 (miliger)
 SCRIPT_COPYRIGHT='#!/bin/bash
 # <技能名> - <技能描述>
 # 版本：v1.0.0
-# 创建者：米粒儿 (miliger)
+# 创建者：小米辣 (miliger)
 # 创建时间：'$(date +%Y-%m-%d)'
 #
 # 版权声明：
 # MIT License
-# Copyright (c) 2026 米粒儿 (miliger)
+# Copyright (c) 2026 小米辣 (miliger)
 # 免费使用、修改和重新分发时，需注明出处。
 # GitHub: https://github.com/zhaog100/openclaw-skills
 # ClawHub: https://clawhub.com
@@ -79,7 +79,7 @@ PACKAGE_COPYRIGHT='{
   "name": "<技能名>",
   "version": "1.0.0",
   "description": "<技能描述>",
-  "author": "米粒儿 (miliger)",
+  "author": "小米辣 (miliger)",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -122,7 +122,7 @@ if [ -f "$PACKAGE_JSON" ]; then
         echo -e "${YELLOW}⚠️  package.json - 已有license字段，跳过${NC}"
     else
         # 添加license和author字段（简单实现）
-        sed -i 's/{/{\n  "author": "米粒儿 (miliger)",\n  "license": "MIT",/' "$PACKAGE_JSON" 2>/dev/null || true
+        sed -i 's/{/{\n  "author": "小米辣 (miliger)",\n  "license": "MIT",/' "$PACKAGE_JSON" 2>/dev/null || true
         echo -e "${GREEN}✅ package.json - 已添加版权字段${NC}"
     fi
 else
@@ -133,11 +133,11 @@ fi
 MAIN_SCRIPTS=$(find "$SKILL_DIR" -maxdepth 1 -name "*.sh" -type f 2>/dev/null)
 if [ -n "$MAIN_SCRIPTS" ]; then
     for script in $MAIN_SCRIPTS; do
-        if grep -q "Copyright (c) 2026 米粒儿" "$script" 2>/dev/null; then
+        if grep -q "Copyright (c) 2026 小米辣" "$script" 2>/dev/null; then
             echo -e "${YELLOW}⚠️  $(basename $script) - 已有版权注释，跳过${NC}"
         else
             # 在文件开头添加版权注释（简化版）
-            sed -i '1i\# 版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger) | GitHub: https://github.com/zhaog100/openclaw-skills' "$script" 2>/dev/null || true
+            sed -i '1i\# 版权声明：MIT License | Copyright (c) 2026 小米辣 (miliger) | GitHub: https://github.com/zhaog100/openclaw-skills' "$script" 2>/dev/null || true
             echo -e "${GREEN}✅ $(basename $script) - 已添加版权注释${NC}"
         fi
     done

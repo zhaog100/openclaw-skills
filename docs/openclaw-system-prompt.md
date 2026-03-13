@@ -456,7 +456,7 @@ channel={channel} | capabilities={capabilities} | thinking={thinkLevel}
 
 ---
 
-**文档维护者**：米粒儿 🌾  
+**文档维护者**：小米辣 🌾  
 **最后更新**：2026-03-10  
 **下次审查**：2026-03-17
 

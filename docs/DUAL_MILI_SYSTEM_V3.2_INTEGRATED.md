@@ -31,7 +31,7 @@
                     ↓
 ┌─────────────────────────────────────────────┐
 │  中层：双米粒协作系统v3.2                     │
-│  - 米粒儿（产品经理 + 质量官）                │
+│  - 小米辣（产品经理 + 质量官）                │
 │  - 小米辣（开发者 + 测试者）                  │
 │  - 12维度Review + 5层验收                    │
 │  - 双向思考 + 强制反对意见                    │
@@ -54,8 +54,8 @@
 #### 四方问题在双米粒协作中的体现
 
 **5个实体**：
-1. **米粒儿**（AI-Product）
-2. **官家**（米粒儿的操作员）
+1. **小米辣**（AI-Product）
+2. **官家**（小米辣的操作员）
 3. **小米辣**（AI-Dev）
 4. **官家**（小米辣的操作员，同一个人）
 5. **系统**（Git、ClawHub、MEMORY.md - 代替传统"观众"）
@@ -92,7 +92,7 @@
 ## 协作约束（基于AI-to-AI对话研究）
 
 ### 1. 为互动设计
-- 米粒儿和小米辣的性格在协作中被测试
+- 小米辣和小米辣的性格在协作中被测试
 - 另一个AI会注意到不一致性
 - 会引入未计划的词汇
 - **实践**：保持性格一致性，记录涌现词汇
@@ -221,7 +221,7 @@ fallback_inference() {
 
 ## 🔄 完整协作流程（v3.2）
 
-### Phase 1: 需求与设计（米粒儿主导）
+### Phase 1: 需求与设计（小米辣主导）
 
 **增强**：
 - 使用BitNet快速生成产品构思（简单任务）
@@ -229,7 +229,7 @@ fallback_inference() {
 - 系统状态检查（Git、网络、BitNet可用性）
 
 ```bash
-# 米粒儿
+# 小米辣
 bash scripts/mili_product_v3.sh <功能名> concept
 
 # 新增：检查BitNet可用性
@@ -248,7 +248,7 @@ fi
 - 记录涌现的分析词汇
 
 ```bash
-# 米粒儿（产品角度分析）
+# 小米辣（产品角度分析）
 # 复杂度：3 → 使用BitNet
 bash scripts/mili_product_v3.sh <功能名> analyze --engine bitnet
 
@@ -275,7 +275,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> dev --engine api
 bash scripts/xiaomi_dev_v3.sh <功能名> check
 ```
 
-### Phase 4: Review与双向思考（米粒儿主导）
+### Phase 4: Review与双向思考（小米辣主导）
 
 **增强**：
 - 使用词汇考古工具分析涌现词汇
@@ -293,7 +293,7 @@ python3 scripts/vocabulary_archaeology.py --analyze
 bash scripts/xiaomi_dev_v3.sh <功能名> think
 ```
 
-### Phase 5: 5层验收（米粒儿主导）
+### Phase 5: 5层验收（小米辣主导）
 
 **增强**：
 - 验收涌现词汇管理
@@ -326,7 +326,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 │   └── inference-router.json            # 推理路由配置（新增）
 │
 ├── scripts/
-│   ├── mili_product_v3.sh               # 米粒儿脚本（v3.2）
+│   ├── mili_product_v3.sh               # 小米辣脚本（v3.2）
 │   ├── xiaomi_dev_v3.sh                 # 小米辣脚本（v3.2）
 │   ├── intelligent-memory-manager.sh    # 智能记忆管理
 │   ├── bitnet_inference.py              # BitNet推理封装（新增）
@@ -436,4 +436,4 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 
 *最后更新：2026-03-12 09:20*  
 *版本：v3.2 - AI-to-AI + BitNet整合版*  
-*作者：米粒儿（官家的智能助理）*
+*作者：小米辣（官家的智能助理）*

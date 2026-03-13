@@ -372,7 +372,7 @@ bash orchestrator.sh feature start
 {
   "name": "session-memory-enhanced",
   "version": "4.0.0",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills"
 }
@@ -459,4 +459,4 @@ bash scripts/dual_mili_orchestrator.sh example-skill status
 
 *发布时间：2026-03-12 08:35*  
 *版本：v5.0-Orchestrator*  
-*作者：米粒儿（官家的智能助理）*
+*作者：小米辣（官家的智能助理）*

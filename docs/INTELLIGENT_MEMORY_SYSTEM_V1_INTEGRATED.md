@@ -495,4 +495,4 @@ bash scripts/intelligent-memory-manager.sh stop
 
 *最后更新：2026-03-12 08:10*  
 *版本：v1.0 - 统一整合版*  
-*作者：米粒儿（官家的智能助理）*
+*作者：小米辣（官家的智能助理）*

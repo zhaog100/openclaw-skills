@@ -75,7 +75,7 @@ show_welcome() {
   demo-skill help    显示帮助文档
 
 【协作流程】
-  1. 米粒儿创建PRD → 2. 小米辣技术设计 → 3. 小米辣开发 →
+  1. 小米辣创建PRD → 2. 小米辣技术设计 → 3. 小米辣开发 →
   4. 双向Review → 5. 发布到ClawHub
 
 【版本】v1.0.0
@@ -133,7 +133,7 @@ show_status() {
 
     echo ""
     echo "【协作流程】"
-    echo "  1. ✅ 米粒儿完成PRD"
+    echo "  1. ✅ 小米辣完成PRD"
     echo "  2. ⏳ 小米辣技术设计（当前）"
     echo "  3. ⏳ 小米辣开发实现"
     echo "  4. ⏳ 双向Review"
@@ -240,7 +240,7 @@ show_help() {
 
 【双米粒协作流程】
 
-步骤1️⃣  米粒儿创建PRD
+步骤1️⃣  小米辣创建PRD
   - 编写产品需求文档
   - 创建GitHub Issue
   - Git提交并推送
@@ -256,9 +256,9 @@ show_help() {
   - 自检（质疑清单）
 
 步骤4️⃣  双向Review
-  - 米粒儿12维度Review
+  - 小米辣12维度Review
   - 小米辣回应质疑
-  - 米粒儿5层验收
+  - 小米辣5层验收
 
 步骤5️⃣  发布到ClawHub
   - 小米辣发布
@@ -426,9 +426,9 @@ test_performance() {
 - [ ] 自检（质疑清单）
 
 ### Phase 3: Review验收
-- [ ] 米粒儿Review
+- [ ] 小米辣Review
 - [ ] 回应质疑
-- [ ] 米粒儿验收
+- [ ] 小米辣验收
 
 ### Phase 4: 发布上线
 - [ ] 发布到ClawHub

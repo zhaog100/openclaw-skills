@@ -15,14 +15,14 @@
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技/米粒儿
+Copyright (c) 2026 思捷娅科技/小米辣
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com/skills/<技能名>
-- 创建者: 小米辣/米粒儿
+- 创建者: 小米辣/小米辣
 ```
 
 ### 完整版（用于README.md末尾）
@@ -32,7 +32,7 @@ Copyright (c) 2026 思捷娅科技/米粒儿
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技/米粒儿
+Copyright (c) 2026 思捷娅科技/小米辣
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -51,12 +51,12 @@ copies or substantial portions of the Software.
 **出处信息**：
 - **GitHub仓库**：https://github.com/zhaog100/openclaw-skills
 - **ClawHub页面**：https://clawhub.com/skills/<技能名>
-- **创建者**：小米辣/米粒儿
+- **创建者**：小米辣/小米辣
 - **联系方式**：GitHub Issues
 
 **引用格式**：
 ```
-来源：小米辣/米粒儿 - OpenClaw技能库
+来源：小米辣/小米辣 - OpenClaw技能库
 GitHub：https://github.com/zhaog100/openclaw-skills
 许可证：MIT License
 ```
@@ -165,7 +165,7 @@ Copyright (c) 2026 思捷娅科技
 | 变量 | 说明 | 示例 |
 |------|------|------|
 | `<年份>` | 发布年份 | 2026 |
-| `<创建者>` | 创建者名称 | 小米辣/米粒儿 |
+| `<创建者>` | 创建者名称 | 小米辣/小米辣 |
 | `<技能名>` | 技能名称 | demo-skill |
 | `<GitHub URL>` | GitHub仓库 | https://github.com/zhaog100/openclaw-skills |
 | `<ClawHub URL>` | ClawHub页面 | https://clawhub.com/skills/demo-skill |

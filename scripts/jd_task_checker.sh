@@ -45,12 +45,12 @@ echo "步骤6：统计任务执行情况" >> "$LOG_FILE"
 docker exec qinglong ls -lh /ql/log/*.log | tail -10 >> "$LOG_FILE" 2>&1
 echo "" >> "$LOG_FILE"
 
-# 步骤7：发送报告到米粒儿（如果有错误）
+# 步骤7：发送报告到小米辣（如果有错误）
 ERROR_COUNT=$(docker exec qinglong find /ql/log -name "*.log" -mtime -1 -exec grep -c "Error\|error\|失败" {} \; 2>/dev/null | awk '{s+=$1} END {print s}')
 
 if [ "$ERROR_COUNT" -gt 0 ]; then
     echo "⚠️  发现 $ERROR_COUNT 个错误，需要检查！" >> "$LOG_FILE"
-    # 可以在这里添加通知米粒儿的逻辑
+    # 可以在这里添加通知小米辣的逻辑
     # 例如：echo "JD_TASK_ERROR:$ERROR_COUNT" > /tmp/notify_mili.txt
 else
     echo "✅ 所有任务正常执行" >> "$LOG_FILE"

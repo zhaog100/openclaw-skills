@@ -73,7 +73,7 @@ v2.2.2 特性：
 ```
 版本：v1.0.0
 路径：~/.openclaw/workspace/skills/smart-memory-sync/
-作者：米粒儿
+作者：小米辣
 ```
 
 **对比结果：** ✅ 完全一致

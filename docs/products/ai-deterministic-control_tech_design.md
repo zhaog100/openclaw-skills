@@ -724,7 +724,7 @@ def _freeze_params(self, params):
 - [ ] 性能达标（参数设置<100ms，一致性检查<1秒）
 - [ ] 文档完整（SKILL.md + README.md）
 - [ ] Git提交并推送
-- [ ] Issue评论通知米粒儿
+- [ ] Issue评论通知小米辣
 
 ---
 

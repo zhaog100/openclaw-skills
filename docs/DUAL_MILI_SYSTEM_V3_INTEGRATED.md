@@ -27,7 +27,7 @@
 
 ## 🎭 角色定义
 
-### 米粒儿（产品经理 + 质量官）
+### 小米辣（产品经理 + 质量官）
 
 **核心职责**：
 1. **产品构思**：理解需求，定义功能
@@ -45,7 +45,7 @@
 ### 小米辣（开发者 + 测试者）
 
 **核心职责**：
-1. **并行分析**：与米粒儿同时分析技术方案
+1. **并行分析**：与小米辣同时分析技术方案
 2. **开发实现**：编码、调试、测试
 3. **开发前自检**：代码质量、功能完整性、文档完整性
 4. **Review后思考**：评估Review完整性，补充遗漏
@@ -61,11 +61,11 @@
 
 ## 🔄 统一协作流程
 
-### Phase 1: 需求与设计（米粒儿主导）
+### Phase 1: 需求与设计（小米辣主导）
 
 ```mermaid
 graph LR
-    A[官家需求] --> B[米粒儿理解]
+    A[官家需求] --> B[小米辣理解]
     B --> C[产品构思文档]
     C --> D[需求文档PRD]
     D --> E[发布到GitHub Issues]
@@ -80,7 +80,7 @@ graph LR
 
 ```mermaid
 graph TB
-    A[GitHub Issue] --> B[米粒儿分析]
+    A[GitHub Issue] --> B[小米辣分析]
     A --> C[小米辣分析]
     B --> D[产品角度]
     C --> E[技术角度]
@@ -89,7 +89,7 @@ graph TB
     F --> G[综合方案]
 ```
 
-**米粒儿分析维度**：
+**小米辣分析维度**：
 - 用户体验
 - 产品价值
 - 边界情况
@@ -114,7 +114,7 @@ graph LR
     C --> D{自检通过?}
     D -->|是| E[提交Git]
     D -->|否| B
-    E --> F[通知米粒儿Review]
+    E --> F[通知小米辣Review]
 ```
 
 **开发前自检清单**（4个维度）：
@@ -143,7 +143,7 @@ graph LR
    - ✅ 无兼容性问题
    - ✅ 无依赖问题
 
-**给米粒儿的提示**（可选）：
+**给小米辣的提示**（可选）：
 - 重点Review哪里
 - 有什么疑问
 - 需要什么建议
@@ -153,18 +153,18 @@ graph LR
 - Git提交（feature分支）
 - 通知文件（`/tmp/notify_mili.txt`）
 
-### Phase 4: Review与双向思考（米粒儿主导）
+### Phase 4: Review与双向思考（小米辣主导）
 
 ```mermaid
 graph TB
-    A[收到Review请求] --> B[米粒儿Review]
+    A[收到Review请求] --> B[小米辣Review]
     B --> C[12维度Review]
     C --> D[Review文档]
     D --> E[小米辣思考]
     E --> F{需要补充?}
     F -->|是| G[补充建议]
     F -->|否| H[批准发布]
-    G --> I[米粒儿接受]
+    G --> I[小米辣接受]
     I --> H
 ```
 
@@ -197,7 +197,7 @@ graph TB
 ## Review结果
 - 状态：✅ 批准 / ⚠️ 需修改 / ❌ 拒绝
 - 日期：YYYY-MM-DD
-- Review者：米粒儿
+- Review者：小米辣
 
 ## 12维度评价
 [详细评价...]
@@ -222,7 +222,7 @@ graph TB
 **小米辣Review后思考**（反向Review）：
 
 1. **Review完整性评估**：
-   - ✅ 米粒儿考虑全面吗
+   - ✅ 小米辣考虑全面吗
    - ✅ 有遗漏的技术点吗
    - ✅ 有更好的实现方式吗
    - ✅ 需要补充什么信息吗
@@ -242,7 +242,7 @@ graph TB
 - 双向思考文档（合并到Review文档）
 - 通知文件（`/tmp/review_approved.txt` 或 `/tmp/review_rejected.txt`）
 
-### Phase 5: 5层质量验收（米粒儿主导）
+### Phase 5: 5层质量验收（小米辣主导）
 
 ```mermaid
 graph TB
@@ -323,7 +323,7 @@ graph LR
 ```
 /root/.openclaw/workspace/
 ├── docs/
-│   ├── products/                    # 产品文档（米粒儿）
+│   ├── products/                    # 产品文档（小米辣）
 │   │   ├── 2026-03-12_功能名_concept.md
 │   │   └── 2026-03-12_功能名_prd.md
 │   ├── reviews/                     # Review文档（双方）
@@ -339,7 +339,7 @@ graph LR
 │   ├── self_check_template.md
 │   └── review_template.md
 ├── scripts/                         # 协作脚本
-│   ├── mili_product_v3.sh          # 米粒儿脚本（v3.0）
+│   ├── mili_product_v3.sh          # 小米辣脚本（v3.0）
 │   └── xiaomi_dev_v3.sh            # 小米辣脚本（v3.0）
 └── MEMORY.md                        # 记忆文件
 ```
@@ -348,7 +348,7 @@ graph LR
 
 ## 🛠️ 统一协作脚本
 
-### 米粒儿脚本（v3.0）
+### 小米辣脚本（v3.0）
 
 **功能**：
 1. 创建产品构思
@@ -410,14 +410,14 @@ bash scripts/xiaomi_dev_v3.sh <功能名> <操作>
 
 **场景**：开发一个新的技能`example-skill`
 
-#### 1. 米粒儿：创建产品构思
+#### 1. 小米辣：创建产品构思
 ```bash
 bash scripts/mili_product_v3.sh example-skill concept
 ```
 
 **输出**：`docs/products/2026-03-12_example-skill_concept.md`
 
-#### 2. 米粒儿：编写需求文档
+#### 2. 小米辣：编写需求文档
 ```bash
 bash scripts/mili_product_v3.sh example-skill prd
 ```
@@ -426,7 +426,7 @@ bash scripts/mili_product_v3.sh example-skill prd
 
 #### 3. 双方：并行分析
 ```bash
-# 米粒儿
+# 小米辣
 bash scripts/mili_product_v3.sh example-skill analyze
 
 # 小米辣
@@ -443,7 +443,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill check
 
 **输出**：`reviews/2026-03-12_example-skill_self_check.md` + Git提交
 
-#### 5. 米粒儿：Review
+#### 5. 小米辣：Review
 ```bash
 bash scripts/mili_product_v3.sh example-skill review
 ```
@@ -457,7 +457,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill think
 
 **输出**：更新Review文档（补充建议）
 
-#### 7. 米粒儿：5层验收
+#### 7. 小米辣：5层验收
 ```bash
 bash scripts/mili_product_v3.sh example-skill accept
 ```
@@ -533,7 +533,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 **问题**：Dev.to文章指出："Your AI code reviewer has no one to disagree with"
 
 **我们的解决方案**：
-- ✅ **双米粒协作天然解决**：米粒儿（产品）+ 小米辣（技术）= 不同视角
+- ✅ **双米粒协作天然解决**：小米辣（产品）+ 小米辣（技术）= 不同视角
 - ✅ **双向思考机制**：小米辣主动质疑Review是否全面
 
 **v3.1增强**：
@@ -545,7 +545,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 
 **问题**："The Four-Party Problem"（四方问题）
 - 用户（官家）
-- AI1（米粒儿）
+- AI1（小米辣）
 - AI2（小米辣）
 - 系统（Git/ClawHub）
 
@@ -586,7 +586,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 
 #### 协作脚本增强
 
-**米粒儿脚本（v3.1）**：
+**小米辣脚本（v3.1）**：
 ```bash
 # 新增功能
 1. 系统状态检查（check-system）
@@ -609,7 +609,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 ```bash
 # 新增功能
 1. 系统状态检查（check-system）
-   - 与米粒儿相同的检查
+   - 与小米辣相同的检查
    - 额外检查本地模型可用性
 
 2. Review质疑增强（think-with-dissent）
@@ -629,7 +629,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 ```markdown
 ## 13. 反对意见（必填）
 
-### 米粒儿的反对意见
+### 小米辣的反对意见
 1. [反对点1]
 2. [反对点2]
 3. [反对点3]
@@ -762,4 +762,4 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 
 *最后更新：2026-03-12 07:50*  
 *版本：v3.1 - 社区启发增强版*  
-*作者：米粒儿（官家的智能助理）*
+*作者：小米辣（官家的智能助理）*

@@ -1,7 +1,7 @@
 # 系统复杂度评估报告
 
 **评估日期**：2026-03-12  
-**评估者**：米粒儿  
+**评估者**：小米辣  
 **问题**：双米粒智能协作系统v4.0是否过于臃肿？
 
 ---
@@ -26,7 +26,7 @@ dual_mili_unified.sh (统一入口)
 │   ├── session-memory-enhanced (核心)
 │   ├── smart-memory-sync (同步)
 │   └── context-manager (监控)
-├── mili_product_v3.sh (米粒儿)
+├── mili_product_v3.sh (小米辣)
 ├── xiaomi_dev_v3.sh (小米辣)
 ├── bitnet_inference.py (本地推理)
 ├── inference_router.py (推理路由)
@@ -240,7 +240,7 @@ bash scripts/dual_mili_lite.sh feature start --with-bitnet
 ### 核心版（推荐）
 
 **文件**：
-- 脚本：3个（lite版 + 米粒儿 + 小米辣）
+- 脚本：3个（lite版 + 小米辣 + 小米辣）
 - 文档：2个（README + 核心文档）
 - 配置：1个
 - **总计**：6个（vs 20个，-70%）
@@ -350,5 +350,5 @@ docs/DUAL_MILI_FULL.md          # 完整手册（18KB）
 ---
 
 *评估时间：2026-03-12 09:40*  
-*评估者：米粒儿*  
+*评估者：小米辣*  
 *版本：v1.0 - 诚实反思*

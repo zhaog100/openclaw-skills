@@ -1,6 +1,6 @@
 #!/bin/bash
 # 小米辣工作流程 - ClawHub协作（智能体A）
-# 小米辣负责开发技能并提交米粒儿Review
+# 小米辣负责开发技能并提交小米辣Review
 
 echo "🌾 === 小米辣工作流程（智能体A）==="
 echo "我是小米辣，现在开始工作！"
@@ -21,10 +21,10 @@ git commit -m "feat: 小米辣开发 $SKILL_NAME 技能"
 git push origin feature/$SKILL_NAME
 echo "✅ 小米辣已推送代码到Git"
 
-echo "$(date) | 小米辣 | 提交PR | $SKILL_NAME | 等待米粒儿Review" > /tmp/notify_mili.txt
-echo "✅ 小米辣已通知米粒儿"
+echo "$(date) | 小米辣 | 提交PR | $SKILL_NAME | 等待小米辣Review" > /tmp/notify_mili.txt
+echo "✅ 小米辣已通知小米辣"
 
-read -p "米粒儿Review已通过？(y/n): " REVIEW_OK
+read -p "小米辣Review已通过？(y/n): " REVIEW_OK
 
 if [ "$REVIEW_OK" = "y" ]; then
     git checkout master

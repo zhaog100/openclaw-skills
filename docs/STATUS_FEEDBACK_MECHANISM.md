@@ -1,7 +1,7 @@
 # 状态反馈机制
 
 **建立时间**：2026-03-12 12:56  
-**目的**：小米辣主动向米粒儿反馈开发状态
+**目的**：小米辣主动向小米辣反馈开发状态
 
 ---
 
@@ -25,7 +25,7 @@
 **位置**：当前Issue评论区
 
 **优势**：
-- ✅ 米粒儿自动检测（每5分钟）
+- ✅ 小米辣自动检测（每5分钟）
 - ✅ 历史记录完整
 - ✅ 可追溯
 
@@ -41,7 +41,7 @@ gh issue comment [number] --body "反馈内容"
 **位置**：`/tmp/notify_mili.txt`
 
 **优势**：
-- ✅ 米粒儿自动检测
+- ✅ 小米辣自动检测
 - ✅ 简单快速
 
 **用法**：
@@ -58,7 +58,7 @@ NEXT_STEP=review" > /tmp/notify_mili.txt
 ### 模板1：开发完成反馈 ✅
 
 ```markdown
-@米粒儿 开发完成反馈 ✨
+@小米辣 开发完成反馈 ✨
 
 **技能名称**：[技能名称]
 **Issue**：#[number]
@@ -94,7 +94,7 @@ NEXT_STEP=review" > /tmp/notify_mili.txt
 
 ## 🎯 下一步
 
-- ⏳ 请求米粒儿Review
+- ⏳ 请求小米辣Review
 - ⏳ Review通过后发布到ClawHub
 
 ---
@@ -106,7 +106,7 @@ NEXT_STEP=review" > /tmp/notify_mili.txt
 ### 模板2：Review完成反馈 ✅
 
 ```markdown
-@米粒儿 Review完成反馈 ✨
+@小米辣 Review完成反馈 ✨
 
 **技能名称**：[技能名称]
 **Issue**：#[number]
@@ -151,7 +151,7 @@ NEXT_STEP=review" > /tmp/notify_mili.txt
 ### 模板3：发布完成反馈（完整版）✅
 
 ```markdown
-@米粒儿 发布完成反馈 ✨
+@小米辣 发布完成反馈 ✨
 
 **技能名称**：[技能名称]
 **Issue**：#[number]
@@ -293,7 +293,7 @@ clawhub list | grep [skill-name]
 ### 模板4：开发停止反馈 ⚠️
 
 ```markdown
-@米粒儿 开发停止反馈 ⚠️
+@小米辣 开发停止反馈 ⚠️
 
 **技能名称**：[技能名称]
 **Issue**：#[number]
@@ -334,7 +334,7 @@ clawhub list | grep [skill-name]
 ### 模板5：每日回顾反馈 📊
 
 ```markdown
-@米粒儿 每日回顾反馈 📊
+@小米辣 每日回顾反馈 📊
 
 **日期**：[YYYY-MM-DD]
 **工作时间**：[X]小时
@@ -419,14 +419,14 @@ clawhub list | grep [skill-name]
 ### 场景1：小米辣开发完成
 1. 小米辣完成开发
 2. 自动生成反馈内容
-3. 评论Issue通知米粒儿
-4. 米粒儿自动检测（5分钟内）
-5. 米粒儿开始Review
+3. 评论Issue通知小米辣
+4. 小米辣自动检测（5分钟内）
+5. 小米辣开始Review
 
 ---
 
-### 场景2：米粒儿Review完成
-1. 米粒儿完成Review
+### 场景2：小米辣Review完成
+1. 小米辣完成Review
 2. 评论Issue通知小米辣
 3. 小米辣自动检测（5分钟内）
 4. 小米辣执行下一步（发布/修改）
@@ -436,7 +436,7 @@ clawhub list | grep [skill-name]
 ### 场景3：小米辣发布完成
 1. 小米辣发布到ClawHub
 2. 自动生成反馈内容
-3. 评论Issue通知米粒儿
+3. 评论Issue通知小米辣
 4. 关闭Issue
 5. 更新MEMORY.md
 

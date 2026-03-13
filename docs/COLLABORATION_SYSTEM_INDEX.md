@@ -8,7 +8,7 @@
 
 ## 🎯 系统概述
 
-**双米粒协作系统**：小米辣（开发代理）+ 米粒儿（产品/测试/Review代理）的高效协作框架
+**双米粒协作系统**：小米辣（开发代理）+ 小米辣（产品/测试/Review代理）的高效协作框架
 
 **核心特性**：
 - ✅ 两个独立智能体会话
@@ -64,17 +64,17 @@
 ### 场景1：小米辣开发新功能
 
 **流程**：
-1. 米粒儿创建产品构思（Issue）
+1. 小米辣创建产品构思（Issue）
 2. 小米辣技术设计
 3. 小米辣开发实现
 4. 小米辣自检
-5. 通知米粒儿Review
-6. 米粒儿5层验收
+5. 通知小米辣Review
+6. 小米辣5层验收
 7. 批准后发布
 
 **文档**：[DUAL_MILI_GIT_QUICKSTART.md](DUAL_MILI_GIT_QUICKSTART.md)
 
-### 场景2：米粒儿Review代码
+### 场景2：小米辣Review代码
 
 **流程**：
 1. 检测Review请求（Issue评论）
@@ -117,7 +117,7 @@
 | 脚本 | 功能 |
 |------|------|
 | `scripts/mili_comm.sh` | 通信工具（init/pull/push/query/view/comment/close） |
-| `scripts/mili_product_v3.sh` | 米粒儿脚本（产品/Review/验收） |
+| `scripts/mili_product_v3.sh` | 小米辣脚本（产品/Review/验收） |
 | `scripts/xiaomi_dev_v3.sh` | 小米辣脚本（开发/自检/发布） |
 
 ---
@@ -168,7 +168,7 @@
 bash scripts/mili_comm.sh init
 
 # 2. 配置Git
-git config --global user.name "小米辣/米粒儿"
+git config --global user.name "小米辣/小米辣"
 git config --global user.email "your@email.com"
 
 # 3. 验证GitHub CLI
@@ -195,7 +195,7 @@ bash scripts/xiaomi_dev_v3.sh feature check
 bash scripts/xiaomi_dev_v3.sh feature publish
 ```
 
-**米粒儿**：
+**小米辣**：
 ```bash
 # 开始工作
 bash scripts/mili_comm.sh pull

@@ -378,7 +378,7 @@ vi /root/.openclaw/workspace/qinglong/config/jd_cookie.txt
 
 **版本**: v1.0.0
 **完成日期**: 2026-03-03 17:13
-**作者**: 米粒儿 🌾
+**作者**: 小米辣 🌾
 **状态**: ✅ **全自动化运行，开始产生收益**
 
 ---

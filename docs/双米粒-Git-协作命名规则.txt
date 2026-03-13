@@ -7,7 +7,7 @@
 状态：✅ 已完善
 
 ================================================================================
-一、PRD 文档规范（米粒儿创建）
+一、PRD 文档规范（小米辣创建）
 ================================================================================
 
 【存储位置】
@@ -61,12 +61,12 @@ git add docs/products/[文件名]
 git commit -m "docs(design): [技能名] 技术设计文档"
 git push origin master
 
-【米粒儿查找位置】
+【小米辣查找位置】
 GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/docs/products
 Issue 评论：技术设计完成后在对应 Issue 评论通知
 
 ================================================================================
-三、Review 文档规范（米粒儿创建）
+三、Review 文档规范（小米辣创建）
 ================================================================================
 
 【存储位置】
@@ -96,7 +96,7 @@ GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/reviews
 Issue 评论：Review 完成后在对应 Issue 评论通知
 
 ================================================================================
-四、关闭报告规范（米粒儿创建）
+四、关闭报告规范（小米辣创建）
 ================================================================================
 
 【存储位置】
@@ -153,7 +153,7 @@ git add skills/[技能名]/
 git commit -m "feat([技能名]): 功能描述"
 git push origin master
 
-【米粒儿查找位置】
+【小米辣查找位置】
 GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/skills
 Issue 评论：开发完成后在对应 Issue 评论通知
 
@@ -162,7 +162,7 @@ Issue 评论：开发完成后在对应 Issue 评论通知
 ================================================================================
 
 【Issue 编号分配】
-#1-10：产品 PRD（米粒儿创建）
+#1-10：产品 PRD（小米辣创建）
 #11-20：技术设计（小米辣创建）
 #21-30：Bug 报告（双方均可）
 #31-40：功能请求（双方均可）
@@ -184,7 +184,7 @@ Issue 评论：开发完成后在对应 Issue 评论通知
 [PRD] demo-skill: 需求文档评审
 [Bug] smart-model: 文件类型检测失败
 
-【米粒儿创建位置】
+【小米辣创建位置】
 GitHub: https://github.com/zhaog100/openclaw-skills/issues/new
 
 【小米辣查找位置】
@@ -211,13 +211,13 @@ GitHub: https://github.com/zhaog100/openclaw-skills/issues
 **结论**：✅ 通过 / ❌ 需要修改
 
 【发布通知格式】
-@米粒儿 📢 发布完成通知
+@小米辣 📢 发布完成通知
 
 **ClawHub ID**：kxxxxxxxxx
 **发布时间**：YYYY-MM-DD HH:MM
 **状态**：✅ 已发布
 
-【米粒儿评论位置】
+【小米辣评论位置】
 GitHub Issue 评论区
 
 【小米辣评论位置】
@@ -252,7 +252,7 @@ docs(review): smart-model v2.0 Review 完成（5.00/5.00 满分）
 fix(smart-model): 修复复杂度分析模块 bug
 chore: session-memory 自动更新
 
-【米粒儿提交位置】
+【小米辣提交位置】
 本地：/home/zhaog/.openclaw/workspace/
 GitHub: https://github.com/zhaog100/openclaw-skills
 
@@ -285,7 +285,7 @@ git commit -m "docs: [机制名] 文档创建"
 git push origin master
 
 ================================================================================
-十、记忆文档规范（米粒儿创建）
+十、记忆文档规范（小米辣创建）
 ================================================================================
 
 【存储位置】
@@ -307,7 +307,7 @@ git push origin master
 GitHub: https://github.com/zhaog100/openclaw-skills/tree/master/memory
 
 ================================================================================
-十一、待开发清单规范（米粒儿维护）
+十一、待开发清单规范（小米辣维护）
 ================================================================================
 
 【存储位置】
@@ -349,18 +349,18 @@ GitHub: https://github.com/zhaog100/openclaw-skills/blob/master/docs/UNIFIED_STR
 十三、快速查找指南
 ================================================================================
 
-【米粒儿提交，小米辣查找】
+【小米辣提交，小米辣查找】
 
-| 文档类型 | 米粒儿提交位置 | 小米辣查找位置 |
+| 文档类型 | 小米辣提交位置 | 小米辣查找位置 |
 |---------|--------------|--------------|
 | PRD 文档 | docs/products/ | GitHub docs/products/ + Issue 评论 |
 | Review 文档 | reviews/ | GitHub reviews/ + Issue 评论 |
 | 记忆文档 | memory/ | GitHub memory/ |
 | 待开发清单 | docs/pending-skills-list.md | GitHub pending-skills-list.md |
 
-【小米辣提交，米粒儿查找】
+【小米辣提交，小米辣查找】
 
-| 文档类型 | 小米辣提交位置 | 米粒儿查找位置 |
+| 文档类型 | 小米辣提交位置 | 小米辣查找位置 |
 |---------|--------------|--------------|
 | 技术设计 | docs/products/ | GitHub docs/products/ + Issue 评论 |
 | 技能代码 | skills/[技能名]/ | GitHub skills/ + Issue 评论 |
@@ -398,7 +398,7 @@ https://github.com/zhaog100/openclaw-skills/blob/master/docs/pending-skills-list
 十五、检查清单（提交前核对）
 ================================================================================
 
-【米粒儿提交前】
+【小米辣提交前】
 - [ ] 文件名符合命名规则
 - [ ] 内容完整无遗漏
 - [ ] Git 提交信息规范
@@ -420,7 +420,7 @@ https://github.com/zhaog100/openclaw-skills/blob/master/docs/pending-skills-list
                               文档结束
 ================================================================================
 
-创建者：米粒儿
+创建者：小米辣
 创建时间：2026-03-12 22:15
 版本：v1.0
 状态：✅ 已完善

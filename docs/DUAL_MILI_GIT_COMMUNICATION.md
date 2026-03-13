@@ -13,7 +13,7 @@
 ```
 ┌─────────────────┐                  ┌─────────────────┐
 │   会话1         │                  │   会话2         │
-│   米粒儿        │                  │   小米辣        │
+│   小米辣        │                  │   小米辣        │
 │  (产品经理)     │                  │   (开发者)      │
 │  OpenClaw #1    │                  │  OpenClaw #2    │
 └────────┬────────┘                  └────────┬────────┘
@@ -73,7 +73,7 @@
 
 | 标签 | 用途 | 示例 |
 |------|------|------|
-| `米粒儿` | 米粒儿创建的Issue | 产品构思、Review |
+| `小米辣` | 小米辣创建的Issue | 产品构思、Review |
 | `小米辣` | 小米辣创建的Issue | 开发完成、思考 |
 | `concept` | 产品构思阶段 | 产品定义 |
 | `dev` | 开发阶段 | 代码提交 |
@@ -102,7 +102,7 @@ Closed (完成)
 
 ### 4. Issue内容模板
 
-#### 产品构思（米粒儿）
+#### 产品构思（小米辣）
 
 ```markdown
 ## 🎯 功能名称
@@ -126,7 +126,7 @@ Closed (完成)
 - [ ] 文档完整
 
 ---
-**创建者**：米粒儿
+**创建者**：小米辣
 **时间**：[时间]
 **下一步**：等待小米辣的技术分析
 ```
@@ -156,10 +156,10 @@ Closed (完成)
 ---
 **创建者**：小米辣
 **时间**：[时间]
-**下一步**：等待米粒儿的Review
+**下一步**：等待小米辣的Review
 ```
 
-#### Review完成（米粒儿）
+#### Review完成（小米辣）
 
 ```markdown
 ## 🎯 Review结果
@@ -180,7 +180,7 @@ Closed (完成)
 2. [意见2]
 
 ---
-**创建者**：米粒儿
+**创建者**：小米辣
 **时间**：[时间]
 **下一步**：等待小米辣的思考或修改
 ```
@@ -199,7 +199,7 @@ Closed (完成)
 **使用**：
 ```bash
 # 创建Issue
-gh issue create --title "[demo-skill] concept - 产品构思" --body "..." --label "米粒儿,concept"
+gh issue create --title "[demo-skill] concept - 产品构思" --body "..." --label "小米辣,concept"
 
 # 查询Issue
 gh issue list --label "concept" --state open
@@ -221,7 +221,7 @@ gh issue close [issue-number]
 **使用**：
 ```bash
 # 添加Note
-git notes add -m "米粒儿：产品构思完成" [commit-hash]
+git notes add -m "小米辣：产品构思完成" [commit-hash]
 
 # 推送Notes
 git push origin refs/notes/*
@@ -252,10 +252,10 @@ workspace/
 ```
 
 **通信协议**：
-1. 米粒儿写文件到 `outbox/` → Git Push
+1. 小米辣写文件到 `outbox/` → Git Push
 2. 小米辣 Git Pull → 读取 `outbox/`
 3. 小米辣写文件到 `outbox/` → Git Push
-4. 米粒儿 Git Pull → 读取 `outbox/`
+4. 小米辣 Git Pull → 读取 `outbox/`
 
 ---
 
@@ -263,10 +263,10 @@ workspace/
 
 ### 完整流程
 
-#### 1. 米粒儿：产品构思
+#### 1. 小米辣：产品构思
 
 ```bash
-# 会话1（米粒儿）
+# 会话1（小米辣）
 cd /root/.openclaw/workspace
 
 # 创建产品构思文档
@@ -276,7 +276,7 @@ bash scripts/mili_product_v3.sh demo-skill concept
 gh issue create \
   --title "[demo-skill] concept - 产品构思" \
   --body-file docs/products/2026-03-12_demo-skill_concept.md \
-  --label "米粒儿,concept"
+  --label "小米辣,concept"
 
 # 记录Issue编号
 echo "issue_demo-skill=[issue-number]" >> .mili_comm/issues.txt
@@ -333,10 +333,10 @@ git commit -m "feat(demo-skill): 开发完成"
 git push origin feature/2026-03-12_demo-skill
 ```
 
-#### 4. 米粒儿：Review
+#### 4. 小米辣：Review
 
 ```bash
-# 会话1（米粒儿）
+# 会话1（小米辣）
 # Git拉取
 git fetch origin
 git checkout feature/2026-03-12_demo-skill
@@ -425,7 +425,7 @@ create_issue() {
     gh issue create \
         --title "[$feature] $stage" \
         --body-file "$body_file" \
-        --label "米粒儿,$stage"
+        --label "小米辣,$stage"
 }
 
 # 查询Issue
@@ -468,10 +468,10 @@ comment_issue() {
 
 ### 场景：开发demo-skill
 
-#### 步骤1：米粒儿创建产品构思
+#### 步骤1：小米辣创建产品构思
 
 ```bash
-# 会话1（米粒儿）
+# 会话1（小米辣）
 bash scripts/mili_product_v3.sh demo-skill concept
 bash scripts/mili_comm.sh create_issue demo-skill concept docs/products/2026-03-12_demo-skill_concept.md
 ```
@@ -510,10 +510,10 @@ bash scripts/mili_comm.sh comment_issue 42 "开发完成，自检通过，请求
 
 ---
 
-#### 步骤4：米粒儿Review
+#### 步骤4：小米辣Review
 
 ```bash
-# 会话1（米粒儿）
+# 会话1（小米辣）
 git pull origin master
 bash scripts/mili_product_v3.sh demo-skill review
 bash scripts/mili_comm.sh comment_issue 42 "Review完成，✅ 批准发布"
@@ -556,7 +556,7 @@ bash scripts/mili_comm.sh close_issue 42 "✅ 发布成功，Package ID: k97xxx"
    - `scripts/mili_comm.sh`
 
 3. **约定Issue标签**
-   - `米粒儿`、`小米辣`
+   - `小米辣`、`小米辣`
    - `concept`、`dev`、`review`、`accept`、`publish`
 
 4. **定期同步**
@@ -567,4 +567,4 @@ bash scripts/mili_comm.sh close_issue 42 "✅ 发布成功，Package ID: k97xxx"
 
 *发布时间：2026-03-12*
 *版本：v1.0*
-*作者：米粒儿（官家的智能助理）*
+*作者：小米辣（官家的智能助理）*
