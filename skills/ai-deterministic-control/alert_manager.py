@@ -108,11 +108,56 @@ class AlertManager:
         with open(self.alerts_file, 'w', encoding='utf-8') as f:
             json.dump(self.alerts_history, f, indent=2, ensure_ascii=False)
     
-    def get_stats(self) -> Dict:
+    def get_alert_stats(self) -> Dict:
         """获取告警统计"""
-        return {
+        stats = {
             "total_alerts": len(self.alerts_history),
             "enabled": self.enabled,
             "cooldown_minutes": self.cooldown_minutes,
-            "aggregation_minutes": self.aggregation_minutes
+            "aggregation_minutes": self.aggregation_minutes,
+            "level_distribution": {},
+            "type_distribution": {}
+        }
+        
+        # 统计各级别告警数量
+        for alert in self.alerts_history:
+            level = alert.get("level", "unknown")
+            stats["level_distribution"][level] = stats["level_distribution"].get(level, 0) + 1
+            
+            alert_type = alert.get("type", "unknown")
+            stats["type_distribution"][alert_type] = stats["type_distribution"].get(alert_type, 0) + 1
+        
+        return stats
+    
+    def detect_anomaly(self, similarity: float, prompt: str, output: str, threshold: float = 60.0) -> Optional[Dict]:
+        """检测异常
+        
+        Args:
+            similarity: 相似度
+            prompt: 提示词
+            output: 输出
+            threshold: 异常阈值
+        
+        Returns:
+            异常信息（如果检测到异常），否则None
+        """
+        if similarity >= 70.0:
+            return None  # 正常输出
+        
+        # 判断异常级别
+        if similarity < 50.0:
+            level = "critical"
+        elif similarity < 60.0:
+            level = "warning"
+        else:
+            return None  # 不算异常
+        
+        return {
+            "level": level,
+            "type": "low_similarity",
+            "similarity": similarity,
+            "threshold": threshold,
+            "prompt": prompt,
+            "output": output,
+            "timestamp": datetime.now().isoformat()
         }
