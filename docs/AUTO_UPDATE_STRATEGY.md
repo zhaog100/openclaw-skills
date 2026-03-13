@@ -431,4 +431,4 @@ curl -H "Authorization: Bearer $OPENAI_API_KEY" https://api.openai.com/v1/models
 
 ---
 
-*🌾 米粒儿为您服务*
+*🌾 小米辣为您服务*

@@ -9,18 +9,18 @@
 
 | 脚本 | 角色 | 文件大小 | 功能数 |
 |------|------|---------|--------|
-| **mili_product_v3.sh** | 米粒儿（产品经理+质量官） | 10.6KB | 10个 |
+| **mili_product_v3.sh** | 小米辣（产品经理+质量官） | 10.6KB | 10个 |
 | **xiaomi_dev_v3.sh** | 小米辣（开发者+测试者） | 11KB | 10个 |
 
 ---
 
-## 🎭 米粒儿脚本（mili_product_v3.sh）
+## 🎭 小米辣脚本（mili_product_v3.sh）
 
 ### 基本信息
 
 ```bash
 #!/bin/bash
-# 米粒儿协作脚本 v3.1 - 社区启发增强版
+# 小米辣协作脚本 v3.1 - 社区启发增强版
 # 角色：产品经理 + 质量官
 # 功能：产品构思、需求文档、并行分析、12维度Review（含反对意见）、5层验收、系统状态检查
 ```
@@ -131,7 +131,7 @@ bash scripts/mili_product_v3.sh help
 ```bash
 bash scripts/xiaomi_dev_v3.sh <功能名> analyze
 ```
-- 与米粒儿同时分析方案
+- 与小米辣同时分析方案
 - 技术视角分析
 - 架构设计
 - 风险评估
@@ -191,7 +191,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> learn
 ```bash
 bash scripts/xiaomi_dev_v3.sh <功能名> wait
 ```
-- 等待米粒儿通知
+- 等待小米辣通知
 - 检查通知文件
 - 开始工作
 
@@ -214,7 +214,7 @@ bash scripts/xiaomi_dev_v3.sh help
 
 ## 📊 功能对比
 
-| 功能 | 米粒儿 | 小米辣 |
+| 功能 | 小米辣 | 小米辣 |
 |------|--------|--------|
 | **产品构思** | ✅ concept | - |
 | **需求文档** | ✅ prd | - |
@@ -236,14 +236,14 @@ bash scripts/xiaomi_dev_v3.sh help
 ### 标准协作流程（9步）
 
 ```
-1. 米粒儿：产品构思
+1. 小米辣：产品构思
    bash scripts/mili_product_v3.sh feature concept
 
-2. 米粒儿：通知小米辣
+2. 小米辣：通知小米辣
    bash scripts/mili_product_v3.sh feature notify
 
 3. 双方：并行分析
-   # 米粒儿
+   # 小米辣
    bash scripts/mili_product_v3.sh feature analyze
    # 小米辣
    bash scripts/xiaomi_dev_v3.sh feature analyze
@@ -254,13 +254,13 @@ bash scripts/xiaomi_dev_v3.sh help
 5. 小米辣：开发实现
    bash scripts/xiaomi_dev_v3.sh feature dev
 
-6. 米粒儿：Review评价
+6. 小米辣：Review评价
    bash scripts/mili_product_v3.sh feature review
 
 7. 小米辣：Review后思考
    bash scripts/xiaomi_dev_v3.sh feature think
 
-8. 米粒儿：5层验收
+8. 小米辣：5层验收
    bash scripts/mili_product_v3.sh feature accept
 
 9. 小米辣：ClawHub发布
@@ -273,7 +273,7 @@ bash scripts/xiaomi_dev_v3.sh help
 
 ### 社区启发增强（v3.1新增）
 
-#### 1. 反对意见机制（米粒儿）
+#### 1. 反对意见机制（小米辣）
 ```bash
 # Review时必须提出反对意见
 - 为什么不应该做？
@@ -301,7 +301,7 @@ bash scripts/xiaomi_dev_v3.sh help
 
 ## 📂 生成的文件
 
-### 米粒儿生成的文件
+### 小米辣生成的文件
 
 ```
 docs/products/
@@ -339,7 +339,7 @@ ClawHub/
 ## 🎯 核心优势
 
 ### 1. 专业分工
-- 米粒儿：产品视角 + 质量保证
+- 小米辣：产品视角 + 质量保证
 - 小米辣：技术视角 + 实现能力
 
 ### 2. 双向思考
@@ -396,7 +396,7 @@ bash scripts/xiaomi_dev_v3.sh feature dev
 - **总计**：21.6KB，730行
 
 ### 功能统计
-- **米粒儿**：10个功能
+- **小米辣**：10个功能
 - **小米辣**：10个功能
 - **共享功能**：3个（并行分析、系统检查、通知机制）
 
@@ -420,4 +420,4 @@ bash scripts/xiaomi_dev_v3.sh feature dev
 
 *发布时间：2026-03-12*
 *版本：v3.1 - 社区启发增强版*
-*作者：米粒儿（官家的智能助理）*
+*作者：小米辣（官家的智能助理）*

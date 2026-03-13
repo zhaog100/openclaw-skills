@@ -852,7 +852,7 @@ echo "YOUR_GITHUB_TOKEN_HERE" | gh auth login --with-token
 
 ---
 
-**文档维护者**：米粒儿 🌾  
+**文档维护者**：小米辣 🌾  
 <<<<<<< HEAD
 **最后更新**：2026-03-10 12:54  
 =======
@@ -862,4 +862,4 @@ echo "YOUR_GITHUB_TOKEN_HERE" | gh auth login --with-token
 
 ---
 
-*🌾 米粒儿为您服务*
+*🌾 小米辣为您服务*

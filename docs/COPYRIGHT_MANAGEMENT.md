@@ -14,7 +14,7 @@
 {
   "name": "dual-mili-collaboration",
   "version": "3.0.0",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills",
   "clawhub_id": "独立系统（未发布）"
@@ -34,7 +34,7 @@
 {
   "name": "review-system",
   "version": "1.0.0",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills",
   "clawhub_id": "集成到dual-mili-collaboration"
@@ -54,7 +54,7 @@
 {
   "name": "bilateral-thinking",
   "version": "1.0.0",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills",
   "clawhub_id": "集成到dual-mili-collaboration"
@@ -74,7 +74,7 @@
 {
   "name": "session-memory-enhanced",
   "version": "4.0.0",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills",
   "clawhub_id": "k979cbsga7mwmn9dqdanchpvt582mdcq"
@@ -95,7 +95,7 @@
 {
   "name": "miliger-context-manager",
   "version": "7.0.1",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills",
   "clawhub_id": "k9720rgtq7nytyjgyzx6sbgg0n82cxf9"
@@ -116,7 +116,7 @@
 {
   "name": "smart-memory-sync",
   "version": "1.0.0",
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT",
   "repository": "https://github.com/zhaog100/openclaw-skills",
   "clawhub_id": "k9791azgxkhtf9r8sfy08g5bkd82dzws"

@@ -187,10 +187,10 @@ skills/demo-skill/
 **学习内容**：4步标准流程（PRD → 设计 → 开发 → Review）
 
 **应用**：
-- 步骤1：米粒儿创建PRD
+- 步骤1：小米辣创建PRD
 - 步骤2：小米辣技术设计
 - 步骤3：小米辣开发实现
-- 步骤4：米粒儿Review验收
+- 步骤4：小米辣Review验收
 
 ---
 
@@ -297,10 +297,10 @@ skills/demo-skill/
 ### 1️⃣ 开发smart-model技能（Issue #3）
 
 **待办**：
-- ⏳ 米粒儿完善PRD
+- ⏳ 小米辣完善PRD
 - ⏳ 小米辣技术设计
 - ⏳ 小米辣开发实现
-- ⏳ 米粒儿Review验收
+- ⏳ 小米辣Review验收
 - ⏳ 发布到ClawHub
 
 ---

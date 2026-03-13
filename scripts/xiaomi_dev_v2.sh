@@ -1,7 +1,7 @@
 #!/bin/bash
 # 小米辣执行脚本 v2.0
 # 职责：开发 + 集成 + 发布
-# 协作对象：米粒儿（产品+测试+客户）
+# 协作对象：小米辣（产品+测试+客户）
 
 set -e
 
@@ -175,7 +175,7 @@ version: 1.0.0
 
 ## 功能说明
 
-基于米粒儿的产品构思实现的功能。
+基于小米辣的产品构思实现的功能。
 
 ## 使用方法
 
@@ -246,8 +246,8 @@ EOF
     log_info "分支：$branch_name"
     log_info "目录：$skill_dir"
 
-    # 通知米粒儿验收
-    log_info "通知米粒儿验收"
+    # 通知小米辣验收
+    log_info "通知小米辣验收"
     if [ -f "$ISSUES_DIR/current_issue.txt" ]; then
         local issue_number=$(cat "$ISSUES_DIR/current_issue.txt")
 
@@ -264,7 +264,7 @@ EOF
 ✅ 文档完整
 
 ### 验收准备
-请米粒儿切换到分支 \`${branch_name}\` 进行验收。
+请小米辣切换到分支 \`${branch_name}\` 进行验收。
 
 ### 验收命令
 \`\`\`bash
@@ -273,12 +273,12 @@ git checkout $branch_name
 bash skills/$product_name/scripts/main.sh
 \`\`\`
 
-请米粒儿进行5层质量验收。
+请小米辣进行5层质量验收。
 EOF
 
         if command -v gh &> /dev/null; then
             gh issue comment "$issue_number" --body-file /tmp/xiaomi_notify.md
-            log_success "已通知米粒儿验收"
+            log_success "已通知小米辣验收"
         else
             log_warning "未安装gh命令，请手动通知"
             cat /tmp/xiaomi_notify.md
@@ -303,8 +303,8 @@ publish() {
     fi
 
     if [ "$approved" = false ]; then
-        log_warning "未获得米粒儿的发布批准"
-        log_info "等待米粒儿验收通过并通知发布"
+        log_warning "未获得小米辣的发布批准"
+        log_info "等待小米辣验收通过并通知发布"
         return 1
     fi
 
@@ -340,7 +340,7 @@ publish() {
     log_success "发布完成！"
     log_info "ClawHub链接：https://clawhub.com/skills/$product_name"
 
-    # 通知米粒儿发布完成
+    # 通知小米辣发布完成
     if [ -f "$ISSUES_DIR/current_issue.txt" ]; then
         local issue_number=$(cat "$ISSUES_DIR/current_issue.txt")
 
@@ -360,7 +360,7 @@ publish() {
 - ClawHub：https://clawhub.com/skills/$product_name
 - GitHub：https://github.com/zhaog100/openclaw-skills
 
-感谢米粒儿的产品构思和验收！🎉
+感谢小米辣的产品构思和验收！🎉
 EOF
 
         if command -v gh &> /dev/null; then
@@ -390,7 +390,7 @@ main() {
         all)
             analyze_product "$product_name"
             implement "$product_name"
-            # publish会在米粒儿批准后手动执行
+            # publish会在小米辣批准后手动执行
             ;;
         *)
             echo "用法："

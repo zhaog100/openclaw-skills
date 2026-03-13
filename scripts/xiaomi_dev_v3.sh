@@ -226,13 +226,13 @@ check_git() {
 # 检查验收批准
 check_approval() {
     if [ -f "$APPROVED_FILE" ]; then
-        log_blue "收到米粒儿的验收批准："
+        log_blue "收到小米辣的验收批准："
         cat "$APPROVED_FILE"
         echo
         return 0
     else
         log_warn "没有验收批准，请先完成Review和5层验收"
-        log_info "米粒儿运行：bash scripts/mili_product_v3.sh $1 accept"
+        log_info "小米辣运行：bash scripts/mili_product_v3.sh $1 accept"
         return 1
     fi
 }
@@ -245,8 +245,8 @@ analyze_tech() {
     local prd_file="$PRODUCTS_DIR/${date}_${feature_name}_prd.md"
     
     if [ ! -f "$prd_file" ]; then
-        log_error "PRD文档不存在，请先让米粒儿创建PRD"
-        log_info "米粒儿运行：bash scripts/mili_product_v3.sh $feature_name prd"
+        log_error "PRD文档不存在，请先让小米辣创建PRD"
+        log_info "小米辣运行：bash scripts/mili_product_v3.sh $feature_name prd"
         return 1
     fi
     
@@ -280,7 +280,7 @@ analyze_tech() {
 - **技术风险1**：[风险 + 应对]
 - **技术风险2**：[风险 + 应对]
 
-### 9.5 给米粒儿的建议
+### 9.5 给小米辣的建议
 1. [建议1]
 2. [建议2]
 3. [建议3]
@@ -292,7 +292,7 @@ analyze_tech() {
 **方案时间**：$(date '+%Y-%m-%d %H:%M:%S')
 
 ### 10.1 最终方案
-[综合米粒儿和小米辣的分析，形成最终方案]
+[综合小米辣和小米辣的分析，形成最终方案]
 
 ### 10.2 实现计划
 1. [步骤1]
@@ -450,7 +450,7 @@ check() {
 
 ---
 
-## 5. 给米粒儿的提示
+## 5. 给小米辣的提示
 
 ### 重点Review哪里
 1. [提示1]
@@ -477,12 +477,12 @@ check() {
 ---
 
 *自检时间：$(date '+%Y-%m-%d %H:%M:%S')*  
-*状态：等待米粒儿Review*
+*状态：等待小米辣Review*
 EOF
     
     log_info "自检文档已创建：$self_check_file"
     
-    # 通知米粒儿
+    # 通知小米辣
     echo "feature=$feature_name" > "$NOTIFY_FILE"
     echo "date=$date" >> "$NOTIFY_FILE"
     echo "self_check_file=$self_check_file" >> "$NOTIFY_FILE"
@@ -497,8 +497,8 @@ EOF
     # Git同步
     git_sync push "feat($feature_name): 开发完成"
     
-    log_blue "已通知米粒儿Review请求"
-    log_blue "米粒儿运行：bash scripts/mili_product_v3.sh $feature_name review"
+    log_blue "已通知小米辣Review请求"
+    log_blue "小米辣运行：bash scripts/mili_product_v3.sh $feature_name review"
 }
 
 # ==================== Review后思考 ====================
@@ -509,15 +509,15 @@ think() {
     local review_file="$REVIEWS_DIR/${date}_${feature_name}_review.md"
     
     if [ ! -f "$review_file" ]; then
-        log_error "Review文档不存在，请先等待米粒儿完成Review"
-        log_info "米粒儿运行：bash scripts/mili_product_v3.sh $feature_name review"
+        log_error "Review文档不存在，请先等待小米辣完成Review"
+        log_info "小米辣运行：bash scripts/mili_product_v3.sh $feature_name review"
         return 1
     fi
     
     log_blue "Review后思考：$feature_name"
     
     # 读取Review文档
-    log_blue "读取米粒儿的Review..."
+    log_blue "读取小米辣的Review..."
     cat "$review_file"
     echo
     
@@ -602,8 +602,8 @@ think() {
 EOF
     
     log_info "Review后思考已添加到Review文档"
-    log_blue "下一步：等待米粒儿的5层验收"
-    log_blue "米粒儿运行：bash scripts/mili_product_v3.sh $feature_name accept"
+    log_blue "下一步：等待小米辣的5层验收"
+    log_blue "小米辣运行：bash scripts/mili_product_v3.sh $feature_name accept"
 }
 
 # ==================== Git提交 ====================
@@ -633,7 +633,7 @@ commit() {
     git commit -m "$commit_msg"
     
     log_info "已提交：$commit_msg"
-    log_blue "下一步：等待米粒儿的5层验收后发布"
+    log_blue "下一步：等待小米辣的5层验收后发布"
 }
 
 # ==================== 发布 ====================

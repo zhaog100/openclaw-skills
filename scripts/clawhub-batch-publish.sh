@@ -4,7 +4,7 @@
 
 set -e
 
-echo "🌾 === 米粒儿 ClawHub 批量发布助手 ==="
+echo "🌾 === 小米辣 ClawHub 批量发布助手 ==="
 echo ""
 
 # 配置区
@@ -27,7 +27,7 @@ cat > "$PUBLISH_LOG" << EOF
 # ClawHub 批量发布日志
 
 **发布时间：** $(date '+%Y-%m-%d %H:%M:%S')  
-**发布工具：** 米粒儿批量发布脚本 v1.0  
+**发布工具：** 小米辣批量发布脚本 v1.0  
 **发布模式：** 批量自动发布
 
 ---
@@ -144,7 +144,7 @@ for skill_name in "${SKILLS_TO_PUBLISH[@]}"; do
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["openclaw", "skill"],
-  "author": "米粒儿",
+  "author": "小米辣",
   "license": "MIT"
 }
 EOF

@@ -20,14 +20,14 @@
 ### 完整流程（6个阶段）
 
 ```bash
-# 阶段1：米粒儿创建产品构思
+# 阶段1：小米辣创建产品构思
 bash scripts/mili_product_v3.sh <功能名> concept
 
-# 阶段2：米粒儿编写需求文档
+# 阶段2：小米辣编写需求文档
 bash scripts/mili_product_v3.sh <功能名> prd
 
 # 阶段3：双方并行分析
-# 米粒儿
+# 小米辣
 bash scripts/mili_product_v3.sh <功能名> analyze
 
 # 小米辣
@@ -37,13 +37,13 @@ bash scripts/xiaomi_dev_v3.sh <功能名> analyze
 bash scripts/xiaomi_dev_v3.sh <功能名> dev
 bash scripts/xiaomi_dev_v3.sh <功能名> check
 
-# 阶段5：米粒儿Review
+# 阶段5：小米辣Review
 bash scripts/mili_product_v3.sh <功能_name> review
 
 # 阶段6：小米辣Review后思考
 bash scripts/xiaomi_dev_v3.sh <功能名> think
 
-# 阶段7：米粒儿5层验收
+# 阶段7：小米辣5层验收
 bash scripts/mili_product_v3.sh <功能名> accept
 
 # 阶段8：小米辣发布
@@ -55,7 +55,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 
 ## 📋 核心清单
 
-### 米粒儿（产品经理 + 质量官）
+### 小米辣（产品经理 + 质量官）
 
 **12维度Review**：
 - ✅ 代码结构清晰
@@ -99,11 +99,11 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 ```
 /root/.openclaw/workspace/
 ├── docs/
-│   ├── products/              # 产品文档（米粒儿）
+│   ├── products/              # 产品文档（小米辣）
 │   ├── reviews/               # Review文档（双方）
 │   └── strategies/            # 策略文档
 ├── scripts/
-│   ├── mili_product_v3.sh    # 米粒儿脚本
+│   ├── mili_product_v3.sh    # 小米辣脚本
 │   └── xiaomi_dev_v3.sh      # 小米辣脚本
 └── .clawhub/
     ├── product_template.md
