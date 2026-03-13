@@ -30,23 +30,23 @@ bash scripts/mili_product_v3.sh <功能名> prd
 # 米粒儿
 bash scripts/mili_product_v3.sh <功能名> analyze
 
-# 小米粒
+# 小米辣
 bash scripts/xiaomi_dev_v3.sh <功能名> analyze
 
-# 阶段4：小米粒开发与自检
+# 阶段4：小米辣开发与自检
 bash scripts/xiaomi_dev_v3.sh <功能名> dev
 bash scripts/xiaomi_dev_v3.sh <功能名> check
 
 # 阶段5：米粒儿Review
 bash scripts/mili_product_v3.sh <功能_name> review
 
-# 阶段6：小米粒Review后思考
+# 阶段6：小米辣Review后思考
 bash scripts/xiaomi_dev_v3.sh <功能名> think
 
 # 阶段7：米粒儿5层验收
 bash scripts/mili_product_v3.sh <功能名> accept
 
-# 阶段8：小米粒发布
+# 阶段8：小米辣发布
 bash scripts/xiaomi_dev_v3.sh <功能名> commit
 bash scripts/xiaomi_dev_v3.sh <功能名> publish
 ```
@@ -78,7 +78,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 - ✅ Layer 4: 功能完整性
 - ✅ Layer 5: 用户体验
 
-### 小米粒（开发者 + 测试者）
+### 小米辣（开发者 + 测试者）
 
 **开发前自检**（4个维度）：
 - ✅ 代码质量
@@ -104,7 +104,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 │   └── strategies/            # 策略文档
 ├── scripts/
 │   ├── mili_product_v3.sh    # 米粒儿脚本
-│   └── xiaomi_dev_v3.sh      # 小米粒脚本
+│   └── xiaomi_dev_v3.sh      # 小米辣脚本
 └── .clawhub/
     ├── product_template.md
     ├── dev_template.md

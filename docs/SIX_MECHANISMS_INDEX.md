@@ -8,7 +8,7 @@
 
 ## 🎯 概述
 
-双米粒协作系统的6大核心机制，确保小米粒和米粒儿（两个独立智能体会话）高效协作。
+双米粒协作系统的6大核心机制，确保小米辣和米粒儿（两个独立智能体会话）高效协作。
 
 **核心原则**：
 - ✅ 两个独立智能体会话
@@ -46,7 +46,7 @@
 
 **示例**：
 ```markdown
-@小米粒 🔴 高优先级任务
+@小米辣 🔴 高优先级任务
 
 请Review Smart Model v2.0
 Issue: #4
@@ -248,7 +248,7 @@ Issue: #4
 bash scripts/mili_comm.sh init
 
 # 配置Git
-git config --global user.name "小米粒/米粒儿"
+git config --global user.name "小米辣/米粒儿"
 git config --global user.email "your@email.com"
 
 # 验证GitHub CLI

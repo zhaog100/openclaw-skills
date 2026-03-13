@@ -27,7 +27,7 @@ dual_mili_unified.sh (统一入口)
 │   ├── smart-memory-sync (同步)
 │   └── context-manager (监控)
 ├── mili_product_v3.sh (米粒儿)
-├── xiaomi_dev_v3.sh (小米粒)
+├── xiaomi_dev_v3.sh (小米辣)
 ├── bitnet_inference.py (本地推理)
 ├── inference_router.py (推理路由)
 └── vocabulary_archaeology.py (词汇考古)
@@ -240,7 +240,7 @@ bash scripts/dual_mili_lite.sh feature start --with-bitnet
 ### 核心版（推荐）
 
 **文件**：
-- 脚本：3个（lite版 + 米粒儿 + 小米粒）
+- 脚本：3个（lite版 + 米粒儿 + 小米辣）
 - 文档：2个（README + 核心文档）
 - 配置：1个
 - **总计**：6个（vs 20个，-70%）

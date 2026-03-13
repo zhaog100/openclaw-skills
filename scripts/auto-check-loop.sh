@@ -1,6 +1,6 @@
 #!/bin/bash
 # 自动检查循环脚本 - 每 1 分钟检查所有 Git 内容
-# 确保正确接收小米粒提供的信息
+# 确保正确接收小米辣提供的信息
 
 WORKSPACE="/home/zhaog/.openclaw/workspace"
 INBOX="$WORKSPACE/.mili_comm/inbox"
@@ -28,10 +28,10 @@ check_github_issues() {
             # 获取 Issue 评论（最近 5 条）
             local comments=$(gh issue view $REPO#$issue_num --comments --limit 5 2>/dev/null)
             
-            # 检查是否有小米粒的评论（包含"小米粒"签名）
-            if echo "$comments" | grep -q "小米粒"; then
-                log "📬 Issue #$issue_num: 发现小米粒的新评论！"
-                echo "📬 Issue #$issue_num: 小米粒回复了！" > /tmp/notify_mili.txt
+            # 检查是否有小米辣的评论（包含"小米辣"签名）
+            if echo "$comments" | grep -q "小米辣"; then
+                log "📬 Issue #$issue_num: 发现小米辣的新评论！"
+                echo "📬 Issue #$issue_num: 小米辣回复了！" > /tmp/notify_mili.txt
                 echo "$comments" > /tmp/mili_comment_$issue_num.txt
             fi
         done
@@ -47,10 +47,10 @@ check_git_commits() {
     # 获取最近 5 个提交
     local commits=$(git log --oneline -5 2>/dev/null)
     
-    # 检查是否有新提交（包含"小米粒"或特定标记）
-    if echo "$commits" | grep -q "小米粒\|xiaomili"; then
-        log "📝 发现小米粒的新 Git 提交！"
-        echo "📝 小米粒提交了新代码！" > /tmp/notify_mili.txt
+    # 检查是否有新提交（包含"小米辣"或特定标记）
+    if echo "$commits" | grep -q "小米辣\|xiaomili"; then
+        log "📝 发现小米辣的新 Git 提交！"
+        echo "📝 小米辣提交了新代码！" > /tmp/notify_mili.txt
     fi
     
     # 检查是否有未推送的提交
@@ -67,7 +67,7 @@ check_inbox() {
     local new_inbox=$(find "$INBOX" -name "*.md" -mmin -2 2>/dev/null | wc -l)
     if [ "$new_inbox" -gt 0 ]; then
         log "⚠️ 发现 $new_inbox 个新 inbox 文件！"
-        echo "📬 小米粒回复了！inbox 有新文件！" > /tmp/notify_mili.txt
+        echo "📬 小米辣回复了！inbox 有新文件！" > /tmp/notify_mili.txt
         
         # 显示新文件内容
         find "$INBOX" -name "*.md" -mmin -2 -exec cat {} \; 2>/dev/null

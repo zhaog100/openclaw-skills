@@ -32,17 +32,17 @@
 **核心职责**：
 1. **产品构思**：理解需求，定义功能
 2. **需求文档**：编写PRD，明确验收标准
-3. **并行分析**：与小米粒同时分析方案
+3. **并行分析**：与小米辣同时分析方案
 4. **5层验收**：需求、设计、代码、功能、体验
 5. **12维度Review**：全面质量检查
-6. **反向思考**：接受小米粒的补充建议
+6. **反向思考**：接受小米辣的补充建议
 
 **工具**：
 - 产品模板：`.clawhub/product_template.md`
 - Review模板：`.clawhub/review_template.md`
 - 协作脚本：`scripts/mili_product_v3.sh`
 
-### 小米粒（开发者 + 测试者）
+### 小米辣（开发者 + 测试者）
 
 **核心职责**：
 1. **并行分析**：与米粒儿同时分析技术方案
@@ -81,7 +81,7 @@ graph LR
 ```mermaid
 graph TB
     A[GitHub Issue] --> B[米粒儿分析]
-    A --> C[小米粒分析]
+    A --> C[小米辣分析]
     B --> D[产品角度]
     C --> E[技术角度]
     D --> F[讨论融合]
@@ -95,7 +95,7 @@ graph TB
 - 边界情况
 - 风险评估
 
-**小米粒分析维度**：
+**小米辣分析维度**：
 - 技术可行性
 - 实现难度
 - 性能影响
@@ -105,11 +105,11 @@ graph TB
 - 双方分析文档（合并到PRD）
 - 综合方案（更新PRD）
 
-### Phase 3: 开发与自检（小米粒主导）
+### Phase 3: 开发与自检（小米辣主导）
 
 ```mermaid
 graph LR
-    A[综合方案] --> B[小米粒开发]
+    A[综合方案] --> B[小米辣开发]
     B --> C[开发前自检]
     C --> D{自检通过?}
     D -->|是| E[提交Git]
@@ -160,7 +160,7 @@ graph TB
     A[收到Review请求] --> B[米粒儿Review]
     B --> C[12维度Review]
     C --> D[Review文档]
-    D --> E[小米粒思考]
+    D --> E[小米辣思考]
     E --> F{需要补充?}
     F -->|是| G[补充建议]
     F -->|否| H[批准发布]
@@ -211,7 +211,7 @@ graph TB
 ## 学习要点
 [优点、需要改进...]
 
-## 给小米粒的建议
+## 给小米辣的建议
 [技术、协作建议...]
 
 ## 总体评价
@@ -219,7 +219,7 @@ graph TB
 - 原因：...
 ```
 
-**小米粒Review后思考**（反向Review）：
+**小米辣Review后思考**（反向Review）：
 
 1. **Review完整性评估**：
    - ✅ 米粒儿考虑全面吗
@@ -287,7 +287,7 @@ graph TB
 - 验收文档（合并到Review文档）
 - 发布批准（`/tmp/release_approved.txt`）
 
-### Phase 6: 发布与归档（小米粒主导）
+### Phase 6: 发布与归档（小米辣主导）
 
 ```mermaid
 graph LR
@@ -340,7 +340,7 @@ graph LR
 │   └── review_template.md
 ├── scripts/                         # 协作脚本
 │   ├── mili_product_v3.sh          # 米粒儿脚本（v3.0）
-│   └── xiaomi_dev_v3.sh            # 小米粒脚本（v3.0）
+│   └── xiaomi_dev_v3.sh            # 小米辣脚本（v3.0）
 └── MEMORY.md                        # 记忆文件
 ```
 
@@ -364,7 +364,7 @@ bash scripts/mili_product_v3.sh <功能名> <操作>
 # 操作：concept|prd|analyze|review|accept|publish
 ```
 
-### 小米粒脚本（v3.0）
+### 小米辣脚本（v3.0）
 
 **功能**：
 1. 并行分析（技术角度）
@@ -429,13 +429,13 @@ bash scripts/mili_product_v3.sh example-skill prd
 # 米粒儿
 bash scripts/mili_product_v3.sh example-skill analyze
 
-# 小米粒
+# 小米辣
 bash scripts/xiaomi_dev_v3.sh example-skill analyze
 ```
 
 **输出**：更新PRD，综合方案
 
-#### 4. 小米粒：开发与自检
+#### 4. 小米辣：开发与自检
 ```bash
 bash scripts/xiaomi_dev_v3.sh example-skill dev
 bash scripts/xiaomi_dev_v3.sh example-skill check
@@ -450,7 +450,7 @@ bash scripts/mili_product_v3.sh example-skill review
 
 **输出**：`reviews/2026-03-12_example-skill_review.md`
 
-#### 6. 小米粒：Review后思考
+#### 6. 小米辣：Review后思考
 ```bash
 bash scripts/xiaomi_dev_v3.sh example-skill think
 ```
@@ -464,7 +464,7 @@ bash scripts/mili_product_v3.sh example-skill accept
 
 **输出**：验收通过 + `/tmp/release_approved.txt`
 
-#### 8. 小米粒：发布
+#### 8. 小米辣：发布
 ```bash
 bash scripts/xiaomi_dev_v3.sh example-skill publish
 ```
@@ -533,8 +533,8 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 **问题**：Dev.to文章指出："Your AI code reviewer has no one to disagree with"
 
 **我们的解决方案**：
-- ✅ **双米粒协作天然解决**：米粒儿（产品）+ 小米粒（技术）= 不同视角
-- ✅ **双向思考机制**：小米粒主动质疑Review是否全面
+- ✅ **双米粒协作天然解决**：米粒儿（产品）+ 小米辣（技术）= 不同视角
+- ✅ **双向思考机制**：小米辣主动质疑Review是否全面
 
 **v3.1增强**：
 - 📋 **强制反对意见**：Review文档必须有"反对意见"章节
@@ -546,7 +546,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 **问题**："The Four-Party Problem"（四方问题）
 - 用户（官家）
 - AI1（米粒儿）
-- AI2（小米粒）
+- AI2（小米辣）
 - 系统（Git/ClawHub）
 
 **v3.1增强**：
@@ -559,13 +559,13 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 **发现**：微软BitNet（100B参数，1-bit，CPU可运行）
 
 **潜在应用**：
-- 📋 **小米粒本地推理**：减少API成本
+- 📋 **小米辣本地推理**：减少API成本
 - 📋 **离线协作**：网络异常时仍可工作
 - 📋 **快速原型**：先用本地模型验证思路
 
 **v3.1规划**：
 - [ ] 评估BitNet集成可行性
-- [ ] 测试小米粒本地推理
+- [ ] 测试小米辣本地推理
 - [ ] 建立本地模型备选方案
 
 #### 4. OpenClaw生态发展 ⭐⭐⭐
@@ -605,7 +605,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
    - 记录网络依赖
 ```
 
-**小米粒脚本（v3.1）**：
+**小米辣脚本（v3.1）**：
 ```bash
 # 新增功能
 1. 系统状态检查（check-system）
@@ -661,7 +661,7 @@ bash scripts/xiaomi_dev_v3.sh example-skill publish
 
 #### 双向思考增强
 
-**小米粒质疑清单**：
+**小米辣质疑清单**：
 ```markdown
 ## Review完整性质疑
 

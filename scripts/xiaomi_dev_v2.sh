@@ -1,5 +1,5 @@
 #!/bin/bash
-# 小米粒执行脚本 v2.0
+# 小米辣执行脚本 v2.0
 # 职责：开发 + 集成 + 发布
 # 协作对象：米粒儿（产品+测试+客户）
 
@@ -20,19 +20,19 @@ ISSUES_DIR="$WORKSPACE/issues"
 
 # 日志函数
 log_info() {
-    echo -e "${BLUE}[小米粒]${NC} $1"
+    echo -e "${BLUE}[小米辣]${NC} $1"
 }
 
 log_success() {
-    echo -e "${GREEN}[小米粒]${NC} ✅ $1"
+    echo -e "${GREEN}[小米辣]${NC} ✅ $1"
 }
 
 log_warning() {
-    echo -e "${YELLOW}[小米粒]${NC} ⚠️  $1"
+    echo -e "${YELLOW}[小米辣]${NC} ⚠️  $1"
 }
 
 log_error() {
-    echo -e "${RED}[小米粒]${NC} ❌ $1"
+    echo -e "${RED}[小米辣]${NC} ❌ $1"
 }
 
 # ============================================
@@ -66,7 +66,7 @@ analyze_product() {
     cat > "$analysis_file" << EOF
 # 技术分析：$product_name
 
-**分析师**：小米粒（资深开发工程师）
+**分析师**：小米辣（资深开发工程师）
 **时间**：$(date '+%Y-%m-%d %H:%M:%S')
 
 ## 技术可行性
@@ -103,7 +103,7 @@ EOF
 
         # 创建回复内容
         cat > /tmp/xiaomi_reply.md << EOF
-## 小米粒（技术视角）分析
+## 小米辣（技术视角）分析
 
 ### 技术可行性
 ✅ 技术可行，预计开发周期：2-3天

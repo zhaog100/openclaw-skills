@@ -1,7 +1,7 @@
 #!/bin/bash
 # 新技能版权保护自动添加脚本
 # 用法：bash scripts/add_copyright.sh <技能名>
-# 作者：小米粒
+# 作者：小米辣
 # 版本：v1.0.0
 
 set -e

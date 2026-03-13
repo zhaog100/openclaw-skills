@@ -60,7 +60,7 @@
 ┌─────────────────────────────────────────────┐
 │  顶层：双米粒协作系统                         │
 │  - 米粒儿：产品构思 + Review                  │
-│  - 小米粒：开发实现 + 自检                    │
+│  - 小米辣：开发实现 + 自检                    │
 │  - AI-to-AI：涌现词汇管理                    │
 └─────────────────────────────────────────────┘
                     ↓
@@ -97,11 +97,11 @@ graph TD
     D -->|≥85%| H[自动切换会话]
     
     E --> I[米粒儿：产品构思]
-    I --> J[小米粒：开发实现]
+    I --> J[小米辣：开发实现]
     J --> K[米粒儿：Review]
-    K --> L[小米粒：Review后思考]
+    K --> L[小米辣：Review后思考]
     L --> M[米粒儿：5层验收]
-    M --> N[小米粒：发布]
+    M --> N[小米辣：发布]
     
     G --> O[同步MEMORY.md]
     O --> P[更新QMD知识库]
@@ -355,7 +355,7 @@ main "$@"
 ├── scripts/
 │   ├── dual_mili_unified.sh             # 统一入口（新增）⭐
 │   ├── mili_product_v3.sh               # 米粒儿脚本（v3.2）
-│   ├── xiaomi_dev_v3.sh                 # 小米粒脚本（v3.2）
+│   ├── xiaomi_dev_v3.sh                 # 小米辣脚本（v3.2）
 │   ├── intelligent-memory-manager.sh    # 智能记忆管理
 │   ├── bitnet_inference.py              # BitNet推理
 │   ├── inference_router.py              # 推理路由
@@ -392,11 +392,11 @@ bash scripts/dual_mili_unified.sh example-skill start
 # 系统自动执行：
 # 1. 启动智能记忆管理（后台监控）
 # 2. 米粒儿创建产品构思
-# 3. 小米粒分析技术方案
+# 3. 小米辣分析技术方案
 # 4. 米粒儿Review
-# 5. 小米粒Review后思考
+# 5. 小米辣Review后思考
 # 6. 米粒儿5层验收
-# 7. 小米粒发布
+# 7. 小米辣发布
 # 8. 自动同步三库（MEMORY+QMD+Git）
 # 9. 记录涌现词汇
 # 10. 上下文达到85%时自动切换

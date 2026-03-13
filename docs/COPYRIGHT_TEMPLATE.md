@@ -1,7 +1,7 @@
 # 技能版权声明模板
 
 **创建时间**：2026-03-12 11:55
-**创建者**：小米粒
+**创建者**：小米辣
 **用途**：所有技能发布/更新时必须包含此版权声明
 
 ---
@@ -22,7 +22,7 @@ Copyright (c) 2026 思捷娅科技/米粒儿
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com/skills/<技能名>
-- 创建者: 小米粒/米粒儿
+- 创建者: 小米辣/米粒儿
 ```
 
 ### 完整版（用于README.md末尾）
@@ -51,12 +51,12 @@ copies or substantial portions of the Software.
 **出处信息**：
 - **GitHub仓库**：https://github.com/zhaog100/openclaw-skills
 - **ClawHub页面**：https://clawhub.com/skills/<技能名>
-- **创建者**：小米粒/米粒儿
+- **创建者**：小米辣/米粒儿
 - **联系方式**：GitHub Issues
 
 **引用格式**：
 ```
-来源：小米粒/米粒儿 - OpenClaw技能库
+来源：小米辣/米粒儿 - OpenClaw技能库
 GitHub：https://github.com/zhaog100/openclaw-skills
 许可证：MIT License
 ```
@@ -94,7 +94,7 @@ SOFTWARE.
 ## 📞 联系方式
 
 - **GitHub Issue**：https://github.com/zhaog100/openclaw-skills/issues/2
-- **创建者**：小米粒
+- **创建者**：小米辣
 
 ## 📄 许可证与版权声明
 
@@ -107,7 +107,7 @@ Copyright (c) 2026 思捷娅科技
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com/skills/demo-skill
-- 创建者: 小米粒
+- 创建者: 小米辣
 ```
 
 ### 2. README.md
@@ -136,7 +136,7 @@ Copyright (c) 2026 思捷娅科技
 #!/bin/bash
 # demo-skill - 双米粒协作系统演示技能
 # 版本：v1.0.0
-# 创建者：小米粒
+# 创建者：小米辣
 # 创建时间：2026-03-12
 #
 # 版权声明：
@@ -165,7 +165,7 @@ Copyright (c) 2026 思捷娅科技
 | 变量 | 说明 | 示例 |
 |------|------|------|
 | `<年份>` | 发布年份 | 2026 |
-| `<创建者>` | 创建者名称 | 小米粒/米粒儿 |
+| `<创建者>` | 创建者名称 | 小米辣/米粒儿 |
 | `<技能名>` | 技能名称 | demo-skill |
 | `<GitHub URL>` | GitHub仓库 | https://github.com/zhaog100/openclaw-skills |
 | `<ClawHub URL>` | ClawHub页面 | https://clawhub.com/skills/demo-skill |
@@ -182,5 +182,5 @@ Copyright (c) 2026 思捷娅科技
 ---
 
 *创建时间：2026-03-12 11:55*
-*创建者：小米粒*
+*创建者：小米辣*
 *用途：所有技能的版权声明标准*
