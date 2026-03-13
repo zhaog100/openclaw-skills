@@ -25,7 +25,7 @@ class TestConfigManager:
             manager = ConfigManager(str(config_path))
             
             assert manager.get("temperature") == 0.5
-            assert manager.get("api_provider") == "zhipu"
+            assert manager.get("api_provider") == "mock"  # 默认使用mock（测试模式）
     
     def test_set_config(self):
         """测试设置配置"""
