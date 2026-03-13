@@ -1,7 +1,7 @@
 # 技术设计文档 - demo-skill
 
 **创建时间**：2026-03-12 11:32
-**创建者**：小米粒
+**创建者**：小米辣
 **版本**：v1.0.0
 **Issue**：#2
 
@@ -75,11 +75,11 @@ show_welcome() {
   demo-skill help    显示帮助文档
 
 【协作流程】
-  1. 米粒儿创建PRD → 2. 小米粒技术设计 → 3. 小米粒开发 →
+  1. 米粒儿创建PRD → 2. 小米辣技术设计 → 3. 小米辣开发 →
   4. 双向Review → 5. 发布到ClawHub
 
 【版本】v1.0.0
-【创建者】小米粒
+【创建者】小米辣
 EOF
 }
 ```
@@ -134,8 +134,8 @@ show_status() {
     echo ""
     echo "【协作流程】"
     echo "  1. ✅ 米粒儿完成PRD"
-    echo "  2. ⏳ 小米粒技术设计（当前）"
-    echo "  3. ⏳ 小米粒开发实现"
+    echo "  2. ⏳ 小米辣技术设计（当前）"
+    echo "  3. ⏳ 小米辣开发实现"
     echo "  4. ⏳ 双向Review"
     echo "  5. ⏳ 发布到ClawHub"
 }
@@ -163,7 +163,7 @@ show_info() {
 【基本信息】
   名称：demo-skill
   版本：v1.0.0
-  创建者：小米粒
+  创建者：小米辣
   创建时间：2026-03-12
 
 【技术栈】
@@ -245,23 +245,23 @@ show_help() {
   - 创建GitHub Issue
   - Git提交并推送
 
-步骤2️⃣  小米粒技术设计
+步骤2️⃣  小米辣技术设计
   - 查询Issue
   - 创建技术设计文档
   - 评论Issue（技术设计完成）
 
-步骤3️⃣  小米粒开发实现
+步骤3️⃣  小米辣开发实现
   - 编写代码
   - 编写测试
   - 自检（质疑清单）
 
 步骤4️⃣  双向Review
   - 米粒儿12维度Review
-  - 小米粒回应质疑
+  - 小米辣回应质疑
   - 米粒儿5层验收
 
 步骤5️⃣  发布到ClawHub
-  - 小米粒发布
+  - 小米辣发布
   - 生成Package ID
   - 关闭Issue
 
@@ -306,7 +306,7 @@ A4: clawhub install demo-skill
 【联系方式】
 
 GitHub Issue：https://github.com/zhaog100/openclaw-skills/issues/2
-创建者：小米粒
+创建者：小米辣
 创建时间：2026-03-12
 EOF
 }
@@ -360,7 +360,7 @@ test_status() {
 test_info() {
     output=$(./demo-skill.sh info)
     assert_contains "$output" "v1.0.0"
-    assert_contains "$output" "小米粒"
+    assert_contains "$output" "小米辣"
 }
 
 # 测试4：help命令
@@ -463,6 +463,6 @@ test_performance() {
 ---
 
 *设计时间：2026-03-12 11:32*
-*设计者：小米粒*
+*设计者：小米辣*
 *版本：v1.0.0*
 *Issue：#2*

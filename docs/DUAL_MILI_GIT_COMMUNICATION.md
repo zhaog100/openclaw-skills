@@ -13,7 +13,7 @@
 ```
 ┌─────────────────┐                  ┌─────────────────┐
 │   会话1         │                  │   会话2         │
-│   米粒儿        │                  │   小米粒        │
+│   米粒儿        │                  │   小米辣        │
 │  (产品经理)     │                  │   (开发者)      │
 │  OpenClaw #1    │                  │  OpenClaw #2    │
 └────────┬────────┘                  └────────┬────────┘
@@ -74,7 +74,7 @@
 | 标签 | 用途 | 示例 |
 |------|------|------|
 | `米粒儿` | 米粒儿创建的Issue | 产品构思、Review |
-| `小米粒` | 小米粒创建的Issue | 开发完成、思考 |
+| `小米辣` | 小米辣创建的Issue | 开发完成、思考 |
 | `concept` | 产品构思阶段 | 产品定义 |
 | `dev` | 开发阶段 | 代码提交 |
 | `review` | Review阶段 | Review请求 |
@@ -128,10 +128,10 @@ Closed (完成)
 ---
 **创建者**：米粒儿
 **时间**：[时间]
-**下一步**：等待小米粒的技术分析
+**下一步**：等待小米辣的技术分析
 ```
 
-#### 开发完成（小米粒）
+#### 开发完成（小米辣）
 
 ```markdown
 ## 🎯 功能名称
@@ -154,7 +154,7 @@ Closed (完成)
 2. [重点2]
 
 ---
-**创建者**：小米粒
+**创建者**：小米辣
 **时间**：[时间]
 **下一步**：等待米粒儿的Review
 ```
@@ -182,7 +182,7 @@ Closed (完成)
 ---
 **创建者**：米粒儿
 **时间**：[时间]
-**下一步**：等待小米粒的思考或修改
+**下一步**：等待小米辣的思考或修改
 ```
 
 ---
@@ -253,8 +253,8 @@ workspace/
 
 **通信协议**：
 1. 米粒儿写文件到 `outbox/` → Git Push
-2. 小米粒 Git Pull → 读取 `outbox/`
-3. 小米粒写文件到 `outbox/` → Git Push
+2. 小米辣 Git Pull → 读取 `outbox/`
+3. 小米辣写文件到 `outbox/` → Git Push
 4. 米粒儿 Git Pull → 读取 `outbox/`
 
 ---
@@ -287,10 +287,10 @@ git commit -m "feat(demo-skill): 产品构思"
 git push origin master
 ```
 
-#### 2. 小米粒：读取+分析
+#### 2. 小米辣：读取+分析
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 cd /root/.openclaw/workspace
 
 # Git拉取
@@ -314,10 +314,10 @@ git commit -m "feat(demo-skill): 技术分析"
 git push origin master
 ```
 
-#### 3. 小米粒：开发+自检
+#### 3. 小米辣：开发+自检
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 # 开发
 bash scripts/xiaomi_dev_v3.sh demo-skill dev
 
@@ -358,10 +358,10 @@ git commit -m "feat(demo-skill): Review通过"
 git push origin master
 ```
 
-#### 5. 小米粒：发布
+#### 5. 小米辣：发布
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 # 合并PR
 gh pr merge [pr-number] --squash
 
@@ -480,10 +480,10 @@ bash scripts/mili_comm.sh create_issue demo-skill concept docs/products/2026-03-
 
 ---
 
-#### 步骤2：小米粒读取并分析
+#### 步骤2：小米辣读取并分析
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 git pull origin master
 bash scripts/mili_comm.sh query_issue demo-skill open
 # 输出：Issue #42: [demo-skill] concept
@@ -497,10 +497,10 @@ bash scripts/mili_comm.sh comment_issue 42 "技术分析完成，可以开始开
 
 ---
 
-#### 步骤3：小米粒开发并自检
+#### 步骤3：小米辣开发并自检
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 bash scripts/xiaomi_dev_v3.sh demo-skill dev
 bash scripts/xiaomi_dev_v3.sh demo-skill check
 bash scripts/mili_comm.sh comment_issue 42 "开发完成，自检通过，请求Review"
@@ -523,10 +523,10 @@ bash scripts/mili_comm.sh comment_issue 42 "Review完成，✅ 批准发布"
 
 ---
 
-#### 步骤5：小米粒发布
+#### 步骤5：小米辣发布
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 bash scripts/xiaomi_dev_v3.sh demo-skill publish
 bash scripts/mili_comm.sh close_issue 42 "✅ 发布成功，Package ID: k97xxx"
 ```
@@ -556,7 +556,7 @@ bash scripts/mili_comm.sh close_issue 42 "✅ 发布成功，Package ID: k97xxx"
    - `scripts/mili_comm.sh`
 
 3. **约定Issue标签**
-   - `米粒儿`、`小米粒`
+   - `米粒儿`、`小米辣`
    - `concept`、`dev`、`review`、`accept`、`publish`
 
 4. **定期同步**

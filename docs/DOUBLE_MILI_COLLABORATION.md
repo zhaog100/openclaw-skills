@@ -24,7 +24,7 @@
 
 **职责**：
 1. 提供产品构思（通过GitHub）
-2. 检查验证小米粒的开发成果
+2. 检查验证小米辣的开发成果
 3. 验收通过后通知发布
 4. 质量把关（测试+产品双重视角）
 
@@ -35,7 +35,7 @@
 
 ---
 
-### **小米粒**（资深开发工程师）
+### **小米辣**（资深开发工程师）
 
 **专业领域**：
 - ✅ 软件开发（代码实现）
@@ -60,7 +60,7 @@
 ## 🔄 协作流程
 
 ```
-米粒儿（产品+测试+客户）        小米粒（开发+集成+发布）
+米粒儿（产品+测试+客户）        小米辣（开发+集成+发布）
         │                              │
         ├─1. 提供产品构思 ─────────────→│
         │  （通过GitHub）              │
@@ -89,13 +89,13 @@
    - 创建产品构思文档（products/xxx-concept.md）
    - 提交到GitHub
 
-2. **小米粒技术实现**
+2. **小米辣技术实现**
    - 读取产品构思
    - 设计技术方案
    - 编写代码实现
    - 集成功能模块
 
-3. **小米粒提交成品**
+3. **小米辣提交成品**
    - 创建feature分支
    - 提交代码到GitHub
    - 通知米粒儿验收
@@ -110,7 +110,7 @@
    - 验收通过：创建发布通知
    - 验收不通过：提供修改建议
 
-6. **小米粒发布上线**
+6. **小米辣发布上线**
    - 合并到master分支
    - 发布到ClawHub
    - 通知米粒儿发布完成
@@ -139,7 +139,7 @@ review/xxx      # 米粒儿的验收文档
 │   ├── README.md               # 产品构思索引
 │   └── xxx-concept.md          # 具体产品构思
 │
-├── skills/                      # 小米粒的实现
+├── skills/                      # 小米辣的实现
 │   └── xxx/                    # 技能实现
 │       ├── SKILL.md            # 技能文档
 │       ├── package.json        # 配置文件
@@ -156,7 +156,7 @@ review/xxx      # 米粒儿的验收文档
 │
 └── scripts/                     # 协作脚本
     ├── mili_product.sh          # 米粒儿产品脚本
-    ├── xiaomi_dev.sh            # 小米粒开发脚本
+    ├── xiaomi_dev.sh            # 小米辣开发脚本
     └── collaboration.sh         # 协作流程脚本
 ```
 
@@ -201,7 +201,7 @@ review/xxx      # 米粒儿的验收文档
 
 ## 基本信息
 - 产品名称：xxx
-- 开发者：小米粒
+- 开发者：小米辣
 - 验收人：米粒儿
 - 验收时间：2026-03-11
 
@@ -231,7 +231,7 @@ review/xxx      # 米粒儿的验收文档
 
 | 优势 | 说明 |
 |------|------|
-| 专业分工 | 米粒儿（产品+测试） + 小米粒（开发） |
+| 专业分工 | 米粒儿（产品+测试） + 小米辣（开发） |
 | 技能互补 | 项目管理经验 + 技术实现能力 |
 | 质量保证 | 产品验收 + 测试验证 |
 | GitHub协作 | 版本管理 + 代码审查 |
@@ -321,7 +321,7 @@ git add products/
 git commit -m "product: 测试报告生成器产品构思"
 git push origin master
 
-# 小米粒实现
+# 小米辣实现
 git checkout -b feature/test-report-generator
 # ... 开发实现 ...
 
@@ -329,7 +329,7 @@ git checkout -b feature/test-report-generator
 git checkout feature/test-report-generator
 # ... 检查验证 ...
 
-# 小米粒发布
+# 小米辣发布
 git checkout master
 git merge feature/test-report-generator
 clawhub publish skills/test-report-generator
@@ -345,7 +345,7 @@ clawhub publish skills/test-report-generator
    - 验收要严格但合理
    - 提供建设性反馈
 
-2. **小米粒工作原则**
+2. **小米辣工作原则**
    - 深入理解产品构思
    - 技术实现要符合最佳实践
    - 代码质量要高

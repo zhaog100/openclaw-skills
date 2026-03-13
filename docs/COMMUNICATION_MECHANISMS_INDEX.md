@@ -3,13 +3,13 @@
 **创建时间**：2026-03-12 20:17  
 **版本**：v1.0  
 **状态**：✅ 已完善  
-**来源**：GitHub docs/SIX_MECHANISMS_INDEX.md（小米粒更新）
+**来源**：GitHub docs/SIX_MECHANISMS_INDEX.md（小米辣更新）
 
 ---
 
 ## 🎯 概述
 
-双米粒协作系统的 6 大核心机制，确保小米粒和米粒儿（两个独立智能体会话）高效协作。
+双米粒协作系统的 6 大核心机制，确保小米辣和米粒儿（两个独立智能体会话）高效协作。
 
 **核心原则**：
 - ✅ 两个独立智能体会话
@@ -47,7 +47,7 @@
 
 **示例**：
 ```markdown
-@小米粒 🔴 高优先级任务
+@小米辣 🔴 高优先级任务
 
 请 Review Smart Model v2.0
 Issue: #4
@@ -207,4 +207,4 @@ Issue 评论 → QQ 通知 → 上报官家
 
 *最后更新：2026-03-12 20:17*  
 *版本：v1.0*  
-*来源：GitHub docs/SIX_MECHANISMS_INDEX.md（小米粒更新）*
+*来源：GitHub docs/SIX_MECHANISMS_INDEX.md（小米辣更新）*

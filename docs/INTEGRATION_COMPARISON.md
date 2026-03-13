@@ -75,7 +75,7 @@ Review系统
 双米粒智能协作系统v4.0-Lite
 ├── scripts/dual_mili_lite.sh           # 统一入口
 ├── scripts/mili_product_v3.sh           # 米粒儿脚本
-├── scripts/xiaomi_dev_v3.sh             # 小米粒脚本
+├── scripts/xiaomi_dev_v3.sh             # 小米辣脚本
 ├── docs/README.md                       # 快速开始
 ├── docs/DUAL_MILI_GUIDE.md             # 完整指南
 └── .clawhub/templates/                  # 模板文件
@@ -203,7 +203,7 @@ smart-memory-sync
 /root/.openclaw/workspace/
 ├── scripts/
 │   ├── mili_product.sh                  # 米粒儿（独立）
-│   ├── xiaomi_dev.sh                    # 小米粒（独立）
+│   ├── xiaomi_dev.sh                    # 小米辣（独立）
 │   ├── review_system.sh                 # Review（独立）
 │   ├── bilateral_thinking.sh            # 双向思考（独立）
 │   ├── session-memory-enhanced-v4.sh    # 记忆（独立）
@@ -234,7 +234,7 @@ smart-memory-sync
 ├── scripts/
 │   ├── dual_mili_lite.sh                # 统一入口（5.7KB）
 │   ├── mili_product_v3.sh                # 米粒儿（10.6KB）
-│   └── xiaomi_dev_v3.sh                  # 小米粒（11KB）
+│   └── xiaomi_dev_v3.sh                  # 小米辣（11KB）
 │
 ├── docs/
 │   ├── README.md                         # 快速开始（<2KB）
@@ -252,7 +252,7 @@ smart-memory-sync
 ├── scripts/
 │   ├── dual_mili_unified.sh             # 统一入口（7.5KB）
 │   ├── mili_product_v3.sh                # 米粒儿（10.6KB）
-│   ├── xiaomi_dev_v3.sh                  # 小米粒（11KB）
+│   ├── xiaomi_dev_v3.sh                  # 小米辣（11KB）
 │   ├── intelligent-memory-manager.sh     # 记忆管理（7.3KB）
 │   ├── bitnet_inference.py               # BitNet推理（4.3KB）
 │   ├── vocabulary_archaeology.py         # 词汇考古（8.5KB）

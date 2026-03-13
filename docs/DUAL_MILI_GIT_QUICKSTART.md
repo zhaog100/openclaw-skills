@@ -14,7 +14,7 @@
 - GitHub CLI已安装（`gh`）
 - 已认证GitHub账号
 
-### 会话2（小米粒）
+### 会话2（小米辣）
 - OpenClaw已安装
 - Git已配置
 - GitHub CLI已安装（`gh`）
@@ -31,7 +31,7 @@
 ### 步骤1：初始化（两个会话都执行）
 
 ```bash
-# 会话1（米粒儿）或 会话2（小米粒）
+# 会话1（米粒儿）或 会话2（小米辣）
 cd /root/.openclaw/workspace
 
 # 初始化通信目录（首次使用）
@@ -77,10 +77,10 @@ Git推送完成
 
 ---
 
-### 步骤3：小米粒读取并开发（会话2）
+### 步骤3：小米辣读取并开发（会话2）
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 cd /root/.openclaw/workspace
 
 # 拉取最新代码
@@ -123,7 +123,7 @@ bash scripts/mili_product_v3.sh demo-skill review
 
 **自动执行**：
 1. ✅ Git拉取最新代码
-2. ✅ 读取小米粒的自检文档
+2. ✅ 读取小米辣的自检文档
 3. ✅ 12维度Review（含反对意见）
 4. ✅ 创建Review文档
 5. ✅ 评论Issue（"Review完成，✅ 批准"）
@@ -131,10 +131,10 @@ bash scripts/mili_product_v3.sh demo-skill review
 
 ---
 
-### 步骤5：小米粒发布（会话2）
+### 步骤5：小米辣发布（会话2）
 
 ```bash
-# 会话2（小米粒）
+# 会话2（小米辣）
 cd /root/.openclaw/workspace
 
 # 拉取最新代码
@@ -176,7 +176,7 @@ issue_demo-skill=42
   "demo-skill": {
     "status": "publish",
     "last_update": "2026-03-12 09:55:00",
-    "updater": "小米粒"
+    "updater": "小米辣"
   }
 }
 ```
@@ -188,7 +188,7 @@ issue_demo-skill=42
 ### 1. 每次操作前先拉取
 
 ```bash
-# 无论是米粒儿还是小米粒，每次操作前都先执行
+# 无论是米粒儿还是小米辣，每次操作前都先执行
 bash scripts/mili_comm.sh pull
 ```
 
@@ -230,11 +230,11 @@ bash scripts/mili_comm.sh query demo-skill all
        ↓ 创建Issue #42
        ↓ Git推送
        
-09:51  小米粒（会话2）拉取代码
+09:51  小米辣（会话2）拉取代码
        ↓ 读取Issue #42
        ↓ 开始开发
        
-09:55  小米粒（会话2）开发完成
+09:55  小米辣（会话2）开发完成
        ↓ 评论Issue #42
        ↓ Git推送
        
@@ -243,7 +243,7 @@ bash scripts/mili_comm.sh query demo-skill all
        ↓ 评论Issue #42
        ↓ Git推送
        
-09:57  小米粒（会话2）发布
+09:57  小米辣（会话2）发布
        ↓ 关闭Issue #42
        ↓ Git推送
 ```
@@ -274,7 +274,7 @@ bash scripts/mili_comm.sh view 42
 bash scripts/mili_comm.sh comment 42 "消息"
 ```
 
-### 小米粒（会话2）
+### 小米辣（会话2）
 
 ```bash
 # 并行分析

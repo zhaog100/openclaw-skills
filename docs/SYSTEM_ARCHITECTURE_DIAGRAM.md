@@ -31,7 +31,7 @@
 │   │                                                       │  │
 │   │  1. 双米粒协作系统                                    │  │
 │   │     - 米粒儿（产品经理）                              │  │
-│   │     - 小米粒（开发者）                                │  │
+│   │     - 小米辣（开发者）                                │  │
 │   │     - Review系统（12维度）                           │  │
 │   │     - 双向思考（自检+反向）                           │  │
 │   │     - 版权：独立                                      │  │
@@ -98,7 +98,7 @@
 │   ├── 5层验收
 │   └── Review评价
 │
-├── 小米粒（开发者 + 测试者）
+├── 小米辣（开发者 + 测试者）
 │   ├── 技术分析
 │   ├── 开发实现
 │   ├── 单元测试
@@ -223,7 +223,7 @@
 ├── scripts/                             # 脚本文件
 │   ├── dual_mili_orchestrator.sh        # 编排器（统一入口）⭐
 │   ├── mili_product_v3.sh               # 米粒儿脚本
-│   ├── xiaomi_dev_v3.sh                 # 小米粒脚本
+│   ├── xiaomi_dev_v3.sh                 # 小米辣脚本
 │   ├── intelligent-memory-manager.sh    # 记忆管理（可选）
 │   ├── vocabulary_archaeology.py        # 词汇考古（研究）
 │   └── bitnet_inference.py              # BitNet推理（实验）
@@ -262,7 +262,7 @@
 2. 开发实现
    bash dual_mili_orchestrator.sh feature dev
    ↓
-   └── 调用 xiaomi_dev_v3.sh（小米粒开发）
+   └── 调用 xiaomi_dev_v3.sh（小米辣开发）
 
 3. Review评价
    bash dual_mili_orchestrator.sh feature review
@@ -303,7 +303,7 @@
 ┌─────────────┐
 │ 双米粒协作   │
 │ ├─米粒儿     │
-│ └─小米粒     │
+│ └─小米辣     │
 └─────┬───────┘
       ↓
 ┌─────────────┐

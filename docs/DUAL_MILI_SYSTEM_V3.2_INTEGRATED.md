@@ -32,7 +32,7 @@
 ┌─────────────────────────────────────────────┐
 │  中层：双米粒协作系统v3.2                     │
 │  - 米粒儿（产品经理 + 质量官）                │
-│  - 小米粒（开发者 + 测试者）                  │
+│  - 小米辣（开发者 + 测试者）                  │
 │  - 12维度Review + 5层验收                    │
 │  - 双向思考 + 强制反对意见                    │
 └─────────────────────────────────────────────┘
@@ -56,8 +56,8 @@
 **5个实体**：
 1. **米粒儿**（AI-Product）
 2. **官家**（米粒儿的操作员）
-3. **小米粒**（AI-Dev）
-4. **官家**（小米粒的操作员，同一个人）
+3. **小米辣**（AI-Dev）
+4. **官家**（小米辣的操作员，同一个人）
 5. **系统**（Git、ClawHub、MEMORY.md - 代替传统"观众"）
 
 **我们的优势**：
@@ -73,7 +73,7 @@
 ### 协作词汇
 - **反对意见** - 来自Dev.to启发，现为核心概念
 - **系统约束** - 来自四方问题，用于描述环境限制
-- **质疑清单** - 小米粒主动质疑Review的工具
+- **质疑清单** - 小米辣主动质疑Review的工具
 
 ### 技术词汇
 - **Token节省** - 从78%到90%+的优化目标
@@ -92,7 +92,7 @@
 ## 协作约束（基于AI-to-AI对话研究）
 
 ### 1. 为互动设计
-- 米粒儿和小米粒的性格在协作中被测试
+- 米粒儿和小米辣的性格在协作中被测试
 - 另一个AI会注意到不一致性
 - 会引入未计划的词汇
 - **实践**：保持性格一致性，记录涌现词汇
@@ -168,7 +168,7 @@ def select_inference_engine(task_type, complexity, api_quota):
         return "bitnet"
 ```
 
-**集成到小米粒脚本**：
+**集成到小米辣脚本**：
 
 ```bash
 # xiaomi_dev_v3.sh 新增功能
@@ -252,12 +252,12 @@ fi
 # 复杂度：3 → 使用BitNet
 bash scripts/mili_product_v3.sh <功能名> analyze --engine bitnet
 
-# 小米粒（技术角度分析）
+# 小米辣（技术角度分析）
 # 复杂度：6 → 使用API
 bash scripts/xiaomi_dev_v3.sh <功能名> analyze --engine api
 ```
 
-### Phase 3: 开发与自检（小米粒主导）
+### Phase 3: 开发与自检（小米辣主导）
 
 **增强**：
 - 简单代码生成使用BitNet
@@ -304,7 +304,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> think
 bash scripts/mili_product_v3.sh <功能名> accept
 ```
 
-### Phase 6: 发布与归档（小米粒主导）
+### Phase 6: 发布与归档（小米辣主导）
 
 **增强**：
 - 更新涌现词汇表
@@ -327,7 +327,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 │
 ├── scripts/
 │   ├── mili_product_v3.sh               # 米粒儿脚本（v3.2）
-│   ├── xiaomi_dev_v3.sh                 # 小米粒脚本（v3.2）
+│   ├── xiaomi_dev_v3.sh                 # 小米辣脚本（v3.2）
 │   ├── intelligent-memory-manager.sh    # 智能记忆管理
 │   ├── bitnet_inference.py              # BitNet推理封装（新增）
 │   ├── inference_router.py              # 推理路由器（新增）
