@@ -198,3 +198,54 @@ class ConsistencyChecker:
         
         conn.commit()
         conn.close()
+
+
+# ========== 顶层函数包装器（兼容test.sh）==========
+
+def check_consistency(outputs: List[str], threshold: float = 80.0) -> Dict:
+    """检查输出列表的一致性（包装器）
+    
+    Args:
+        outputs: 输出文本列表
+        threshold: 一致性阈值（默认80%）
+    
+    Returns:
+        dict: 包含average_similarity, consistency_level等
+    """
+    if not outputs or len(outputs) < 2:
+        return {
+            "average_similarity": 0.0,
+            "consistency_level": "数据不足",
+            "details": {}
+        }
+    
+    # 计算两两相似度
+    scores = []
+    for i in range(len(outputs)):
+        for j in range(i+1, len(outputs)):
+            score = SequenceMatcher(None, outputs[i], outputs[j]).ratio() * 100
+            scores.append(score)
+    
+    avg_score = sum(scores) / len(scores) if scores else 0.0
+    
+    # 确定一致性等级
+    if avg_score >= 95:
+        level = "优秀"
+    elif avg_score >= 85:
+        level = "良好"
+    elif avg_score >= 70:
+        level = "一般"
+    else:
+        level = "较差"
+    
+    return {
+        "average_similarity": round(avg_score, 2),
+        "consistency_level": level,
+        "passed": avg_score >= threshold,
+        "threshold": threshold,
+        "details": {
+            "min": round(min(scores), 2) if scores else 0.0,
+            "max": round(max(scores), 2) if scores else 0.0,
+            "std": round(stdev(scores), 2) if len(scores) > 1 else 0.0
+        }
+    }

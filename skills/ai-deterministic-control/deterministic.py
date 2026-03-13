@@ -346,3 +346,73 @@ def stats():
 
 if __name__ == '__main__':
     cli()
+
+
+# ========== 顶层函数包装器（兼容test.sh）==========
+
+# 全局实例（延迟初始化）
+_temperature_controller = None
+_consistency_checker = None
+_reproducibility_guarantor = None
+
+def _get_temperature_controller():
+    """获取温度控制器实例（延迟初始化）"""
+    global _temperature_controller
+    if _temperature_controller is None:
+        _temperature_controller = TemperatureController()
+    return _temperature_controller
+
+def _get_consistency_checker():
+    """获取一致性检查器实例（延迟初始化）"""
+    global _consistency_checker
+    if _consistency_checker is None:
+        _consistency_checker = ConsistencyChecker()
+    return _consistency_checker
+
+def _get_reproducibility_guarantor():
+    """获取可复现性保证器实例（延迟初始化）"""
+    global _reproducibility_guarantor
+    if _reproducibility_guarantor is None:
+        _reproducibility_guarantor = ReproducibilityGuarantor()
+    return _reproducibility_guarantor
+
+def set_temperature(value):
+    """设置温度参数（包装器）
+    
+    Args:
+        value: 温度值（0.0-2.0）
+    
+    Returns:
+        dict: 包含temperature, mode, timestamp的字典
+    
+    Raises:
+        ValueError: 温度超出范围
+    """
+    return _get_temperature_controller().set_temperature(value)
+
+def get_temperature():
+    """获取当前温度（包装器）
+    
+    Returns:
+        float: 当前温度值
+    """
+    return _get_temperature_controller().get_current()
+
+def set_seed(seed):
+    """设置随机种子（包装器）
+    
+    Args:
+        seed: 随机种子（整数）
+    
+    Returns:
+        dict: 包含seed, timestamp的字典
+    """
+    return _get_reproducibility_guarantor().set_seed(seed)
+
+def get_seed():
+    """获取当前种子（包装器）
+    
+    Returns:
+        int: 当前种子值
+    """
+    return _get_reproducibility_guarantor().get_current_seed()
