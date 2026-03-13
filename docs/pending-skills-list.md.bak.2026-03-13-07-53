@@ -130,31 +130,27 @@ git push origin master
 
 ---
 
-#### 2. smart-model v2.0（智能模型增强版）⭐⭐⭐ ⏳ 待发布
-- **状态**：✅ **开发完成 + Review 通过**，等待 ClawHub 发布
-- **位置**：`skills/smart-model/`（✅ 已创建，3572 行代码）
-- **Issue**：#4（CLOSED）+ #5（OPEN 技术设计）+ #6（CLOSED Review）
-- **PRD**：`docs/products/2026-03-12_smart-model_PRD.md`（8.1KB）
-- **技术设计**：`docs/products/smart-model_tech_design.md`（7.9KB）
-- **Review**：`reviews/smart-model-v2.0_review_20260312.md`（5.00/5.00 满分）
-- **功能**：智能模型自动切换增强版（4 维度复杂度评分 +3 级上下文保护）
+#### 2. smart-model v2.0（智能模型增强版）⭐⭐
+- **状态**：✅ **PRD 完成 + Issue #4 已创建**，等待小米粒开发
+- **位置**：`skills/smart-model/`（待创建）
+- **Issue**：#4（OPEN）
+- **PRD**：`docs/products/2026-03-12_smart-model_PRD.md`（4.5KB）
+- **功能**：智能模型自动切换增强版（5 个核心功能 + 2 个辅助功能）
 - **技术栈**：Bash + Node.js + Python
-- **开发者**：小米粒
-- **Review 者**：米粒儿（2026-03-12 21:10）
-- **Git 提交**：0b9bb24, 2836ddf, fb12f9d
-- **负责人**：小米粒（发布）
+- **复用**：smart-model-switch v1.3.0（已有完整代码）
+- **预计时间**：4.5-5.5 天
+- **负责人**：米粒儿（PRD）→ 小米粒（开发）
 
 **完成情况**：
 - [x] 米粒儿创建 Concept
 - [x] 官家确认
 - [x] 米粒儿完善 PRD
 - [x] 创建 GitHub Issue #4
-- [x] 小米粒技术设计
-- [x] 小米粒开发实现（3572 行代码，10 个文件）
-- [x] 米粒儿 Review（5.00/5.00 满分）
-- [x] Issue #4 已关闭
-- [x] 版权信息添加（思捷娅科技 MIT License）
-- [ ] ClawHub 发布（昨晚服务不可用，待重试）
+- [x] 通知小米粒开发
+- [ ] 小米粒技术设计
+- [ ] 小米粒开发实现
+- [ ] 双向 Review
+- [ ] 发布到 ClawHub
 
 ---
 
@@ -182,13 +178,11 @@ git push origin master
 ---
 
 #### 4. multi-platform-notifier（多平台通知）⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_multi-platform-notifier_PRD.md`（4.9KB）
+- **状态**：概念阶段
 - **功能**：多平台通知集成（企业微信 + 钉钉 + 飞书）
 - **技术栈**：Bash + API
 - **预计时间**：2-3 天
 - **需求**：统一通知接口
-- **优先级**：P0
 
 **核心功能**：
 - 企业微信机器人通知
@@ -197,16 +191,14 @@ git push origin master
 - 统一发送接口
 
 **待办**：
-- [x] 创建 Concept 文档
-- [x] 编写 PRD
-- [ ] 创建 GitHub Issue
+- [ ] 创建 Concept 文档
+- [ ] 编写 PRD
 - [ ] 开发实现
 
 ---
 
 #### 5. auto-document-generator（自动文档生成）⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_auto-document-generator_PRD.md`（4.9KB）
+- **状态**：概念阶段
 - **功能**：自动生成技术文档
 - **技术栈**：Python + AI
 - **预计时间**：3-5 天
@@ -226,8 +218,7 @@ git push origin master
 ---
 
 #### 6. test-case-generator（测试用例生成）⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_test-case-generator_PRD.md`（4.9KB）
+- **状态**：概念阶段
 - **功能**：自动生成测试用例
 - **技术栈**：Python + AI
 - **预计时间**：3-5 天
@@ -249,8 +240,7 @@ git push origin master
 ### P2 优先级（中）
 
 #### 7. code-review-assistant（代码 Review 辅助）⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_code-review-assistant_PRD.md`（1.8KB）
+- **状态**：概念阶段
 - **功能**：代码 Review 辅助
 - **技术栈**：Bash + AI
 - **预计时间**：2-3 天
@@ -270,8 +260,7 @@ git push origin master
 ---
 
 #### 8. project-progress-tracker（项目进度跟踪）⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_project-progress-tracker_PRD.md`（1.2KB）
+- **状态**：概念阶段
 - **功能**：项目进度跟踪
 - **技术栈**：Bash + Git
 - **预计时间**：2-3 天
@@ -291,8 +280,7 @@ git push origin master
 ---
 
 #### 9. knowledge-graph-builder（知识图谱构建）⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_knowledge-graph-builder_PRD.md`（1.2KB）
+- **状态**：概念阶段
 - **功能**：知识图谱构建
 - **技术栈**：Python + GraphDB
 - **预计时间**：5-7 天
@@ -364,10 +352,9 @@ git push origin master
 
 ### P0 优先级（新增 - Dev.to 学习成果）⭐⭐⭐⭐⭐
 
-#### 11. AI 代码审查助手（ai-code-reviewer）⭐⭐⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_ai-code-reviewer_PRD.md`（5.7KB）
+#### 11. AI 代码审查助手 ⭐⭐⭐⭐⭐
 - **来源**：Dev.to 文章#5（本地 AI 代码审查工具）
+- **状态**：Concept 阶段
 - **功能**：使用本地模型（Ollama）进行代码 Review
 - **技术栈**：Bash + Python + Ollama
 - **预计时间**：3-5 天
@@ -386,10 +373,9 @@ git push origin master
 
 ---
 
-#### 12. CLI 工具开发技能（cli-tool-generator）⭐⭐⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_cli-tool-generator_PRD.md`（5.3KB）
+#### 12. CLI 工具开发技能 ⭐⭐⭐⭐⭐
 - **来源**：Dev.to 文章#1（GitHub Copilot CLI Challenge）
+- **状态**：Concept 阶段
 - **功能**：快速创建 CLI 工具模板
 - **技术栈**：Bash + Python
 - **预计时间**：2-3 天
@@ -408,10 +394,9 @@ git push origin master
 
 ---
 
-#### 13. AI 效率监控工具（ai-efficiency-monitor）⭐⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_ai-efficiency-monitor_PRD.md`（5.0KB）
+#### 13. AI 效率监控工具 ⭐⭐⭐⭐
 - **来源**：Dev.to 文章#7（Manus AI 任务分析）
+- **状态**：Concept 阶段
 - **功能**：监控 AI 任务执行效率
 - **技术栈**：Python + 数据分析
 - **预计时间**：3-4 天
@@ -432,10 +417,9 @@ git push origin master
 
 ### P1 优先级（新增 - Dev.to 学习成果）⭐⭐⭐⭐
 
-#### 14. AI 状态持久化技能（ai-state-persistence）⭐⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_ai-state-persistence_PRD.md`（4.9KB）
+#### 14. AI 状态持久化技能 ⭐⭐⭐⭐
 - **来源**：Dev.to 文章#6（LangGraph + PostgreSQL）
+- **状态**：Concept 阶段
 - **功能**：AI 对话状态持久化
 - **技术栈**：Python + SQLite/PostgreSQL
 - **预计时间**：3-4 天
@@ -454,10 +438,9 @@ git push origin master
 
 ---
 
-#### 15. AI 安全框架技能（ai-safety-framework）⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_ai-safety-framework_PRD.md`（4.9KB）
+#### 15. AI 安全框架技能 ⭐⭐⭐
 - **来源**：Dev.to 文章#3（The Four Gates 威胁模型）
+- **状态**：Concept 阶段
 - **功能**：AI 代理系统安全检查
 - **技术栈**：Python + 安全框架
 - **预计时间**：4-5 天
@@ -476,11 +459,9 @@ git push origin master
 
 ---
 
-#### 16. AI 确定性控制工具（ai-determinism-control）⭐⭐⭐
-- **状态**：✅ **PRD 完成 + Issue #7 已创建**（技术设计中）
-- **PRD**：`docs/products/2026-03-12_ai-determinism-control_PRD.md`（4.7KB）
-- **Issue**：#7（OPEN）
+#### 16. AI 确定性控制工具 ⭐⭐⭐
 - **来源**：Dev.to 文章#2（Drift to Determinism）
+- **状态**：Concept 阶段
 - **功能**：控制 AI 输出随机性
 - **技术栈**：Python + AI API
 - **预计时间**：2-3 天
@@ -501,10 +482,9 @@ git push origin master
 
 ### P2 优先级（新增 - Dev.to 学习成果）⭐⭐⭐
 
-#### 17. 创业想法分析工具（startup-idea-analyzer）⭐⭐⭐
-- **状态**：✅ **PRD 完成**，等待 Issue 创建
-- **PRD**：`docs/products/2026-03-12_startup-idea-analyzer_PRD.md`（1.2KB）
+#### 17. 创业想法分析工具 ⭐⭐⭐
 - **来源**：Dev.to 文章#8（AI 扫描 2500 个创业想法）
+- **状态**：Concept 阶段
 - **功能**：AI 分析创业想法可行性
 - **技术栈**：Python + AI 模型
 - **预计时间**：4-5 天

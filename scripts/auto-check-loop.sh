@@ -1,5 +1,5 @@
 #!/bin/bash
-# 自动检查循环脚本 - 每 30 秒检查一次
+# 自动检查循环脚本 - 每 1 分钟检查一次
 
 WORKSPACE="/home/zhaog/.openclaw/workspace"
 INBOX="$WORKSPACE/.mili_comm/inbox"
@@ -27,8 +27,8 @@ check_new_files() {
 }
 
 # 主循环
-log "🔄 自动检查循环启动（每 30 秒）"
+log "🔄 自动检查循环启动（每 1 分钟）"
 while true; do
     check_new_files
-    sleep 30
+    sleep 60
 done
