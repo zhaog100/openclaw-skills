@@ -1,0 +1,28 @@
+{
+  "name": "playwright",
+  "version": "1.0.2",
+  "description": "Browser automation and web scraping with Playwright. Forms, screenshots, data extraction. Works standalone or via MCP. Testing included.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "playwright",
+    "browser-automation",
+    "web-scraping",
+    "e2e-testing",
+    "mcp"
+  ],
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/playwright"
+  },
+  "homepage": "https://playwright.dev",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

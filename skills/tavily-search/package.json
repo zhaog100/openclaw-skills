@@ -1,0 +1,28 @@
+{
+  "name": "tavily-search",
+  "version": "1.0.0",
+  "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tavily",
+    "web-search",
+    "ai-search",
+    "api-integration",
+    "web-scraping"
+  ],
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tavily-ai/tavily"
+  },
+  "homepage": "https://tavily.com",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
