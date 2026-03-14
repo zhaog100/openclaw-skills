@@ -2409,13 +2409,27 @@ skills/context-manager-v2/
 
 ---
 
+### 仓库配置 ⭐⭐⭐⭐⭐
+
+**主要仓库（xiaomila）**：
+- 地址：https://github.com/zhaog100/xiaomila-skills.git
+- 用途：小米粒的技能开发仓库
+- 推送：`git push xiaomila master`
+
+**备用仓库（origin）**：
+- 地址：git@github.com:zhaog100/openclaw-skills.git
+- 用途：OpenClaw技能库（备份）
+- 推送：`git push origin master`（备用）
+
+**重要**：以后所有推送默认使用 xiaomila 仓库！
+
 ### 相关文档
 
 - 技能库：/root/.openclaw/workspace/skills/
 - 备份：/root/.openclaw/backups/skills/2026-03-14_23:10_before_merge/
 - 技能包：/tmp/skills_package/skills-dev-package/
 - 原始压缩包：/root/.openclaw/qqbot/downloads/skills-dev-package.tar.gz
-- 远程仓库：https://github.com/zhaog100/openclaw-skills
+- 主要远程仓库：https://github.com/zhaog100/xiaomila-skills（小米粒仓库）
 
 ---
 
