@@ -2454,3 +2454,139 @@ skills/context-manager-v2/
 *更新时间：2026-03-14 23:22*
 *更新者：小米粒（Dev）*
 *版本：v3.0 - 技能库完整版*
+
+---
+
+## 🔄 2026-03-14 仓库配置修正 ⭐⭐⭐⭐⭐
+
+**时间**：23:22-23:40  
+**重要性**：⭐⭐⭐⭐⭐ 最高
+
+### 问题：推送到错误仓库
+
+**官家指出**：你是推送到xiaomili仓库，不是xiaomila，你搞错了
+
+**实际错误**：
+- b699788等提交推送到xiaomila仓库（小米辣仓库）❌
+- 应该只推送到xiaomili仓库（小米粒仓库）✅
+- 这搞乱了小米辣的仓库！
+
+---
+
+### 修正措施 ✅
+
+#### 1. 明确身份
+```
+我是：小米粒（Dev代理）🌾
+不是：小米辣（PM代理）
+```
+
+#### 2. 明确仓库归属
+```
+xiaomili = 小米粒仓库（我的仓库）⭐⭐⭐⭐⭐
+xiaomila = 小米辣仓库（PM代理仓库）
+```
+
+#### 3. 更新MEMORY.md配置
+```
+提交：321dd2e
+修改：明确xiaomili为主要推送目标
+```
+
+#### 4. 设置master分支upstream
+```bash
+git branch --set-upstream-to=xiaomili/master master
+```
+
+---
+
+### 最终配置 ⭐⭐⭐⭐⭐
+
+**主要仓库（xiaomili）** ⭐⭐⭐⭐⭐ **唯一主要推送目标**：
+```
+名称：xiaomili
+地址：https://github.com/zhaog100/xiaomili-personal-skills.git
+描述：小米粒个人技能库 - Dev Agent Personal Repository
+身份：我的仓库（小米粒）🌾
+用途：主要推送目标 ⭐⭐⭐⭐⭐
+upstream：master → xiaomili/master ✅
+推送命令：git push xiaomili master（或 git push）
+```
+
+**错误仓库（xiaomila）** ⚠️ **绝不推送**：
+```
+名称：xiaomila
+地址：https://github.com/zhaog100/xiaomila-skills.git
+描述：小米辣的技能库（PM代理仓库）
+身份：小米辣仓库（不是我）⚠️
+用途：不应推送 ⚠️⚠️⚠️
+```
+
+**备用仓库（origin）**：
+```
+名称：origin
+地址：git@github.com:zhaog100/openclaw-skills.git
+描述：OpenClaw技能库（公共仓库）
+身份：公共仓库
+用途：备用推送
+```
+
+---
+
+### 推送规则（重要！）⭐⭐⭐⭐⭐
+
+#### ✅ 正确命令
+```bash
+git push → xiaomili（默认）⭐
+git push xiaomili master → xiaomili ⭐
+git push origin master → origin（备用）
+```
+
+#### ❌ 错误命令
+```bash
+git push xiaomila master → xiaomila（小米辣仓库）⚠️⚠️⚠️
+```
+
+---
+
+### 记忆口诀 📝 ⭐⭐⭐⭐⭐
+
+```
+小米粒（我）→ xiaomili仓库 ⭐
+小米辣（PM）→ xiaomila仓库
+
+粒推粒，辣推辣
+不再搞错！✅
+
+xiaomili = 小米粒（粒）
+xiaomila = 小米辣（辣）
+粒推粒，粒不推辣！
+```
+
+---
+
+### 造成的问题
+
+1. **xiaomila仓库被我搞乱了** ⚠️
+   - 错误推送了多个提交（b699788等）
+   - 需要官家修复
+
+2. **教训深刻** ⭐⭐⭐⭐⭐
+   - 仓库归属要明确
+   - 推送前要确认
+   - 以后绝不推送xiaomila仓库
+
+---
+
+### 最终确认
+
+**我的身份**：小米粒（Dev代理）🌾  
+**主要仓库**：xiaomili（小米粒仓库）⭐⭐⭐⭐⭐  
+**错误仓库**：xiaomila（小米辣仓库，绝不推送）❌  
+**推送目标**：xiaomili仓库（唯一主要目标）✅  
+
+---
+
+*更新时间：2026-03-14 23:40*
+*更新者：小米粒（Dev）*
+*版本：v4.0 - 仓库配置修正版*
