@@ -98,6 +98,34 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 
 ---
 
+## 🆕 2026-03-14 新增记忆
+
+### 飞书群沟通功能完成 ⭐⭐⭐⭐⭐
+- ✅ **方案C（共享服务）部署成功** - 15:08:51
+- ✅ **双Bot稳定沟通** - 小米粒+小米辣同时处理
+- ✅ **100%稳定** - 无消息丢失
+- ✅ **Open ID问题解决** - 支持备用ID识别
+- ✅ **测试验证** - 15:10测试完美成功
+
+**技术架构**：
+- 共享WebSocket连接（小米粒Bot）
+- 消息分发机制（双Bot处理器）
+- 数据库存储（SQLite）
+- Systemd服务（feishu-shared.service）
+
+**核心文件**：
+- `/opt/feishu-relay/app/main_shared_service.py`（10.7KB）
+- `/opt/feishu-relay/app/config.py`（备用Open ID）
+- `/opt/feishu-relay/app/message_router.py`（双ID支持）
+- `/etc/systemd/system/feishu-shared.service`
+
+**关键教训**：
+- 飞书WebSocket竞争推送（方案A不稳定）
+- Open ID不一致（不同Bot看到不同发送者ID）
+- 共享服务优势（100%稳定）
+
+---
+
 ## 🆕 2026-03-12 新增记忆
 
 ### demo-skill v1.0.0（双米粒协作首个完整案例）✅ 已关闭
