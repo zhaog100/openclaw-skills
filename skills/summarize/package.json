@@ -1,0 +1,30 @@
+{
+  "name": "summarize",
+  "version": "1.0.0",
+  "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "summarize",
+    "cli",
+    "web",
+    "pdf",
+    "youtube",
+    "ai",
+    "extract"
+  ],
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/steipete/summarize"
+  },
+  "homepage": "https://summarize.sh",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

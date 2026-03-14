@@ -1,0 +1,28 @@
+{
+  "name": "obsidian",
+  "version": "1.0.0",
+  "description": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "obsidian",
+    "markdown",
+    "notes",
+    "vault",
+    "obsidian-cli"
+  ],
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaog100/openclaw-skills"
+  },
+  "homepage": "https://help.obsidian.md",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

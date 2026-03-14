@@ -1,0 +1,28 @@
+{
+  "name": "qmd",
+  "version": "1.0.0",
+  "description": "Local hybrid search for markdown notes and docs. Use when searching notes, finding related content, or retrieving documents from indexed collections.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "markdown",
+    "search",
+    "hybrid-search",
+    "knowledge-base",
+    "notes"
+  ],
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tobi/qmd"
+  },
+  "homepage": "https://github.com/tobi/qmd",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
