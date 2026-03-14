@@ -2409,19 +2409,37 @@ skills/context-manager-v2/
 
 ---
 
-### 仓库配置 ⭐⭐⭐⭐⭐
+### 仓库配置 ⭐⭐⭐⭐⭐（重要修正）
 
-**主要仓库（xiaomila）**：
+**我的身份**：小米粒（Dev代理）🌾
+
+**主要仓库（xiaomili）** ⭐⭐⭐⭐⭐ **主要推送目标**：
+- 名称：xiaomili
+- 地址：https://github.com/zhaog100/xiaomili-personal-skills.git
+- 描述：小米粒个人技能库 - Dev Agent Personal Repository
+- 用途：小米粒的技能开发仓库（我的仓库）
+- 推送：`git push xiaomili master`
+- upstream：master分支跟踪xiaomili/master ✅
+
+**备用仓库（xiaomila）**：
+- 名称：xiaomila
 - 地址：https://github.com/zhaog100/xiaomila-skills.git
-- 用途：小米粒的技能开发仓库
-- 推送：`git push xiaomila master`
+- 描述：小米辣的技能库（PM代理仓库）
+- 用途：小米辣的技能仓库
+- 推送：`git push xiaomila master`（备用）
 
 **备用仓库（origin）**：
+- 名称：origin
 - 地址：git@github.com:zhaog100/openclaw-skills.git
+- 描述：OpenClaw技能库（公共仓库）
 - 用途：OpenClaw技能库（备份）
 - 推送：`git push origin master`（备用）
 
-**重要**：以后所有推送默认使用 xiaomila 仓库！
+**重要规则**：
+1. ⭐ **我是小米粒**，主要推送到 **xiaomili** 仓库
+2. ⚠️ 不要推错仓库（xiaomila是小米辣的仓库）
+3. ✅ master分支已配置跟踪xiaomili/master
+4. ✅ 默认推送命令：`git push xiaomili master`
 
 ### 相关文档
 
