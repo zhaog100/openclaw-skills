@@ -2113,3 +2113,175 @@ contact:user.base - 获取用户信息
 *更新时间：2026-03-14 17:31*  
 *更新者：小米粒（Dev）*
 *版本：v3.0 - 飞书Bot机制限制版*
+
+---
+
+## 🚀 2026-03-14 Context Manager优化 ⭐⭐⭐⭐⭐
+
+### 问题：Request was aborted
+
+**错误信息**：
+```
+Request was aborted
+时间：2026-03-14 18:02:04
+来源：QQ Bot发送消息时
+```
+
+**根本原因**：
+- 临时性网络中断
+- API调用失败无重试机制
+
+---
+
+### 解决方案：Context Manager v2.2.3
+
+#### 1. 智能重试机制 ⭐⭐⭐⭐⭐
+
+**配置**：
+```bash
+MAX_RETRIES=3          # 最大重试次数
+RETRY_DELAY=5          # 重试延迟（秒）
+TIMEOUT=30             # 超时时间（秒）
+```
+
+**效果**：
+- ✅ API调用失败自动重试（最多3次）
+- ✅ 通知发送失败自动重试（最多3次）
+- ✅ 网络超时自动处理
+- ✅ 减少误报和临时性错误
+
+---
+
+#### 2. 错误统计与告警 ⭐⭐⭐⭐⭐
+
+**功能**：
+- ✅ 记录所有错误类型
+- ✅ 统计错误频率
+- ✅ 达到阈值自动告警（5次/小时）
+
+**实现**：
+- `context-monitor-enhanced.sh` - 增强版监控脚本
+- `error-stats.sh` - 错误统计脚本
+- `ERROR-HANDLING-GUIDE.md` - 完整使用指南
+
+---
+
+#### 3. 错误日志管理 ⭐⭐⭐⭐
+
+**日志文件**：
+```
+~/.openclaw/workspace/logs/
+├── context-monitor.log         # 主日志
+├── context-errors.log          # 错误日志
+└── context-error-stats.txt     # 统计报告
+```
+
+**清理策略**：
+- 保留最近7天错误日志
+- 自动清理临时文件
+- 定期生成统计报告
+
+---
+
+### 使用方法
+
+**1. 启用增强版监控**：
+```bash
+# 原版（无重试）
+~/.openclaw/skills/context-manager-v2/scripts/context-monitor.sh
+
+# 增强版（带重试和错误处理）⭐推荐
+~/.openclaw/skills/context-manager-v2/scripts/context-monitor-enhanced.sh
+```
+
+---
+
+**2. 查看错误统计**：
+```bash
+# 查看统计
+bash ~/.openclaw/skills/context-manager-v2/scripts/error-stats.sh stats
+
+# 清理旧数据
+bash ~/.openclaw/skills/context-manager-v2/scripts/error-stats.sh cleanup
+
+# 重置错误计数
+bash ~/.openclaw/skills/context-manager-v2/scripts/error-stats.sh reset
+```
+
+---
+
+**3. 更新Crontab**：
+```bash
+# 编辑crontab
+crontab -e
+
+# 替换原版为增强版
+*/5 * * * * ~/.openclaw/skills/context-manager-v2/scripts/context-monitor-enhanced.sh
+```
+
+---
+
+### 效果对比
+
+| 特性 | 原版 | 增强版 v2.2.3 |
+|------|------|--------------|
+| **重试机制** | ❌ 无 | ✅ 3次重试 |
+| **错误统计** | ❌ 无 | ✅ 详细统计 |
+| **告警阈值** | ❌ 无 | ✅ 5次/小时 |
+| **日志管理** | 基础 | 完整 |
+| **错误恢复** | ❌ 手动 | ✅ 自动 |
+
+---
+
+### 关键改进
+
+**问题修复**：
+- ✅ 解决 "Request was aborted" 错误
+- ✅ 自动重试机制
+- ✅ 错误统计和告警
+- ✅ 完整的日志管理
+
+**技术实现**：
+- ✅ 使用 `timeout` 命令处理超时
+- ✅ 使用循环实现重试
+- ✅ 使用文件记录错误计数
+- ✅ 使用 `jq` 解析JSON
+
+**生产就绪**：
+- ✅ 完整的错误处理
+- ✅ 详细的日志记录
+- ✅ 自动清理机制
+- ✅ 完整的使用文档
+
+---
+
+### 文件清单
+
+**新增文件**：
+```
+skills/context-manager-v2/
+├── scripts/
+│   ├── context-monitor-enhanced.sh  # 增强版监控 ⭐
+│   └── error-stats.sh               # 错误统计 ⭐
+└── ERROR-HANDLING-GUIDE.md          # 使用指南 ⭐
+```
+
+---
+
+### 后续优化
+
+**短期**：
+- [ ] 监控错误频率
+- [ ] 调整重试参数
+- [ ] 优化告警策略
+
+**长期**：
+- [ ] 机器学习预测错误
+- [ ] 自适应重试策略
+- [ ] 多通道通知
+
+---
+
+*更新时间：2026-03-14 18:05*
+*更新者：小米粒（Dev）*
+*版本：v2.2.3 - 错误处理增强版*
