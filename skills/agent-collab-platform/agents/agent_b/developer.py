@@ -195,7 +195,7 @@ class Developer:
 
 **下一步**：继续完成剩余任务
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
         
         return progress_doc

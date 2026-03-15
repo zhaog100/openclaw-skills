@@ -33,7 +33,7 @@ class AgentB(BaseSkill):
         self.developer = Developer()
         self.publisher = Publisher()
         
-        print(f"🌾 小米粒（Dev代理）初始化完成")
+        print(f"🌾 小米粒（思捷娅科技Dev代理）初始化完成")
     
     def handle_message(self, message):
         """处理消息"""
@@ -94,7 +94,7 @@ class AgentB(BaseSkill):
         # 检查Review结果
         if '✅' in body and 'approved' in body.lower():
             # Review通过，开始开发
-            response = f"""## 💻 小米粒（Dev代理）开始开发
+            response = f"""## 💻 小米粒（思捷娅科技Dev代理）开始开发
 
 **时间**：{self._get_current_time()}
 **Issue**：#{issue_number}
@@ -108,7 +108,7 @@ class AgentB(BaseSkill):
 
 ---
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
             
             self.send_message('agent_a', response, issue_number)
@@ -116,7 +116,7 @@ class AgentB(BaseSkill):
             # TODO: 启动开发流程
         else:
             # Review未通过，需要修改
-            response = f"""## 🔧 小米粒（Dev代理）修改设计
+            response = f"""## 🔧 小米粒（思捷娅科技Dev代理）修改设计
 
 **时间**：{self._get_current_time()}
 **Issue**：#{issue_number}
@@ -127,7 +127,7 @@ class AgentB(BaseSkill):
 
 ---
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
             
             self.send_message('agent_a', response, issue_number)
@@ -137,7 +137,7 @@ class AgentB(BaseSkill):
         issue_number = message.get('issue_number')
         from_agent = message.get('from_agent', 'unknown')
         
-        response = f"""## 🌾 小米粒（Dev代理）协作测试响应
+        response = f"""## 🌾 小米粒（思捷娅科技Dev代理）协作测试响应
 
 **时间**：{self._get_current_time()}
 **Issue**：#{issue_number}
@@ -154,7 +154,7 @@ class AgentB(BaseSkill):
 
 ---
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
         
         self.send_message('agent_a', response, issue_number)
@@ -163,7 +163,7 @@ class AgentB(BaseSkill):
         """处理通用消息"""
         issue_number = message.get('issue_number')
         
-        response = f"""## 🌾 小米粒（Dev代理）收到消息
+        response = f"""## 🌾 小米粒（思捷娅科技Dev代理）收到消息
 
 **时间**：{self._get_current_time()}
 **Issue**：#{issue_number}
@@ -174,7 +174,7 @@ class AgentB(BaseSkill):
 
 ---
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
         
         self.send_message('agent_a', response, issue_number)

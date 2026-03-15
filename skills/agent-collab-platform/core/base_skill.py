@@ -98,7 +98,7 @@ class BaseSkill:
         """获取显示名称"""
         display_names = {
             'agent_a': '小米辣（PM代理）🌶️',
-            'agent_b': '小米粒（Dev代理）🌾',
+            'agent_b': '小米粒（思捷娅科技Dev代理）🌾',
             'agent_c': '智能体C',
             'agent_d': '智能体D'
         }
