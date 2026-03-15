@@ -1,6 +1,6 @@
 #!/bin/bash
 # agent-a-pm-skill - 测试脚本
-# 版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 set -e
 

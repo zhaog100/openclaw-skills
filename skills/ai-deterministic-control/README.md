@@ -287,14 +287,14 @@ export DEEPSEEK_API_KEY="your_key_here"
 
 MIT License
 
-Copyright (c) 2026 小米粒 (xiaomili)
+Copyright (c) 2026 思捷娅科技 (SJYKJ) (xiaomili)
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 小米粒 (xiaomili)
+- 创建者: 思捷娅科技 (SJYKJ) (xiaomili)
 
 **商业使用授权**：
 - 小微企业（<10人）：¥999/年
