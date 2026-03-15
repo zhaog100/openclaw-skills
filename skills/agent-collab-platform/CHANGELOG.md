@@ -1,5 +1,47 @@
 # 更新日志（CHANGELOG）
 
+## v1.5.0 - 思捷娅科技(SJYKJ)完整版权版 (2026-03-15 09:21)
+
+### 创建者信息最终修正 🏢
+
+**重要更新**：
+- ✅ 创建者：zhaog100 (zhaog100) → **思捷娅科技 (SJYKJ)** ⭐⭐⭐⭐⭐
+- ✅ 所有文档创建者信息统一修正
+- ✅ 所有模块创建者信息统一修正
+
+**影响范围**：
+- ✅ README.md
+- ✅ SKILL.md
+- ✅ CHANGELOG.md
+- ✅ core/（5个核心模块）
+- ✅ agents/（5个智能体模块）
+- ✅ skill.sh
+
+**最终版权信息标准模板**：
+```
+MIT License
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+
+免费使用、修改和重新分发时，需注明出处。
+
+出处：
+- GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+- ClawHub: https://clawhub.com
+- 创建者: 思捷娅科技 (SJYKJ)
+
+商业使用授权：
+- 小微企业（<10人）：¥999/年
+- 中型企业（10-50人）：¥4,999/年
+- 大型企业（>50人）：¥19,999/年
+- 企业定制版：¥99,999一次性（源码买断）
+```
+
+**版权归属统一**：
+- Copyright: 思捷娅科技 (SJYKJ) ⭐
+- 创建者: 思捷娅科技 (SJYKJ) ⭐
+
+---
+
 ## v1.4.0 - 思捷娅科技(SJYKJ)版权版 (2026-03-15 09:18)
 
 ### 版权信息完善 📄
@@ -28,7 +70,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 出处：
 - GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 - ClawHub: https://clawhub.com
-- 创建者: zhaog100 (zhaog100)
+- 创建者: 思捷娅科技 (SJYKJ)
 
 商业使用授权：
 - 小微企业（<10人）：¥999/年
@@ -55,7 +97,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 **创建者信息统一**：
 ```
-创建者: zhaog100 (zhaog100)
+创建者: 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 ClawHub: https://clawhub.com
 ```
@@ -63,7 +105,7 @@ ClawHub: https://clawhub.com
 **版权归属**：
 - MIT License
 - Copyright (c) 2026 思捷娅科技 (SJYKJ)
-- 创建者: zhaog100 (zhaog100)
+- 创建者: 思捷娅科技 (SJYKJ)
 
 ---
 
