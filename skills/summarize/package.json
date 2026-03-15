@@ -1,6 +1,6 @@
 {
   "name": "summarize",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "ai",
     "extract"
   ],
-  "author": "米粒儿 (miliger)",
+  "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
   "repository": {
     "type": "git",

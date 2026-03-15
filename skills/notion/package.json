@@ -1,6 +1,6 @@
 {
   "name": "notion",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Notion API for creating and managing pages, databases, and blocks.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "databases",
     "blocks"
   ],
-  "author": "米粒儿 (miliger)",
+  "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "weather",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Get current weather and forecasts (no API key required).",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "open-meteo",
     "no-api-key"
   ],
-  "author": "米粒儿 (miliger)",
+  "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
   "repository": {
     "type": "git",
