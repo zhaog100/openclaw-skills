@@ -1,0 +1,51 @@
+{
+  "name": "miliger-context-manager",
+  "version": "2.2.4",
+  "description": "Auto context management with intelligent retry, error tracking and seamless session switching. Features: Smart retry (3x), error statistics, real-time alerts, OpenClaw API monitoring, startup optimization, dual thresholds (30% + 60%), 5-minute interval, 1-hour cooldown. v2.2.3: Added intelligent retry mechanism to fix 'Request was aborted', error tracking (5/hour threshold), complete error handling guide.",
+  "author": "米粒儿 (miliger)",
+  "license": "MIT",
+  "copyright": "© 2026 米粒儿 (miliger). All rights reserved.",
+  "keywords": [
+    "context",
+    "memory",
+    "session",
+    "automatic",
+    "seamless",
+    "switching",
+    "startup-optimization",
+    "layered-reading",
+    "token-saving",
+    "api-monitoring",
+    "real-time-monitoring",
+    "error-handling",
+    "retry-mechanism",
+    "error-tracking"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaog100/openclaw-skills"
+  },
+  "homepage": "https://clawhub.com/skills/miliger-context-manager",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "bash scripts/context-monitor-enhanced.sh",
+    "monitor": "bash scripts/context-monitor-enhanced.sh",
+    "monitor:basic": "bash scripts/context-monitor.sh",
+    "error-stats": "bash scripts/error-stats.sh stats",
+    "error-cleanup": "bash scripts/error-stats.sh cleanup"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "ERROR-HANDLING-GUIDE.md",
+    "RELEASE-NOTES.md",
+    "install.sh",
+    "scripts/seamless-switch.sh",
+    "scripts/context-monitor.sh",
+    "scripts/context-monitor-enhanced.sh",
+    "scripts/error-stats.sh"
+  ]
+}

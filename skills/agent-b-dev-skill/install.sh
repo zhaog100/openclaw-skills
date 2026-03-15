@@ -15,20 +15,16 @@ fi
 PYTHON_VERSION=$(python3 --version | awk '{print $2}')
 echo "✅ Python版本: $PYTHON_VERSION"
 
-# 安装依赖
-echo "📦 安装依赖..."
-pip3 install -q lark-oapi 2>/dev/null || pip install -q lark-oapi
-
 # 设置权限
 chmod +x skill.sh
 
-# 测试安装
-echo "🧪 测试安装..."
+# 可选：安装依赖（跳过如果失败）
+echo "📦 检查依赖..."
 if python3 -c "import lark_oapi" 2>/dev/null; then
-    echo "✅ lark-oapi 安装成功"
+    echo "✅ lark-oapi 已安装"
 else
-    echo "❌ lark-oapi 安装失败"
-    exit 1
+    echo "⚠️  lark-oapi 未安装（可选依赖，基础功能可用）"
+    echo "   如需飞书集成，请手动安装：pip3 install --break-system-packages lark-oapi"
 fi
 
 echo "✅ agent-b-dev-skill 安装完成！"
