@@ -47,7 +47,7 @@ test_case "开发实现" "python3 -c 'from modules.developer import Developer; d
 test_case "集成发布" "python3 -c 'from modules.publisher import Publisher; p = Publisher(); print(p.prepare_release(\"dev_1\", \"1.0.0\"))'" "release_"
 
 # 6. 测试沟通
-test_case "沟通协作" "python3 -c 'from modules.communicator import Communicator; c = Communicator(); print(c.send_message(\"agent-a-pm\", \"test\"))'" "✅"
+test_case "沟通协作" "python3 -c 'from modules.communicator import Communicator; c = Communicator(); print(c.send_message(\"agent-a-pm\", \"test\"))'" "True"
 
 echo ""
 echo "=================================="

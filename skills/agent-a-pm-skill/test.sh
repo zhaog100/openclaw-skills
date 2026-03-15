@@ -44,10 +44,10 @@ test_case "产品管理" "python3 -c 'from modules.product_manager import Produc
 test_case "Review验证" "python3 -c 'from modules.reviewer import Reviewer; r = Reviewer(); print(r.review_code(1, \"test code\"))'" "review_"
 
 # 5. 测试状态管理
-test_case "状态管理" "python3 -c 'from modules.state_manager import StateManager; sm = StateManager(); sm.states[\"prod_1\"] = \"draft\"; print(sm.transition(\"prod_1\", \"pending_review\"))'" "✅"
+test_case "状态管理" "python3 -c 'from modules.state_manager import StateManager; sm = StateManager(); sm.states[\"prod_1\"] = \"draft\"; print(sm.transition(\"prod_1\", \"pending_review\"))'" "True"
 
 # 6. 测试沟通协作
-test_case "沟通协作" "python3 -c 'from modules.communicator import Communicator; c = Communicator(); print(c.send_message(\"agent-b-dev\", \"test\"))'" "✅"
+test_case "沟通协作" "python3 -c 'from modules.communicator import Communicator; c = Communicator(); print(c.send_message(\"agent-b-dev\", \"test\"))'" "True"
 
 echo ""
 echo "=================================="
