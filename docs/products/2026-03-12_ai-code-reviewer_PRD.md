@@ -19,6 +19,30 @@
 - Hacker News：AI 辩论机制可减少误报 30%
 - 行业趋势：本地执行 + 可追踪工作流
 
+**竞品分析**（2026-03-15 21:26）：
+
+| 项目 | 特点 | 链接 | 可借鉴点 |
+|------|------|------|---------|
+| **Everdone CodeReview** | AI 代码审查作为可追踪的工作流 | https://everdone.ai/ | 工作流追踪 |
+| **Bottleneck** | AI 原生团队的代码审查工具 | https://github.com/areibman/bottleneck | AI 原生协作 |
+| **Open Code Review** | AI 审查员互相辩论后再给反馈 | https://github.com/spencermarx/open-code-review | AI 辩论机制 ✅ |
+| **AgentVerse** | 多智能体协作框架 | https://github.com/OpenBMB/AgentVerse | 多智能体架构 |
+| **OxyGent** | 智能体工作流引擎 | https://github.com/jd-opensource/OxyGent | 工作流引擎 |
+
+**我们的优势**：
+1. ✅ 完全开源（代码透明，可自定义）
+2. ✅ 本地执行（代码不上传云端，安全）
+3. ✅ 规则系统（7 条核心规则，规范协作流程）
+4. ✅ 状态流转（4 阶段 26 状态，完整的生命周期管理）
+5. ✅ 心跳轮询（2 分钟自动检查，主动发现问题）
+6. ✅ 双智能体协作（PM+Dev 明确分工）
+
+**我们的劣势**：
+1. ❌ 起步晚（其他项目已经运行 1-3 年）
+2. ❌ 用户少（没有实际用户反馈）
+3. ❌ 功能单一（目前只支持双智能体，不支持多智能体）
+4. ❌ 依赖 GitHub（深度绑定 GitHub Issues）
+
 ### 1.2 目标
 **核心目标**：使用本地 AI 模型自动进行代码审查，提升代码质量和 Review 效率。
 
