@@ -102,14 +102,15 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 ## 🆕 2026-03-15 新增记忆
 
 ### agent-collab-platform v1.0.0 统一架构重构 ⭐⭐⭐⭐⭐（重大升级）
-- ✅ **重构时间**：2026-03-15 08:54-08:56（20分钟）
+- ✅ **重构时间**：2026-03-15 08:54-09:01（27分钟）
 - ✅ **架构设计**：共享核心+特定模块（90%代码复用）
 - ✅ **核心模块**：5个（github_monitor, message_router, state_manager, base_skill, issue_handler）
 - ✅ **智能体模块**：agent_a（PM）+ agent_b（Dev）
-- ✅ **Git提交**：fa49cea
+- ✅ **Git提交**：fa49cea, 069a262, 3b455d1
 - ✅ **代码统计**：17文件，2288行
 - ✅ **测试状态**：✅ 全部通过
 - ✅ **Issue通知**：#14 已创建
+- ✅ **ClawHub发布**：k976y9maa3d0jckbb2k8m5ws7582zhzh ⭐⭐⭐⭐⭐
 
 **废弃旧架构**：
 - ❌ agent-a-pm-skill（独立技能包）
