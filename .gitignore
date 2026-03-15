@@ -62,3 +62,7 @@ test-*.sh
 
 # ===== 青龙面板 =====
 qinglong/
+
+# 临时子模块
+memu-engine-for-OpenClaw
+qmd
