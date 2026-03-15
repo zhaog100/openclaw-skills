@@ -1,0 +1,8 @@
+# AI 代码审查助手依赖
+# Phase 1（MVP）
+PyYAML>=6.0
+
+# Phase 2（语法解析）
+tree-sitter>=0.21.0
+tree-sitter-python>=0.21.0
+tree-sitter-bash>=0.21.0

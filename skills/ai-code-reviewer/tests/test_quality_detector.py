@@ -43,7 +43,12 @@ def test_function():
     
     def test_detect_standards_issues(self):
         """测试规范问题检测"""
-        issues = self.detector._check_standards(self.test_code, 'test.py')
+        # 使用实际代码测试
+        test_code = '''
+def test():
+    ''' + 'x' * 150 + '''
+'''
+        issues = self.detector._check_standards(test_code, 'test.py')
         self.assertGreater(len(issues), 0)
         
         # 检查是否检测到行长度问题
