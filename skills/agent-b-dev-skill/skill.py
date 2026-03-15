@@ -56,8 +56,51 @@ class AgentBDevSkill:
 
 def main():
     """主入口"""
-    skill = AgentBDevSkill()
-    skill.run()
+    if len(sys.argv) < 2:
+        # 没有参数，启动监听模式
+        skill = AgentBDevSkill()
+        skill.run()
+    else:
+        # 有参数，处理命令
+        command = sys.argv[1]
+        args = sys.argv[2:]
+        
+        skill = AgentBDevSkill()
+        
+        if command == 'tech':
+            print(f"🎯 技术设计模式: {args}")
+            # 调用技术设计模块
+            skill.tech_designer.design(args)
+        elif command == 'dev':
+            print(f"💻 开发实现模式: {args}")
+            # 调用开发实现模块
+            skill.developer.develop(args)
+        elif command == 'publish':
+            print(f"🚀 集成发布模式: {args}")
+            # 调用集成发布模块
+            skill.publisher.publish(args)
+        elif command == 'comm':
+            if '--help' in args or '-h' in args:
+                print("沟通协作模块帮助：")
+                print("  --send <message>  发送消息")
+                print("  --receive         接收消息")
+                print("  --status          查看状态")
+            elif '--send' in args:
+                msg_idx = args.index('--send') + 1
+                if msg_idx < len(args):
+                    message = args[msg_idx]
+                    print(f"📤 发送消息到小米辣: {message}")
+                    # TODO: 实际发送消息
+                else:
+                    print("❌ 缺少消息内容")
+            elif '--receive' in args:
+                print("📥 接收消息中...")
+                # TODO: 实际接收消息
+            else:
+                # 启动监听模式
+                skill.run()
+        else:
+            print(f"❌ 未知操作: {command}")
 
 if __name__ == '__main__':
     main()
