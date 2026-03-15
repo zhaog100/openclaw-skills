@@ -4,7 +4,7 @@
 agent-b-dev-skill - 智能体B（Dev代理）技能包
 
 版本: v1.0.0
-创建者: 小米粒（Dev代理）
+创建者: 思捷娅科技 (SJYKJ)（Dev代理）
 创建时间: 2026-03-15
 """
 
@@ -20,7 +20,7 @@ from publisher import Publisher
 from communicator import Communicator
 
 __version__ = '2.0.0'
-__author__ = '小米粒 (miliger)'
+__author__ = '思捷娅科技 (SJYKJ)'
 
 class AgentBDevSkill:
     """智能体B（Dev代理）技能包主类"""

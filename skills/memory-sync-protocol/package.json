@@ -2,9 +2,9 @@
   "name": "memory-sync-protocol",
   "version": "1.0.0",
   "description": "记忆同步协议。自动精简 MEMORY.md，集成 QMD 检索，监控 Token 使用",
-  "author": "米粒儿 (miliger)",
+  "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
-  "copyright": "© 2026 米粒儿 (miliger). All rights reserved.",
+  "copyright": "© 2026 思捷娅科技 (SJYKJ). All rights reserved.",
   "main": "scripts/memory-optimizer.py",
   "scripts": {
     "optimize": "python3 scripts/memory-optimizer.py",

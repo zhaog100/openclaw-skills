@@ -2,9 +2,9 @@
   "name": "miliger-context-manager",
   "version": "2.2.4",
   "description": "Auto context management with intelligent retry, error tracking and seamless session switching. Features: Smart retry (3x), error statistics, real-time alerts, OpenClaw API monitoring, startup optimization, dual thresholds (30% + 60%), 5-minute interval, 1-hour cooldown. v2.2.3: Added intelligent retry mechanism to fix 'Request was aborted', error tracking (5/hour threshold), complete error handling guide.",
-  "author": "米粒儿 (miliger)",
+  "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
-  "copyright": "© 2026 米粒儿 (miliger). All rights reserved.",
+  "copyright": "© 2026 思捷娅科技 (SJYKJ). All rights reserved.",
   "keywords": [
     "context",
     "memory",

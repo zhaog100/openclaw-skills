@@ -4,7 +4,7 @@
 agent-a-pm-skill - 智能体A（PM代理）技能包
 
 版本: v1.0.0
-创建者: 小米粒（Dev代理）
+创建者: 思捷娅科技 (SJYKJ)（Dev代理）
 创建时间: 2026-03-15
 """
 
@@ -20,7 +20,7 @@ from state_manager import StateManager
 from communicator import Communicator
 
 __version__ = '1.0.0'
-__author__ = '小米粒 (miliger)'
+__author__ = '思捷娅科技 (SJYKJ)'
 
 class AgentAPMSkill:
     """智能体A（PM代理）技能包主类"""
