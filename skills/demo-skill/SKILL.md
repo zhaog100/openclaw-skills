@@ -112,7 +112,7 @@ Copyright (c) 2026 思捷娅科技
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: 待发布
-- 创建者: 小米粒
+- 创建者: 思捷娅科技 (SJYKJ)
 
 ---
 

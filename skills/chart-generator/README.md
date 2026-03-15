@@ -103,14 +103,14 @@ chart-generator/
 
 MIT License
 
-Copyright (c) 2026 米粒儿 (miliger)
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 米粒儿 (miliger)
+- 创建者: 思捷娅科技 (SJYKJ)
 
 详见 [LICENSE](../../LICENSE) 文件。
 

@@ -1,6 +1,6 @@
 {
   "name": "tavily-search",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "api-integration",
     "web-scraping"
   ],
-  "author": "米粒儿 (miliger)",
+  "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
   "repository": {
     "type": "git",
