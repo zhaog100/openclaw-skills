@@ -200,7 +200,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 **项目状态**：✅ 发布完成
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
 
         return release_doc
