@@ -3,6 +3,10 @@
 """
 消息路由器 - 所有智能体共享
 
+版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+ClawHub: https://clawhub.com
+
 功能：
 - 识别消息类型
 - 过滤自己的消息
