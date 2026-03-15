@@ -186,7 +186,7 @@ Copyright (c) 2026 思捷娅科技
 **出处**：
 - GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 - ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技
+- 创建者: zhaog100
 
 **商业使用授权**：
 - 小微企业（<10人）：¥999/年

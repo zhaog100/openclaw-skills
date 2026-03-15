@@ -1,5 +1,33 @@
 # 更新日志（CHANGELOG）
 
+## v1.3.0 - zhaog100版权版 (2026-03-15 09:17)
+
+### 创建者信息修正 🎯
+
+**重要更新**：
+- ✅ 创建者：思捷娅科技 → **zhaog100** ⭐
+- ✅ 所有文档创建者信息统一更新
+- ✅ 所有模块创建者信息统一更新
+
+**影响范围**：
+- ✅ README.md
+- ✅ SKILL.md
+- ✅ agents/agent_b/publisher.py
+
+**创建者信息统一**：
+```
+创建者: zhaog100
+GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+ClawHub: https://clawhub.com
+```
+
+**版权归属**：
+- MIT License
+- Copyright (c) 2026 思捷娅科技
+- 创建者: zhaog100
+
+---
+
 ## v1.2.0 - 思捷娅科技版权版 (2026-03-15 09:16)
 
 ### 版权信息修正 🏢
