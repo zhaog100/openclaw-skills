@@ -229,7 +229,7 @@ class TechDesigner:
 
 **下一步**：等待小米辣（PM）Review，通过后开始开发实现
 
-🌾 小米粒（Dev代理）
+🌾 小米粒（思捷娅科技Dev代理）
 """
         
         return tech_doc
