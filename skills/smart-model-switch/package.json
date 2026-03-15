@@ -1,6 +1,6 @@
 {
   "name": "smart-model-switch",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "智能模型自动切换技能，根据消息复杂度、文件类型和上下文使用率自动选择最优模型，支持AI主动检测",
   "author": "miliger",
   "license": "MIT",
