@@ -207,15 +207,18 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 
 ## 📋 Git推送规则（强制性）⭐⭐⭐⭐⭐
 
-### 规则4：Git推送必须遵守仓库分配规则
+### 规则4：Git推送必须遵守仓库分配规则（可配置）⭐⭐⭐⭐⭐
 
-**定义**：不同类型的信息必须推送到对应的仓库，不能混淆
+**定义**：不同类型的信息必须推送到配置的对应仓库，不能混淆
+
+**配置文件**：`config/git_repositories.json`（可自定义）
 
 **仓库分配**：
 
 #### origin仓库（公共仓库）
 **URL**：`git@github.com:zhaog100/openclaw-skills.git`
 **用途**：公共信息，所有智能体遵守的规则
+**配置位置**：`config/git_repositories.json → repositories.public`
 
 **必须推送**：
 - ✅ **核心规则系统**（所有智能体必须遵守）
@@ -234,6 +237,7 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 #### xiaomili仓库（小米粒个人仓库）
 **URL**：`https://github.com/zhaog100/xiaomili-personal-skills.git`
 **用途**：小米粒（Dev代理）的个人信息
+**配置位置**：`config/git_repositories.json → repositories.personal_xiaomili`
 
 **必须推送**：
 - ✅ **个人工作日志**（memory/YYYY-MM-DD.md）
@@ -250,8 +254,13 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 #### xiaomila仓库（小米辣个人仓库）
 **URL**：`https://github.com/zhaog100/xiaomila-skills.git`
 **用途**：小米辣（PM代理）的个人信息
+**配置位置**：`config/git_repositories.json → repositories.personal_xiaomila`
 
-**用途同xiaomili仓库**
+**如何自定义仓库配置**：
+1. ✅ 编辑 `config/git_repositories.json`
+2. ✅ 修改 `repositories` 配置
+3. ✅ 通知所有智能体更新配置
+4. ✅ 规则自动应用新配置
 
 ---
 
