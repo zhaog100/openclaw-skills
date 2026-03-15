@@ -205,6 +205,159 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 
 ---
 
+## 📋 Git推送规则（强制性）⭐⭐⭐⭐⭐
+
+### 规则4：Git推送必须遵守仓库分配规则
+
+**定义**：不同类型的信息必须推送到对应的仓库，不能混淆
+
+**仓库分配**：
+
+#### origin仓库（公共仓库）
+**URL**：`git@github.com:zhaog100/openclaw-skills.git`
+**用途**：公共信息，所有智能体遵守的规则
+
+**必须推送**：
+- ✅ **核心规则系统**（所有智能体必须遵守）
+- ✅ **架构文档**（agents如何协作）
+- ✅ **安装指南**（如何安装使用）
+- ✅ **Issue通知**（协作通知）
+- ✅ **技术文档**（公共技术方案）
+
+**禁止推送**：
+- ❌ 个人日志（memory/YYYY-MM-DD.md）
+- ❌ 私有配置（个人API keys等）
+- ❌ 测试数据（logs文件）
+
+---
+
+#### xiaomili仓库（小米粒个人仓库）
+**URL**：`https://github.com/zhaog100/xiaomili-personal-skills.git`
+**用途**：小米粒（Dev代理）的个人信息
+
+**必须推送**：
+- ✅ **个人工作日志**（memory/YYYY-MM-DD.md）
+- ✅ **私有配置**（个人偏好设置）
+- ✅ **测试数据**（logs文件）
+- ✅ **个人备忘**（TODO列表等）
+
+**禁止推送**：
+- ❌ 核心规则系统（应推送到origin）
+- ❌ 公共文档（应推送到origin）
+
+---
+
+#### xiaomila仓库（小米辣个人仓库）
+**URL**：`https://github.com/zhaog100/xiaomila-skills.git`
+**用途**：小米辣（PM代理）的个人信息
+
+**用途同xiaomili仓库**
+
+---
+
+### Git操作流程（强制）
+
+#### 步骤1：提交前检查
+```bash
+# 检查文件类型
+git status
+
+# 确认推送目标
+# 公共信息 → origin
+# 个人信息 → xiaomili/xiaomila
+```
+
+#### 步骤2：推送到xiaomili（个人信息）
+```bash
+git push xiaomili master
+```
+
+#### 步骤3：推送到origin（公共信息）
+```bash
+# 拉取远程更新
+git pull origin master --rebase
+
+# 推送到origin
+git push origin master
+```
+
+#### 步骤4：验证推送成功
+```bash
+# 检查xiaomili
+git log xiaomili/master --oneline -5
+
+# 检查origin
+git log origin/master --oneline -5
+```
+
+---
+
+### Git推送检查清单
+
+- [ ] **步骤1**：已确认推送内容类型（公共/个人）？
+- [ ] **步骤2**：已推送到xiaomili（个人信息）？
+- [ ] **步骤3**：已拉取origin更新（公共信息）？
+- [ ] **步骤4**：已推送到origin（公共信息）？
+- [ ] **步骤5**：已验证推送成功（查看远程日志）？
+
+---
+
+### 违规示例
+
+**错误1：只commit未push**
+```bash
+❌ git commit -m "feat: 新功能"
+✅ git commit -m "feat: 新功能" && git push xiaomili master && git push origin master
+```
+
+**错误2：公共信息只推送到xiaomili**
+```bash
+❌ 只推送到xiaomili（小米粒能看到，小米辣看不到）
+✅ 推送到xiaomili + origin（所有智能体都能看到）
+```
+
+**错误3：个人信息推送到origin**
+```bash
+❌ 个人日志推送到origin（污染公共仓库）
+✅ 个人日志只推送到xiaomili
+```
+
+---
+
+### 正确示例
+
+**示例1：推送核心规则（公共信息）**
+```bash
+# 1. 提交
+git add core/RULES.md
+git commit -m "feat(rules): v1.8.0 - 添加核心规则系统"
+
+# 2. 推送到xiaomili（备份）
+git push xiaomili master
+
+# 3. 推送到origin（公共）
+git pull origin master --rebase
+git push origin master
+
+# 4. 验证
+git log origin/master --oneline -1
+# 应显示：feat(rules): v1.8.0
+```
+
+**示例2：推送个人日志（个人信息）**
+```bash
+# 1. 提交
+git add memory/2026-03-15.md
+git commit -m "docs(memory): 2026-03-15工作日志"
+
+# 2. 只推送到xiaomili（个人）
+git push xiaomili master
+
+# 3. 不推送到origin（公共仓库不需要）
+```
+
+---
+
 ## 🎯 规则集成
 
 ### 在BaseSkill中的实现
