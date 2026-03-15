@@ -1,8 +1,8 @@
 # agent-collab-platform
 
-**版本**：v1.1.0  
+**版本**：v1.2.0  
 **类型**：智能体协作平台  
-**作者**：小米粒 (miliger)  
+**作者**：思捷娅科技  
 
 ---
 
@@ -67,4 +67,4 @@ MIT License - 免费使用、修改和重新分发
 **出处**：
 - GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 - ClawHub: https://clawhub.com
-- 创建者: 小米粒 (miliger)
+- 创建者: 思捷娅科技
