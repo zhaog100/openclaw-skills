@@ -115,6 +115,9 @@ class CodeQualityDetector:
         
         # 检查行长度（最大 120 字符）
         for i, line in enumerate(lines, 1):
+            # 跳过空行和注释
+            if not line.strip() or line.strip().startswith('#'):
+                continue
             if len(line) > 120:
                 issues.append({
                     'type': 'standards',
