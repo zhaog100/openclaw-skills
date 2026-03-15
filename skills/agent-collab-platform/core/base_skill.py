@@ -27,6 +27,7 @@ class BaseSkill:
     2. 看问题要全面 - 多维度分析
     3. 看内容要承前启后 - 联系上下文
     4. Git推送必须遵守仓库分配 - 公共信息→origin，个人信息→xiaomili/xiaomila
+    5. 技能发布前必须拉取历史版本并对比差异 - 避免覆盖远程新版本
     """
     
     def __init__(self, agent_id, role, repo='zhaog100/openclaw-skills'):
