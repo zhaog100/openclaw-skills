@@ -1,6 +1,6 @@
 # agent-collab-platform - 智能体协作平台
 
-**版本**：v1.1.0
+**版本**：v1.2.0
 **状态**：✅ 核心框架完成
 **创建者**：小米粒（Dev代理）
 **创建时间**：2026-03-15 08:54-08:56（20分钟）
@@ -183,14 +183,14 @@ python3 skill.py agent_c
 
 MIT License
 
-Copyright (c) 2026 米粒儿 (miliger)
+Copyright (c) 2026 思捷娅科技
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 - ClawHub: https://clawhub.com
-- 创建者: 米粒儿 (miliger)
+- 创建者: 思捷娅科技
 
 **商业使用授权**：
 - 小微企业（<10人）：¥999/年
@@ -203,4 +203,4 @@ Copyright (c) 2026 米粒儿 (miliger)
 ---
 
 *最后更新：2026-03-15 09:12*
-*版本：v1.1.0 - 版权保护增强版*
+*版本：v1.2.0 - 思捷娅科技版*
