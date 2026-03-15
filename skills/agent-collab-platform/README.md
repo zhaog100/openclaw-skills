@@ -1,6 +1,6 @@
 # agent-collab-platform - 智能体协作平台
 
-**版本**：v1.4.0
+**版本**：v1.5.0
 **状态**：✅ 核心框架完成
 **创建者**：小米粒（Dev代理）
 **创建时间**：2026-03-15 08:54-08:56（20分钟）
@@ -190,7 +190,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 - ClawHub: https://clawhub.com
-- 创建者: zhaog100 (zhaog100)
+- 创建者: 思捷娅科技 (SJYKJ)
 
 **商业使用授权**：
 - 小微企业（<10人）：¥999/年
@@ -203,4 +203,4 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 ---
 
 *最后更新：2026-03-15 09:12*
-*版本：v1.4.0 - 思捷娅科技(SJYKJ)版权版*
+*版本：v1.5.0 - 思捷娅科技(SJYKJ)完整版权版*
