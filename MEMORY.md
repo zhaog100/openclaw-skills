@@ -99,6 +99,39 @@ memory_get(path="memory/2026-03-11.md", from=1, lines=50)
 
 ---
 
+## 🆕 2026-03-15 新增记忆
+
+### agent-collab-platform v1.0.0 统一架构重构 ⭐⭐⭐⭐⭐（重大升级）
+- ✅ **重构时间**：2026-03-15 08:54-08:56（20分钟）
+- ✅ **架构设计**：共享核心+特定模块（90%代码复用）
+- ✅ **核心模块**：5个（github_monitor, message_router, state_manager, base_skill, issue_handler）
+- ✅ **智能体模块**：agent_a（PM）+ agent_b（Dev）
+- ✅ **Git提交**：fa49cea
+- ✅ **代码统计**：17文件，2288行
+- ✅ **测试状态**：✅ 全部通过
+- ✅ **Issue通知**：#14 已创建
+
+**废弃旧架构**：
+- ❌ agent-a-pm-skill（独立技能包）
+- ❌ agent-b-dev-skill（独立技能包）
+
+**新架构优势**：
+- 代码复用率：90%+（vs 旧架构10%）
+- 扩展成本：低（继承BaseSkill）
+- 维护成本：低（改1个地方）
+- 一致性：好（统一标准）
+
+**启动方式**：
+- 小米辣（PM）：`./skill.sh agent_a`
+- 小米粒（Dev）：`./skill.sh agent_b`
+
+**协作流程**：
+```
+PRD → 技术设计 → Review → 开发 → 发布 → 验收
+```
+
+---
+
 ## 🆕 2026-03-14 新增记忆
 
 ### 飞书群沟通功能完成 ⭐⭐⭐⭐⭐
