@@ -367,6 +367,180 @@ git push xiaomili master
 
 ---
 
+## 📋 规则5：技能发布前必须拉取历史版本并对比差异 ⭐⭐⭐⭐⭐
+
+**定义**：所有技能发布之前，必须先拉取历史版本，对比差异后，再提交更新
+
+**目的**：
+- ✅ 避免覆盖远程新版本
+- ✅ 避免遗漏他人更新
+- ✅ 避免发布过时版本
+- ✅ 确保版本一致性
+
+**要求**：
+1. ✅ **发布前拉取**：`git pull origin master --rebase`
+2. ✅ **对比差异**：检查远程更新内容
+3. ✅ **合并冲突**：如有冲突，手动解决
+4. ✅ **验证后发布**：确认无冲突后发布
+
+**禁止**：
+- ❌ 直接发布（未拉取远程版本）
+- ❌ 忽略远程更新
+- ❌ 强制推送（--force）
+- ❌ 覆盖他人更新
+
+---
+
+### ClawHub发布流程（强制）
+
+#### 步骤1：拉取远程版本
+```bash
+# 拉取origin更新
+git pull origin master --rebase
+
+# 拉取xiaomili更新（如果有）
+git pull xiaomili master --rebase
+```
+
+#### 步骤2：对比差异
+```bash
+# 查看远程更新
+git log origin/master --oneline -10
+
+# 查看本地未推送
+git log origin/master..HEAD --oneline
+
+# 查看文件差异
+git diff origin/master..HEAD
+```
+
+#### 步骤3：处理冲突（如果有）
+```bash
+# 查看冲突文件
+git status
+
+# 手动解决冲突
+# 编辑冲突文件，选择正确内容
+
+# 标记冲突已解决
+git add <冲突文件>
+git rebase --continue
+```
+
+#### 步骤4：验证发布内容
+```bash
+# 确认版本号
+cat package.json | grep version
+
+# 确认更新内容
+cat CHANGELOG.md | head -50
+
+# 确认无冲突
+git status
+```
+
+#### 步骤5：发布到ClawHub
+```bash
+# 发布
+clawhub publish skills/<技能名> --version <版本号>
+
+# 验证发布成功
+clawhub list | grep <技能名>
+```
+
+---
+
+### 发布检查清单
+
+- [ ] **步骤1**：已拉取origin更新？
+- [ ] **步骤2**：已对比远程差异？
+- [ ] **步骤3**：已处理冲突（如果有）？
+- [ ] **步骤4**：已验证发布内容？
+- [ ] **步骤5**：已确认无冲突？
+- [ ] **步骤6**：已发布到ClawHub？
+- [ ] **步骤7**：已推送到Git仓库？
+
+---
+
+### 违规示例
+
+**错误1：直接发布（未拉取）**
+```bash
+❌ clawhub publish skills/my-skill --version 1.0.0
+# 可能覆盖远程新版本
+
+✅ git pull origin master --rebase && clawhub publish skills/my-skill --version 1.0.0
+```
+
+**错误2：忽略远程更新**
+```bash
+❌ 看到冲突提示，直接跳过
+✅ 手动解决冲突，确保合并正确内容
+```
+
+**错误3：强制推送**
+```bash
+❌ git push origin master --force
+# 永远不要使用--force
+
+✅ git pull origin master --rebase && git push origin master
+```
+
+---
+
+### 正确示例
+
+**示例1：发布新版本技能**
+```bash
+# 1. 拉取远程更新
+git pull origin master --rebase
+
+# 2. 查看远程更新
+git log origin/master --oneline -5
+
+# 3. 查看本地未推送
+git log origin/master..HEAD --oneline
+
+# 4. 如果有冲突，解决冲突
+git status
+# 手动解决冲突文件
+git add <冲突文件>
+git rebase --continue
+
+# 5. 验证发布内容
+cat package.json | grep version
+# 应显示：1.11.0
+
+# 6. 发布到ClawHub
+clawhub publish skills/my-skill --version 1.11.0
+
+# 7. 推送到Git仓库
+git push xiaomili master
+git push origin master
+
+# 8. 验证发布成功
+clawhub list | grep my-skill
+```
+
+**示例2：远程有更新**
+```bash
+# 1. 拉取远程更新
+git pull origin master --rebase
+# 远程有新提交：abc123 feat: 其他智能体的更新
+
+# 2. 查看差异
+git log origin/master..HEAD --oneline
+# 本地有：def456 feat: 我的更新
+
+# 3. 确认合并正确
+# rebase会自动合并，无冲突
+
+# 4. 发布
+clawhub publish skills/my-skill --version 1.11.0
+```
+
+---
+
 ## 🎯 规则集成
 
 ### 在BaseSkill中的实现
