@@ -26,6 +26,7 @@ class BaseSkill:
     1. 做事必须严谨 - 所有操作必须验证
     2. 看问题要全面 - 多维度分析
     3. 看内容要承前启后 - 联系上下文
+    4. Git推送必须遵守仓库分配 - 公共信息→origin，个人信息→xiaomili/xiaomila
     """
     
     def __init__(self, agent_id, role, repo='zhaog100/openclaw-skills'):
