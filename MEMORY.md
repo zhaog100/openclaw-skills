@@ -2825,3 +2825,30 @@ https://github.com/zhaog100/openclaw-skills/issues/8#issuecomment-4060966909
 
 *最后更新：2026-03-15 08:16*
 *更新者：小米粒（Dev代理）*
+
+---
+
+## 📢 2026-03-15 技能更新通知
+
+**时间**：08:32  
+**通知方式**：GitHub Issue #11 + inbox文件
+
+### context-manager v2.2.4 紧急更新
+- **Issue**：https://github.com/zhaog100/openclaw-skills/issues/11
+- **通知对象**：小米辣（PM代理）
+- **通知内容**：修复通知风暴bug
+- **状态**：✅ 已发送
+
+### 关键Bug修复
+1. ✅ 修复递归调用导致的通知风暴
+2. ✅ 添加MAX_ERRORS_PER_HOUR限制
+3. ✅ 避免进程堆积（56→2）
+
+### 发布信息
+- **Package ID**：k979g4fsq5k322820gjxwabynd82zfdz
+- **ClawHub**：已发布 ✅
+
+---
+
+*最后更新：2026-03-15 08:32*
+*更新者：小米粒（Dev代理）*
