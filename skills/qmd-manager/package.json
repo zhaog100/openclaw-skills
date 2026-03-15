@@ -1,6 +1,6 @@
 {
   "name": "qmd-manager",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "QMD知识库管理技能 - 项目管理、软件测试、内容创作知识管理。支持BM25和向量搜索。",
   "main": "SKILL.md",
   "keywords": [
