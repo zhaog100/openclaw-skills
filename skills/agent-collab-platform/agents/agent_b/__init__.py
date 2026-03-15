@@ -3,6 +3,10 @@
 """
 智能体B（Dev代理）- 小米粒
 
+版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+ClawHub: https://clawhub.com
+
 角色：技术设计、开发实现、集成发布
 """
 

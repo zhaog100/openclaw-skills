@@ -3,6 +3,10 @@
 """
 集成发布模块 v2.0 - GitHub Issue协作
 
+版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+ClawHub: https://clawhub.com
+
 功能：
 - 发布准备
 - ClawHub发布
@@ -158,7 +162,7 @@ class Publisher:
         for item, done in release['checklist'].items():
             status_icon = '✅' if done else '❌'
             release_doc += f"- {status_icon} {item}\n"
-        
+
         release_doc += f"""
 ---
 
@@ -171,11 +175,34 @@ class Publisher:
 
 ---
 
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 米粒儿 (miliger)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+- ClawHub: https://clawhub.com
+- 创建者: 米粒儿 (miliger)
+
+**商业使用授权**：
+- 小微企业（<10人）：¥999/年
+- 中型企业（10-50人）：¥4,999/年
+- 大型企业（>50人）：¥19,999/年
+- 企业定制版：¥99,999一次性（源码买断）
+
+详情请查看：[LICENSE](../../LICENSE)
+
+---
+
 **项目状态**：✅ 发布完成
 
 🌾 小米粒（Dev代理）
 """
-        
+
         return release_doc
     
     def publish(self, args):
