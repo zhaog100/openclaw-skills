@@ -3,6 +3,10 @@
 """
 开发实现模块 v2.0 - GitHub Issue协作
 
+版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+ClawHub: https://clawhub.com
+
 功能：
 - 根据技术设计开发
 - 代码生成
