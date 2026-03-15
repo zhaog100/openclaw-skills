@@ -1,6 +1,6 @@
 {
   "name": "quote-reader",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "引用前文内容读取技能，智能识别用户引用的历史消息，通过平台API获取真实消息内容，支持飞书/QQ/企业微信交互式卡片内容解析",
   "author": "miliger",
   "license": "MIT",
@@ -49,7 +49,11 @@
     "platforms": {
       "feishu": {
         "enabled": true,
-        "features": ["text", "interactive-card", "image"]
+        "features": [
+          "text",
+          "interactive-card",
+          "image"
+        ]
       },
       "qq": {
         "enabled": false
