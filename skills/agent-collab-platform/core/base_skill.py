@@ -12,6 +12,7 @@ ClawHub: https://clawhub.com
 - 共享GitHub监听
 - 共享消息路由
 - 共享状态管理
+- 核心规则约束（严谨、全面、承前启后）
 """
 
 import json
@@ -19,7 +20,13 @@ import subprocess
 from datetime import datetime
 
 class BaseSkill:
-    """所有智能体的基类"""
+    """所有智能体的基类
+    
+    核心规则（强制）：
+    1. 做事必须严谨 - 所有操作必须验证
+    2. 看问题要全面 - 多维度分析
+    3. 看内容要承前启后 - 联系上下文
+    """
     
     def __init__(self, agent_id, role, repo='zhaog100/openclaw-skills'):
         """初始化技能
