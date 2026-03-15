@@ -3,7 +3,7 @@
 """
 基础技能类 - 所有智能体的基类
 
-版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 ClawHub: https://clawhub.com
 

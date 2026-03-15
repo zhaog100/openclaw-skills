@@ -79,7 +79,7 @@ agent-collab-platform v{__version__} - 智能体协作平台
     ├── agent_a/            PM代理（小米辣）
     └── agent_b/            Dev代理（小米粒）
 
-创建者: zhaog100
+创建者: zhaog100 (zhaog100)
 GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 """)
 
