@@ -3,7 +3,7 @@
 """
 GitHub监听器 - 所有智能体共享
 
-版权声明：MIT License | Copyright (c) 2026 米粒儿 (miliger)
+版权声明：MIT License | Copyright (c) 2026 思捷娅科技
 GitHub: https://github.com/zhaog100/xiaomili-personal-skills
 ClawHub: https://clawhub.com
 

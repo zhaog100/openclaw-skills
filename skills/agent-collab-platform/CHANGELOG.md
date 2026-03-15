@@ -1,5 +1,40 @@
 # 更新日志（CHANGELOG）
 
+## v1.2.0 - 思捷娅科技版权版 (2026-03-15 09:16)
+
+### 版权信息修正 🏢
+
+**重要更新**：
+- ✅ 版权所有者：米粒儿 (miliger) → **思捷娅科技** ⭐
+- ✅ 所有核心模块版权信息更新
+- ✅ 所有智能体模块版权信息更新
+- ✅ package.json作者信息更新
+- ✅ README.md版权信息更新
+- ✅ SKILL.md版权信息更新
+- ✅ skill.sh版权信息更新
+
+**影响范围**：
+- ✅ core/github_monitor.py
+- ✅ core/base_skill.py
+- ✅ core/message_router.py
+- ✅ core/state_manager.py
+- ✅ core/issue_handler.py
+- ✅ agents/agent_a/__init__.py
+- ✅ agents/agent_b/__init__.py
+- ✅ agents/agent_b/tech_designer.py
+- ✅ agents/agent_b/developer.py
+- ✅ agents/agent_b/publisher.py
+
+**版权信息统一**：
+```
+MIT License
+Copyright (c) 2026 思捷娅科技
+GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+ClawHub: https://clawhub.com
+```
+
+---
+
 ## v1.1.0 - 版权保护增强版 (2026-03-15 09:15)
 
 ### 新增功能 ✨
@@ -90,4 +125,4 @@
 ---
 
 *最后更新：2026-03-15 09:15*
-*维护者：小米粒 (miliger)*
+*维护者：思捷娅科技*
