@@ -19,7 +19,7 @@ from developer import Developer
 from publisher import Publisher
 from communicator import Communicator
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 __author__ = '小米粒 (miliger)'
 
 class AgentBDevSkill:
@@ -49,10 +49,10 @@ class AgentBDevSkill:
     
     def run(self):
         """运行技能包"""
-        print("🚀 agent-b-dev-skill v1.0.0 启动...")
-        
-        # 监听飞书消息
-        self.communicator.listen(self.handle_message)
+        print(f"🚀 agent-b-dev-skill v{__version__} 启动...")
+
+        # 监听GitHub Issue
+        self.communicator.listen()
 
 def main():
     """主入口"""
@@ -82,20 +82,38 @@ def main():
         elif command == 'comm':
             if '--help' in args or '-h' in args:
                 print("沟通协作模块帮助：")
-                print("  --send <message>  发送消息")
-                print("  --receive         接收消息")
-                print("  --status          查看状态")
+                print("  --start           启动GitHub监听")
+                print("  --stop            停止监听")
+                print("  --check           手动检查Issue")
+                print("  --status          查看监听状态")
+                print("  --send <issue> <message>  发送评论到Issue")
+            elif '--start' in args:
+                # 启动监听
+                skill.communicator.listen()
+                print("✅ 监听已启动（后台运行）")
+            elif '--stop' in args:
+                # 停止监听
+                skill.communicator.stop()
+            elif '--check' in args:
+                # 手动检查
+                skill.communicator.check_github_issues()
+            elif '--status' in args:
+                # 查看状态
+                status = skill.communicator.handle({'action': 'status'})
+                print(status)
             elif '--send' in args:
-                msg_idx = args.index('--send') + 1
-                if msg_idx < len(args):
-                    message = args[msg_idx]
-                    print(f"📤 发送消息到小米辣: {message}")
-                    # TODO: 实际发送消息
+                # 发送评论
+                if len(args) >= 3:
+                    issue_number = args[args.index('--send') + 1]
+                    message = ' '.join(args[args.index('--send') + 2:])
+                    success, msg = skill.communicator.send_message(
+                        'agent-a-pm', 
+                        message, 
+                        int(issue_number)
+                    )
+                    print(f"{'✅' if success else '❌'} {msg}")
                 else:
-                    print("❌ 缺少消息内容")
-            elif '--receive' in args:
-                print("📥 接收消息中...")
-                # TODO: 实际接收消息
+                    print("❌ 用法: comm --send <issue_number> <message>")
             else:
                 # 启动监听模式
                 skill.run()
