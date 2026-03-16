@@ -20,7 +20,8 @@ validate_tool() {
     # 1. Check for executable main script
     ((total++)) || true
     local main_script
-    main_script=$(find "$path" -maxdepth 1 -type f -executable | head -1)
+    main_script=$(find "$path" -maxdepth 1 -type f -executable ! -name "test_*" | head -1)
+    [[ -z "$main_script" ]] && main_script=$(find "$path" -maxdepth 1 -type f -executable | head -1)
     if [[ -n "$main_script" ]]; then
         echo -e "  ✅ Executable main script found: $(basename "$main_script")"
         ((score++)) || true
@@ -39,7 +40,7 @@ validate_tool() {
 
     # 3. Check set -euo pipefail (Bash)
     ((total++)) || true
-    if [[ -n "$main_script" ]] && file "$main_script" | grep -qi "bash" && grep -q 'set -euo pipefail' "$main_script"; then
+    if [[ -n "$main_script" ]] && file "$main_script" | grep -qiE "bash|Bourne-Again" && grep -q 'set -euo pipefail' "$main_script"; then
         echo -e "  ✅ Strict mode enabled (set -euo pipefail)"
         ((score++)) || true
     else

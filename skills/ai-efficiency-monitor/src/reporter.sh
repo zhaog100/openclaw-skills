@@ -48,6 +48,7 @@ generate_markdown_report() {
   local model_stats=""
   while IFS= read -r model; do
     model="${model//\"/}"
+    model="${model#model:}"
     [[ -z "$model" ]] && continue
     local m_in m_out m_count
     m_count=$(grep -c "\"model\":\"$model\"" "$input" 2>/dev/null || echo 0)

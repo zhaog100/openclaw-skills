@@ -49,8 +49,12 @@ aiemon_analyze() {
   # 打印摘要
   echo ""
   echo "📋 浪费模式摘要:"
-  grep -o '"name":"[^"]*"' "$output_file" | sed 's/"name":"- /  - /;s/"$//' || echo "  未检测到浪费模式"
-  grep -o '"count":[0-9]*' "$output_file" | sed 's/"count":/    检测次数: /' || true
+  grep '"name"' "$output_file" | while IFS= read -r line; do
+    name=$(echo "$line" | grep -o '"name":"[^"]*"' | sed 's/"name":"//;s/"$//')
+    count=$(echo "$line" | grep -o '"count":[0-9]*' | sed 's/"count"://')
+    [[ -z "$name" ]] && continue
+    echo "  - ${name}: ${count}次"
+  done
 }
 
 analyze_duplicate_query() {
