@@ -15,16 +15,17 @@
 
 ## ✅ 今日已完成（2026-03-16）
 
-| PRD | Issue | 版本 | 状态 | 关系说明 |
-|-----|-------|------|------|---------|
-| **daily-review-assistant** | #16 | v1.1.0 | ✅ 完成 | 独立技能 |
-| **auto-document-generator** | #19 | v1.0.0 | ✅ 完成 | 独立技能 |
-| **Error Handler Library** | #17 | v1.2 | ✅ 完成 | 🔗 核心库开发 |
-| **Error Handler Library 集成** | #18 | - | ✅ 完成 | 🔗 库的集成应用（基于#17） |
-| **AI 代码审查助手** | #15 | - | ✅ 完成 | 独立技能 |
+| PRD | Issue | 版本 | 状态 | ClawHub 发布 | 说明 |
+|-----|-------|------|------|------------|------|
+| **daily-review-assistant** | #16 | v1.1.0 | ✅ 完成 | ✅ 待发布 | 独立技能 |
+| **auto-document-generator** | #19 | v1.0.0 | ✅ 完成 | ✅ 待发布 | 独立技能 |
+| **Error Handler Library** | #17 | v1.2 | ✅ 完成 | ❌ 不发布 | 🔗 核心工具库（放在 skills/utils/） |
+| **Error Handler Library 集成** | #18 | - | ✅ 完成 | ❌ 不发布 | 🔗 集成任务（已集成到现有技能） |
+| **AI 代码审查助手** | #15 | - | ✅ 完成 | ✅ 已发布 | 独立技能 |
 
 **说明**:
-- **#17 和 #18 的关系**: #17 负责开发 Error Handler Library 核心库，#18 负责将该库集成到 7 个现有技能中。两者是上下游关系，先开发库 (#17)，再集成应用 (#18)。
+- **#17 和 #18 的关系**: #17 负责开发 Error Handler Library 核心库，#18 负责将该库集成到 7 个现有技能中。
+- **ClawHub 发布策略**: Error Handler Library 是工具库（类似 npm package），不单独发布。发布的是已集成该库的技能（如 session-memory-enhanced v4.1.0, context-manager-v2 v2.4.0）。
 
 ---
 
