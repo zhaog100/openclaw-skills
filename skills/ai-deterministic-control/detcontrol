@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# detcontrol - AI 确定性控制工具 CLI
+
+source /root/.openclaw/workspace/skills/utils/error-handler.sh 2>/dev/null || true
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON="${PYTHON:-python3}"
+
+case "${1:-help}" in
+  set)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" set "${@:2}"
+    ;;
+  check)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" check "${@:2}"
+    ;;
+  report)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" report "${@:2}"
+    ;;
+  preset)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" preset "${@:2}"
+    ;;
+  monitor)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" monitor "${@:2}"
+    ;;
+  inject)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" inject "${@:2}"
+    ;;
+  reset)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" reset "${@:2}"
+    ;;
+  help|--help|-h)
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" --help
+    ;;
+  *)
+    echo "Unknown command: $1"
+    echo "Usage: detcontrol {set|check|report|preset|monitor|inject|reset|help}"
+    exit 1
+    ;;
+esac
