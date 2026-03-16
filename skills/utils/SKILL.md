@@ -1,13 +1,37 @@
 ---
 name: error-handler
-description: 通用错误处理库。为所有技能提供统一的错误处理、告警过滤、日志记录。支持 GraphQL 警告过滤、Python 安全调用、API 重试、Git 安全操作。
+description: 通用错误处理库。为所有技能提供统一的错误处理、告警过滤、日志记录。支持 GraphQL 警告过滤、Python 安全调用、API 重试、Git 安全操作。推荐搭配 session-memory-enhanced 和 context-manager-v2 使用。
 ---
 
 # Error Handler Library - 通用错误处理库
 
-**版本**: v1.0  
+**版本**: v1.1  
 **创建者**: 思捷娅科技 (SJYKJ)  
 **用途**: 为所有技能提供统一的错误处理和告警过滤
+
+---
+
+## 💡 推荐依赖
+
+为了获得最佳效果，推荐安装以下技能：
+
+### 1. session-memory-enhanced
+- **功能**: 长上下文记忆管理
+- **作用**: 自动保存和检索记忆，支持向量检索
+- **路径**: `skills/session-memory-enhanced/`
+- **安装**: `source skills/session-memory-enhanced/install.sh`
+
+### 2. context-manager-v2
+- **功能**: 会话切换管理
+- **作用**: 自动监控上下文使用率，达到阈值自动切换
+- **路径**: `skills/context-manager-v2/`
+- **安装**: `source skills/context-manager-v2/install.sh`
+
+**一起使用效果更佳**：
+- Error Handler Library 处理错误和日志
+- session-memory-enhanced 管理记忆保存
+- context-manager-v2 管理会话切换
+- 三者协同工作，提供完整的错误处理和记忆管理能力
 
 ---
 
@@ -239,6 +263,6 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ---
 
-*版本：v1.0*  
-*最后更新：2026-03-16 10:55*  
+*版本：v1.1*  
+*最后更新：2026-03-16 13:28*  
 *创建者：思捷娅科技 (SJYKJ)*

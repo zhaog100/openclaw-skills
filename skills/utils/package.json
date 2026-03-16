@@ -1,6 +1,6 @@
 {
   "name": "error-handler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "通用错误处理库 - 为所有技能提供统一的错误处理、告警过滤、日志记录",
   "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
@@ -22,10 +22,18 @@
     "examples/",
     "tests/"
   ],
+  "dependencies": {
+    "session-memory-enhanced": "可选，推荐安装",
+    "context-manager-v2": "可选，推荐安装"
+  },
   "clawhub": {
     "category": "工具库",
     "tags": ["错误处理", "日志", "工具", "通用库"],
     "requirements": ["bash4.0+", "curl"],
-    "install": "source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh"
+    "install": "source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh",
+    "recommendations": [
+      "session-memory-enhanced - 长上下文记忆管理",
+      "context-manager-v2 - 会话切换管理"
+    ]
   }
 }

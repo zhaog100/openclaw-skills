@@ -2,16 +2,24 @@
 # =============================================================================
 # Error Handler Library - 通用错误处理库
 # =============================================================================
-# 版本：v1.0
+# 版本：v1.1
 # 创建时间：2026-03-16
+# 更新时间：2026-03-16 13:28
 # 创建者：思捷娅科技 (SJYKJ)
 # 用途：为所有技能提供统一的错误处理和告警过滤
 # 许可证：MIT License
 # 版权：Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 
+# 推荐依赖:
+# - session-memory-enhanced: 长上下文记忆管理
+# - context-manager-v2: 会话切换管理
 # =============================================================================
 
 # 日志文件（可被覆盖）
 ERROR_HANDLER_LOG="${ERROR_HANDLER_LOG:-/tmp/error-handler.log}"
+
+# 推荐依赖检查
+ERROR_HANDLER_SHOW_TIP="${ERROR_HANDLER_SHOW_TIP:-true}"
 
 # 过滤规则（正则表达式）
 FILTER_PATTERN="GraphQL|deprecated|Projects (classic)|sunset-notice|Warning|Deprecation|FutureWarning|hint:"
@@ -215,4 +223,26 @@ safe_issue_comment() {
 # 确保日志目录存在
 mkdir -p "$(dirname "$ERROR_HANDLER_LOG")" 2>/dev/null || true
 
-log_debug "Error Handler Library v1.0 已加载"
+# 显示依赖提示（首次加载时）
+if [ "$ERROR_HANDLER_SHOW_TIP" = "true" ]; then
+    if [ ! -f "/tmp/error-handler-tip-shown" ]; then
+        log_info "╔════════════════════════════════════════════════════════╗"
+        log_info "║  Error Handler Library v1.1 已加载                      ║"
+        log_info "╠════════════════════════════════════════════════════════╣"
+        log_info "║  💡 推荐安装以下技能以获得更好效果：                    ║"
+        log_info "║                                                        ║"
+        log_info "║  1. session-memory-enhanced                            ║"
+        log_info "║     长上下文记忆管理，自动保存和检索记忆               ║"
+        log_info "║     路径：skills/session-memory-enhanced/              ║"
+        log_info "║                                                        ║"
+        log_info "║  2. context-manager-v2                                 ║"
+        log_info "║     会话切换管理，自动监控上下文使用率                 ║"
+        log_info "║     路径：skills/context-manager-v2/                   ║"
+        log_info "║                                                        ║"
+        log_info "║  安装方式：source skills/<技能名>/install.sh           ║"
+        log_info "╚════════════════════════════════════════════════════════╝"
+        touch "/tmp/error-handler-tip-shown"
+    fi
+fi
+
+log_debug "Error Handler Library v1.1 已加载"
