@@ -31,9 +31,21 @@ OPENAI_API_KEY=""
 # 确保目录存在
 mkdir -p "$MEMORY_DIR" "$SHARED_DIR" "$(dirname "$LOG_FILE")"
 
-# 日志函数
+# =============================================================================
+# 集成 Error Handler Library
+# =============================================================================
+ERROR_HANDLER_LOG="$LOG_FILE"
+source "$WORKSPACE/skills/utils/error-handler.sh"
+
+# 别名函数（兼容旧代码）
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$AGENT_NAME] $1" >> "$LOG_FILE"
+    local level="${2:-INFO}"
+    case "$level" in
+        INFO) log_info "$1" ;;
+        WARN) log_warn "$1" ;;
+        ERROR) log_error "$1" ;;
+        DEBUG) log_debug "$1" ;;
+    esac
 }
 
 log "================================"
