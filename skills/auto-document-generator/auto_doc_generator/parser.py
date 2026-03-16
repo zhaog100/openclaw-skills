@@ -93,8 +93,10 @@ class CodeParser:
     
     def __init__(self, language: Language):
         self.language = language
-        self.parser = self._init_parser()
+        # 先初始化 logger
         self.logger = logging.getLogger(f"{__name__}.{language.value}")
+        # 再初始化 parser
+        self.parser = self._init_parser()
     
     def _init_parser(self) -> Optional[Any]:
         """初始化 tree-sitter 解析器"""

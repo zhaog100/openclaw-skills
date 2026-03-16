@@ -136,10 +136,9 @@ class CommentExtractor:
     
     def _detect_style(self, docstring: str) -> DocstringStyle:
         """检测文档字符串风格"""
-        docstring_lower = docstring.lower()
         
-        # Numpy 风格特征
-        if re.search(r'^\s*(parameters|returns|attributes)\s*$', docstring, re.MULTILINE):
+        # Numpy 风格特征（忽略大小写）
+        if re.search(r'^\s*(parameters|returns|attributes)\s*$', docstring, re.MULTILINE | re.IGNORECASE):
             return DocstringStyle.NUMPY
         
         # Sphinx 风格特征
@@ -182,31 +181,50 @@ class CommentExtractor:
         section_content = []
         
         while i < len(lines):
-            line = lines[i].strip()
+            raw_line = lines[i]  # 保留原始行（包含缩进）
+            line = lines[i].strip()  # 去除缩进的行
             
             # 检测章节标题
             if line in ('Args:', 'Arguments:'):
+                # 处理之前的章节
+                if current_section and section_content:
+                    self._process_section(current_section, section_content, result)
                 current_section = 'args'
                 section_content = []
             elif line == 'Returns:':
+                # 处理之前的章节
+                if current_section and section_content:
+                    self._process_section(current_section, section_content, result)
                 current_section = 'returns'
                 section_content = []
             elif line == 'Raises:':
+                # 处理之前的章节
+                if current_section and section_content:
+                    self._process_section(current_section, section_content, result)
                 current_section = 'raises'
                 section_content = []
             elif line in ('Example:', 'Examples:'):
+                # 处理之前的章节
+                if current_section and section_content:
+                    self._process_section(current_section, section_content, result)
                 current_section = 'examples'
                 section_content = []
             elif line in ('Note:', 'Notes:'):
+                # 处理之前的章节
+                if current_section and section_content:
+                    self._process_section(current_section, section_content, result)
                 current_section = 'notes'
                 section_content = []
             elif line in ('Warning:', 'Warnings:'):
+                # 处理之前的章节
+                if current_section and section_content:
+                    self._process_section(current_section, section_content, result)
                 current_section = 'warnings'
                 section_content = []
-            elif line.startswith('    ') or not line:
-                # 缩进内容
+            elif raw_line.startswith('    ') or raw_line.startswith('\t') or not line:
+                # 缩进内容或空行（使用原始行检查缩进）
                 if current_section:
-                    section_content.append(line)
+                    section_content.append(line)  # 添加去除缩进的行
             else:
                 # 新段落，处理当前章节
                 if current_section and section_content:
@@ -241,17 +259,36 @@ class CommentExtractor:
         """解析 Google 风格参数"""
         parameters = []
         
-        # 匹配参数行：name (type): description
-        pattern = r'^\s*(\w+)\s*(?:\(([^)]+)\))?\s*:\s*(.+?)(?:\s*\(default:\s*(.+?)\))?$'
+        # 分行处理
+        lines = content.strip().split('\n')
         
-        for match in re.finditer(pattern, content, re.MULTILINE):
-            param = ParameterDoc(
-                name=match.group(1),
-                type=match.group(2),
-                description=match.group(3),
-                default=match.group(4)
-            )
-            parameters.append(param)
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            
+            # 匹配参数行：name (type): description 或 name: description
+            # 支持格式：
+            # a (int): First number
+            # a: First number
+            # a (int, optional): First number
+            pattern = r'^(\w+)\s*(?:\(([^)]+)\))?\s*:\s*(.+)$'
+            
+            match = re.match(pattern, line)
+            if match:
+                param = ParameterDoc(
+                    name=match.group(1),
+                    type=match.group(2),
+                    description=match.group(3).strip()
+                )
+                
+                # 检查是否有默认值
+                default_match = re.search(r'\(default:\s*(.+?)\)', param.description)
+                if default_match:
+                    param.default = default_match.group(1)
+                    param.description = re.sub(r'\s*\(default:\s*.+?\)', '', param.description)
+                
+                parameters.append(param)
         
         return parameters
     
@@ -317,46 +354,148 @@ class CommentExtractor:
         i = 0
         while i < len(lines):
             line = lines[i].strip()
-            if not line or line in ('Parameters', 'Returns', 'Attributes', 'Raises', 'Examples', 'Notes', 'Warnings'):
+            if line in ('Parameters', 'Returns', 'Attributes', 'Raises', 'Examples', 'Notes', 'Warnings'):
                 break
-            description_lines.append(line)
+            if line:  # 非空行才添加到描述
+                description_lines.append(line)
             i += 1
         
         result.description = ' '.join(description_lines)
         
         # 解析参数
+        while i < len(lines):
+            if lines[i].strip() == 'Parameters':
+                break
+            i += 1
+        
         if i < len(lines) and lines[i].strip() == 'Parameters':
-            i += 2  # 跳过标题和分隔线
-            params_lines = []
-            while i < len(lines) and lines[i].strip():
-                params_lines.append(lines[i])
+            i += 1  # 跳过 Parameters 标题
+            
+            # 跳过分隔线（如果有）
+            if i < len(lines) and lines[i].strip().startswith('---'):
                 i += 1
+            
+            params_lines = []
+            while i < len(lines):
+                line = lines[i].strip()
+                # 遇到其他章节标题时停止
+                if line in ('Returns', 'Attributes', 'Raises', 'Examples', 'Notes', 'Warnings'):
+                    break
+                # 空行可能是参数之间的分隔，继续
+                if not line:
+                    i += 1
+                    continue
+                params_lines.append(lines[i])  # 保留原始行（包含缩进）
+                i += 1
+            
             result.parameters = self._parse_numpy_params('\n'.join(params_lines))
         
         # 解析返回值
+        while i < len(lines):
+            if lines[i].strip() == 'Returns':
+                break
+            i += 1
+        
         if i < len(lines) and lines[i].strip() == 'Returns':
-            i += 2
+            i += 1  # 跳过 Returns 标题
+            
+            # 跳过分隔线（如果有）
+            if i < len(lines) and lines[i].strip().startswith('---'):
+                i += 1
+            
             returns_lines = []
-            while i < len(lines) and lines[i].strip():
+            while i < len(lines):
+                line = lines[i].strip()
+                if line in ('Parameters', 'Attributes', 'Raises', 'Examples', 'Notes', 'Warnings'):
+                    break
+                if not line:
+                    i += 1
+                    continue
                 returns_lines.append(lines[i])
                 i += 1
+            
             result.returns = self._parse_numpy_returns('\n'.join(returns_lines))
     
     def _parse_numpy_params(self, content: str) -> List[ParameterDoc]:
         """解析 Numpy 风格参数"""
         parameters = []
         
-        # Numpy 风格：name : type
-        #              description
-        pattern = r'^(\w+)\s*:\s*(\w+)?\s*$\n\s+(.+?)(?=\n\w+\s*:|\Z)'
+        # Numpy 风格：
+        # name : type
+        #     description
+        # name
+        #     description
         
-        for match in re.finditer(pattern, content, re.MULTILINE):
-            param = ParameterDoc(
-                name=match.group(1),
-                type=match.group(2),
-                description=match.group(3).strip()
-            )
-            parameters.append(param)
+        lines = content.strip().split('\n')
+        i = 0
+        
+        while i < len(lines):
+            line = lines[i].strip()
+            
+            # 跳过空行
+            if not line:
+                i += 1
+                continue
+            
+            # 跳过缩进行（描述）
+            if line.startswith(' ') or line.startswith('\t'):
+                i += 1
+                continue
+            
+            # 检测参数行（行首开始，不缩进）
+            # 可能格式：
+            # name : type
+            # name
+            
+            # 尝试匹配 name : type
+            match = re.match(r'^(\w+)\s*:\s*(\w+)?\s*$', line)
+            if match:
+                param = ParameterDoc(
+                    name=match.group(1),
+                    type=match.group(2)
+                )
+                
+                # 读取描述（下一行开始，所有缩进行）
+                i += 1
+                desc_lines = []
+                while i < len(lines):
+                    next_line = lines[i]
+                    # 检查是否是缩进内容
+                    if next_line.startswith(' ') or next_line.startswith('\t'):
+                        desc_lines.append(next_line.strip())
+                        i += 1
+                    elif next_line.strip():  # 非空非缩进行，是下一个参数
+                        break
+                    else:  # 空行
+                        i += 1
+                
+                param.description = ' '.join(desc_lines) if desc_lines else ''
+                parameters.append(param)
+                continue
+            
+            # 没有 ':' 的行，可能是只有 name
+            match = re.match(r'^(\w+)\s*$', line)
+            if match:
+                param = ParameterDoc(name=match.group(1))
+                
+                # 读取描述
+                i += 1
+                desc_lines = []
+                while i < len(lines):
+                    next_line = lines[i]
+                    if next_line.startswith(' ') or next_line.startswith('\t'):
+                        desc_lines.append(next_line.strip())
+                        i += 1
+                    elif next_line.strip():
+                        break
+                    else:
+                        i += 1
+                
+                param.description = ' '.join(desc_lines) if desc_lines else ''
+                parameters.append(param)
+                continue
+            
+            i += 1
         
         return parameters
     
