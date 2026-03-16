@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-readonly PIPELINE_VERSION="1.0.0"
+readonly PIPELINE_VERSION="2.0.0"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PIPELINE_STATE_DIR="${PIPELINE_STATE_DIR:-$HOME/.openclaw/pipeline}"
 
@@ -30,6 +30,8 @@ source "$SCRIPT_DIR/src/plan_reviewer.sh"
 source "$SCRIPT_DIR/src/review_engine.sh"
 source "$SCRIPT_DIR/src/fix_engine.sh"
 source "$SCRIPT_DIR/src/publish_engine.sh"
+source "$SCRIPT_DIR/src/spawn_engine.sh"
+source "$SCRIPT_DIR/src/task_planner.sh"
 
 # ─── 日志 ───
 pipeline_log() {
@@ -166,36 +168,32 @@ cmd_status() {
 # ─── help 命令 ───
 cmd_help() {
   cat <<'EOF'
-auto-pipeline v1.0.0 - 技能自动开发流水线（PM辅助工具）
+auto-pipeline v2.0.0 - 技能自动开发流水线（半自动化）
 版权: 思捷娅科技 (SJYKJ) | MIT License
 
-【v1.0 定位】PM手动调度中心，不自动spawn子代理。
-PM手动执行各步骤：Review → 修复 → 发布，流水线提供质量保障工具。
+【v2.0 定位】半自动化：Bash脚本提供prompt构造+结果解析，Agent执行spawn。
 
 用法:
-  pipeline.sh list [--status developing|fixing|completed]  # 看板
-  pipeline.sh status <skill-name>                            # 状态详情
-  pipeline.sh help
+  # v2.0 自动化流程（推荐）
+  pipeline.sh prepare --prd <prd文件> [--skill <名称>]  # 解析PRD→预审→输出开发prompt
+  pipeline.sh review --skill <名称> [--dir <目录>]       # 12维度Review评分
+  pipeline.sh fix-prompt --skill <名称> [--round N]      # 构造修复prompt
+  pipeline.sh result --skill <名称> --type <dev|fix> --file <结果>  # 解析子代理结果
+  pipeline.sh plan --skill <名称>                        # 查看任务拆分计划
+  pipeline.sh run --prd <prd文件>                        # 完整流程（prepare→输出SPAWN指令）
 
-v1.0 功能（当前可用）:
-  ✅ Review引擎  - 12维度量化评分 + PRD逐项对照（满分60，≥50通过）
-  ✅ 修复引擎    - 问题清单格式化 + 回退判断（PM手动派发修复）
-  ✅ 发布引擎    - Git提交推送 + ClawHub发布 + PRD状态更新
-  ✅ PRD看板     - list/status + 状态JSON持久化
-  ✅ Plan预审    - 任务声明审查 + 信心度评分
-  ✅ PRD解析     - 结构化/自由格式PRD → 任务声明JSON
+  # v1.0 看板（保留）
+  pipeline.sh list [--status developing|fixing|completed]
+  pipeline.sh status <skill-name>
 
-v2.0 功能（计划中）:
-  ⬜ 自动spawn开发/修复子代理
-  ⬜ 子代理超时处理 + 任务拆分
-  ⬜ 修复循环自动化（≤3轮）
-  ⬜ task_planner.sh 智能任务拆分
-
-v3.0 功能（远期）:
-  ⬜ 双模型交叉Review
-  ⬜ Baseline Delta（只检查新增代码）
-  ⬜ 并行开发（batch命令 + 3子代理并行）
-  ⬜ 端到端全自动化
+Agent工作流（v2.0）:
+  1. bash pipeline.sh prepare --prd xxx → 输出 SPAWN_DEV 指令
+  2. Agent 用 sessions_spawn 执行开发prompt
+  3. bash pipeline.sh review --skill xxx → 12维度评分
+  4. if 评分<50: bash pipeline.sh fix-prompt --skill xxx → 输出 SPAWN_FIX 指令
+  5. Agent spawn修复子代理（≤3轮循环）
+  6. bash pipeline.sh result --skill xxx --type fix --file <结果> → 验证修复
+  7. if 评分≥50: 发布（publish_engine）
 
 状态流转: pending → developing → reviewing → fixing → publishing → completed
                                   ↘ escalated（升级给官家）
@@ -207,16 +205,301 @@ v3.0 功能（远期）:
 EOF
 }
 
+# ─── v2.0: prepare 命令 ───
+# 解析PRD + 预审 + 构造开发prompt（供Agent spawn子代理）
+cmd_prepare() {
+  local prd_path="" skill_name=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --prd)   prd_path="$2"; shift 2 ;;
+      --skill) skill_name="$2"; shift 2 ;;
+      *) echo "未知参数: $1"; exit 1 ;;
+    esac
+  done
+
+  if [[ -z "$prd_path" ]]; then
+    echo "错误: prepare需要 --prd 参数"
+    exit 1
+  fi
+
+  if [[ -z "$skill_name" ]]; then
+    skill_name=$(prd_extract_skill_name "$prd_path")
+  fi
+
+  # 阶段1: PRD解析
+  pipeline_log "prepare: 解析PRD..."
+  local tasks_json
+  tasks_json=$(prd_read "$prd_path")
+  local task_count
+  task_count=$(echo "$tasks_json" | jq '.tasks | length')
+  pipeline_log "prepare: 解析到 $task_count 个任务"
+
+  # 阶段2: Plan预审
+  pipeline_log "prepare: Plan预审..."
+  local approved_tasks
+  approved_tasks=$(plan_review "$tasks_json")
+
+  # 保存中间结果到状态目录
+  mkdir -p "$PIPELINE_STATE_DIR/$skill_name"
+  echo "$approved_tasks" > "$PIPELINE_STATE_DIR/$skill_name/tasks_approved.json"
+  echo "$tasks_json" > "$PIPELINE_STATE_DIR/$skill_name/tasks.json"
+
+  # 阶段3: 任务拆分
+  pipeline_log "prepare: 任务拆分..."
+  local subtasks
+  subtasks=$(task_plan "$approved_tasks") || subtasks='{"subtasks":[]}'
+  echo "$subtasks" > "$PIPELINE_STATE_DIR/$skill_name/subtasks.json"
+
+  # 阶段4: 构造开发prompt
+  local skill_dir="$HOME/.openclaw/workspace/skills/$skill_name"
+  local dev_prompt
+  dev_prompt=$(build_dev_prompt "$skill_name" "$skill_dir" "$approved_tasks" "$prd_path")
+
+  # 输出SPAWN指令（供Agent解析执行）
+  emit_spawn_dev "$dev_prompt"
+}
+
+# ─── v2.0: review 命令 ───
+# 对技能执行12维度Review评分
+cmd_review() {
+  local skill_name="" skill_dir="" prd_path=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --skill) skill_name="$2"; shift 2 ;;
+      --dir)   skill_dir="$2"; shift 2 ;;
+      --prd)   prd_path="$2"; shift 2 ;;
+      *) echo "未知参数: $1"; exit 1 ;;
+    esac
+  done
+
+  if [[ -z "$skill_name" ]]; then
+    echo "错误: review需要 --skill 参数"
+    exit 1
+  fi
+
+  [[ -z "$skill_dir" ]] && skill_dir="$HOME/.openclaw/workspace/skills/$skill_name"
+
+  # 读取tasks_approved.json（如有）
+  local approved_tasks='{"title":"'"$skill_name"'","tasks":[]}'
+  local tasks_file="$PIPELINE_STATE_DIR/$skill_name/tasks_approved.json"
+  if [[ -f "$tasks_file" ]]; then
+    approved_tasks=$(cat "$tasks_file")
+  fi
+
+  status_init "$skill_name" "reviewing"
+  local review_result
+  review_result=$(review "$approved_tasks" "$skill_name" "$skill_dir")
+  local score
+  score=$(echo "$review_result" | jq '.total_score')
+  local passed
+  passed=$(echo "$review_result" | jq '.passed')
+
+  # 保存review结果
+  mkdir -p "$PIPELINE_STATE_DIR/$skill_name"
+  echo "$review_result" > "$PIPELINE_STATE_DIR/$skill_name/review_result.json"
+
+  if [[ "$passed" == "true" ]]; then
+    status_update "$skill_name" "completed" "" "$score"
+    pipeline_log "review: ✅ 通过 ($score/60)"
+  else
+    pipeline_log "review: ❌ 未通过 ($score/60)"
+  fi
+
+  echo "$review_result"
+}
+
+# ─── v2.0: fix-prompt 命令 ───
+# 构造修复prompt（供Agent spawn修复子代理）
+cmd_fix_prompt() {
+  local skill_name="" round="1" timeout=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --skill)   skill_name="$2"; shift 2 ;;
+      --round)   round="$2"; shift 2 ;;
+      --timeout) timeout="$2"; shift 2 ;;
+      *) echo "未知参数: $1"; exit 1 ;;
+    esac
+  done
+
+  if [[ -z "$skill_name" ]]; then
+    echo "错误: fix-prompt需要 --skill 参数"
+    exit 1
+  fi
+
+  # 读取review结果
+  local review_file="$PIPELINE_STATE_DIR/$skill_name/review_result.json"
+  if [[ ! -f "$review_file" ]]; then
+    echo "错误: 未找到review结果，请先执行 review 命令"
+    exit 1
+  fi
+
+  local review_result
+  review_result=$(cat "$review_file")
+  local score
+  score=$(echo "$review_result" | jq '.total_score')
+
+  # 检查是否需要升级
+  local loop_status
+  loop_status=$(fix_loop_status "$round" "$score")
+  if [[ "$loop_status" == "escalate" ]]; then
+    escalate_to_human "$skill_name" "$review_result"
+    echo "ESCALATE"
+    return 0
+  fi
+
+  if [[ "$loop_status" == "pass" ]]; then
+    echo "PASS: 评分 $score ≥ 50，无需修复"
+    return 0
+  fi
+
+  # 检查回退
+  local issues
+  issues=$(echo "$review_result" | jq '.issues')
+  if should_rollback "$issues" "$review_result"; then
+    echo "ROLLBACK"
+    return 0
+  fi
+
+  local skill_dir="$HOME/.openclaw/workspace/skills/$skill_name"
+  status_update "$skill_name" "fixing" "$round" "$score"
+
+  local fix_prompt
+  fix_prompt=$(build_spawn_fix_prompt "$skill_name" "$skill_dir" "$issues" "$review_result" "$round")
+
+  emit_spawn_fix "$fix_prompt" "$round" "${timeout:-$SPAWN_FIX_TIMEOUT_DEFAULT}"
+}
+
+# ─── v2.0: result 命令 ───
+# 接收子代理结果并解析
+cmd_result() {
+  local skill_name="" agent_type="dev" result_file=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --skill)      skill_name="$2"; shift 2 ;;
+      --type)       agent_type="$2"; shift 2 ;;
+      --file)       result_file="$2"; shift 2 ;;
+      *) echo "未知参数: $1"; exit 1 ;;
+    esac
+  done
+
+  if [[ -z "$result_file" || ! -f "$result_file" ]]; then
+    echo "错误: result需要 --file 参数（子代理结果文件路径）"
+    exit 1
+  fi
+
+  local raw_result
+  raw_result=$(cat "$result_file")
+
+  # 解析并验证
+  local parsed
+  parsed=$(parse_agent_result "$raw_result")
+  local validation
+  validation=$(validate_agent_result "$parsed" "$agent_type")
+
+  if [[ "$validation" == "valid" ]]; then
+    pipeline_log "result: ✅ $agent_type 子代理结果有效"
+    mkdir -p "$PIPELINE_STATE_DIR/${skill_name:-unknown}"
+    echo "$parsed" > "$PIPELINE_STATE_DIR/${skill_name:-unknown}/${agent_type}_result.json"
+    echo "$parsed"
+  else
+    pipeline_log "result: ❌ $validation"
+    echo "INVALID: $validation"
+  fi
+}
+
+# ─── v2.0: plan 命令 ───
+# 查看任务拆分计划
+cmd_plan() {
+  local skill_name=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --skill) skill_name="$2"; shift 2 ;;
+      *) shift ;;
+    esac
+  done
+
+  if [[ -z "$skill_name" ]]; then
+    echo "错误: plan需要 --skill 参数"
+    exit 1
+  fi
+
+  local subtasks_file="$PIPELINE_STATE_DIR/$skill_name/subtasks.json"
+  if [[ ! -f "$subtasks_file" ]]; then
+    echo "错误: 未找到子任务文件，请先执行 prepare 命令"
+    exit 1
+  fi
+
+  local tasks_file="$PIPELINE_STATE_DIR/$skill_name/tasks_approved.json"
+  local original='{"tasks":[]}'
+  [[ -f "$tasks_file" ]] && original=$(cat "$tasks_file")
+  local subtasks
+  subtasks=$(cat "$subtasks_file")
+
+  plan_report "$original" "$subtasks"
+}
+
+# ─── v2.0: run 命令（完整自动化流程） ───
+cmd_run_v2() {
+  local prd_path="" skill_name=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --prd)      prd_path="$2"; shift 2 ;;
+      --skill)    skill_name="$2"; shift 2 ;;
+      *) echo "未知参数: $1"; exit 1 ;;
+    esac
+  done
+
+  if [[ -z "$prd_path" ]]; then
+    echo "错误: run需要 --prd 参数"
+    exit 1
+  fi
+
+  [[ -z "$skill_name" ]] && skill_name=$(prd_extract_skill_name "$prd_path")
+
+  pipeline_log "v2.0 完整流水线: $skill_name"
+
+  # 步骤1: prepare
+  pipeline_log "步骤1: prepare..."
+  local prepare_output
+  prepare_output=$(cmd_prepare --prd "$prd_path" --skill "$skill_name")
+
+  # 检查是否有低信心度任务需要拆分
+  local subtasks_file="$PIPELINE_STATE_DIR/$skill_name/subtasks.json"
+  if [[ -f "$subtasks_file" ]]; then
+    local split_count
+    split_count=$(jq '[.subtasks[] | select(.type == "split")] | length' < "$subtasks_file" 2>/dev/null || echo 0)
+    if (( split_count > 0 )); then
+      pipeline_log "提示: $split_count 个任务已拆分，查看详细计划: pipeline.sh plan --skill $skill_name"
+    fi
+  fi
+
+  # 输出SPAWN指令（Agent需读取并执行）
+  echo ""
+  pipeline_log "=== 以下指令供Agent执行 ==="
+  echo "$prepare_output"
+  echo ""
+  pipeline_log "Agent应: 1) 读取上方SPAWN_DEV指令 2) 用sessions_spawn执行开发prompt"
+  pipeline_log "开发完成后: pipeline.sh review --skill $skill_name"
+  pipeline_log "如需修复: pipeline.sh fix-prompt --skill $skill_name"
+}
+
 # ─── 命令分发（必须在函数定义之后） ───
 cmd="${1:-help}"
 case "$cmd" in
-  list)   shift; cmd_list "$@" ;;
-  status) shift; cmd_status "$@" ;;
+  list)       shift; cmd_list "$@" ;;
+  status)     shift; cmd_status "$@" ;;
+  prepare)    shift; cmd_prepare "$@" ;;
+  review)     shift; cmd_review "$@" ;;
+  fix-prompt) shift; cmd_fix_prompt "$@" ;;
+  result)     shift; cmd_result "$@" ;;
+  plan)       shift; cmd_plan "$@" ;;
+  run)        shift; cmd_run_v2 "$@" ;;
   help|--help|-h) cmd_help ;;
-  run)
-    echo "⚠️ run 命令计划在 v2.0 实现（子代理自动spawn）"
-    echo "当前 v1.0: PM手动调度，请直接操作 Review/修复/发布流程"
-    cmd_help
-    ;;
-  *)      echo "未知命令: $cmd"; cmd_help; exit 1 ;;
+  *)          echo "未知命令: $cmd"; cmd_help; exit 1 ;;
 esac

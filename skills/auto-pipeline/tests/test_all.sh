@@ -279,8 +279,9 @@ fi
 echo ""
 
 echo "测试23: run命令（v1.0提示）"
-run_output=$(bash "$SCRIPT_DIR/pipeline.sh" run 2>&1)
-assert_true "run命令提示v2.0" "$(echo "$run_output" | grep -q 'v2.0' && echo 'true' || echo 'false')"
+# v2.0中run命令已实现，现在会报错缺少参数
+run_output=$(bash "$SCRIPT_DIR/pipeline.sh" run 2>&1 || true)
+assert_true "run命令已实现" "$(echo "$run_output" | grep -q 'run需要' && echo 'true' || echo 'false')"
 echo ""
 
 # ─── 测试25-29: plan_reviewer.sh ───
@@ -347,6 +348,188 @@ echo ""
 echo "测试32: format_issues"
 formatted=$(format_issues "$fix_issues_input")
 assert_true "格式化包含问题描述" "$(echo "$formatted" | grep -q '缺少set -e' && echo 'true' || echo 'false')"
+echo ""
+
+# ─── 测试34-42: spawn_engine.sh (v2.0) ───
+echo ""
+echo "=== spawn_engine.sh 测试 (v2.0) ==="
+
+echo "测试34: build_dev_prompt 基本构造"
+source "$SCRIPT_DIR/src/spawn_engine.sh"
+source "$SCRIPT_DIR/src/fix_engine.sh"
+dev_prompt=$(build_dev_prompt "test-skill" "/tmp/test-skill" '{"title":"test-skill","priority":"P1","tasks":[{"task_id":"T1","name":"基础命令","input":"CLI","output":"命令实现","acceptance":["help显示"],"confidence":8}]}' "")
+assert_true "开发prompt包含技能名" "$(echo "$dev_prompt" | grep -q 'test-skill' && echo 'true' || echo 'false')"
+assert_true "开发prompt包含任务" "$(echo "$dev_prompt" | grep -q 'T1' && echo 'true' || echo 'false')"
+assert_true "开发prompt包含SJYKJ" "$(echo "$dev_prompt" | grep -q 'SJYKJ\|思捷娅' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试35: build_spawn_fix_prompt 基本构造"
+fix_prompt=$(build_spawn_fix_prompt "test-skill" "/tmp/test-skill" '[{"severity":"high","desc":"缺少set -e","suggestion":"添加set -e"}]' '{"total_score":40}' "1")
+assert_true "修复prompt包含问题" "$(echo "$fix_prompt" | grep -q '缺少set -e' && echo 'true' || echo 'false')"
+assert_true "修复prompt包含轮次" "$(echo "$fix_prompt" | grep -q '第1轮' && echo 'true' || echo 'false')"
+assert_true "修复prompt包含评分" "$(echo "$fix_prompt" | grep -q '40/60' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试36: build_review_prompt 基本构造"
+review_prompt=$(build_review_prompt "test-skill" "/tmp/test-skill" '{"tasks":[{"task_id":"T1","name":"基础","acceptance":["SKILL.md存在"]}]}')
+assert_true "Review prompt包含12维度" "$(echo "$review_prompt" | grep -q '12维度' && echo 'true' || echo 'false')"
+assert_true "Review prompt包含评分标准" "$(echo "$review_prompt" | grep -q '60分' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试37: emit_spawn_dev 指令格式"
+spawn_output=$(emit_spawn_dev "test prompt content" 120)
+assert_true "包含SPAWN_DEV前缀" "$(echo "$spawn_output" | grep -q 'SPAWN_DEV:' && echo 'true' || echo 'false')"
+assert_true "包含timeout" "$(echo "$spawn_output" | grep -q 'timeout=120' && echo 'true' || echo 'false')"
+assert_true "包含结束标记" "$(echo "$spawn_output" | grep -q 'END_SPAWN_PROMPT' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试38: emit_spawn_fix 指令格式"
+fix_output=$(emit_spawn_fix "fix prompt" 2 180)
+assert_true "包含SPAWN_FIX前缀" "$(echo "$fix_output" | grep -q 'SPAWN_FIX:' && echo 'true' || echo 'false')"
+assert_true "包含round" "$(echo "$fix_output" | grep -q 'round=2' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试39: parse_agent_result JSON提取"
+raw='一些文本内容 {"score":42,"fixed":[],"files_modified":["a.sh"]} 其他文本'
+parsed=$(parse_agent_result "$raw")
+assert_eq "提取JSON" '{"score":42,"fixed":[],"files_modified":["a.sh"]}' "$parsed"
+echo ""
+
+echo "测试40: validate_agent_result"
+assert_eq "valid dev结果" "valid" "$(validate_agent_result '{"files_modified":["a.sh"]}' 'dev')"
+assert_eq "valid fix结果" "valid" "$(validate_agent_result '{"fixed":[],"unfixed":[]}' 'fix')"
+assert_eq "valid review结果" "valid" "$(validate_agent_result '{"total_score":42}' 'review')"
+echo ""
+
+echo "测试41: validate_agent_result 无效情况"
+invalid_result=$(validate_agent_result 'not json' 'dev' 2>&1 || true)
+assert_true "无效JSON被检测" "$(echo "$invalid_result" | grep -q 'invalid' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试42: fix_loop_status"
+assert_eq "通过状态" "pass" "$(fix_loop_status 1 55)"
+assert_eq "继续状态" "continue" "$(fix_loop_status 1 40)"
+assert_eq "升级状态" "escalate" "$(fix_loop_status 3 40)"
+echo ""
+
+# ─── 测试43-46: task_planner.sh (v2.0) ───
+echo ""
+echo "=== task_planner.sh 测试 (v2.0) ==="
+
+echo "测试43: should_split - 低信心度任务"
+source "$SCRIPT_DIR/src/task_planner.sh"
+low_conf_task='{"task_id":"T1","name":"复杂功能","confidence":4,"acceptance":["A","B"],"input":""}'
+if should_split "$low_conf_task"; then
+  echo "  ✅ 低信心度任务需要拆分"
+  (( PASS++ )) || true
+else
+  echo "  ❌ 低信心度任务应拆分"
+  (( FAIL++ )) || true
+fi
+echo ""
+
+echo "测试44: should_split - 高信心度任务不拆分"
+high_conf_task='{"task_id":"T2","name":"简单功能","confidence":9,"acceptance":["help显示"],"input":"CLI命令"}'
+if should_split "$high_conf_task"; then
+  echo "  ❌ 高信心度任务不应拆分"
+  (( FAIL++ )) || true
+else
+  echo "  ✅ 高信心度任务不拆分"
+  (( PASS++ )) || true
+fi
+echo ""
+
+echo "测试45: split_task 拆分逻辑"
+complex_task='{"task_id":"T3","name":"大功能","confidence":5,"acceptance":["功能A","功能B","功能C"],"input":"实现ABC"}'
+split_result=$(split_task "$complex_task")
+split_count=$(echo "$split_result" | jq 'length')
+assert_eq "拆分为3个子任务" "3" "$split_count"
+# 检查子任务ID格式
+has_correct_id=$(echo "$split_result" | jq '[.[] | select(.subtask_id == "T3.1")] | length')
+assert_ge "子任务ID格式正确" 1 "$has_correct_id"
+echo ""
+
+echo "测试46: plan_report 报告生成"
+report=$(plan_report '{"tasks":[{"task_id":"T1","name":"测试"}]}' '{"subtasks":[{"subtask_id":"T1.1","name":"子任务","type":"split","confidence":5,"estimated_duration":120}]}')
+assert_true "报告包含概览" "$(echo "$report" | grep -q '概览' && echo 'true' || echo 'false')"
+assert_true "报告包含拆分统计" "$(echo "$report" | grep -q '拆分后' && echo 'true' || echo 'false')"
+echo ""
+
+# ─── 测试47: handle_timeout 超时处理 ───
+echo ""
+echo "=== spawn_engine 超时处理测试 ==="
+
+echo "测试47: handle_timeout 输出"
+timeout_output=$(handle_timeout "test-skill" "dev" 300)
+assert_true "超时输出包含技能名" "$(echo "$timeout_output" | grep -q 'test-skill' && echo 'true' || echo 'false')"
+assert_true "超时输出包含建议" "$(echo "$timeout_output" | grep -q '建议' && echo 'true' || echo 'false')"
+echo ""
+
+# ─── 测试48: v2.0 pipeline命令 ───
+echo ""
+echo "=== v2.0 pipeline命令测试 ==="
+
+echo "测试48: pipeline.sh help v2.0"
+help_output=$(bash "$SCRIPT_DIR/pipeline.sh" help)
+assert_true "help包含prepare" "$(echo "$help_output" | grep -q 'prepare' && echo 'true' || echo 'false')"
+assert_true "help包含fix-prompt" "$(echo "$help_output" | grep -q 'fix-prompt' && echo 'true' || echo 'false')"
+assert_true "help包含Agent工作流" "$(echo "$help_output" | grep -q 'Agent' && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试49: pipeline.sh prepare 参数校验"
+if bash "$SCRIPT_DIR/pipeline.sh" prepare 2>/dev/null; then
+  echo "  ❌ prepare缺少参数应报错"
+  (( FAIL++ )) || true
+else
+  echo "  ✅ prepare参数校验正确"
+  (( PASS++ )) || true
+fi
+echo ""
+
+echo "测试50: pipeline.sh prepare 完整流程"
+prepare_output=$(bash "$SCRIPT_DIR/pipeline.sh" prepare --prd "$FIXTURES/sample_prd.md" --skill test-prepare-v2 2>&1)
+assert_true "prepare输出SPAWN_DEV" "$(echo "$prepare_output" | grep -q 'SPAWN_DEV' && echo 'true' || echo 'false')"
+assert_true "prepare生成tasks_approved.json" "$(test -f "$PIPELINE_STATE_DIR/test-prepare-v2/tasks_approved.json" && echo 'true' || echo 'false')"
+assert_true "prepare生成subtasks.json" "$(test -f "$PIPELINE_STATE_DIR/test-prepare-v2/subtasks.json" && echo 'true' || echo 'false')"
+echo ""
+
+echo "测试51: pipeline.sh fix-prompt 参数校验"
+if bash "$SCRIPT_DIR/pipeline.sh" fix-prompt 2>/dev/null; then
+  echo "  ❌ fix-prompt缺少参数应报错"
+  (( FAIL++ )) || true
+else
+  echo "  ✅ fix-prompt参数校验正确"
+  (( PASS++ )) || true
+fi
+echo ""
+
+echo "测试52: pipeline.sh result 参数校验"
+if bash "$SCRIPT_DIR/pipeline.sh" result 2>/dev/null; then
+  echo "  ❌ result缺少参数应报错"
+  (( FAIL++ )) || true
+else
+  echo "  ✅ result参数校验正确"
+  (( PASS++ )) || true
+fi
+echo ""
+
+echo "测试53: pipeline.sh plan 参数校验"
+if bash "$SCRIPT_DIR/pipeline.sh" plan 2>/dev/null; then
+  echo "  ❌ plan缺少参数应报错"
+  (( FAIL++ )) || true
+else
+  echo "  ✅ plan参数校验正确"
+  (( PASS++ )) || true
+fi
+echo ""
+
+echo "测试54: pipeline.sh plan 查看拆分计划"
+# 创建正确格式的subtasks.json（plan_report期望对象格式）
+mkdir -p "$PIPELINE_STATE_DIR/test-prepare-v2/"
+echo '{"subtasks":[{"subtask_id":"T1-1","name":"实现核心模块","confidence":8,"estimated_duration":240,"type":"split"}]}' > "$PIPELINE_STATE_DIR/test-prepare-v2/subtasks.json"
+echo '{"tasks":[{"task_id":"T1","name":"核心模块","confidence":8}]}' > "$PIPELINE_STATE_DIR/test-prepare-v2/tasks_approved.json"
+plan_output=$(bash "$SCRIPT_DIR/pipeline.sh" plan --skill test-prepare-v2 2>&1)
+assert_true "plan输出包含概览" "$(echo "$plan_output" | grep -q '概览' && echo 'true' || echo 'false')"
 echo ""
 
 # ─── 测试33: bash -n 语法检查 ───
