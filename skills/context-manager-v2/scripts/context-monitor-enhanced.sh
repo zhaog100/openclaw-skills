@@ -137,32 +137,240 @@ send_feishu_notification() {
         return 1
     fi
 }
-
-# 获取真实上下文使用率（通过OpenClaw API，带重试）
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
 get_context_usage() {
-    local retry_count=0
-    local success=false
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
     
-    log "📊 调用OpenClaw API获取会话信息..."
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
     
-    while [ $retry_count -lt $MAX_RETRIES ]; do
-        retry_count=$((retry_count + 1))
-        log "尝试 ${retry_count}/${MAX_RETRIES}..."
-        
-        # 获取最近2小时的活跃会话（带超时）
-        local sessions_json
-        sessions_json=$(timeout $TIMEOUT openclaw sessions --active 120 --json 2>&1)
-        
-        local exit_code=$?
-        
-        if [ $exit_code -eq 124 ]; then
-            log_error "API调用超时（${TIMEOUT}秒）"
-            record_error "API超时"
-        elif [ $exit_code -ne 0 ]; then
-            log_error "API调用失败（退出码：$exit_code）"
-            record_error "API失败"
-        else
-            # 解析JSON
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
+# 获取真实上下文使用率（通过 Error Handler Library - P0 改进项 #2）
+get_context_usage() {
+    log_info "📊 调用 OpenClaw API 获取会话信息..."
+    
+    # 使用 safe_exec 替代手动重试逻辑
+    local sessions_json
+    sessions_json=$(safe_exec "timeout $TIMEOUT openclaw sessions --active 120 --json" "{}")
+    
+    if [ -n "$sessions_json" ] && [ "$sessions_json" != "{}" ]; then
             local session_info=$(echo "$sessions_json" | jq '.sessions[0]' 2>/dev/null)
             
             if [ $? -eq 0 ] && [ "$session_info" != "null" ]; then
