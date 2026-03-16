@@ -1,8 +1,13 @@
 # AI 代码审查助手依赖
-# Phase 1（MVP）
-PyYAML>=6.0
+# Phase 1: 无外部依赖（纯 Python 标准库）
+# Phase 2: 添加以下依赖（可选）
 
-# Phase 2（语法解析）
-tree-sitter>=0.21.0
-tree-sitter-python>=0.21.0
-tree-sitter-bash>=0.21.0
+# tree-sitter 语法解析
+# tree-sitter==0.20.0
+# tree-sitter-python==0.20.0
+# tree-sitter-javascript==0.20.0
+
+# Ollama Python SDK（可选，也可以用 subprocess 调用）
+# ollama==0.1.0
+
+# 注意：Phase 2 的 AI 功能主要通过 Ollama CLI 调用，不需要额外 Python 依赖
