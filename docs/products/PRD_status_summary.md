@@ -15,13 +15,16 @@
 
 ## ✅ 今日已完成（2026-03-16）
 
-| PRD | Issue | 版本 | 状态 | ClawHub |
+| PRD | Issue | 版本 | 状态 | 关系说明 |
 |-----|-------|------|------|---------|
-| **daily-review-assistant** | #16 | v1.1.0 | ✅ 完成 | ⏳ 待发布 |
-| **auto-document-generator** | #19 | v1.0.0 | ✅ 完成 | ⏳ 待发布 |
-| **Error Handler Library** | #17 | v1.2 | ✅ 完成 | ✅ 已发布 |
-| **Error Handler Library 集成** | #18 | - | ✅ 完成 | ✅ 已集成 |
-| **AI 代码审查助手** | #15 | - | ✅ 完成 | ✅ 已发布 |
+| **daily-review-assistant** | #16 | v1.1.0 | ✅ 完成 | 独立技能 |
+| **auto-document-generator** | #19 | v1.0.0 | ✅ 完成 | 独立技能 |
+| **Error Handler Library** | #17 | v1.2 | ✅ 完成 | 🔗 核心库开发 |
+| **Error Handler Library 集成** | #18 | - | ✅ 完成 | 🔗 库的集成应用（基于#17） |
+| **AI 代码审查助手** | #15 | - | ✅ 完成 | 独立技能 |
+
+**说明**:
+- **#17 和 #18 的关系**: #17 负责开发 Error Handler Library 核心库，#18 负责将该库集成到 7 个现有技能中。两者是上下游关系，先开发库 (#17)，再集成应用 (#18)。
 
 ---
 
