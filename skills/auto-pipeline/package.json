@@ -1,0 +1,13 @@
+{
+  "name": "auto-pipeline",
+  "version": "1.0.0",
+  "description": "技能自动开发流水线 - PRD→Plan预审→开发→Review→修复→发布",
+  "main": "pipeline.sh",
+  "scripts": {
+    "test": "bash tests/test_all.sh",
+    "lint": "find . -name '*.sh' -exec bash -n {} \\;"
+  },
+  "keywords": ["auto-pipeline", "openclaw", "skill", "automation"],
+  "license": "MIT",
+  "author": "思捷娅科技 (SJYKJ)"
+}
