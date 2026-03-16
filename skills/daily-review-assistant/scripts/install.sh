@@ -23,13 +23,17 @@ mkdir -p "$SCRIPT_DIR/logs"
 mkdir -p "$SCRIPT_DIR/config"
 
 # 设置执行权限
-chmod +x "$SCRIPT_DIR/skill.sh"
-chmod +x "$SCRIPT_DIR/scripts/"*.sh
+chmod +x "$SCRIPT_DIR/../skill.sh" 2>/dev/null || true
+chmod +x "$SCRIPT_DIR"/*.sh 2>/dev/null || true
 
 echo "✅ 权限设置完成"
 
+# 创建配置目录
+mkdir -p "$SCRIPT_DIR/../config" 2>/dev/null || true
+mkdir -p "$SCRIPT_DIR/../logs" 2>/dev/null || true
+
 # 创建配置文件
-cat > "$SCRIPT_DIR/config/config.json" << EOF
+cat > "$SCRIPT_DIR/../config/config.json" << EOF
 {
   "version": "1.0.0",
   "workspace": "$WORKSPACE",
@@ -52,7 +56,7 @@ echo "✅ 配置文件创建完成"
 # 测试运行
 echo ""
 echo "🧪 测试运行..."
-bash "$SCRIPT_DIR/skill.sh" status
+bash "$SCRIPT_DIR/../skill.sh" status
 
 echo ""
 echo "╔════════════════════════════════════════════════════════╗"
