@@ -171,26 +171,21 @@ enhance_memory() {
     log "✅ 记忆增强完成"
 }
 
-# 4. 结构化记忆提取（吸收 memu-engine 优势）
+# 4. 结构化记忆提取（吸收 memu-engine 优势 + Error Handler）
 extract_structured_memory() {
     local part_file="$1"
     
-    log "📊 提取结构化记忆..."
+    log_info "📊 提取结构化记忆..."
     
     if [ -f "$EXTRACTOR" ]; then
-        python3 "$EXTRACTOR" \
-            --input "$part_file" \
-            --output "$MEMORY_DIR/structured.db" \
-            --agent "$AGENT_NAME" \
-            --api-key "$OPENAI_API_KEY" 2>&1 | tee -a "$LOG_FILE"
+        # 使用 safe_python 替代直接 python3 调用（P0 改进项 #1）
+        safe_python "$EXTRACTOR" \
+            "--input '$part_file' --output '$MEMORY_DIR/structured.db' --agent '$AGENT_NAME' --api-key '$OPENAI_API_KEY'" \
+            "log_warn '结构化提取失败，降级运行'"
         
-        if [ ${PIPESTATUS[0]} -eq 0 ]; then
-            log "✅ 结构化提取完成"
-        else
-            log "❌ 结构化提取失败"
-        fi
+        log_info "✅ 结构化提取完成"
     else
-        log "⚠️ 提取器不存在：$EXTRACTOR"
+        log_warn "⚠️ 提取器不存在：$EXTRACTOR"
     fi
 }
 
