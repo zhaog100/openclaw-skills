@@ -55,6 +55,11 @@ description: 定时回顾更新助手。定时（中午 12 点、晚上 23:50）
 
 # 显示帮助
 ./skill.sh help
+
+# 管理定时任务
+./skill.sh cron-add        # 添加定时任务
+./skill.sh cron-remove     # 删除定时任务
+./skill.sh cron-status     # 查看定时任务状态
 ```
 
 ---

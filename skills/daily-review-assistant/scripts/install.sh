@@ -53,6 +53,27 @@ EOF
 
 echo "✅ 配置文件创建完成"
 
+# 自动配置定时任务
+echo ""
+echo "⏰ 配置定时任务..."
+
+# 定义定时任务
+MORNING_TASK="0 12 * * * $SCRIPT_DIR/../skill.sh review --mode morning >> $SCRIPT_DIR/../logs/cron.log 2>&1"
+EVENING_TASK="50 23 * * * $SCRIPT_DIR/../skill.sh review --mode full >> $SCRIPT_DIR/../logs/cron.log 2>&1"
+
+# 检查是否已存在
+EXISTING_CRON=$(crontab -l 2>/dev/null | grep "daily-review-assistant" || true)
+
+if [ -n "$EXISTING_CRON" ]; then
+    echo "  ✅ 定时任务已存在"
+else
+    # 添加定时任务
+    (crontab -l 2>/dev/null | grep -v "daily-review-assistant"; echo "$MORNING_TASK"; echo "$EVENING_TASK") | crontab -
+    echo "  ✅ 定时任务已添加"
+    echo "     - 中午 12:00 回顾上午"
+    echo "     - 晚上 23:50 回顾全天"
+fi
+
 # 测试运行
 echo ""
 echo "🧪 测试运行..."
@@ -67,9 +88,11 @@ echo "║  ./skill.sh review          # 执行回顾                 ║"
 echo "║  ./skill.sh status          # 查看状态                 ║"
 echo "║  ./skill.sh help            # 显示帮助                 ║"
 echo "╠════════════════════════════════════════════════════════╣"
-echo "║  配置 Crontab：                                        ║"
-echo "║  crontab -e                                          ║"
-echo "║  添加：                                              ║"
-echo "║  0 12 * * * /path/to/skill.sh review --mode morning  ║"
-echo "║  50 23 * * * /path/to/skill.sh review --mode full    ║"
+echo "║  定时任务：                                            ║"
+echo "║  ✅ 已自动配置（中午 12:00 + 晚上 23:50）               ║"
+echo "╠════════════════════════════════════════════════════════╣"
+echo "║  管理定时任务：                                        ║"
+echo "║  ./skill.sh cron-add        # 添加定时任务             ║"
+echo "║  ./skill.sh cron-remove     # 删除定时任务             ║"
+echo "║  ./skill.sh cron-status     # 查看定时任务状态         ║"
 echo "╚════════════════════════════════════════════════════════╝"
