@@ -1,7 +1,7 @@
 # PRD 状态总结
 
-**更新时间**: 2026-03-16 23:55  
-**更新者**: 小米粒 (PM + Dev) 🌾
+**更新时间**: 2026-03-17 07:47  
+**更新者**: 小米辣 (PM + Dev) 🌶️
 
 ---
 
@@ -9,9 +9,11 @@
 
 **总 PRD 数量**: 25 个  
 **已完成**: 9 个  
-**开发中**: 1 个（auto-pipeline v1.0+v2.0 已完成，待集成到协作平台）  
-**待开发**: 12 个  
-**暂停/废弃**: 3 个
+**开发中**: 1 个  
+**待开发**: 5 个  
+**暂缓**: 3 个  
+**废弃**: 4 个  
+**暂停/废弃(旧)**: 3 个
 
 ---
 
@@ -39,29 +41,45 @@
 
 ---
 
-## ⏳ 待开发（12 个）
+## ⏳ 待开发（5 个）
 
 ### P0（2 个）
-- ai-deterministic-control（技术设计已完成，待开发）
-- test-case-generator
+| 技能 | 备注 |
+|------|------|
+| ai-deterministic-control | 技术设计已完成，待开发 |
+| test-case-generator | 官家核心领域，优先 |
 
-### P1（5 个）
-- knowledge-graph-builder
-- meeting-minutes-generator
-- project-progress-tracker
-- email-auto-responder
-- ai-safety-framework
-
-### P2（5 个）
-- ai-state-persistence
-- bitnet-inference
-- inference-router
-- startup-idea-analyzer
-- vocabulary-archaeology-integration
+### P1（3 个）
+| 技能 | 备注 |
+|------|------|
+| knowledge-graph-builder | 知识管理长期价值 |
+| meeting-minutes-generator | 通用场景，需求明确 |
+| project-progress-tracker | Git统计+Issue跟踪，协作刚需 |
 
 ---
 
-## ⏸️ 暂停/废弃（3 个）
+## ⏸️ 暂缓（3 个）
+
+| PRD | 原因 | 恢复条件 |
+|-----|------|----------|
+| ai-safety-framework | 与 healthcheck 技能功能重叠 | 如有新安全需求再启动 |
+| email-auto-responder | 需 Gmail API，当前无邮件通道 | 邮箱接入后再启动 |
+| ai-state-persistence | OpenClaw 已有 session/memory 机制 | 价值验证后再启动 |
+
+---
+
+## ❌ 废弃（4 个）
+
+| PRD | 废弃原因 | 日期 |
+|-----|----------|------|
+| bitnet-inference | VMware无GPU，本地推理不可行 | 2026-03-17 |
+| inference-router | 依赖 bitnet-inference，基础不成立 | 2026-03-17 |
+| startup-idea-analyzer | 非当前业务方向 | 2026-03-17 |
+| vocabulary-archaeology-integration | 双米粒协作已暂停，失去场景 | 2026-03-17 |
+
+---
+
+## ⏸️ 暂停/废弃（旧 3 个）
 
 | PRD | 状态 | 原因 |
 |-----|------|------|
@@ -71,26 +89,13 @@
 
 ---
 
-## 📈 今日完成统计（2026-03-16）
+## 📈 裁减记录（2026-03-17）
 
-| 成就 | 详情 |
-|------|------|
-| 新开发技能 | auto-pipeline（v1.0+v2.0） |
-| 新开发工具 | cli-tool-generator v1.2.1 |
-| 新开发工具 | ai-efficiency-monitor v1.2.1 |
-| Review通过 | 4轮（auto-pipeline v1.0/v2.0各1轮 + cli-gen + ai-eff） |
-| 测试 | 88+24+20=132个测试全通过 |
-| Git提交 | 7个（auto-pipeline相关） |
-| 调研 | 2次冲浪（auto-pipeline + cli-gen+ai-eff） |
+**裁减比例**: 33%（12个→8个）
+- 降级暂缓: 3个（ai-safety-framework, email-auto-responder, ai-state-persistence）
+- 废弃: 4个（bitnet-inference, inference-router, startup-idea-analyzer, vocabulary-archaeology-integration）
 
 ---
 
-## 🎯 明日计划（2026-03-17）
-
-1. **auto-pipeline集成到agent-collab-platform**（官家要求）
-2. **ai-deterministic-control开发**（技术设计已完成）
-3. 配置daily-review-helper定时任务到crontab
-
----
-
-*版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)*
+*更新时间：2026-03-17 07:47*
+*更新者：小米辣 (PM + Dev) 🌶️*
