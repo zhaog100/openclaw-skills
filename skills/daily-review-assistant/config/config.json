@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "workspace": "/home/zhaog/.openclaw/workspace",
+  "reviewTimes": ["12:00", "23:50"],
+  "features": {
+    "taskReview": true,
+    "gitReview": true,
+    "issueReview": true,
+    "learningReview": true,
+    "gapAnalysis": true,
+    "memoryUpdate": true,
+    "knowledgeUpdate": true,
+    "gitAutoCommit": true
+  }
+}
