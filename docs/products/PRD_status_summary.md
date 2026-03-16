@@ -7,9 +7,9 @@
 
 ## 📊 PRD 总览
 
-**总 PRD 数量**: 27 个  
+**总 PRD 数量**: 25 个 (已清理 2 个重复)  
 **已完成**: 5 个 (今日完成)  
-**待开发**: 22 个
+**待开发**: 20 个
 
 ---
 
@@ -31,11 +31,10 @@
 
 ## ⏳ 待开发 PRD（22 个）
 
-### P0 - 高优先级（3 个）
+### P0 - 高优先级（2 个）
 
 | PRD | 文件 | Issue | 状态 |
 |-----|------|-------|------|
-| **multi-platform-notifier** | 2026-03-12_multi-platform-notifier_PRD.md | - | ⏳ 待开发 |
 | **smart-model** | 2026-03-12_smart-model_PRD.md | - | ⏳ 待开发 |
 | **test-case-generator** | 2026-03-12_test-case-generator_PRD.md | - | ⏳ 待开发 |
 
