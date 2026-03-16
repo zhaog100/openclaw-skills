@@ -65,6 +65,6 @@ cd skills/agent-collab-platform
 MIT License - 免费使用、修改和重新分发
 
 **出处**：
-- GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+- GitHub: https://github.com/zhaog100/xiaomili-skills
 - ClawHub: https://clawhub.com
 - 创建者: 思捷娅科技 (SJYKJ)

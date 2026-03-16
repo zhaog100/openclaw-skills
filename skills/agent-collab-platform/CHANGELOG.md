@@ -140,7 +140,7 @@ bash scripts/check_github_issues.sh
 
 **创建者**：思捷娅科技 (SJYKJ)
 **ClawHub**：https://clawhub.com
-**GitHub**：https://github.com/zhaog100/xiaomili-personal-skills
+**GitHub**：https://github.com/zhaog100/xiaomili-skills
 
 ---
 

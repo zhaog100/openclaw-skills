@@ -186,7 +186,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
-- GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+- GitHub: https://github.com/zhaog100/xiaomili-skills
 - ClawHub: https://clawhub.com
 - 创建者: 思捷娅科技 (SJYKJ)
 
@@ -2553,7 +2553,7 @@ skills/context-manager-v2/
 
 **主要仓库（xiaomili）** ⭐⭐⭐⭐⭐ **主要推送目标**：
 - 名称：xiaomili
-- 地址：https://github.com/zhaog100/xiaomili-personal-skills.git
+- 地址：https://github.com/zhaog100/xiaomili-skills.git
 - 描述：小米粒个人技能库 - Dev Agent Personal Repository
 - 用途：小米粒的技能开发仓库（我的仓库）
 - 推送：`git push xiaomili master`
@@ -2643,7 +2643,7 @@ git branch --set-upstream-to=xiaomili/master master
 **主要仓库（xiaomili）** ⭐⭐⭐⭐⭐ **唯一主要推送目标**：
 ```
 名称：xiaomili
-地址：https://github.com/zhaog100/xiaomili-personal-skills.git
+地址：https://github.com/zhaog100/xiaomili-skills.git
 描述：小米粒个人技能库 - Dev Agent Personal Repository
 身份：我的仓库（小米粒）🌾
 用途：主要推送目标 ⭐⭐⭐⭐⭐

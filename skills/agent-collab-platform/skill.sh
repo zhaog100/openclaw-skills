@@ -1,7 +1,7 @@
 #!/bin/bash
 # agent-collab-platform - CLI入口
 # 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-# GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+# GitHub: https://github.com/zhaog100/xiaomili-skills
 
 set -e
 
