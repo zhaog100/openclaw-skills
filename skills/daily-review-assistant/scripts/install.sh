@@ -53,26 +53,17 @@ EOF
 
 echo "✅ 配置文件创建完成"
 
-# 自动配置定时任务
+# 提示定时任务配置
 echo ""
-echo "⏰ 配置定时任务..."
-
-# 定义定时任务
-MORNING_TASK="0 12 * * * $SCRIPT_DIR/../skill.sh review --mode morning >> $SCRIPT_DIR/../logs/cron.log 2>&1"
-EVENING_TASK="50 23 * * * $SCRIPT_DIR/../skill.sh review --mode full >> $SCRIPT_DIR/../logs/cron.log 2>&1"
-
-# 检查是否已存在
-EXISTING_CRON=$(crontab -l 2>/dev/null | grep "daily-review-assistant" || true)
-
-if [ -n "$EXISTING_CRON" ]; then
-    echo "  ✅ 定时任务已存在"
-else
-    # 添加定时任务
-    (crontab -l 2>/dev/null | grep -v "daily-review-assistant"; echo "$MORNING_TASK"; echo "$EVENING_TASK") | crontab -
-    echo "  ✅ 定时任务已添加"
-    echo "     - 中午 12:00 回顾上午"
-    echo "     - 晚上 23:50 回顾全天"
-fi
+echo "⏰ 定时任务说明..."
+echo "  ℹ️  技能已安装，定时任务需手动添加"
+echo "  ℹ️  使用以下方式添加定时任务："
+echo "     ./skill.sh cron-add                 # 添加默认任务（中午 12:00 + 晚上 23:50）"
+echo "     ./skill.sh cron-add morning         # 仅上午任务"
+echo "     ./skill.sh cron-add full            # 仅全天任务"
+echo "     ./skill.sh cron-add custom          # 自定义任务"
+echo "     ./skill.sh cron-status              # 查看任务状态"
+echo "     ./skill.sh cron-remove              # 删除任务"
 
 # 测试运行
 echo ""
@@ -89,10 +80,13 @@ echo "║  ./skill.sh status          # 查看状态                 ║"
 echo "║  ./skill.sh help            # 显示帮助                 ║"
 echo "╠════════════════════════════════════════════════════════╣"
 echo "║  定时任务：                                            ║"
-echo "║  ✅ 已自动配置（中午 12:00 + 晚上 23:50）               ║"
+echo "║  ⏳ 需手动添加（按需配置）                              ║"
 echo "╠════════════════════════════════════════════════════════╣"
-echo "║  管理定时任务：                                        ║"
-echo "║  ./skill.sh cron-add        # 添加定时任务             ║"
-echo "║  ./skill.sh cron-remove     # 删除定时任务             ║"
-echo "║  ./skill.sh cron-status     # 查看定时任务状态         ║"
+echo "║  管理定时任务（按需添加）：                            ║"
+echo "║  ./skill.sh cron-add                 # 添加默认任务    ║"
+echo "║  ./skill.sh cron-add morning         # 仅上午任务      ║"
+echo "║  ./skill.sh cron-add full            # 仅全天任务      ║"
+echo "║  ./skill.sh cron-add custom          # 自定义任务      ║"
+echo "║  ./skill.sh cron-status              # 查看任务状态    ║"
+echo "║  ./skill.sh cron-remove              # 删除任务        ║"
 echo "╚════════════════════════════════════════════════════════╝"

@@ -49,9 +49,18 @@ show_help() {
 用法：$0 <命令> [选项]
 
 命令:
-  review      执行回顾（默认）
-  status      查看状态
-  help        显示帮助
+  review                执行回顾（默认）
+  status                查看状态
+  cron-add [mode]       添加定时任务
+  cron-remove           删除定时任务
+  cron-status           查看定时任务状态
+  help                  显示帮助
+
+定时任务模式:
+  morning               仅中午 12:00 回顾上午
+  full                  仅晚上 23:50 回顾全天
+  custom                自定义时间（交互式）
+  default               默认（中午 12:00 + 晚上 23:50）
 
 选项:
   --date      指定日期（YYYY-MM-DD，默认今天）
@@ -62,6 +71,11 @@ show_help() {
   $0 review --date 2026-03-16  # 回顾指定日期
   $0 review --mode full        # 全天回顾
   $0 status                    # 查看状态
+  $0 cron-add                  # 添加默认定时任务
+  $0 cron-add morning          # 仅添加上午任务
+  $0 cron-add custom           # 自定义定时任务
+  $0 cron-status               # 查看定时任务状态
+  $0 cron-remove               # 删除定时任务
 
 版权：思捷娅科技 (SJYKJ)
 EOF
@@ -161,10 +175,34 @@ show_status() {
 
 # 添加定时任务
 add_cron() {
+    local mode="${1:-default}"
+    
     log_info "添加定时任务..."
     
-    local morning_task="0 12 * * * $SCRIPT_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
-    local evening_task="50 23 * * * $SCRIPT_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
+    case "$mode" in
+        morning)
+            # 仅上午
+            local task="0 12 * * * $SCRIPT_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
+            ;;
+        full)
+            # 仅全天
+            local task="50 23 * * * $SCRIPT_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
+            ;;
+        custom)
+            # 自定义时间
+            echo "请输入 Crontab 时间表达式（例如：0 12 * * *）："
+            read -r cron_time
+            echo "请输入要执行的命令参数（例如：review --mode morning）："
+            read -r cmd_args
+            local task="$cron_time $SCRIPT_DIR/skill.sh $cmd_args >> $LOG_FILE 2>&1"
+            ;;
+        default|*)
+            # 默认：上午 + 全天
+            local morning_task="0 12 * * * $SCRIPT_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
+            local evening_task="50 23 * * * $SCRIPT_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
+            local task="$morning_task"$'\n'"$evening_task"
+            ;;
+    esac
     
     # 检查是否已存在
     if crontab -l 2>/dev/null | grep -q "daily-review-assistant"; then
@@ -173,10 +211,24 @@ add_cron() {
     fi
     
     # 添加定时任务
-    (crontab -l 2>/dev/null | grep -v "daily-review-assistant"; echo "$morning_task"; echo "$evening_task") | crontab -
+    (crontab -l 2>/dev/null | grep -v "daily-review-assistant"; echo "$task") | crontab -
     log_info "✅ 定时任务已添加"
-    log_info "   - 中午 12:00 回顾上午"
-    log_info "   - 晚上 23:50 回顾全天"
+    
+    case "$mode" in
+        morning)
+            log_info "   - 中午 12:00 回顾上午"
+            ;;
+        full)
+            log_info "   - 晚上 23:50 回顾全天"
+            ;;
+        custom)
+            log_info "   - 自定义任务：$task"
+            ;;
+        default|*)
+            log_info "   - 中午 12:00 回顾上午"
+            log_info "   - 晚上 23:50 回顾全天"
+            ;;
+    esac
 }
 
 # 删除定时任务
@@ -220,7 +272,8 @@ main() {
             show_status
             ;;
         cron-add)
-            add_cron
+            shift
+            add_cron "$@"
             ;;
         cron-remove)
             remove_cron
