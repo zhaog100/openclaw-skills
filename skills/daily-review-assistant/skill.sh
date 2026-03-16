@@ -159,6 +159,54 @@ show_status() {
     fi
 }
 
+# 添加定时任务
+add_cron() {
+    log_info "添加定时任务..."
+    
+    local morning_task="0 12 * * * $SCRIPT_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
+    local evening_task="50 23 * * * $SCRIPT_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
+    
+    # 检查是否已存在
+    if crontab -l 2>/dev/null | grep -q "daily-review-assistant"; then
+        log_warn "定时任务已存在"
+        return 0
+    fi
+    
+    # 添加定时任务
+    (crontab -l 2>/dev/null | grep -v "daily-review-assistant"; echo "$morning_task"; echo "$evening_task") | crontab -
+    log_info "✅ 定时任务已添加"
+    log_info "   - 中午 12:00 回顾上午"
+    log_info "   - 晚上 23:50 回顾全天"
+}
+
+# 删除定时任务
+remove_cron() {
+    log_info "删除定时任务..."
+    
+    # 删除定时任务
+    crontab -l 2>/dev/null | grep -v "daily-review-assistant" | crontab -
+    log_info "✅ 定时任务已删除"
+}
+
+# 查看定时任务状态
+show_cron_status() {
+    log_info "╔════════════════════════════════════════════════════════╗"
+    log_info "║  定时任务状态                                          ║"
+    log_info "╚════════════════════════════════════════════════════════╝"
+    
+    local cron_tasks=$(crontab -l 2>/dev/null | grep "daily-review-assistant" || true)
+    
+    if [ -n "$cron_tasks" ]; then
+        log_info "✅ 定时任务已启用"
+        echo ""
+        echo "$cron_tasks"
+    else
+        log_warn "⚠️ 定时任务未启用"
+        echo ""
+        echo "使用 ./skill.sh cron-add 添加定时任务"
+    fi
+}
+
 # 主函数
 main() {
     local command="${1:-review}"
@@ -170,6 +218,15 @@ main() {
             ;;
         status)
             show_status
+            ;;
+        cron-add)
+            add_cron
+            ;;
+        cron-remove)
+            remove_cron
+            ;;
+        cron-status)
+            show_cron_status
             ;;
         help|--help|-h)
             show_help

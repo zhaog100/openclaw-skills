@@ -36,6 +36,11 @@ bash install.sh
 
 # 查看状态
 ./skill.sh status
+
+# 管理定时任务
+./skill.sh cron-add        # 添加定时任务
+./skill.sh cron-remove     # 删除定时任务
+./skill.sh cron-status     # 查看定时任务状态
 ```
 
 ---
