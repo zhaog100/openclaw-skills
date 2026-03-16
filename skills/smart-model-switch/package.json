@@ -1,7 +1,7 @@
 {
   "name": "smart-model-switch",
-  "version": "1.4.1",
-  "description": "智能模型自动切换技能，根据消息复杂度、文件类型和上下文使用率自动选择最优模型，支持AI主动检测",
+  "version": "1.6.0",
+  "description": "智能模型自动切换 v1.6.0 - 完整功能版（文件类型检测/多维度分析/上下文监控/AI 主动检测/成本追踪/负载均衡）",
   "author": "miliger",
   "license": "MIT",
   "repository": {
@@ -54,6 +54,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "node scripts/analyze-complexity.js \"测试消息\"",
-    "install-deps": "echo 'No dependencies required'"
+    "install-deps": "echo 'No dependencies required'",
+    "cost-tracker": "node scripts/cost-tracker.js report",
+    "load-balance": "bash scripts/load-balancer.sh check"
   }
 }
