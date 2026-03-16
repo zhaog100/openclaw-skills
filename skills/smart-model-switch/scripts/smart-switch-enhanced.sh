@@ -54,8 +54,8 @@ elif [ -n "$MESSAGE_MODEL" ]; then
     echo "🎯 复杂度评分: $MESSAGE_SCORE"
     echo "🤖 推荐模型: $MESSAGE_MODEL"
 else
-    FINAL_MODEL="zai/glm-5"
-    echo "🤖 默认模型: zai/glm-5"
+    FINAL_MODEL="zai/glm-5-turbo"
+    echo "🤖 默认模型: zai/glm-5-turbo"
 fi
 
 echo ""
