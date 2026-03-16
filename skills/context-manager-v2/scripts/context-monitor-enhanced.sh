@@ -7,6 +7,14 @@
 # ⭐ 修复cron环境问题（2026-03-06）
 export HOME="/home/zhaog"
 export PATH="/home/zhaog/.npm-global/bin:$PATH"
+# 集成 Error Handler Library
+ERROR_HANDLER_LOG="$HOME/.openclaw/workspace/logs/context-monitor.log"
+source "$HOME/.openclaw/workspace/skills/utils/error-handler.sh"
+
+
+# 集成 Error Handler Library
+ERROR_HANDLER_LOG="$HOME/.openclaw/workspace/logs/context-monitor.log"
+source "$HOME/.openclaw/workspace/skills/utils/error-handler.sh"
 
 # 配置参数
 THRESHOLD=60  # v2.2.2优化：85% → 60%
