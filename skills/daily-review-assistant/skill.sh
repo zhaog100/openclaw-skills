@@ -83,8 +83,25 @@ EOF
 
 # 回顾今日工作
 do_review() {
-    local date="${1:-$(date +%Y-%m-%d)}"
-    local mode="${2:-auto}"
+    local date="$(date +%Y-%m-%d)"
+    local mode="auto"
+    
+    # 解析参数
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --date)
+                date="$2"
+                shift 2
+                ;;
+            --mode)
+                mode="$2"
+                shift 2
+                ;;
+            *)
+                shift
+                ;;
+        esac
+    done
     
     log_info "╔════════════════════════════════════════════════════════╗"
     log_info "║  定时回顾更新助手 v1.0                                  ║"
