@@ -112,8 +112,57 @@ $(echo -e "$waste_section")
 3. **Prompt 优化**: 明确指定输出长度，避免过度生成
 4. **模型选择**: 简单任务使用 Flash/Mini 模型，降低成本
 5. **重试策略**: 连续 3 次失败后自动切换方案
-
 REPORT
+
+  # 💰 预期节省章节
+  local savings_section=""
+  local total_savings=0
+  if [[ -n "$analysis" && -f "$analysis" ]]; then
+    # 获取主要模型用于计算单价
+    local main_model_for_cost=""
+    main_model_for_cost=$(grep -o '"model":"[^"]*"' "$input" 2>/dev/null | sort | uniq -c | sort -rn | head -1 | grep -o '"[^"]*"$' | tr -d '"')
+    [[ -z "$main_model_for_cost" ]] && main_model_for_cost="glm-5-turbo"
+
+    # 获取平均token价格 (input+output的均值)
+    local prices="${MODEL_PRICES[$main_model_for_cost]:-"0.01:0.01"}"
+    local inp_p out_p avg_p
+    inp_p="${prices%%:*}"
+    out_p="${prices##*:}"
+    avg_p=$(echo "scale=6; ($inp_p + $out_p) / 2" | bc 2>/dev/null || echo "0.01")
+
+    while IFS= read -r line; do
+      local name count wasted
+      name=$(echo "$line" | grep -o '"name":"[^"]*"' | sed 's/"name":"//;s/"//')
+      count=$(echo "$line" | grep -o '"count":[0-9]*' | grep -o '[0-9]*')
+      wasted=$(echo "$line" | grep -o '"wasted_tokens":[0-9]*' | grep -o '[0-9]*')
+      [[ -z "$name" || -z "$count" || "$count" == "0" ]] && continue
+      [[ -z "$wasted" ]] && wasted=0
+
+      # 计算节省金额 (CNY)
+      local saving=0
+      if [[ "$wasted" -gt 0 ]]; then
+        saving=$(echo "scale=4; $wasted * $avg_p / 1000" | bc 2>/dev/null || echo 0)
+        total_savings=$(echo "scale=4; $total_savings + $saving" | bc 2>/dev/null || echo 0)
+      fi
+
+      savings_section+="| ${name} | ${count}次 | ${wasted} | ¥${saving} |\n"
+    done < <(grep '"name"' "$analysis")
+  fi
+
+  if [[ -n "$savings_section" ]]; then
+    cat >> "$output" <<SAVINGS
+
+## 💰 预期节省
+
+> 基于浪费模式检测结果，以下为可优化的 Token 消耗及对应节省金额（按主要模型 ¥${avg_p}/1K tokens 计算）
+
+| 浪费模式 | 检测次数 | 浪费Token | 预计节省 |
+|----------|----------|-----------|----------|
+$(echo -e "$savings_section")
+| **总计** | — | — | **¥${total_savings}** |
+
+SAVINGS
+  fi
 
   echo "✅ Markdown 报告 → $output"
 }

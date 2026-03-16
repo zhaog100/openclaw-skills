@@ -58,13 +58,10 @@ ai-efficiency-monitor/
 │   ├── collector.sh      # 数据收集
 │   ├── analyzer.sh       # 浪费模式分析
 │   ├── reporter.sh       # 报告生成
-│   ├── cost_calc.sh      # 成本计算
-│   └── patterns/         # 浪费模式定义
-│       ├── duplicate_query.sh
-│       ├── long_context.sh
-│       ├── invalid_retry.sh
-│       ├── over_generation.sh
-│       └── low_quality_loop.sh
+│   ├── cost_calc.sh      # 成本计算（含模型价格表+上下文字典）
+│   ├── patterns_list.sh  # 模式列表展示
+│   └── patterns/
+│       └── definitions.sh # 浪费模式定义（5种模式）
 ├── data/                 # 运行时数据
 ├── tests/test_all.sh
 └── package.json

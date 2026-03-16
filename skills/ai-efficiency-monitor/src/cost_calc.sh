@@ -27,6 +27,26 @@ declare -gA MODEL_PRICES=(
   ["qwen-max"]="0.02:0.06"
 )
 
+# 模型上下文窗口大小 (tokens)
+declare -gA MODEL_CONTEXT=(
+  ["glm-5-turbo"]=131072
+  ["glm-5"]=131072
+  ["glm-4-plus"]=131072
+  ["glm-4-flash"]=131072
+  ["deepseek-chat"]=65536
+  ["deepseek-reasoner"]=65536
+  ["gpt-4o"]=131072
+  ["gpt-4o-mini"]=131072
+  ["gpt-4-turbo"]=131072
+  ["gpt-3.5-turbo"]=16385
+  ["claude-3-opus"]=200000
+  ["claude-3-sonnet"]=200000
+  ["claude-3-haiku"]=200000
+  ["qwen-turbo"]=131072
+  ["qwen-plus"]=131072
+  ["qwen-max"]=32768
+)
+
 aiemon_cost() {
   local model="" tokens_input=0 tokens_output=0
   while [[ $# -gt 0 ]]; do
