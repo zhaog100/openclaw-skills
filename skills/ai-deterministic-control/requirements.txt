@@ -1,3 +1,2 @@
-click>=8.0.0
-pytest>=7.0.0
-pytest-cov>=4.0.0
+# AI Deterministic Control - Requirements
+# No external dependencies required (Python 3.8+ standard library only)

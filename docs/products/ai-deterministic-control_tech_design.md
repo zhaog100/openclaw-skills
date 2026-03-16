@@ -1,733 +1,1086 @@
-# AI 确定性控制工具 - 技术设计文档
+# AI 确定性控制工具（ai-deterministic-control）技术设计文档 v1.0
 
-**版本**：v1.0
-**创建日期**：2026-03-13
-**创建者**：小米辣（开发代理）
-**PRD**：[2026-03-12_ai-deterministic-control_PRD.md](2026-03-12_ai-deterministic-control_PRD.md)
-**Issue**：#16
+| 项目 | 信息 |
+|------|------|
+| 产品名 | ai-deterministic-control |
+| 版本 | v1.0 |
+| 作者 | 思捷娅科技 (SJYKJ) |
+| 日期 | 2026-03-16 |
+| 技术栈 | Python 3.8+ / Bash |
+| 技能目录 | `/root/.openclaw/workspace/skills/ai-deterministic-control/` |
+
+---
+
+## 目录
+
+1. [架构设计](#1-架构设计)
+2. [模块详细设计](#2-模块详细设计)
+3. [接口设计](#3-接口设计)
+4. [数据结构](#4-数据结构)
+5. [一致性算法](#5-一致性算法)
+6. [场景预设配置](#6-场景预设配置)
+7. [与 smart-model-switch 联动方案](#7-与-smart-model-switch-联动方案)
+8. [错误处理](#8-错误处理)
+9. [测试方案](#9-测试方案)
+10. [版权声明](#10-版权声明)
 
 ---
 
 ## 1. 架构设计
 
-### 1.1 整体架构
+### 1.1 模块划分
 
 ```
-┌─────────────────────────────────────────┐
-│  CLI 入口层（deterministic.py）          │
-│  - 参数解析（click）                     │
-│  - 命令路由（4个核心命令）                │
-└─────────────────────────────────────────┘
-                ↓
-┌─────────────────────────────────────────┐
-│  业务逻辑层                              │
-│  ├── TemperatureController（温度控制）   │
-│  ├── ConsistencyChecker（一致性检查）    │
-│  ├── ReproducibilityGuarantor（复现保证）│
-│  └── RandomnessMonitor（随机性监控）     │
-└─────────────────────────────────────────┘
-                ↓
-┌─────────────────────────────────────────┐
-│  数据持久层                              │
-│  ├── config.json（配置存储）             │
-│  ├── history.db（输出历史，SQLite）      │
-│  └── seeds.json（种子记录）              │
-└─────────────────────────────────────────┘
-                ↓
-┌─────────────────────────────────────────┐
-│  AI API 层（ai_client.py）               │
-│  - 智谱 API / DeepSeek API              │
-│  - 统一接口封装                          │
-└─────────────────────────────────────────┘
+┌─────────────────────────────────────────────────┐
+│                    CLI 层                        │
+│  detcontrol set / check / report / preset / monitor │
+└──────────────┬──────────────────────────────────┘
+               │
+┌──────────────▼──────────────────────────────────┐
+│              ConfigManager                       │
+│  temperature / topP / seed / presets 管理        │
+└──────┬───────────┬──────────────┬───────────────┘
+       │           │              │
+┌──────▼──────┐ ┌──▼──────────┐ ┌▼──────────────┐
+│SeedManager  │ │MonitorEngine│ │ModelBridge    │
+│种子管理      │ │监控+趋势     │ │openclaw.json  │
+│生成/存储/复现│ │异常检测/报告  │ │参数注入       │
+└─────────────┘ └──────┬──────┘ └──────────────┘
+                      │
+             ┌────────▼──────────┐
+             │ConsistencyChecker │
+             │ 编辑距离+语义相似  │
+             │ 多次采样+阈值告警  │
+             └───────────────────┘
 ```
 
-### 1.2 模块划分
+### 1.2 数据流图
 
-| 模块 | 文件 | 职责 |
-|------|------|------|
-| **CLI入口** | `deterministic.py` | 命令行参数解析、路由 |
-| **温度控制** | `temperature.py` | 温度参数设置、预设管理 |
-| **一致性检查** | `consistency.py` | 多次输出对比、评分 |
-| **复现保证** | `reproducibility.py` | 种子管理、确定性输出 |
-| **随机性监控** | `monitor.py` | 历史分析、趋势报告 |
-| **AI客户端** | `ai_client.py` | API封装、统一接口 |
-| **配置管理** | `config.py` | 配置读写、持久化 |
-
----
-
-## 2. 核心模块设计
-
-### 2.1 温度控制模块（temperature.py）
-
-**类设计**：
-```python
-class TemperatureController:
-    """温度控制器"""
-    
-    def __init__(self, config_path: str = "config.json"):
-        self.config = self._load_config(config_path)
-    
-    def set_temperature(self, temp: float) -> dict:
-        """设置温度参数
-        
-        Args:
-            temp: 温度值（0.0-2.0）
-        
-        Returns:
-            配置确认信息
-        
-        Raises:
-            ValueError: 温度超出范围
-        """
-        if not 0.0 <= temp <= 2.0:
-            raise ValueError(f"温度必须在0.0-2.0之间，当前: {temp}")
-        
-        self.config["temperature"] = round(temp, 1)
-        self._save_config()
-        
-        return {
-            "temperature": self.config["temperature"],
-            "mode": self._get_mode(temp),
-            "timestamp": datetime.now().isoformat()
-        }
-    
-    def get_preset(self, preset_name: str) -> dict:
-        """获取预设配置
-        
-        Args:
-            preset_name: 预设名称（code/balance/creative/brainstorm）
-        
-        Returns:
-            预设配置
-        """
-        presets = {
-            "code": {"temperature": 0.0, "description": "高度确定性（代码/配置生成）"},
-            "balance": {"temperature": 0.5, "description": "平衡模式（常规对话）"},
-            "creative": {"temperature": 0.8, "description": "创造性模式（创意写作）"},
-            "brainstorm": {"temperature": 1.5, "description": "高创造性模式（头脑风暴）"}
-        }
-        
-        if preset_name not in presets:
-            raise ValueError(f"未知预设: {preset_name}")
-        
-        return presets[preset_name]
-    
-    def _get_mode(self, temp: float) -> str:
-        """根据温度判断模式"""
-        if temp <= 0.3:
-            return "高度确定性"
-        elif temp <= 0.7:
-            return "平衡模式"
-        elif temp <= 1.0:
-            return "创造性模式"
-        else:
-            return "高创造性模式"
+```
+用户输入 ──► CLI ──► ConfigManager ──► ModelBridge ──► openclaw.json
+                │
+                ├──► SeedManager ──► seed 存储文件
+                │
+                ├──► ConsistencyChecker
+                │      │
+                │      ├── 多次采样（n 次）
+                │      ├── 编辑距离计算
+                │      ├── TF-IDF 语义相似度
+                │      └── 综合评分 + 阈值告警
+                │
+                └──► MonitorEngine
+                       ├── 历史数据读取
+                       ├── 趋势分析（滑动窗口）
+                       ├── 异常检测（Z-score）
+                       └── 报告生成（Markdown/JSON）
 ```
 
-### 2.2 一致性检查模块（consistency.py）
-
-**类设计**：
-```python
-class ConsistencyChecker:
-    """一致性检查器"""
-    
-    def __init__(self, history_db: str = "history.db"):
-        self.conn = sqlite3.connect(history_db)
-        self._init_db()
-    
-    def check_consistency(
-        self, 
-        prompt: str, 
-        samples: int = 3,
-        threshold: float = 80.0
-    ) -> dict:
-        """检查多次输出的一致性
-        
-        Args:
-            prompt: 输入提示词
-            samples: 采样次数（默认3次）
-            threshold: 一致性阈值（默认80%）
-        
-        Returns:
-            一致性检查结果
-        """
-        outputs = []
-        for i in range(samples):
-            output = self._call_ai(prompt)
-            outputs.append(output)
-            self._save_history(prompt, output)
-        
-        # 计算一致性评分
-        scores = []
-        for i in range(len(outputs)):
-            for j in range(i+1, len(outputs)):
-                score = self._calculate_similarity(outputs[i], outputs[j])
-                scores.append(score)
-        
-        avg_score = sum(scores) / len(scores) if scores else 0.0
-        
-        return {
-            "consistency_score": round(avg_score, 2),
-            "passed": avg_score >= threshold,
-            "samples": samples,
-            "threshold": threshold,
-            "details": {
-                "min": min(scores) if scores else 0.0,
-                "max": max(scores) if scores else 0.0,
-                "std": stdev(scores) if len(scores) > 1 else 0.0
-            }
-        }
-    
-    def _calculate_similarity(self, text1: str, text2: str) -> float:
-        """计算文本相似度（使用difflib）"""
-        matcher = SequenceMatcher(None, text1, text2)
-        return matcher.ratio() * 100
-    
-    def _call_ai(self, prompt: str) -> str:
-        """调用AI API"""
-        # 使用统一AI客户端
-        from ai_client import AIClient
-        client = AIClient()
-        return client.generate(prompt)
-```
-
-### 2.3 复现保证模块（reproducibility.py）
-
-**类设计**：
-```python
-class ReproducibilityGuarantor:
-    """复现保证器"""
-    
-    def __init__(self, seeds_file: str = "seeds.json"):
-        self.seeds_file = seeds_file
-        self.seeds = self._load_seeds()
-    
-    def generate_with_seed(
-        self, 
-        prompt: str, 
-        seed: Optional[int] = None
-    ) -> dict:
-        """使用种子生成确定性输出
-        
-        Args:
-            prompt: 输入提示词
-            seed: 随机种子（None则自动生成）
-        
-        Returns:
-            确定性输出
-        """
-        if seed is None:
-            seed = int(time.time() * 1000)
-        
-        # 记录种子
-        self._record_seed(seed, prompt)
-        
-        # 调用AI（传递seed参数）
-        from ai_client import AIClient
-        client = AIClient()
-        output = client.generate(prompt, seed=seed)
-        
-        return {
-            "output": output,
-            "seed": seed,
-            "timestamp": datetime.now().isoformat(),
-            "reproducible": True
-        }
-    
-    def verify_reproducibility(
-        self, 
-        prompt: str, 
-        seed: int,
-        iterations: int = 3
-    ) -> dict:
-        """验证可复现性
-        
-        Args:
-            prompt: 输入提示词
-            seed: 随机种子
-            iterations: 验证次数
-        
-        Returns:
-            验证结果
-        """
-        outputs = []
-        for _ in range(iterations):
-            result = self.generate_with_seed(prompt, seed)
-            outputs.append(result["output"])
-        
-        # 检查所有输出是否相同
-        is_reproducible = all(o == outputs[0] for o in outputs)
-        
-        return {
-            "is_reproducible": is_reproducible,
-            "seed": seed,
-            "iterations": iterations,
-            "first_output": outputs[0][:100] + "..." if outputs[0] else ""
-        }
-```
-
-### 2.4 随机性监控模块（monitor.py）
-
-**类设计**：
-```python
-class RandomnessMonitor:
-    """随机性监控器"""
-    
-    def __init__(self, history_db: str = "history.db"):
-        self.conn = sqlite3.connect(history_db)
-    
-    def analyze_trends(self, days: int = 7) -> dict:
-        """分析随机性趋势
-        
-        Args:
-            days: 分析天数
-        
-        Returns:
-            趋势分析报告
-        """
-        cursor = self.conn.cursor()
-        cursor.execute("""
-            SELECT prompt, output, timestamp 
-            FROM history 
-            WHERE timestamp >= datetime('now', '-{} days')
-            ORDER BY timestamp
-        """.format(days))
-        
-        records = cursor.fetchall()
-        
-        if len(records) < 2:
-            return {"error": "数据不足，至少需要2条记录"}
-        
-        # 计算相似度趋势
-        trends = []
-        for i in range(0, len(records)-1, 2):
-            if i+1 < len(records):
-                sim = self._calculate_similarity(
-                    records[i][1], 
-                    records[i+1][1]
-                )
-                trends.append({
-                    "date": records[i][2],
-                    "similarity": sim
-                })
-        
-        # 计算统计指标
-        similarities = [t["similarity"] for t in trends]
-        avg_sim = sum(similarities) / len(similarities)
-        
-        return {
-            "period_days": days,
-            "total_records": len(records),
-            "average_similarity": round(avg_sim, 2),
-            "trend": "稳定" if avg_sim > 70 else "波动",
-            "details": trends
-        }
-    
-    def detect_anomalies(self, threshold: float = 50.0) -> list:
-        """检测异常输出
-        
-        Args:
-            threshold: 异常阈值（相似度低于此值为异常）
-        
-        Returns:
-            异常记录列表
-        """
-        cursor = self.conn.cursor()
-        cursor.execute("""
-            SELECT prompt, output, timestamp 
-            FROM history 
-            ORDER BY timestamp DESC 
-            LIMIT 100
-        """)
-        
-        records = cursor.fetchall()
-        anomalies = []
-        
-        for i in range(len(records)-1):
-            sim = self._calculate_similarity(
-                records[i][1], 
-                records[i+1][1]
-            )
-            if sim < threshold:
-                anomalies.append({
-                    "timestamp": records[i][2],
-                    "prompt": records[i][0][:50] + "...",
-                    "similarity": sim
-                })
-        
-        return anomalies
-    
-    def export_report(self, output_path: str = "randomness_report.json") -> str:
-        """导出监控报告
-        
-        Args:
-            output_path: 输出路径
-        
-        Returns:
-            报告文件路径
-        """
-        report = {
-            "generated_at": datetime.now().isoformat(),
-            "trends": self.analyze_trends(),
-            "anomalies": self.detect_anomalies()
-        }
-        
-        with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(report, f, indent=2, ensure_ascii=False)
-        
-        return output_path
-```
-
----
-
-## 3. 数据结构设计
-
-### 3.1 配置文件（config.json）
-
-```json
-{
-  "temperature": 0.5,
-  "default_mode": "balance",
-  "api_provider": "zhipu",
-  "api_key": "<加密存储>",
-  "history_db": "history.db",
-  "seeds_file": "seeds.json"
-}
-```
-
-### 3.2 历史数据库（history.db）
-
-**表结构**：
-```sql
-CREATE TABLE history (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    prompt TEXT NOT NULL,
-    output TEXT NOT NULL,
-    temperature REAL,
-    seed INTEGER,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX idx_timestamp ON history(timestamp);
-CREATE INDEX idx_seed ON history(seed);
-```
-
-### 3.3 种子记录（seeds.json）
-
-```json
-{
-  "records": [
-    {
-      "seed": 1710123456789,
-      "prompt": "生成一个Python函数",
-      "timestamp": "2026-03-13T07:45:00",
-      "output_hash": "abc123..."
-    }
-  ]
-}
-```
-
----
-
-## 4. CLI 命令设计
-
-### 4.1 命令列表
-
-```bash
-# 1. 温度设置
-deterministic temp <value>              # 设置温度（0.0-2.0）
-deterministic temp --preset <name>      # 使用预设（code/balance/creative/brainstorm）
-
-# 2. 一致性检查
-deterministic check <prompt>            # 检查一致性（默认3次采样）
-deterministic check <prompt> --samples 5  # 自定义采样次数
-
-# 3. 可复现性
-deterministic repro <prompt>            # 使用种子生成
-deterministic repro <prompt> --seed 123  # 指定种子
-deterministic repro --verify <seed>     # 验证复现性
-
-# 4. 随机性监控
-deterministic monitor trends            # 趋势分析
-deterministic monitor anomalies         # 异常检测
-deterministic monitor report            # 导出报告
-```
-
-### 4.2 主程序（deterministic.py）
-
-```python
-#!/usr/bin/env python3
-import click
-from temperature import TemperatureController
-from consistency import ConsistencyChecker
-from reproducibility import ReproducibilityGuarantor
-from monitor import RandomnessMonitor
-
-@click.group()
-def cli():
-    """AI 确定性控制工具"""
-    pass
-
-@cli.command()
-@click.argument('value', type=float, required=False)
-@click.option('--preset', type=click.Choice(['code', 'balance', 'creative', 'brainstorm']))
-def temp(value, preset):
-    """温度参数设置"""
-    controller = TemperatureController()
-    
-    if preset:
-        config = controller.get_preset(preset)
-        value = config["temperature"]
-        click.echo(f"使用预设 {preset}: {config['description']}")
-    
-    if value is not None:
-        result = controller.set_temperature(value)
-        click.echo(f"✅ 温度已设置为: {result['temperature']}")
-        click.echo(f"   模式: {result['mode']}")
-    else:
-        click.echo(f"当前温度: {controller.config.get('temperature', 0.5)}")
-
-@cli.command()
-@click.argument('prompt')
-@click.option('--samples', default=3, help='采样次数')
-@click.option('--threshold', default=80.0, help='一致性阈值')
-def check(prompt, samples, threshold):
-    """一致性检查"""
-    checker = ConsistencyChecker()
-    result = checker.check_consistency(prompt, samples, threshold)
-    
-    click.echo(f"一致性评分: {result['consistency_score']}%")
-    click.echo(f"通过: {'✅' if result['passed'] else '❌'}")
-    click.echo(f"采样次数: {result['samples']}")
-    click.echo(f"详情: 最小={result['details']['min']}%, 最大={result['details']['max']}%")
-
-@cli.command()
-@click.argument('prompt', required=False)
-@click.option('--seed', type=int, help='随机种子')
-@click.option('--verify', type=int, help='验证复现性的种子')
-def repro(prompt, seed, verify):
-    """可复现性保证"""
-    guarantor = ReproducibilityGuarantor()
-    
-    if verify:
-        if not prompt:
-            click.echo("❌ 验证复现性需要提供prompt")
-            return
-        result = guarantor.verify_reproducibility(prompt, verify)
-        click.echo(f"可复现: {'✅' if result['is_reproducible'] else '❌'}")
-        click.echo(f"种子: {result['seed']}")
-    elif prompt:
-        result = guarantor.generate_with_seed(prompt, seed)
-        click.echo(f"输出: {result['output'][:100]}...")
-        click.echo(f"种子: {result['seed']}")
-        click.echo(f"可复现: {'✅' if result['reproducible'] else '❌'}")
-    else:
-        click.echo("❌ 请提供prompt或使用--verify")
-
-@cli.group()
-def monitor():
-    """随机性监控"""
-    pass
-
-@monitor.command()
-@click.option('--days', default=7, help='分析天数')
-def trends(days):
-    """趋势分析"""
-    mon = RandomnessMonitor()
-    result = mon.analyze_trends(days)
-    
-    click.echo(f"分析周期: {result['period_days']} 天")
-    click.echo(f"记录数: {result['total_records']}")
-    click.echo(f"平均相似度: {result['average_similarity']}%")
-    click.echo(f"趋势: {result['trend']}")
-
-@monitor.command()
-@click.option('--threshold', default=50.0, help='异常阈值')
-def anomalies(threshold):
-    """异常检测"""
-    mon = RandomnessMonitor()
-    result = mon.detect_anomalies(threshold)
-    
-    if result:
-        click.echo(f"发现 {len(result)} 个异常:")
-        for anomaly in result:
-            click.echo(f"  - {anomaly['timestamp']}: 相似度 {anomaly['similarity']}%")
-    else:
-        click.echo("✅ 未发现异常")
-
-@monitor.command()
-@click.option('--output', default='randomness_report.json', help='输出路径')
-def report(output):
-    """导出报告"""
-    mon = RandomnessMonitor()
-    path = mon.export_report(output)
-    click.echo(f"✅ 报告已导出: {path}")
-
-if __name__ == '__main__':
-    cli()
-```
-
----
-
-## 5. 测试策略
-
-### 5.1 单元测试（test/test_all.py）
-
-**测试覆盖率目标**：> 85%
-
-**测试用例**：
-1. **温度控制**（5个）
-   - test_set_temperature_valid
-   - test_set_temperature_invalid
-   - test_get_preset
-   - test_get_mode
-   - test_persistence
-
-2. **一致性检查**（4个）
-   - test_check_consistency_pass
-   - test_check_consistency_fail
-   - test_calculate_similarity
-   - test_save_history
-
-3. **复现保证**（4个）
-   - test_generate_with_seed
-   - test_verify_reproducibility_success
-   - test_verify_reproducibility_fail
-   - test_seed_recording
-
-4. **随机性监控**（4个）
-   - test_analyze_trends
-   - test_detect_anomalies
-   - test_export_report
-   - test_insufficient_data
-
-**总计**：17个测试用例
-
-### 5.2 集成测试
-
-**测试场景**：
-1. 完整工作流：设置温度 → 检查一致性 → 验证复现性 → 监控报告
-2. 并发测试：多个一致性检查同时运行
-3. 性能测试：参数设置 < 100ms，一致性检查 < 1秒
-
----
-
-## 6. 部署方案
-
-### 6.1 目录结构
+### 1.3 文件结构
 
 ```
 skills/ai-deterministic-control/
-├── deterministic.py           # CLI入口
-├── temperature.py             # 温度控制
-├── consistency.py             # 一致性检查
-├── reproducibility.py         # 复现保证
-├── monitor.py                 # 随机性监控
-├── ai_client.py               # AI客户端
-├── config.py                  # 配置管理
-├── SKILL.md                   # 技能说明
-├── README.md                  # 使用文档
-├── package.json               # 包信息
-├── test/
-│   └── test_all.py            # 测试用例
-└── docs/
-    └── usage.md               # 详细文档
-```
-
-### 6.2 依赖管理
-
-**requirements.txt**：
-```
-click>=8.0.0
-sqlite3  # 内置
-requests>=2.28.0
+├── SKILL.md                    # 技能描述
+├── detcontrol                  # CLI 入口（Bash）
+├── src/
+│   ├── __init__.py
+│   ├── config_manager.py       # ConfigManager
+│   ├── consistency_checker.py  # ConsistencyChecker
+│   ├── seed_manager.py         # SeedManager
+│   ├── monitor_engine.py       # MonitorEngine
+│   ├── model_bridge.py         # ModelBridge
+│   └── algorithms.py           # 一致性算法（编辑距离、TF-IDF）
+├── presets/
+│   └── default.json            # 场景预设配置
+├── data/
+│   ├── seeds.json              # 种子存储
+│   └── monitor_history.json    # 监控历史数据
+└── tests/
+    ├── test_config_manager.py
+    ├── test_consistency_checker.py
+    ├── test_seed_manager.py
+    ├── test_monitor_engine.py
+    └── test_algorithms.py
 ```
 
 ---
 
-## 7. 性能优化
+## 2. 模块详细设计
 
-### 7.1 缓存机制
-- 相同prompt的输出缓存（5分钟TTL）
-- 预设配置内存缓存
+### 2.1 ConfigManager — 参数管理
 
-### 7.2 并发处理
-- 一致性检查使用多线程并发调用AI
-- 历史记录异步写入
+**职责**：管理 temperature、topP、seed 参数及场景预设。
 
-### 7.3 数据库优化
-- 历史记录批量插入
-- 定期清理旧数据（保留30天）
+**核心逻辑**：
 
----
-
-## 8. 风险应对
-
-### 8.1 API限流
-- **措施**：请求队列 + 指数退避重试
-- **代码**：
 ```python
-def _call_ai_with_retry(self, prompt, max_retries=3):
-    for i in range(max_retries):
+class ConfigManager:
+    """确定性控制参数管理器"""
+    
+    PRESETS_FILE = "presets/default.json"
+    
+    def __init__(self, config_dir: str = None):
+        self.config_dir = config_dir or self._default_dir()
+        self.config_path = os.path.join(self.config_dir, "detcontrol_config.json")
+        self.presets = self._load_presets()
+        self.config = self._load_config()
+    
+    def set_temperature(self, value: float) -> Dict:
+        """设置温度参数，范围 [0.0, 2.0]"""
+        
+    def set_top_p(self, value: float) -> Dict:
+        """设置 top_p 参数，范围 [0.0, 1.0]"""
+    
+    def set_seed(self, value: int) -> Dict:
+        """设置随机种子"""
+    
+    def apply_preset(self, name: str) -> Dict:
+        """应用场景预设"""
+    
+    def get_config(self) -> DeterministicConfig:
+        """获取当前配置"""
+    
+    def _load_presets(self) -> Dict: ...
+    def _load_config(self) -> Dict: ...
+    def _save_config(self) -> None: ...
+```
+
+**配置文件格式**（`detcontrol_config.json`）：
+
+```json
+{
+  "temperature": 0.3,
+  "top_p": 0.9,
+  "seed": 42,
+  "active_preset": "code_generation",
+  "last_modified": "2026-03-16T18:00:00+08:00"
+}
+```
+
+### 2.2 ConsistencyChecker — 一致性检查
+
+**职责**：多次采样输出，计算一致性评分，触发阈值告警。
+
+**核心逻辑**：
+
+```python
+class ConsistencyChecker:
+    """输出一致性检查器"""
+    
+    DEFAULT_SAMPLES = 5
+    CHAR_WEIGHT = 0.4
+    SEMANTIC_WEIGHT = 0.6
+    
+    def __init__(self, config: DeterministicConfig = None):
+        self.config = config or DeterministicConfig()
+        self.char_weight = self.DEFAULT_SAMPLES
+        self.semantic_weight = self.DEFAULT_SAMPLES
+    
+    def check(self, prompt: str, sampler_fn: Callable[[str, Dict], str],
+              n_samples: int = 5) -> ConsistencyReport:
+        """
+        一致性检查主流程：
+        1. 用相同 prompt + 参数采样 n 次
+        2. 两两计算字符相似度和语义相似度
+        3. 加权平均得综合评分
+        4. 与阈值对比，生成告警
+        """
+        samples = [sampler_fn(prompt, self.config.to_dict()) for _ in range(n_samples)]
+        
+        char_scores, sem_scores = [], []
+        for i in range(len(samples)):
+            for j in range(i + 1, len(samples)):
+                cs = self._char_similarity(samples[i], samples[j])
+                ss = self._semantic_similarity(samples[i], samples[j])
+                char_scores.append(cs)
+                sem_scores.append(ss)
+        
+        avg_char = sum(char_scores) / len(char_scores) if char_scores else 0
+        avg_sem = sum(sem_scores) / len(sem_scores) if sem_scores else 0
+        composite = self.CHAR_WEIGHT * avg_char + self.SEMANTIC_WEIGHT * avg_sem
+        
+        alert = self._check_threshold(composite)
+        return ConsistencyReport(
+            samples=samples, char_similarity=avg_char,
+            semantic_similarity=avg_sem, composite_score=composite,
+            alert=alert
+        )
+    
+    def _char_similarity(self, a: str, b: str) -> float:
+        """Levenshtein 编辑距离转相似度 [0, 1]"""
+        from .algorithms import levenshtein_similarity
+        return levenshtein_similarity(a, b)
+    
+    def _semantic_similarity(self, a: str, b: str) -> float:
+        """TF-IDF 余弦相似度 [0, 1]"""
+        from .algorithms import tfidf_cosine_similarity
+        return tfidf_cosine_similarity(a, b)
+    
+    def _check_threshold(self, score: float) -> Optional[Alert]:
+        """阈值告警：score < 0.8 → WARN, < 0.6 → CRITICAL"""
+    
+    @staticmethod
+    def default_sampler(prompt: str, config: Dict) -> str:
+        """
+        默认采样函数：基于 openclaw API 进行实际 AI 调用。
+        通过 openclaw message 命令或直接 HTTP 调用 API。
+        
+        降级策略：
+        1. 优先使用 openclaw CLI（如果可用）
+        2. 降级为 HTTP API 调用
+        3. 最后降级为本地 mock（仅返回 prompt hash，用于测试）
+        """
+        import subprocess
         try:
-            return self.client.generate(prompt)
-        except RateLimitError:
-            time.sleep(2 ** i)  # 指数退避
-    raise Exception("API限流，请稍后再试")
+            result = subprocess.run(
+                ["openclaw", "message", "--model", config.get("model", "glm-5-turbo"),
+                 "--temperature", str(config.get("temperature", 0.3)),
+                 "--no-stream", prompt],
+                capture_output=True, text=True, timeout=30
+            )
+            if result.returncode == 0:
+                return result.stdout.strip()
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
+        # 降级：返回确定性 mock
+        return f"[mock] {hash(prompt) % 10000}"
 ```
 
-### 8.2 一致性问题
-- **措施**：多次采样 + 投票机制
-- **代码**：
+### 2.3 SeedManager — 种子管理
+
+**职责**：生成、存储、复现随机种子，确保可复现性。
+
+**核心逻辑**：
+
 ```python
-def _vote_output(self, outputs):
-    """投票选择最一致的输出"""
-    from collections import Counter
-    counter = Counter(outputs)
-    return counter.most_common(1)[0][0]
+class SeedManager:
+    """随机种子管理器"""
+    
+    SEEDS_FILE = "data/seeds.json"
+    
+    def __init__(self, data_dir: str = None):
+        self.data_dir = data_dir or self._default_dir()
+        self.seeds_path = os.path.join(self.data_dir, self.SEEDS_FILE)
+        self.seeds = self._load_seeds()
+    
+    def generate(self, label: str = None) -> SeedRecord:
+        """生成新种子，可选关联标签"""
+        seed = random.randint(0, 2**32 - 1)
+        record = SeedRecord(
+            seed=seed, label=label or f"auto_{len(self.seeds) + 1}",
+            created_at=datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
+            prompt_hash=None
+        )
+        self.seeds[record.id] = record.to_dict()
+        self._save_seeds()
+        return record
+    
+    def get(self, seed_id: str) -> Optional[SeedRecord]:
+        """按 ID 获取种子记录"""
+    
+    def lookup_by_label(self, label: str) -> Optional[SeedRecord]:
+        """按标签查找"""
+    
+    def list_seeds(self, limit: int = 20) -> List[SeedRecord]:
+        """列出最近种子"""
+    
+    def associate_prompt(self, seed_id: str, prompt: str) -> None:
+        """关联 prompt（存储 hash）"""
+    
+    def reproduce(self, seed_id: str) -> Optional[int]:
+        """获取种子值用于复现"""
 ```
 
-### 8.3 复现性差
-- **措施**：种子记录 + 参数固化
-- **代码**：
+### 2.4 MonitorEngine — 监控引擎
+
+**职责**：趋势分析、异常检测、报告生成。
+
+**核心逻辑**：
+
 ```python
-def _freeze_params(self, params):
-    """固化所有参数"""
-    return {
-        "temperature": params.get("temperature", 0.5),
-        "seed": params.get("seed"),
-        "top_p": params.get("top_p", 1.0)
+class MonitorEngine:
+    """随机性监控引擎"""
+    
+    HISTORY_FILE = "data/monitor_history.json"
+    WINDOW_SIZE = 30          # 滑动窗口大小
+    ZSCORE_THRESHOLD = 2.0    # 异常 Z-score 阈值
+    
+    def __init__(self, data_dir: str = None):
+        self.data_dir = data_dir or self._default_dir()
+        self.history_path = os.path.join(self.data_dir, self.HISTORY_FILE)
+        self.history = self._load_history()
+    
+    def record_check(self, report: ConsistencyReport, config: DeterministicConfig) -> None:
+        """记录一次一致性检查结果"""
+        entry = MonitorEntry(
+            timestamp=datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
+            temperature=config.temperature,
+            top_p=config.top_p,
+            seed=config.seed,
+            composite_score=report.composite_score,
+            char_similarity=report.char_similarity,
+            semantic_similarity=report.semantic_similarity,
+            num_samples=len(report.samples),
+            alert_level=report.alert.level if report.alert else "ok"
+        )
+        self.history.append(entry.to_dict())
+        self._save_history()
+    
+    def analyze_trend(self, days: int = 7) -> TrendAnalysis:
+        """分析趋势：均值、标准差、方向"""
+        recent = self._filter_recent(days)
+        scores = [e["composite_score"] for e in recent]
+        if not scores:
+            return TrendAnalysis(status="no_data")
+        
+        mean = statistics.mean(scores)
+        stdev = statistics.stdev(scores) if len(scores) > 1 else 0
+        
+        # 线性趋势方向
+        direction = self._calc_direction(scores)
+        return TrendAnalysis(
+            status="stable" if stdev < 0.1 else "volatile",
+            mean_score=mean, stdev=stdev, trend_direction=direction,
+            data_points=len(scores)
+        )
+    
+    def detect_anomalies(self) -> List[Anomaly]:
+        """Z-score 异常检测"""
+        scores = [e["composite_score"] for e in self.history]
+        if len(scores) < 3:
+            return []
+        
+        mean = statistics.mean(scores)
+        stdev = statistics.stdev(scores)
+        if stdev == 0:
+            return []
+        
+        anomalies = []
+        for i, entry in enumerate(self.history):
+            z = abs((entry["composite_score"] - mean) / stdev)
+            if z > self.ZSCORE_THRESHOLD:
+                anomalies.append(Anomaly(
+                    index=i, timestamp=entry["timestamp"],
+                    score=entry["composite_score"], z_score=z,
+                    severity="critical" if z > 3 else "warning"
+                ))
+        return anomalies
+    
+    def generate_report(self, format: str = "markdown", days: int = 7) -> str:
+        """生成监控报告"""
+        trend = self.analyze_trend(days)
+        anomalies = self.detect_anomalies()
+        # ... 格式化输出
+```
+
+### 2.5 ModelBridge — 模型桥接
+
+**职责**：读取 `openclaw.json`，注入确定性参数。
+
+**核心逻辑**：
+
+```python
+class ModelBridge:
+    """OpenClaw 模型参数桥接"""
+    
+    OPENCLAW_CONFIG = "~/.openclaw/openclaw.json"
+    
+    def __init__(self):
+        self.config_path = Path(self.OPENCLAW_CONFIG).expanduser()
+    
+    def inject_params(self, config: DeterministicConfig) -> Dict:
+        """
+        将确定性参数注入 openclaw.json 的模型配置。
+        在模型配置的 parameters 字段中添加 temperature/top_p/seed。
+        
+        安全措施：
+        1. 修改前自动备份 openclaw.json
+        2. 验证 JSON 格式后再写入
+        3. 写入失败时自动恢复备份
+        """
+        # 自动备份
+        self._backup_config()
+        data = self._read_config()
+        try:
+            for model_name in data.get("models", {}):
+                model_cfg = data["models"][model_name]
+                if "parameters" not in model_cfg:
+                    model_cfg["parameters"] = {}
+                model_cfg["parameters"]["temperature"] = config.temperature
+                model_cfg["parameters"]["top_p"] = config.top_p
+                if config.seed is not None:
+                    model_cfg["parameters"]["seed"] = config.seed
+            # 写入前验证 JSON 格式
+            json.dumps(data, ensure_ascii=False)
+            self._write_config(data)
+        except (json.JSONDecodeError, Exception) as e:
+            self._restore_config()
+            raise RuntimeError(f"写入失败，已恢复备份: {e}")
+        return data
+    
+    def inject_model_params(self, model_name: str, config: DeterministicConfig) -> Dict:
+        """只注入指定模型的参数"""
+        data = self._read_config()
+        if model_name in data.get("models", {}):
+            model_cfg = data["models"][model_name]
+            if "parameters" not in model_cfg:
+                model_cfg["parameters"] = {}
+            model_cfg["parameters"]["temperature"] = config.temperature
+            model_cfg["parameters"]["top_p"] = config.top_p
+            if config.seed is not None:
+                model_cfg["parameters"]["seed"] = config.seed
+        self._write_config(data)
+        return data
+    
+    def read_current(self) -> Dict:
+        """读取当前模型配置"""
+        return self._read_config()
+    
+    def reset_params(self, targets: List[str] = None) -> Dict:
+        """
+        恢复默认配置。
+        targets: ["temperature", "seed"] 或 None（全部恢复）
+        默认值：temperature=0.3, top_p=0.9, seed=None
+        """
+        defaults = {"temperature": 0.3, "top_p": 0.9, "seed": None}
+        if targets is None:
+            targets = list(defaults.keys())
+        self._backup_config()
+        data = self._read_config()
+        try:
+            for model_name in data.get("models", {}):
+                if "parameters" in data["models"][model_name]:
+                    for key in targets:
+                        data["models"][model_name]["parameters"][key] = defaults[key]
+            json.dumps(data, ensure_ascii=False)
+            self._write_config(data)
+        except Exception as e:
+            self._restore_config()
+            raise RuntimeError(f"重置失败，已恢复备份: {e}")
+        return data
+    
+    def _backup_config(self) -> None: ...
+    def _restore_config(self) -> None: ...
+    
+    def _read_config(self) -> Dict: ...
+    def _write_config(self, data: Dict) -> None: ...
+```
+
+### 2.6 CLI — 命令行接口
+
+**入口脚本**：`detcontrol`（Bash wrapper）
+
+```bash
+#!/usr/bin/env bash
+# detcontrol - AI 确定性控制工具 CLI
+source /root/.openclaw/workspace/skills/utils/error-handler.sh
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON="${PYTHON:-python3}"
+
+case "${1:-help}" in
+  set)
+    # detcontrol set --temperature 0.1 [--top-p 0.9] [--seed 42]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" set "${@:2}"
+    ;;
+  check)
+    # detcontrol check --prompt "..." [--samples 5] [--threshold 0.8]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" check "${@:2}"
+    ;;
+  report)
+    # detcontrol report [--format markdown|json] [--days 7]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" report "${@:2}"
+    ;;
+  preset)
+    # detcontrol preset [list|apply|create] [name]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" preset "${@:2}"
+    ;;
+  monitor)
+    # detcontrol monitor [status|trend|anomalies]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" monitor "${@:2}"
+    ;;
+  inject)
+    # detcontrol inject [--model model_name]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" inject "${@:2}"
+    ;;
+  reset)
+    # detcontrol reset [--all | --temperature | --seed]
+    $PYTHON "$SCRIPT_DIR/src/__main__.py" reset "${@:2}"
+    ;;
+  help|--help|-h)
+    # 显示帮助
+    ;;
+  *)
+    echo "Unknown command: $1"
+    exit 1
+    ;;
+esac
+```
+
+**命令汇总**：
+
+| 命令 | 说明 | 性能目标 |
+|------|------|----------|
+| `detcontrol set --temp 0.1` | 设置温度 | < 100ms |
+| `detcontrol set --top-p 0.9` | 设置 top_p | < 100ms |
+| `detcontrol set --seed 42` | 设置种子 | < 100ms |
+| `detcontrol preset apply code_generation` | 应用预设 | < 100ms |
+| `detcontrol preset list` | 列出预设 | < 100ms |
+| `detcontrol check --prompt "..." --samples 5` | 一致性检查 | < 1s |
+| `detcontrol report --days 7` | 监控报告 | < 5s |
+| `detcontrol monitor trend` | 趋势分析 | < 2s |
+| `detcontrol inject --model glm-5` | 参数注入 | < 200ms |
+| `detcontrol reset [--all | --temperature | --seed]` | 恢复默认配置 | < 100ms |
+
+---
+
+## 3. 接口设计
+
+### 3.1 ConfigManager 接口
+
+```
+输入                          输出
+──────────────────────────────────────────────
+set_temperature(0.1)      →   {"status": "ok", "temperature": 0.1}
+set_top_p(0.9)            →   {"status": "ok", "top_p": 0.9}
+set_seed(42)              →   {"status": "ok", "seed": 42}
+apply_preset("code_gen")  →   {"status": "ok", "preset": "code_generation", "config": {...}}
+get_config()              →   DeterministicConfig dataclass
+```
+
+### 3.2 ConsistencyChecker 接口
+
+```
+输入                                            输出
+──────────────────────────────────────────────────────────
+check(prompt, sampler_fn, n=5)     →   ConsistencyReport
+                                       ├── samples: List[str]
+                                       ├── char_similarity: float
+                                       ├── semantic_similarity: float
+                                       ├── composite_score: float
+                                       └── alert: Optional[Alert]
+```
+
+### 3.3 SeedManager 接口
+
+```
+输入                          输出
+──────────────────────────────────────────────
+generate("test_run")       →   SeedRecord {id, seed, label, created_at}
+get("seed_001")            →   SeedRecord | None
+lookup_by_label("test")    →   SeedRecord | None
+list_seeds(20)             →   List[SeedRecord]
+associate_prompt(id, prompt) → None
+reproduce("seed_001")      →   int (seed value) | None
+```
+
+### 3.4 MonitorEngine 接口
+
+```
+输入                          输出
+──────────────────────────────────────────────
+record_check(report, config) →   None
+analyze_trend(7)            →   TrendAnalysis {status, mean, stdev, direction}
+detect_anomalies()          →   List[Anomaly]
+generate_report("md", 7)    →   str (Markdown 报告)
+```
+
+### 3.5 ModelBridge 接口
+
+```
+输入                          输出
+──────────────────────────────────────────────
+inject_params(config)       →   Dict (更新后的 openclaw.json)
+inject_model_params("glm-5", config) → Dict
+read_current()              →   Dict (当前 openclaw.json)
+reset_params(["temperature","seed"]) → Dict (恢复默认)
+```
+
+---
+
+## 4. 数据结构
+
+```python
+from dataclasses import dataclass, field
+from typing import Optional, List, Dict
+from enum import Enum
+
+class AlertLevel(Enum):
+    OK = "ok"
+    WARN = "warning"
+    CRITICAL = "critical"
+
+class TrendDirection(Enum):
+    STABLE = "stable"
+    IMPROVING = "improving"
+    DECLINING = "declining"
+    VOLATILE = "volatile"
+
+@dataclass
+class DeterministicConfig:
+    """确定性控制核心配置"""
+    temperature: float = 0.3
+    top_p: float = 0.9
+    seed: Optional[int] = None
+    active_preset: Optional[str] = None
+    
+    def to_dict(self) -> Dict:
+        d = {"temperature": self.temperature, "top_p": self.top_p}
+        if self.seed is not None:
+            d["seed"] = self.seed
+        return d
+
+@dataclass
+class Alert:
+    """告警信息"""
+    level: AlertLevel
+    message: str
+    threshold: float
+    actual: float
+
+@dataclass
+class ConsistencyReport:
+    """一致性检查报告"""
+    samples: List[str]
+    char_similarity: float
+    semantic_similarity: float
+    composite_score: float
+    alert: Optional[Alert] = None
+
+@dataclass
+class SeedRecord:
+    """种子记录"""
+    id: str
+    seed: int
+    label: str
+    created_at: str
+    prompt_hash: Optional[str] = None
+    
+    def to_dict(self) -> Dict:
+        d = {"id": self.id, "seed": self.seed, "label": self.label, "created_at": self.created_at}
+        if self.prompt_hash:
+            d["prompt_hash"] = self.prompt_hash
+        return d
+
+@dataclass
+class MonitorEntry:
+    """监控数据条目"""
+    timestamp: str
+    temperature: float
+    top_p: float
+    seed: Optional[int]
+    composite_score: float
+    char_similarity: float
+    semantic_similarity: float
+    num_samples: int
+    alert_level: str
+
+@dataclass
+class TrendAnalysis:
+    """趋势分析结果"""
+    status: str           # "stable" | "volatile" | "no_data"
+    mean_score: float = 0.0
+    stdev: float = 0.0
+    trend_direction: str = "stable"
+    data_points: int = 0
+
+@dataclass
+class Anomaly:
+    """异常记录"""
+    index: int
+    timestamp: str
+    score: float
+    z_score: float
+    severity: str         # "warning" | "critical"
+```
+
+---
+
+## 5. 一致性算法
+
+### 5.1 字符级编辑距离（Levenshtein）
+
+纯 Python 实现，无外部依赖：
+
+```python
+def levenshtein_distance(s1: str, s2: str) -> int:
+    """计算两个字符串的 Levenshtein 编辑距离"""
+    if len(s1) < len(s2):
+        return levenshtein_distance(s2, s1)
+    if len(s2) == 0:
+        return len(s1)
+    
+    prev_row = list(range(len(s2) + 1))
+    for i, c1 in enumerate(s1):
+        curr_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = prev_row[j + 1] + 1
+            deletions = curr_row[j] + 1
+            substitutions = prev_row[j] + (c1 != c2)
+            curr_row.append(min(insertions, deletions, substitutions))
+        prev_row = curr_row
+    return prev_row[-1]
+
+def levenshtein_similarity(s1: str, s2: str) -> float:
+    """将编辑距离转为相似度分数 [0.0, 1.0]"""
+    if not s1 and not s2:
+        return 1.0
+    max_len = max(len(s1), len(s2))
+    dist = levenshtein_distance(s1, s2)
+    return 1.0 - (dist / max_len)
+```
+
+### 5.2 语义相似度（TF-IDF 余弦相似度）
+
+纯本地实现，使用 Python 标准库 `math` + `collections`：
+
+```python
+import math
+import re
+from collections import Counter
+
+def tokenize(text: str) -> List[str]:
+    """分词：转小写 + 按非字母数字拆分"""
+    return [w.lower() for w in re.findall(r'\b\w+\b', text)]
+
+def tfidf_cosine_similarity(text_a: str, text_b: str) -> float:
+    """
+    TF-IDF 余弦相似度，纯本地实现。
+    对两段文本分别计算 TF，合并语料计算 IDF，最后求余弦相似度。
+    """
+    tokens_a = tokenize(text_a)
+    tokens_b = tokenize(text_b)
+    
+    if not tokens_a or not tokens_b:
+        return 0.0
+    
+    corpus = [tokens_a, tokens_b]
+    N = len(corpus)
+    vocab = set(tokens_a) | set(tokens_b)
+    
+    # 计算 IDF
+    idf = {}
+    for term in vocab:
+        df = sum(1 for doc in corpus if term in doc)
+        idf[term] = math.log(N / df) + 1  # smoothed IDF
+    
+    # 计算 TF-IDF 向量
+    def tfidf_vector(tokens):
+        tf = Counter(tokens)
+        max_tf = max(tf.values()) if tf else 1
+        vec = {}
+        for term in set(tokens):
+            vec[term] = (tf[term] / max_tf) * idf[term]
+        return vec
+    
+    vec_a = tfidf_vector(tokens_a)
+    vec_b = tfidf_vector(tokens_b)
+    
+    # 余弦相似度
+    dot = sum(vec_a.get(t, 0) * vec_b.get(t, 0) for t in vocab)
+    norm_a = math.sqrt(sum(v ** 2 for v in vec_a.values()))
+    norm_b = math.sqrt(sum(v ** 2 for v in vec_b.values()))
+    
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    
+    return dot / (norm_a * norm_b)
+```
+
+### 5.3 综合评分公式
+
+```
+composite_score = 0.4 × char_similarity + 0.6 × semantic_similarity
+```
+
+| 场景 | composite_score | 告警级别 |
+|------|----------------|----------|
+| score ≥ 0.8 | 高一致性 | OK |
+| 0.6 ≤ score < 0.8 | 中等一致性 | WARNING |
+| score < 0.6 | 低一致性 | CRITICAL |
+
+---
+
+## 6. 场景预设配置
+
+`presets/default.json`：
+
+```json
+{
+  "version": "1.0",
+  "presets": {
+    "code_generation": {
+      "name": "代码生成",
+      "description": "最高确定性，适用于代码、SQL、正则等生成任务",
+      "temperature": 0.1,
+      "top_p": 0.85,
+      "seed": null,
+      "tags": ["code", "sql", "regex", "api"]
+    },
+    "config_generation": {
+      "name": "配置生成",
+      "description": "高确定性，适用于 JSON、YAML、配置文件生成",
+      "temperature": 0.2,
+      "top_p": 0.88,
+      "seed": null,
+      "tags": ["json", "yaml", "config", "dockerfile"]
+    },
+    "conversation": {
+      "name": "常规对话",
+      "description": "平衡模式，适用于日常对话和问答",
+      "temperature": 0.5,
+      "top_p": 0.9,
+      "seed": null,
+      "tags": ["chat", "qa", "dialogue"]
+    },
+    "creative_writing": {
+      "name": "创意写作",
+      "description": "高随机性，适用于创意写作、头脑风暴",
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "seed": null,
+      "tags": ["creative", "writing", "brainstorm", "story"]
+    },
+    "data_analysis": {
+      "name": "数据分析",
+      "description": "高确定性，适用于数据分析、统计报告",
+      "temperature": 0.15,
+      "top_p": 0.87,
+      "seed": null,
+      "tags": ["analysis", "statistics", "data"]
+    },
+    "translation": {
+      "name": "翻译任务",
+      "description": "高确定性，确保翻译一致性",
+      "temperature": 0.1,
+      "top_p": 0.85,
+      "seed": null,
+      "tags": ["translation", "i18n", "localization"]
     }
+  }
+}
 ```
 
 ---
 
-## 9. 时间计划
+## 7. 与 smart-model-switch 联动方案
 
-| 任务 | 预计时间 | 完成标志 |
-|------|---------|---------|
-| 技术设计 | 1小时 | 本文档 |
-| 环境搭建 | 30分钟 | 目录结构+依赖安装 |
-| 核心模块开发 | 4小时 | 4个核心模块 |
-| CLI开发 | 2小时 | 命令行接口 |
-| 测试编写 | 2小时 | 17个测试用例 |
-| 文档编写 | 1小时 | SKILL.md+README.md |
-| **总计** | **10.5小时** | **完整可用版本** |
+### 7.1 联动机制
+
+通过 **文件信号** 与 `smart-model-switch` 技能协作，避免强耦合：
+
+```
+检测到高确定性任务
+    │
+    ▼
+detcontrol 生成信号文件：
+~/.openclaw/workspace/.detcontrol_signal.json
+{
+  "mode": "deterministic",
+  "recommended_temperature": 0.1,
+  "reason": "code_generation_preset",
+  "timestamp": "2026-03-16T18:00:00+08:00"
+}
+    │
+    ▼
+smart-model-switch 读取信号文件
+    │
+    ▼
+切换到高确定性模型配置（低温度 + 精确模型）
+```
+
+### 7.2 信号文件格式
+
+```json
+{
+  "mode": "deterministic" | "normal" | "creative",
+  "recommended_temperature": 0.1,
+  "recommended_model": null,
+  "reason": "string",
+  "preset_name": "string | null",
+  "timestamp": "ISO8601"
+}
+```
+
+### 7.3 联动流程
+
+1. **自动触发**：用户执行 `detcontrol preset apply code_generation` 时，自动生成信号文件
+2. **手动触发**：`detcontrol set --temperature 0.1 --signal` 时附带 `--signal` 标志
+3. **信号消费**：`smart-model-switch` 在每次模型选择前检查信号文件，存在则优先采纳
+4. **信号清除**：用户执行 `detcontrol preset apply conversation` 或手动清除时删除信号
+5. **信号过期**：超过 30 分钟的信号自动失效
 
 ---
 
-## 10. 验收清单
+## 8. 错误处理
 
-- [ ] 4个核心功能全部实现
-- [ ] 测试覆盖率 > 85%
-- [ ] 所有测试通过
-- [ ] 性能达标（参数设置<100ms，一致性检查<1秒）
-- [ ] 文档完整（SKILL.md + README.md）
-- [ ] Git提交并推送
-- [ ] Issue评论通知小米辣
+### 8.1 集成 error-handler 库
+
+所有模块在初始化时加载统一错误处理：
+
+```bash
+source /root/.openclaw/workspace/skills/utils/error-handler.sh
+```
+
+### 8.2 Python 端错误处理模式
+
+```python
+import sys
+import json
+import traceback
+
+def safe_execute(func, context=""):
+    """统一错误处理包装器"""
+    try:
+        return func()
+    except FileNotFoundError as e:
+        error_exit(f"[FILE_NOT_FOUND] {context}: {e}", "error")
+    except json.JSONDecodeError as e:
+        error_exit(f"[JSON_PARSE_ERROR] {context}: {e}", "error")
+    except PermissionError as e:
+        error_exit(f"[PERMISSION_DENIED] {context}: {e}", "error")
+    except ValueError as e:
+        error_exit(f"[INVALID_VALUE] {context}: {e}", "warning")
+    except Exception as e:
+        error_exit(f"[UNEXPECTED] {context}: {e}\n{traceback.format_exc()}", "error")
+
+def error_exit(message, level="error"):
+    """格式化错误输出，兼容 error-handler"""
+    output = {"level": level, "message": message, "source": "ai-deterministic-control"}
+    print(json.dumps(output, ensure_ascii=False), file=sys.stderr)
+    sys.exit(1 if level == "error" else 0)
+```
+
+### 8.3 错误分类
+
+| 错误类型 | 级别 | 处理 |
+|----------|------|------|
+| 参数越界（temperature > 2.0） | warning | 自动 clamp 到合法范围，提示用户 |
+| 配置文件不存在 | info | 自动创建默认配置 |
+| 配置文件 JSON 格式错误 | error | 报错并拒绝操作 |
+| 采样函数超时 | warning | 跳过本次采样，降低 n_samples |
+| 种子 ID 不存在 | warning | 提示可用的种子列表 |
+| openclaw.json 不存在 | warning | 提示需要初始化 OpenClaw |
 
 ---
 
-*创建时间：2026-03-13 07:45*
-*创建者：小米辣（开发代理）*
-*状态：技术设计完成，待开发实现*
+## 9. 测试方案
+
+### 9.1 单元测试
+
+```
+tests/
+├── test_config_manager.py      # ConfigManager 单元测试
+├── test_consistency_checker.py # ConsistencyChecker 单元测试
+├── test_seed_manager.py        # SeedManager 单元测试
+├── test_monitor_engine.py      # MonitorEngine 单元测试
+└── test_algorithms.py          # 算法单元测试
+```
+
+#### test_algorithms.py 关键用例
+
+```python
+# Levenshtein
+assert levenshtein_distance("hello", "hello") == 0
+assert levenshtein_distance("kitten", "sitting") == 3
+assert levenshtein_similarity("abc", "abc") == 1.0
+assert levenshtein_similarity("abc", "xyz") < 0.5
+
+# TF-IDF 相似度
+assert tfidf_cosine_similarity("same text", "same text") == 1.0
+assert tfidf_cosine_similarity("python code", "java code") > 0.3
+assert tfidf_cosine_similarity("", "hello") == 0.0
+
+# 综合评分
+assert composite_score(same_text, same_text) == 1.0
+```
+
+#### test_config_manager.py 关键用例
+
+```python
+# 参数范围验证
+cm.set_temperature(3.0)  # 应 clamp 到 2.0，warning
+cm.set_temperature(-0.1)  # 应 clamp 到 0.0
+cm.set_top_p(1.5)  # 应 clamp 到 1.0
+
+# 预设应用
+cm.apply_preset("code_generation")
+assert cm.get_config().temperature == 0.1
+```
+
+### 9.2 集成测试
+
+```python
+# 端到端：设置 → 注入 → 检查 → 监控
+def test_full_workflow():
+    cm = ConfigManager(tmp_dir)
+    cm.apply_preset("code_generation")
+    
+    bridge = ModelBridge(tmp_config)
+    bridge.inject_params(cm.get_config())
+    assert bridge.read_current()["models"]["glm-5"]["parameters"]["temperature"] == 0.1
+    
+    checker = ConsistencyChecker(cm.get_config())
+    report = checker.check("写一个排序函数", mock_sampler, n=3)
+    assert report.composite_score > 0.5
+    
+    monitor = MonitorEngine(tmp_dir)
+    monitor.record_check(report, cm.get_config())
+    trend = monitor.analyze_trend()
+    assert trend.status in ["stable", "volatile", "no_data"]
+```
+
+### 9.3 性能测试
+
+```python
+import time
+
+def test_set_performance():
+    cm = ConfigManager()
+    start = time.time()
+    for _ in range(100):
+        cm.set_temperature(0.1)
+    elapsed = time.time() - start
+    assert elapsed < 10  # 100 次 < 10s → 平均 < 100ms
+
+def test_check_performance():
+    checker = ConsistencyChecker()
+    start = time.time()
+    checker.check("test prompt", fast_mock_sampler, n=5)
+    elapsed = time.time() - start
+    assert elapsed < 1.0  # < 1s
+```
+
+### 9.4 运行测试
+
+```bash
+cd skills/ai-deterministic-control
+python -m pytest tests/ -v --tb=short
+```
+
+---
+
+## 10. 版权声明
+
+---
+
+**AI 确定性控制工具（ai-deterministic-control）技术设计文档 v1.0**
+
+Copyright © 2026 思捷娅科技 (SJYKJ). All rights reserved.
+
+本技术设计文档及相关代码由思捷娅科技 (SJYKJ) 设计并开发。  
+本作品采用 [MIT License](https://opensource.org/licenses/MIT) 许可协议。
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+*文档版本：v1.0*  
+*创建日期：2026-03-16*  
+*作者：思捷娅科技 (SJYKJ)*  
+*许可协议：MIT License*
