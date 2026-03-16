@@ -82,13 +82,21 @@ status_list() {
   local filter="${1:-}"
   pipeline_ensure_state_dir
 
+  # 安全处理空目录（nullglob避免未展开glob导致错误）
+  local json_files=()
+  shopt -s nullglob
+  for f in "$PIPELINE_STATE_DIR"/*.json; do
+    json_files+=("$f")
+  done
+  shopt -u nullglob
+
   echo "技能流水线状态"
   echo "──────────────────────────────────────────────────────"
   printf "%-25s %-14s %6s %6s %s\n" "技能" "状态" "轮次" "评分" "开始时间"
   echo "──────────────────────────────────────────────────────"
 
   local found=0
-  for json_file in "$PIPELINE_STATE_DIR"/*.json; do
+  for json_file in "${json_files[@]+"${json_files[@]}"}"; do
     [[ ! -f "$json_file" ]] && continue
     local entry
     entry=$(jq -r '[.skill, .status, (.round|tostring), (.review_score|tostring), .started_at] | @tsv' "$json_file" 2>/dev/null) || continue
@@ -119,6 +127,7 @@ status_list() {
     echo "（暂无记录）"
   fi
   echo "──────────────────────────────────────────────────────"
+  return 0
 }
 
 # ─── 详细状态 ───
@@ -129,7 +138,7 @@ status_detail() {
 
   if [[ ! -f "$json_file" ]]; then
     echo "未找到技能: $skill"
-    return 1
+    return 0
   fi
 
   jq -r '

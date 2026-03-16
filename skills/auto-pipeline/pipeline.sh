@@ -166,15 +166,36 @@ cmd_status() {
 # ─── help 命令 ───
 cmd_help() {
   cat <<'EOF'
-auto-pipeline v1.0.0 - 技能自动开发流水线
+auto-pipeline v1.0.0 - 技能自动开发流水线（PM辅助工具）
 版权: 思捷娅科技 (SJYKJ) | MIT License
 
+【v1.0 定位】PM手动调度中心，不自动spawn子代理。
+PM手动执行各步骤：Review → 修复 → 发布，流水线提供质量保障工具。
+
 用法:
-  pipeline.sh run --prd <path> [--priority P0]
-  pipeline.sh run --skill <name> [--priority P1]
-  pipeline.sh list [--status developing|fixing|completed]
-  pipeline.sh status <skill-name>
+  pipeline.sh list [--status developing|fixing|completed]  # 看板
+  pipeline.sh status <skill-name>                            # 状态详情
   pipeline.sh help
+
+v1.0 功能（当前可用）:
+  ✅ Review引擎  - 12维度量化评分 + PRD逐项对照（满分60，≥50通过）
+  ✅ 修复引擎    - 问题清单格式化 + 回退判断（PM手动派发修复）
+  ✅ 发布引擎    - Git提交推送 + ClawHub发布 + PRD状态更新
+  ✅ PRD看板     - list/status + 状态JSON持久化
+  ✅ Plan预审    - 任务声明审查 + 信心度评分
+  ✅ PRD解析     - 结构化/自由格式PRD → 任务声明JSON
+
+v2.0 功能（计划中）:
+  ⬜ 自动spawn开发/修复子代理
+  ⬜ 子代理超时处理 + 任务拆分
+  ⬜ 修复循环自动化（≤3轮）
+  ⬜ task_planner.sh 智能任务拆分
+
+v3.0 功能（远期）:
+  ⬜ 双模型交叉Review
+  ⬜ Baseline Delta（只检查新增代码）
+  ⬜ 并行开发（batch命令 + 3子代理并行）
+  ⬜ 端到端全自动化
 
 状态流转: pending → developing → reviewing → fixing → publishing → completed
                                   ↘ escalated（升级给官家）
@@ -189,9 +210,13 @@ EOF
 # ─── 命令分发（必须在函数定义之后） ───
 cmd="${1:-help}"
 case "$cmd" in
-  run)    shift; cmd_run "$@" ;;
   list)   shift; cmd_list "$@" ;;
   status) shift; cmd_status "$@" ;;
   help|--help|-h) cmd_help ;;
+  run)
+    echo "⚠️ run 命令计划在 v2.0 实现（子代理自动spawn）"
+    echo "当前 v1.0: PM手动调度，请直接操作 Review/修复/发布流程"
+    cmd_help
+    ;;
   *)      echo "未知命令: $cmd"; cmd_help; exit 1 ;;
 esac
