@@ -3730,3 +3730,45 @@ playwright-scraper/USAGE-GUIDE.md
 [2026-03-16 13:00:02] [INFO] ✅ Session-Memory Enhanced v4.0 完成
 [2026-03-16 13:00:02] [INFO] 🎯 已吸收 memu-engine 核心优势
 [2026-03-16 13:00:02] [INFO] ================================
+[2026-03-16 14:00:01] [INFO] ╔════════════════════════════════════════════════════════╗
+[2026-03-16 14:00:02] [INFO] ║  Error Handler Library v1.1 已加载                      ║
+[2026-03-16 14:00:02] [INFO] ╠════════════════════════════════════════════════════════╣
+[2026-03-16 14:00:02] [INFO] ║  💡 推荐安装以下技能以获得更好效果：                    ║
+[2026-03-16 14:00:02] [INFO] ║                                                        ║
+[2026-03-16 14:00:02] [INFO] ║  1. session-memory-enhanced                            ║
+[2026-03-16 14:00:02] [INFO] ║     长上下文记忆管理，自动保存和检索记忆               ║
+[2026-03-16 14:00:02] [INFO] ║     路径：skills/session-memory-enhanced/              ║
+[2026-03-16 14:00:02] [INFO] ║                                                        ║
+[2026-03-16 14:00:02] [INFO] ║  2. context-manager-v2                                 ║
+[2026-03-16 14:00:02] [INFO] ║     会话切换管理，自动监控上下文使用率                 ║
+[2026-03-16 14:00:02] [INFO] ║     路径：skills/context-manager-v2/                   ║
+[2026-03-16 14:00:02] [INFO] ║                                                        ║
+[2026-03-16 14:00:02] [INFO] ║  安装方式：source skills/<技能名>/install.sh           ║
+[2026-03-16 14:00:02] [INFO] ╚════════════════════════════════════════════════════════╝
+[2026-03-16 14:00:02] [INFO] ================================
+[2026-03-16 14:00:02] [INFO] 🚀 Session-Memory Enhanced v4.0 启动（统一增强版）
+[2026-03-16 14:00:02] [INFO] 🎯 融合 session-memory + memu-engine 核心功能
+[2026-03-16 14:00:02] [INFO] ================================
+[2026-03-16 14:00:02] [INFO] 📋 加载主配置：/home/zhaog/.openclaw/workspace/skills/session-memory-enhanced/config/unified.json
+[2026-03-16 14:00:02] [INFO] 📋 加载代理配置：/home/zhaog/.openclaw/workspace/config/agents.json
+[2026-03-16 14:00:02] [INFO] ✅ 配置加载完成
+[2026-03-16 14:00:02] [INFO]    - 闲置时间：1800秒
+[2026-03-16 14:00:02] [INFO]    - 消息上限：60条
+[2026-03-16 14:00:02] [INFO]    - 结构化提取：true
+[2026-03-16 14:00:02] [INFO]    - 向量检索：true
+[2026-03-16 14:00:02] [INFO] ⚠️ 已处理过，跳过：/home/zhaog/.openclaw/workspace/memory/agents/main/part001.json
+[2026-03-16 14:00:02] [INFO] 📚 更新 QMD 知识库...
+[2026-03-16 14:00:02] [INFO] ⚠️ QMD 未安装，跳过
+[2026-03-16 14:00:02] [INFO] 💾 Git 自动提交...
+[master 31d7aac] chore: session-memory自动更新（+0 0 ~2 -0 0）
+ Author: miliger <miliger@openclaw.ai>
+ 5 files changed, 139 insertions(+)
+[master 31d7aac] chore: session-memory自动更新（+0 0 ~2 -0 0）
+ Author: miliger <miliger@openclaw.ai>
+ 5 files changed, 139 insertions(+)
+[2026-03-16 14:00:02] [INFO] ✅ Git 提交完成（+0
+0 ~2 -0
+0）
+[2026-03-16 14:00:02] [INFO] ✅ Session-Memory Enhanced v4.0 完成
+[2026-03-16 14:00:02] [INFO] 🎯 已吸收 memu-engine 核心优势
+[2026-03-16 14:00:02] [INFO] ================================

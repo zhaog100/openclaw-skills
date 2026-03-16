@@ -1,6 +1,6 @@
 {
   "name": "error-handler",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "通用错误处理库 - 为所有技能提供统一的错误处理、告警过滤、日志记录",
   "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
