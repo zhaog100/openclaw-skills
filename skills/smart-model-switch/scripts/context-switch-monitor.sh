@@ -23,7 +23,7 @@ init_state() {
 {
   "consecutive_hits": 0,
   "last_check": null,
-  "current_model": "zai/glm-5",
+  "current_model": "zai/glm-5-turbo",
   "last_switch": null,
   "cooldown_until": null
 }
