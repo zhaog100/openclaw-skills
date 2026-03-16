@@ -278,14 +278,9 @@ else
 fi
 echo ""
 
-echo "测试23: run缺少参数"
-if bash "$SCRIPT_DIR/pipeline.sh" run 2>/dev/null; then
-  echo "  ❌ 缺少参数应返回错误"
-  (( FAIL++ )) || true
-else
-  echo "  ✅ 缺少参数正确报错"
-  (( PASS++ )) || true
-fi
+echo "测试23: run命令（v1.0提示）"
+run_output=$(bash "$SCRIPT_DIR/pipeline.sh" run 2>&1)
+assert_true "run命令提示v2.0" "$(echo "$run_output" | grep -q 'v2.0' && echo 'true' || echo 'false')"
 echo ""
 
 # ─── 测试25-29: plan_reviewer.sh ───
