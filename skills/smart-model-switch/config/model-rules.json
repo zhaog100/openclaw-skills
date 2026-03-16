@@ -35,7 +35,8 @@
     },
     "thresholds": {
       "flash": 3,
-      "main": 6,
+      "turbo": 5,
+      "main": 7,
       "complex": 8
     }
   },
