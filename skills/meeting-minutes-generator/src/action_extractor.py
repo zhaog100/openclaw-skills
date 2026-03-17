@@ -36,8 +36,20 @@ def extract_actions(text: str, reference_date: Optional[datetime.date] = None) -
 
 
 def _split_sentences(text: str) -> List[str]:
-    sents = re.split(r'[。！？\n]+', text)
-    return [s.strip() for s in sents if len(s.strip()) > 2]
+    # 先按换行和句号分割，再对含@的段落按@提及拆分
+    blocks = re.split(r'[\n。！？]+', text)
+    sents = []
+    for block in blocks:
+        block = block.strip()
+        if not block or len(block) <= 2:
+            continue
+        if block.count('@') > 1:
+            # 多个@提及，每个开头算一段
+            parts = re.split(r'(?=@)', block)
+            sents.extend(p.strip() for p in parts if len(p.strip()) > 2)
+        else:
+            sents.append(block)
+    return sents
 
 
 def _is_action_sentence(sent: str) -> bool:
@@ -61,13 +73,13 @@ def _extract_task(sent: str) -> str:
 
 def _extract_assignee(sent: str) -> str:
     """提取负责人"""
-    # xxx负责
-    m = re.search(r'([\u4e00-\u9fff]{2,4})负责', sent)
+    # 由xxx (name is 2-4 chars, followed by verb)
+    m = re.search(r'由([\u4e00-\u9fff]{2,4}?)(?:负责|协调|跟进|完成|提交|整理|审核|推进|落实|对接|调研|通知|安排|处理)', sent)
     if m:
         return m.group(1)
 
-    # 由xxx (name is 2-4 chars, followed by verb)
-    m = re.search(r'由([\u4e00-\u9fff]{2,4}?)(?:负责|协调|跟进|完成|提交|整理|审核|推进|落实|对接|调研|通知|安排|处理)', sent)
+    # xxx负责 (在"由xxx负责"之后检查)
+    m = re.search(r'([\u4e00-\u9fff]{2,4})负责', sent)
     if m:
         return m.group(1)
 
@@ -77,7 +89,7 @@ def _extract_assignee(sent: str) -> str:
         return m.group(1)
 
     # @xxx followed by space/punctuation/end (most common in chat)
-    m = re.search(r'@([\u4e00-\u9fffA-Za-z0-9_]{2,10})(?:[\s，。！？：；,\.!?:;]|$)', sent)
+    m = re.search(r'@([\u4e00-\u9fffA-Za-z0-9_]{2,10})(?:[\s，。！？：；,\.!?:;负责跟进完成提交整理确认沟通安排协调准备反馈修改更新编写输出制作推进落实对接调研评估审核通知部署]|$)', sent)
     if m:
         return m.group(1)
     # @xxx+verb (e.g., @张三负责)
@@ -147,8 +159,8 @@ def _extract_deadline(sent: str, ref: datetime.date) -> str:
 
 def _infer_priority(sent: str) -> str:
     """推断优先级"""
-    high_keywords = ['紧急', '立即', '尽快', '重要', '优先', '必须', '务必', '马上', '今日内']
-    low_keywords = ['有空', '不急', '慢慢', '后续', '视情况', '可选']
+    high_keywords = ['紧急', '立即', '尽快', '重要', '高优先级', '必须', '务必', '马上', '今日内']
+    low_keywords = ['有空', '不急', '慢慢', '后续', '视情况', '可选', '低优先级']
 
     for k in high_keywords:
         if k in sent:
