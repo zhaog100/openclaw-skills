@@ -13,7 +13,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-/home/zhaog/.openclaw/workspace}"
+WORKSPACE="${WORKSPACE:-$(pwd)}"
 LOG_FILE="$SCRIPT_DIR/logs/daily-review.log"
 
 # 确保目录存在

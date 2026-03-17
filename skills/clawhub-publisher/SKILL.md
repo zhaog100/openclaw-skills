@@ -293,7 +293,7 @@ logs/
 # 场景：发布 session-memory-enhanced v4.0.1
 
 # 1. 检查现有版本
-cd /root/.openclaw/workspace/skills/clawhub-publisher
+cd $(pwd)/skills/clawhub-publisher
 bash scripts/check-existing.sh session-memory-enhanced
 # 输出：存在，所有者zhaog100，版本4.0.0
 

@@ -85,7 +85,7 @@ utils/
 ### 1. 加载库
 
 ```bash
-source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh
+source $(pwd)/skills/utils/error-handler.sh
 ```
 
 ### 2. 使用日志函数
@@ -127,7 +127,7 @@ safe_issue_comment "zhaog100/openclaw-skills" "16" "评论内容"
 
 ```bash
 # 1. 在技能脚本开头加载库
-source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh
+source $(pwd)/skills/utils/error-handler.sh
 
 # 2. 替换原有日志函数
 # 原来：log() { echo "$1" >> "$LOG_FILE"; }
@@ -144,7 +144,7 @@ source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh
 #!/bin/bash
 # 加载错误处理库
 ERROR_HANDLER_LOG="$LOG_FILE"  # 使用技能的日志文件
-source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh
+source $(pwd)/skills/utils/error-handler.sh
 
 # 使用安全函数
 safe_python "$EXTRACTOR" "$part_file" "log_warn '降级运行'"
@@ -156,7 +156,7 @@ safe_git_push "chore: memory auto-save" "$WORKSPACE"
 ```bash
 #!/bin/bash
 # 加载错误处理库
-source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh
+source $(pwd)/skills/utils/error-handler.sh
 
 # 使用安全函数
 response=$(safe_curl "http://localhost:18789/sessions" "{}")
@@ -202,7 +202,7 @@ safe_gh "issue comment 16 --repo zhaog100/openclaw-skills --body '内容'"
 ### 运行测试
 
 ```bash
-cd /home/zhaog/.openclaw/workspace/skills/utils/tests
+cd $(pwd)/skills/utils/tests
 bash test-error-handler.sh
 ```
 

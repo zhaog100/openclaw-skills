@@ -90,10 +90,10 @@ daily-review-assistant/
 
 ```bash
 # 中午 12:00 - 回顾上午
-0 12 * * * /home/zhaog/.openclaw/workspace/skills/daily-review-assistant/skill.sh review --mode morning
+0 12 * * * $(pwd)/skills/daily-review-assistant/skill.sh review --mode morning
 
 # 晚上 23:50 - 回顾全天
-50 23 * * * /home/zhaog/.openclaw/workspace/skills/daily-review-assistant/skill.sh review --mode full
+50 23 * * * $(pwd)/skills/daily-review-assistant/skill.sh review --mode full
 ```
 
 ---

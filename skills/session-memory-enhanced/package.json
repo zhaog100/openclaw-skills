@@ -50,7 +50,6 @@
     "test": "python3 python/extractor.py --help"
   },
   "dependencies": {
-    "python": ">=3.8.0",
     "openai": ">=1.0.0",
     "numpy": ">=1.20.0"
   },

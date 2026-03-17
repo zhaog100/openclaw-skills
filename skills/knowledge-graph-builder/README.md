@@ -26,7 +26,7 @@ knowledge-graph-builder 是一个知识图谱构建工具，支持：
 
 ```bash
 # 克隆或复制到本地
-cd /home/zhaog/.openclaw/workspace/skills/knowledge-graph-builder
+cd .//skills/knowledge-graph-builder
 
 # 安装依赖
 pip install -r requirements.txt
