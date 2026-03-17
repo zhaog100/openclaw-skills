@@ -1,5 +1,6 @@
 #!/bin/bash
 # GitHub Bounty Hunter - 主入口脚本
+# 版本：1.3.0
 # 让 OpenClaw 自动化在 GitHub 上赚钱！
 
 set -e
@@ -201,3 +202,38 @@ main() {
 
 # 运行主函数
 main "$@"
+
+# Phase 2 新功能
+case "$1" in
+    algora)
+        echo "🚀 启动 Algora 专项监控..."
+        python3 "$SCRIPTS_DIR/algora_monitor.py"
+        ;;
+    apply)
+        echo "🙋 自动评论接单..."
+        python3 "$SCRIPTS_DIR/auto_apply.py" "$2"
+        ;;
+    pr)
+        echo "📦 自动提交 PR..."
+        python3 "$SCRIPTS_DIR/auto_pr.py" "$2" "$3" "$4"
+        ;;
+    state)
+        echo "📊 查看 STATE.yaml..."
+        python3 "$SCRIPTS_DIR/state_manager.py"
+        ;;
+    stats)
+        echo "📈 查看统计信息..."
+        python3 -c "
+from scripts.state_manager import StateManager
+sm = StateManager()
+stats = sm.get_stats()
+print('总任务数:', stats['total'])
+print('总奖金: $' + str(stats['total_bounty']))
+print('已收款: $' + str(stats['paid']))
+print('状态分布:', stats['by_status'])
+"
+        ;;
+    *)
+        show_help
+        ;;
+esac
