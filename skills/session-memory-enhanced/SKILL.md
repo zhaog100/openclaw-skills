@@ -57,7 +57,7 @@ description: "Session-Memory Enhanced v4.0 - 统一增强版。融合 session-me
 ## 📁 文件结构
 
 ```
-/root/.openclaw/workspace/skills/session-memory-enhanced/
+$(pwd)/skills/session-memory-enhanced/
 ├── scripts/
 │   ├── session-memory-enhanced-v4.sh       # 主脚本（统一版）
 │   ├── ai-summarizer.sh                    # AI 摘要
@@ -85,7 +85,7 @@ description: "Session-Memory Enhanced v4.0 - 统一增强版。融合 session-me
 
 ```bash
 # 1. 复制配置模板
-cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cd $(pwd)/skills/session-memory-enhanced
 cp config/unified.json.example config/unified.json
 
 # 2. 重启即可使用（轻量级模式）
@@ -149,19 +149,19 @@ mv tmp.json config/unified.json
 # 每小时自动运行
 crontab -e
 # 添加：
-0 * * * * /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 ```
 
 ### 手动模式
 
 ```bash
 # 立即执行
-bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+bash $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
 # 检索
-python3 /root/.openclaw/workspace/skills/session-memory-enhanced/python/searcher.py \
+python3 $(pwd)/skills/session-memory-enhanced/python/searcher.py \
     --query "查询关键词" \
-    --db /root/.openclaw/workspace/memory/agents/main/vectors.db \
+    --db $(pwd)/memory/agents/main/vectors.db \
     --agent main \
     --api-key "your_key"
 ```

@@ -4,8 +4,8 @@
     "path": "./data/knowledge_graph.db",
     "neo4j": {
       "uri": "bolt://localhost:7687",
-      "user": "neo4j",
-      "password": "password"
+      "user": "${NEO4J_USER:-neo4j}",
+      "password": "${NEO4J_PASSWORD}"
     }
   },
   "extractor": {
@@ -13,7 +13,7 @@
     "ai_engine": "ollama",
     "ollama": {
       "model": "llama3",
-      "base_url": "http://localhost:11434"
+      "base_url": "${OLLAMA_BASE_URL:-http://localhost:11434}"
     }
   },
   "relation": {

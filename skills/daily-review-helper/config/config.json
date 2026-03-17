@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "workspace": "/home/zhaog/.openclaw/workspace",
+  "workspace": "$(pwd)",
   "reviewTimes": ["12:00", "23:50"],
   "features": {
     "taskReview": true,

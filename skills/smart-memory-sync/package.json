@@ -21,9 +21,7 @@
     "context-monitoring",
     "auto-switch"
   ],
-  "dependencies": {
-    "python": ">=3.8"
-  },
+  "dependencies": {},
   "config": {
     "config_file": "config/sync-config.json",
     "main_script": "scripts/smart-sync.py"

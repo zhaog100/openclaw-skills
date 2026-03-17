@@ -1,6 +1,6 @@
 {
   "name": "knowledge-graph-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "知识图谱构建工具 - 从文档中自动提取知识和关系",
   "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",
@@ -19,17 +19,6 @@
     "relation-extraction",
     "openclaw-skill"
   ],
-  "dependencies": {
-    "python": ">=3.8",
-    "spacy": ">=3.5.0",
-    "networkx": ">=3.0",
-    "fastapi": ">=0.100.0",
-    "flask": ">=2.3.0"
-  },
-  "devDependencies": {
-    "pytest": ">=7.4.0",
-    "pytest-cov": ">=4.1.0"
-  },
   "engines": {
     "node": ">=16.0.0"
   }

@@ -21,7 +21,6 @@
     "terminal-ocr"
   ],
   "dependencies": {
-    "python": ">=3.8",
     "tesseract-ocr": ">=4.0",
     "opencv-python": ">=4.5",
     "pillow": ">=8.0",

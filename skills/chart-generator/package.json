@@ -6,7 +6,6 @@
   "license": "MIT",
   "keywords": ["chart", "graph", "visualization", "matplotlib", "plotly", "seaborn"],
   "engines": {
-    "python": ">=3.8"
   },
   "files": [
     "USAGE.md"
