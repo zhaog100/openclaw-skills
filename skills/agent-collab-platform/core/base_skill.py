@@ -4,7 +4,7 @@
 基础技能类 - 所有智能体的基类
 
 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-GitHub: https://github.com/zhaog100/xiaomili-personal-skills
+GitHub: https://github.com/zhaog100/xiaomila-personal-skills
 ClawHub: https://clawhub.com
 
 功能：
@@ -26,7 +26,7 @@ class BaseSkill:
     1. 做事必须严谨 - 所有操作必须验证
     2. 看问题要全面 - 多维度分析
     3. 看内容要承前启后 - 联系上下文
-    4. Git推送必须遵守仓库分配 - 公共信息→origin，个人信息→xiaomili/xiaomila
+    4. Git推送必须遵守仓库分配 - 公共信息→origin，个人信息→xiaomila
     5. 技能发布前必须拉取历史版本并对比差异 - 避免覆盖远程新版本
     """
     

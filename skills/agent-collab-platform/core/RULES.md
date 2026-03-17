@@ -68,7 +68,7 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 
 ### 规则4：Git推送必须遵守仓库分配 ⭐⭐⭐⭐⭐（v1.9.0新增）
 
-**定义**：Git推送时必须遵守仓库分配规则，公共信息→origin，个人信息→xiaomili/xiaomila
+**定义**：Git推送时必须遵守仓库分配规则，公共信息→origin，个人信息→xiaomila
 
 **仓库分配**：
 - **origin**（公共仓库）：`git@github.com:zhaog100/openclaw-skills.git`
@@ -78,7 +78,7 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
   - ✅ Issue通知（协作通知）
   - ✅ 技术文档（公共技术方案）
 
-- **xiaomili**（小米粒个人仓库）：`https://github.com/zhaog100/xiaomili-skills.git`
+- **xiaomila**（小米粒个人仓库）：`https://github.com/zhaog100/xiaomila-skills.git`
   - ✅ 小米粒个人工作日志
   - ✅ 小米粒私有配置
   - ✅ 小米粒测试数据
@@ -90,7 +90,7 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 
 **要求**：
 1. ✅ **公共信息**→推送到origin（所有智能体共享）
-2. ✅ **个人信息**→推送到个人仓库（xiaomili或xiaomila）
+2. ✅ **个人信息**→推送到个人仓库（xiaomila或xiaomila）
 3. ✅ **禁止**：只commit未push
 4. ✅ **禁止**：推送到错误的仓库
 
@@ -99,7 +99,7 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
 # ✅ 正确（遵守规则）
 git add .
 git commit -m "feat(rules): v1.9.0 - 添加Git推送规则"
-git push xiaomili master  # 个人信息
+git push xiaomila master  # 个人信息
 git push origin master    # 公共信息
 
 # ❌ 错误（违反规则）
@@ -137,7 +137,7 @@ git commit -m "update"
 3. 处理冲突（如果有）
 4. 验证发布内容
 5. 发布到ClawHub：`clawhub publish`
-6. 推送到xiaomili：`git push xiaomili master`
+6. 推送到xiaomila：`git push xiaomila master`
 7. 推送到origin：`git push origin master`
 
 ---
