@@ -45,6 +45,13 @@ def format_markdown(minutes: Dict[str, Any]) -> str:
             lines.append(f"{i}. {d}")
         lines.append("")
 
+    # 总结性发言
+    dialogue_summary = minutes.get('dialogue_summary', '')
+    if dialogue_summary:
+        lines.append("## 会议总结")
+        lines.append(dialogue_summary)
+        lines.append("")
+
     # 行动项
     actions = minutes.get('action_items', [])
     if actions:
