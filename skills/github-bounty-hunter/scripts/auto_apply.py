@@ -125,27 +125,22 @@ class AutoApply:
 
 期待合作！🌶️"""
     
-    def notify_feishu(self, message):
-        """飞书通知"""
-        webhook = os.getenv('FEISHU_WEBHOOK', '')
-        if not webhook:
-            print("⚠️  未设置 FEISHU_WEBHOOK，跳过通知")
-            return
-        
+    def notify_qq(self, message):
+        """QQ 通知（通过 OpenClaw 消息系统）"""
         try:
-            data = {
-                'msg_type': 'text',
-                'content': {
-                    'text': f"🦞 GitHub Bounty Hunter\n{message}"
-                }
-            }
-            response = requests.post(webhook, json=data, timeout=10)
-            if response.status_code == 200:
-                print("✅ 飞书通知成功")
-            else:
-                print(f"⚠️  飞书通知失败：{response.status_code}")
+            # 使用 OpenClaw 内置消息发送
+            from pathlib import Path
+            notify_file = Path('/tmp/github-bounty-qq-notify.txt')
+            
+            with open(notify_file, 'w', encoding='utf-8') as f:
+                f.write(f"🦞 GitHub Bounty Hunter\n\n{message}")
+            
+            print("✅ QQ 通知已准备（通过 OpenClaw 消息系统）")
+            return True
+            
         except Exception as e:
-            print(f"❌ 飞书通知异常：{e}")
+            print(f"❌ QQ 通知异常：{e}")
+            return False
 
 if __name__ == "__main__":
     # 测试
