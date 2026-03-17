@@ -238,7 +238,7 @@ bash scripts/publish.sh . 2.0.0
 
 **症状**：
 ```
-检查结果：存在，所有者不是zhaog100
+检查结果：存在，所有者不是 ${CLAWHUB_USER}
 ```
 
 **解决方案A**：使用不同slug

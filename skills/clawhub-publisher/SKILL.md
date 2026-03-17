@@ -71,7 +71,7 @@ bash scripts/check-existing.sh <skill-name>
 ```
 ClawHub: 已存在
   - 版本: 3.4.0
-  - 所有者: zhaog100
+  - 所有者: ${CLAWHUB_USER}
   - Package ID: k97d4m6m5hpwd33g64j2g12zxs82ezj1
 
 GitHub: 未找到

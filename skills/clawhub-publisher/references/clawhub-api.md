@@ -24,7 +24,7 @@ clawhub inspect <skill-name>
 name: session-memory-enhanced
 description: Session-Memory Enhanced v4.0.0 - 统一增强版
 version: 4.0.1
-owner: zhaog100
+owner: ${CLAWHUB_USER:-$USER}
 packageId: k97carwxs0htme5y071ye69ykx82mmwg
 ```
 
@@ -241,7 +241,7 @@ sudo chown -R $(whoami) /usr/lib/node_modules
     "packageId": "k97carwxs0htme5y071ye69ykx82mmwg",
     "slug": "session-memory-enhanced",
     "version": "4.0.1",
-    "owner": "zhaog100",
+    "owner": "${CLAWHUB_USER:-$USER}",
     "createdAt": "2026-03-10T22:40:00Z"
   }
 }

@@ -18,7 +18,7 @@
 
 ```bash
 # 1. 创建功能分支
-cd /root/.openclaw/workspace/skills/my-skill
+cd $(pwd)/skills/my-skill
 git checkout -b feature/new-feature
 
 # 2. 开发新功能
@@ -57,10 +57,10 @@ cd /tmp
 clawhub install my-skill --target ./remote
 
 # 4. 复制远程文件
-cp -r ./remote/my-skill/* /root/.openclaw/workspace/skills/my-skill/
+cp -r ./remote/my-skill/* $(pwd)/skills/my-skill/
 
 # 5. 查看差异
-cd /root/.openclaw/workspace/skills/my-skill
+cd $(pwd)/skills/my-skill
 git status
 git diff
 
