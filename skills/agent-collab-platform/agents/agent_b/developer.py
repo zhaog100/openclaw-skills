@@ -127,13 +127,13 @@ class Developer:
             return False, "项目不存在"
         
         # git add
-        subprocess.run(['git', 'add', '.'], cwd='/root/.openclaw/workspace')
+        subprocess.run(['git', 'add', '.'], cwd='$(pwd)')
         
         # git commit
-        subprocess.run(['git', 'commit', '-m', message], cwd='/root/.openclaw/workspace')
+        subprocess.run(['git', 'commit', '-m', message], cwd='$(pwd)')
         
         # git push
-        subprocess.run(['git', 'push', 'xiaomili', 'master'], cwd='/root/.openclaw/workspace')
+        subprocess.run(['git', 'push', 'xiaomili', 'master'], cwd='$(pwd)')
         
         return True, f"已提交到GitHub: {message}"
     

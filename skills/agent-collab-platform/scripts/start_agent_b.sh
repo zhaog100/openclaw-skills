@@ -1,7 +1,7 @@
 #!/bin/bash
 # 启动Agent_b监听器（后台持久化）
 
-cd /root/.openclaw/workspace/skills/agent-collab-platform
+cd $(pwd)/skills/agent-collab-platform
 
 # 创建日志目录
 mkdir -p logs

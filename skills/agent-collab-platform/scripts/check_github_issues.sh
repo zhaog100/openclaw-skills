@@ -2,7 +2,7 @@
 # GitHub Issues 主动检查脚本
 # 用于心跳系统调用，1 分钟自动轮询
 
-cd /home/zhaog/.openclaw/workspace/skills/agent-collab-platform
+cd $(pwd)/skills/agent-collab-platform
 
 # 配置
 REPO="zhaog100/openclaw-skills"

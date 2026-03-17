@@ -26,7 +26,7 @@
 
 ```bash
 # 检查GitHub Issues
-bash /root/.openclaw/workspace/skills/agent-collab-platform/scripts/check_github_issues.sh
+bash $(pwd)/skills/agent-collab-platform/scripts/check_github_issues.sh
 
 # 查看结果
 cat logs/new_comments.log
