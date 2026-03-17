@@ -328,3 +328,76 @@ class TestPipeline(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class TestSTTInterface(unittest.TestCase):
+    """STT扩展接口测试"""
+
+    def test_base_engine_raises_not_implemented(self):
+        from src.stt_interface import BaseSTTEngine
+        engine = BaseSTTEngine()
+        with self.assertRaises(NotImplementedError):
+            engine.transcribe("test.wav")
+
+    def test_base_engine_has_properties(self):
+        from src.stt_interface import BaseSTTEngine
+        engine = BaseSTTEngine()
+        self.assertIsInstance(engine.name, str)
+        self.assertIsInstance(engine.supported_formats, list)
+
+    def test_whisper_not_installed(self):
+        from src.stt_interface import WhisperLocalSTT
+        engine = WhisperLocalSTT()
+        with self.assertRaises(RuntimeError):
+            engine.transcribe("test.wav")
+
+    def test_openai_not_configured(self):
+        import os
+        old = os.environ.pop("OPENAI_API_KEY", None)
+        try:
+            from src.stt_interface import OpenAIWhisperSTT
+            engine = OpenAIWhisperSTT()
+            with self.assertRaises(RuntimeError):
+                engine.transcribe("test.wav")
+        finally:
+            if old:
+                os.environ["OPENAI_API_KEY"] = old
+
+    def test_sensevoice_not_configured(self):
+        import os
+        old_url = os.environ.pop("SENSEVOICE_API_URL", None)
+        old_key = os.environ.pop("SENSEVOICE_API_KEY", None)
+        try:
+            from src.stt_interface import SenseVoiceSTT
+            engine = SenseVoiceSTT()
+            with self.assertRaises(RuntimeError):
+                engine.transcribe("test.wav")
+        finally:
+            if old_url:
+                os.environ["SENSEVOICE_API_URL"] = old_url
+            if old_key:
+                os.environ["SENSEVOICE_API_KEY"] = old_key
+
+    def test_get_available_engine_returns_none(self):
+        import os
+        saved = {}
+        for k in ["OPENAI_API_KEY", "SENSEVOICE_API_KEY"]:
+            saved[k] = os.environ.pop(k, None)
+        try:
+            from src.stt_interface import get_available_engine
+            engine = get_available_engine()
+            self.assertIsNone(engine)
+        finally:
+            for k, v in saved.items():
+                if v:
+                    os.environ[k] = v
+
+    def test_pipeline_audio_without_engine(self):
+        from src.pipeline import generate_minutes
+        with self.assertRaises(RuntimeError):
+            generate_minutes(audio_path="test.wav")
+
+    def test_pipeline_empty_text_and_audio(self):
+        from src.pipeline import generate_minutes
+        result = generate_minutes(raw_text="", fmt="markdown")
+        self.assertEqual(result, "")
