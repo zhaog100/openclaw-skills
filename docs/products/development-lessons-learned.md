@@ -99,8 +99,9 @@
 
 ### Git 流程
 1. 个人信息 → xiaomili，公共信息 → origin
-2. 冲突时用 `--strategy=ours` 保留本地
-3. 每次操作后立即 commit + push
+2. **禁止 rebase --strategy=ours**：会丢弃本地新 commit
+3. 正确做法：rebase 冲突时用 --skip 跳过重复 commit
+4. 每次操作后立即 commit + push
 
 ### 发布流程
 1. pytest 全绿
@@ -112,11 +113,22 @@
 ---
 
 *本文档随每次开发迭代更新*
-*最后更新：2026-03-17 11:35*
+*最后更新：2026-03-17 12:13*
 
 ---
 
 ## 🔄 持续改进记录
+
+### v1.2 → v1.3（2026-03-17 12:13）
+**新增6条实践教训**：
+1. Python ThreadPoolExecutor.result(timeout) 在 3.12 无法中断 sleep → 改用 daemon threads+join(timeout)
+2. generate_ascii_chart 必须过滤非数字值（authors值为dict时崩溃）
+3. track_issues 返回字段名(open/closed)与文档不一致需统一
+4. git rebase --strategy=ours 会丢弃本地新 commit → 改用 --skip
+5. ClawHub version already exists → 发布前检查版本号
+6. 子代理经常漏交 SKILL.md 和 package.json → 新增交付清单
+
+**新增子代理交付清单**（8项检查）
 
 ### v1.1 → v1.2（2026-03-17 11:46）
 **新教训**: 文档写了不等于生效
