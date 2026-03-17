@@ -9,12 +9,17 @@ def generate_ascii_chart(data, title="", width=40, max_height=10):
     if not data:
         return f"=== {title} ===\n  (no data)\n"
 
-    max_val = max(data.values()) if data.values() else 1
+    # 过滤非数字值
+    numeric = {k: v for k, v in data.items() if isinstance(v, (int, float))}
+    if not numeric:
+        return f"=== {title} ===\n  (no numeric data)\n"
+
+    max_val = max(numeric.values()) if numeric.values() else 1
     if max_val == 0:
         max_val = 1
 
     lines = [f"=== {title} ==="]
-    for label, value in data.items():
+    for label, value in numeric.items():
         bar_len = int((value / max_val) * width)
         bar = "█" * bar_len + "░" * (width - bar_len)
         lines.append(f"  {label:<15s} │{bar}│ {value}")
