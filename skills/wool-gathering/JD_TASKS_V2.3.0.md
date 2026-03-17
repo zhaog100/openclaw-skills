@@ -85,8 +85,8 @@ docker run -d \
 ```
 
 ### 备份位置
-- crontab备份：`/root/.openclaw/workspace/qinglong/config/crontab_backup.list`
-- 添加指南：`/root/.openclaw/workspace/qinglong/scripts/ADD_TASKS_GUIDE.md`
+- crontab备份：`$(pwd)/qinglong/config/crontab_backup.list`
+- 添加指南：`$(pwd)/qinglong/scripts/ADD_TASKS_GUIDE.md`
 
 ---
 

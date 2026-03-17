@@ -80,7 +80,7 @@ http://43.133.55.138:5700
 ### **3. 价格监控（立即可用）**
 
 ```bash
-cd /root/.openclaw/workspace/skills/wool-gathering/scripts
+cd $(pwd)/skills/wool-gathering/scripts
 
 # 运行监控（京东+淘宝）
 python3 spider_unified.py
@@ -231,7 +231,7 @@ wool-gathering/
 docker exec -it qinglong /bin/sh
 
 # 添加定时任务（每小时检查价格）
-echo "0 * * * * python3 /root/.openclaw/workspace/skills/wool-gathering/scripts/spider_unified.py" >> /ql/data/config/crontab.list
+echo "0 * * * * python3 $(pwd)/skills/wool-gathering/scripts/spider_unified.py" >> /ql/data/config/crontab.list
 ```
 
 ### **2. 配置推送通知**
