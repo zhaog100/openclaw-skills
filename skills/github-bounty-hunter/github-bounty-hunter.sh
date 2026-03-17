@@ -233,19 +233,13 @@ print('已收款: $' + str(stats['paid']))
 print('状态分布:', stats['by_status'])
 "
         ;;
-    *)
-        show_help
+    notify)
+        echo "📬 查看 QQ 通知..."
+        python3 "$SCRIPTS_DIR/qq_notify.py"
         ;;
-esac
-
-# QQ 通知命令
-notify)
-    echo "📬 查看 QQ 通知..."
-    python3 "$SCRIPTS_DIR/qq_notify.py"
-    ;;
-notify-test)
-    echo "🧪 测试 QQ 通知..."
-    python3 -c "
+    notify-test)
+        echo "🧪 测试 QQ 通知..."
+        python3 -c "
 from scripts.qq_notify import QQNotifier
 n = QQNotifier()
 n.notify_new_bounty({
@@ -256,3 +250,7 @@ n.notify_new_bounty({
 })
 "
     ;;
+    *)
+        show_help
+        ;;
+esac

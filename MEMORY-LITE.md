@@ -13,42 +13,41 @@ _启动专用，保持精简（<3KB）_
 
 ---
 
-## 🎯 当前状态（2026-03-17）
+## 🎯 当前状态（2026-03-17 晚）
 
-**PRD进度：** 25个 → 已完成15个 / 待开发2个 / 暂缓3个 / 废弃7个
-**ClawHub发布：** 20+个技能 | 今日发布7个
+**Bounty任务：** 6个PR提交 | rustchain已合并(2 RTC) | baozi 0.5 SOL等review
+**ClawHub发布：** 25+个技能 | 今日发布22个（历史记录）
 **版权归属：** 思捷娅科技 (SJYKJ)，禁止个人名称
-
-**核心能力：**
-- ✅ agent-collab-platform v1.17（PM+Dev协作+经验教训库v1.3）
-- ✅ auto-pipeline v2.0（质量保障集成）
-- ✅ ai-deterministic-control v1.1.3（确定性控制）
-- ✅ project-progress-tracker v1.0.2（Git统计+Issue跟踪）
-- ✅ test-case-generator v1.0.0（5种测试方法）
-- ✅ auto-document-generator v1.1.0（ast零依赖）
-- ✅ Error Handler v1.2（集成到7个技能）
+**身份：** 小米粒🌾（PM + Dev双代理）
 
 ---
 
 ## 📋 关键决策（最新10条）
 
-1. **发布流程** - pytest全绿→功能验证→发布→汇报，禁止先发后补 ⭐⭐⭐⭐⭐
-2. **不产生幻觉** - 实际完成所有步骤，不能假设结果 ⭐⭐⭐⭐⭐
+1. **发布流程** - pytest全绿→功能验证→发布→汇报 ⭐⭐⭐⭐⭐
+2. **不产生幻觉** - 实际完成所有步骤 ⭐⭐⭐⭐⭐
 3. **版权归属** - 思捷娅科技(SJYKJ)，slug用sjykj-前缀 ⭐⭐⭐⭐⭐
 4. **Git推送** - 个人→xiaomili，公共→origin ⭐⭐⭐⭐⭐
 5. **rebase禁令** - 禁止--strategy=ours，改用--skip ⭐⭐⭐⭐
-6. **零依赖优先** - ast替代tree-sitter，标准库够用 ⭐⭐⭐⭐
-7. **ClawHub前缀** - slug被占用时统一用sjykj- ⭐⭐⭐⭐
-8. **经验教训库** - 写了必须在SKILL.md显式引用 ⭐⭐⭐⭐
-9. **子代理交付** - 8项清单（SKILL.md/package.json/版权/测试...）⭐⭐⭐⭐
-10. **Python线程** - ThreadPoolExecutor.timeout 3.12失效 → daemon threads ⭐⭐⭐
+6. **Algora API已失效** - api.algora.io返回404，监控脚本不可用 ⭐⭐⭐
+7. **Expensify环境** - Node 20+nvm+mkcert+官方npm源（腾讯镜像会跳过jest） ⭐⭐⭐
+8. **w3cos tiny_skia** - fill_path(FillRule在Transform前)，用save_png替代手动编码 ⭐⭐⭐
+9. **经验教训库** - 写了必须在SKILL.md显式引用 ⭐⭐⭐⭐
+10. **子代理交付** - 8项清单（SKILL.md/package.json/版权/测试...）⭐⭐⭐⭐
 
 ---
 
 ## 📌 待办任务
 
-**明天发布（24h限额重置后）：**
-1. sjykj-tencentcloud-lighthouse v1.0.1（唯一剩余）
+**等待中：**
+1. baozi-openclaw PR #145 review（0.5 SOL）
+2. asyncapi PR #2047 review
+3. w3cos PR #25 CI修复
+4. w3cos PR #8 CHANGES_REQUESTED处理
+5. Expensify环境安装完成 → 选$250 bug做
+
+**明天：**
+1. sjykj-tencentcloud-lighthouse v1.0.1（24h限额重置后）
 
 ---
 
@@ -58,19 +57,9 @@ _启动专用，保持精简（<3KB）_
 1. session_status检查占用
 2. >30%预警，记录日志
 
-**不要全量读取：** MEMORY.md（50KB+）
+**不要全量读取：** MEMORY.md（4KB）
 
 ---
 
-## 🔗 快速链接
-
-**详细记忆：** MEMORY.md（memory_search检索）
-**今日日志：** memory/2026-03-17.md
-**PRD状态：** docs/products/PRD_status_summary.md
-**经验教训：** skills/agent-collab-platform/docs/DEVELOPMENT_LESSONS.md
-
----
-
-*精简版，启动专用（<3KB）*
-*最后更新：2026-03-17 12:15*
-*版本：v4.0 - 2026-03-17全面更新*
+*最后更新：2026-03-17 22:55*
+*版本：v5.0 - bounty驱动全面更新*
