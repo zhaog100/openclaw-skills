@@ -1,6 +1,6 @@
 # PRD 状态总结
 
-**更新时间**: 2026-03-17 07:47  
+**更新时间**: 2026-03-17 12:15  
 **更新者**: 小米辣 (PM + Dev) 🌶️
 
 ---
@@ -8,53 +8,42 @@
 ## 📊 PRD 总览
 
 **总 PRD 数量**: 25 个  
-**已完成**: 9 个  
-**开发中**: 1 个  
-**待开发**: 5 个  
+**已完成**: 16 个  
+**待开发**: 1 个  
 **暂缓**: 3 个  
 **废弃**: 4 个  
 **暂停/废弃(旧)**: 3 个
 
 ---
 
-## ✅ 已完成（9 个）
+## ✅ 已完成（15 个）
 
-| PRD | 版本 | ClawHub | 说明 |
-|-----|------|---------|------|
-| auto-document-generator | v1.0 | 待发布 | 8模块，10/10测试 |
-| cli-tool-generator | v1.2.1 | ✅ k979ejn7 | 24/24测试 |
-| ai-efficiency-monitor | v1.2.1 | ✅ k97f9ajw | 20/20测试 |
-| smart-model v2.0 | v2.0 | ✅ 已发布 | Review 5.0/5.0满分 |
-| multi-platform-notifier | v1.0 | ✅ 已发布 | 企微+钉钉+飞书 |
-| agent-collaboration-platform | v1.0 | ✅ k976y9ma | 统一架构重构 |
-| Error Handler Library | v1.2 | 工具库 | 集成到7个技能 |
-| ai-code-reviewer | v2.0 | ✅ 已发布 | 双模型辩论 |
+| PRD | 版本 | ClawHub ID | 测试 |
+|-----|------|------------|------|
+| agent-collab-platform | v1.17.0 | k971vakr | 16测试+34验证 |
+| auto-pipeline | v2.0 | k97e0z1h | 88测试 |
+| project-progress-tracker | v1.0.2 | k972ffb4 | 39+73验证 |
+| auto-document-generator | v1.1.0 | k97daj97 | 10测试 |
+| test-case-generator | v1.0.0 | k974q100 | 39测试 |
+| ai-deterministic-control | v1.1.3 | k971t5dm | 86测试 |
+| cli-tool-generator | v1.2.1 | k979ejn7 | 24测试 |
+| ai-efficiency-monitor | v1.2.1 | k97f9ajw | 20测试 |
+| smart-model v2.0 | v2.0 | 已发布 | Review 5.0/5.0 |
+| multi-platform-notifier | v1.0 | 已发布 | 企微+钉钉+飞书 |
+| ai-code-reviewer | v2.0 | 已发布 | 双模型辩论 |
+| Error Handler Library | v1.2.0 | k976cvkq | 13测试 |
 | demo-skill | v1.0 | 不发布 | 协作流程验证 |
+| agent-collaboration-platform | v1.0 | k976y9ma | 统一架构重构 |
+| daily-review-helper | v1.0 | ClawHub | 定时回顾 |
 
 ---
 
-## 🔧 开发中（1 个）
+## ⏳ 待开发（1 个）
 
-| PRD | 版本 | 状态 | 说明 |
-|-----|------|------|------|
-| auto-pipeline | v2.0 | ✅ 已完成，待集成 | v1.0=55/60, v2.0=52/60, 88测试 |
-
----
-
-## ⏳ 待开发（5 个）
-
-### P0（2 个）
-| 技能 | 备注 |
-|------|------|
-| ai-deterministic-control | 技术设计已完成，待开发 |
-| test-case-generator | ✅ 已完成 v1.0.0 |
-
-### P1（3 个）
-| 技能 | 备注 |
-|------|------|
-| knowledge-graph-builder | 知识管理长期价值 |
-| meeting-minutes-generator | 通用场景，需求明确 |
-| project-progress-tracker | Git统计+Issue跟踪，协作刚需 |
+| 技能 | 优先级 | 预估 | 备注 |
+|------|--------|------|------|
+| meeting-minutes-generator | v1.0.0 | k978mbpm | 64测试+STT扩展 |
+| knowledge-graph-builder | P1 | 2-3h | 知识管理长期价值 |
 
 ---
 
@@ -85,17 +74,25 @@
 |-----|------|------|
 | dual-openclaw-collaboration | ⏸️ 暂停 | 改为auto-pipeline集成方案 |
 | self-research-dual-openclaw | ⏸️ 暂停 | 同上 |
-| daily-review-assistant | 🔄 已改名 | 改为daily-review-helper（ClawHub同名冲突） |
+| daily-review-assistant | 🔄 已改名 | 改为daily-review-helper |
 
 ---
 
-## 📈 裁减记录（2026-03-17）
+## 📈 今日 ClawHub 发布汇总（2026-03-17）
 
-**裁减比例**: 33%（12个→8个）
-- 降级暂缓: 3个（ai-safety-framework, email-auto-responder, ai-state-persistence）
-- 废弃: 4个（bitnet-inference, inference-router, startup-idea-analyzer, vocabulary-archaeology-integration）
+| 技能 | 版本 | ClawHub ID |
+|------|------|------------|
+| sjykj-error-handler | 1.2.0 | k976cvkq |
+| auto-document-generator | 1.1.0 | k97daj97 |
+| ai-deterministic-control | 1.1.3 | k971t5dm |
+| sjykj-test-case-generator | 1.0.0 | k974q100 |
+| sjykj-auto-pipeline | 2.0.0 | k97e0z1h |
+| agent-collab-platform | 1.17.0 | k971vakr |
+| sjykj-project-progress-tracker | 1.0.2 | k972ffb4 |
+
+**今日合计**: 7 个技能发布/更新
 
 ---
 
-*更新时间：2026-03-17 07:47*
+*更新时间：2026-03-17 12:15*
 *更新者：小米辣 (PM + Dev) 🌶️*
