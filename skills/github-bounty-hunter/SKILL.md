@@ -41,7 +41,7 @@ created: 2026-03-10
 ## 🚀 使用方式
 
 ```bash
-# 启动监控
+# 启动监控（每 30 分钟自动扫描）
 github-bounty-hunter monitor
 
 # 查看任务列表
@@ -55,6 +55,40 @@ github-bounty-hunter develop <task-id>
 
 # 提交 PR
 github-bounty-hunter submit <task-id>
+
+# 查看 STATE.yaml（事件驱动追踪）
+github-bounty-hunter state
+```
+
+## 📋 STATE.yaml 事件驱动模式
+
+```yaml
+# 任务状态追踪（自动更新）
+task:
+  id: "algora-123"
+  status: "in_progress"  # pending → in_progress → pr_submitted → merged → paid
+  platform: "Algora"
+  bounty: "$2000"
+  assigned_to: "xiaomila-dev"
+  pr_url: "https://github.com/xxx/pull/123"
+  payment:
+    status: "pending"  # pending → sent → confirmed
+    address: "TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP"
+    token: "USDT-TRC20"
+```
+
+## 🦞 多智能体协作流程
+
+```
+PM 代理（小米辣）          Dev 代理（小米粒）
+     ↓                        ↓
+发现任务 → 分析评估 → 评论接单
+     ↓                        ↓
+创建 Issue → 技术设计 → 开发实现
+     ↓                        ↓
+Review 验收 → 提交 PR → 跟进评论
+     ↓                        ↓
+合并成功 → 发送收款信息 → 确认到账
 ```
 
 ## 📊 预期收益
@@ -67,10 +101,18 @@ github-bounty-hunter submit <task-id>
 
 ## 🎯 目标平台
 
-1. **GitHub** - github.com/bounties
-2. **GitCoin** - gitcoin.co
-3. **IssueHunt** - issuehunt.io
-4. **Bountysource** - bountysource.com
+### P0 - 优先集成 ⭐⭐⭐⭐⭐
+1. **Algora** - algora.io ($500-$10000, GitHub 原生)
+2. **Replit Bounties** - replit.com/bounties ($50-$500, 快速现金流)
+
+### P1 - 后续集成 ⭐⭐⭐⭐
+3. **BountySource** - bountysource.com ($100-$2000)
+4. **Superteam Earn** - superteam.fi/earn ($500-$5000, Solana)
+5. **Gitcoin** - gitcoin.co ($500-$5000, Web3)
+
+### P2 - 扩展平台 ⭐⭐⭐
+6. **IssueHunt** - issuehunt.io
+7. **GitHub Sponsors** - github.com/sponsors
 
 ---
 
