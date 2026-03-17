@@ -1,0 +1,10 @@
+node_modules/
+*.log
+*.pyc
+__pycache__/
+.venv/
+venv/
+.git/
+*.md
+!README.md
+!SKILL.md
