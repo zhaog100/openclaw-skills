@@ -8,7 +8,7 @@
 ## 📊 PRD 总览
 
 **总 PRD 数量**: 25 个  
-**已完成**: 17 个  
+**已完成**: 18 个  
 **待开发**: 0 个  
 **暂缓**: 3 个  
 **废弃**: 4 个  
@@ -16,7 +16,7 @@
 
 ---
 
-## ✅ 已完成（17 个）
+## ✅ 已完成（18 个）
 
 | PRD | 版本 | ClawHub ID | 测试 |
 |-----|------|------------|------|
@@ -29,6 +29,7 @@
 | cli-tool-generator | v1.2.1 | k979ejn7 | 24测试 |
 | ai-efficiency-monitor | v1.2.1 | k97f9ajw | 20测试 |
 | knowledge-graph-builder | v1.0.0 | k978y2dtbc85mxwpc4ctv21wg5833ybz | 16测试 |
+| meeting-minutes-generator | v1.0.0 | sjykj-meeting-minutes-generator | 64测试 |
 | smart-model v2.0 | v2.0 | 已发布 | Review 5.0/5.0 |
 | multi-platform-notifier | v1.0 | 已发布 | 企微+钉钉+飞书 |
 | ai-code-reviewer | v2.0 | 已发布 | 双模型辩论 |
@@ -39,11 +40,7 @@
 
 ---
 
-## ⏳ 待开发（1 个）
-
-| 技能 | 优先级 | 预估 | 备注 |
-|------|--------|------|------|
-| meeting-minutes-generator | v1.0.0 | k978mbpm | 64测试+STT扩展 |
+## ⏳ 待开发（0 个）
 
 ---
 
