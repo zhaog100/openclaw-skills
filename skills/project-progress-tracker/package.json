@@ -1,0 +1,7 @@
+{
+  "name": "sjykj-project-progress-tracker",
+  "version": "1.0.0",
+  "description": "项目进度跟踪 - Git统计+Issue跟踪+进度评估+报告生成",
+  "main": "src/pipeline.py",
+  "license": "MIT"
+}
