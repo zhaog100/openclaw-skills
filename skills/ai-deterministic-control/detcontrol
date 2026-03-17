@@ -2,7 +2,7 @@
 # Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # detcontrol - AI 确定性控制工具 CLI
 
-source /root/.openclaw/workspace/skills/utils/error-handler.sh 2>/dev/null || true
+source ./utils/error-handler.sh 2>/dev/null || true
 
 set -euo pipefail
 

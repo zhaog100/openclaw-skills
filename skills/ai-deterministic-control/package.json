@@ -1,6 +1,6 @@
 {
   "name": "ai-deterministic-control",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "AI 确定性控制工具 - 温度/种子管理、一致性检查、监控引擎、模型参数注入",
   "main": "detcontrol",
   "author": "思捷娅科技 (SJYKJ)",
