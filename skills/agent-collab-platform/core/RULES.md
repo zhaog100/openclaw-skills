@@ -162,7 +162,7 @@ git commit -m "update"
 **要求**：
 1. ✅ **每次心跳执行检查**：
    ```bash
-   cd /root/.openclaw/workspace/skills/agent-collab-platform
+   cd $(pwd)/skills/agent-collab-platform
    bash scripts/check_github_issues.sh
    ```
 
