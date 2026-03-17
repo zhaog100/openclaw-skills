@@ -72,9 +72,20 @@ export GITHUB_TOKEN='your_token_here'
 # 可选：Algora API Key
 export ALGORA_API_KEY='your_api_key_here'
 
-# 可选：飞书通知 Webhook
-export FEISHU_WEBHOOK='your_webhook_here'
+# 可选：收款地址（默认已配置）
+export PAYMENT_ADDRESS='TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP'
 ```
+
+### QQ 通知集成
+
+通知自动发送到当前 QQ 会话，无需额外配置！
+
+**通知类型**:
+- 🎯 新任务发现
+- 🙋 已接单确认
+- 📦 PR 提交
+- ✅ PR 合并（高优先级）
+- 💰 收款提醒
 
 ## 📋 STATE.yaml 事件驱动模式
 
