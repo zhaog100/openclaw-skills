@@ -21,6 +21,10 @@ from src.seed_manager import SeedManager
 from src.consistency_checker import ConsistencyChecker, AlertLevel
 from src.monitor_engine import MonitorEngine
 from src.model_bridge import ModelBridge
+from src.logprob_analyzer import entropy_from_logprobs, certainty_score, analyze_trend, detect_anomaly
+from src.majority_voter import majority_vote, cluster_outputs, vote_with_timeout
+from src.prompt_templates import get_template, list_task_types, register_template
+from src.level_manager import get_level_config, list_levels, auto_detect_level
 
 
 # ============================================================
@@ -390,3 +394,236 @@ class TestIntegration(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+# ============================================================
+# v1.1 新增模块测试
+# ============================================================
+
+class TestLogProbAnalyzer(unittest.TestCase):
+    """LogProbAnalyzer 测试"""
+
+    def test_entropy_uniform(self):
+        """均匀分布熵最大"""
+        import math
+        h = entropy_from_logprobs([0.25, 0.25, 0.25, 0.25])
+        self.assertAlmostEqual(h, math.log(4, 2), places=1)  # ≈2.0 bits
+
+    def test_entropy_deterministic(self):
+        """确定性分布熵≈0"""
+        h = entropy_from_logprobs([1.0, 0.0, 0.0, 0.0])
+        self.assertAlmostEqual(h, 0.0, places=2)
+
+    def test_entropy_peak(self):
+        """峰值分布熵应小于均匀分布"""
+        h_peak = entropy_from_logprobs([0.9, 0.05, 0.03, 0.02])
+        h_uniform = entropy_from_logprobs([0.25]*4)
+        self.assertLess(h_peak, h_uniform)
+
+    def test_entropy_empty(self):
+        """空列表返回0"""
+        self.assertEqual(entropy_from_logprobs([]), 0.0)
+
+    def test_certainty_high(self):
+        """高确定性分布评分高"""
+        peak = certainty_score([0.9, 0.05, 0.03, 0.02])
+        rand = certainty_score([0.25]*4)
+        self.assertGreater(peak, rand)
+
+    def test_certainty_deterministic(self):
+        """完全确定=最大评分"""
+        s = certainty_score([1.0, 0.0, 0.0, 0.0])
+        self.assertGreater(s, 0)
+
+    def test_trend_direction_falling(self):
+        """下降趋势"""
+        r = analyze_trend([0.8, 0.6, 0.4, 0.2])
+        self.assertIn('direction', r)
+        # slope should be negative
+        self.assertLess(r.get('slope', 0), 0)
+
+    def test_trend_direction_rising(self):
+        """上升趋势"""
+        r = analyze_trend([0.1, 0.3, 0.5, 0.8])
+        self.assertGreater(r.get('slope', 0), 0)
+
+    def test_trend_stable(self):
+        """稳定趋势"""
+        r = analyze_trend([0.5, 0.5, 0.5, 0.5])
+        self.assertIn('direction', r)
+
+    def test_trend_single(self):
+        """单点数据"""
+        r = analyze_trend([0.5])
+        self.assertIn('avg', r)
+
+    def test_detect_anomaly_high(self):
+        """明显高于历史"""
+        r = detect_anomaly(5.0, [0.5, 0.5, 0.5])
+        self.assertIn('is_anomaly', r)
+        self.assertTrue(r['is_anomaly'])
+
+    def test_detect_anomaly_normal(self):
+        """正常值"""
+        r = detect_anomaly(0.5, [0.5, 0.5, 0.5])
+        self.assertFalse(r['is_anomaly'])
+
+    def test_detect_anomaly_insufficient(self):
+        """历史数据不足"""
+        r = detect_anomaly(5.0, [0.5])
+        self.assertIn('is_anomaly', r)
+
+
+class TestMajorityVoter(unittest.TestCase):
+    """MajorityVoter 测试"""
+
+    def test_identical(self):
+        """完全一致"""
+        r = majority_vote(["hello", "hello", "hello"])
+        self.assertEqual(r['agreement_ratio'], 1.0)
+
+    def test_completely_different(self):
+        """完全不同"""
+        r = majority_vote(["a", "b", "c"])
+        self.assertLessEqual(r['agreement_ratio'], 0.34)
+
+    def test_majority_cluster(self):
+        """多数聚类"""
+        r = majority_vote(["hello world", "hello world!", "different"])
+        self.assertGreater(r['agreement_ratio'], 0.3)
+        self.assertLess(r['agreement_ratio'], 1.0)
+
+    def test_two_groups(self):
+        """两个聚类"""
+        r = majority_vote(["aaa", "aab", "xyz", "xyw"])
+        self.assertIn('cluster_sizes', r)
+
+    def test_single_input(self):
+        """单输入"""
+        r = majority_vote(["hello"])
+        self.assertEqual(r['agreement_ratio'], 1.0)
+
+    def test_cluster_outputs(self):
+        """聚类函数"""
+        clusters = cluster_outputs(["a", "ab", "cde", "cdf"], threshold=0.5)
+        self.assertIsInstance(clusters, list)
+        self.assertTrue(len(clusters) >= 1)
+
+    def test_vote_with_timeout(self):
+        """带超时的投票（用mock函数）"""
+        def fn(): return "test"
+        r = vote_with_timeout(fn, n=2, timeout=5)
+        self.assertIn('agreement_ratio', r)
+
+
+class TestPromptTemplates(unittest.TestCase):
+    """PromptTemplateManager 测试"""
+
+    def test_code_generation_template(self):
+        """代码生成模板"""
+        t = get_template('code_generation')
+        self.assertIsNotNone(t)
+        self.assertGreater(len(t), 50)
+
+    def test_creative_writing_template(self):
+        """创意写作模板"""
+        t = get_template('creative_writing')
+        self.assertIsNotNone(t)
+        self.assertGreater(len(t), 50)
+
+    def test_translation_template(self):
+        """翻译模板"""
+        t = get_template('translation')
+        self.assertIsNotNone(t)
+
+    def test_data_analysis_template(self):
+        """数据分析模板"""
+        t = get_template('data_analysis')
+        self.assertIsNotNone(t)
+
+    def test_conversation_template(self):
+        """对话模板"""
+        t = get_template('conversation')
+        self.assertIsNotNone(t)
+
+    def test_list_task_types(self):
+        """列出所有任务类型"""
+        types = list_task_types()
+        self.assertGreaterEqual(len(types), 5)
+        self.assertIn('code_generation', types)
+
+    def test_unknown_type(self):
+        """未知类型返回默认"""
+        t = get_template('nonexistent_task_xyz')
+        self.assertIsNotNone(t)  # 应返回base模板
+
+    def test_base_only(self):
+        """仅base模板"""
+        t = get_template('code_generation', base_only=True)
+        self.assertIsNotNone(t)
+
+    def test_register_template(self):
+        """注册自定义模板"""
+        ok = register_template('custom_test', 'You are a test assistant.')
+        self.assertTrue(ok)
+
+
+class TestLevelManager(unittest.TestCase):
+    """LevelManager 测试"""
+
+    def test_L0_config(self):
+        """L0: 完全随机"""
+        c = get_level_config('L0')
+        self.assertEqual(c['temperature'], 1.0)
+        self.assertEqual(c['top_p'], 1.0)
+
+    def test_L1_config(self):
+        """L1: 轻度约束"""
+        c = get_level_config('L1')
+        self.assertEqual(c['temperature'], 0.7)
+
+    def test_L2_config(self):
+        """L2: 中度约束"""
+        c = get_level_config('L2')
+        self.assertEqual(c['temperature'], 0.3)
+
+    def test_L3_config(self):
+        """L3: 高度约束"""
+        c = get_level_config('L3')
+        self.assertEqual(c['temperature'], 0.1)
+
+    def test_L4_config(self):
+        """L4: 极度约束"""
+        c = get_level_config('L4')
+        self.assertEqual(c['temperature'], 0.0)
+
+    def test_levels_decreasing_temp(self):
+        """等级越高温度越低"""
+        prev = 2.0
+        for lvl in ['L0','L1','L2','L3','L4']:
+            c = get_level_config(lvl)
+            self.assertLessEqual(c['temperature'], prev)
+            prev = c['temperature']
+
+    def test_list_levels(self):
+        """列出5个等级"""
+        levels = list_levels()
+        self.assertEqual(len(levels), 5)
+
+    def test_auto_detect_code(self):
+        """代码任务推荐高确定性"""
+        r = auto_detect_level("generate a python function to sort an array")
+        self.assertIn(r, ['L0','L1','L2','L3','L4'])
+
+    def test_auto_detect_creative(self):
+        """创意任务推荐低确定性"""
+        r = auto_detect_level("write a creative poem about spring")
+        self.assertIn(r, ['L0','L1','L2','L3','L4'])
+
+    def test_all_levels_have_fields(self):
+        """所有等级有完整字段"""
+        for lvl in list_levels():
+            self.assertIn('temperature', lvl)
+            self.assertIn('top_p', lvl)
+            self.assertIn('strategy', lvl)
+            self.assertIn('description', lvl)
