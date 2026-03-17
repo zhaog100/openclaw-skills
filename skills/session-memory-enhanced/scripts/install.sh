@@ -4,7 +4,7 @@
 
 set -e
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 SCRIPT_NAME="session-memory-enhanced.sh"
 LOG_FILE="$WORKSPACE/logs/session-memory-enhanced.log"
 

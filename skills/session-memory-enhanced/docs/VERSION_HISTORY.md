@@ -196,7 +196,7 @@
 **零配置升级**（推荐）：
 ```bash
 # 1. 更新代码
-cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cd $(pwd)/skills/session-memory-enhanced
 git pull  # 或重新安装
 
 # 2. 复制配置

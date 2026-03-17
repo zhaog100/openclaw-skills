@@ -45,7 +45,7 @@
 clawhub install session-memory-enhanced
 
 # 或手动安装
-cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cd $(pwd)/skills/session-memory-enhanced
 cp config/unified.json.example config/unified.json
 ```
 
@@ -77,19 +77,19 @@ mv tmp.json config/unified.json
 # 每小时自动运行
 crontab -e
 # 添加：
-0 * * * * /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 ```
 
 ### 手动模式
 
 ```bash
 # 立即执行
-bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+bash $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
 # 检索
-python3 /root/.openclaw/workspace/skills/session-memory-enhanced/python/searcher.py \
+python3 $(pwd)/skills/session-memory-enhanced/python/searcher.py \
     --query "查询关键词" \
-    --db /root/.openclaw/workspace/memory/agents/main/vectors.db \
+    --db $(pwd)/memory/agents/main/vectors.db \
     --agent main \
     --api-key "your_key"
 ```
