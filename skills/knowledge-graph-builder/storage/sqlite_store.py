@@ -8,7 +8,7 @@ import sqlite3
 import json
 from typing import List, Dict, Any, Optional
 from datetime import datetime
-from .graph import StorageBackend
+from kg_builder.graph import StorageBackend
 
 
 class SQLiteStorage(StorageBackend):
