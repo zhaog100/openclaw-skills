@@ -65,7 +65,7 @@ handle_error() {
     log_error "$error_msg"
     
     # 执行降级操作
-    eval "$fallback_action"
+    bash -c "$fallback_action"
     return 0  # 始终返回成功，避免中断
 }
 
@@ -82,7 +82,7 @@ safe_exec() {
     
     # 执行命令，过滤警告
     local output
-    output=$(eval "$cmd" 2>&1 | grep -v "$FILTER_PATTERN")
+    output=$(bash -c "$cmd" 2>&1 | grep -v "$FILTER_PATTERN")
     local exit_code=${PIPESTATUS[0]}
     
     if [ $exit_code -ne 0 ]; then
@@ -103,13 +103,13 @@ safe_python() {
     
     if ! command -v python3 &> /dev/null; then
         log_warn "Python3 未安装，跳过：$script"
-        eval "$fallback"
+        bash -c "$fallback"
         return 0
     fi
     
     if [ ! -f "$script" ]; then
         log_warn "脚本不存在：$script"
-        eval "$fallback"
+        bash -c "$fallback"
         return 0
     fi
     
@@ -196,7 +196,7 @@ safe_gh() {
     
     if ! command -v gh &> /dev/null; then
         log_warn "gh CLI 未安装"
-        eval "$fallback"
+        bash -c "$fallback"
         return 0
     fi
     
