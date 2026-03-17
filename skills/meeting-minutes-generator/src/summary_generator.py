@@ -54,8 +54,8 @@ def _extract_decisions(parsed: Dict[str, Any]) -> List[str]:
         for line in lines:
             line = line.strip()
             # 带决策标记的行
-            if re.search(r'(?:决定|决议|确认|同意|批准|通过|敲定)[：:：]', line):
-                after = re.split(r'(?:决定|决议|确认|同意|批准|通过|敲定)[：:：]', line, 1)
+            if re.search(r'(?:决定|决策|决议|确认|同意|批准|通过|敲定)[：:：]', line):
+                after = re.split(r'(?:决定|决策|决议|确认|同意|批准|通过|敲定)[：:：]', line, 1)
                 if len(after) > 1 and len(after[1].strip()) > 2:
                     decisions.append(after[1].strip().rstrip('。'))
             # 决定做某事

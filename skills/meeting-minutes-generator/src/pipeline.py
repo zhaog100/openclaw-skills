@@ -45,7 +45,7 @@ def generate_minutes(raw_text: str = None, fmt: str = "markdown",
             )
         raw_text = stt_engine.transcribe(audio_path)
 
-    if not raw_text:
+    if not raw_text or not raw_text.strip():
         return ""
     parsed = parse_text(raw_text)
     actions = extract_actions(raw_text)
