@@ -78,7 +78,7 @@ gh api repos/zhaog100/openclaw-skills/issues/14/comments | jq -r '.[-1] | .body'
   - ✅ Issue通知（协作通知）
   - ✅ 技术文档（公共技术方案）
 
-- **xiaomila**（小米粒个人仓库）：`https://github.com/zhaog100/xiaomila-skills.git`
+- **xiaomila**（小米辣个人仓库）：`https://github.com/zhaog100/xiaomila-skills.git`
   - ✅ 小米粒个人工作日志
   - ✅ 小米粒私有配置
   - ✅ 小米粒测试数据
