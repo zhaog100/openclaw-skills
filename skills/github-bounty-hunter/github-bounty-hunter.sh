@@ -261,3 +261,10 @@ gitcoin)
     export GITHUB_TOKEN="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"
     python3 "$SCRIPTS_DIR/gitcoin_monitor.py"
     ;;
+
+# Replit 监控命令
+replit)
+    echo "🚀 启动 Replit 监控..."
+    export GITHUB_TOKEN="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"
+    python3 "$SCRIPTS_DIR/replit_monitor.py"
+    ;;
