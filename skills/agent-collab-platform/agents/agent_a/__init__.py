@@ -19,6 +19,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../..'))
 from core import BaseSkill
 from .product_manager import ProductManager
 from .reviewer import Reviewer
+from .quality_gate import (
+    run_quality_gate, read_prd, plan_review, review, fix, publish,
+    check_status, PipelineConfig,
+)
 
 class AgentA(BaseSkill):
     """智能体A（PM代理）"""
@@ -30,6 +34,7 @@ class AgentA(BaseSkill):
         # 初始化PM特定模块
         self.product_manager = ProductManager()
         self.reviewer = Reviewer()
+        self.quality_gate_config = PipelineConfig()
         
         print(f"🌶️ 小米辣（PM代理）初始化完成")
     

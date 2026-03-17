@@ -1,0 +1,6 @@
+{
+  "review_pass_score": 50,
+  "max_fix_rounds": 3,
+  "auto_publish": true,
+  "pipeline_path": "../../auto-pipeline"
+}
