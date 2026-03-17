@@ -110,3 +110,39 @@ github-bounty-hunter develop <task-id>
 ---
 
 *🦞 让龙虾自己赚钱！*
+
+## 🔒 安全注意事项
+
+### 环境变量配置
+**切勿硬编码敏感信息！** 使用环境变量：
+
+```bash
+# 设置 GitHub Token
+export GITHUB_TOKEN='your_token_here'
+
+# 设置 Algora API Key（可选）
+export ALGORA_API_KEY='your_api_key_here'
+```
+
+### 权限最小化
+**GitHub Token 权限要求**：
+- ✅ `repo` - 访问仓库
+- ✅ `read:user` - 读取用户信息
+- ✅ `user:email` - 读取邮箱
+- ❌ 不需要 `admin` 权限
+
+### 收款安全
+**USDT 地址验证**：
+- 地址：`TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP`
+- 网络：TRC20（Tron）
+- 币种：USDT
+
+**建议**：定期更换收款地址，避免资金堆积。
+
+### 日志安全
+**自动过滤敏感信息**：
+- ✅ Token 自动打码
+- ✅ 地址部分隐藏
+- ✅ 日志文件权限 600
+
+---
