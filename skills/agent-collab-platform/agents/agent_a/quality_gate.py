@@ -60,7 +60,7 @@ def _source_and_call(
     timeout: int = 300,
 ) -> tuple[int, str, str]:
     """通过 source 脚本后直接调用函数"""
-    src_dir = str(Path(pipeline_path).parent / "src")
+    src_dir = str(Path(pipeline_path) / "src")
     modules = [
         "status_manager.sh",
         "prd_reader.sh",
@@ -132,7 +132,7 @@ def review(
     """
     cfg = config or PipelineConfig()
     skill_name = Path(skill_dir).name
-    tasks_json = json.dumps(approved_tasks) if isinstance(approved_tasks, dict) else approved_tasks
+    tasks_json = json.dumps(approved_tasks) if not isinstance(approved_tasks, str) else approved_tasks
     _, stdout, stderr = _source_and_call(
         cfg.pipeline_path, "review", [tasks_json, skill_name, skill_dir]
     )
@@ -205,7 +205,10 @@ def check_status(
     """
     cfg = config or PipelineConfig()
     _, stdout, stderr = _source_and_call(cfg.pipeline_path, "status_detail", [skill_name])
-    return json.loads(stdout.strip())
+    stdout = stdout.strip()
+    if not stdout or not stdout.startswith("{"):
+        return {"skill": skill_name, "status": "unknown", "message": stdout or "No status data found"}
+    return json.loads(stdout)
 
 
 def run_quality_gate(
