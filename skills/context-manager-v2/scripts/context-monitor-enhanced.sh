@@ -5,8 +5,8 @@
 # 功能：通过OpenClaw API监控真实上下文使用率，带重试机制和错误处理
 
 # ⭐ 修复cron环境问题（2026-03-06）
-export HOME="/home/zhaog"
-export PATH="/home/zhaog/.npm-global/bin:$PATH"
+export HOME="$HOME"
+export PATH="$HOME/.npm-global/bin:$PATH"
 # 集成 Error Handler Library
 ERROR_HANDLER_LOG="$HOME/.openclaw/workspace/logs/context-monitor.log"
 source "$HOME/.openclaw/workspace/skills/utils/error-handler.sh"

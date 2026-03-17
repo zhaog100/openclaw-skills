@@ -12,8 +12,8 @@
 #### 修复内容
 ```bash
 # 添加到监控脚本开头
-export HOME="/home/zhaog"
-export PATH="/home/zhaog/.npm-global/bin:$PATH"
+export HOME="$HOME"
+export PATH="$HOME/.npm-global/bin:$PATH"
 ```
 
 #### 问题根源分析

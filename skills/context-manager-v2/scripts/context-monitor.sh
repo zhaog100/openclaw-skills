@@ -5,8 +5,8 @@
 # 功能：通过OpenClaw API监控真实上下文使用率，超过85%自动发送飞书通知
 
 # ⭐ 修复cron环境问题（2026-03-06）
-export HOME="/home/zhaog"
-export PATH="/home/zhaog/.npm-global/bin:$PATH"
+export HOME="$HOME"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 THRESHOLD=85
 LOG_FILE="$HOME/.openclaw/workspace/logs/context-monitor.log"
