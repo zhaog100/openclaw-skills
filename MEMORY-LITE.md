@@ -13,55 +13,35 @@ _启动专用，保持精简（<3KB）_
 
 ---
 
-## 🎯 当前状态（2026-03-05）
+## 🎯 当前状态（2026-03-17）
 
-**系统完整度：** 425% ⭐⭐⭐⭐⭐
+**PRD进度：** 25个 → 已完成15个 / 待开发2个 / 暂缓3个 / 废弃7个
+**ClawHub发布：** 20+个技能 | 今日发布7个
+**版权归属：** 思捷娅科技 (SJYKJ)，禁止个人名称
 
-**核心能力（已就绪）：**
-- ✅ 双语音系统 + 双渠道Bot（QQ+飞书）
-- ✅ 22个模型 + QMD知识库（198文件）
-- ✅ Context Manager v2.2.1（Cron环境修复+真实API监控）
-- ✅ ClawHub技能发布（10个）⭐⭐⭐⭐⭐
-- ✅ Smart Memory Sync v1.0（主动记忆管理+双保险）
-- ✅ image-content-extractor v2.0（统一图片处理技能）
-
-**待解决：** ⏸️ QMD向量生成 | ⏸️ QQ语音发送
-
----
-
-## 📋 关键决策（精简10条）
-
-1. **CPU模式** - VMware无GPU，CPU功能完全
-2. **精准检索** - QMD + 片段读取 = 节省90% tokens
-3. **AI人格** - 成为米粒儿，非扮演
-4. **双渠道Bot** - QQ + 飞书
-5. **上下文管理** - 60%阈值+5分钟监控（2026-03-06优化）⭐
-6. **三层架构** - Git（存储）+ QMD（索引）+ Context（监控）
-7. **启动优化** - 分层读取，核心<5KB + 摘要<3KB
-8. **MEMORY-LITE** - 精简版记忆，启动专用 ⭐⭐⭐⭐⭐
-9. **ClawHub发布** - 12个技能已发布（含v2.2.2），全球可安装 ⭐⭐⭐⭐⭐
-10. **真实API监控** - 调API而非数文件，60%阈值+5分钟间隔 ⭐⭐⭐⭐⭐（2026-03-06 v2.2.2）
-11. **Cron环境变量** - HOME和PATH必需，否则命令找不到 ⭐⭐⭐⭐⭐（2026-03-06新增）
-12. **ClawHub发布流程** - 检查存在→判所有权→下载对比→整合发布 ⭐⭐⭐⭐⭐（2026-03-06新增）
-13. **Smart Memory Sync** - 主动监控+三库同步+双保险，防记忆缺失 ⭐⭐⭐⭐⭐（2026-03-06新增）
-14. **技能集成** - terminal-ocr归档，统一为image-content-extractor v2.0 ⭐⭐⭐⭐⭐（2026-03-06新增）
-15. **主力模型** - 百炼qwen3.5-plus（100万上下文+多模态）⭐⭐⭐⭐⭐（2026-03-02决策，12:26恢复）
+**核心能力：**
+- ✅ agent-collab-platform v1.17（PM+Dev协作+经验教训库v1.3）
+- ✅ auto-pipeline v2.0（质量保障集成）
+- ✅ ai-deterministic-control v1.1.3（确定性控制）
+- ✅ project-progress-tracker v1.0.2（Git统计+Issue跟踪）
+- ✅ test-case-generator v1.0.0（5种测试方法）
+- ✅ auto-document-generator v1.1.0（ast零依赖）
+- ✅ Error Handler v1.2（集成到7个技能）
 
 ---
 
-## 💡 核心洞察
+## 📋 关键决策（最新10条）
 
-**启动优化策略：**
-```
-核心层(<5KB) → SOUL + USER
-摘要层(<3KB) → MEMORY-LITE
-详情层(按需) → QMD检索
-```
-
-**三层架构协同：**
-```
-Git（存储）→ QMD（索引）→ Context（监控）
-```
+1. **发布流程** - pytest全绿→功能验证→发布→汇报，禁止先发后补 ⭐⭐⭐⭐⭐
+2. **不产生幻觉** - 实际完成所有步骤，不能假设结果 ⭐⭐⭐⭐⭐
+3. **版权归属** - 思捷娅科技(SJYKJ)，slug用sjykj-前缀 ⭐⭐⭐⭐⭐
+4. **Git推送** - 个人→xiaomili，公共→origin ⭐⭐⭐⭐⭐
+5. **rebase禁令** - 禁止--strategy=ours，改用--skip ⭐⭐⭐⭐
+6. **零依赖优先** - ast替代tree-sitter，标准库够用 ⭐⭐⭐⭐
+7. **ClawHub前缀** - slug被占用时统一用sjykj- ⭐⭐⭐⭐
+8. **经验教训库** - 写了必须在SKILL.md显式引用 ⭐⭐⭐⭐
+9. **子代理交付** - 8项清单（SKILL.md/package.json/版权/测试...）⭐⭐⭐⭐
+10. **Python线程** - ThreadPoolExecutor.timeout 3.12失效 → daemon threads ⭐⭐⭐
 
 ---
 
@@ -70,29 +50,20 @@ Git（存储）→ QMD（索引）→ Context（监控）
 **启动后必做：**
 1. session_status检查占用
 2. >30%预警，记录日志
-3. 详细信息QMD检索
 
-**不要全量读取：** MEMORY.md（30KB+）| memory日志（70KB+/天）
-
----
-
-## 📚 技能清单
-
-**高频：** context-manager, qmd, qqbot-cron
-**中频：** speech-recognition, qqbot-media
-**低频：** voice系列, playwright
+**不要全量读取：** MEMORY.md（50KB+）
 
 ---
 
 ## 🔗 快速链接
 
-**详细记忆：** MEMORY.md（QMD检索）
-**今日日志：** memory/2026-03-06.md
-**知识库：** knowledge/（QMD搜索）
+**详细记忆：** MEMORY.md（memory_search检索）
+**今日日志：** memory/2026-03-17.md
+**PRD状态：** docs/products/PRD_status_summary.md
+**经验教训：** skills/agent-collab-platform/docs/DEVELOPMENT_LESSONS.md
 
 ---
 
 *精简版，启动专用（<3KB）*
-*详细内容用QMD检索*
-*最后更新：2026-03-06 12:00*
-*版本：v2.3 - Smart Memory Sync + 技能统一版*
+*最后更新：2026-03-17 12:15*
+*版本：v4.0 - 2026-03-17全面更新*
