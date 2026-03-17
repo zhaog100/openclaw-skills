@@ -38,8 +38,16 @@ check_and_restart() {
     
     # 重启监控
     log "🔄 启动监控进程..."
-    export GITHUB_TOKEN="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"
-    export PAYMENT_ADDRESS="TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP"
+    
+    # 从配置文件加载环境变量（如果存在）
+    if [ -f "$SCRIPT_DIR/.env" ]; then
+        source "$SCRIPT_DIR/.env"
+    fi
+    
+    # 如果仍未配置，使用系统环境变量
+    if [ -z "$GITHUB_TOKEN" ]; then
+        log "⚠️  警告：GITHUB_TOKEN 未配置"
+    fi
     
     cd "$SCRIPT_DIR" && nohup python3 algora_monitor.py > /tmp/bounty-monitor.log 2>&1 &
     NEW_PID=$!
