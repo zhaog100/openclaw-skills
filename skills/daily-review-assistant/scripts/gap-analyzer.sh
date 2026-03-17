@@ -13,7 +13,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-/home/zhaog/.openclaw/workspace}"
+WORKSPACE="${WORKSPACE:-$(pwd)}"
 MEMORY_DIR="$WORKSPACE/memory"
 KNOWLEDGE_DIR="$WORKSPACE/knowledge"
 LOG_FILE="$SCRIPT_DIR/logs/gap-analyzer.log"

@@ -1,6 +1,6 @@
 {
   "name": "wool-gathering",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "薅羊毛综合技能 - 自动签到、价格监控、优惠券推送。支持阿里云盘、百度网盘、B站、爱奇艺、京东等平台。",
   "main": "SKILL.md",
   "keywords": [

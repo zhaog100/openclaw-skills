@@ -200,7 +200,7 @@ instances = ["lh-1", "lh-2", "lh-3"]
 for instance_id in instances:
     result = subprocess.run([
         "mcporter", "call", "lighthouse.RebootInstances",
-        "--config", "/root/.mcporter/mcporter.json",
+        "--config", "~/.mcporter/mcporter.json",
         "--output", "json",
         "--args", json.dumps({"instanceIds": [instance_id]})
     ], capture_output=True, text=True)

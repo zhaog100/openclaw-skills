@@ -12,7 +12,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-/home/zhaog/.openclaw/workspace}"
+WORKSPACE="${WORKSPACE:-$(pwd)}"
 
 echo "╔════════════════════════════════════════════════════════╗"
 echo "║  定时回顾更新助手 v1.0 - 安装向导                      ║"

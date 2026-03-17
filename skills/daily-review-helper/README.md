@@ -18,7 +18,7 @@
 ### 安装
 
 ```bash
-cd /home/zhaog/.openclaw/workspace/skills/daily-review-helper
+cd $(pwd)/skills/daily-review-helper
 bash install.sh
 ```
 
@@ -53,10 +53,10 @@ crontab -e
 
 # 添加定时任务
 # 中午 12:00 - 回顾上午
-0 12 * * * /home/zhaog/.openclaw/workspace/skills/daily-review-helper/skill.sh review --mode morning
+0 12 * * * $(pwd)/skills/daily-review-helper/skill.sh review --mode morning
 
 # 晚上 23:50 - 回顾全天
-50 23 * * * /home/zhaog/.openclaw/workspace/skills/daily-review-helper/skill.sh review --mode full
+50 23 * * * $(pwd)/skills/daily-review-helper/skill.sh review --mode full
 ```
 
 ---

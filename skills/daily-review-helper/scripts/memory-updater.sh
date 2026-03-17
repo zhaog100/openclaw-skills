@@ -13,7 +13,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-/home/zhaog/.openclaw/workspace}"
+WORKSPACE="${WORKSPACE:-$(pwd)}"
 MEMORY_DIR="$WORKSPACE/memory"
 MEMORY_FILE="$WORKSPACE/MEMORY.md"
 LOG_FILE="$SCRIPT_DIR/logs/memory-updater.log"
@@ -103,9 +103,9 @@ _精心维护的记忆，提炼后的精华_
 
 ## 🎯 QMD 检索入口
 
-**知识库路径**: `/home/zhaog/.openclaw/workspace/knowledge/`
+**知识库路径**: `$(pwd)/knowledge/`
 
-**记忆文件路径**: `/home/zhaog/.openclaw/workspace/memory/`
+**记忆文件路径**: `$(pwd)/memory/`
 
 ---
 

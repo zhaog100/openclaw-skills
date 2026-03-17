@@ -1,80 +1,30 @@
-<<<<<<< HEAD
-# Python 虚拟环境（用户自己安装）
-python/venv/
-
-# Python 缓存
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-
-# 测试文件
-tests/
-*.test.py
-
-# 临时文件
-*.tmp
-*.log
-*.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# 系统文件
-.DS_Store
-Thumbs.db
-
-# 文档构建
-docs/_build/
-=======
-# Python
+# Python 虚拟环境
 venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-pip-log.txt
-pip-delete-this-directory.txt
 
-# Logs and databases
+# 日志和数据库
 *.log
-logs/
-*.sql
-*.sqlite
 *.db
+*.sqlite
 
-# Backup and cache
-*.backup
+# 临时文件
+*.tmp
 *.bak
 *.cache
-.cache/
 
-# Test and coverage
-test/
+# 测试文件
 tests/
-coverage/
-.coverage
-*.test.js
-*.spec.js
 
-# Build and dist
-dist/
-build/
-*.egg-info/
+# 文档
+docs/
 
-# Temporary files
-tmp/
-temp/
-*.tmp
-*.swp
-*~
-
-# OS files
+# IDE
+.vscode/
+.idea/
 .DS_Store
-Thumbs.db
->>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
+
+# 配置文件（保留模板）
+config/unified.json
