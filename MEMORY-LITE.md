@@ -47,15 +47,8 @@ _启动专用，保持精简（<3KB）_
 
 ## 📌 待办任务
 
-**限流解除后发布（~17:08）：**
-1. sjykj-qmd-manager v1.0.1
-2. sjykj-speech-recognition v1.2.1
-3. sjykj-github-bounty-hunter v1.2.1
-4. tencentcloud-lighthouse-skill v1.0.1
-5. session-memory-enhanced v4.3.0（含venv排除修复）
-6. image-content-extractor（补license）
-7. playwright-scraper（补license）
-8. smart-memory-sync（补license）
+**明天发布（24h限额重置后）：**
+1. sjykj-tencentcloud-lighthouse v1.0.1（唯一剩余）
 
 ---
 

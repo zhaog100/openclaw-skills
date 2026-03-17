@@ -110,9 +110,7 @@ do_submit() {
         exit 1
     fi
     
-    echo "🚀 提交任务 #$task_id..."
-    # TODO: 实现提交逻辑
-    echo "⚠️  功能开发中..."
+    python3 "$SCRIPTS_DIR/submit.py" "$task_id"
 }
 
 # 查看状态
