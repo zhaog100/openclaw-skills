@@ -15,6 +15,9 @@ def generate_summary(parsed: Dict[str, Any], actions: List[Dict[str, Any]]) -> D
     Returns:
         结构化纪要字典
     """
+    # 对话格式的总结性发言
+    dialogue_summary = parsed.get('dialogue_summary', '')
+
     return {
         'meeting_info': {
             'topic': parsed.get('topic', ''),
@@ -26,6 +29,7 @@ def generate_summary(parsed: Dict[str, Any], actions: List[Dict[str, Any]]) -> D
         'discussion_points': parsed.get('discussion_points', []),
         'decisions': _extract_decisions(parsed),
         'action_items': actions,
+        'dialogue_summary': dialogue_summary,
         'raw_paragraphs': parsed.get('paragraphs', []),
     }
 
