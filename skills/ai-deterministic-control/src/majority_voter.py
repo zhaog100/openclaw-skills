@@ -3,7 +3,7 @@
 """MajorityVoter — 多数投票与输出聚类"""
 
 from typing import List, Dict, Callable, Optional
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout, as_completed
 
 
 def cluster_outputs(outputs: List[str], threshold: float = 0.85) -> List[List[str]]:
@@ -75,22 +75,43 @@ def majority_vote(outputs: List[str], similarity_threshold: float = 0.85) -> Dic
 
 def vote_with_timeout(prompt_fn: Callable[[], str], n: int = 5,
                       timeout: float = 30) -> Dict:
-    """带超时的多数投票
+    """带超时的多数投票（并发，总超时控制）
 
     Args:
         prompt_fn: 无参数的可调用对象，返回字符串
         n: 采样次数
-        timeout: 单次调用超时（秒）
+        timeout: 总超时（秒），所有调用共享此时间预算
     """
-    outputs = []
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        for _ in range(n):
-            future = executor.submit(prompt_fn)
-            try:
-                result = future.result(timeout=timeout)
-                outputs.append(result)
-            except (FuturesTimeout, Exception):
-                continue
+    import time as _time
+    import threading
+
+    outputs: List[str] = []
+    results_lock = threading.Lock()
+    deadline = _time.monotonic() + timeout
+
+    def worker():
+        try:
+            r = prompt_fn()
+            if r is not None:
+                with results_lock:
+                    outputs.append(r)
+        except Exception:
+            pass
+
+    threads = []
+    for _ in range(n):
+        remaining = deadline - _time.monotonic()
+        if remaining <= 0:
+            break
+        t = threading.Thread(target=worker, daemon=True)
+        t.start()
+        threads.append(t)
+
+    for t in threads:
+        remaining = deadline - _time.monotonic()
+        if remaining <= 0:
+            break
+        t.join(timeout=remaining)
 
     return majority_vote(outputs)
 
