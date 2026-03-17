@@ -9,7 +9,7 @@
 set -e
 
 SKILL_NAME="$1"
-CURRENT_USER="${CLAWHUB_USER:-zhaog100}"  # 从环境变量获取，默认zhaog100
+CURRENT_USER="${CLAWHUB_USER:-${USER}}"  # 从环境变量获取，默认zhaog100
 
 if [ -z "$SKILL_NAME" ]; then
     echo "用法: bash check-existing.sh <skill-name>"

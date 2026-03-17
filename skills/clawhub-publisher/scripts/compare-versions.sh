@@ -20,7 +20,7 @@ echo ""
 # 1. 查找本地技能目录
 echo "【1/5】查找本地技能..."
 POSSIBLE_PATHS=(
-    "/root/.openclaw/workspace/skills/$SKILL_NAME"
+    "$(pwd)/skills/$SKILL_NAME"
     "./skills/$SKILL_NAME"
     "../$SKILL_NAME"
     "./$SKILL_NAME"

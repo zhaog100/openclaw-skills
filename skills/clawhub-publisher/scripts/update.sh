@@ -62,7 +62,7 @@ echo ""
 # 3. 查找本地版本
 echo "【步骤3/4】查找本地版本..."
 POSSIBLE_PATHS=(
-    "/root/.openclaw/workspace/skills/$SKILL_NAME"
+    "$(pwd)/skills/$SKILL_NAME"
     "./skills/$SKILL_NAME"
     "../$SKILL_NAME"
     "./$SKILL_NAME"
