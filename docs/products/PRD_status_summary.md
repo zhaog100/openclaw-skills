@@ -47,7 +47,7 @@
 | 技能 | 备注 |
 |------|------|
 | ai-deterministic-control | 技术设计已完成，待开发 |
-| test-case-generator | 官家核心领域，优先 |
+| test-case-generator | ✅ 已完成 v1.0.0 |
 
 ### P1（3 个）
 | 技能 | 备注 |
