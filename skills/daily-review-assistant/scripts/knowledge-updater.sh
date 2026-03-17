@@ -13,7 +13,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-/home/zhaog/.openclaw/workspace}"
+WORKSPACE="${WORKSPACE:-$(pwd)}"
 KNOWLEDGE_DIR="$WORKSPACE/knowledge"
 MEMORY_DIR="$WORKSPACE/memory"
 LOG_FILE="$SCRIPT_DIR/logs/knowledge-updater.log"

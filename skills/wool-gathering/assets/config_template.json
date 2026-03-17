@@ -20,7 +20,7 @@
     "enabled": true,
 
     "serverchan_enabled": true,
-    "serverchan_key": "SCT318129TjbbZCb4uk6oCF42SQEHefQ6Y",
+    "serverchan_key": "SCT_your_sendkey_here",
 
     "pushplus_enabled": false,
     "pushplus_token": "xxxxxxxxxxxxxxxxxxxxxxxx",

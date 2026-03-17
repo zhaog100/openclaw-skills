@@ -23,7 +23,7 @@
 
 ```bash
 # 克隆技能
-cd /home/zhaog/.openclaw/workspace/skills/
+cd $(pwd)/skills/
 git clone <repo-url> github-bounty-hunter
 
 # 添加执行权限

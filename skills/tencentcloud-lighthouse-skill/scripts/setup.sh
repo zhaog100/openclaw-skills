@@ -8,7 +8,7 @@ set -euo pipefail
 # Examples:
 #   setup.sh --secret-id AKIDxxxx --secret-key yyyyyyy
 #   setup.sh --check-only
-#   setup.sh --secret-id AKIDxxxx --secret-key yyyyyyy --config-path /root/.mcporter/mcporter.json
+#   setup.sh --secret-id AKIDxxxx --secret-key yyyyyyy --config-path ~/.mcporter/mcporter.json
 
 CONFIG_PATH="${HOME}/.mcporter/mcporter.json"
 SECRET_ID=""

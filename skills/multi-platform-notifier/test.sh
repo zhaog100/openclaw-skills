@@ -23,7 +23,7 @@ run_test() {
   ((TESTS_RUN++))
   echo -e "\n${YELLOW}[测试]${NC} $test_name"
   
-  if eval "$test_cmd" > /dev/null 2>&1; then
+  if bash -c "$test_cmd" > /dev/null 2>&1; then
     echo -e "${GREEN}✓ 通过${NC}"
     ((TESTS_PASSED++))
     return 0
