@@ -5,7 +5,7 @@
 # 创建时间：2026-03-07 22:27
 # 作者：米粒儿
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 AGENT_NAME="${AGENT_NAME:-main}"
 MEMORY_DIR="$WORKSPACE/memory/agents/$AGENT_NAME"
 LOG_FILE="$WORKSPACE/logs/structured-extractor.log"

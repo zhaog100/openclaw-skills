@@ -58,7 +58,7 @@ session-memory-enhanced v4.0（融合版）
 ## 📁 文件结构
 
 ```
-/root/.openclaw/workspace/
+$(pwd)/
 ├── skills/
 │   └── session-memory-enhanced/
 │       ├── scripts/
@@ -146,7 +146,7 @@ session-memory-enhanced v4.0（融合版）
 # Session-Memory Enhanced v4.0 - 融合版
 # 整合 session-memory + memu-engine 双引擎
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 AGENT_NAME="${AGENT_NAME:-main}"
 CONFIG_FILE="$WORKSPACE/skills/session-memory-enhanced/config/integration.json"
 
@@ -214,7 +214,7 @@ main
 # memu-engine 集成脚本
 # 功能：从 session-memory 分片提取结构化记忆
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 MEMORY_DIR="$WORKSPACE/memory/agents/$AGENT_NAME"
 MEMU_DB="$MEMORY_DIR/memu.db"
 
@@ -293,7 +293,7 @@ main "$@"
 # 统一检索接口
 # 功能：智能路由，自动选择最优检索方式
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 CONFIG_FILE="$WORKSPACE/skills/session-memory-enhanced/config/integration.json"
 
 # 智能检索
@@ -509,7 +509,7 @@ if __name__ == '__main__':
 clawhub install session-memory-enhanced
 
 # 或手动安装
-cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cd $(pwd)/skills/session-memory-enhanced
 bash scripts/install.sh
 ```
 
@@ -537,16 +537,16 @@ export OPENAI_API_KEY="your_key"
 # 正常使用，自动触发
 # 每小时自动运行一次
 crontab -l
-# 0 * * * * /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+# 0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 ```
 
 **手动模式**：
 ```bash
 # 立即执行
-bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+bash $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
 # 手动检索
-bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/unified-search.sh "查询关键词"
+bash $(pwd)/skills/session-memory-enhanced/scripts/unified-search.sh "查询关键词"
 ```
 
 ---

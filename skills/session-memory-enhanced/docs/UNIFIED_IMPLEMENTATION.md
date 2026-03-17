@@ -46,7 +46,7 @@
 ## 📁 统一文件结构
 
 ```
-/root/.openclaw/workspace/skills/session-memory-enhanced/
+$(pwd)/skills/session-memory-enhanced/
 ├── scripts/
 │   ├── session-memory-enhanced-v4.sh       # 主脚本（统一版）
 │   ├── structured-extractor.sh             # 结构化提取
@@ -95,7 +95,7 @@
 # 创建时间：2026-03-09 19:30
 # 作者：米粒儿
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 AGENT_NAME="${AGENT_NAME:-main}"
 MEMORY_DIR="$WORKSPACE/memory/agents/$AGENT_NAME"
 SHARED_DIR="$WORKSPACE/memory/shared"
@@ -919,7 +919,7 @@ if __name__ == '__main__':
 clawhub install session-memory-enhanced
 
 # 或手动安装
-cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cd $(pwd)/skills/session-memory-enhanced
 bash scripts/install.sh
 ```
 
@@ -946,7 +946,7 @@ export OPENAI_API_KEY="your_key"
 ### 3. 安装 Python 依赖（可选）
 
 ```bash
-cd /root/.openclaw/workspace/skills/session-memory-enhanced/python
+cd $(pwd)/skills/session-memory-enhanced/python
 pip3 install -r requirements.txt
 ```
 
@@ -956,15 +956,15 @@ pip3 install -r requirements.txt
 # 自动模式（crontab）
 crontab -e
 # 添加：
-# 0 * * * * /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+# 0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
 # 手动运行
-bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+bash $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
 # 检索
-python3 /root/.openclaw/workspace/skills/session-memory-enhanced/python/searcher.py \
+python3 $(pwd)/skills/session-memory-enhanced/python/searcher.py \
     --query "查询关键词" \
-    --db /root/.openclaw/workspace/memory/agents/main/vectors.db \
+    --db $(pwd)/memory/agents/main/vectors.db \
     --agent main \
     --api-key "your_key"
 ```

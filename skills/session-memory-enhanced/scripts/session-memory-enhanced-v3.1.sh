@@ -5,7 +5,7 @@
 # 创建时间：2026-03-07 22:05
 # 作者：米粒儿
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 
 # 多代理支持（从环境变量获取，默认 main）⭐⭐⭐⭐⭐
 AGENT_NAME="${AGENT_NAME:-main}"

@@ -4,7 +4,7 @@
 # 创建时间：2026-03-07 14:47
 # 版本：2.0.0
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 MEMORY_FILE="$WORKSPACE/MEMORY.md"
 LOG_FILE="$WORKSPACE/logs/session-memory-enhanced.log"
 

@@ -4,7 +4,7 @@
 # 创建时间：2026-03-09 19:30
 # 作者：米粒儿
 
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="$(pwd)"
 AGENT_NAME="${AGENT_NAME:-main}"
 MEMORY_DIR="$WORKSPACE/memory/agents/$AGENT_NAME"
 SHARED_DIR="$WORKSPACE/memory/shared"

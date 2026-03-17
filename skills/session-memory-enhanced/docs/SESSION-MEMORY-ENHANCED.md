@@ -34,7 +34,7 @@
 **已配置为定时任务**：
 ```bash
 # 每小时自动运行
-0 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+0 * * * * $(pwd)/scripts/session-memory-enhanced.sh
 ```
 
 **触发时机**：
@@ -45,23 +45,23 @@
 
 ```bash
 # 手动触发
-bash /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+bash $(pwd)/scripts/session-memory-enhanced.sh
 ```
 
 ### 查看日志
 
 ```bash
 # 实时查看
-tail -f /root/.openclaw/workspace/logs/session-memory-enhanced.log
+tail -f $(pwd)/logs/session-memory-enhanced.log
 
 # 查看最近30条
-tail -30 /root/.openclaw/workspace/logs/session-memory-enhanced.log
+tail -30 $(pwd)/logs/session-memory-enhanced.log
 ```
 
 ## 📁 文件结构
 
 ```
-/root/.openclaw/workspace/
+$(pwd)/
 ├── scripts/
 │   └── session-memory-enhanced.sh    # 增强版hook脚本
 ├── logs/
@@ -82,13 +82,13 @@ crontab -e
 **修改频率**（示例）：
 ```bash
 # 每小时（推荐）
-0 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+0 * * * * $(pwd)/scripts/session-memory-enhanced.sh
 
 # 每30分钟
-*/30 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+*/30 * * * * $(pwd)/scripts/session-memory-enhanced.sh
 
 # 每2小时
-0 */2 * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+0 */2 * * * $(pwd)/scripts/session-memory-enhanced.sh
 ```
 
 ### 禁用自动更新
@@ -98,7 +98,7 @@ crontab -e
 crontab -e
 
 # 注释掉相关行
-# 0 * * * * /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+# 0 * * * * $(pwd)/scripts/session-memory-enhanced.sh
 ```
 
 ## 📊 性能影响
@@ -146,26 +146,26 @@ crontab -l | grep session-memory-enhanced
 
 **检查脚本权限**：
 ```bash
-ls -l /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+ls -l $(pwd)/scripts/session-memory-enhanced.sh
 ```
 
 ### 问题2：更新失败
 
 **查看日志**：
 ```bash
-tail -50 /root/.openclaw/workspace/logs/session-memory-enhanced.log
+tail -50 $(pwd)/logs/session-memory-enhanced.log
 ```
 
 **手动测试**：
 ```bash
-bash /root/.openclaw/workspace/scripts/session-memory-enhanced.sh
+bash $(pwd)/scripts/session-memory-enhanced.sh
 ```
 
 ### 问题3：Git提交失败
 
 **检查Git状态**：
 ```bash
-cd /root/.openclaw/workspace
+cd $(pwd)
 git status
 ```
 

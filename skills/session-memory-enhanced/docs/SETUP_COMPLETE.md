@@ -42,10 +42,10 @@
 
 ```bash
 # 立即执行
-bash /root/.openclaw/workspace/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+bash $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
 
 # 查看日志
-tail -f /root/.openclaw/workspace/logs/session-memory-enhanced.log
+tail -f $(pwd)/logs/session-memory-enhanced.log
 ```
 
 ---
@@ -61,7 +61,7 @@ export OPENAI_API_KEY="sk-..."
 ### 步骤 2：启用功能
 
 ```bash
-cd /root/.openclaw/workspace/skills/session-memory-enhanced
+cd $(pwd)/skills/session-memory-enhanced
 
 # 启用结构化提取
 jq '.features.structuredExtraction = true' config/unified.json > tmp.json
@@ -165,10 +165,10 @@ python3 searcher.py --help
 
 ## 🔗 相关链接
 
-- **技能目录**：`/root/.openclaw/workspace/skills/session-memory-enhanced/`
+- **技能目录**：`$(pwd)/skills/session-memory-enhanced/`
 - **配置文件**：`config/unified.json`
-- **日志文件**：`/root/.openclaw/workspace/logs/session-memory-enhanced.log`
-- **记忆目录**：`/root/.openclaw/workspace/memory/agents/main/`
+- **日志文件**：`$(pwd)/logs/session-memory-enhanced.log`
+- **记忆目录**：`$(pwd)/memory/agents/main/`
 - **完整文档**：`docs/UNIFIED_IMPLEMENTATION.md`
 
 ---
