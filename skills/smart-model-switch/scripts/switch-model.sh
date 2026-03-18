@@ -3,6 +3,8 @@
 # 模型切换脚本
 # 功能：切换到指定模型
 
+source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
+
 MODEL_ID="$1"
 
 if [ -z "$MODEL_ID" ]; then
@@ -16,18 +18,16 @@ export OPENCLAW_MODEL="$MODEL_ID"
 echo "✅ 已设置模型环境变量：$MODEL_ID"
 
 # 方法2：写入配置文件（持久化方案）
-CONFIG_FILE="$HOME/.openclaw/config.json"
-if [ -f "$CONFIG_FILE" ]; then
+if [ -f "$OPENCLAW_CONFIG_FILE" ]; then
     temp_file=$(mktemp)
-    jq --arg model "$MODEL_ID" '.model = $model' "$CONFIG_FILE" > "$temp_file"
-    mv "$temp_file" "$CONFIG_FILE"
-    echo "✅ 已更新配置文件：$CONFIG_FILE"
+    jq --arg model "$MODEL_ID" '.model = $model' "$OPENCLAW_CONFIG_FILE" > "$temp_file"
+    mv "$temp_file" "$OPENCLAW_CONFIG_FILE"
+    echo "✅ 已更新配置文件：$OPENCLAW_CONFIG_FILE"
 fi
 
-# 方法3：通知OpenClaw（需要API支持）
-# 这里是预留接口，实际需要OpenClaw支持
-NOTIFICATION_FILE="$HOME/.openclaw/model-switch-requests/$(date +%s).json"
-mkdir -p "$(dirname "$NOTIFICATION_FILE")"
+# 方法3：通知OpenClaw（预留接口）
+mkdir -p "$MODEL_SWITCH_REQ_DIR"
+NOTIFICATION_FILE="$MODEL_SWITCH_REQ_DIR/$(date +%s).json"
 cat > "$NOTIFICATION_FILE" << EOF
 {
   "requested_model": "$MODEL_ID",

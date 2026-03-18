@@ -1,90 +1,40 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+const { loadConfig } = require('./lib');
 
-// 读取配置文件
-const configPath = path.join(__dirname, '..', 'config', 'model-rules.json');
-const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const config = loadConfig();
 
 function analyzeFileType(filePath) {
   if (!filePath) {
     return { hasFile: false, fileType: null, model: null };
   }
-  
-  const ext = path.extname(filePath).toLowerCase();
-  
-  // 文件类型映射
-  const fileTypes = {
-    // 视觉文件
-    '.jpg': 'vision',
-    '.jpeg': 'vision', 
-    '.png': 'vision',
-    '.gif': 'vision',
-    '.webp': 'vision',
-    '.bmp': 'vision',
-    '.tiff': 'vision',
-    '.mp4': 'vision',
-    '.avi': 'vision',
-    '.mov': 'vision',
-    '.mkv': 'vision',
-    '.webm': 'vision',
-    
-    // 文档文件
-    '.pdf': 'complex',
-    '.doc': 'complex',
-    '.docx': 'complex',
-    '.ppt': 'complex',
-    '.pptx': 'complex',
-    '.xls': 'complex',
-    '.xlsx': 'complex',
-    '.txt': 'main',
-    '.md': 'main',
-    '.csv': 'main',
-    
-    // 代码文件
-    '.js': 'coding',
-    '.jsx': 'coding',
-    '.ts': 'coding',
-    '.tsx': 'coding',
-    '.py': 'coding',
-    '.java': 'coding',
-    '.cpp': 'coding',
-    '.c': 'coding',
-    '.html': 'coding',
-    '.css': 'coding',
-    '.json': 'coding',
-    '.xml': 'coding',
-    '.yaml': 'coding',
-    '.yml': 'coding'
-  };
-  
-  const fileType = fileTypes[ext] || 'main';
-  let model = config.models.main.id;
-  
-  switch(fileType) {
-    case 'vision':
-      model = config.models.vision.id;
+
+  const ext = require('path').extname(filePath).toLowerCase();
+  const fileTypes = config.file_type_mapping || {};
+
+  let fileType = 'main';
+  for (const [type, extensions] of Object.entries(fileTypes)) {
+    if (extensions.includes(ext)) {
+      fileType = type;
       break;
-    case 'coding':
-      model = config.models.coding.id;
-      break;
-    case 'complex':
-      model = config.models.complex.id;
-      break;
-    default:
-      model = config.models.main.id;
+    }
   }
-  
+
+  const modelMap = {
+    vision: config.models.vision?.id,
+    coding: config.models.coding?.id,
+    complex: config.models.complex?.id,
+    main: config.models.main?.id
+  };
+
   return {
     hasFile: true,
-    fileType: fileType,
+    fileType,
     fileExtension: ext,
-    model: model
+    model: modelMap[fileType] || config.models.main?.id
   };
 }
 
-// 主函数
 if (require.main === module) {
   const filePath = process.argv[2];
   const result = analyzeFileType(filePath);

@@ -3,7 +3,7 @@
 # 增强版智能切换脚本 - 支持文件类型检测
 # 用法: ./smart-switch-enhanced.sh "消息内容" "/path/to/file"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
 MESSAGE="${1:-}"
 FILE_PATH="${2:-}"
@@ -54,14 +54,13 @@ elif [ -n "$MESSAGE_MODEL" ]; then
     echo "🎯 复杂度评分: $MESSAGE_SCORE"
     echo "🤖 推荐模型: $MESSAGE_MODEL"
 else
-    FINAL_MODEL="zai/glm-5"
-    echo "🤖 默认模型: zai/glm-5"
+    FINAL_MODEL=$(cfg '.models.main.id' 'zai/glm-5')
+    echo "🤖 默认模型: $FINAL_MODEL"
 fi
 
 echo ""
 echo "✅ 最终选择模型: $FINAL_MODEL"
 
-# 询问是否切换
 read -p "是否切换到推荐模型？(y/n): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
