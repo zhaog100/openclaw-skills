@@ -321,3 +321,24 @@ STARTUP_THRESHOLD=30   # 启动后阈值（30%警告）
 - v2.2：真实API监控（解决超限问题）⭐⭐⭐⭐⭐
 - v2.2.1：Cron环境修复（生产就绪）⭐⭐⭐⭐⭐
 - v2.2.3：智能重试+错误追踪（解决"Request was aborted"）⭐⭐⭐⭐⭐
+
+---
+
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- ClawHub: https://clawhub.com
+- 创建者：小米辣 (miliger)
+
+**商业使用授权**：
+- 小微企业（<10 人）：¥999/年
+- 中型企业（10-50 人）：¥4,999/年
+- 大型企业（>50 人）：¥19,999/年
+- 企业定制版：¥99,999 一次性（源码买断）
