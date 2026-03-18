@@ -5,7 +5,7 @@ echo "🌾 薅羊毛综合技能 - 价格监控系统"
 echo "=================================="
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG_FILE="${SCRIPT_DIR}/../assets/config_template.json"
+CONFIG_FILE="${SCRIPT_DIR}/../config.json"
 
 cd "$SCRIPT_DIR"
 
