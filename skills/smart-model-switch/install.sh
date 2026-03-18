@@ -51,7 +51,7 @@ if [ ! -f "$SKILL_DIR/data/context-state.json" ]; then
 {
   "consecutive_hits": 0,
   "last_check": null,
-  "current_model": "zai/glm-5-turbo",
+  "current_model": "zai/glm-5",
   "last_switch": null,
   "cooldown_until": null
 }

@@ -87,7 +87,7 @@
 ```json
 {
   "consecutive_hits": 0,      // 连续命中次数
-  "current_model": "zai/glm-5-turbo",
+  "current_model": "zai/glm-5",
   "last_switch": null,        // 上次切换时间
   "cooldown_until": null      // 冷却期结束时间
 }
@@ -174,7 +174,7 @@ node scripts/analyze-complexity.js "你的消息"
       "keywords": ["分析"]
     }
   },
-  "selectedModel": "zai/glm-5-turbo"
+  "selectedModel": "zai/glm-5"
 }
 ```
 
@@ -186,16 +186,16 @@ scripts/smart-switch.sh "分析一下旅行客平台的测试策略"
 
 # 输出
 📊 复杂度评分：4.0
-🎯 推荐模型：zai/glm-5-turbo
+🎯 推荐模型：zai/glm-5
 
 {
   "message": "分析一下旅行客平台的测试策略",
   "analysis": {...},
-  "selectedModel": "zai/glm-5-turbo"
+  "selectedModel": "zai/glm-5"
 }
 
 是否切换到推荐模型？(y/n): y
-✅ 已设置模型环境变量：zai/glm-5-turbo
+✅ 已设置模型环境变量：zai/glm-5
 ✅ 模型切换请求已提交
 ℹ️  新模型将在下次对话时生效
 ```
@@ -226,7 +226,7 @@ cat data/context-state.json | jq .
 {
   "consecutive_hits": 0,
   "last_check": null,
-  "current_model": "zai/glm-5-turbo",
+  "current_model": "zai/glm-5",
   "last_switch": null,
   "cooldown_until": null
 }

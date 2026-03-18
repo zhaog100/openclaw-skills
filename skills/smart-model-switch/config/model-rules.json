@@ -5,7 +5,7 @@
       "description": "快速响应，适合简单问题"
     },
     "main": {
-      "id": "zai/glm-5-turbo",
+      "id": "zai/glm-5",
       "description": "主力模型，平衡性能和质量"
     },
     "coding": {
@@ -35,8 +35,7 @@
     },
     "thresholds": {
       "flash": 3,
-      "turbo": 5,
-      "main": 7,
+      "main": 6,
       "complex": 8
     }
   },

@@ -1,7 +1,7 @@
 ---
 name: auto-document-generator
 description: 自动从代码生成技术文档，支持 Python/JavaScript/Bash，AI 增强文档质量
-version: 1.0.0
+version: "1.0.0"
 author: 思捷娅科技 (SJYKJ)
 license: MIT
 ---

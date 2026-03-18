@@ -6,6 +6,7 @@ GitHub Bounty Hunter - 监控脚本
 
 import os
 import json
+import time
 import requests
 from datetime import datetime
 from pathlib import Path
@@ -40,81 +41,106 @@ LABELS = [
     'sponsor'
 ]
 
+# 多策略搜索配置（分批搜索，避免query过长）
+SEARCH_STRATEGIES = [
+    # 策略1: Algora相关（最有价值）
+    {'q': 'bounty Algora OR "algora.io" in:title,body is:issue is:open created:>=2026-01-01', 'sort': 'updated', 'per_page': 30},
+    # 策略2: 有金额标注的bounty
+    {'q': 'bounty "$" in:title,body is:issue is:open label:bounty updated:>=2026-03-01', 'sort': 'updated', 'per_page': 30},
+    # 策略3: bounty program（官方计划）
+    {'q': '"bounty program" OR "bounty hunt" OR "PR bounty" is:issue is:open updated:>=2026-03-10', 'sort': 'updated', 'per_page': 30},
+    # 策略4: paid/grant标签
+    {'q': 'label:bounty is:issue is:open updated:>=2026-03-10 comments:<10', 'sort': 'updated', 'per_page': 30},
+    # 策略5: 低竞争新任务
+    {'q': 'bounty reward paid sponsor is:issue is:open updated:>=2026-03-15 comments:<5', 'sort': 'updated', 'per_page': 30},
+]
+
+
 def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_first=True):
     """
-    搜索 bounty 任务（优化版）
+    搜索 bounty 任务（多策略分批搜索）
     
     优化点：
-    1. 低竞争任务优先（评论数<20）
-    2. 按价值排序（高奖励优先）
-    3. 智能过滤（排除已 Claim 任务）
-    4. 速率限制处理（自动重试）
+    1. 多策略分批搜索（避免query过长返回空结果）
+    2. 低竞争任务优先（评论数<10）
+    3. 按更新时间排序（找最新任务）
+    4. 自动去重
+    5. 速率限制处理（每批间隔5秒）
     """
-    if keywords is None:
-        keywords = KEYWORDS
-    if labels is None:
-        labels = LABELS
-    
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
         'Accept': 'application/vnd.github.v3+json'
     }
     
-    # 构建搜索查询（优化版）
-    query_parts = []
-    for keyword in keywords:
-        query_parts.append(f'{keyword} in:title,body')
+    all_items = []
+    seen_urls = set()
     
-    for label in labels:
-        query_parts.append(f'label:{label}')
-    
-    query_parts.append('is:open')
-    query_parts.append('is:issue')
-    query_parts.append('created:>=2026-01-01')
-    
-    # 排除已关闭/已完成的
-    query_parts.append('-label:done')
-    query_parts.append('-label:completed')
-    
-    query = '+'.join(query_parts)
-    
-    # 执行搜索（带重试机制）
     url = f'{GITHUB_API}/search/issues'
-    params = {
-        'q': query,
-        'sort': 'comments',  # 按评论数排序（低竞争优先）
-        'order': 'asc',      # 升序（评论少的在前）
-        'per_page': 100
+    
+    for i, strategy in enumerate(SEARCH_STRATEGIES):
+        params = {
+            'q': strategy['q'],
+            'sort': strategy.get('sort', 'updated'),
+            'order': 'desc',
+            'per_page': strategy.get('per_page', 30)
+        }
+        
+        print(f"  📡 策略{i+1}/{len(SEARCH_STRATEGIES)}: {strategy['q'][:50]}...")
+        
+        max_retries = 2
+        for attempt in range(max_retries):
+            try:
+                response = requests.get(url, headers=headers, params=params, timeout=30)
+                
+                if response.status_code == 403:
+                    # Rate limited
+                    reset = int(response.headers.get('X-RateLimit-Reset', 0))
+                    wait = max(60, reset - int(time.time()))
+                    print(f"  ⏳ 速率限制，等待 {wait} 秒...")
+                    time.sleep(wait)
+                    continue
+                
+                if response.status_code == 422:
+                    print(f"  ⚠️ 查询语法错误，跳过")
+                    break
+                    
+                response.raise_for_status()
+                data = response.json()
+                items = data.get('items', [])
+                
+                for item in items:
+                    if item['html_url'] not in seen_urls:
+                        seen_urls.add(item['html_url'])
+                        all_items.append(item)
+                
+                print(f"  ✅ 找到 {len(items)} 个结果")
+                break
+                
+            except Exception as e:
+                print(f"  ❌ 策略{i+1}失败: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(10)
+        
+        # 策略间间隔，避免速率限制
+        if i < len(SEARCH_STRATEGIES) - 1:
+            time.sleep(3)
+    
+    # 低竞争过滤
+    if low_competition_first:
+        low_comp = [i for i in all_items if i.get('comments', 0) < 20]
+    else:
+        low_comp = all_items
+    
+    # 按更新时间排序（最新在前）
+    low_comp.sort(key=lambda x: x.get('updated_at', ''), reverse=True)
+    
+    print(f"  📊 去重后共 {len(all_items)} 个任务，低竞争 {len(low_comp)} 个")
+    
+    return {
+        'total_count': len(low_comp),
+        'items': low_comp,
+        'incomplete_results': False
     }
-    
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            response = requests.get(url, headers=headers, params=params, timeout=30)
-            response.raise_for_status()
-            
-            data = response.json()
-            items = data.get('items', [])
-            
-            # 低竞争优先过滤
-            if low_competition_first:
-                low_comp_items = [i for i in items if i.get('comments', 0) < 20]
-                data['items'] = low_comp_items
-                data['total_count'] = len(low_comp_items)
-            
-            return data
-            
-        except requests.exceptions.RateLimitError:
-            wait_time = 60 * (attempt + 1)
-            print(f"⚠️  触发速率限制，等待 {wait_time} 秒后重试...")
-            time.sleep(wait_time)
-        except Exception as e:
-            print(f"❌ 搜索失败（尝试 {attempt+1}/{max_retries}）：{e}")
-            if attempt < max_retries - 1:
-                time.sleep(10)
-    
-    print(f"❌ 搜索失败，已重试 {max_retries} 次")
-    return None
 
 def save_tasks(tasks):
     """保存任务到本地"""
