@@ -1,3 +1,5 @@
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
 # bounty_preflight.sh - Issue预检脚本
 # 用法: bash bounty_preflight.sh <owner/repo> <issue_number>
