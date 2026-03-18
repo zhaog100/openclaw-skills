@@ -7,12 +7,15 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+load_config
+
 SKILL_PATH="$1"
 VERSION="$2"
 SLUG_FLAG="$3"
 CUSTOM_SLUG="$4"
 
-# 参数验证
 if [ -z "$SKILL_PATH" ] || [ -z "$VERSION" ]; then
     echo "用法: bash publish.sh <skill-path> <version> [--slug <custom-slug>]"
     echo ""
@@ -30,7 +33,6 @@ if [ ! -d "$SKILL_PATH" ]; then
     exit 1
 fi
 
-# 验证SKILL.md存在
 if [ ! -f "$SKILL_PATH/SKILL.md" ]; then
     echo "❌ 缺少 SKILL.md 文件"
     echo "   技能必须包含 SKILL.md 文件"
@@ -92,9 +94,8 @@ EOF
 fi
 
 # 检查publish.js是否需要修改
-PUBLISH_JS="/usr/lib/node_modules/clawhub/dist/cli/commands/publish.js"
-if [ -f "$PUBLISH_JS" ]; then
-    if ! grep -q "acceptLicenseTerms" "$PUBLISH_JS"; then
+if [ -f "$PUBLISH_JS_PATH" ]; then
+    if ! grep -q "acceptLicenseTerms" "$PUBLISH_JS_PATH"; then
         echo ""
         echo "⚠️  ClawHub CLI 需要 patch"
         echo "   publish.js 缺少 acceptLicenseTerms 字段"
@@ -102,14 +103,10 @@ if [ -f "$PUBLISH_JS" ]; then
         read -p "是否自动修复? (Y/n): " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-            # 备份原文件
-            sudo cp "$PUBLISH_JS" "$PUBLISH_JS.bak"
-            
-            # 添加 acceptLicenseTerms
-            sudo sed -i "s/form\.set('payload', JSON\.stringify({/form.set('payload', JSON.stringify({\n        acceptLicenseTerms: true,/" "$PUBLISH_JS"
-            
+            sudo cp "$PUBLISH_JS_PATH" "$PUBLISH_JS_PATH.bak"
+            sudo sed -i "s/form\.set('payload', JSON\.stringify({/form.set('payload', JSON.stringify({\n        acceptLicenseTerms: true,/" "$PUBLISH_JS_PATH"
             echo "✅ publish.js 已修复"
-            echo "   备份文件: $PUBLISH_JS.bak"
+            echo "   备份文件: $PUBLISH_JS_PATH.bak"
         else
             echo "❌ 取消发布"
             exit 1
@@ -120,7 +117,6 @@ fi
 echo ""
 echo "【发布前检查】"
 
-# 统计文件
 TOTAL_FILES=$(find "$SKILL_PATH" -type f ! -path "*/venv/*" ! -path "*/node_modules/*" ! -path "*/.git/*" | wc -l)
 SKILL_SIZE=$(du -sh "$SKILL_PATH" | cut -f1)
 
@@ -128,7 +124,6 @@ echo "  - 文件数: $TOTAL_FILES"
 echo "  - 总大小: $SKILL_SIZE"
 echo ""
 
-# 最后确认
 read -p "确认发布? (y/N): " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -139,7 +134,6 @@ fi
 echo ""
 echo "【发布中...】"
 
-# 执行发布
 cd "$SKILL_PATH"
 PUBLISH_OUTPUT=$(clawhub publish "$SKILL_PATH" --slug "$SLUG" --version "$VERSION" 2>&1)
 PUBLISH_EXIT_CODE=$?
@@ -150,10 +144,9 @@ if [ $PUBLISH_EXIT_CODE -eq 0 ]; then
     echo "✅ 发布成功!"
     echo "=========================================="
     echo ""
-    
-    # 提取Package ID
+
     PACKAGE_ID=$(echo "$PUBLISH_OUTPUT" | grep -oP 'packageId["\s:]+\K\w+' || echo "未知")
-    
+
     echo "📦 发布信息:"
     echo "  - Slug: $SLUG"
     echo "  - 版本: $VERSION"

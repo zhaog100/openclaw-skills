@@ -5,9 +5,12 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+load_config
+
 SKILL_NAME="$1"
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-TEMP_BASE="/tmp/clawhub-update-$(date +%s)"
+TEMP_BASE="$CLAWHUB_TEMP_BASE/update-$(date +%s)"
 
 if [ -z "$SKILL_NAME" ]; then
     echo "用法: bash update.sh <skill-name>"
@@ -101,7 +104,6 @@ echo ""
 echo "【步骤4/4】对比差异..."
 echo "=========================================="
 
-# 简单对比
 LOCAL_FILES=$(find "$LOCAL_SKILL_DIR" -type f ! -path "*/\.*" ! -path "*/venv/*" ! -path "*/node_modules/*" | wc -l)
 REMOTE_FILES=$(find "./$SKILL_NAME" -type f ! -path "*/\.*" ! -path "*/venv/*" ! -path "*/node_modules/*" | wc -l)
 
@@ -118,7 +120,6 @@ diff -rq "$LOCAL_SKILL_DIR" "./$SKILL_NAME" 2>/dev/null | \
 echo "=========================================="
 echo ""
 
-# 获取版本信息
 REMOTE_VERSION=$(grep -oP 'version["\s:]+\K[\d.]+' "./$SKILL_NAME/package.json" 2>/dev/null || \
                  grep -oP 'version:\s*\K[\d.]+' "./$SKILL_NAME/package.json" 2>/dev/null || \
                  echo "未知")
@@ -132,7 +133,6 @@ echo "  - 本地: $LOCAL_VERSION"
 echo "  - 远程: $REMOTE_VERSION"
 echo ""
 
-# 提供操作建议
 echo "【操作建议】"
 
 if [ "$LOCAL_FILES" = "$REMOTE_FILES" ] && [ "$(diff -rq "$LOCAL_SKILL_DIR" "./$SKILL_NAME" 2>/dev/null | grep -v "venv\|node_modules\|\.git\|__pycache__" | wc -l)" -eq 0 ]; then
@@ -153,17 +153,14 @@ else
     echo ""
 fi
 
-# 询问是否合并
 read -p "是否自动合并远程版本到本地? (y/N): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    # 备份本地版本
     BACKUP_DIR="$TEMP_BASE/backup"
     mkdir -p "$BACKUP_DIR"
     cp -r "$LOCAL_SKILL_DIR" "$BACKUP_DIR/"
     echo "✅ 本地版本已备份: $BACKUP_DIR/$SKILL_NAME"
-    
-    # 复制远程版本
+
     cp -rf "./$SKILL_NAME"/* "$LOCAL_SKILL_DIR/"
     echo "✅ 远程版本已合并到本地"
     echo ""

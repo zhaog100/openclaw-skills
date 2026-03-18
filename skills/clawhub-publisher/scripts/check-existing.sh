@@ -8,8 +8,11 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+load_config
+
 SKILL_NAME="$1"
-CURRENT_USER="${CLAWHUB_USER:-${USER}}"  # 从环境变量获取，默认zhaog100
 
 if [ -z "$SKILL_NAME" ]; then
     echo "用法: bash check-existing.sh <skill-name>"
@@ -25,19 +28,17 @@ CLAWHUB_INFO=$(clawhub inspect "$SKILL_NAME" 2>&1)
 CLAWHUB_EXIT_CODE=$?
 
 if [ $CLAWHUB_EXIT_CODE -eq 0 ]; then
-    # 存在，解析信息
     VERSION=$(echo "$CLAWHUB_INFO" | grep -oP 'version:\s*\K[\d.]+' || echo "未知")
     OWNER=$(echo "$CLAWHUB_INFO" | grep -oP 'owner:\s*\K\w+' || echo "未知")
     PACKAGE_ID=$(echo "$CLAWHUB_INFO" | grep -oP 'packageId:\s*\K\w+' || echo "未知")
-    
+
     echo "  ✅ 已存在"
     echo "  - 版本: $VERSION"
     echo "  - 所有者: $OWNER"
     echo "  - Package ID: $PACKAGE_ID"
     echo ""
-    
-    # 判断所有者
-    if [ "$OWNER" = "$CURRENT_USER" ]; then
+
+    if [ "$OWNER" = "$CLAWHUB_USER" ]; then
         echo "  📌 所有者是当前用户，可以更新"
         exit 1
     else
@@ -49,13 +50,13 @@ else
     echo ""
 fi
 
-# 检查GitHub（可选，需要配置GitHub CLI）
+# 检查GitHub
 echo "【GitHub】"
 if command -v gh &> /dev/null; then
-    GITHUB_CHECK=$(gh repo view "openclaw/skills/$SKILL_NAME" 2>&1)
+    GITHUB_CHECK=$(gh repo view "$GITHUB_ORG/skills/$SKILL_NAME" 2>&1)
     if [ $? -eq 0 ]; then
         echo "  ✅ 已存在"
-        echo "  - 仓库: openclaw/skills/$SKILL_NAME"
+        echo "  - 仓库: $GITHUB_ORG/skills/$SKILL_NAME"
     else
         echo "  ❌ 未找到"
     fi
