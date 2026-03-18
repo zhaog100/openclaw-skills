@@ -1,3 +1,5 @@
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
 # bounty_scan.sh - 多平台bounty扫描+预检+评分
 # 用法: bash bounty_scan.sh

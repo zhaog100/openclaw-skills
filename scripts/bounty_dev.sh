@@ -1,3 +1,5 @@
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
 # bounty_dev.sh - 一键bounty开发流水线
 # 用法: bash bounty_dev.sh <owner/repo> <issue_number> [bounty_amount]
