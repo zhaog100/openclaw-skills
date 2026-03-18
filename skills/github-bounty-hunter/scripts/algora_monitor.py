@@ -35,19 +35,29 @@ import requests
 from datetime import datetime
 from pathlib import Path
 
+# ── 加载配置 ──
+def _load_config():
+    config_path = Path(__file__).parent.parent / 'config.json'
+    if config_path.exists():
+        with open(config_path) as f:
+            return json.load(f)
+    return {}
+
+_CFG = _load_config()
+
 # 配置
-ALGORA_API_URL = "https://api.algora.io/v1/bounties"
+ALGORA_API_URL = _CFG.get('algora', {}).get('api_url', 'https://api.algora.io/v1/bounties')
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
 STATE_FILE = Path('/tmp/algora-bounty-state.json')
-LOG_DIR = Path('/home/zhaog/.openclaw/workspace/skills/github-bounty-hunter/logs')
+LOG_DIR = Path(__file__).parent.parent / 'logs'
 LOG_FILE = LOG_DIR / 'algora_monitor.log'
-PID_FILE = Path('/home/zhaog/.openclaw/workspace/skills/github-bounty-hunter/algora_monitor.pid')
+PID_FILE = Path(__file__).parent.parent / 'algora_monitor.pid'
 
 # 创建日志目录
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 # 钱包地址（可选配置，Claim 时填写也可以）
-WALLET_ADDRESS = os.getenv('ALGORA_WALLET_ADDRESS', '')
+WALLET_ADDRESS = os.getenv('ALGORA_WALLET_ADDRESS', _CFG.get('algora', {}).get('wallet_address', ''))
 
 # 如果没有配置，Claim 时会提示手动填写
 NEED_WALLET_CONFIG = not WALLET_ADDRESS or WALLET_ADDRESS == '0x...'

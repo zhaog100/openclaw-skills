@@ -2,6 +2,9 @@
 """
 GitHub Bounty Hunter - 监控脚本
 自动监控 GitHub 上的 grant/bounty 项目
+
+配置文件: config.json（同级目录）
+敏感信息通过环境变量或 secrets 文件加载
 """
 
 import os
@@ -11,13 +14,43 @@ import requests
 from datetime import datetime
 from pathlib import Path
 
-# GitHub API 配置
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
-GITHUB_API = 'https://api.github.com'
+# ── 加载配置 ──
+def load_config():
+    """加载配置文件，支持环境变量覆盖"""
+    config_path = Path(__file__).parent.parent / 'config.json'
+    config = {}
+    if config_path.exists():
+        with open(config_path) as f:
+            config = json.load(f)
+    
+    # GitHub Token: 环境变量 > gh CLI
+    config.setdefault('github', {})
+    config['github']['token'] = os.getenv('GITHUB_TOKEN', '')
+    
+    # Gmail 密码: 环境变量 > secrets文件
+    config.setdefault('gmail', {})
+    if not os.getenv('GMAIL_PASS'):
+        secrets_file = Path(os.path.expanduser(config['gmail'].get('secrets_file', '~/.openclaw/secrets/gmail.env')))
+        if secrets_file.exists():
+            with open(secrets_file) as f:
+                for line in f:
+                    line = line.strip()
+                    if 'GMAIL_PASS' in line and '=' in line and not line.startswith('#'):
+                        config['gmail']['password'] = line.split('=', 1)[1].strip()
+                        break
+    
+    return config
 
-# 任务存储目录
-TASKS_DIR = Path.home() / '.openclaw' / 'workspace' / 'data' / 'bounty-tasks'
+CONFIG = load_config()
+
+# ── 从配置派生常量 ──
+GITHUB_TOKEN = CONFIG['github']['token']
+GITHUB_API = CONFIG['github'].get('api_url', 'https://api.github.com')
+TASKS_DIR = Path(os.path.expanduser(CONFIG.get('monitor', {}).get('tasks_dir', '~/.openclaw/workspace/data/bounty-tasks')))
 TASKS_DIR.mkdir(parents=True, exist_ok=True)
+MAX_COMMENTS = CONFIG.get('monitor', {}).get('max_comments_threshold', 20)
+SEARCH_PER_PAGE = CONFIG.get('monitor', {}).get('search_per_page', 30)
+STRATEGY_DELAY = CONFIG.get('monitor', {}).get('strategy_delay_seconds', 3)
 
 # 监控关键词
 KEYWORDS = [
@@ -41,19 +74,19 @@ LABELS = [
     'sponsor'
 ]
 
-# 多策略搜索配置（分批搜索，避免query过长）
-SEARCH_STRATEGIES = [
-    # 策略1: Algora相关（最有价值）
-    {'q': 'bounty Algora OR "algora.io" in:title,body is:issue is:open created:>=2026-01-01', 'sort': 'updated', 'per_page': 30},
-    # 策略2: 有金额标注的bounty
-    {'q': 'bounty "$" in:title,body is:issue is:open label:bounty updated:>=2026-03-01', 'sort': 'updated', 'per_page': 30},
-    # 策略3: bounty program（官方计划）
-    {'q': '"bounty program" OR "bounty hunt" OR "PR bounty" is:issue is:open updated:>=2026-03-10', 'sort': 'updated', 'per_page': 30},
-    # 策略4: paid/grant标签
-    {'q': 'label:bounty is:issue is:open updated:>=2026-03-10 comments:<10', 'sort': 'updated', 'per_page': 30},
-    # 策略5: 低竞争新任务
-    {'q': 'bounty reward paid sponsor is:issue is:open updated:>=2026-03-15 comments:<5', 'sort': 'updated', 'per_page': 30},
-]
+# 多策略搜索配置（从config.json加载）
+SEARCH_STRATEGIES = []
+for s in CONFIG.get('search', {}).get('strategies', []):
+    SEARCH_STRATEGIES.append({
+        'q': s['q'].format(min_date=CONFIG.get('search', {}).get('min_date', '2026-01-01')),
+        'sort': s.get('sort', 'updated'),
+        'per_page': s.get('per_page', SEARCH_PER_PAGE)
+    })
+# 兜底默认策略
+if not SEARCH_STRATEGIES:
+    SEARCH_STRATEGIES = [
+        {'q': 'bounty Algora OR "algora.io" in:title,body is:issue is:open created:>=2026-01-01', 'sort': 'updated', 'per_page': 30},
+    ]
 
 
 def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_first=True):
@@ -95,7 +128,7 @@ def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_fi
                 if response.status_code == 403:
                     # Rate limited
                     reset = int(response.headers.get('X-RateLimit-Reset', 0))
-                    wait = max(60, reset - int(time.time()))
+                    wait = max(CONFIG.get('monitor', {}).get('rate_limit_wait', 60), reset - int(time.time()))
                     print(f"  ⏳ 速率限制，等待 {wait} 秒...")
                     time.sleep(wait)
                     continue
@@ -123,11 +156,11 @@ def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_fi
         
         # 策略间间隔，避免速率限制
         if i < len(SEARCH_STRATEGIES) - 1:
-            time.sleep(3)
+            time.sleep(STRATEGY_DELAY)
     
-    # 低竞争过滤
+    # 低竞争优先过滤
     if low_competition_first:
-        low_comp = [i for i in all_items if i.get('comments', 0) < 20]
+        low_comp = [i for i in all_items if i.get('comments', 0) < MAX_COMMENTS]
     else:
         low_comp = all_items
     
@@ -319,6 +352,7 @@ def check_gmail_payments():
     print()
     print("📧 检查Gmail付款通知...")
     
+    gmail_config = CONFIG.get('gmail', {})
     script = os.path.expanduser('~/.openclaw/workspace/scripts/check_gmail_payments.sh')
     if not os.path.exists(script):
         print("  ⚠️ Gmail检查脚本不存在，跳过")
@@ -326,15 +360,10 @@ def check_gmail_payments():
     
     try:
         env = os.environ.copy()
-        # 加载Gmail密码
-        env_file = os.path.expanduser('~/.openclaw/secrets/gmail.env')
-        if os.path.exists(env_file):
-            with open(env_file) as f:
-                for line in f:
-                    line = line.strip()
-                    if '=' in line and not line.startswith('#'):
-                        key, val = line.split('=', 1)
-                        env[key] = val
+        # 从配置加载Gmail密码
+        if gmail_config.get('password'):
+            env['GMAIL_PASS'] = gmail_config['password']
+        env['GMAIL_USER'] = gmail_config.get('user', '')
         
         result = subprocess.run(
             ['bash', script],
@@ -344,9 +373,9 @@ def check_gmail_payments():
         
         output = result.stdout.strip()
         if output:
-            # 只显示关键信息（付款相关）
+            keywords = gmail_config.get('check_keywords', ['payment', 'bounty', 'paid'])
             for line in output.split('\n'):
-                if any(kw in line.lower() for kw in ['payment', 'paid', 'bounty', 'payout', '💰', '⚠️', '❌', '✅']):
+                if any(kw in line.lower() for kw in keywords):
                     print(f"  {line}")
         else:
             print("  ✅ 无新付款通知")

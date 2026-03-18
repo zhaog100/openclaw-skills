@@ -1,0 +1,48 @@
+{
+  "_comment": "GitHub Bounty Hunter 配置示例 - 复制为 config.json 并填入真实值",
+  
+  "github": {
+    "token_env": "GITHUB_TOKEN",
+    "token_fallback": "gh CLI",
+    "api_url": "https://api.github.com",
+    "username": "your_github_username"
+  },
+  
+  "gmail": {
+    "user": "your_email@gmail.com",
+    "password_env": "GMAIL_PASS",
+    "secrets_file": "~/.openclaw/secrets/gmail.env",
+    "check_keywords": ["payment", "paid", "bounty", "reward", "payout", "merged", "algora"],
+    "lookback_days": 1
+  },
+  
+  "algora": {
+    "api_url": "https://api.algora.io/v1/bounties",
+    "wallet_env": "ALGORA_WALLET_ADDRESS",
+    "wallet_address": "",
+    "settings_url": "https://algora.io/settings"
+  },
+  
+  "monitor": {
+    "tasks_dir": "~/.openclaw/workspace/data/bounty-tasks",
+    "log_file": "/tmp/bounty_monitor.log",
+    "max_comments_threshold": 20,
+    "search_per_page": 30,
+    "retry_max": 2,
+    "retry_wait_base": 10,
+    "rate_limit_wait": 60,
+    "strategy_delay_seconds": 3
+  },
+  
+  "search": {
+    "min_date": "2026-01-01",
+    "exclude_labels": ["done", "completed", "wontfix"],
+    "strategies": [
+      {"q": "bounty Algora OR \"algora.io\" in:title,body is:issue is:open created:>={min_date}", "sort": "updated", "per_page": 30},
+      {"q": "bounty \"$\" in:title,body is:issue is:open label:bounty updated:>=2026-03-01", "sort": "updated", "per_page": 30},
+      {"q": "\"bounty program\" OR \"bounty hunt\" OR \"PR bounty\" is:issue is:open updated:>=2026-03-10", "sort": "updated", "per_page": 30},
+      {"q": "label:bounty is:issue is:open updated:>=2026-03-10 comments:<10", "sort": "updated", "per_page": 30},
+      {"q": "bounty reward paid sponsor is:issue is:open updated:>=2026-03-15 comments:<5", "sort": "updated", "per_page": 30}
+    ]
+  }
+}
