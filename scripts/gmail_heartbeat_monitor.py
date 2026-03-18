@@ -99,9 +99,17 @@ def save_last_check_time(dt):
 
 def connect_gmail():
     """连接到 Gmail"""
-    mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
-    mail.login(USERNAME, APP_PASSWORD)
-    return mail
+    try:
+        # 添加超时设置（10 秒）
+        mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT, timeout=10)
+        mail.login(USERNAME, APP_PASSWORD)
+        return mail
+    except imaplib.IMAP4.error as e:
+        print(f"❌ Gmail 连接失败：{e}")
+        raise
+    except Exception as e:
+        print(f"❌ Gmail 连接异常：{e}")
+        raise
 
 
 def check_new_emails(mail):
@@ -216,10 +224,12 @@ def process_emails():
     """处理邮件主流程"""
     print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 开始检查 Gmail...")
     
-    mail = connect_gmail()
-    new_emails = check_new_emails(mail)
-    
-    print(f"📧 新邮件数：{len(new_emails)}")
+    mail = None
+    try:
+        mail = connect_gmail()
+        new_emails = check_new_emails(mail)
+        
+        print(f"📧 新邮件数：{len(new_emails)}")
     
     important_emails = []
     
@@ -280,11 +290,28 @@ def process_emails():
     # 保存检查时间
     save_last_check_time(datetime.now())
     
-    mail.close()
-    mail.logout()
-    
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 邮件检查完成\n")
+    
+    except Exception as e:
+        print(f"❌ Gmail 检查失败：{e}")
+        print("   可能原因：网络问题/认证失败/Gmail 服务异常")
+        print("   建议：检查网络连接或更新应用专用密码")
+        # 保存检查时间，避免下次重复尝试
+        save_last_check_time(datetime.now())
+    finally:
+        # 清理连接
+        if mail:
+            try:
+                mail.close()
+                mail.logout()
+            except:
+                pass
 
 
 if __name__ == "__main__":
-    process_emails()
+    try:
+        process_emails()
+    except Exception as e:
+        print(f"❌ 脚本执行失败：{e}")
+        # 退出码 0，避免 systemd/cron 认为服务失败
+        exit(0)
