@@ -1,9 +1,10 @@
 ---
 name: github-bounty-hunter
-description: GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！
-version: 1.4.0
-author: 米粒儿
+description: GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，支持 Algora 平台，使用 /attempt 命令自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！
+version: 2.0.0
+author: 米粒儿 + 小米辣
 created: 2026-03-10
+updated: 2026-03-18
 ---
 
 # GitHub Bounty Hunter - GitHub 赏金猎人
@@ -44,7 +45,7 @@ created: 2026-03-10
 # 启动监控（每 30 分钟自动扫描）
 github-bounty-hunter monitor
 
-# 启动 Algora 专项监控
+# 启动 Algora 专项监控（使用 /attempt 命令）
 github-bounty-hunter algora
 
 # 查看任务列表
@@ -61,6 +62,19 @@ github-bounty-hunter submit <task-id>
 
 # 查看 STATE.yaml（事件驱动追踪）
 github-bounty-hunter state
+```
+
+### 环境变量配置
+
+```bash
+# 必需：GitHub Token
+export GITHUB_TOKEN='your_token_here'
+
+# 可选：Algora API Key
+export ALGORA_API_KEY='your_api_key_here'
+
+# 可选：收款地址（默认已配置）
+export PAYMENT_ADDRESS='TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP'
 ```
 
 ### 环境变量配置
