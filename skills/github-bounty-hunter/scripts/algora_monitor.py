@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """
-Algora Bounty 监控脚本
-- 自动扫描 Algora 平台 bounty 任务
-- 低竞争任务优先
-- 自动 Claim 任务
-- 统一追踪
+Algora Bounty 监控脚本（v2.0 - 使用 /attempt 命令）
+
+根据小米粒实战经验更新：
+- Claim 不是在 Algora 平台点按钮
+- 而是在 GitHub issue 评论区发 `/attempt`
+- Algora bot 会自动扫描并关联到 Algora 账户
+- 提交 PR 后自动关联，无需手动提交审核
+
+功能：
+- 自动扫描 Algora 相关 bounty 任务
+- 低竞争任务优先（评论<10）
+- 自动发送 /attempt 评论
+- 统一追踪 Claim 状态
 
 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/zhaog100/openclaw-skills
@@ -112,26 +120,27 @@ class AlgoraMonitor:
             return []
     
     def claim_bounty(self, bounty):
-        """Claim bounty 任务"""
+        """
+        Claim bounty 任务（使用 Algora 官方 /attempt 命令）
+        
+        根据小米粒实战经验：
+        - Claim 不是在 Algora 平台点按钮
+        - 而是在 GitHub issue 评论区发 `/attempt`
+        - Algora bot 会自动扫描并关联到 Algora 账户
+        """
         issue_number = bounty.get('number')
         repo = bounty.get('repository_url', '').split('/')[-2:]
         repo_name = '/'.join(repo)
         
         self.log(f"=== Claim 任务 #{issue_number} ({repo_name}) ===")
-        
-        # 检查钱包地址配置
-        if NEED_WALLET_CONFIG:
-            self.log("⚠️  钱包地址未配置，请在 Algora 平台 Claim 时手动填写")
-            self.log("💡 提示：可以注册 MetaMask 获取 ETH 地址（0x 开头）")
+        self.log("💡 使用 Algora 官方 /attempt 命令")
         
         try:
-            # 提交评论 Claim
+            # 提交 /attempt 评论（Algora 官方方式）
             url = f"https://api.github.com/repos/{repo_name}/issues/{issue_number}/comments"
             
-            if NEED_WALLET_CONFIG:
-                comment_body = f"""## 🎯 Claiming this bounty!
-
-**Wallet Address:** Will be provided on Algora platform
+            # 使用 Algora 官方的 /attempt 命令
+            comment_body = """/attempt
 
 **Plan:**
 1. Review the requirements
@@ -139,18 +148,9 @@ class AlgoraMonitor:
 3. Submit PR when complete
 
 Ready to work! 🚀
-"""
-            else:
-                comment_body = f"""## 🎯 Claiming this bounty!
 
-**Wallet Address:** {WALLET_ADDRESS}
-
-**Plan:**
-1. Review the requirements
-2. Start working on the task
-3. Submit PR when complete
-
-Ready to work! 🚀
+---
+*Claimed via Algora Monitor - GitHub Bounty Hunter*
 """
             
             data = {'body': comment_body}
@@ -161,8 +161,9 @@ Ready to work! 🚀
             comment_id = result.get('id')
             comment_url = result.get('html_url')
             
-            self.log(f"✅ Claim 成功！评论 ID: {comment_id}")
+            self.log(f"✅ /attempt 成功！评论 ID: {comment_id}")
             self.log(f"链接：{comment_url}")
+            self.log("💡 Algora bot 会自动检测并关联到你的 Algora 账户")
             
             # 更新状态
             self.state['claimed'].append({
@@ -170,7 +171,8 @@ Ready to work! 🚀
                 'repo': repo_name,
                 'claimed_at': datetime.now().isoformat(),
                 'comment_id': comment_id,
-                'comment_url': comment_url
+                'comment_url': comment_url,
+                'method': '/attempt'
             })
             self.save_state()
             
