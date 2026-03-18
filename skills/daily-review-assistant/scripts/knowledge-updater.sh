@@ -2,7 +2,7 @@
 # =============================================================================
 # 知识库更新器 (Knowledge Updater)
 # =============================================================================
-# 版本：v1.0
+# 版本：v1.1
 # 创建时间：2026-03-16
 # 创建者：思捷娅科技 (SJYKJ)
 # 用途：自动更新知识库索引和 Git 提交
@@ -13,42 +13,18 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-$(pwd)}"
-KNOWLEDGE_DIR="$WORKSPACE/knowledge"
-MEMORY_DIR="$WORKSPACE/memory"
-LOG_FILE="$SCRIPT_DIR/logs/knowledge-updater.log"
 
-# 颜色定义
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-
-# 日志函数
-log_info() {
-    echo -e "${GREEN}[INFO]${NC} $1" | tee -a "$LOG_FILE"
-}
-
-log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1" | tee -a "$LOG_FILE" >&2
-}
-
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $1" | tee -a "$LOG_FILE" >&2
-}
-
-# 确保目录存在
-mkdir -p "$SCRIPT_DIR/logs"
+# 加载配置
+source "$SCRIPT_DIR/lib/config.sh"
+_CURRENT_LOG_FILE="$CFG_LOGS_DIR/knowledge-updater.log"
 
 # 更新知识索引
 update_knowledge_index() {
     local date="$1"
-    local index_file="$KNOWLEDGE_DIR/KNOWLEDGE-INDEX.md"
+    local index_file="$CFG_KNOWLEDGE_INDEX"
     
     log_info "📚 更新知识索引..."
     
-    # 如果索引不存在，创建模板
     if [ ! -f "$index_file" ]; then
         cat > "$index_file" << EOF
 # 知识库索引 (KNOWLEDGE-INDEX.md)
@@ -84,11 +60,9 @@ EOF
         log_info "  ✅ 创建知识索引"
     fi
     
-    # 统计文件数量
-    local total_files=$(find "$KNOWLEDGE_DIR" -name "*.md" 2>/dev/null | wc -l)
-    local today_files=$(find "$KNOWLEDGE_DIR" -name "*.md" -mtime -1 2>/dev/null | wc -l)
+    local total_files=$(find "$CFG_KNOWLEDGE_DIR" -name "*.md" 2>/dev/null | wc -l)
+    local today_files=$(find "$CFG_KNOWLEDGE_DIR" -name "*.md" -mtime -1 2>/dev/null | wc -l)
     
-    # 更新统计信息
     if [ -f "$index_file" ]; then
         sed -i "s/\*\*总文件数\*\*: [0-9]*/\*\*总文件数\*\*: $total_files/" "$index_file"
         sed -i "s/\*\*今日更新\*\*: [0-9]*/\*\*今日更新\*\*: $today_files/" "$index_file"
@@ -101,43 +75,43 @@ EOF
 # Git 自动提交
 git_auto_commit() {
     local date="$1"
-    local commit_msg="chore(daily): $date 定时回顾更新"
+    local commit_msg="$CFG_GIT_COMMIT_PREFIX: $date 定时回顾更新"
     
     log_info "💻 Git 自动提交..."
     
-    cd "$WORKSPACE"
+    cd "$CFG_WORKSPACE"
     
-    # 检查是否有变更
     local changes=$(git status --porcelain 2>/dev/null | wc -l)
     
     if [ $changes -gt 0 ]; then
-        # Git add
-        git add -A 2>&1 | grep -v "GraphQL\|deprecated" || true
-        log_info "  ✅ Git add 完成"
-        
-        # Git commit
-        if git commit -m "$commit_msg" 2>&1 | grep -v "GraphQL\|deprecated" | tee -a "$LOG_FILE"; then
-            log_info "  ✅ Git commit 完成"
-        else
-            log_warn "  ⚠️ 没有变更需要提交"
+        if [ "$CFG_GIT_AUTOCOMMIT" = "true" ]; then
+            git add -A 2>&1 | grep -v "GraphQL\|deprecated" || true
+            log_info "  ✅ Git add 完成"
+            
+            if git commit -m "$commit_msg" 2>&1 | grep -v "GraphQL\|deprecated" | tee -a "$_CURRENT_LOG_FILE"; then
+                log_info "  ✅ Git commit 完成"
+            else
+                log_warn "  ⚠️ 没有变更需要提交"
+            fi
         fi
         
-        # Git push
-        if git push origin master 2>&1 | grep -v "GraphQL\|deprecated" | tee -a "$LOG_FILE"; then
-            log_info "  ✅ Git push 完成"
-        else
-            log_warn "  ⚠️ Git push 失败，本地已保存"
+        if [ "$CFG_GIT_AUTOPUSH" = "true" ]; then
+            if git push "origin" "$CFG_GIT_BRANCH" 2>&1 | grep -v "GraphQL\|deprecated" | tee -a "$_CURRENT_LOG_FILE"; then
+                log_info "  ✅ Git push 完成"
+            else
+                log_warn "  ⚠️ Git push 失败，本地已保存"
+            fi
         fi
     else
         log_info "  ✅ 没有变更，跳过提交"
     fi
 }
 
-# 生成更新报告
+# 生成报告
 generate_update_report() {
     local date="$1"
-    local total_files=$(find "$KNOWLEDGE_DIR" -name "*.md" 2>/dev/null | wc -l)
-    local today_files=$(find "$KNOWLEDGE_DIR" -name "*.md" -mtime -1 2>/dev/null | wc -l)
+    local total_files=$(find "$CFG_KNOWLEDGE_DIR" -name "*.md" 2>/dev/null | wc -l)
+    local today_files=$(find "$CFG_KNOWLEDGE_DIR" -name "*.md" -mtime -1 2>/dev/null | wc -l)
     
     log_info "╔════════════════════════════════════════════════════════╗"
     log_info "║  知识库更新报告                                        ║"
@@ -153,20 +127,14 @@ main() {
     local date="${1:-$(date +%Y-%m-%d)}"
     
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║  知识库更新器 v1.0 - 思捷娅科技 (SJYKJ)                 ║"
+    log_info "║  知识库更新器 v1.1 - 思捷娅科技 (SJYKJ)                 ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     
-    # 更新知识索引
     update_knowledge_index "$date"
-    
-    # Git 自动提交
     git_auto_commit "$date"
-    
-    # 生成报告
     generate_update_report "$date"
     
     log_info "✅ 知识库更新完成！"
 }
 
-# 执行
 main "$@"
