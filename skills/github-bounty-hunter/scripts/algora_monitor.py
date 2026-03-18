@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 """
-Algora Bounty 监控脚本（v2.0 - 使用 /attempt 命令）
+Algora Bounty 监控脚本（v2.1 - 增强健壮性）
 
 根据小米粒实战经验更新：
 - Claim 不是在 Algora 平台点按钮
 - 而是在 GitHub issue 评论区发 `/attempt`
 - Algora bot 会自动扫描并关联到 Algora 账户
 - 提交 PR 后自动关联，无需手动提交审核
+
+增强功能：
+- ✅ PID 文件管理（防止重复启动）
+- ✅ 信号处理（优雅退出）
+- ✅ 异常处理（带重试机制）
+- ✅ 速率限制处理（自动等待）
+- ✅ 状态持久化（STATE.json）
 
 功能：
 - 自动扫描 Algora 相关 bounty 任务
@@ -20,8 +27,10 @@ ClawHub: https://clawhub.com
 """
 
 import os
+import sys
 import json
 import time
+import signal
 import requests
 from datetime import datetime
 from pathlib import Path
@@ -32,6 +41,7 @@ GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
 STATE_FILE = Path('/tmp/algora-bounty-state.json')
 LOG_DIR = Path('/home/zhaog/.openclaw/workspace/skills/github-bounty-hunter/logs')
 LOG_FILE = LOG_DIR / 'algora_monitor.log'
+PID_FILE = Path('/home/zhaog/.openclaw/workspace/skills/github-bounty-hunter/algora_monitor.pid')
 
 # 创建日志目录
 LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -41,6 +51,57 @@ WALLET_ADDRESS = os.getenv('ALGORA_WALLET_ADDRESS', '')
 
 # 如果没有配置，Claim 时会提示手动填写
 NEED_WALLET_CONFIG = not WALLET_ADDRESS or WALLET_ADDRESS == '0x...'
+
+# 全局变量
+monitor = None
+
+def log_message(message):
+    """日志记录（可在信号处理中使用）"""
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    log_entry = f"[{timestamp}] {message}\n"
+    print(log_entry.strip())
+    try:
+        with open(LOG_FILE, 'a') as f:
+            f.write(log_entry)
+    except:
+        pass
+
+# 优雅退出处理
+def signal_handler(signum, frame):
+    """处理 SIGINT/SIGTERM 信号，优雅退出"""
+    log_message("收到退出信号，正在保存状态并退出...")
+    if monitor:
+        monitor.save_state()
+    # 清理 PID 文件
+    if PID_FILE.exists():
+        PID_FILE.unlink()
+    sys.exit(0)
+
+# 注册信号处理器
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
+
+# 检查是否已在运行
+def check_running():
+    """检查是否已在运行，防止重复启动"""
+    if PID_FILE.exists():
+        try:
+            with open(PID_FILE, 'r') as f:
+                old_pid = int(f.read().strip())
+            # 检查进程是否还在运行
+            os.kill(old_pid, 0)
+            log_message(f"❌ 脚本已在运行（PID: {old_pid}），请勿重复启动")
+            sys.exit(1)
+        except (ProcessLookupError, ValueError):
+            # 进程已不存在，删除旧的 PID 文件
+            PID_FILE.unlink()
+            log_message("检测到上次异常退出，清理旧 PID 文件")
+    
+    # 写入当前 PID
+    with open(PID_FILE, 'w') as f:
+        f.write(str(os.getpid()))
+    log_message(f"✅ 脚本启动（PID: {os.getpid()}）")
+
 
 class AlgoraMonitor:
     def __init__(self):
@@ -64,11 +125,7 @@ class AlgoraMonitor:
     
     def log(self, message):
         """日志记录"""
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        log_entry = f"[{timestamp}] {message}\n"
-        print(log_entry.strip())
-        with open(LOG_FILE, 'a') as f:
-            f.write(log_entry)
+        log_message(message)
     
     def scan_bounties(self, limit=20):
         """
@@ -115,6 +172,12 @@ class AlgoraMonitor:
             
             return low_competition
             
+        except requests.exceptions.RateLimitError:
+            self.log("❌ 触发 GitHub API 速率限制，请等待 60 秒后重试")
+            return []
+        except requests.exceptions.Timeout:
+            self.log("❌ 请求超时，请检查网络连接")
+            return []
         except Exception as e:
             self.log(f"❌ 扫描失败：{e}")
             return []
@@ -178,50 +241,89 @@ Ready to work! 🚀
             
             return True
             
+        except requests.exceptions.RateLimitError:
+            self.log("❌ 触发 GitHub API 速率限制")
+            return False
+        except requests.exceptions.Timeout:
+            self.log("❌ 请求超时")
+            return False
         except Exception as e:
             self.log(f"❌ Claim 失败：{e}")
             return False
     
     def run(self, max_claims=5):
-        """运行监控"""
-        self.log("🚀 Algora Monitor 启动")
-        
-        # 扫描任务
-        bounties = self.scan_bounties(limit=20)
-        
-        if not bounties:
-            self.log("⚠️ 没有找到合适的任务")
-            return
-        
-        # Claim 低竞争任务
-        claimed_count = 0
-        for bounty in bounties:
-            if claimed_count >= max_claims:
-                self.log(f"已达到最大 Claim 数量 ({max_claims})")
-                break
+        """运行监控（增强版 - 带异常处理）"""
+        try:
+            self.log("🚀 Algora Monitor 启动")
             
-            # 检查是否已 Claim
-            issue_number = bounty.get('number')
-            already_claimed = any(
-                t['issue_number'] == issue_number 
-                for t in self.state.get('claimed', [])
-            )
+            # 扫描任务
+            bounties = self.scan_bounties(limit=20)
             
-            if already_claimed:
-                self.log(f"⏭️  任务 #{issue_number} 已 Claim，跳过")
-                continue
+            if not bounties:
+                self.log("⚠️  没有找到合适的任务")
+                return
             
-            # Claim 任务
-            success = self.claim_bounty(bounty)
-            if success:
-                claimed_count += 1
-                # 避免速率限制
-                time.sleep(5)
-        
-        self.log(f"📊 本次运行 Claim 了 {claimed_count} 个任务")
-        self.log("✅ Algora Monitor 完成")
+            # Claim 低竞争任务
+            claimed_count = 0
+            for bounty in bounties:
+                if claimed_count >= max_claims:
+                    self.log(f"已达到最大 Claim 数量 ({max_claims})")
+                    break
+                
+                # 检查是否已 Claim
+                issue_number = bounty.get('number')
+                already_claimed = any(
+                    t['issue_number'] == issue_number 
+                    for t in self.state.get('claimed', [])
+                )
+                
+                if already_claimed:
+                    self.log(f"⏭️  任务 #{issue_number} 已 Claim，跳过")
+                    continue
+                
+                # Claim 任务（带重试机制）
+                success = False
+                max_retries = 3
+                for attempt in range(max_retries):
+                    try:
+                        success = self.claim_bounty(bounty)
+                        if success:
+                            break
+                    except requests.exceptions.RateLimitError:
+                        wait_time = 60 * (attempt + 1)
+                        self.log(f"⚠️  触发速率限制，等待 {wait_time} 秒后重试...")
+                        time.sleep(wait_time)
+                    except Exception as e:
+                        self.log(f"⚠️  Claim 失败（尝试 {attempt+1}/{max_retries}）：{e}")
+                        if attempt < max_retries - 1:
+                            time.sleep(10)
+                
+                if success:
+                    claimed_count += 1
+                    # 避免速率限制
+                    time.sleep(5)
+            
+            self.log(f"📊 本次运行 Claim 了 {claimed_count} 个任务")
+            self.log("✅ Algora Monitor 完成")
+            
+        except KeyboardInterrupt:
+            self.log("⚠️  用户中断，正在退出...")
+        except Exception as e:
+            self.log(f"❌ 运行异常：{e}")
+            # 保存当前状态
+            self.save_state()
+        finally:
+            # 清理 PID 文件
+            if PID_FILE.exists():
+                PID_FILE.unlink()
 
 
 if __name__ == '__main__':
+    # 检查是否已在运行
+    check_running()
+    
+    # 创建监控实例
     monitor = AlgoraMonitor()
+    
+    # 运行监控
     monitor.run(max_claims=5)
