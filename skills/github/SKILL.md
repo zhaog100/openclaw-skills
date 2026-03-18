@@ -45,3 +45,24 @@ Most commands support `--json` for structured output.  You can use `--jq` to fil
 ```bash
 gh issue list --repo owner/repo --json number,title --jq '.[] | "\(.number): \(.title)"'
 ```
+
+---
+
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- ClawHub: https://clawhub.com
+- 创建者：小米辣 (miliger)
+
+**商业使用授权**：
+- 小微企业（<10 人）：¥999/年
+- 中型企业（10-50 人）：¥4,999/年
+- 大型企业（>50 人）：¥19,999/年
+- 企业定制版：¥99,999 一次性（源码买断）

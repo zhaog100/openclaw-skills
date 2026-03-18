@@ -259,3 +259,24 @@ python3 $(pwd)/skills/session-memory-enhanced/python/searcher.py \
 ## ⚙️ 环境变量（可选）
 
 - `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
+
+---
+
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**：
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- ClawHub: https://clawhub.com
+- 创建者：小米辣 (miliger)
+
+**商业使用授权**：
+- 小微企业（<10 人）：¥999/年
+- 中型企业（10-50 人）：¥4,999/年
+- 大型企业（>50 人）：¥19,999/年
+- 企业定制版：¥99,999 一次性（源码买断）
