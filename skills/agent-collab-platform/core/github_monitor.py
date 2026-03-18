@@ -18,11 +18,13 @@ import subprocess
 import time
 import threading
 from datetime import datetime
+from config_loader import get_repo
 
 class GitHubMonitor:
     """GitHub监听器"""
     
-    def __init__(self, repo='zhaog100/openclaw-skills'):
+    def __init__(self, repo=None):
+        self.repo = repo or get_repo()
         """初始化监听器"""
         self.repo = repo
         self.check_interval = 30  # 30秒检查一次

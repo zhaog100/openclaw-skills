@@ -17,6 +17,7 @@ ClawHub: https://clawhub.com
 import json
 import subprocess
 from datetime import datetime
+from config_loader import get_repo
 
 class Publisher:
     """集成发布器 - GitHub Issue模式"""
@@ -24,7 +25,7 @@ class Publisher:
     def __init__(self):
         """初始化集成发布器"""
         self.releases = {}
-        self.github_repo = 'zhaog100/openclaw-skills'
+        self.github_repo = get_repo()
     
     def prepare_release(self, project_id, project_data):
         """准备发布"""

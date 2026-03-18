@@ -9,11 +9,12 @@ import json
 import sqlite3
 from datetime import datetime, timedelta
 import random
+from config_loader import DATA_DIR
 
 
 class PriceMonitorDemo:
     def __init__(self):
-        self.db_path = "price_history.db"
+        self.db_path = str(DATA_DIR / "price_history.db")
         self.init_database()
 
     def init_database(self):

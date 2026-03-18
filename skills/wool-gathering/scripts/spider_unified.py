@@ -9,11 +9,13 @@ import sqlite3
 from datetime import datetime
 
 
+from config_loader import load_config, DATA_DIR
+
 class UnifiedPriceMonitor:
     """统一价格监控（支持京东和淘宝）"""
 
-    def __init__(self, db_path="price_history.db"):
-        self.db_path = db_path
+    def __init__(self, db_path=None):
+        self.db_path = db_path or str(DATA_DIR / "price_history.db")
         self.init_database()
 
     def init_database(self):

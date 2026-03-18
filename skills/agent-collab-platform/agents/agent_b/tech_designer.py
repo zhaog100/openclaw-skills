@@ -18,6 +18,7 @@ ClawHub: https://clawhub.com
 import json
 import subprocess
 from datetime import datetime
+from config_loader import get_repo
 
 class TechDesigner:
     """技术设计师 - GitHub Issue模式"""
@@ -25,7 +26,7 @@ class TechDesigner:
     def __init__(self):
         """初始化技术设计师"""
         self.designs = {}
-        self.github_repo = 'zhaog100/openclaw-skills'
+        self.github_repo = get_repo()
     
     def extract_from_prd(self, prd_content):
         """从PRD提取需求"""

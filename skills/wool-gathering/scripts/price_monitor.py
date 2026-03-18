@@ -5,32 +5,17 @@
 支持淘宝、京东商品价格监控
 """
 
-import json
 import time
 import sqlite3
 import requests
 from datetime import datetime
-from pathlib import Path
+from config_loader import load_config
 
 class PriceMonitor:
-    def __init__(self, config_path="../assets/config.json"):
-        self.config = self.load_config(config_path)
-        self.db_path = self.config.get("db_path", "price_history.db")
+    def __init__(self, config_path=None):
+        self.config = load_config(config_path)
+        self.db_path = self.config.get("db_path", "data/price_history.db")
         self.init_database()
-
-    def load_config(self, config_path):
-        """加载配置文件"""
-        try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            print(f"⚠️ 配置文件不存在: {config_path}")
-            return {
-                "db_path": "price_history.db",
-                "items": [],
-                "threshold": 0.8,  # 降价阈值（80%）
-                "push_config": {}
-            }
 
     def init_database(self):
         """初始化数据库"""
@@ -209,7 +194,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="价格监控工具")
-    parser.add_argument("--config", default="../assets/config.json", help="配置文件路径")
+    parser.add_argument("--config", default=None, help="配置文件路径（默认使用config.json）")
     parser.add_argument("--add", action="store_true", help="添加监控商品")
     parser.add_argument("--url", help="商品链接")
     parser.add_argument("--history", action="store_true", help="查看价格历史")

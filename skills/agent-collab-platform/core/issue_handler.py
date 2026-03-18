@@ -16,11 +16,13 @@ ClawHub: https://clawhub.com
 
 import json
 import subprocess
+from config_loader import get_repo
 
 class IssueHandler:
     """Issue处理器"""
     
-    def __init__(self, repo='zhaog100/openclaw-skills'):
+    def __init__(self, repo=None):
+        self.repo = repo or get_repo()
         """初始化处理器"""
         self.repo = repo
     
