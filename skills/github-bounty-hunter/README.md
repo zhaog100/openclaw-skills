@@ -92,6 +92,15 @@ github-bounty-hunter develop <task-id>
 - **耗时**：2 周
 - **难度**：⭐⭐⭐⭐⭐
 
+## 📝 更新日志
+
+### v1.4.0 (2026-03-18)
+- ✨ 新增 `bounty_preflight.sh` - Issue预检（状态/竞争/已有PR）
+- ✨ 新增 `bounty_claim.sh` - 自动/attempt认领
+- ✨ 新增 `bounty_scan.sh` - 多策略bounty扫描（💎标签/bounty标签//bounty关键词）
+- ✨ 新增 `bounty_dev.sh` - 一键开发流水线（预检→clone→准备开发环境）
+- 🔒 移除硬编码token，统一使用环境变量
+
 ## 🛠️ 开发计划
 
 - [x] 任务监控
