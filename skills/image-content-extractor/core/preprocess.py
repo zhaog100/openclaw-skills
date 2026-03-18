@@ -4,6 +4,7 @@ Image Preprocessing Module
 """
 
 import os
+import tempfile
 import cv2
 import numpy as np
 from PIL import Image
@@ -54,9 +55,8 @@ class ImagePreprocessor:
     
     def _process_single(self, img: Image.Image, source_path: str, mode: str) -> str:
         """处理单个图片"""
-        # 创建临时目录
-        temp_dir = os.path.join(os.path.dirname(source_path), "temp_processed")
-        os.makedirs(temp_dir, exist_ok=True)
+        # 使用系统临时目录
+        temp_dir = tempfile.mkdtemp(prefix="ice_")
         
         # 根据模式调整预处理
         if mode == "terminal":
@@ -83,9 +83,8 @@ class ImagePreprocessor:
         
         print(f"✂️  分块: {num_blocks} 块")
         
-        # 创建临时目录
-        temp_dir = os.path.join(os.path.dirname(source_path), "temp_blocks")
-        os.makedirs(temp_dir, exist_ok=True)
+        # 使用系统临时目录
+        temp_dir = tempfile.mkdtemp(prefix="ice_blocks_")
         
         blocks = []
         for i in range(num_blocks):
