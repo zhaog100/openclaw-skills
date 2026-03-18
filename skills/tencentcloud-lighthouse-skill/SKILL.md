@@ -37,24 +37,39 @@ metadata:
 
 如果输出显示一切 OK（mcporter 已安装、config 已配置、lighthouse 已就绪），跳到「调用格式」。
 
-### 步骤 2：如果未配置，引导用户提供密钥
+### 步骤 2：配置密钥（三选一，优先级从高到低）
 
-告诉用户：
-> 我需要你的腾讯云 API 密钥来连接 Lighthouse 服务器。请提供：
-> 1. **SecretId** — 腾讯云 API 密钥 ID
-> 2. **SecretKey** — 腾讯云 API 密钥 Key
->
-> 你可以在 [腾讯云控制台 > 访问管理 > API密钥管理](https://console.cloud.tencent.com/cam/capi) 获取。
+**方式 A — 环境变量（推荐，最安全）**：
+```bash
+export TENCENTCLOUD_SECRET_ID="AKIDxxxx"
+export TENCENTCLOUD_SECRET_KEY="yyyyyy"
+```
 
-### 步骤 3：用户提供密钥后，运行自动设置
+**方式 B — config.json**：
+```bash
+cp {baseDir}/config.example.json {baseDir}/config.json
+# 编辑 config.json，填入实际密钥
+```
+
+**方式 C — CLI 参数**：
+```bash
+{baseDir}/scripts/setup.sh --secret-id "AKIDxxxx" --secret-key "yyyyyy"
+```
+
+引导用户时：
+> 我需要你的腾讯云 API 密钥。你可以在 [腾讯云控制台 > API密钥管理](https://console.cloud.tencent.com/cam/capi) 获取。
+> 推荐设置环境变量 `TENCENTCLOUD_SECRET_ID` 和 `TENCENTCLOUD_SECRET_KEY`，或编辑 `{baseDir}/config.json`。
+
+### 步骤 3：运行自动设置
 
 ```bash
-{baseDir}/scripts/setup.sh --secret-id "<用户提供的SecretId>" --secret-key "<用户提供的SecretKey>"
+{baseDir}/scripts/setup.sh
 ```
 
 脚本会自动：
+- 读取环境变量 → config.json → CLI 参数（优先级递减）
 - 检查并安装 mcporter（如未安装）
-- 创建 `~/.mcporter/mcporter.json` 配置文件
+- 创建 mcporter 配置文件（路径可在 config.json 中自定义）
 - 写入 lighthouse MCP 服务器配置和密钥
 - 验证连接
 
@@ -62,15 +77,17 @@ metadata:
 
 ## 调用格式
 
+配置文件路径优先从 `{baseDir}/config.json` 的 `mcporter.configPath` 读取，默认 `~/.mcporter/mcporter.json`。
+
 所有 mcporter 命令必须使用以下格式：
 
 ```
-mcporter call lighthouse.<tool_name> --config ~/.mcporter/mcporter.json --output json [--args '<JSON>']
+mcporter call lighthouse.<tool_name> --config <configPath> --output json [--args '<JSON>']
 ```
 
 列出可用工具：
 ```
-mcporter list lighthouse --config ~/.mcporter/mcporter.json --schema
+mcporter list lighthouse --config <configPath> --schema
 ```
 
 
@@ -88,34 +105,34 @@ mcporter list lighthouse --config ~/.mcporter/mcporter.json --schema
 
 ## 常用操作
 
-> 以下所有示例省略了公共前缀 `mcporter call lighthouse.` 和 `--config ~/.mcporter/mcporter.json --output json`。
-> 完整命令格式：`mcporter call lighthouse.<tool_name> --config ~/.mcporter/mcporter.json --output json --args '<JSON>'`
+> 以下所有示例省略了公共前缀 `mcporter call lighthouse.` 和 `--config <configPath> --output json`。
+> 完整命令格式：`mcporter call lighthouse.<tool_name> --config <configPath> --output json --args '<JSON>'`
 
 ### 获取地域列表（不需要 Region 参数）
 
 ```bash
 # 查询所有可用地域 — 唯一不需要 Region 参数的操作
 # 首次使用时应先调用此接口获取可用 Region 列表
-mcporter call lighthouse.describe_regions --config ~/.mcporter/mcporter.json --output json
+mcporter call lighthouse.describe_regions --config <configPath> --output json
 ```
 
 ### 实例管理
 
 ```bash
 # 查询实例列表（Region 必填，可选参数: InstanceIds, Offset, Limit）
-mcporter call lighthouse.describe_instances --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","Limit":20,"Offset":0}'
+mcporter call lighthouse.describe_instances --config <configPath> --output json --args '{"Region":"ap-guangzhou","Limit":20,"Offset":0}'
 
 # 查询指定实例
-mcporter call lighthouse.describe_instances --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceIds":["lhins-xxxxxxxx"]}'
+mcporter call lighthouse.describe_instances --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceIds":["lhins-xxxxxxxx"]}'
 
 # 启动实例
-mcporter call lighthouse.start_instances --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceIds":["lhins-xxxxxxxx"]}'
+mcporter call lighthouse.start_instances --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceIds":["lhins-xxxxxxxx"]}'
 
 # 获取实例登录终端地址
-mcporter call lighthouse.describe_instance_login_url --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
+mcporter call lighthouse.describe_instance_login_url --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
 
 # 查询所有应用镜像
-mcporter call lighthouse.describe_all_applications --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou"}'
+mcporter call lighthouse.describe_all_applications --config <configPath> --output json --args '{"Region":"ap-guangzhou"}'
 # BlueprintType 可选: APP_OS | PURE_OS | DOCKER | ALL（默认ALL）
 ```
 
@@ -123,10 +140,10 @@ mcporter call lighthouse.describe_all_applications --config ~/.mcporter/mcporter
 
 ```bash
 # 获取监控数据（支持多指标同时查询，默认最近6小时）
-mcporter call lighthouse.get_monitor_data --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicators":["CPU利用率","内存利用率"]}'
+mcporter call lighthouse.get_monitor_data --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicators":["CPU利用率","内存利用率"]}'
 
 # 获取监控数据（指定时间范围）
-mcporter call lighthouse.get_monitor_data --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicators":["公网出带宽","公网入带宽"],"StartTime":"2026-02-09 00:00:00","EndTime":"2026-02-10 00:00:00"}'
+mcporter call lighthouse.get_monitor_data --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicators":["公网出带宽","公网入带宽"],"StartTime":"2026-02-09 00:00:00","EndTime":"2026-02-10 00:00:00"}'
 
 # 支持的监控指标（中文名称）:
 # CPU利用率 | 内存利用率 | 公网出带宽 | 公网入带宽
@@ -134,45 +151,45 @@ mcporter call lighthouse.get_monitor_data --config ~/.mcporter/mcporter.json --o
 
 # 设置告警策略
 # Alarms 中的 Frequency/Points/Size 均为字符串类型
-mcporter call lighthouse.set_alerting_strategy --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicator":"CPU利用率","Alarms":[{"Frequency":"300","Threshold":"80%","Level":"严重","Points":"3","Size":"60"}],"PolicyName":"CPU高负载告警"}'
+mcporter call lighthouse.set_alerting_strategy --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicator":"CPU利用率","Alarms":[{"Frequency":"300","Threshold":"80%","Level":"严重","Points":"3","Size":"60"}],"PolicyName":"CPU高负载告警"}'
 # Frequency(秒): "300"|"600"|"900"|"1800"|"3600"|"7200"|"10800"|"21600"|"43200"|"86400"
 # Level: "提示"|"严重"|"紧急"    Points: "1"-"5"    Size: "60"|"300"
 
 # 服务器自检（检测网络、防火墙、存储、状态、性能）
-mcporter call lighthouse.self_test --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
+mcporter call lighthouse.self_test --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
 ```
 
 ### 防火墙
 
 ```bash
 # 查询防火墙规则
-mcporter call lighthouse.describe_firewall_rules --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
+mcporter call lighthouse.describe_firewall_rules --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
 
 # 添加防火墙规则
-mcporter call lighthouse.create_firewall_rules --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","FirewallRules":[{"Protocol":"TCP","Port":"8080","CidrBlock":"0.0.0.0/0","Action":"ACCEPT","FirewallRuleDescription":"开放8080端口"}]}'
+mcporter call lighthouse.create_firewall_rules --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","FirewallRules":[{"Protocol":"TCP","Port":"8080","CidrBlock":"0.0.0.0/0","Action":"ACCEPT","FirewallRuleDescription":"开放8080端口"}]}'
 
 # 删除防火墙规则
-mcporter call lighthouse.delete_firewall_rules --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","FirewallRules":[{"Protocol":"TCP","Port":"8080"}]}'
+mcporter call lighthouse.delete_firewall_rules --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","FirewallRules":[{"Protocol":"TCP","Port":"8080"}]}'
 ```
 
 ### 远程命令执行 (TAT)
 
 ```bash
 # 在 Linux 实例上执行命令
-mcporter call lighthouse.execute_command --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Command":"uptime && df -h && free -m","SystemType":"Linux"}'
+mcporter call lighthouse.execute_command --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Command":"uptime && df -h && free -m","SystemType":"Linux"}'
 
 # 在 Windows 实例上执行命令
-mcporter call lighthouse.execute_command --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Command":"Get-Process | Sort-Object CPU -Descending | Select-Object -First 10","SystemType":"Windows"}'
+mcporter call lighthouse.execute_command --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Command":"Get-Process | Sort-Object CPU -Descending | Select-Object -First 10","SystemType":"Windows"}'
 
 # 查询命令执行任务详情（自动轮询直到完成）
-mcporter call lighthouse.describe_command_tasks --config ~/.mcporter/mcporter.json --output json --args '{"Region":"ap-guangzhou","InvocationTaskId":"invt-xxxxxxxx"}'
+mcporter call lighthouse.describe_command_tasks --config <configPath> --output json --args '{"Region":"ap-guangzhou","InvocationTaskId":"invt-xxxxxxxx"}'
 
 # 注意: Command 最大 2048 字符，超长命令建议登录实例手动执行
 ```
 
 ## 使用规范
 
-1. **每次调用必须带** `--config ~/.mcporter/mcporter.json`
+1. **每次调用必须带** `--config <configPath>`
 2. **始终加** `--output json` 获取结构化输出
 3. **Region 参数规则**: 除 `describe_regions` 外，所有操作都**必须**传入 `Region` 参数。如果用户未指定 Region，应先调用 `describe_regions` 获取可用地域列表，再让用户选择或根据上下文确定
 4. **首次使用流程**: 先调用 `describe_regions` 获取地域列表 → 再调用 `describe_instances` 获取实例列表 → 记住 InstanceId 和 Region 供后续使用

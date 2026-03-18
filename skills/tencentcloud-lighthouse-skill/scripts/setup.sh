@@ -4,13 +4,35 @@ set -euo pipefail
 # Lighthouse MCP Setup — installs mcporter (if needed) and writes config
 # Usage:
 #   setup.sh --secret-id <ID> --secret-key <KEY> [--config-path <path>] [--check-only]
-#
-# Examples:
-#   setup.sh --secret-id AKIDxxxx --secret-key yyyyyyy
 #   setup.sh --check-only
-#   setup.sh --secret-id AKIDxxxx --secret-key yyyyyyy --config-path ~/.mcporter/mcporter.json
+#
+# Environment variables (highest priority):
+#   TENCENTCLOUD_SECRET_ID, TENCENTCLOUD_SECRET_KEY
+#
+# Config file: {skill_dir}/config.json (env vars take precedence)
 
-CONFIG_PATH="${HOME}/.mcporter/mcporter.json"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SKILL_DIR="$(dirname "$SCRIPT_DIR")"
+SKILL_CONFIG="$SKILL_DIR/config.json"
+
+# Defaults
+MCPORTER_CONFIG="${HOME}/.mcporter/mcporter.json"
+DEFAULT_REGION="ap-guangzhou"
+
+# Load skill config if exists
+if [[ -f "$SKILL_CONFIG" ]]; then
+  MCPORTER_CONFIG="$(node -e "
+    const c = JSON.parse(require('fs').readFileSync('$SKILL_CONFIG','utf8'));
+    console.log(c.mcporter?.configPath || '$MCPORTER_CONFIG'.replace(/^~/, process.env.HOME));
+  " 2>/dev/null || echo "$MCPORTER_CONFIG")"
+  MCPORTER_CONFIG="${MCPORTER_CONFIG/#\~/$HOME}"
+  DEFAULT_REGION="$(node -e "
+    const c = JSON.parse(require('fs').readFileSync('$SKILL_CONFIG','utf8'));
+    console.log(c.lighthouse?.defaultRegion || '$DEFAULT_REGION');
+  " 2>/dev/null || echo "$DEFAULT_REGION")"
+fi
+
+# CLI args (lower priority than env vars)
 SECRET_ID=""
 SECRET_KEY=""
 CHECK_ONLY=false
@@ -18,14 +40,16 @@ CHECK_ONLY=false
 usage() {
   cat >&2 <<'EOF'
 Usage:
-  setup.sh --secret-id <TENCENTCLOUD_SECRET_ID> --secret-key <TENCENTCLOUD_SECRET_KEY> [--config-path <path>]
+  setup.sh --secret-id <ID> --secret-key <KEY> [--config-path <path>] [--check-only]
   setup.sh --check-only
 
+Priority (high → low): env vars > CLI args > config.json
+
 Options:
-  --secret-id     Tencent Cloud SecretId (required unless --check-only)
-  --secret-key    Tencent Cloud SecretKey (required unless --check-only)
-  --config-path   mcporter config file path (default: ~/.mcporter/mcporter.json)
-  --check-only    Only check if mcporter and config are ready, don't modify anything
+  --secret-id     Tencent Cloud SecretId
+  --secret-key    Tencent Cloud SecretKey
+  --config-path   mcporter config file path (default from config.json or ~/.mcporter/mcporter.json)
+  --check-only    Only check if mcporter and config are ready
   -h, --help      Show this help
 EOF
   exit 2
@@ -35,147 +59,99 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --secret-id)   SECRET_ID="${2:-}";   shift 2 ;;
     --secret-key)  SECRET_KEY="${2:-}";  shift 2 ;;
-    --config-path) CONFIG_PATH="${2:-}"; shift 2 ;;
+    --config-path) MCPORTER_CONFIG="${2:-}"; shift 2 ;;
     --check-only)  CHECK_ONLY=true;      shift   ;;
     -h|--help)     usage ;;
     *)             echo "Unknown arg: $1" >&2; usage ;;
   esac
 done
 
+# Resolve env vars from config.json if CLI args not provided
+if [[ -z "$SECRET_ID" && -f "$SKILL_CONFIG" ]]; then
+  SECRET_ID="$(node -e "
+    const c = JSON.parse(require('fs').readFileSync('$SKILL_CONFIG','utf8'));
+    console.log(c.env?.TENCENTCLOUD_SECRET_ID || '');
+  " 2>/dev/null || echo "")"
+fi
+if [[ -z "$SECRET_KEY" && -f "$SKILL_CONFIG" ]]; then
+  SECRET_KEY="$(node -e "
+    const c = JSON.parse(require('fs').readFileSync('$SKILL_CONFIG','utf8'));
+    console.log(c.env?.TENCENTCLOUD_SECRET_KEY || '');
+  " 2>/dev/null || echo "")"
+fi
+
+# Environment variables override everything
+SECRET_ID="${TENCENTCLOUD_SECRET_ID:-$SECRET_ID}"
+SECRET_KEY="${TENCENTCLOUD_SECRET_KEY:-$SECRET_KEY}"
+
 # --- Check mode ---
 if $CHECK_ONLY; then
   echo "=== Lighthouse MCP Status Check ==="
+  echo "Config path: $MCPORTER_CONFIG"
+  echo "Default region: $DEFAULT_REGION"
 
-  # Check mcporter
-  if command -v mcporter &>/dev/null; then
-    echo "[OK] mcporter installed: $(mcporter --version 2>/dev/null || echo 'unknown version')"
+  command -v mcporter &>/dev/null && echo "[OK] mcporter: $(mcporter --version 2>/dev/null || echo 'ok')" || echo "[MISSING] mcporter (npm install -g mcporter)"
+
+  if [[ -f "$MCPORTER_CONFIG" ]]; then
+    echo "[OK] Config file: $MCPORTER_CONFIG"
+    grep -q '"lighthouse"' "$MCPORTER_CONFIG" 2>/dev/null && echo "[OK] lighthouse MCP configured" || echo "[MISSING] lighthouse MCP not in config"
   else
-    echo "[MISSING] mcporter not installed"
-    echo "  Fix: npm install -g mcporter"
+    echo "[MISSING] Config file: $MCPORTER_CONFIG"
   fi
 
-  # Check config file
-  if [[ -f "$CONFIG_PATH" ]]; then
-    echo "[OK] Config file exists: $CONFIG_PATH"
-    # Check if lighthouse server is configured
-    if grep -q '"lighthouse"' "$CONFIG_PATH" 2>/dev/null; then
-      echo "[OK] lighthouse MCP server configured"
-      # Check if credentials are present (not placeholder)
-      if grep -q 'TENCENTCLOUD_SECRET_ID' "$CONFIG_PATH" 2>/dev/null; then
-        echo "[OK] Tencent Cloud credentials found in config"
-      else
-        echo "[WARN] Tencent Cloud credentials may be missing"
-      fi
-    else
-      echo "[MISSING] lighthouse MCP server not in config"
-    fi
-  else
-    echo "[MISSING] Config file not found: $CONFIG_PATH"
+  if command -v mcporter &>/dev/null && [[ -f "$MCPORTER_CONFIG" ]]; then
+    echo "" && echo "=== MCP Servers ==="
+    mcporter list --config "$MCPORTER_CONFIG" 2>/dev/null || echo "[ERROR] Failed to list servers"
   fi
-
-  # Try listing servers
-  if command -v mcporter &>/dev/null && [[ -f "$CONFIG_PATH" ]]; then
-    echo ""
-    echo "=== MCP Servers ==="
-    mcporter list --config "$CONFIG_PATH" 2>/dev/null || echo "[ERROR] Failed to list servers"
-  fi
-
   exit 0
 fi
 
-# --- Setup mode: validate inputs ---
-if [[ -z "$SECRET_ID" ]]; then
-  echo "[ERROR] --secret-id is required" >&2
-  exit 1
-fi
-if [[ -z "$SECRET_KEY" ]]; then
-  echo "[ERROR] --secret-key is required" >&2
-  exit 1
-fi
+# --- Setup mode ---
+if [[ -z "$SECRET_ID" ]]; then echo "[ERROR] SecretId required (env TENCENTCLOUD_SECRET_ID or --secret-id)" >&2; exit 1; fi
+if [[ -z "$SECRET_KEY" ]]; then echo "[ERROR] SecretKey required (env TENCENTCLOUD_SECRET_KEY or --secret-key)" >&2; exit 1; fi
 
 echo "=== Lighthouse MCP Auto Setup ==="
 
-# Step 1: Check/install mcporter
+# Install mcporter if needed
 if command -v mcporter &>/dev/null; then
-  echo "[OK] mcporter already installed"
+  echo "[OK] mcporter installed"
 else
-  echo "[INSTALL] Installing mcporter via npm..."
+  echo "[INSTALL] Installing mcporter..."
   npm install -g mcporter
-  if command -v mcporter &>/dev/null; then
-    echo "[OK] mcporter installed successfully"
-  else
-    echo "[ERROR] mcporter installation failed" >&2
-    exit 1
-  fi
+  command -v mcporter &>/dev/null || { echo "[ERROR] mcporter install failed" >&2; exit 1; }
+  echo "[OK] mcporter installed"
 fi
 
-# Step 2: Create config directory
-CONFIG_DIR="$(dirname "$CONFIG_PATH")"
-if [[ ! -d "$CONFIG_DIR" ]]; then
-  mkdir -p "$CONFIG_DIR"
-  echo "[OK] Created config directory: $CONFIG_DIR"
-fi
+# Ensure config dir exists
+CONFIG_DIR="$(dirname "$MCPORTER_CONFIG")"
+[[ -d "$CONFIG_DIR" ]] || { mkdir -p "$CONFIG_DIR" && echo "[OK] Created: $CONFIG_DIR"; }
 
-# Step 3: Write/update config with lighthouse server
-# If config exists, try to merge; otherwise create new
-if [[ -f "$CONFIG_PATH" ]]; then
-  echo "[INFO] Updating existing config: $CONFIG_PATH"
-  # Use a temp file for safe write
-  TEMP_CONFIG="$(mktemp)"
-  # Simple JSON merge using node (available since mcporter requires node)
-  node -e "
-    const fs = require('fs');
-    let config = {};
-    try { config = JSON.parse(fs.readFileSync('$CONFIG_PATH', 'utf8')); } catch {}
-    if (!config.mcpServers) config.mcpServers = {};
-    config.mcpServers.lighthouse = {
-      command: 'npx',
-      args: ['-y', 'lighthouse-mcp-server'],
-      env: {
-        TENCENTCLOUD_SECRET_ID: '$SECRET_ID',
-        TENCENTCLOUD_SECRET_KEY: '$SECRET_KEY'
-      }
-    };
-    fs.writeFileSync('$TEMP_CONFIG', JSON.stringify(config, null, 2));
-  "
-  mv "$TEMP_CONFIG" "$CONFIG_PATH"
-else
-  echo "[INFO] Creating new config: $CONFIG_PATH"
-  cat > "$CONFIG_PATH" <<JSONEOF
-{
-  "mcpServers": {
-    "lighthouse": {
-      "command": "npx",
-      "args": ["-y", "lighthouse-mcp-server"],
-      "env": {
-        "TENCENTCLOUD_SECRET_ID": "$SECRET_ID",
-        "TENCENTCLOUD_SECRET_KEY": "$SECRET_KEY"
-      }
+# Write config
+TEMP_CONFIG="$(mktemp)"
+node -e "
+  const fs = require('fs');
+  let config = {};
+  try { config = JSON.parse(fs.readFileSync('$MCPORTER_CONFIG', 'utf8')); } catch {}
+  if (!config.mcpServers) config.mcpServers = {};
+  config.mcpServers.lighthouse = {
+    command: 'npx',
+    args: ['-y', 'lighthouse-mcp-server'],
+    env: {
+      TENCENTCLOUD_SECRET_ID: '$SECRET_ID',
+      TENCENTCLOUD_SECRET_KEY: '$SECRET_KEY'
     }
-  }
-}
-JSONEOF
-fi
+  };
+  fs.writeFileSync('$TEMP_CONFIG', JSON.stringify(config, null, 2));
+"
+mv "$TEMP_CONFIG" "$MCPORTER_CONFIG"
+echo "[OK] Config written: $MCPORTER_CONFIG"
 
-echo "[OK] Config written: $CONFIG_PATH"
-
-# Step 4: Verify
-echo ""
-echo "=== Verification ==="
-echo "Listing MCP servers..."
-mcporter list --config "$CONFIG_PATH" 2>/dev/null || echo "[WARN] mcporter list failed (server may need first-run initialization)"
-
-echo ""
-echo "Testing lighthouse connection (listing tools)..."
-if mcporter list lighthouse --config "$CONFIG_PATH" --schema 2>/dev/null; then
-  echo ""
-  echo "[OK] Lighthouse MCP setup complete! All tools available."
+# Verify
+echo "" && echo "=== Verification ==="
+mcporter list --config "$MCPORTER_CONFIG" 2>/dev/null || true
+if mcporter list lighthouse --config "$MCPORTER_CONFIG" --schema 2>/dev/null; then
+  echo "" && echo "[OK] Setup complete!"
 else
-  echo "[WARN] Could not list lighthouse tools yet. This is normal on first run."
-  echo "  The MCP server will be started on first call."
+  echo "[WARN] Tools not yet listed (normal on first run)"
 fi
-
-echo ""
-echo "=== Setup Complete ==="
-echo "Config: $CONFIG_PATH"
-echo "Server: lighthouse (via npx lighthouse-mcp-server)"
+echo "Config: $MCPORTER_CONFIG | Region: $DEFAULT_REGION"
