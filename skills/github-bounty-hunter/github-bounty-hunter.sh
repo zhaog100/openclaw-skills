@@ -1,3 +1,5 @@
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
 # GitHub Bounty Hunter - 主入口脚本
 # 版本：1.3.0
