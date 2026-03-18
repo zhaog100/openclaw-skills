@@ -4,3 +4,4 @@
 *.env
 config.local.json
 credentials.json
+config.json
