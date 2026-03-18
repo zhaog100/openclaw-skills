@@ -2,7 +2,7 @@
 # =============================================================================
 # 定时回顾更新助手 (daily-review-assistant)
 # =============================================================================
-# 版本：v1.0
+# 版本：v1.1
 # 创建时间：2026-03-16
 # 创建者：思捷娅科技 (SJYKJ)
 # 用途：定时回顾今日工作，查漏补缺，更新记忆和知识库
@@ -12,38 +12,21 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="${WORKSPACE:-$(pwd)}"
-LOG_FILE="$SCRIPT_DIR/logs/daily-review.log"
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+_SCRIPTS_DIR="$SKILL_DIR/scripts"
 
-# 确保目录存在
-mkdir -p "$SCRIPT_DIR/logs"
+# 加载配置
+source "$_SCRIPTS_DIR/lib/config.sh"
 
-# 颜色定义
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-
-# 日志函数
-log_info() {
-    echo -e "${GREEN}[INFO]${NC} $1" | tee -a "$LOG_FILE"
-}
-
-log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1" | tee -a "$LOG_FILE" >&2
-}
-
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $1" | tee -a "$LOG_FILE" >&2
-}
+# 设置当前日志
+_CURRENT_LOG_FILE="$CFG_LOGS_DIR/daily-review.log"
+LOG_FILE="$_CURRENT_LOG_FILE"
 
 # 显示帮助
 show_help() {
     cat << EOF
 ╔════════════════════════════════════════════════════════╗
-║     定时回顾更新助手 v1.0 - 思捷娅科技 (SJYKJ)          ║
+║     定时回顾更新助手 v1.1 - 思捷娅科技 (SJYKJ)          ║
 ╚════════════════════════════════════════════════════════╝
 
 用法：$0 <命令> [选项]
@@ -57,10 +40,10 @@ show_help() {
   help                  显示帮助
 
 定时任务模式:
-  morning               仅中午 12:00 回顾上午
-  full                  仅晚上 23:50 回顾全天
+  morning               仅中午回顾上午
+  full                  仅晚上回顾全天
   custom                自定义时间（交互式）
-  default               默认（中午 12:00 + 晚上 23:50）
+  default               默认（中午 + 晚上）
 
 选项:
   --date      指定日期（YYYY-MM-DD，默认今天）
@@ -86,45 +69,47 @@ do_review() {
     local date="$(date +%Y-%m-%d)"
     local mode="auto"
     
-    # 解析参数
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            --date)
-                date="$2"
-                shift 2
-                ;;
-            --mode)
-                mode="$2"
-                shift 2
-                ;;
-            *)
-                shift
-                ;;
+            --date) date="$2"; shift 2 ;;
+            --mode) mode="$2"; shift 2 ;;
+            *) shift ;;
         esac
     done
     
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║  定时回顾更新助手 v1.0                                  ║"
+    log_info "║  定时回顾更新助手 v1.1                                  ║"
     log_info "╠════════════════════════════════════════════════════════╣"
     log_info "║  日期：$date"
     log_info "║  模式：$mode"
     log_info "╚════════════════════════════════════════════════════════╝"
     
-    # 1. 回顾今日任务
-    log_info "📋 步骤 1/4: 回顾今日任务..."
-    review_tasks "$date"
-    
-    # 2. 回顾 Git 提交
-    log_info "💻 步骤 2/4: 回顾 Git 提交..."
-    review_commits "$date"
-    
-    # 3. 回顾 Issues
-    log_info "📝 步骤 3/4: 回顾 Issues..."
-    review_issues "$date"
-    
-    # 4. 回顾学习
-    log_info "📚 步骤 4/4: 回顾学习..."
-    review_learning "$date"
+    local step=0
+    local total=4
+
+    if [ "$CFG_FEATURE_TASK_REVIEW" = "true" ]; then
+        step=$((step + 1))
+        log_info "📋 步骤 $step/$total: 回顾今日任务..."
+        review_tasks "$date"
+    fi
+
+    if [ "$CFG_FEATURE_GIT_REVIEW" = "true" ]; then
+        step=$((step + 1))
+        log_info "💻 步骤 $step/$total: 回顾 Git 提交..."
+        review_commits "$date"
+    fi
+
+    if [ "$CFG_FEATURE_ISSUE_REVIEW" = "true" ]; then
+        step=$((step + 1))
+        log_info "📝 步骤 $step/$total: 回顾 Issues..."
+        review_issues "$date"
+    fi
+
+    if [ "$CFG_FEATURE_LEARNING_REVIEW" = "true" ]; then
+        step=$((step + 1))
+        log_info "📚 步骤 $step/$total: 回顾学习..."
+        review_learning "$date"
+    fi
     
     log_info "✅ 回顾完成！"
 }
@@ -132,7 +117,7 @@ do_review() {
 # 回顾任务
 review_tasks() {
     local date="$1"
-    local daily_log="$WORKSPACE/memory/$date.md"
+    local daily_log="$CFG_MEMORY_DIR/$date.md"
     
     if [ -f "$daily_log" ]; then
         local tasks=$(grep -c "^\- \[x\]" "$daily_log" 2>/dev/null || echo "0")
@@ -145,20 +130,18 @@ review_tasks() {
 # 回顾 Git 提交
 review_commits() {
     local date="$1"
-    local commits=$(git -C "$WORKSPACE" log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | wc -l)
+    local commits=$(git -C "$CFG_WORKSPACE" log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | wc -l)
     log_info "  ✅ $commits 个 Git 提交"
 }
 
 # 回顾 Issues
 review_issues() {
-    local date="$1"
     log_info "  ⏳ Issues 回顾（待实现）"
 }
 
 # 回顾学习
 review_learning() {
-    local date="$1"
-    local knowledge_files=$(find "$WORKSPACE/knowledge" -name "*.md" -mtime -1 2>/dev/null | wc -l)
+    local knowledge_files=$(find "$CFG_KNOWLEDGE_DIR" -name "*.md" -mtime -1 2>/dev/null | wc -l)
     log_info "  ✅ $knowledge_files 个知识文档"
 }
 
@@ -168,23 +151,20 @@ show_status() {
     log_info "║  定时回顾更新助手 - 状态                                ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     
-    # 检查配置
-    if [ -f "$SCRIPT_DIR/config/config.json" ]; then
+    if [ -f "$CONFIG_FILE" ]; then
         log_info "✅ 配置文件：已创建"
     else
         log_warn "⚠️ 配置文件：未创建"
     fi
     
-    # 检查日志
     if [ -f "$LOG_FILE" ]; then
         log_info "✅ 日志文件：已创建"
     else
         log_warn "⚠️ 日志文件：未创建"
     fi
     
-    # 检查工作区
-    if [ -d "$WORKSPACE" ]; then
-        log_info "✅ 工作区：$WORKSPACE"
+    if [ -d "$CFG_WORKSPACE" ]; then
+        log_info "✅ 工作区：$CFG_WORKSPACE"
     else
         log_error "❌ 工作区：不存在"
     fi
@@ -198,52 +178,40 @@ add_cron() {
     
     case "$mode" in
         morning)
-            # 仅上午
-            local task="0 12 * * * $SCRIPT_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
+            local task="$CFG_CRON_MORNING $SKILL_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
             ;;
         full)
-            # 仅全天
-            local task="50 23 * * * $SCRIPT_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
+            local task="$CFG_CRON_FULL $SKILL_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
             ;;
         custom)
-            # 自定义时间
             echo "请输入 Crontab 时间表达式（例如：0 12 * * *）："
             read -r cron_time
             echo "请输入要执行的命令参数（例如：review --mode morning）："
             read -r cmd_args
-            local task="$cron_time $SCRIPT_DIR/skill.sh $cmd_args >> $LOG_FILE 2>&1"
+            local task="$cron_time $SKILL_DIR/skill.sh $cmd_args >> $LOG_FILE 2>&1"
             ;;
         default|*)
-            # 默认：上午 + 全天
-            local morning_task="0 12 * * * $SCRIPT_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
-            local evening_task="50 23 * * * $SCRIPT_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
+            local morning_task="$CFG_CRON_MORNING $SKILL_DIR/skill.sh review --mode morning >> $LOG_FILE 2>&1"
+            local evening_task="$CFG_CRON_FULL $SKILL_DIR/skill.sh review --mode full >> $LOG_FILE 2>&1"
             local task="$morning_task"$'\n'"$evening_task"
             ;;
     esac
     
-    # 检查是否已存在
     if crontab -l 2>/dev/null | grep -q "daily-review-assistant"; then
         log_warn "定时任务已存在"
         return 0
     fi
     
-    # 添加定时任务
     (crontab -l 2>/dev/null | grep -v "daily-review-assistant"; echo "$task") | crontab -
     log_info "✅ 定时任务已添加"
     
     case "$mode" in
-        morning)
-            log_info "   - 中午 12:00 回顾上午"
-            ;;
-        full)
-            log_info "   - 晚上 23:50 回顾全天"
-            ;;
-        custom)
-            log_info "   - 自定义任务：$task"
-            ;;
+        morning) log_info "   - 上午回顾：$CFG_CRON_MORNING" ;;
+        full) log_info "   - 全天回顾：$CFG_CRON_FULL" ;;
+        custom) log_info "   - 自定义任务：$task" ;;
         default|*)
-            log_info "   - 中午 12:00 回顾上午"
-            log_info "   - 晚上 23:50 回顾全天"
+            log_info "   - 上午回顾：$CFG_CRON_MORNING"
+            log_info "   - 全天回顾：$CFG_CRON_FULL"
             ;;
     esac
 }
@@ -251,8 +219,6 @@ add_cron() {
 # 删除定时任务
 remove_cron() {
     log_info "删除定时任务..."
-    
-    # 删除定时任务
     crontab -l 2>/dev/null | grep -v "daily-review-assistant" | crontab -
     log_info "✅ 定时任务已删除"
 }
@@ -281,33 +247,14 @@ main() {
     local command="${1:-review}"
     
     case "$command" in
-        review)
-            shift
-            do_review "$@"
-            ;;
-        status)
-            show_status
-            ;;
-        cron-add)
-            shift
-            add_cron "$@"
-            ;;
-        cron-remove)
-            remove_cron
-            ;;
-        cron-status)
-            show_cron_status
-            ;;
-        help|--help|-h)
-            show_help
-            ;;
-        *)
-            log_error "未知命令：$command"
-            show_help
-            exit 1
-            ;;
+        review) shift; do_review "$@" ;;
+        status) show_status ;;
+        cron-add) shift; add_cron "$@" ;;
+        cron-remove) remove_cron ;;
+        cron-status) show_cron_status ;;
+        help|--help|-h) show_help ;;
+        *) log_error "未知命令：$command"; show_help; exit 1 ;;
     esac
 }
 
-# 执行
 main "$@"
