@@ -1,7 +1,7 @@
 ---
 name: github-bounty-hunter
 description: GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！
-version: 1.3.0
+version: 1.4.0
 author: 米粒儿
 created: 2026-03-10
 ---
@@ -74,6 +74,22 @@ export ALGORA_API_KEY='your_api_key_here'
 
 # 可选：收款地址（默认已配置）
 export PAYMENT_ADDRESS='TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP'
+```
+
+### 预检/认领/扫描/开发脚本（v1.4.0 新增）
+
+```bash
+# Issue 预检（状态/竞争/已有PR）
+bash scripts/bounty_preflight.sh <owner/repo> <issue_number>
+
+# 自动/attempt认领
+bash scripts/bounty_claim.sh <owner/repo> <issue_number> <pr_number> [description]
+
+# 多策略bounty扫描（💎标签/bounty标签//bounty关键词）
+bash scripts/bounty_scan.sh
+
+# 一键开发流水线（预检→clone→准备开发环境）
+bash scripts/bounty_dev.sh <owner/repo> <issue_number> [bounty_amount]
 ```
 
 ### QQ 通知集成
