@@ -4,14 +4,17 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
-## 🎯 当前状态（2026-03-18 晚）
+## 🎯 当前状态（2026-03-18 深夜）
 
 **Bounty收割：** 31个PR，11个仓库，$5,440+（详见 memory/2026-03-18.md）
-**SigNoz Dashboard：** 7个PR（#244-#250），$1,300
-**Algora认领：** 6个bounty，$800
-**ClawHub发布：** 25+个技能 | agent-collab-platform v1.15.1
+**Algora认领：** 6个bounty，$800 | SigNoz Dashboard 7个PR $1,300
+**PR状态：** 全部open等待review，0个merged
+**技能配置重构：** 13/13完成（config.json统一管理）
+**今日commits：** 42个（历史最高）
+**自动监控：** 每30分钟bounty扫描+Gmail检查，每小时错误统计
+**ClawHub发布：** 25+个技能 | agent-collab-platform v1.15.2
 **版权归属：** 思捷娅科技 (SJYKJ)，MIT许可证
-**Git仓库：** origin + xiaomili 双仓库
+**Git仓库：** origin + xiaomili 双仓库（均已同步）
 **GitHub账号：** zhaog100 | Classic Token有效
 
 ---
@@ -46,6 +49,8 @@ qmd search daily-logs "关键词" --hybrid
 - **零依赖优先** - ast替代tree-sitter，标准库够用
 - **子代理交付8项清单** - SKILL.md/package.json/版权注释/pytest/接口验证/全链路测试/边界测试/不修改无关文件
 - **经验教训库必须在SKILL.md显式引用** - 写了不等于生效
+- **技能配置重构** - config.json（gitignore）+ config.example.json（可提交），环境变量 > config.json > 默认值，敏感信息只用环境变量
+- **子代理并发** - 最多5个并行，大技能用子代理1-4分钟搞定
 
 ### 安全修复统一策略
 - 硬编码路径 → `$(pwd)` 或 `$SCRIPT_DIR`
@@ -64,6 +69,11 @@ qmd search daily-logs "关键词" --hybrid
 - **竞争项目快速修复review** - 如onyx greptile bot自动review需即时响应
 - **子代理超时果断杀** - 卡住超过30分钟的直接kill，不值得等
 - **Gmail配置** - 密码在 `/root/.openclaw/secrets/gmail.env`（不是.bashrc）
+- **逃单风险** - Dev.to案例：14个PR合并2个收入$0，代币类bounty有风险
+- **广撒网策略** - 多接单分散风险，简单任务竞争激烈需快速提交
+- **Algora认领** - 在GitHub issue评论 `/attempt #N`，不是在Algora网站操作
+- **bounty池会枯竭** - 扫8页后基本扫完，需等新任务出现
+- **monitor.py搜索策略** - 不能把所有关键词拼成1个query，会返回空结果；必须分批搜索
 
 ### Git & ClawHub规则
 - **Git推送** - 个人→xiaomili，公共→origin
