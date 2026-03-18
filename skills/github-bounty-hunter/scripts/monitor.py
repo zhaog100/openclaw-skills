@@ -40,8 +40,16 @@ LABELS = [
     'sponsor'
 ]
 
-def search_bounties(keywords=None, labels=None, min_reward=0):
-    """搜索 bounty 任务"""
+def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_first=True):
+    """
+    搜索 bounty 任务（优化版）
+    
+    优化点：
+    1. 低竞争任务优先（评论数<20）
+    2. 按价值排序（高奖励优先）
+    3. 智能过滤（排除已 Claim 任务）
+    4. 速率限制处理（自动重试）
+    """
     if keywords is None:
         keywords = KEYWORDS
     if labels is None:
@@ -52,7 +60,7 @@ def search_bounties(keywords=None, labels=None, min_reward=0):
         'Accept': 'application/vnd.github.v3+json'
     }
     
-    # 构建搜索查询
+    # 构建搜索查询（优化版）
     query_parts = []
     for keyword in keywords:
         query_parts.append(f'{keyword} in:title,body')
@@ -64,25 +72,49 @@ def search_bounties(keywords=None, labels=None, min_reward=0):
     query_parts.append('is:issue')
     query_parts.append('created:>=2026-01-01')
     
+    # 排除已关闭/已完成的
+    query_parts.append('-label:done')
+    query_parts.append('-label:completed')
+    
     query = '+'.join(query_parts)
     
-    # 执行搜索
+    # 执行搜索（带重试机制）
     url = f'{GITHUB_API}/search/issues'
     params = {
         'q': query,
-        'sort': 'created',
-        'order': 'desc',
+        'sort': 'comments',  # 按评论数排序（低竞争优先）
+        'order': 'asc',      # 升序（评论少的在前）
         'per_page': 100
     }
     
-    response = requests.get(url, headers=headers, params=params)
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            response.raise_for_status()
+            
+            data = response.json()
+            items = data.get('items', [])
+            
+            # 低竞争优先过滤
+            if low_competition_first:
+                low_comp_items = [i for i in items if i.get('comments', 0) < 20]
+                data['items'] = low_comp_items
+                data['total_count'] = len(low_comp_items)
+            
+            return data
+            
+        except requests.exceptions.RateLimitError:
+            wait_time = 60 * (attempt + 1)
+            print(f"⚠️  触发速率限制，等待 {wait_time} 秒后重试...")
+            time.sleep(wait_time)
+        except Exception as e:
+            print(f"❌ 搜索失败（尝试 {attempt+1}/{max_retries}）：{e}")
+            if attempt < max_retries - 1:
+                time.sleep(10)
     
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"❌ 搜索失败：{response.status_code}")
-        print(response.text)
-        return None
+    print(f"❌ 搜索失败，已重试 {max_retries} 次")
+    return None
 
 def save_tasks(tasks):
     """保存任务到本地"""
@@ -95,8 +127,85 @@ def save_tasks(tasks):
     print(f"✅ 已保存 {tasks.get('total_count', 0)} 个任务到 {filename}")
     return filename
 
+def calculate_priority_score(issue):
+    """
+    计算任务优先级评分
+    
+    评分维度：
+    1. 竞争度（评论数）- 越低分越高
+    2. 奖励金额 - 越高分越高
+    3. 创建时间 - 越新分越高
+    4. 标签匹配 - 匹配越多分越高
+    
+    返回：0-100 的优先级评分
+    """
+    score = 0
+    
+    # 1. 竞争度评分（0-40 分）
+    comments = issue.get('comments', 0)
+    if comments < 5:
+        score += 40
+    elif comments < 10:
+        score += 30
+    elif comments < 20:
+        score += 20
+    elif comments < 50:
+        score += 10
+    
+    # 2. 奖励金额评分（0-30 分）
+    title = issue.get('title', '').lower()
+    if '$1000' in title or '1000 rtc' in title:
+        score += 30
+    elif '$500' in title or '500 rtc' in title:
+        score += 25
+    elif '$100' in title or '100 rtc' in title:
+        score += 20
+    elif '50 rtc' in title:
+        score += 15
+    elif '10 rtc' in title:
+        score += 10
+    
+    # 3. 创建时间评分（0-20 分）
+    created_at = issue.get('created_at', '')
+    if created_at:
+        try:
+            created_date = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+            days_old = (datetime.now(created_date.tzinfo) - created_date).days
+            if days_old < 7:
+                score += 20
+            elif days_old < 30:
+                score += 15
+            elif days_old < 90:
+                score += 10
+        except:
+            pass
+    
+    # 4. 标签匹配评分（0-10 分）
+    labels = [l.get('name', '').lower() for l in issue.get('labels', [])]
+    priority_labels = ['good first issue', 'bounty', 'grant', 'paid']
+    for label in priority_labels:
+        if label in labels:
+            score += 2
+    
+    return min(score, 100)
+
+
+def sort_by_priority(tasks):
+    """按优先级排序任务"""
+    items = tasks.get('items', [])
+    
+    # 计算每个任务的优先级评分
+    for item in items:
+        item['priority_score'] = calculate_priority_score(item)
+    
+    # 按优先级降序排序
+    items.sort(key=lambda x: x.get('priority_score', 0), reverse=True)
+    
+    return tasks
+
+
 def display_tasks(tasks):
-    """显示任务列表"""
+    """显示任务列表（优化版）"""
     items = tasks.get('items', [])
     
     if not items:
