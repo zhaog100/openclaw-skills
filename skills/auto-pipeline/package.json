@@ -1,6 +1,6 @@
 {
   "name": "auto-pipeline",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "技能自动开发流水线 - PRD→Plan预审→开发→Review→修复→发布",
   "main": "pipeline.sh",
   "scripts": {
