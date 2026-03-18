@@ -308,6 +308,53 @@ def main():
         print("="*80)
     else:
         print("❌ 监控失败")
+    
+    # 检查Gmail付款通知
+    check_gmail_payments()
+
+def check_gmail_payments():
+    """检查Gmail中的bounty付款邮件"""
+    import subprocess
+    
+    print()
+    print("📧 检查Gmail付款通知...")
+    
+    script = os.path.expanduser('~/.openclaw/workspace/scripts/check_gmail_payments.sh')
+    if not os.path.exists(script):
+        print("  ⚠️ Gmail检查脚本不存在，跳过")
+        return
+    
+    try:
+        env = os.environ.copy()
+        # 加载Gmail密码
+        env_file = os.path.expanduser('~/.openclaw/secrets/gmail.env')
+        if os.path.exists(env_file):
+            with open(env_file) as f:
+                for line in f:
+                    line = line.strip()
+                    if '=' in line and not line.startswith('#'):
+                        key, val = line.split('=', 1)
+                        env[key] = val
+        
+        result = subprocess.run(
+            ['bash', script],
+            capture_output=True, text=True, timeout=30,
+            env=env
+        )
+        
+        output = result.stdout.strip()
+        if output:
+            # 只显示关键信息（付款相关）
+            for line in output.split('\n'):
+                if any(kw in line.lower() for kw in ['payment', 'paid', 'bounty', 'payout', '💰', '⚠️', '❌', '✅']):
+                    print(f"  {line}")
+        else:
+            print("  ✅ 无新付款通知")
+            
+    except subprocess.TimeoutExpired:
+        print("  ⚠️ Gmail检查超时")
+    except Exception as e:
+        print(f"  ⚠️ Gmail检查失败: {e}")
 
 if __name__ == '__main__':
     main()
