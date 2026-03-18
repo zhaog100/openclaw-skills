@@ -179,6 +179,13 @@ class AlgoraMonitor:
                 self.log("❌ 请求超时，请检查网络连接")
             else:
                 self.log(f"❌ 扫描失败：{e}")
+            self.log("❌ 触发 GitHub API 速率限制，请等待 60 秒后重试")
+            return []
+        except requests.exceptions.Timeout:
+            self.log("❌ 请求超时，请检查网络连接")
+            return []
+        except Exception as e:
+            self.log(f"❌ 扫描失败：{e}")
             return []
     
     def claim_bounty(self, bounty):
@@ -247,6 +254,13 @@ Ready to work! 🚀
                 self.log("❌ 请求超时")
             else:
                 self.log(f"❌ Claim 失败：{e}")
+            self.log("❌ 触发 GitHub API 速率限制")
+            return False
+        except requests.exceptions.Timeout:
+            self.log("❌ 请求超时")
+            return False
+        except Exception as e:
+            self.log(f"❌ Claim 失败：{e}")
             return False
     
     def run(self, max_claims=5):
@@ -296,6 +310,13 @@ Ready to work! 🚀
                             self.log(f"⚠️  Claim 失败（尝试 {attempt+1}/{max_retries}）：{e}")
                             if attempt < max_retries - 1:
                                 time.sleep(10)
+                        wait_time = 60 * (attempt + 1)
+                        self.log(f"⚠️  触发速率限制，等待 {wait_time} 秒后重试...")
+                        time.sleep(wait_time)
+                    except Exception as e:
+                        self.log(f"⚠️  Claim 失败（尝试 {attempt+1}/{max_retries}）：{e}")
+                        if attempt < max_retries - 1:
+                            time.sleep(10)
                 
                 if success:
                     claimed_count += 1

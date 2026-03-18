@@ -173,7 +173,50 @@ Review 验收 → 提交 PR → 跟进评论
 
 ---
 
-*🦞 让龙虾自己赚钱！*
+## 🧠 错误自学习机制（Self-Improving）
+
+集成 [Self-Improving-Agent](https://github.com/nicobailey/self-improving-agent) 模式，每次执行 bounty 流程时自动积累经验。
+
+### 三种学习日志（`.learnings/` 目录）
+
+| 日志 | 用途 | 触发时机 |
+|------|------|---------|
+| `ERRORS.md` | 🔴 记录遇到的错误及解决方案 | 命令失败、API 报错、PR 被拒 |
+| `LEARNINGS.md` | 📚 提取可复用的成功经验 | 任务完成、流程优化 |
+| `FEATURE_REQUESTS.md` | 💡 记录改进想法 | 发现可自动化环节 |
+
+### error-detector.sh 命令
+
+```bash
+# 记录错误
+bash scripts/error-detector.sh error "错误描述" "上下文" "解决方案"
+
+# 记录经验
+bash scripts/error-detector.sh learn "经验标题" "适用场景" "具体做法"
+
+# 记录功能请求
+bash scripts/error-detector.sh feature "功能描述" "P0/P1/P2" "备注"
+
+# 查看最近记录
+bash scripts/error-detector.sh review [error|learn|feature|all]
+
+# 统计摘要
+bash scripts/error-detector.sh stats
+```
+
+### 集成到 Bounty 流程
+
+在每次 bounty 操作的关键节点自动调用 error-detector：
+
+1. **预检失败** → `error-detector.sh error` 记录原因
+2. **开发完成** → `error-detector.sh learn` 提取经验
+3. **PR 被拒绝** → `error-detector.sh error` + 提取改进建议
+4. **流程卡点** → `error-detector.sh feature` 记录自动化需求
+5. **定期回顾** → 启动时 `error-detector.sh review` 加载历史经验
+
+---
+
+*🦞 让龙虾自己赚钱，还能自己变聪明！*
 
 
 ## 📄 许可证与版权声明

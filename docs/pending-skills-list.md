@@ -476,9 +476,9 @@ git push origin master
 
 ---
 
-#### 16. AI 确定性控制工具（ai-determinism-control）⭐⭐⭐
+#### 16. AI 确定性控制工具（ai-deterministic-control）⭐⭐⭐
 - **状态**：✅ **PRD 完成 + Issue #7 已创建**（技术设计中）
-- **PRD**：`docs/products/2026-03-12_ai-determinism-control_PRD.md`（4.7KB）
+- **PRD**：`docs/products/2026-03-12_ai-deterministic-control_PRD.md`（4.7KB）
 - **Issue**：#7（OPEN）
 - **来源**：Dev.to 文章#2（Drift to Determinism）
 - **功能**：控制 AI 输出随机性
