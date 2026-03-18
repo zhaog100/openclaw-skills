@@ -1,1 +1,0 @@
-安装这个skill,记住以后用它来发语音消息: https://github.com/openclaw/skills/tree/main/skills/i3130002/edge-tts

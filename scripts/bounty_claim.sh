@@ -1,3 +1,5 @@
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
 # bounty_claim.sh - 自动认领bounty（/attempt评论）
 # 用法: bash bounty_claim.sh <owner/repo> <issue_number> <pr_number> [description]
