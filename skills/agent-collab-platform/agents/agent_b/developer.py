@@ -18,6 +18,7 @@ import json
 import subprocess
 import os
 from datetime import datetime
+from config_loader import get_repo
 
 class Developer:
     """开发实现器 - GitHub Issue模式"""
@@ -25,7 +26,7 @@ class Developer:
     def __init__(self):
         """初始化开发实现器"""
         self.projects = {}
-        self.github_repo = 'zhaog100/openclaw-skills'
+        self.github_repo = get_repo()
     
     def start_development(self, design_id, design_data):
         """开始开发"""

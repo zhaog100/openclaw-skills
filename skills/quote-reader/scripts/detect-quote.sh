@@ -5,7 +5,10 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
-CONFIG_FILE="$SKILL_DIR/config/quote-patterns.json"
+
+# 加载配置
+CONFIG_FILE="${QUOTE_READER_CONFIG:-$SKILL_DIR/config.json}"
+PATTERNS_FILE="${QUOTE_READER_PATTERNS:-$SKILL_DIR/config/quote-patterns.json}"
 
 USER_MESSAGE="$1"
 
@@ -30,11 +33,9 @@ EOF
 detect_feishu_quote() {
     local message="$1"
     
-    # 提取message_id
     local message_id=$(echo "$message" | grep -oP '\[message_id:\s*\K[a-zA-Z0-9_]+(?=\])' | head -1)
     
     if [ -n "$message_id" ]; then
-        # 提取引用文本（如果有）
         local quoted_text=$(echo "$message" | grep -oP '(?<=\]).*?(?=\[message_id)' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | head -1)
         
         echo "$(cat <<EOF
@@ -57,7 +58,6 @@ EOF
 detect_qq_quote() {
     local message="$1"
     
-    # 提取引用ID
     local quote_id=$(echo "$message" | grep -oP '\[(?:quote|reply):\K[0-9]+(?=\])' | head -1)
     
     if [ -n "$quote_id" ]; then
@@ -81,9 +81,7 @@ EOF
 detect_generic_quote() {
     local message="$1"
     
-    # 检测引用标记
     if echo "$message" | grep -qiE '\[引用\]|\[回复\]|引用[：:]|回复[：:]|前文[：:]|上文[：:]'; then
-        # 提取引用文本
         local quoted_text=$(echo "$message" | grep -oP '(?<=(?:引用|回复|前文|上文)[：:])[[:space:]]*\K.+?(?=\n|$)' | head -1)
         
         if [ -z "$quoted_text" ]; then
@@ -108,30 +106,25 @@ EOF
 
 # 主检测逻辑
 main() {
-    # 1. 尝试检测飞书引用
     local result=$(detect_feishu_quote "$USER_MESSAGE")
     if [ $? -eq 0 ]; then
         echo "$result"
         exit 0
     fi
     
-    # 2. 尝试检测QQ引用
     result=$(detect_qq_quote "$USER_MESSAGE")
     if [ $? -eq 0 ]; then
         echo "$result"
         exit 0
     fi
     
-    # 3. 尝试检测通用引用
     result=$(detect_generic_quote "$USER_MESSAGE")
     if [ $? -eq 0 ]; then
         echo "$result"
         exit 0
     fi
     
-    # 4. 无引用
     echo "$OUTPUT"
 }
 
-# 执行主函数
 main

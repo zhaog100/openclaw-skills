@@ -11,30 +11,19 @@ from datetime import datetime
 import sys
 import os
 
-# 导入推送工具
 sys.path.append(os.path.dirname(__file__))
+from config_loader import load_config
 from push_notification import PushNotification
 
 
 class PriceMonitorWithPush:
     """价格监控（带推送）"""
 
-    def __init__(self, db_path="price_history.db", config_path="../assets/config_template.json"):
-        self.db_path = db_path
-        self.config = self.load_config(config_path)
+    def __init__(self, db_path=None, config_path=None):
+        self.config = load_config(config_path)
+        self.db_path = db_path or self.config.get("db_path", "data/price_history.db")
         self.push = PushNotification(config_path)
         self.init_database()
-
-    def load_config(self, config_path):
-        """加载配置"""
-        try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return {
-                "items": [],
-                "threshold": 0.9
-            }
 
     def init_database(self):
         """初始化数据库"""
@@ -225,8 +214,8 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="价格监控（带推送）")
-    parser.add_argument("--config", default="../assets/config_template.json", help="配置文件")
-    parser.add_argument("--db", default="price_history.db", help="数据库路径")
+    parser.add_argument("--config", default=None, help="配置文件")
+    parser.add_argument("--db", default=None, help="数据库路径")
 
     args = parser.parse_args()
 

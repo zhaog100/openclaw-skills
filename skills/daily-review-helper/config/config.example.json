@@ -1,0 +1,16 @@
+{
+  "version": "1.1.0",
+  "workspace": "",
+  "reviewTimes": ["12:00", "23:50"],
+  "cronIdentifier": "daily-review-helper",
+  "features": {
+    "taskReview": true,
+    "gitReview": true,
+    "issueReview": true,
+    "learningReview": true,
+    "gapAnalysis": true,
+    "memoryUpdate": true,
+    "knowledgeUpdate": true,
+    "gitAutoCommit": true
+  }
+}

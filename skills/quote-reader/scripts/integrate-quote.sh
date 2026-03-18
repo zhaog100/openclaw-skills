@@ -4,6 +4,7 @@
 # 功能：完整引用处理流程，仅在需要时输出
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SKILL_DIR="$(dirname "$SCRIPT_DIR")"
 
 USER_MESSAGE="$1"
 
@@ -18,7 +19,6 @@ QUOTE_INFO=$("$SCRIPT_DIR/detect-quote.sh" "$USER_MESSAGE" 2>/dev/null)
 HAS_QUOTE=$(echo "$QUOTE_INFO" | jq -r '.has_quote' 2>/dev/null)
 
 if [ "$HAS_QUOTE" != "true" ]; then
-    # 无引用，静默退出
     exit 0
 fi
 
@@ -29,7 +29,11 @@ if [ -z "$QUOTE_CONTENT" ]; then
     exit 0
 fi
 
-# 4. 输出引用信息（供AI使用）
+# 4. 加载配置获取上下文限制
+CONFIG_FILE="${QUOTE_READER_CONFIG:-$SKILL_DIR/config.json}"
+MAX_BEFORE=$(jq -r '.limits.max_context_before // 2' "$CONFIG_FILE" 2>/dev/null)
+
+# 5. 输出引用信息（供AI使用）
 cat <<EOF
 📋 【引用检测】
 
@@ -40,7 +44,7 @@ $(echo "$QUOTE_CONTENT" | jq -r '.quoted_message.content' 2>/dev/null)
 建议回复：$(echo "$QUOTE_CONTENT" | jq -r '.suggested_response' 2>/dev/null)
 
 上下文：
-$(echo "$QUOTE_CONTENT" | jq '.context.before[] | "  \(.role): \(.content)"' 2>/dev/null | head -2)
+$(echo "$QUOTE_CONTENT" | jq '.context.before[] | "  \(.role): \(.content)"' 2>/dev/null | head -"$MAX_BEFORE")
 
 ---
 EOF

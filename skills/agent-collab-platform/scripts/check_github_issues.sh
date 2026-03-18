@@ -2,10 +2,12 @@
 # GitHub Issues 主动检查脚本
 # 用于心跳系统调用，1 分钟自动轮询
 
-cd $(pwd)/skills/agent-collab-platform
+SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$SKILL_DIR"
 
-# 配置
-REPO="zhaog100/openclaw-skills"
+# 加载配置（环境变量优先）
+REPO="${GITHUB_REPO:-$(python3 -c "from config_loader import get_repo; print(get_repo())" 2>/dev/null)}"
+REPO="${REPO:-zhaog100/openclaw-skills}"
 LAST_CHECK_FILE="logs/last_check_time"
 CHECK_INTERVAL=120  # 秒（2 分钟轮询）
 

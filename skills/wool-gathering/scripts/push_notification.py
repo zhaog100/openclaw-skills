@@ -8,19 +8,12 @@
 import json
 import requests
 from typing import Optional
+from config_loader import load_config
 
 class PushNotification:
-    def __init__(self, config_path="../assets/config_template.json"):
-        self.config = self.load_config(config_path)
+    def __init__(self, config_path=None):
+        self.config = load_config(config_path)
         self.push_config = self.config.get("push_config", {})
-
-    def load_config(self, config_path):
-        """加载配置文件"""
-        try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return {}
 
     def send(self, title: str, content: str, method: Optional[str] = None):
         """发送通知（自动选择方法）"""
@@ -202,7 +195,7 @@ def main():
     parser.add_argument("--title", required=True, help="通知标题")
     parser.add_argument("--content", required=True, help="通知内容")
     parser.add_argument("--method", help="推送方式 (serverchan/pushplus/dingtalk/email)")
-    parser.add_argument("--config", default="../assets/config_template.json", help="配置文件路径")
+    parser.add_argument("--config", default=None, help="配置文件路径（默认使用config.json）")
 
     args = parser.parse_args()
 

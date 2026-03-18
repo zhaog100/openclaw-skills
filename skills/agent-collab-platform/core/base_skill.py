@@ -18,6 +18,7 @@ ClawHub: https://clawhub.com
 import json
 import subprocess
 from datetime import datetime
+from config_loader import get_repo
 
 class BaseSkill:
     """所有智能体的基类
@@ -30,7 +31,8 @@ class BaseSkill:
     5. 技能发布前必须拉取历史版本并对比差异 - 避免覆盖远程新版本
     """
     
-    def __init__(self, agent_id, role, repo='zhaog100/openclaw-skills'):
+    def __init__(self, agent_id, role, repo=None):
+        self.repo = repo or get_repo()
         """初始化技能
         
         Args:
