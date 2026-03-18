@@ -4,11 +4,13 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
-## 🎯 当前状态（2026-03-17）
+## 🎯 当前状态（2026-03-18）
 
+**Bounty收割：** 18个PR，8个仓库，$3,540+（详见 memory/2026-03-18.md）
 **ClawHub发布：** 25+个技能 | 安全修复全覆盖
 **版权归属：** 思捷娅科技 (SJYKJ)，MIT许可证
 **Git仓库：** origin + xiaomili 双仓库
+**GitHub账号：** zhaog100 | Classic Token有效
 
 ---
 
@@ -50,6 +52,17 @@ qmd search daily-logs "关键词" --hybrid
 - GitHub URL安装 → npm/bun包名
 - 硬编码密钥 → 占位符
 
+### GitHub Bounty 收割规范（2026-03-18）⭐⭐⭐⭐⭐
+- **Remote URL格式** - `https://x-access-token:ghp_XXX@github.com`（不能用 `user:token@`）
+- **Fork必须用Classic Token** - Fine-grained token无法fork他人仓库
+- **默认分支先查** - `git symbolic-ref refs/remotes/origin/HEAD`，不一定是main
+- **PR标题** - `[BOUNTY #N] 描述`，body必须 `Closes #N`
+- **Label检查** - 先查labels，有"Core Team Only"的直接跳过
+- **子代理并行** - 每批4-5个，独立分支，统一提交
+- **竞争项目快速修复review** - 如onyx greptile bot自动review需即时响应
+- **子代理超时果断杀** - 卡住超过30分钟的直接kill，不值得等
+- **Gmail配置** - 密码在 `/root/.openclaw/secrets/gmail.env`（不是.bashrc）
+
 ### Git & ClawHub规则
 - **Git推送** - 个人→xiaomili，公共→origin
 - **ClawHub slug** - 被占用时用sjykj-前缀
@@ -76,18 +89,22 @@ qmd search daily-logs "关键词" --hybrid
 5. quote-reader - 引用前文读取
 6. speech-recognition - 语音识别
 7. github-bounty-hunter - GitHub赚钱
+8. bounty-harvest - GitHub Bounty批量收割（实战验证）
 
 ### 核心配置
-8. agents.json - 代理配置
-9. openai.env - OpenAI Key
-10. mcporter.json - MCP集成
-11. crontab - 定时任务（4个活跃）
+9. agents.json - 代理配置
+10. openai.env - OpenAI Key
+11. mcporter.json - MCP集成
+12. crontab - 定时任务（4个活跃）
+13. github token - `~/.openclaw/secrets/gmail.env` 附近
+14. Classic GitHub Token - zhaog100账号，ghp_开头
 
 ### 知识库主题
-12. project-management - 项目管理
-13. software-testing - 软件测试
-14. content-creation - 内容创作
-15. ai-system-design - AI系统设计
+15. project-management - 项目管理
+16. software-testing - 软件测试
+17. content-creation - 内容创作
+18. ai-system-design - AI系统设计
+19. github-bounty-strategy - Bounty发现+竞标+交付全流程
 
 ### 核心概念
 16. 三库联动 - MEMORY+QMD+Git
@@ -109,6 +126,9 @@ qmd search daily-logs "关键词" --hybrid
 28. 版权统一思捷娅科技（2026-03-15）
 29. Git rebase禁令（2026-03-17）
 30. ClawHub安全修复策略（2026-03-17）
+31. GitHub Bounty批量收割策略（2026-03-18）
+32. 子代理并行开发模式验证成功（2026-03-18）
+33. Gmail配置持久化到secrets/（2026-03-18）
 
 ---
 
