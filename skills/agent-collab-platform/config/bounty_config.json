@@ -1,0 +1,19 @@
+{
+  "max_concurrent_subagents": 5,
+  "preferred_languages": ["Go", "Python", "TypeScript"],
+  "skip_languages": ["Rust", "Scala", "C++", "Swift", "Objective-C"],
+  "pr_format": {
+    "title": "[BOUNTY #{issue_number}] {description}",
+    "commit": "feat: {description} - Closes #{issue_number}",
+    "claim_body": "/claim #{issue_number}"
+  },
+  "platforms": {
+    "algora": { "auth_method": "/attempt_comment" },
+    "github_bounty": { "auth_method": "bounty_label" }
+  },
+  "scan_strategies": [
+    "GitHub search: label:bounty state:open",
+    "Algora platform: /attempt issue comments",
+    "GitHub search: help wanted + paid"
+  ]
+}
