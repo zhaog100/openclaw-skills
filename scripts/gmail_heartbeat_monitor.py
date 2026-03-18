@@ -4,6 +4,9 @@ Gmail 心跳监控器
 - 每次心跳自动检查新邮件
 - 自动回复 Bounty 相关邮件
 - 重要邮件通知官家
+
+版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+GitHub: https://github.com/zhaog100/openclaw-skills
 """
 
 import imaplib
@@ -114,48 +117,55 @@ def connect_gmail():
 
 def check_new_emails(mail):
     """检查新邮件"""
-    mail.select("inbox")
-    
-    # 获取上次检查时间后的邮件
-    since_date = get_last_check_time().strftime("%d-%b-%Y")
-    status, messages = mail.search(None, f'(SINCE "{since_date}")')
-    
-    if status != "OK":
+    try:
+        mail.select("inbox")
+        
+        # 获取上次检查时间后的邮件
+        since_date = get_last_check_time().strftime("%d-%b-%Y")
+        status, messages = mail.search(None, f'(SINCE "{since_date}")')
+        
+        if status != "OK":
+            return []
+        
+        email_ids = messages[0].split()
+        new_emails = []
+        
+        for email_id in email_ids:
+            status, msg_data = mail.fetch(email_id, "(RFC822)")
+            if status == "OK":
+                for response_part in msg_data:
+                    if isinstance(response_part, tuple):
+                        msg = email.message_from_bytes(response_part[1])
+                        new_emails.append(msg)
+        
+        return new_emails
+    except Exception as e:
+        print(f"❌ 邮件检查失败：{e}")
         return []
-    
-    email_ids = messages[0].split()
-    new_emails = []
-    
-    for email_id in email_ids:
-        status, msg_data = mail.fetch(email_id, "(RFC822)")
-        if status == "OK":
-            for response_part in msg_data:
-                if isinstance(response_part, tuple):
-                    msg = email.message_from_bytes(response_part[1])
-                    new_emails.append(msg)
-    
-    return new_emails
 
 
 def is_bounty_email(msg):
     """判断是否是 Bounty 相关邮件"""
-    subject, encoding = decode_header(msg["Subject"])[0]
-    if isinstance(subject, bytes):
-        subject = subject.decode(encoding if encoding else "utf-8")
-    
-    from_ = msg.get("From", "").lower()
-    subject_lower = subject.lower()
-    
-    # 检查是否包含 bounty 关键词
-    if any(keyword in subject_lower or keyword in from_ for keyword in BOUNTY_KEYWORDS):
-        return True
-    
-    # 检查是否是 GitHub 通知
-    if "github.com" in from_ or "notifications@github.com" in from_:
-        if any(keyword in subject_lower for keyword in ["pull request", "issue", "merged"]):
+    try:
+        subject, encoding = decode_header(msg["Subject"])[0]
+        if isinstance(subject, bytes):
+            subject = subject.decode(encoding if encoding else "utf-8")
+        
+        from_ = msg.get("From", "").lower()
+        subject_lower = subject.lower()
+        
+        # 检查是否包含 bounty 关键词
+        if any(keyword in subject_lower or keyword in from_ for keyword in BOUNTY_KEYWORDS):
             return True
-    
-    return False
+        
+        # 检查是否是 GitHub 通知
+        if "github.com" in from_ or "notifications@github.com" in from_:
+            if any(keyword in subject_lower for keyword in ["pull request", "issue", "merged"]):
+                return True
+        
+        return False
+    except:
+        return False
 
 
 def get_email_content(msg):
@@ -193,7 +203,7 @@ def send_reply(to_email, subject, original_subject, template_name):
     msg['In-Reply-To'] = original_subject
     
     try:
-        smtp = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        smtp = smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=10)
         smtp.starttls()
         smtp.login(USERNAME, APP_PASSWORD)
         smtp.send_message(msg)
@@ -207,8 +217,6 @@ def send_reply(to_email, subject, original_subject, template_name):
 
 def notify_user(email_summary):
     """通知官家重要邮件"""
-    # 这里可以集成 QQ/微信/钉钉通知
-    # 目前先打印日志
     print("\n" + "=" * 60)
     print("📬 重要邮件通知")
     print("=" * 60)
@@ -225,79 +233,78 @@ def process_emails():
     print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 开始检查 Gmail...")
     
     mail = None
+    important_emails = []
+    
     try:
         mail = connect_gmail()
         new_emails = check_new_emails(mail)
         
         print(f"📧 新邮件数：{len(new_emails)}")
-    
-    important_emails = []
-    
-    for msg in new_emails:
-        subject, encoding = decode_header(msg["Subject"])[0]
-        if isinstance(subject, bytes):
-            subject = subject.decode(encoding if encoding else "utf-8")
         
-        from_ = msg.get("From", "")
+        for msg in new_emails:
+            try:
+                subject, encoding = decode_header(msg["Subject"])[0]
+                if isinstance(subject, bytes):
+                    subject = subject.decode(encoding if encoding else "utf-8")
+                
+                from_ = msg.get("From", "")
+                
+                if is_bounty_email(msg):
+                    print(f"\n📬 Bounty 相关邮件：{subject}")
+                    print(f"   发件人：{from_}")
+                    
+                    # 判断邮件类型并自动回复
+                    subject_lower = subject.lower()
+                    
+                    if "merged" in subject_lower or ("pull request" in subject_lower and "merged" in subject_lower):
+                        # PR 合并通知
+                        print("   类型：PR 已合并")
+                        print("   操作：发送付款信息")
+                        send_reply(from_, subject, "PR Merged", "pr_merged")
+                        important_emails.append({
+                            'subject': subject,
+                            'from': from_,
+                            'type': 'PR 合并',
+                            'action': '已发送付款信息'
+                        })
+                    
+                    elif "bounty" in subject_lower or "reward" in subject_lower:
+                        # Bounty 任务通知
+                        print("   类型：Bounty 任务")
+                        print("   操作：确认接受任务")
+                        send_reply(from_, subject, "Bounty Received", "bounty_received")
+                        important_emails.append({
+                            'subject': subject,
+                            'from': from_,
+                            'type': 'Bounty 任务',
+                            'action': '已确认接受'
+                        })
+                    
+                    elif "payment" in subject_lower or "paid" in subject_lower:
+                        # 付款通知
+                        print("   类型：付款通知")
+                        print("   操作：确认收款")
+                        send_reply(from_, subject, "Payment Received", "payment_received")
+                        important_emails.append({
+                            'subject': subject,
+                            'from': from_,
+                            'type': '付款通知',
+                            'action': '已确认收款 ⭐⭐⭐⭐⭐'
+                        })
+            except Exception as e:
+                print(f"⚠️ 处理单封邮件失败：{e}")
+                continue
         
-        if is_bounty_email(msg):
-            print(f"\n📬 Bounty 相关邮件：{subject}")
-            print(f"   发件人：{from_}")
-            
-            # 判断邮件类型并自动回复
-            subject_lower = subject.lower()
-            
-            if "merged" in subject_lower or "pull request" in subject_lower and "merged" in subject_lower:
-                # PR 合并通知
-                print("   类型：PR 已合并")
-                print("   操作：发送付款信息")
-                send_reply(from_, subject, "PR Merged", "pr_merged")
-                important_emails.append({
-                    'subject': subject,
-                    'from': from_,
-                    'type': 'PR 合并',
-                    'action': '已发送付款信息'
-                })
-            
-            elif "bounty" in subject_lower or "reward" in subject_lower:
-                # Bounty 任务通知
-                print("   类型：Bounty 任务")
-                print("   操作：确认接受任务")
-                send_reply(from_, subject, "Bounty Received", "bounty_received")
-                important_emails.append({
-                    'subject': subject,
-                    'from': from_,
-                    'type': 'Bounty 任务',
-                    'action': '已确认接受'
-                })
-            
-            elif "payment" in subject_lower or "paid" in subject_lower:
-                # 付款通知
-                print("   类型：付款通知")
-                print("   操作：确认收款")
-                send_reply(from_, subject, "Payment Received", "payment_received")
-                important_emails.append({
-                    'subject': subject,
-                    'from': from_,
-                    'type': '付款通知',
-                    'action': '已确认收款 ⭐⭐⭐⭐⭐'
-                })
-    
-    # 通知官家
-    if important_emails:
-        notify_user(important_emails)
-    
-    # 保存检查时间
-    save_last_check_time(datetime.now())
-    
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 邮件检查完成\n")
-    
+        # 通知官家
+        if important_emails:
+            notify_user(important_emails)
+        
+        print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 邮件检查完成\n")
+        
     except Exception as e:
         print(f"❌ Gmail 检查失败：{e}")
         print("   可能原因：网络问题/认证失败/Gmail 服务异常")
         print("   建议：检查网络连接或更新应用专用密码")
-        # 保存检查时间，避免下次重复尝试
-        save_last_check_time(datetime.now())
     finally:
         # 清理连接
         if mail:
@@ -306,6 +313,9 @@ def process_emails():
                 mail.logout()
             except:
                 pass
+    
+    # 保存检查时间
+    save_last_check_time(datetime.now())
 
 
 if __name__ == "__main__":
