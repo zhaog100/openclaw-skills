@@ -124,8 +124,147 @@ function formatBlockerWarning(blockers) {
   return text;
 }
 
+// ==================== Phase 2 格式化函数 ====================
+
+const SEVERITY_EMOJI = { critical: '🔴', high: '🟠', medium: '🟡', low: '🟢' };
+
+/**
+ * 格式化会议纪要摘要
+ */
+function formatMeetingNote(note, project, createdTasks) {
+  let text = `📝 会议纪要已保存 #${note.id}\n`;
+  text += `━━━━━━━━━━━━━━━━━━\n`;
+  text += `📋 标题：${note.title}\n`;
+  if (project) text += `📁 项目：${project.name}\n`;
+  if (note.attendees && note.attendees.length > 0) {
+    text += `👥 参会：${note.attendees.join('、')}\n`;
+  }
+  const summary = note.content?.summary || note.content?.text || JSON.stringify(note.content);
+  text += `\n📄 要点：\n${summary}\n`;
+
+  if (note.action_items && note.action_items.length > 0) {
+    text += `\n📌 待办事项（${note.action_items.length}项）：\n`;
+    for (const item of note.action_items) {
+      text += `  ○ ${item.description}`;
+      if (item.assignee) text += ` @${item.assignee}`;
+      if (item.due_date) text += ` 截止${item.due_date}`;
+      text += '\n';
+    }
+  }
+
+  if (createdTasks && createdTasks.length > 0) {
+    text += `\n✅ 已自动创建任务：\n`;
+    for (const t of createdTasks) {
+      text += `  #${t.id} ${t.title}`;
+      if (t.assignee) text += ` @${t.assignee}`;
+      text += '\n';
+    }
+  }
+
+  return text.trim();
+}
+
+/**
+ * 格式化风险列表
+ */
+function formatRiskList(risks, projectName) {
+  let text = `⚠️ 风险列表 — ${projectName}（${risks.length}项）\n`;
+  text += '━━━━━━━━━━━━━━━━━━\n';
+  for (const r of risks) {
+    text += `${SEVERITY_EMOJI[r.severity] || ''} #${r.id} ${r.title}\n`;
+    text += `  级别：${r.severity} | 状态：${r.status} | 创建：${r.created_at}\n`;
+    if (r.description) text += `  ${r.description}\n`;
+    text += '\n';
+  }
+  return text.trim();
+}
+
+/**
+ * 格式化风险检查结果
+ */
+function formatRiskCheck(detectedRisks, projectName) {
+  let text = `🔍 风险检查报告 — ${projectName}\n`;
+  text += '━━━━━━━━━━━━━━━━━━\n';
+  text += `检测到 ${detectedRisks.length} 个风险：\n\n`;
+  for (const r of detectedRisks) {
+    text += `${SEVERITY_EMOJI[r.severity] || ''} ${r.title}\n`;
+    text += `  ${r.description}\n\n`;
+  }
+  text += '💡 已自动添加到风险列表，请及时处理';
+  return text.trim();
+}
+
+/**
+ * 格式化工时记录条目
+ */
+function formatTimeLogEntry(entry) {
+  let text = `✅ 工时已记录 #${entry.id}\n`;
+  text += `  ${entry.hours}h | ${entry.date}\n`;
+  text += `  ${entry.description}\n`;
+  if (entry.task) text += `  📎 关联任务：${entry.task}\n`;
+  text += `  📁 项目：${entry.project_name}`;
+  return text.trim();
+}
+
+/**
+ * 格式化工时报表
+ */
+function formatTimeReport(report, projectName, period) {
+  const periodLabel = { week: '本周', month: '本月', all: '全部' }[period] || period;
+  let text = `📊 工时报表 — ${projectName}（${periodLabel}）\n`;
+  text += '━━━━━━━━━━━━━━━━━━\n';
+  if (report.dateFrom) text += `📅 ${report.dateFrom} ~ ${report.dateTo}\n`;
+  text += `⏱️ 总工时：${report.totalHours}h | 记录数：${report.totalLogs}\n`;
+
+  if (report.memberSummary && report.memberSummary.length > 0) {
+    text += `\n👥 成员统计：\n`;
+    for (const m of report.memberSummary) {
+      text += `  ${m.member_name || '未指定'}：${m.total_hours}h（${m.log_count}条记录）\n`;
+    }
+  }
+
+  if (report.dailySummary && report.dailySummary.length > 0) {
+    text += `\n📅 每日统计：\n`;
+    for (const d of report.dailySummary) {
+      text += `  ${d.date}：${d.total_hours}h（${d.log_count}条）\n`;
+    }
+  }
+
+  return text.trim();
+}
+
+/**
+ * 格式化知识条目（添加确认）
+ */
+function formatKnowledgeEntry(entry, project) {
+  let text = `✅ 知识条目已保存 #${entry.id}\n`;
+  text += `  标题：${entry.title}\n`;
+  if (project) text += `  项目：${project.name}\n`;
+  if (entry.tags && entry.tags.length > 0) text += `  标签：${entry.tags.join('、')}\n`;
+  text += `  内容：${(entry.content || '').slice(0, 100)}${(entry.content || '').length > 100 ? '...' : ''}`;
+  return text.trim();
+}
+
+/**
+ * 格式化知识条目列表
+ */
+function formatKnowledgeList(entries) {
+  let text = `📚 知识库（${entries.length}条）\n`;
+  text += '━━━━━━━━━━━━━━━━━━\n';
+  for (const e of entries) {
+    const tags = (() => { try { return JSON.parse(e.tags_json || '[]'); } catch { return []; } })();
+    text += `#${e.id} ${e.title}`;
+    if (tags.length > 0) text += ` [${tags.join(', ')}]`;
+    text += `\n`;
+  }
+  return text.trim();
+}
+
 module.exports = {
-  PRIORITY_EMOJI, STATUS_EMOJI,
+  PRIORITY_EMOJI, STATUS_EMOJI, SEVERITY_EMOJI,
   formatTaskList, formatKanboard, formatProjectStatus,
   formatStandupSummary, formatBlockerWarning,
+  formatMeetingNote, formatRiskList, formatRiskCheck,
+  formatTimeLogEntry, formatTimeReport,
+  formatKnowledgeEntry, formatKnowledgeList,
 };

@@ -89,6 +89,64 @@ MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 |------|------|------|------|
 | task_id | number | ✅ | 任务ID |
 
+### pm:meeting-notes
+
+会议纪要记录（用户传入结构化内容，不需要语音识别）
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| title | string | ✅ | 会议标题 |
+| project_name | string | ❌ | 项目名称 |
+| attendees | string[] | ❌ | 参会人列表 |
+| content | string | ✅ | 会议内容/要点 |
+| action_items | array | ❌ | 待办 [{description, assignee, due_date}]，自动创建任务 |
+
+### pm:risk-alert
+
+风险预警管理
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| action | string | ✅ | list/add/check |
+| project_name | string | ❌ | 项目名称 |
+| title | string | add时 | 风险标题 |
+| severity | string | ❌ | low/medium/high/critical |
+| description | string | ❌ | 风险描述 |
+
+### pm:log-time
+
+记录工时
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| description | string | ✅ | 工作描述 |
+| hours | number | ✅ | 工时数 |
+| project_name | string | ❌ | 项目名称 |
+| task_keyword | string | ❌ | 关联任务关键词（模糊匹配） |
+| date | string | ❌ | 日期 YYYY-MM-DD（默认今天） |
+
+### pm:time-report
+
+工时报表
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| period | string | ❌ | week/month/all（默认week） |
+| project_name | string | ❌ | 项目名称 |
+
+### pm:knowledge
+
+个人知识库
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| action | string | ✅ | add/search/list |
+| title | string | add时 | 标题 |
+| content | string | add时 | 内容 |
+| tags | string[] | ❌ | 标签 |
+| query | string | search时 | 搜索关键词 |
+| project_name | string | ❌ | 项目名称 |
+
 ## 实现说明
 
 - 数据库：SQLite（WAL模式），通过 `better-sqlite3` 驱动
