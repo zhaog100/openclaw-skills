@@ -1,1 +1,3 @@
-node_modules/\ndata/\n*.db\n*.db-wal\n*.db-shm
+node_modules/
+data/*.db
+config.json

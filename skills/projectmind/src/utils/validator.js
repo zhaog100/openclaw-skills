@@ -59,7 +59,7 @@ function validateEstimateDays(days) {
  */
 function validateProjectName(name) {
   if (!name || typeof name !== 'string' || name.trim().length === 0) {
-    return { valid: false, error: '项目名称不能为空' };
+    return { valid: false, error: '❌ 项目名称不能为空' };
   }
   return { valid: true, value: name.trim() };
 }
