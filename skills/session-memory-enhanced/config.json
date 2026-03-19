@@ -1,36 +1,16 @@
 {
-  "flushIdleSeconds": 1800,
-  "maxMessagesPerPart": 60,
-  "features": {
-    "structuredExtraction": true,
-    "vectorSearch": true,
-    "aiSummary": true,
-    "gitBackup": true,
-    "qmdUpdate": true
-  },
-  "python": {
+  "enabled": true,
+  "sync": true,
+  "threshold": 60,
+  "autoSwitch": true,
+  "memorySync": {
     "enabled": true,
-    "autoInstall": true,
-    "requirements": "requirements.txt"
+    "interval": 300,
+    "autoCommit": true
   },
-  "search": {
-    "strategy": "hybrid",
-    "primaryEngine": "vector",
-    "fallbackEngine": "qmd",
-    "threshold": 0.7,
-    "topK": 5
-  },
-  "agents": {
-    "main": {
-      "flushIdleSeconds": 1800,
-      "maxMessagesPerPart": 60
-    }
-  },
-  "watcher": {
-    "debounceSeconds": 20,
-    "pollingIntervalSeconds": 300
-  },
-  "sanitizer": {
-    "maxContentLength": 1000
+  "contextManagement": {
+    "enabled": true,
+    "threshold": 60,
+    "autoArchive": true
   }
 }

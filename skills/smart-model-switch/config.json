@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "autoSwitch": true,
+  "models": {
+    "simple": "bailian/qwen3.5-plus",
+    "normal": "bailian/qwen3.5-plus",
+    "complex": "bailian/qwen3.5-plus",
+    "coding": "bailian/qwen3.5-plus",
+    "vision": "bailian/qwen3.5-plus"
+  },
+  "rules": {
+    "simpleTasks": ["闲聊", "简单问答", "日常对话"],
+    "normalTasks": ["文档处理", "数据分析", "代码审查"],
+    "complexTasks": ["复杂推理", "创意写作", "技术分析"],
+    "codingTasks": ["代码生成", "Bug 修复", "技能开发"],
+    "visionTasks": ["图片识别", "OCR", "图表分析"]
+  },
+  "optimization": {
+    "enabled": true,
+    "costSaving": true,
+    "speedPriority": true
+  }
+}
