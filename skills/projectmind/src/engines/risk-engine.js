@@ -1,8 +1,7 @@
 // MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 自动风险评估引擎
 
-const { getTasksByProject, getRecentBlockers } = require('../db/queries');
-const { getDB } = require('../db/connection');
+const { getRecentBlockers, getOverdueTasks, getStaleHighPriorityTasks } = require('../db/queries');
 
 /**
  * 基于任务数据自动评估风险
@@ -15,16 +14,10 @@ const { getDB } = require('../db/connection');
  * @returns {Array<{ title: string, severity: string, description: string }>}
  */
 function runRiskCheck(projectId) {
-  const db = getDB();
   const risks = [];
 
   // 1. 查找进行中但超期的任务
-  const overdueTasks = db.prepare(`
-    SELECT * FROM tasks
-    WHERE project_id = ? AND status = 'doing'
-      AND estimate_days IS NOT NULL AND estimate_days > 0
-      AND (julianday('now','localtime') - julianday(created_at)) > estimate_days
-  `).all(projectId);
+  const overdueTasks = getOverdueTasks(projectId);
 
   for (const task of overdueTasks) {
     const elapsed = Math.round((Date.now() - new Date(task.created_at).getTime()) / 86400000);
@@ -59,11 +52,7 @@ function runRiskCheck(projectId) {
   }
 
   // 3. 高优先级任务在todo状态过久
-  const staleHighPriority = db.prepare(`
-    SELECT * FROM tasks
-    WHERE project_id = ? AND status = 'todo' AND priority IN ('critical','high')
-      AND (julianday('now','localtime') - julianday(created_at)) > 7
-  `).all(projectId);
+  const staleHighPriority = getStaleHighPriorityTasks(projectId);
 
   for (const task of staleHighPriority) {
     risks.push({

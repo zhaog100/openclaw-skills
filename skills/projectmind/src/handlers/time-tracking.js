@@ -1,7 +1,7 @@
 // MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 工时追踪 handler（log-time + time-report）
 
-const { findProjectByName, findTaskById, createTimeLog, listTimeLogs, getTimeSummary, getDailyTimeSummary, logActivity } = require('../db/queries');
+const { findProjectByName, findTaskById, createTimeLog, listTimeLogs, getTimeSummary, getDailyTimeSummary, logActivity, listTasks } = require('../db/queries');
 const { getConfig } = require('../db/connection');
 const { buildTimeReport } = require('../engines/time-report-engine');
 const { formatTimeReport, formatTimeLogEntry } = require('../utils/formatter');
@@ -25,7 +25,6 @@ function handleLogTime(params) {
   let taskId = null;
   let matchedTask = null;
   if (params.task_keyword) {
-    const { listTasks } = require('../db/queries');
     const tasks = listTasks({ project_id: project.id });
     matchedTask = tasks.find(t =>
       t.title.toLowerCase().includes(params.task_keyword.toLowerCase()) ||
