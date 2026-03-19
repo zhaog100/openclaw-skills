@@ -136,7 +136,8 @@ function initSchema() {
       content     TEXT    DEFAULT '',
       tags_json   TEXT    DEFAULT '[]',
       created_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
-      updated_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+      updated_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
     );
   `);
 

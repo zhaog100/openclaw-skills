@@ -361,6 +361,27 @@ function listKnowledge(projectId, limit = 20) {
   return db().prepare(sql).all(...params);
 }
 
+// ==================== 风险评估查询 ====================
+
+/** 查找超期任务（进行中但超过预估天数） */
+function getOverdueTasks(projectId) {
+  return db().prepare(`
+    SELECT * FROM tasks
+    WHERE project_id = ? AND status = 'doing'
+      AND estimate_days IS NOT NULL AND estimate_days > 0
+      AND (julianday('now','localtime') - julianday(created_at)) > estimate_days
+  `).all(projectId);
+}
+
+/** 查找高优任务待办过久（>7天） */
+function getStaleHighPriorityTasks(projectId) {
+  return db().prepare(`
+    SELECT * FROM tasks
+    WHERE project_id = ? AND status = 'todo' AND priority IN ('critical','high')
+      AND (julianday('now','localtime') - julianday(created_at)) > 7
+  `).all(projectId);
+}
+
 module.exports = {
   // 项目
   createProject, findProjectByName, findProjectById, listProjects, getAllProjectNames,
@@ -379,4 +400,6 @@ module.exports = {
   createTimeLog, listTimeLogs, getTimeSummary, getDailyTimeSummary,
   // 知识库
   createKnowledge, searchKnowledge, listKnowledge,
+  // 风险评估
+  getOverdueTasks, getStaleHighPriorityTasks,
 };
