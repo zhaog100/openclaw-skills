@@ -112,3 +112,32 @@ Exhaustive search performed:
 
 ### Conclusion
 GitHub bounty ecosystem is dominated by crypto tokens, not USD. True USD bounties are extremely rare and most were already found in Rounds 1-3. The hoppscotch #5877 ($50) is the closest but the bounty is via Algora/Polar with uncertain payout.
+
+---
+
+## Round 5 Scan (17:16 CST)
+
+### ⭐ Tier 1 - Unassigned USD Bounties
+
+| # | Repo | Issue | Reward | Comments | Assigned | Link |
+|---|------|-------|--------|----------|----------|------|
+| 1 | zio/zio | #9874 Handling errors allows recovering from defects | **$300** | 17💬 | ❌ | https://github.com/zio/zio/issues/9874 |
+| 2 | zio/zio | #9909 Create test suite for ZIOApp correct behaviour | **$400** | 27💬 | ❌ | https://github.com/zio/zio/issues/9909 |
+| 3 | tscircuit/matchpack | #15 Specialized Layout for Decoupling Capacitors | **$300** | 17💬 | ❌ | https://github.com/tscircuit/matchpack/issues/15 |
+| 4 | Recon-Fuzz/recon-extension | #21 Feature: Dynamic Replacement | **$300** | 11💬 | ❌ | https://github.com/Recon-Fuzz/recon-extension/issues/21 |
+| 5 | projectdiscovery/nuclei | #5567 Template Profile Improvements | **$150** | 41💬 | ❌ | https://github.com/projectdiscovery/nuclei/issues/5567 |
+| 6 | projectdiscovery/nuclei | #6398 Fuzzing templates skips numeric path parts | **$150** | 44💬 | ❌ | https://github.com/projectdiscovery/nuclei/issues/6398 |
+| 7 | projectdiscovery/httpx | #2240 http11 flag ignored due to HTTP/2 fallback | **$100** | 40💬 | ❌ | https://github.com/projectdiscovery/httpx/issues/2240 |
+| 8 | projectdiscovery/nuclei | #7086 XSS Context Analyzer misclassifies URIs | **$100** | 31💬 | ❌ | https://github.com/projectdiscovery/nuclei/issues/7086 |
+| 9 | projectdiscovery/dnsx | #924 Support auto wildcard detection | **$100** | 38💬 | ❌ | https://github.com/projectdiscovery/dnsx/issues/924 |
+| 10 | jhipster/generator-jhipster | #17550 Okta/Auth0 JWK retrieval fails with timeout | **$100** | 7💬 | ❌ | https://github.com/jhipster/generator-jhipster/issues/17550 |
+| 11 | jhipster/generator-jhipster | #27215 Improve API First Development docs | **$100** | 13💬 | ❌ | https://github.com/jhipster/generator-jhipster/issues/27215 |
+| 12 | zio/zio | #9681 WeakConcurrentBag NPE when forking 10K fibers | **$150** | 15💬 | ❌ | https://github.com/zio/zio/issues/9681 |
+| 13 | mangdangroboticsclub/mini_pupper_ros | #125 Upgrade ROS2 Humble to Jazzy | **$100** | 15💬 | ❌ | https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125 |
+| 14 | Merit-Systems/x402scan | #287 Unable to register resource - OgImage conflict | **$100** | 5💬 | ❌ | https://github.com/Merit-Systems/x402scan/issues/287 |
+
+### Notes
+- **zio/zio** has the highest value unassigned bounties ($300-$400), Scala Native ecosystem
+- **projectdiscovery** consistently offers $100-$150 for Go security tool bugs, high competition (30-44 comments)
+- **jhipster** Java/Kotlin ecosystem, $100 bounties, moderate competition
+- Algora API returned empty results - may be down or auth expired
