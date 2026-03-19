@@ -188,6 +188,179 @@ function getRecentActivity(projectId, limit = 20) {
   ).all(projectId, limit);
 }
 
+// ==================== 会议纪要 ====================
+
+/** 创建会议纪要 */
+function createMeetingNote(params) {
+  return db().prepare(`
+    INSERT INTO meeting_notes (project_id, title, attendees, content_json, action_items_json)
+    VALUES (?, ?, ?, ?, ?)
+  `).run(
+    params.project_id, params.title,
+    JSON.stringify(params.attendees || []),
+    JSON.stringify(params.content || {}),
+    JSON.stringify(params.action_items || [])
+  );
+}
+
+/** 查询项目的会议纪要列表 */
+function listMeetingNotes(projectId, limit = 20) {
+  return db().prepare(
+    'SELECT * FROM meeting_notes WHERE project_id = ? ORDER BY created_at DESC LIMIT ?'
+  ).all(projectId, limit);
+}
+
+/** 根据ID查找会议纪要 */
+function findMeetingNoteById(id) {
+  return db().prepare('SELECT * FROM meeting_notes WHERE id = ?').get(id);
+}
+
+// ==================== 风险管理 ====================
+
+/** 创建风险 */
+function createRisk(params) {
+  return db().prepare(`
+    INSERT INTO risks (project_id, title, severity, description, status, probability, impact, mitigation)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    params.project_id, params.title, params.severity || 'medium',
+    params.description || '', params.status || 'open',
+    params.probability || '', params.impact || '', params.mitigation || ''
+  );
+}
+
+/** 查询风险列表 */
+function listRisks(filters) {
+  let sql = 'SELECT * FROM risks WHERE 1=1';
+  const params = [];
+  if (filters.project_id) {
+    sql += ' AND project_id = ?';
+    params.push(filters.project_id);
+  }
+  if (filters.severity) {
+    sql += ' AND severity = ?';
+    params.push(filters.severity);
+  }
+  if (filters.status) {
+    sql += ' AND status = ?';
+    params.push(filters.status);
+  }
+  sql += ' ORDER BY CASE severity WHEN \'critical\' THEN 0 WHEN \'high\' THEN 1 WHEN \'medium\' THEN 2 WHEN \'low\' THEN 3 END, created_at DESC';
+  return db().prepare(sql).all(...params);
+}
+
+/** 更新风险 */
+function updateRisk(id, fields) {
+  const setClauses = [];
+  const params = [];
+  const allowed = ['title', 'severity', 'description', 'status', 'probability', 'impact', 'mitigation'];
+  for (const key of allowed) {
+    if (fields[key] !== undefined) {
+      setClauses.push(`${key} = ?`);
+      params.push(fields[key]);
+    }
+  }
+  if (setClauses.length === 0) return null;
+  setClauses.push("updated_at = datetime('now','localtime')");
+  params.push(id);
+  return db().prepare(`UPDATE risks SET ${setClauses.join(', ')} WHERE id = ?`).run(...params);
+}
+
+// ==================== 工时追踪 ====================
+
+/** 记录工时 */
+function createTimeLog(params) {
+  return db().prepare(`
+    INSERT INTO time_logs (project_id, task_id, member_name, description, hours, date)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `).run(
+    params.project_id, params.task_id || null,
+    params.member_name || '', params.description || '',
+    params.hours || 0, params.date || `date('now','localtime')`
+  );
+}
+
+/** 查询工时记录 */
+function listTimeLogs(filters) {
+  let sql = 'SELECT * FROM time_logs WHERE 1=1';
+  const params = [];
+  if (filters.project_id) {
+    sql += ' AND project_id = ?';
+    params.push(filters.project_id);
+  }
+  if (filters.date_from) {
+    sql += ' AND date >= ?';
+    params.push(filters.date_from);
+  }
+  if (filters.date_to) {
+    sql += ' AND date <= ?';
+    params.push(filters.date_to);
+  }
+  sql += ' ORDER BY date DESC, created_at DESC';
+  return db().prepare(sql).all(...params);
+}
+
+/** 按项目统计工时 */
+function getTimeSummary(projectId, dateFrom, dateTo) {
+  let sql = 'SELECT member_name, SUM(hours) as total_hours, COUNT(*) as log_count FROM time_logs WHERE project_id = ?';
+  const params = [projectId];
+  if (dateFrom) { sql += ' AND date >= ?'; params.push(dateFrom); }
+  if (dateTo) { sql += ' AND date <= ?'; params.push(dateTo); }
+  sql += ' GROUP BY member_name ORDER BY total_hours DESC';
+  return db().prepare(sql).all(...params);
+}
+
+/** 按日期统计工时 */
+function getDailyTimeSummary(projectId, dateFrom, dateTo) {
+  let sql = 'SELECT date, SUM(hours) as total_hours, COUNT(*) as log_count FROM time_logs WHERE project_id = ?';
+  const params = [projectId];
+  if (dateFrom) { sql += ' AND date >= ?'; params.push(dateFrom); }
+  if (dateTo) { sql += ' AND date <= ?'; params.push(dateTo); }
+  sql += ' GROUP BY date ORDER BY date DESC';
+  return db().prepare(sql).all(...params);
+}
+
+// ==================== 知识库 ====================
+
+/** 添加知识条目 */
+function createKnowledge(params) {
+  return db().prepare(`
+    INSERT INTO knowledge_base (project_id, title, content, tags_json)
+    VALUES (?, ?, ?, ?)
+  `).run(
+    params.project_id || null, params.title,
+    params.content || '', JSON.stringify(params.tags || [])
+  );
+}
+
+/** 搜索知识条目（标题/标签/内容关键词） */
+function searchKnowledge(query, projectId) {
+  const keyword = `%${query}%`;
+  let sql = 'SELECT * FROM knowledge_base WHERE 1=1';
+  const params = [];
+  if (projectId) {
+    sql += ' AND (project_id = ? OR project_id IS NULL)';
+    params.push(projectId);
+  }
+  sql += ' AND (title LIKE ? OR content LIKE ? OR tags_json LIKE ?)';
+  params.push(keyword, keyword, keyword);
+  sql += ' ORDER BY updated_at DESC LIMIT 20';
+  return db().prepare(sql).all(...params);
+}
+
+/** 列出知识条目 */
+function listKnowledge(projectId, limit = 20) {
+  let sql = 'SELECT * FROM knowledge_base WHERE 1=1';
+  const params = [];
+  if (projectId) {
+    sql += ' AND (project_id = ? OR project_id IS NULL)';
+    params.push(projectId);
+  }
+  sql += ' ORDER BY updated_at DESC LIMIT ?';
+  params.push(limit);
+  return db().prepare(sql).all(...params);
+}
+
 module.exports = {
   // 项目
   createProject, findProjectByName, findProjectById, listProjects, getAllProjectNames,
@@ -198,4 +371,12 @@ module.exports = {
   upsertStandup, getTodayStandups, getRecentBlockers,
   // 日志
   logActivity, getRecentActivity,
+  // 会议纪要
+  createMeetingNote, listMeetingNotes, findMeetingNoteById,
+  // 风险
+  createRisk, listRisks, updateRisk,
+  // 工时
+  createTimeLog, listTimeLogs, getTimeSummary, getDailyTimeSummary,
+  // 知识库
+  createKnowledge, searchKnowledge, listKnowledge,
 };

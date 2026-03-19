@@ -86,7 +86,77 @@ function initSchema() {
     db.exec(sql);
   }
 
-  console.log('✅ ProjectMind 数据库初始化完成（4表 + 10索引）');
+  // ===== Phase 2 新增4表 =====
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS meeting_notes (
+      id               INTEGER PRIMARY KEY AUTOINCREMENT,
+      project_id       INTEGER NOT NULL,
+      title            TEXT    NOT NULL,
+      attendees        TEXT    DEFAULT '[]',
+      content_json     TEXT    DEFAULT '{}',
+      action_items_json TEXT DEFAULT '[]',
+      created_at       TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS risks (
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      project_id  INTEGER NOT NULL,
+      title       TEXT    NOT NULL,
+      severity    TEXT    NOT NULL DEFAULT 'medium'
+                  CHECK(severity IN ('low','medium','high','critical')),
+      description TEXT    DEFAULT '',
+      status      TEXT    NOT NULL DEFAULT 'open'
+                  CHECK(status IN ('open','mitigated','closed')),
+      probability TEXT    DEFAULT '',
+      impact      TEXT    DEFAULT '',
+      mitigation  TEXT    DEFAULT '',
+      created_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+      updated_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS time_logs (
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      project_id  INTEGER NOT NULL,
+      task_id     INTEGER DEFAULT NULL,
+      member_name TEXT    DEFAULT '',
+      description TEXT    NOT NULL DEFAULT '',
+      hours       REAL    NOT NULL DEFAULT 0,
+      date        TEXT    NOT NULL DEFAULT (date('now','localtime')),
+      created_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+      FOREIGN KEY (task_id)    REFERENCES tasks(id)    ON DELETE SET NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS knowledge_base (
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      project_id  INTEGER DEFAULT NULL,
+      title       TEXT    NOT NULL,
+      content     TEXT    DEFAULT '',
+      tags_json   TEXT    DEFAULT '[]',
+      created_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+      updated_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+    );
+  `);
+
+  // Phase 2 索引
+  const phase2Indexes = [
+    'CREATE INDEX IF NOT EXISTS idx_meeting_project     ON meeting_notes(project_id)',
+    'CREATE INDEX IF NOT EXISTS idx_risks_project        ON risks(project_id)',
+    'CREATE INDEX IF NOT EXISTS idx_risks_severity       ON risks(severity)',
+    'CREATE INDEX IF NOT EXISTS idx_risks_status         ON risks(status)',
+    'CREATE INDEX IF NOT EXISTS idx_timelogs_project     ON time_logs(project_id)',
+    'CREATE INDEX IF NOT EXISTS idx_timelogs_date        ON time_logs(date)',
+    'CREATE INDEX IF NOT EXISTS idx_timelogs_task        ON time_logs(task_id)',
+    'CREATE INDEX IF NOT EXISTS idx_kb_project           ON knowledge_base(project_id)',
+    'CREATE INDEX IF NOT EXISTS idx_kb_tags              ON knowledge_base(tags_json)',
+  ];
+  for (const sql of phase2Indexes) {
+    db.exec(sql);
+  }
+
+  console.log('✅ ProjectMind 数据库初始化完成（8表 + 19索引）');
   return true;
 }
 
