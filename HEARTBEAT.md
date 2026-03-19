@@ -619,7 +619,7 @@ e1f0634 feat(context-manager-v2): P0 改进项 #2 - 使用 safe_exec
 ### 收款地址（自动发送）
 - **Platform**: OKX
 - **Token**: USDT (TRC20)
-- **Address**: `TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP`
+- **Address**: `$USDT_WALLET`
 
 ### 执行命令
 ```bash

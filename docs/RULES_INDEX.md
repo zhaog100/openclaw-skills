@@ -35,7 +35,7 @@ _2026-03-19 整理，所有历史教训和规范规则_
 ### PR规范
 15. **PR标题用conventional commits** — 不放bounty编号（触发Title Check）
 16. **PR body必须 `Closes #N`** — bounty信息放body
-17. **钱包地址放PR body** — USDT: `TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP`
+17. **钱包地址放PR body** — USDT: `$USDT_WALLET`
 18. **子代理并行** — 每批4-5个，独立分支
 
 ### 各平台特殊规则
