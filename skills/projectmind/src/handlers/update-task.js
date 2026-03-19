@@ -1,9 +1,10 @@
 // MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 更新任务 handler
 
-const { findTaskById, updateTask, logActivity } = require('../db/queries');
+const { findTaskById, updateTask, logActivity, findProjectById } = require('../db/queries');
 const { validateStatus, validatePriority, validateEstimateDays } = require('../utils/validator');
 const { sendNotification } = require('../utils/notifier');
+const { calculateProjectProgress } = require('../engines/progress-calc');
 
 // action → status 映射
 const ACTION_MAP = {
@@ -59,6 +60,17 @@ function handleUpdateTask(params) {
 
   updateTask(task_id, updates);
   logActivity(task.project_id, task_id, 'updated', JSON.stringify(updates));
+
+  // 更新后自动重算项目进度
+  try {
+    const project = findProjectById(task.project_id);
+    if (project) {
+      const progress = calculateProjectProgress(project.id);
+      logActivity(task.project_id, task_id, 'progress_recalc', `项目进度重算: ${progress.progress}%`);
+    }
+  } catch (err) {
+    console.error('[update-task] 进度重算失败:', err.message);
+  }
 
   // 如果任务完成，异步通知
   if (updates.status === 'done') {
