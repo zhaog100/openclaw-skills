@@ -13,28 +13,29 @@ _启动专用，保持精简（<3KB）_
 
 ---
 
-## 🎯 当前状态（2026-03-18 晚）
+## 🎯 当前状态（2026-03-19 晚）
 
-**Bounty收割：** 31+个PR，11个仓库，$5,440+ | Algora认领6个$800 | RustChain 245+接单
-**技能配置重构：** 13/13完成（config.json统一） | ClawHub发布25+技能
-**Git提交：** 今日44次（历史最高） | 双仓库同步
-**版权归属：** 思捷娅科技 (SJYKJ)，MIT许可证
-**身份：** 小米粒🌾（PM + Dev双代理）
-**自动监控：** 每30分钟bounty扫描+Gmail检查
+**Bounty收割：** 36+个PR待审核，$10,600+ | 今日新提交10个PR $1,500
+**主力仓库：** FinMind($500)+APort($200)+Expensify($500)+echo($1,000)+Guardian($5,440)
+**战略升级：** 三条主线确认（AI自动化🥇+数字产品🥈+外贸🥉），5阶段升级路径
+**学习成果：** Coze/n8n/Dify平台学习指南，知识库索引107文件9大类
+**规范体系：** 45条规则+14个犯错记录，AGENTS/SOUL/TOOLS全面优化
+**身份：** 小米粒🌾（PM + Dev双代理）| 思捷娅科技 (SJYK)
+**自动监控：** 每10分钟bounty扫描+每小时Gmail+每天2次回顾
 
 ---
 
 ## 📋 关键决策（最新10条）
 
-1. **发布流程** - pytest全绿→功能验证→发布→汇报 ⭐⭐⭐⭐⭐
-2. **不产生幻觉** - 实际完成所有步骤 ⭐⭐⭐⭐⭐
-3. **版权归属** - 思捷娅科技(SJYKJ)，slug用sjykj-前缀 ⭐⭐⭐⭐⭐
+1. **三条主线** - AI自动化🥇+数字产品🥈+外贸🥉，可累积可传承可复利 ⭐⭐⭐⭐⭐
+2. **Bounty筛选** - USDT/美元优先，代币bounty先查价格<0.01不优先 ⭐⭐⭐⭐⭐
+3. **发布流程** - pytest全绿→功能验证→发布→汇报 ⭐⭐⭐⭐⭐
 4. **Git推送** - 个人→xiaomili，公共→origin ⭐⭐⭐⭐⭐
-5. **rebase禁令** - 禁止--strategy=ours，改用--skip ⭐⭐⭐⭐
-6. **Algora API已失效** - api.algora.io返回404，监控脚本不可用 ⭐⭐⭐
-7. **Expensify环境** - Node 20+nvm+mkcert+官方npm源（腾讯镜像会跳过jest） ⭐⭐⭐
-8. **w3cos tiny_skia** - fill_path(FillRule在Transform前)，用save_png替代手动编码 ⭐⭐⭐
-9. **经验教训库** - 写了必须在SKILL.md显式引用 ⭐⭐⭐⭐
+5. **版权归属** - 思捷娅科技(SJYK)，slug用sjykj-前缀 ⭐⭐⭐⭐⭐
+6. **表格完整性** - 同类数据必须一条消息完整输出，不拆分 ⭐⭐⭐⭐⭐
+7. **Expensify环境** - Node 20+nvm+mkcert+官方npm源 ⭐⭐⭐
+8. **Guardian CI** - conventional commits标题+DCO+assignee(maintainer设) ⭐⭐⭐
+9. **外部贡献者** - 无法self-assign，PR标题不放bounty编号 ⭐⭐⭐
 10. **子代理交付** - 8项清单（SKILL.md/package.json/版权/测试...）⭐⭐⭐⭐
 
 ---
@@ -42,17 +43,16 @@ _启动专用，保持精简（<3KB）_
 ## 📌 待办任务
 
 **等待中：**
-1. 所有Bounty PR等待review（0个merged）
-2. RustChain第一批发放（1-3天）
-3. Algora实际执行（已claim 6个）
-4. 配置Algora钱包地址（ERC20）
-5. nuclei #7257 review修复后反馈
-6. homelab-stack ~30个PR（0 comments，存疑）
+1. 36+个Bounty PR等待review（0个merged）
+2. Guardian PR待assign（外部贡献者限制）
+3. 小米辣模块选择+GitHub用户名（加collaborator）
+4. Gmail检查修复（密码可能过期）
 
 **明天：**
 1. 检查Bounty PR review状态+Gmail付款通知
-2. 收到RTC后做成本类任务
-3. 技术类任务（Miner移植等）
+2. Guardian #5308等refine
+3. 继续扫描新bounty（USD池暂枯竭）
+4. 学习Coze实战（AI自动化服务启动）
 
 ---
 
@@ -66,5 +66,5 @@ _启动专用，保持精简（<3KB）_
 
 ---
 
-*最后更新：2026-03-18 23:50*
-*版本：v6.0 - Bounty收割日全面更新*
+*最后更新：2026-03-19 23:50*
+*版本：v7.0 - Bounty大爆发日+战略升级*
