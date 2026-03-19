@@ -3,240 +3,59 @@ name: github-bounty-hunter
 description: GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，支持 Algora 平台，使用 /attempt 命令自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！
 version: 2.1.0
 author: 米粒儿 + 小米辣
-created: 2026-03-10
-updated: 2026-03-18
 ---
 
-# GitHub Bounty Hunter - GitHub 赏金猎人
+# GitHub Bounty Hunter v2.1
 
-**让 OpenClaw 自动化在 GitHub 上赚钱！**
+自动化GitHub赏金/Grant接单、开发、提交PR。
 
-## 🎯 核心功能
-
-### 1. 自动监控 ⭐⭐⭐⭐⭐
-- 监控 GitHub 上的 grant/bounty 项目
-- 筛选适合的任务
-- 实时更新任务列表
-
-### 2. 自动接任务 ⭐⭐⭐⭐⭐
-- 自动申请任务
-- 自动确认需求
-- 自动创建 Issue
-
-### 3. 自动开发 ⭐⭐⭐⭐⭐
-- 代码生成
-- 自动测试
-- 代码审查
-
-### 4. 自动提交 ⭐⭐⭐⭐⭐
-- 自动提交 PR
-- 自动回复评论
-- 自动修改代码
-
-## 💰 收益来源
-
-1. **GitHub Bounty** - 任务奖励
-2. **Open Source Grant** - 开源资助
-3. **Bug Bounty** - 漏洞奖励
-
-## 🚀 使用方式
+## 🚀 核心命令
 
 ```bash
-# 启动监控（每 30 分钟自动扫描）
-github-bounty-hunter monitor
-
-# 启动 Algora 专项监控（使用 /attempt 命令）
-github-bounty-hunter algora
-
-# 查看任务列表
-github-bounty-hunter list
-
-# 申请任务
+github-bounty-hunter monitor   # 监控（每30分钟扫描）
+github-bounty-hunter algora    # Algora专项监控
+github-bounty-hunter list      # 任务列表
 github-bounty-hunter apply <task-id>
-
-# 开发任务
 github-bounty-hunter develop <task-id>
-
-# 提交 PR
 github-bounty-hunter submit <task-id>
+github-bounty-hunter state     # STATE.yaml状态
 
-# 查看 STATE.yaml（事件驱动追踪）
-github-bounty-hunter state
-```
-
-### 环境变量配置
-
-```bash
-# 必需：GitHub Token
-export GITHUB_TOKEN='your_token_here'
-
-# 可选：Algora API Key
-export ALGORA_API_KEY='your_api_key_here'
-
-# 可选：收款地址（默认已配置）
-export PAYMENT_ADDRESS='TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP'
-```
-
-### 环境变量配置
-
-```bash
-# 必需：GitHub Token
-export GITHUB_TOKEN='your_token_here'
-
-# 可选：Algora API Key
-export ALGORA_API_KEY='your_api_key_here'
-
-# 可选：收款地址（默认已配置）
-export PAYMENT_ADDRESS='TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP'
-```
-
-### 预检/认领/扫描/开发脚本（v1.4.0 新增）
-
-```bash
-# Issue 预检（状态/竞争/已有PR）
-bash scripts/bounty_preflight.sh <owner/repo> <issue_number>
-
-# 自动/attempt认领
-bash scripts/bounty_claim.sh <owner/repo> <issue_number> <pr_number> [description]
-
-# 多策略bounty扫描（💎标签/bounty标签//bounty关键词）
+# 预检/认领/扫描/开发脚本
+bash scripts/bounty_preflight.sh <owner/repo> <issue>
+bash scripts/bounty_claim.sh <owner/repo> <issue> <pr>
 bash scripts/bounty_scan.sh
-
-# 一键开发流水线（预检→clone→准备开发环境）
-bash scripts/bounty_dev.sh <owner/repo> <issue_number> [bounty_amount]
+bash scripts/bounty_dev.sh <owner/repo> <issue>
 ```
 
-### QQ 通知集成
+## 🔧 环境变量
 
-通知自动发送到当前 QQ 会话，无需额外配置！
-
-**通知类型**:
-- 🎯 新任务发现
-- 🙋 已接单确认
-- 📦 PR 提交
-- ✅ PR 合并（高优先级）
-- 💰 收款提醒
-
-## 📋 STATE.yaml 事件驱动模式
-
-```yaml
-# 任务状态追踪（自动更新）
-task:
-  id: "algora-123"
-  status: "in_progress"  # pending → in_progress → pr_submitted → merged → paid
-  platform: "Algora"
-  bounty: "$2000"
-  assigned_to: "xiaomila-dev"
-  pr_url: "https://github.com/xxx/pull/123"
-  payment:
-    status: "pending"  # pending → sent → confirmed
-    address: "TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP"
-    token: "USDT-TRC20"
+```bash
+export GITHUB_TOKEN='your_token'          # 必需
+export ALGORA_API_KEY='your_key'          # 可选
+export PAYMENT_ADDRESS='TGu4W5T6...'     # 可选
 ```
 
-## 🦞 多智能体协作流程
+## 📊 收益预期
 
-```
-PM 代理（小米辣）          Dev 代理（小米粒）
-     ↓                        ↓
-发现任务 → 分析评估 → 评论接单
-     ↓                        ↓
-创建 Issue → 技术设计 → 开发实现
-     ↓                        ↓
-Review 验收 → 提交 PR → 跟进评论
-     ↓                        ↓
-合并成功 → 发送收款信息 → 确认到账
-```
-
-## 📊 预期收益
-
-| 任务类型 | **奖励** | **耗时** | **成功率** |
-|---------|---------|---------|-----------|
-| Bug Fix | $50-500 | 1-2 小时 | 80% |
-| Feature | $100-1000 | 4-8 小时 | 60% |
-| Grant | $1000-5000 | 1-2 周 | 30% |
+| 类型 | 奖励 | 耗时 | 成功率 |
+|------|------|------|--------|
+| Bug Fix | $50-500 | 1-2h | 80% |
+| Feature | $100-1000 | 4-8h | 60% |
+| Grant | $1000-5000 | 1-2周 | 30% |
 
 ## 🎯 目标平台
 
-### P0 - 优先集成 ⭐⭐⭐⭐⭐
-1. **Algora** - algora.io ($500-$10000, GitHub 原生)
-2. **Replit Bounties** - replit.com/bounties ($50-$500, 快速现金流)
+P0: Algora, Replit Bounties | P1: BountySource, Superteam, Gitcoin | P2: IssueHunt, GitHub Sponsors
 
-### P1 - 后续集成 ⭐⭐⭐⭐
-3. **BountySource** - bountysource.com ($100-$2000)
-4. **Superteam Earn** - superteam.fi/earn ($500-$5000, Solana)
-5. **Gitcoin** - gitcoin.co ($500-$5000, Web3)
+## 🧠 自学习机制
 
-### P2 - 扩展平台 ⭐⭐⭐
-6. **IssueHunt** - issuehunt.io
-7. **GitHub Sponsors** - github.com/sponsors
-
----
-
-## 🧠 错误自学习机制（Self-Improving）
-
-集成 [Self-Improving-Agent](https://github.com/nicobailey/self-improving-agent) 模式，每次执行 bounty 流程时自动积累经验。
-
-### 三种学习日志（`.learnings/` 目录）
-
-| 日志 | 用途 | 触发时机 |
-|------|------|---------|
-| `ERRORS.md` | 🔴 记录遇到的错误及解决方案 | 命令失败、API 报错、PR 被拒 |
-| `LEARNINGS.md` | 📚 提取可复用的成功经验 | 任务完成、流程优化 |
-| `FEATURE_REQUESTS.md` | 💡 记录改进想法 | 发现可自动化环节 |
-
-### error-detector.sh 命令
-
+自动记录错误/经验/功能需求到 `.learnings/` 目录：
 ```bash
-# 记录错误
-bash scripts/error-detector.sh error "错误描述" "上下文" "解决方案"
-
-# 记录经验
-bash scripts/error-detector.sh learn "经验标题" "适用场景" "具体做法"
-
-# 记录功能请求
-bash scripts/error-detector.sh feature "功能描述" "P0/P1/P2" "备注"
-
-# 查看最近记录
-bash scripts/error-detector.sh review [error|learn|feature|all]
-
-# 统计摘要
-bash scripts/error-detector.sh stats
+bash scripts/error-detector.sh error|learn|feature|review|stats
 ```
 
-### 集成到 Bounty 流程
+## 🦞 多智能体协作
 
-在每次 bounty 操作的关键节点自动调用 error-detector：
+PM代理（发现→评估→接单）↔ Dev代理（设计→开发→PR→跟进）
 
-1. **预检失败** → `error-detector.sh error` 记录原因
-2. **开发完成** → `error-detector.sh learn` 提取经验
-3. **PR 被拒绝** → `error-detector.sh error` + 提取改进建议
-4. **流程卡点** → `error-detector.sh feature` 记录自动化需求
-5. **定期回顾** → 启动时 `error-detector.sh review` 加载历史经验
-
----
-
-*🦞 让龙虾自己赚钱，还能自己变聪明！*
-
-
-## 📄 许可证与版权声明
-
-MIT License
-
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-
-**免费使用、修改和重新分发时，需注明出处。**
-
-**出处**：
-- GitHub: https://github.com/zhaog100/openclaw-skills
-- ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技 (SJYKJ)
-
-**商业使用授权**：
-- 小微企业（<10人）：¥999/年
-- 中型企业（10-50人）：¥4,999/年
-- 大型企业（>50人）：¥19,999/年
-- 企业定制版：¥99,999一次性（源码买断）
-
-详情请查看：[LICENSE](../../LICENSE)
-
+> 详细STATE.yaml格式、错误自学习、平台集成细节见 `references/skill-details.md`

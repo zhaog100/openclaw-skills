@@ -1,282 +1,63 @@
 ---
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
 name: session-memory-enhanced
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
 description: "Session-Memory Enhanced v4.0 - 统一增强版。融合 session-memory + memu-engine 核心功能。特性：结构化提取 + 向量检索 + 不可变分片 + 三位一体自动化 + 多代理隔离 + AI 摘要 + 零配置启动。"
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
 ---
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
 
 # Session-Memory Enhanced v4.0
 
-**统一增强版 - 融合 session-memory + memu-engine 核心功能**
+融合 session-memory + memu-engine 的统一增强版记忆管理。
 
 ## 🎯 核心特性
 
-### 吸收的 memu-engine 优势 ⭐⭐⭐⭐⭐
+**memu-engine 优势**：结构化提取、向量检索、多代理隔离、去重机制
+**session-memory 优势**：不可变分片（Token节省90%+）、三位一体（记忆+QMD+Git）、AI摘要、零配置
 
-1. **结构化记忆提取**
-   - LLM 提取用户画像
-   - 事件识别与记录
-   - 知识点提取
-   - 决策追踪
-   - 经验教训总结
-
-2. **向量检索系统**
-   - OpenAI Embeddings API
-   - 语义搜索（不仅仅是关键词）
-   - 相似度计算
-   - 智能排序
-
-3. **多代理隔离架构**
-   - 目录隔离（memory/agents/<agent>/）
-   - 数据库隔离（<agent>/memu.db）
-   - 权限控制（searchableStores）
-
-4. **去重机制**
-   - .processed 标记文件
-   - 防止重复处理
-   - 减少系统负载
-
-### 保留的 session-memory 优势 ⭐⭐⭐⭐⭐
-
-1. **不可变分片策略**
-   - Token 节省 90%+
-   - 避免重复加载
-
-2. **三位一体自动化**
-   - 记忆保存
-   - QMD 知识库更新
-   - Git 自动提交
-
-3. **AI 摘要系统**
-   - 关键词提取
-   - 重要性评估
-   - 自动生成摘要
-
-4. **零配置启动**
-   - 默认使用轻量级模式
-   - 可选启用高级功能
-
-## 📁 文件结构
-
-```
-$(pwd)/skills/session-memory-enhanced/
-├── scripts/
-│   ├── session-memory-enhanced-v4.sh       # 主脚本（统一版）
-│   ├── ai-summarizer.sh                    # AI 摘要
-│   └── deep-sanitizer.sh                   # 深度清洗
-│
-├── python/                                 # Python 核心（吸收 memu 优势）
-│   ├── extractor.py                        # 结构化提取器
-│   ├── embedder.py                         # 向量嵌入器
-│   ├── searcher.py                         # 语义搜索器
-│   └── requirements.txt                    # Python 依赖
-│
-├── config/
-│   └── unified.json.example                # 配置模板
-│
-├── docs/
-│   ├── UNIFIED_IMPLEMENTATION.md           # 完整实现文档
-│   └── INTEGRATION_PLAN.md                 # 整合计划
-│
-└── SKILL.md                                # 本文档
-```
-
-## 🚀 安装
-
-### 快速安装
+## 🚀 使用方式
 
 ```bash
-# 1. 复制配置模板
-cd $(pwd)/skills/session-memory-enhanced
+# 安装
+cd skills/session-memory-enhanced
 cp config/unified.json.example config/unified.json
 
-# 2. 重启即可使用（轻量级模式）
+# 自动模式（crontab）
+0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+
+# 手动执行
+bash scripts/session-memory-enhanced-v4.sh
+
+# 语义检索
+python3 python/searcher.py --query "关键词" --db memory/agents/main/vectors.db
 ```
 
-### 启用高级功能
-
-```bash
-# 1. 安装 Python 依赖
-cd python
-pip3 install -r requirements.txt
-
-# 2. 配置 API Key
-export OPENAI_API_KEY="your_key"
-
-# 3. 启用功能
-jq '.features.structuredExtraction = true' config/unified.json > tmp.json
-mv tmp.json config/unified.json
-
-jq '.features.vectorSearch = true' config/unified.json > tmp.json
-mv tmp.json config/unified.json
-
-# 4. 重启
-```
-
-## 📋 配置说明
-
-### unified.json
+## 🔧 配置（unified.json）
 
 ```json
 {
   "version": "4.0.0",
   "flushIdleSeconds": 1800,
   "maxMessagesPerPart": 60,
-  
   "features": {
-    "structuredExtraction": false,  // 启用结构化提取
-    "vectorSearch": false,          // 启用向量检索
-    "aiSummary": true,              // AI 摘要
-    "gitBackup": true,              // Git 备份
-    "qmdUpdate": true               // QMD 更新
-  },
-  
-  "openaiApiKey": "${OPENAI_API_KEY}",
-  
-  "agents": {
-    "main": {
-      "searchableStores": ["self", "shared"],
-      "flushIdleSeconds": 1800,
-      "maxMessagesPerPart": 60
-    }
+    "structuredExtraction": false,
+    "vectorSearch": false,
+    "aiSummary": true,
+    "gitBackup": true,
+    "qmdUpdate": true
   }
 }
 ```
 
-## 🎯 使用方式
+## 📁 文件结构
 
-### 自动模式（推荐）
-
-```bash
-# 每小时自动运行
-crontab -e
-# 添加：
-0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+```
+session-memory-enhanced/
+├── scripts/session-memory-enhanced-v4.sh  # 主脚本
+├── python/extractor.py, embedder.py, searcher.py
+├── config/unified.json
+└── docs/
 ```
 
-### 手动模式
+## ⚙️ 环境变量
 
-```bash
-# 立即执行
-bash $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced-v4.sh
+- `OPENAI_API_KEY`：向量嵌入和AI摘要（不提供时降级为纯文本模式）
 
-# 检索
-python3 $(pwd)/skills/session-memory-enhanced/python/searcher.py \
-    --query "查询关键词" \
-    --db $(pwd)/memory/agents/main/vectors.db \
-    --agent main \
-    --api-key "your_key"
-```
-
-## 📊 功能对比
-
-| 功能 | v3.4（旧版） | v4.0（统一版） |
-|------|-------------|---------------|
-| **不可变分片** | ✅ | ✅ |
-| **三位一体** | ✅ | ✅ |
-| **Git 备份** | ✅ | ✅ |
-| **QMD 集成** | ✅ | ✅ |
-| **AI 摘要** | ✅ | ✅ |
-| **结构化提取** | ❌ | ✅ |
-| **向量检索** | ❌ | ✅ |
-| **多代理隔离** | ✅ | ✅ |
-| **去重机制** | ✅ | ✅（增强）|
-| **Python 集成** | ❌ | ✅（可选） |
-
-## 🌟 优势总结
-
-### 来自 memu-engine 的优势
-1. ⭐ **结构化记忆** - 深度理解对话内容
-2. ⭐ **向量检索** - 语义搜索，更智能
-3. ⭐ **多代理隔离** - 企业级架构
-4. ⭐ **去重机制** - 避免重复处理
-
-### 来自 session-memory 的优势
-1. ⭐ **不可变分片** - Token 节省 90%+
-2. ⭐ **三位一体** - 一次触发，三件事完成
-3. ⭐ **Git 备份** - 自动备份，安全可靠
-4. ⭐ **零配置** - 开箱即用
-
-### 融合后的优势
-1. ⭐⭐⭐ **功能完整** - 两大系统所有功能
-2. ⭐⭐⭐ **灵活配置** - 可选择启用功能
-3. ⭐⭐⭐ **向下兼容** - 不启用时与 v3.4 一致
-4. ⭐⭐⭐ **平滑升级** - 无缝从 v3.4 升级
-
-## 📝 更新日志
-
-### v4.0.0 (2026-03-09)
-- ✅ 吸收 memu-engine 的结构化提取
-- ✅ 吸收 memu-engine 的向量检索
-- ✅ 吸收 memu-engine 的多代理隔离
-- ✅ 吸收 memu-engine 的去重机制
-- ✅ 保留 session-memory 的所有优势
-- ✅ 统一配置文件（unified.json）
-- ✅ 可选 Python 集成
-- ✅ 智能降级方案（向量检索 → QMD 检索）
-
----
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
-
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
-**作者**：米粒儿  
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
-**版本**：v4.0.0  
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
-**创建时间**：2026-03-09 19:30  
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
-**更新时间**：2026-03-09 19:50
-
-## ⚙️ 环境变量（可选）
-
-- `OPENAI_API_KEY` - 用于AI摘要和向量嵌入（不提供时降级为纯文本模式）
-
----
-
-## 📄 许可证与版权声明
-
-MIT License
-
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-
-**免费使用、修改和重新分发时，需注明出处。**
-
-**出处**：
-- GitHub: https://github.com/zhaog100/openclaw-skills
-- ClawHub: https://clawhub.com
-- 创建者：小米辣 (miliger)
-
-**商业使用授权**：
-- 小微企业（<10 人）：¥999/年
-- 中型企业（10-50 人）：¥4,999/年
-- 大型企业（>50 人）：¥19,999/年
-- 企业定制版：¥99,999 一次性（源码买断）
+> 详细功能对比、安装步骤、Python集成指南见 `references/skill-details.md`

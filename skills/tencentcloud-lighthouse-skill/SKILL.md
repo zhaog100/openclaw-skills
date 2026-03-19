@@ -1,220 +1,51 @@
 ---
 name: tencentcloud-lighthouse-skill
-description: Manage Tencent Cloud Lighthouse (轻量应用服务器) — auto-setup mcporter + MCP, query instances, monitoring & alerting, self-diagnostics, firewall, snapshots, remote command execution (TAT). Use when user asks about Lighthouse or 轻量应用服务器. NOT for CVM or other cloud server types.
-metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "☁️",
-        "requires": {},
-        "install":
-          [
-            {
-              "id": "node-mcporter",
-              "kind": "node",
-              "package": "mcporter",
-              "bins": ["mcporter"],
-              "label": "Install mcporter (MCP CLI)",
-            },
-          ],
-      },
-  }
+description: Manage Tencent Cloud Lighthouse (轻量应用服务器) — auto-setup mcporter + MCP, query instances, monitoring & alerting, self-diagnostics, firewall, snapshots, remote command execution (TAT). NOT for CVM.
 ---
 
 # Lighthouse 云服务器运维
 
 通过 mcporter + lighthouse-mcp-server 管理腾讯云轻量应用服务器。
 
-## 首次使用 — 自动设置
-
-当用户首次要求管理云服务器时，按以下流程操作：
-
-### 步骤 1：检查当前状态
+## 🚀 首次设置
 
 ```bash
-{baseDir}/scripts/setup.sh --check-only
-```
-
-如果输出显示一切 OK（mcporter 已安装、config 已配置、lighthouse 已就绪），跳到「调用格式」。
-
-### 步骤 2：配置密钥（三选一，优先级从高到低）
-
-**方式 A — 环境变量（推荐，最安全）**：
-```bash
+# 1. 配置密钥（三选一）
 export TENCENTCLOUD_SECRET_ID="AKIDxxxx"
 export TENCENTCLOUD_SECRET_KEY="yyyyyy"
-```
+# 或编辑 config.json
 
-**方式 B — config.json**：
-```bash
-cp {baseDir}/config.example.json {baseDir}/config.json
-# 编辑 config.json，填入实际密钥
-```
-
-**方式 C — CLI 参数**：
-```bash
-{baseDir}/scripts/setup.sh --secret-id "AKIDxxxx" --secret-key "yyyyyy"
-```
-
-引导用户时：
-> 我需要你的腾讯云 API 密钥。你可以在 [腾讯云控制台 > API密钥管理](https://console.cloud.tencent.com/cam/capi) 获取。
-> 推荐设置环境变量 `TENCENTCLOUD_SECRET_ID` 和 `TENCENTCLOUD_SECRET_KEY`，或编辑 `{baseDir}/config.json`。
-
-### 步骤 3：运行自动设置
-
-```bash
+# 2. 自动设置
 {baseDir}/scripts/setup.sh
 ```
 
-脚本会自动：
-- 读取环境变量 → config.json → CLI 参数（优先级递减）
-- 检查并安装 mcporter（如未安装）
-- 创建 mcporter 配置文件（路径可在 config.json 中自定义）
-- 写入 lighthouse MCP 服务器配置和密钥
-- 验证连接
-
-设置完成后即可开始使用。
-
-## 调用格式
-
-配置文件路径优先从 `{baseDir}/config.json` 的 `mcporter.configPath` 读取，默认 `~/.mcporter/mcporter.json`。
-
-所有 mcporter 命令必须使用以下格式：
-
-```
-mcporter call lighthouse.<tool_name> --config <configPath> --output json [--args '<JSON>']
-```
-
-列出可用工具：
-```
-mcporter list lighthouse --config <configPath> --schema
-```
-
-
-## 工具总览
-
-本 MCP Server 包含以下工具类别：
-
-| 类别 | 说明 |
-|------|------|
-| 地域查询 | 获取可用地域列表（唯一不需要 Region 参数的操作） |
-| 实例管理 | 查询、启动实例，查看流量包/套餐/配额等（需要 Region） |
-| 监控与告警 | 获取多指标监控数据、设置告警策略、服务器自检（需要 Region） |
-| 防火墙 | 规则增删改查、防火墙模板管理（需要 Region） |
-| 远程命令(TAT) | 在实例上执行命令、查询任务状态（需要 Region） |
-
-## 常用操作
-
-> 以下所有示例省略了公共前缀 `mcporter call lighthouse.` 和 `--config <configPath> --output json`。
-> 完整命令格式：`mcporter call lighthouse.<tool_name> --config <configPath> --output json --args '<JSON>'`
-
-### 获取地域列表（不需要 Region 参数）
+## 📋 调用格式
 
 ```bash
-# 查询所有可用地域 — 唯一不需要 Region 参数的操作
-# 首次使用时应先调用此接口获取可用 Region 列表
-mcporter call lighthouse.describe_regions --config <configPath> --output json
+mcporter call lighthouse.<tool> --config <configPath> --output json --args '<JSON>'
+mcporter list lighthouse --config <configPath> --schema  # 列出工具
 ```
 
-### 实例管理
+## 🔧 工具分类
 
-```bash
-# 查询实例列表（Region 必填，可选参数: InstanceIds, Offset, Limit）
-mcporter call lighthouse.describe_instances --config <configPath> --output json --args '{"Region":"ap-guangzhou","Limit":20,"Offset":0}'
+| 类别 | 关键工具 |
+|------|----------|
+| 地域查询 | `describe_regions`（唯一不需要Region） |
+| 实例管理 | `describe_instances`, `start_instances`, `describe_instance_login_url` |
+| 监控告警 | `get_monitor_data`, `set_alerting_strategy`, `self_test` |
+| 防火墙 | `describe_firewall_rules`, `create_firewall_rules`, `delete_firewall_rules` |
+| 远程命令 | `execute_command`, `describe_command_tasks` |
 
-# 查询指定实例
-mcporter call lighthouse.describe_instances --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceIds":["lhins-xxxxxxxx"]}'
+## 📊 监控指标（中文名称）
 
-# 启动实例
-mcporter call lighthouse.start_instances --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceIds":["lhins-xxxxxxxx"]}'
+CPU利用率、内存利用率、公网出/入带宽、系统盘读/写IO、公网流量包
 
-# 获取实例登录终端地址
-mcporter call lighthouse.describe_instance_login_url --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
+## ⚠️ 使用规范
 
-# 查询所有应用镜像
-mcporter call lighthouse.describe_all_applications --config <configPath> --output json --args '{"Region":"ap-guangzhou"}'
-# BlueprintType 可选: APP_OS | PURE_OS | DOCKER | ALL（默认ALL）
-```
+- 每次调用必带 `--config <configPath>` + `--output json`
+- 除describe_regions外，所有操作必须传Region参数
+- 危险操作（防火墙/命令执行/关机）前先确认用户
+- execute_command最大2048字符
+- 错误时用 `setup.sh --check-only` 或 `self_test` 诊断
 
-### 监控与告警
-
-```bash
-# 获取监控数据（支持多指标同时查询，默认最近6小时）
-mcporter call lighthouse.get_monitor_data --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicators":["CPU利用率","内存利用率"]}'
-
-# 获取监控数据（指定时间范围）
-mcporter call lighthouse.get_monitor_data --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicators":["公网出带宽","公网入带宽"],"StartTime":"2026-02-09 00:00:00","EndTime":"2026-02-10 00:00:00"}'
-
-# 支持的监控指标（中文名称）:
-# CPU利用率 | 内存利用率 | 公网出带宽 | 公网入带宽
-# 系统盘读IO | 系统盘写IO | 公网流量包
-
-# 设置告警策略
-# Alarms 中的 Frequency/Points/Size 均为字符串类型
-mcporter call lighthouse.set_alerting_strategy --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Indicator":"CPU利用率","Alarms":[{"Frequency":"300","Threshold":"80%","Level":"严重","Points":"3","Size":"60"}],"PolicyName":"CPU高负载告警"}'
-# Frequency(秒): "300"|"600"|"900"|"1800"|"3600"|"7200"|"10800"|"21600"|"43200"|"86400"
-# Level: "提示"|"严重"|"紧急"    Points: "1"-"5"    Size: "60"|"300"
-
-# 服务器自检（检测网络、防火墙、存储、状态、性能）
-mcporter call lighthouse.self_test --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
-```
-
-### 防火墙
-
-```bash
-# 查询防火墙规则
-mcporter call lighthouse.describe_firewall_rules --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx"}'
-
-# 添加防火墙规则
-mcporter call lighthouse.create_firewall_rules --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","FirewallRules":[{"Protocol":"TCP","Port":"8080","CidrBlock":"0.0.0.0/0","Action":"ACCEPT","FirewallRuleDescription":"开放8080端口"}]}'
-
-# 删除防火墙规则
-mcporter call lighthouse.delete_firewall_rules --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","FirewallRules":[{"Protocol":"TCP","Port":"8080"}]}'
-```
-
-### 远程命令执行 (TAT)
-
-```bash
-# 在 Linux 实例上执行命令
-mcporter call lighthouse.execute_command --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Command":"uptime && df -h && free -m","SystemType":"Linux"}'
-
-# 在 Windows 实例上执行命令
-mcporter call lighthouse.execute_command --config <configPath> --output json --args '{"Region":"ap-guangzhou","InstanceId":"lhins-xxxxxxxx","Command":"Get-Process | Sort-Object CPU -Descending | Select-Object -First 10","SystemType":"Windows"}'
-
-# 查询命令执行任务详情（自动轮询直到完成）
-mcporter call lighthouse.describe_command_tasks --config <configPath> --output json --args '{"Region":"ap-guangzhou","InvocationTaskId":"invt-xxxxxxxx"}'
-
-# 注意: Command 最大 2048 字符，超长命令建议登录实例手动执行
-```
-
-## 使用规范
-
-1. **每次调用必须带** `--config <configPath>`
-2. **始终加** `--output json` 获取结构化输出
-3. **Region 参数规则**: 除 `describe_regions` 外，所有操作都**必须**传入 `Region` 参数。如果用户未指定 Region，应先调用 `describe_regions` 获取可用地域列表，再让用户选择或根据上下文确定
-4. **首次使用流程**: 先调用 `describe_regions` 获取地域列表 → 再调用 `describe_instances` 获取实例列表 → 记住 InstanceId 和 Region 供后续使用
-5. **用实际的 InstanceId** 替换示例中的 `lhins-xxxxxxxx`（先通过 `describe_instances` 获取）
-6. **监控指标用中文**: `get_monitor_data` 的 Indicators 参数使用中文名称（CPU利用率、内存利用率等）
-7. **命令长度限制**: `execute_command` 的 Command 参数最大 2048 字符，超长建议登录实例执行
-8. **危险操作前先确认**: 防火墙修改、命令执行、实例关机/重启等，先向用户确认
-9. **错误处理**: 如果调用失败，先用 `{baseDir}/scripts/setup.sh --check-only` 诊断问题，或用 `self_test` 检测实例状态
----
-
-## 📄 许可证与版权声明
-
-MIT License
-
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-
-**免费使用、修改和重新分发时，需注明出处。**
-
-**出处**：
-- GitHub: https://github.com/zhaog100/openclaw-skills
-- ClawHub: https://clawhub.com
-- 创建者：小米辣 (miliger)
-
-**商业使用授权**：
-- 小微企业（<10 人）：¥999/年
-- 中型企业（10-50 人）：¥4,999/年
-- 大型企业（>50 人）：¥19,999/年
-- 企业定制版：¥99,999 一次性（源码买断）
+> 详细API参数、告警策略配置、完整示例见 `references/skill-details.md`
