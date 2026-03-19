@@ -67,3 +67,25 @@ qinglong/
 memu-engine-for-OpenClaw
 qmd
 backups/
+
+# Bounty Tasks 备份文件（每小时生成）
+data/bounty-tasks/bounty-tasks-*.json
+
+# 临时文件
+*.tmp
+*.bak
+*~
+
+# 日志文件
+logs/*.log
+!logs/.gitkeep
+
+# 缓存文件
+.cache/
+__pycache__/
+*.pyc
+
+# 环境变量
+.env
+*.env
+!*.env.example
