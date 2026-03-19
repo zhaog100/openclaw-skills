@@ -29,6 +29,8 @@ APP_PASSWORD = "ltcnlgijscosbxwv"  # 应用专用密码
 # 邮件监控配置
 CHECK_INTERVAL_MINUTES = 30  # 每 30 分钟检查一次
 LAST_CHECK_FILE = "/tmp/gmail_last_check.json"
+SMTP_TIMEOUT = 5  # SMTP 超时（秒）
+SMTP_ENABLED = False  # 暂时禁用 SMTP 自动回复，改为手动操作指引
 
 # Bounty 关键词
 BOUNTY_KEYWORDS = [
@@ -120,23 +122,26 @@ def check_new_emails(mail):
     try:
         mail.select("inbox")
         
-        # 获取上次检查时间后的邮件
-        since_date = get_last_check_time().strftime("%d-%b-%Y")
-        status, messages = mail.search(None, f'(SINCE "{since_date}")')
+        # 只检查最近 20 封邮件（避免超时）
+        status, messages = mail.search(None, "RECENT")
         
         if status != "OK":
             return []
         
-        email_ids = messages[0].split()
+        email_ids = messages[0].split()[-20:]  # 只取最近 20 封
         new_emails = []
         
         for email_id in email_ids:
-            status, msg_data = mail.fetch(email_id, "(RFC822)")
-            if status == "OK":
-                for response_part in msg_data:
-                    if isinstance(response_part, tuple):
-                        msg = email.message_from_bytes(response_part[1])
-                        new_emails.append(msg)
+            try:
+                status, msg_data = mail.fetch(email_id, "(RFC822)")
+                if status == "OK":
+                    for response_part in msg_data:
+                        if isinstance(response_part, tuple):
+                            msg = email.message_from_bytes(response_part[1])
+                            new_emails.append(msg)
+            except Exception as e:
+                print(f"⚠️ 获取单封邮件失败：{e}")
+                continue
         
         return new_emails
     except Exception as e:
@@ -193,6 +198,12 @@ def get_email_content(msg):
 
 def send_reply(to_email, subject, original_subject, template_name):
     """发送自动回复"""
+    if not SMTP_ENABLED:
+        print(f"⚠️ SMTP 已禁用，请手动确认接受")
+        print(f"   任务链接：https://github.com/Scottcjn/rustchain-bounties")
+        print(f"   评论格式：/attempt #ISSUE_NUMBER")
+        return False
+    
     reply_subject = f"Re: {original_subject}"
     body = AUTO_REPLY_TEMPLATES.get(template_name, "")
     
@@ -203,15 +214,16 @@ def send_reply(to_email, subject, original_subject, template_name):
     msg['In-Reply-To'] = original_subject
     
     try:
-        smtp = smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=10)
-        smtp.starttls()
-        smtp.login(USERNAME, APP_PASSWORD)
+        smtp = smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=SMTP_TIMEOUT)
+        smtp.starttls(timeout=SMTP_TIMEOUT)
+        smtp.login(USERNAME, APP_PASSWORD, timeout=SMTP_TIMEOUT)
         smtp.send_message(msg)
         smtp.quit()
         print(f"✅ 已自动回复：{reply_subject}")
         return True
     except Exception as e:
         print(f"❌ 回复失败：{e}")
+        print(f"   请手动评论 /attempt #ISSUE_NUMBER")
         return False
 
 

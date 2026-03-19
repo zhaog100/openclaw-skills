@@ -96,3 +96,36 @@ _钱包地址：TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP (USDT TRC20)_
 ---
 
 *持续更新中...*
+
+---
+
+## 2026-03-19 10:49 - Algora 钱包配置完成
+
+### ✅ 配置信息
+
+| 项目 | 详情 |
+|------|------|
+| **钱包地址** | `0xcbbac6d808ae0e10d087daf3a21630494118ee93` |
+| **链类型** | ERC20 |
+| **配置时间** | 2026-03-19 10:49 |
+| **存储位置** | `~/.openclaw/secrets/algora.env` |
+
+### 📋 已认领 Algora 任务
+
+| 任务 | 金额 | 状态 |
+|------|------|------|
+| projectdiscovery #1 | $200 | ⏳ 等待 assign |
+| projectdiscovery #2 | $200 | ⏳ 等待 assign |
+| projectdiscovery #3 | $200 | ⏳ 等待 assign |
+| **总计** | **$600** | **等待中** |
+
+### 🎯 下一步
+
+1. ⏳ 等待官方 assign
+2. 🚀 开始开发
+3. 📹 提交 PR + Demo
+4. 💰 收款到配置的钱袋
+
+---
+
+*配置者：小米辣 (PM + Dev) 🌶️*
