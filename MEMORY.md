@@ -4,8 +4,10 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
-## 🎯 当前状态（2026-03-18 深夜）
+## 🎯 当前状态（2026-03-20 凌晨）
 
+**ProjectMind v1.2.1 已发布** ⭐⭐⭐⭐⭐（8表19索引, 12 tools, 112项测试）
+**ClawHub ID**: k97dz4h7t12qnfszeqhaxaxy9n836jtc
 **Bounty收割：** 31个PR，11个仓库，$5,440+（详见 memory/2026-03-18.md）
 **Algora认领：** 6个bounty，$800 | SigNoz Dashboard 7个PR $1,300
 **PR状态：** 全部open等待review，0个merged
@@ -148,6 +150,7 @@ qmd search daily-logs "关键词" --hybrid
 
 | 技能 | ClawHub ID | 版本 |
 |------|------------|------|
+| **projectmind** | k97dz4h7t12qnfszeqhaxaxy9n836jtc | v1.2.1 |
 | agent-collab-platform | k976d0mk | v1.15.1 |
 | auto-pipeline | k97e0z1h | v2.0.0 |
 | project-progress-tracker | k972ffb4 | v1.0.2 |
