@@ -1,7 +1,7 @@
 # GitHub Bounty Hunter - 任务追踪清单
 
 _创建时间：2026-03-18 08:30_
-_钱包地址：TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP (USDT TRC20)_
+_钱包地址：$USDT_WALLET (USDT TRC20)_
 
 ---
 
@@ -105,7 +105,7 @@ _钱包地址：TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP (USDT TRC20)_
 
 | 项目 | 详情 |
 |------|------|
-| **钱包地址** | `0xcbbac6d808ae0e10d087daf3a21630494118ee93` |
+| **钱包地址** | `$ALGORA_WALLET` |
 | **链类型** | ERC20 |
 | **配置时间** | 2026-03-19 10:49 |
 | **存储位置** | `~/.openclaw/secrets/algora.env` |

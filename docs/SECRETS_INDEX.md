@@ -19,8 +19,8 @@
 
 | 用途 | 地址 | 网络 |
 |------|------|------|
-| USDT收款 | TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP | TRC20 |
-| Algora收款 | 0xcbbac6d808ae0e10d087daf3a21630494118ee93 | ERC20 |
+| USDT收款 | 见 secrets/wallets.env | TRC20 |
+| Algora收款 | 见 secrets/wallets.env | ERC20 |
 
 ## 📋 Moltbook账号
 

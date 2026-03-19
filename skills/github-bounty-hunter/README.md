@@ -142,7 +142,7 @@ export ALGORA_API_KEY='your_api_key_here'
 
 ### 收款安全
 **USDT 地址验证**：
-- 地址：`TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP`
+- 地址：`$USDT_WALLET`
 - 网络：TRC20（Tron）
 - 币种：USDT
 

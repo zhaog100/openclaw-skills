@@ -43,7 +43,7 @@ Old hardware = New rewards 💰
 ## 💰 收款信息
 
 - **Token:** USDT (TRC20)
-- **Wallet:** `TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP`
+- **Wallet:** `$USDT_WALLET`
 
 ---
 
