@@ -15,7 +15,7 @@
 
 | 版本 | 日期 | 变更内容 |
 |------|------|----------|
-| v1.2 | 2026-03-20 | 整合HN趋势洞察：新增语音模块设计（KittenTTS）、增强通知模块（Agent常驻推送）、新增趋势分析引擎（自动优化建议）、更新Phase 2路线图 |
+| v1.2 | 2026-03-20 | 整合HN趋势洞察：新增语音模块设计（KittenTTS）、增强通知模块（Agent常驻推送）、新增趋势分析引擎（自动优化建议）、更新Phase 2路线图；🔥 PRD对照补缺：置信度标注、幻觉防护(ai_generated)、进度异常标记、摘要确认机制、阻塞项置信度、tasks表tags/confidence/ai_generated字段、daily_updates confidence字段、AI安全机制测试用例(8项) |
 | v1.1 | 2026-03-19 | Review修订（55/60分）：去掉LLM调用层改由agent解析；增加多通道通知模块；去掉意图路由改由OpenClaw自动路由；站会改UPSERT；增加config.example.json；总工时调整为28h |
 | v1.0 | 2026-03-19 | 初版，包含LLM解析层、Prompt工程、意图路由 |
 
@@ -198,6 +198,9 @@ CREATE TABLE IF NOT EXISTS tasks (
     estimate_days REAL    DEFAULT NULL,          -- 预估天数
     actual_days   REAL    DEFAULT NULL,          -- 实际天数
     sort_order    INTEGER DEFAULT 0,             -- 同级排序
+    tags          TEXT    DEFAULT '[]',           -- JSON数组，标签分类（P2）
+    confidence    REAL    DEFAULT NULL,           -- AI置信度 0-1（PRD:置信度标注）
+    ai_generated  INTEGER DEFAULT 0,             -- 1=AI生成（PRD:幻觉防护）
     created_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
     updated_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
 
@@ -217,6 +220,7 @@ CREATE TABLE IF NOT EXISTS daily_updates (
     doing_today   TEXT    DEFAULT '',             -- 今天计划做什么
     blockers      TEXT    DEFAULT '',             -- 阻塞项
     is_blocker    INTEGER DEFAULT 0,             -- 1=有阻塞项
+    confidence    REAL    DEFAULT NULL,           -- 阻塞项识别置信度 0-1（PRD:阻塞项置信度）
     created_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
 
     FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
@@ -279,8 +283,15 @@ interface DecomposeResult {
   coverage_score: number;   // 0-100 覆盖度评分
   gaps: string[];           // 可能遗漏的领域
   redundancies: string[];   // 可能冗余的子任务
+  confidence: number;       // 0-1 整体置信度（PRD:置信度标注）
 }
 ```
+
+**幻觉防护（PRD要求）：**
+- 所有AI拆解生成的任务，`ai_generated` 字段标记为 1
+- `confidence` < 0.6 时，拆解结果强制标注 "⚠️ AI置信度较低，请核实"
+- 任务描述末尾自动追加 "[AI生成，请核实]" 标注
+- agent 层面：低置信度时不自动创建，强制等待用户确认
 
 **WBS校验规则：**
 - 子任务粒度：estimate_days > 0 且 < 10
@@ -305,11 +316,18 @@ interface TaskProgress {
   completedChildren: number;
   totalChildren: number;
   calculation: string;      // 人类可读的计算说明
+  is_anomaly: boolean;      // 🔥 NEW 进度异常标记（PRD:异常标记确认）
+  anomaly_reason: string;   // 异常原因（如"进度从30%突变到90%"）
 }
 
 function calculateTaskProgress(taskId: number): Promise<TaskProgress>
 function calculateProjectProgress(projectId: number): Promise<ProjectProgress>
 ```
+
+**异常检测规则（PRD:异常标记确认）：**
+- 单次进度变化 > 30%（如从20%→60%）→ 标记 `is_anomaly = true`
+- 父任务进度下降（子任务被取消）→ 标记异常
+- 异常时不自动更新显示值，返回 `anomaly_reason` 由agent提示用户确认
 
 **实现逻辑：**
 
@@ -367,8 +385,14 @@ interface BlockerInfo {
   blocker: string;
   days_blocked: number;     // 距首次提交阻塞的天数
   is_critical: boolean;     // > 2天标为critical
+  confidence: number;       // 🔥 NEW 阻塞项识别置信度 0-1（PRD:阻塞项置信度）
 }
 ```
+
+**摘要确认机制（PRD要求）：**
+- `standup summary` 生成摘要后，返回 `needs_confirmation: true`
+- agent 层面：首次生成摘要时显示"📌 请确认以下站会摘要"并等待用户确认
+- 确认后才触发通知推送（通过 `standup_confirmed` 事件）
 
 ```javascript
 async function detectBlockers(projectId) {
@@ -663,6 +687,19 @@ function toUserMessage(code) {
 | 超深层级拆解（5层） | 限制最大深度为3层 |
 | 100+子任务 | 分页显示 |
 | 特殊字符输入（引号、SQL） | 参数化查询，无注入 |
+
+### 6.4 AI安全机制测试（PRD验收标准补充）🔥
+
+| 测试场景 | 测试内容 | 预期结果 | 覆盖PRD |
+|----------|----------|----------|---------|
+| 置信度标注 | 拆解3个子任务，confidence=0.9 | 返回confidence字段，任务标注"AI生成" | ✅ 置信度+幻觉防护 |
+| 低置信度强制确认 | 拆解结果confidence=0.4 | 标注"⚠️ AI置信度较低"，不自动创建 | ✅ |
+| 进度异常检测 | 任务进度30%→90%突变 | is_anomaly=true，anomaly_reason有值 | ✅ 异常标记确认 |
+| 摘要确认流程 | 生成站会摘要 | needs_confirmation=true，等待确认 | ✅ 摘要确认 |
+| 阻塞项置信度 | 模糊表述"可能被卡住" | confidence<0.7，标注"建议人工核实" | ✅ 阻塞项置信度 |
+| 幻觉防护标注 | AI创建的任务 | ai_generated=1，描述含"[AI生成，请核实]" | ✅ 幻觉防护 |
+| 自然语言创建准确率 | 模拟10种自然语言输入创建任务 | ≥9个正确解析（90%+） | ✅ PRD验收标准 |
+| 阻塞项识别准确率 | 模拟8种阻塞表述 | ≥6个正确识别（80%+） | ✅ PRD验收标准 |
 
 ---
 
