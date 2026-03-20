@@ -117,12 +117,14 @@ function renderSubagentReport(subagents) {
   ];
   const statusIcon = { spawn: '⏳', complete: '✅', timeout: '⏰', error: '❌' };
   for (const sa of subagents) {
-    const icon = statusIcon[sa.status] || '?';
+    const status = sa.status || 'unknown';
+    const tokens = sa.totalTokens || 0;
+    const icon = statusIcon[status] || '?';
     const dur = sa.endTime && sa.startTime
       ? ((sa.endTime - sa.startTime) / 1000).toFixed(0) + 's'
       : '—';
     lines.push(`  ${icon} ${sa.label}`);
-    lines.push(`     Status : ${sa.status.padEnd(10)} Tokens : ${String(sa.totalTokens).padStart(6)}  Duration : ${dur}`);
+    lines.push(`     Status : ${status.padEnd(10)} Tokens : ${String(tokens).padStart(6)}  Duration : ${dur}`);
     if (sa.task) lines.push(`     Task   : ${sa.task.slice(0, 60)}`);
     if (sa.conflicts && sa.conflicts.length) {
       for (const c of sa.conflicts) {
