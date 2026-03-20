@@ -10,8 +10,6 @@
 # 版权：Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # =============================================================================
 
-set -e
-
 SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _SCRIPTS_DIR="$SKILL_DIR/scripts"
 
