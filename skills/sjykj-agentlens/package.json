@@ -1,5 +1,5 @@
 {
-  "name": "agentlens",
+  "name": "sjykj-agentlens",
   "version": "1.0.0",
   "description": "AI Agent调试与可观测性平台 — 零接入Agent追踪+失败分析+子代理监控",
   "license": "MIT",

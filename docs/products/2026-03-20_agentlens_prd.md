@@ -125,16 +125,6 @@ HN热门项目 [Lucidic AI](https://dashboard.lucidic.ai)（Stanford团队）展
 
 ## 4. 技术架构
 
-### 4.1 数据来源
-
-```
-OpenClaw日志 ─────→ 会话历史(sessions_history) ─────→ 结构化数据
-                     ↓
-              心跳日志/工具调用日志
-                     ↓
-              SQLite (本地存储)
-```
-
 ### 4.1 数据采集层（双源策略）
 
 数据可行性是AgentLens最大的技术风险。采用**双源策略**确保数据可用性：
