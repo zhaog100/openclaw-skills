@@ -1,7 +1,8 @@
 {
   "name": "projectmind",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "AI-native project management assistant for OpenClaw",
+  "files": ["SKILL.md", "README.md"],
   "main": "src/db/connection.js",
   "dependencies": {
     "better-sqlite3": "^11.0.0"

@@ -23,7 +23,7 @@ version: 1.2.1
 
 ```bash
 # 确保 error-handler 已就绪
-source ~/.openclaw/workspace/skills/utils/error-handler.sh
+#[已禁用] source ~/.openclaw/workspace/skills/utils/error-handler.sh
 ```
 
 ## 🚀 CLI 使用

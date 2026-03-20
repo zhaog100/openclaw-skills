@@ -1,7 +1,8 @@
 {
   "name": "auto-pipeline",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "技能自动开发流水线 - PRD→Plan预审→开发→Review→修复→发布",
+  "files": ["SKILL.md", "README.md"],
   "main": "pipeline.sh",
   "scripts": {
     "test": "bash tests/test_all.sh",

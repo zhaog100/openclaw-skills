@@ -1,9 +1,19 @@
 ---
+⚠️ **安全提示**：
+- 此技能调用 qmd CLI，参数可能包含 shell 元字符
+- 建议在沙箱环境中运行
+- 避免处理敏感文件
+
 name: miliger-qmd-manager
 description: 统一的QMD知识库管理技能，集成官方qmd搜索功能和自定义项目管理/测试/内容创作知识管理。支持BM25关键词搜索、向量语义搜索、多集合管理。
 homepage: https://github.com/miliger/qmd-manager
 version: 1.0.0
 ---
+⚠️ **安全提示**：
+- 此技能调用 qmd CLI，参数可能包含 shell 元字符
+- 建议在沙箱环境中运行
+- 避免处理敏感文件
+
 
 # miliger-qmd-manager - 统一知识库管理
 
@@ -62,6 +72,11 @@ qmd clean     # 清理缓存
 > 详细知识库结构、环境变量、使用场景见 `references/skill-details.md`
 
 ---
+⚠️ **安全提示**：
+- 此技能调用 qmd CLI，参数可能包含 shell 元字符
+- 建议在沙箱环境中运行
+- 避免处理敏感文件
+
 
 ## 📄 许可证与版权声明
 
