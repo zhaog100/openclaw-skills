@@ -531,7 +531,119 @@ async def health():
 
 ---
 
-## 10. 文件结构
+## 10. PRD V1.0 扩展模块（技术补充）
+
+PRD提到V1.0还需要3个模块，技术设计补充如下：
+
+### 10.1 模块4：审批自动化
+
+```sql
+-- 审批流程
+CREATE TABLE approval_flows (
+    id INTEGER PRIMARY KEY,
+    client_id INTEGER NOT NULL,
+    name TEXT NOT NULL,          -- 请假/报销/采购/出差
+    steps TEXT NOT NULL,          -- JSON: 审批步骤链
+    is_active INTEGER DEFAULT 1
+);
+
+-- 审批实例
+CREATE TABLE approval_instances (
+    id INTEGER PRIMARY KEY,
+    flow_id INTEGER REFERENCES approval_flows(id),
+    applicant_id TEXT NOT NULL,
+    form_data TEXT NOT NULL,      -- JSON: 表单数据
+    current_step INTEGER DEFAULT 0,
+    status TEXT DEFAULT 'pending', -- pending/approved/rejected/cancelled
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 审批记录
+CREATE TABLE approval_actions (
+    id INTEGER PRIMARY KEY,
+    instance_id INTEGER REFERENCES approval_instances(id),
+    approver_id TEXT NOT NULL,
+    action TEXT NOT NULL,         -- approved/rejected/commented
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**流程**：提交 → AI预审（检查完整性/合规）→ 按步骤链逐级审批 → 结果通知
+
+### 10.2 模块5：CRM轻量版
+
+```sql
+-- 客户/线索
+CREATE TABLE crm_contacts (
+    id INTEGER PRIMARY KEY,
+    client_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    company TEXT,
+    phone TEXT,
+    email TEXT,
+    source TEXT,                  -- 来源渠道
+    tags TEXT,                    -- JSON标签
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 跟进记录
+CREATE TABLE crm_followups (
+    id INTEGER PRIMARY KEY,
+    contact_id INTEGER REFERENCES crm_contacts(id),
+    type TEXT NOT NULL,           -- call/visit/email/wechat
+    content TEXT,
+    next_followup_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 提醒
+CREATE TABLE crm_reminders (
+    id INTEGER PRIMARY KEY,
+    contact_id INTEGER REFERENCES crm_contacts(id),
+    remind_at TIMESTAMP NOT NULL,
+    message TEXT NOT NULL,
+    channel TEXT,                 -- wechat/sms/email
+    is_sent INTEGER DEFAULT 0
+);
+```
+
+**核心功能**：AI自动总结跟进内容 → 下次跟进提醒 → 超期未联系告警 → 客户画像生成
+
+### 10.3 模块6：内容分发
+
+```sql
+-- 内容
+CREATE TABLE contents (
+    id INTEGER PRIMARY KEY,
+    client_id INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    media_urls TEXT,              -- JSON: 图片/视频URL列表
+    status TEXT DEFAULT 'draft',  -- draft/published/scheduled
+    platforms TEXT,               -- JSON: 目标平台列表
+    scheduled_at TIMESTAMP,
+    published_at TIMESTAMP
+);
+
+-- 分发记录
+CREATE TABLE distribution_logs (
+    id INTEGER PRIMARY KEY,
+    content_id INTEGER REFERENCES contents(id),
+    platform TEXT NOT NULL,
+    post_id TEXT,                 -- 平台返回的帖子ID
+    status TEXT,
+    error_message TEXT,
+    published_at TIMESTAMP
+);
+```
+
+**支持平台**：微信公众号、视频号、小红书、抖音（初期先做2-3个）
+
+---
+
+## 11. 文件结构
 
 ```
 autoflow/
