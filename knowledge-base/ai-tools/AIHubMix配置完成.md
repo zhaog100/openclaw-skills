@@ -13,7 +13,7 @@ _配置日期：2026年2月27日_
 
 2. ✅ **添加AIHubMix Provider**
    - Base URL: `https://aihubmix.com/v1`
-   - API Key: `xxx_AIHUBMIX_KEY_REDACTED_xxx`
+   - API Key: `sk-XXX_REDACTED`
 
 3. ✅ **添加3个新模型**
    - `gpt-4.1-free` (GPT-4.1 Free)
