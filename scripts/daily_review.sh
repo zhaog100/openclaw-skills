@@ -4,7 +4,7 @@
 # 功能：更新QMD索引、每日回顾、查漏补缺、优化MEMORY.md、提交Git
 # 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw/workspace"
 MEMORY_DIR="$WORKSPACE/memory"
 TODAY=$(date +%Y-%m-%d)
 YESTERDAY=$(date -d "yesterday" +%Y-%m-%d)
