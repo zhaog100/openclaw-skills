@@ -56,6 +56,43 @@ session-memory-enhanced/
 └── docs/
 ```
 
+## 📖 分层读取策略（⚠️ 重要 - Token节省核心）
+
+### 🚫 禁止全量读取 MEMORY.md（16KB+）
+**绝对禁止**在任何场景下直接 `read MEMORY.md` 全量读取。这是最大的Token浪费源。
+
+### 分层规则
+
+| 场景 | 方法 | 预估Token |
+|------|------|-----------|
+| **会话启动** | 读 `MEMORY-LITE.md`（<3KB，唯一允许全量读取的记忆文件） | ~800 |
+| **常规问题** | `memory_search("关键词")` 精准检索 | ~150 |
+| **深度查询** | `memory_get(path="MEMORY.md", from=N, lines=50)` 按需读取 | ~200 |
+| **历史日志** | `qmd search "关键词" -n 3` 语义检索 | ~200 |
+
+### 操作指南
+
+```bash
+# ✅ 正确：精准检索
+memory_search("用户偏好")
+memory_search("项目决策")
+
+# ✅ 正确：按需读取特定段落
+memory_get(path="MEMORY.md", from=100, lines=50)
+
+# ✅ 正确：启动时只读精简版
+read MEMORY-LITE.md
+
+# ❌ 禁止：全量读取
+read MEMORY.md  # 绝对禁止！
+```
+
+### MEMORY-LITE.md 维护
+- `MEMORY-LITE.md` 是唯一允许全量读取的记忆文件
+- 必须控制在 **3KB 以内**（当前 ~2.5KB）
+- 由定时脚本自动从 MEMORY.md 精华摘要生成
+- 内容：核心偏好、关键决策、重要约束
+
 ## ⚙️ 环境变量
 
 - `OPENAI_API_KEY`：向量嵌入和AI摘要（不提供时降级为纯文本模式）
