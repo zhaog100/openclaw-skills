@@ -52,9 +52,9 @@ analyze_errors() {
 - **通知失败**：${notify_fail}次
 - **JSON解析失败**：${json_fail}次
 
-## 🚨 最近错误（最近10条）
+## 🚨 最近错误（最近10条，已脱敏）
 
-$(tail -10 "$ERROR_LOG" 2>/dev/null)
+$(tail -10 "$ERROR_LOG" 2>/dev/null | sed -E 's/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/[REDACTED_EMAIL]/g; s/(sk-[a-zA-Z0-9]+)/[REDACTED_KEY]/g; s/(token[=:"][^"]*)/token=[REDACTED]/g; s/(password[=:"][^"]*)/password=[REDACTED]/g')
 
 ---
 *报告生成时间：$(date '+%Y-%m-%d %H:%M:%S')*
