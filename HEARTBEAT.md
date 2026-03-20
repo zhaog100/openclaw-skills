@@ -68,10 +68,10 @@ _保持精简，每次轮换 1-2 项_
 
 | 时间 | 脚本 | 用途 |
 |------|------|------|
-| 每小时 | error-stats.sh stats | 上下文错误统计 |
-| 每天02:00 | error-stats.sh cleanup | 日志清理 |
-| 每天22:00 | jd_task_checker.sh | 京东任务检查 |
-| 每天23:50 | daily_review.sh | 每日回顾 |
+| 每小时 | skills/context-manager-v2/scripts/error-stats.sh stats | 上下文错误统计 |
+| 每天02:00 | skills/context-manager-v2/scripts/error-stats.sh cleanup | 日志清理 |
+| 每天22:00 | scripts/jd_task_checker.sh | 京东任务检查 |
+| 每天23:50 | scripts/daily_review.sh | 每日回顾 |
 
 ---
 
