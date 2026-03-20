@@ -25,10 +25,30 @@ bash scripts/update.sh <skill-name>
 
 ## 📋 发布流程
 
+### 标准流程
 1. `check-existing.sh` → 检查是否存在
 2. `compare-versions.sh` → 对比差异
 3. 手动审查并合并重要变更
 4. `publish.sh` → 发布更新
+
+### 批量发布流程（实战优化）
+```bash
+# 1. 版权检查（强制）
+bash scripts/add_copyright.sh <skill-name>
+
+# 2. 测试验证
+pytest  # 必须全绿
+
+# 3. ClawHub 发布
+clawhub publish <skill-path>
+```
+
+### 发布清单
+- ✅ SKILL.md 版权声明
+- ✅ README.md 版权声明
+- ✅ package.json license 字段
+- ✅ 主脚本版权注释
+- ✅ LICENSE 文件
 
 ## 🔧 版本管理
 
