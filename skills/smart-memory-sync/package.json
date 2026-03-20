@@ -1,6 +1,6 @@
 {
   "name": "smart-memory-sync",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "主动智能记忆管理技能。实时分析聊天、三库同步（MEMORY+QMD+Git）、主动切换、预防性保护。与Context Manager互补，双保险机制。",
   "author": "思捷娅科技 (SJYKJ)",
   "created": "2026-03-06",

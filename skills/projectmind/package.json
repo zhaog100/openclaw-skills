@@ -1,6 +1,6 @@
 {
   "name": "projectmind",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "AI-native project management assistant for OpenClaw",
   "main": "src/db/connection.js",
   "dependencies": {
