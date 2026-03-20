@@ -8,7 +8,27 @@ triggers:
   - 技能自动开发
 ---
 
-# auto-pipeline 技能描述
+# auto-pipeline
+
+## 🏆 实战集成
+
+### Bounty 批量开发流程
+```bash
+# 1. 扫描发现
+bash ../github-bounty-hunter/scripts/bounty_quick_scan.sh
+
+# 2. 批量开发（最多 5 个并行）
+bash ../github-bounty-hunter/scripts/bounty_batch_dev.sh <owner/repo> 11,29,30 5
+
+# 3. 批量提交 PR
+bash ../github-bounty-hunter/scripts/bounty_submit_batch.sh <work_dir>
+```
+
+### 优先级策略
+- P0: >$200 + <10 评论 → 立即接
+- P1: >$100 + <20 评论 → 马上接
+- P2: >$100 + 20-50 评论 → 评估后接
+- P3: >$200 + >50 评论 → 可竞争
 
 将PRD自动转化为可发布技能的质量保障流水线。
 
