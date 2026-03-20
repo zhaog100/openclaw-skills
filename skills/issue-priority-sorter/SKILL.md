@@ -1,3 +1,4 @@
+version: 1.0.0
 # GitHub Issue 优先级排序器
 
 MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

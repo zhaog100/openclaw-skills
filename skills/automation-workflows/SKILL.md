@@ -1,6 +1,7 @@
 ---
 name: automation-workflows
 description: Design and implement automation workflows to save time and scale operations as a solopreneur. Use when identifying repetitive tasks to automate, building workflows across tools, setting up triggers and actions, or optimizing existing automations. Trigger on "automate", "automation", "workflow automation", "save time", "reduce manual work", "no-code automation".
+version: 1.0.0
 ---
 
 # Automation Workflows

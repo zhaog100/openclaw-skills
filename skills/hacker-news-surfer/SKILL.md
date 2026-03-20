@@ -1,6 +1,7 @@
 ---
 name: hacker-news-surfer
 description: Surf Hacker News for AI and tech discussions. Get top stories, search for AI topics, and analyze trending tech news.
+version: 1.0.0
 ---
 
 # Hacker News Surfer

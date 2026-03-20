@@ -1,6 +1,7 @@
 ---
 name: chart-generator
 description: Generate charts and graphs using Python (matplotlib, plotly, seaborn). Supports line charts, bar charts, pie charts, scatter plots, heatmaps, boxplots, and interactive charts.
+version: 1.0.0
 ---
 
 # Chart Generator

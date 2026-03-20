@@ -1,6 +1,7 @@
 ---
 name: context-manager
 description: Auto context management with seamless session switching. Monitors usage, triggers at 70% threshold (proactive check every 10 tool calls), automatically creates new session with loaded memory. Zero user intervention required. Trigger on "context", "memory", "session management", "context limit", "memory transfer".
+version: 2.4.1
 ---
 
 # Context Manager v2.2 - 无感会话切换

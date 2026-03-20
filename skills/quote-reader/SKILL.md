@@ -1,6 +1,7 @@
 ---
 name: quote-reader
 description: 引用前文内容读取技能。当用户引用之前的消息时，自动检索并理解引用内容，支持飞书/QQ/企业微信交互式卡片内容获取。Trigger on "引用", "回复", "quote", "reply", "前文"。
+version: 1.3.1
 ---
 
 # 引用前文内容读取技能 v1.1.0

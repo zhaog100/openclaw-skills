@@ -1,6 +1,7 @@
 ---
 name: ai-deterministic-control
 description: AI 确定性控制工具。管理 temperature/top_p/seed 参数，多场景预设，一致性检查（编辑距离+TF-IDF），监控趋势分析与异常检测，模型参数注入与恢复。
+version: 1.2.0
 ---
 
 # AI 确定性控制工具（ai-deterministic-control）

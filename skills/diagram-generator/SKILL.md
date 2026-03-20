@@ -1,6 +1,7 @@
 ---
 name: diagram-generator
 description: Generate diagrams and flowcharts using Graphviz (Python). Supports flowcharts, architecture diagrams, state diagrams, and data flow diagrams.
+version: 1.0.0
 ---
 
 # Diagram Generator

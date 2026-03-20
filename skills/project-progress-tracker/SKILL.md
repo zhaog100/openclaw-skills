@@ -1,3 +1,4 @@
+version: 1.0.2
 # Project Progress Tracker
 
 分析 Git 仓库和 GitHub Issues，自动生成项目进度报告。

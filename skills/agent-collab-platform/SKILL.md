@@ -1,3 +1,4 @@
+version: 1.15.2
 # agent-collab-platform
 
 **版本**：v1.15.1 ⭐⭐⭐⭐⭐  
