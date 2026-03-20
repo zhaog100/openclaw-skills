@@ -36,9 +36,13 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/api/auth", tags=["auth"])
 
 from api.routes import webhook_router, knowledge_router, admin_router  # noqa: E402
+from api.routes.reports import router as reports_router  # noqa: E402
+from api.routes.crawl import router as crawl_router  # noqa: E402
 app.include_router(webhook_router, tags=["webhook"])
 app.include_router(knowledge_router, tags=["knowledge"])
 app.include_router(admin_router, tags=["admin"])
+app.include_router(reports_router, tags=["reports"])
+app.include_router(crawl_router, tags=["crawl"])
 
 
 @app.get("/health")
