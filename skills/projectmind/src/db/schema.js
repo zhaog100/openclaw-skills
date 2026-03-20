@@ -36,6 +36,9 @@ function initSchema() {
       estimate_days REAL    DEFAULT NULL,
       actual_days   REAL    DEFAULT NULL,
       sort_order    INTEGER DEFAULT 0,
+      tags          TEXT    DEFAULT '[]',           -- JSON数组，标签分类
+      confidence    REAL    DEFAULT NULL,           -- AI置信度 0-1
+      ai_generated  INTEGER DEFAULT 0,             -- 1=AI生成，幻觉防护标注
       created_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
       updated_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
       FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
@@ -51,6 +54,7 @@ function initSchema() {
       doing_today   TEXT    DEFAULT '',
       blockers      TEXT    DEFAULT '',
       is_blocker    INTEGER DEFAULT 0,
+      confidence    REAL    DEFAULT NULL,           -- 阻塞项识别置信度 0-1
       created_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
       FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
       UNIQUE(project_id, member_name, date)

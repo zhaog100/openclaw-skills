@@ -1,9 +1,46 @@
 // MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 站会引擎（收集+摘要+阻塞项检测）
 
+const { getDB } = require('../db/connection');
 const { upsertStandup, getTodayStandups, getRecentBlockers, findProjectByName } = require('../db/queries');
 const { formatStandupSummary, formatBlockerWarning } = require('../utils/formatter');
 const { sendNotification } = require('../utils/notifier');
+
+/** 已确认的站会摘要缓存：Set<"projectId:date"> */
+const _confirmedSummaries = new Set();
+
+/**
+ * 确认站会摘要（确认后才触发通知推送）
+ * @param {number} projectId
+ * @param {string} date 日期字符串 (YYYY-MM-DD)
+ * @returns {boolean} 是否确认成功
+ */
+function confirmStandupSummary(projectId, date) {
+  const key = `${projectId}:${date}`;
+  const already = _confirmedSummaries.has(key);
+  _confirmedSummaries.add(key);
+
+  if (!already) {
+    // 首次确认，触发通知推送
+    const project = findProjectByName(null);
+    // 通过 projectId 获取项目名称
+    const db = getDB();
+    const proj = db.prepare('SELECT name FROM projects WHERE id = ?').get(projectId);
+    const standups = db.prepare(
+      "SELECT * FROM daily_updates WHERE project_id = ? AND date = ? ORDER BY member_name"
+    ).all(projectId, date);
+    const blockers = detectBlockers(projectId);
+    const summaryText = formatStandupSummary(standups) + (blockers.length > 0 ? formatBlockerWarning(blockers) : '');
+
+    try {
+      sendNotification('standup_confirmed', `📋 站会摘要已确认 - 项目「${proj ? proj.name : projectId}」(${date})\n${summaryText}`);
+    } catch (err) {
+      console.error('[standup-engine] 确认通知发送失败:', err.message);
+    }
+  }
+
+  return true;
+}
 
 /**
  * 提交站会更新（UPSERT语义：同一人同一天重复提交会覆盖）
@@ -47,30 +84,33 @@ function submitStandup(params) {
 /**
  * 获取今日站会摘要
  * @param {string} project_name
- * @returns {string} 格式化摘要
+ * @returns {{ text: string, needs_confirmation: boolean }}
  */
 function getStandupSummary(project_name) {
   const project = findProjectByName(project_name);
   if (!project) {
-    return `❌ 未找到项目「${project_name}」`;
+    return { text: `❌ 未找到项目「${project_name}」`, needs_confirmation: false };
   }
 
   const standups = getTodayStandups(project.id);
   let text = formatStandupSummary(standups);
 
-  // 检测阻塞项
   const blockerInfos = detectBlockers(project.id);
   if (blockerInfos.length > 0) {
     text += formatBlockerWarning(blockerInfos);
   }
 
-  return text;
+  const today = new Date().toISOString().slice(0, 10);
+  const key = `${project.id}:${today}`;
+  const needs_confirmation = !_confirmedSummaries.has(key);
+
+  return { text, needs_confirmation };
 }
 
 /**
  * 检测阻塞项（>2天标为critical）
  * @param {number} projectId
- * @returns {Array<{member, blocker, days_blocked, is_critical}>}
+ * @returns {Array<{member, blocker, days_blocked, is_critical, confidence}>}
  */
 function detectBlockers(projectId) {
   const rawBlockers = getRecentBlockers(projectId, 5);
@@ -88,17 +128,23 @@ function detectBlockers(projectId) {
 
   const results = [];
   for (const [member, records] of memberMap) {
-    // 获取最新的阻塞描述
     const latest = records[records.length - 1];
-    // 阻塞天数 = 记录数量（假设每天都有阻塞记录）
     const days_blocked = records.length;
     const is_critical = days_blocked > 2;
+
+    // 置信度：连续阻塞天数越多、描述越详细，置信度越高
+    const blockerTextLen = (latest.blockers || '').trim().length;
+    let confidence = 0.3 + Math.min(days_blocked * 0.15, 0.45);
+    if (blockerTextLen > 20) confidence += 0.15;
+    if (blockerTextLen > 50) confidence += 0.1;
+    confidence = Math.min(confidence, 1.0);
 
     results.push({
       member,
       blocker: latest.blockers,
       days_blocked,
       is_critical,
+      confidence: Math.round(confidence * 100) / 100,
     });
   }
 
@@ -124,4 +170,4 @@ function detectAndNotifyBlockers(projectId, projectName) {
   }
 }
 
-module.exports = { submitStandup, getStandupSummary, detectBlockers };
+module.exports = { submitStandup, getStandupSummary, detectBlockers, confirmStandupSummary };

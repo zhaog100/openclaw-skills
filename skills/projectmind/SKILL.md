@@ -1,4 +1,4 @@
-version: 1.2.1
+version: 1.3.0
 # ProjectMind - AI原生项目管理助手
 
 MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
@@ -6,7 +6,7 @@ MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 ## 基本信息
 
 - **name:** projectmind
-- **version:** 1.1.0
+- **version:** 1.3.0
 - **description:** AI原生项目管理助手 — 自然语言管理任务、追踪进度、每日站会
 
 ## 触发关键词
@@ -39,6 +39,8 @@ MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 | assignee | string | ❌ | 负责人 |
 | estimate_days | number | ❌ | 预估天数（正数） |
 | parent_id | number | ❌ | 父任务ID（子任务） |
+| confidence | number | ❌ | AI置信度 0-1 |
+| ai_generated | boolean | ❌ | 是否AI生成（自动追加核实标记） |
 
 ### pm:list-tasks
 
@@ -63,7 +65,7 @@ MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ### pm:project-status
 
-项目状态概览（进度看板）
+项目状态概览（进度看板，包含趋势分析洞察）
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
