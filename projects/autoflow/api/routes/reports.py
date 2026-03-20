@@ -4,11 +4,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional
-from api.auth import get_current_client
-from api.services.report_svc import ReportService
+from api.auth import get_current_user as get_current_client
+import api.services.report_svc as report_svc
 
 router = APIRouter(prefix="/api/v1/reports", tags=["reports"])
-svc = ReportService()
 
 
 class CreateTemplateReq(BaseModel):
@@ -22,7 +21,7 @@ class CreateTemplateReq(BaseModel):
 
 @router.post("")
 async def create_template(req: CreateTemplateReq, client=Depends(get_current_client)):
-    tid = await svc.create_template(
+    tid = await report_svc.create_template(
         client_id=client["id"],
         name=req.name,
         data_source_ids=req.data_source_ids,
@@ -36,7 +35,7 @@ async def create_template(req: CreateTemplateReq, client=Depends(get_current_cli
 
 @router.get("/{template_id}")
 async def get_template(template_id: int, client=Depends(get_current_client)):
-    t = await svc.get_template(template_id)
+    t = await report_svc.get_template(template_id)
     if not t:
         raise HTTPException(404, "模板不存在")
     return t
@@ -44,10 +43,10 @@ async def get_template(template_id: int, client=Depends(get_current_client)):
 
 @router.post("/{template_id}/generate")
 async def generate(template_id: int, client=Depends(get_current_client)):
-    result = await svc.generate_report(template_id)
+    result = await report_svc.generate_report(template_id)
     return result
 
 
 @router.get("/{template_id}/snapshots")
 async def list_snapshots(template_id: int, limit: int = 20, client=Depends(get_current_client)):
-    return await svc.list_snapshots(template_id, limit)
+    return await report_svc.list_snapshots(template_id, limit)
