@@ -1,6 +1,7 @@
 ---
 name: test-case-generator
 description: 测试用例生成器 - 根据代码自动生成测试用例
+version: 1.0.0
 ---
 
 # 测试用例生成器 (test-case-generator)

@@ -1,3 +1,4 @@
+version: 2.1.0
 # AI 代码审查助手（ai-code-reviewer）
 
 **版本**：v2.0  

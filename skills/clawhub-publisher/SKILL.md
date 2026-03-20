@@ -1,6 +1,7 @@
 ---
 name: clawhub-publisher
 description: ClawHub技能发布助手。在发布新技能前自动检查ClawHub/GitHub上的现有版本，对比实现思路，智能整合差异后发布/更新。Trigger on "发布技能", "publish skill", "ClawHub发布", "检查技能版本", "整合技能更新".
+version: 1.0.1
 ---
 
 # ClawHub Publisher

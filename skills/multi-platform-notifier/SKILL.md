@@ -1,3 +1,4 @@
+version: 1.0.1
 # multi-platform-notifier - 多平台通知集成
 
 **版本**: v1.0  

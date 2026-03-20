@@ -6,6 +6,7 @@ triggers:
   - pipeline
   - 自动流水线
   - 技能自动开发
+version: 2.1.0
 ---
 
 # auto-pipeline

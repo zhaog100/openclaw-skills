@@ -1,3 +1,4 @@
+version: 1.0.1
 # Meeting Minutes Generator
 
 将会议文本（聊天记录/会议笔记）转为结构化会议纪要。零外部依赖，纯 Python 标准库实现。

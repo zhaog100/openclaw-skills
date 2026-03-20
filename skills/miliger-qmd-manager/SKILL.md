@@ -2,6 +2,7 @@
 name: miliger-qmd-manager
 description: 统一的QMD知识库管理技能，集成官方qmd搜索功能和自定义项目管理/测试/内容创作知识管理。支持BM25关键词搜索、向量语义搜索、多集合管理。
 homepage: https://github.com/miliger/qmd-manager
+version: 1.0.0
 ---
 
 # miliger-qmd-manager - 统一知识库管理

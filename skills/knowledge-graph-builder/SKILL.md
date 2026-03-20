@@ -1,6 +1,7 @@
 ---
 name: knowledge-graph-builder
 description: 知识图谱构建工具。从文档中自动提取知识和关系，支持图谱可视化、语义搜索、多种导出格式。
+version: 1.0.1
 ---
 
 # 知识图谱构建工具 (knowledge-graph-builder)

@@ -1,6 +1,7 @@
 ---
 name: daily-review-assistant
 description: 定时回顾更新助手。定时（中午 12 点、晚上 23:50）自动回顾今日工作，查漏补缺，更新记忆和知识库。
+version: 1.2.1
 ---
 
 # 定时回顾更新助手 (daily-review-assistant)

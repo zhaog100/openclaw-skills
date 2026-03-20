@@ -1,6 +1,7 @@
 ---
 name: ai-efficiency-monitor
 description: AI效率监控工具。监控AI任务执行效率，识别浪费模式（重复查询/过长上下文/无效重试/过度生成/低质量循环），生成优化建议和成本节省报告。支持OpenClaw日志解析、多模型成本计算、ASCII趋势图。
+version: 1.2.1
 ---
 
 # AI Efficiency Monitor (aiemon)

@@ -1,3 +1,4 @@
+version: 1.2.1
 # cligen - CLI Tool Generator
 
 > Fast CLI tool scaffolding generator for Bash & Python

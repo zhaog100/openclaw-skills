@@ -1,6 +1,7 @@
 ---
 name: devto-surfer
 description: Surf Dev.to for AI tutorials and tech articles. Get latest articles, search by tags, and analyze trending topics.
+version: 1.0.0
 ---
 
 # Dev.to Surfer
