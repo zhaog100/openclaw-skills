@@ -83,6 +83,7 @@ qmd search daily-logs "关键词" --hybrid
 - **ClawHub限流** - 每小时5个新slug，等1小时
 - **版本冲突** - `Version already exists`时升级版本号
 - **GitHub Push Protection** - 禁用+允许secrets推送
+- **ClawHub安全审计修复流程** - env变量名与代码必须一致（用统一前缀如`AF_`）→ package.json声明requires.env+optionalEnv → SKILL.md补充外部依赖说明（网络调用/subprocess/第三方binary） → 加setup.sh自动安装脚本 → 升版本号发布 → 双仓库push
 
 ### 系统运维教训
 - **监控脚本必须有退出机制**（否则每5分钟堆积1个进程）

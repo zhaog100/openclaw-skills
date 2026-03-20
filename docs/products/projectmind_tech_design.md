@@ -3,9 +3,9 @@
 | 字段 | 内容 |
 |------|------|
 | **产品名称** | ProjectMind（项目智脑）|
-| **文档版本** | v1.1 |
+| **文档版本** | v1.2 |
 | **阶段** | MVP — Skill版（Week 1-2）|
-| **对应PRD** | 2026-03-19_project-management-ai-assistant_PRD.md v1.1 |
+| **对应PRD** | 2026-03-19_project-management-ai-assistant_PRD.md v1.2 |
 | **创建日期** | 2026-03-19 |
 | **作者** | 小米粒（Dev代理）|
 
@@ -15,8 +15,9 @@
 
 | 版本 | 日期 | 变更内容 |
 |------|------|----------|
-| v1.0 | 2026-03-19 | 初版，包含LLM解析层、Prompt工程、意图路由 |
+| v1.2 | 2026-03-20 | 整合HN趋势洞察：新增语音模块设计（KittenTTS）、增强通知模块（Agent常驻推送）、新增趋势分析引擎（自动优化建议）、更新Phase 2路线图 |
 | v1.1 | 2026-03-19 | Review修订（55/60分）：去掉LLM调用层改由agent解析；增加多通道通知模块；去掉意图路由改由OpenClaw自动路由；站会改UPSERT；增加config.example.json；总工时调整为28h |
+| v1.0 | 2026-03-19 | 初版，包含LLM解析层、Prompt工程、意图路由 |
 
 ---
 
@@ -685,16 +686,19 @@ function toUserMessage(code) {
 | 14 | `src/engines/task-decomposer.js` | WBS拆解引擎（可选helper） | 1.5h |
 | 15 | `src/engines/progress-calc.js` | 进度计算引擎 | 1.5h |
 | 16 | `src/engines/standup-engine.js` | 站会引擎（收集+阻塞检测） | 1.5h |
-| 17 | `src/utils/formatter.js` | 响应格式化（看板/列表/摘要） | 2h |
-| 18 | `src/utils/validator.js` | 参数校验+WBS校验 | 1h |
-| 19 | `src/utils/errors.js` | 统一错误处理+用户友好消息 | 0.5h |
-| 20 | `src/utils/notifier.js` | 多通道通知（飞书/企微/钉钉/邮件/Slack） | 2h |
-| 21 | `tests/unit/progress-calc.test.js` | 进度计算单元测试 | 1.5h |
-| 22 | `tests/unit/validator.test.js` | 校验器单元测试 | 1h |
-| 23 | `tests/integration/create-task.e2e.test.js` | 创建任务端到端测试 | 1.5h |
-| 24 | `tests/integration/standup.e2e.test.js` | 站会端到端测试 | 1.5h |
+| 17 | `src/engines/trend-analyzer.js` | 🔥 NEW 趋势分析引擎（v1.2） | 2h |
+| 18 | `src/utils/formatter.js` | 响应格式化（看板/列表/摘要） | 2h |
+| 19 | `src/utils/validator.js` | 参数校验+WBS校验 | 1h |
+| 20 | `src/utils/errors.js` | 统一错误处理+用户友好消息 | 0.5h |
+| 21 | `src/utils/notifier.js` | 多通道通知（飞书/企微/钉钉/邮件/Slack） | 2h |
+| 22 | `src/utils/voice-helper.js` | 🔥 NEW 语音辅助模块（v1.2） | 1h |
+| 23 | `tests/unit/progress-calc.test.js` | 进度计算单元测试 | 1.5h |
+| 24 | `tests/unit/validator.test.js` | 校验器单元测试 | 1h |
+| 25 | `tests/unit/trend-analyzer.test.js` | 🔥 NEW 趋势分析单元测试（v1.2） | 1h |
+| 26 | `tests/integration/create-task.e2e.test.js` | 创建任务端到端测试 | 1.5h |
+| 27 | `tests/integration/standup.e2e.test.js` | 站会端到端测试 | 1.5h |
 
-**总计：约 28 小时（~3.5个工作日）**
+**总计：约 32 小时（~4个工作日）**
 
 ### 工时分布
 
@@ -702,10 +706,10 @@ function toUserMessage(code) {
 |------|--------|------|
 | 基础设施（db + config） | 4 | 5h |
 | Handlers（7个接口） | 7 | 10h |
-| 引擎层（3个引擎） | 3 | 4.5h |
-| 工具+错误处理+通知 | 4 | 5.5h |
-| 测试 | 4 | 5.5h |
-| **合计** | **~25** | **28h** |
+| 引擎层（4个引擎） | 4 | 6.5h |
+| 工具+错误处理+通知+语音 | 5 | 6.5h |
+| 测试 | 5 | 6.5h |
+| **合计** | **~27** | **32h** |
 
 ---
 
@@ -744,8 +748,131 @@ function toUserMessage(code) {
       { "event": "task_completed", "channels": [] },
       { "event": "daily_standup_reminder", "channels": ["feishu", "wecom", "dingtalk"] }
     ]
+  },
+  "voice": {
+    "enabled": false,
+    "engine": "kittentts",
+    "model_path": "",
+    "voice": "Bella",
+    "speed": 1.0
+  },
+  "trend_analysis": {
+    "enabled": true,
+    "anomaly_threshold": 0.15,
+    "lookback_days": 14
   }
 }
+```
+
+---
+
+## 8. v1.2 新增模块设计（HN趋势洞察整合）
+
+### 8.1 趋势分析引擎（trend-analyzer.js）🔥
+
+**来源：** HN Autoresearch（Agent自动做910个实验发现最优参数）
+
+**职责：** 自动分析项目数据趋势，生成优化建议（"智脑"核心差异化）
+
+**核心接口：**
+```javascript
+interface TrendResult {
+  type: 'velocity' | 'burndown' | 'bottleneck' | 'risk';
+  severity: 'info' | 'warning' | 'critical';
+  message: string;           // 人类可读的洞察
+  suggestion: string;        // AI建议动作
+  confidence: number;        // 0-1 置信度
+  data_points: object[];     // 支撑数据
+}
+
+function analyzeProjectTrends(projectId): Promise<TrendResult[]>
+```
+
+**分析维度：**
+
+| 维度 | 检测逻辑 | 建议动作 |
+|------|----------|----------|
+| **速率趋势** | 最近7天完成任务数 vs 前7天，偏差>15%预警 | "本周完成速率下降30%，建议检查是否有阻塞项" |
+| **燃尽趋势** | 实际燃尽vs理想燃尽偏差，3天持续偏高标橙 | "燃尽图持续偏离，建议调整Sprint范围或增加资源" |
+| **瓶颈检测** | 同一assignee高优先级任务>5个且status=doing | "张三有6个进行中高优任务，建议拆分或重新分配" |
+| **风险预测** | 里程碑剩余任务中done比例<40%且距deadline<7天 | "「用户系统」里程碑仅完成35%，距deadline 5天，建议调整计划" |
+
+**实现要点：**
+- 纯SQL聚合查询，不依赖LLM（快速、确定性）
+- `lookback_days` 可配置（默认14天）
+- 结果附带 confidence，低置信度结果不自动推送
+- 在 `pm:project-status` 调用时自动触发，在响应末尾追加"💡 洞察"
+
+### 8.2 语音辅助模块（voice-helper.js）🔥
+
+**来源：** HN KittenTTS（25MB ONNX模型，纯CPU推理）
+
+**职责：** 可选语音输出，降低使用门槛
+
+**核心接口：**
+```javascript
+interface VoiceConfig {
+  enabled: boolean;
+  engine: 'kittentts' | 'external';   // 预留扩展
+  model_path: string;
+  voice: string;        // Bella/Jasper/Luna/Bruno/Rosie/Hugo/Kiki/Leo
+  speed: number;        // 0.5-2.0
+}
+
+async function textToSpeech(text: string, outputPath: string): Promise<string>
+// 返回生成的音频文件路径，供OpenClaw <qqvoice> 发送
+```
+
+**设计决策：**
+- **MVP阶段为可选功能**（voice.enabled = false），不影响核心流程
+- KittenTTS 作为推荐引擎（25MB、CPU、8语音、MIT友好）
+- 语音输出通过 OpenClaw `<qqvoice>` 标签发送，不依赖外部TTS服务
+- 典型场景：语音播报站会摘要、语音读周报、移动端语音创建任务
+
+**目录结构更新：**
+```
+src/utils/voice-helper.js   # 语音辅助模块
+```
+
+### 8.3 通知模块增强（Agent常驻推送）
+
+**来源：** HN Claude Channels（后台Agent+推送交互模式）
+
+**增强内容：**
+
+| 新增能力 | 说明 | 优先级 |
+|----------|------|--------|
+| **主动推送** | 不仅在用户操作时通知，支持定时主动推送（站会提醒、进度周报、风险升级） | P1 |
+| **心跳集成** | 利用OpenClaw心跳机制，每次心跳检查是否有待推送事件 | P1 |
+| **推送确认** | 推送消息附带快速操作（"标记完成"/"忽略"/"查看详情"） | P2 |
+
+**新增通知事件（v1.2）：**
+
+| 事件 | 触发时机 | 说明 |
+|------|----------|------|
+| `trend_warning` | 趋势分析发现warning及以上 | "本周完成速率下降30%" |
+| `milestone_at_risk` | 里程碑风险预测 | "用户系统里程碑可能延期" |
+| `weekly_report` | 每周一9:00自动生成 | 项目周报摘要 |
+| `standup_reminder` | 每日9:00（未提交的成员） | "请提交今日站会更新" |
+
+### 8.4 轻量化策略确认
+
+**来源：** HN KittenTTS（25MB替代GB级模型）
+
+**策略确认：**
+- ✅ SQLite（零配置，单文件）vs PostgreSQL（需要安装+维护）
+- ✅ 纯JavaScript（零编译）vs TypeScript（需要tsc）
+- ✅ 仅 `better-sqlite3` 一个核心依赖（同步API，无async复杂度）
+- ✅ KittenTTS 25MB（可选）vs Whisper GB级（太重）
+- ✅ Skill版优先 vs Web版（减少初期开发量）
+
+**Phase 2 扩展路径（保留弹性）：**
+```
+MVP: SQLite + 纯JS + Skill版
+  ↓ Phase 2
+Web版: 前端 Next.js + API层
+  ↓ Phase 3
+SaaS: PostgreSQL + Redis + Docker
 ```
 
 ---
