@@ -9,7 +9,40 @@ author: 米粒儿 + 小米辣
 
 自动化 GitHub 赏金/Grant 接单、开发、提交 PR + 工作区结构化管理。
 
-**v3.0 新增：** 分阶段开发、进度持久化、快速扫描、智能超时处理
+**v4.0 新增：** 自动扫描cron、黑名单过滤、仓库隔离、commit验证
+
+## 🕐 自动扫描Cron（v4.0）
+
+| 任务 | 频率 | 脚本 | 说明 |
+|------|------|------|------|
+| GitHub bounty扫描 | 每2小时 | `bounty_scanner.sh` | gh search issues多关键词扫描 |
+| Algora页面扫描 | 每2小时 | `bounty_scanner.sh` | curl提取GitHub链接 |
+| 已有PR监控 | 每1小时 | `monitor.py` | 检查review/merge状态 |
+| PR review监控 | 每1小时 | `pr_review_monitor.sh` | 检查review comment |
+| Gmail付款通知 | 每1小时 | `check_gmail_payments.sh` | 监控USDT到账 |
+
+### 扫描结果
+
+- 结果文件：`data/bounty-scan-results.md`
+- 已知issue：`data/bounty-known-issues.txt`（自动去重）
+- 扫描日志：`/tmp/bounty_scanner.log`
+
+### 扫描关键词
+
+```
+"bounty $50 state:open no:assignee"
+"bounty $100 state:open no:assignee"  
+"bounty $200 state:open no:assignee"
+"label:bounty state:open no:assignee"
+"paid on merge state:open"
+```
+
+### 排除关键词（黑名单）
+
+```
+zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08
+|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin
+```
 
 ## 🚀 核心命令
 
