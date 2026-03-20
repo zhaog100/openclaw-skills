@@ -99,6 +99,33 @@ _钱包地址：$USDT_WALLET (USDT TRC20)_
 
 ---
 
+## 2026-03-20 07:18 - illbnm/homelab-stack 任务认领
+
+### ✅ 已认领任务（等待 assign）
+
+| # | 任务 | 金额 | 难度 | 认领时间 | 状态 | 链接 |
+|---|------|------|------|----------|------|------|
+| 1 | Storage Stack (Nextcloud + MinIO + FileBrowser + Syncthing) | $150 | Medium | 2026-03-20 07:18 | ⏳ 等待 assign | [Issue #3](https://github.com/illbnm/homelab-stack/issues/3) |
+| 2 | Network Stack (AdGuard Home + WireGuard + Cloudflare DDNS) | $140 | Medium | 2026-03-20 07:18 | ⏳ 等待 assign | [Issue #4](https://github.com/illbnm/homelab-stack/issues/4) |
+| 3 | Robustness & CN Network (国内网络适配 + 环境鲁棒性) | $250 | Hard | 2026-03-20 07:18 | ⏳ 等待 assign | [Issue #8](https://github.com/illbnm/homelab-stack/issues/8) |
+| **总计** | **3 个任务** | **$540** | - | - | **等待 assign** | - |
+
+### 📋 认领详情
+
+- **Fork 状态:** ✅ 已存在 (zhaog100/homelab-stack)
+- **认领评论:** ✅ 已完成（每个 issue 下评论"我来认领"）
+- **Assign 状态:** ⚠️ 需要 maintainer assign（尝试 assign 失败：'zhaog100' not found）
+- **Labels 检查:** ✅ 无"Core Team Only"限制，均为 bounty 标签
+
+### 🎯 下一步
+
+1. ⏳ 等待 maintainer assign
+2. 🚀 开始开发（按优先级：Robustness > Storage > Network）
+3. 📹 提交 PR + 测试验证
+4. 💰 收款到 Algora 钱包
+
+---
+
 ## 2026-03-19 10:49 - Algora 钱包配置完成
 
 ### ✅ 配置信息
@@ -129,3 +156,24 @@ _钱包地址：$USDT_WALLET (USDT TRC20)_
 ---
 
 *配置者：小米辣 (PM + Dev) 🌶️*
+## SolFoundry Bounty 提交總結
+
+### 已提交 PR
+| PR # | Issue | 任務 | 金額 | 狀態 |
+|------|-------|------|------|------|
+| #98 | #11 | GitHub OAuth + Wallet Auth | ~00 | OPEN |
+| #99 | #29 | Notification System | ~50 | OPEN |
+| #100 | #30 | Search & Filter Engine | ~00 | OPEN |
+
+### 其他已提交 PR
+| PR # | 任務 | 狀態 |
+|------|------|------|
+| #96 | Payout History API | OPEN |
+| #95 | CI/CD Pipeline | OPEN |
+| #42 | Webhook Receiver | OPEN |
+| #40 | Leaderboard API | OPEN |
+
+**總計：~50 + ~00 = ~,250**
+
+提交時間：2026-03-20 07:47
+
