@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "threshold": 60,
+  "threshold": 70,
   "autoSwitch": true,
   "memoryTransfer": true,
   "monitoring": {
