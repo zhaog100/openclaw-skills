@@ -269,175 +269,54 @@ for bounty in sorted_list:
 
 ---
 
-## 🏆 实战验证的最佳实践（2026-03-20）
+## 🏆 核心工作流程
 
-### 1. 深耕单一项目策略
+### 1. 扫描发现
 
-**案例：homelab-stack**
-- 单项目提交 **21 个 PR**
-- 总金额：**~$3,000+**
-- 优势：maintainer 建立信任，merge 率更高
-
-**执行方法：**
 ```bash
-# 找到一个项目后，扫描所有 open issues
-gh issue list --repo <owner/repo> --label bounty --state open
+# 快速扫描（3 轮，180 秒）
+bash scripts/bounty_quick_scan.sh [max_pages]
 
-# 按金额排序，批量认领
-for issue in $(gh issue list ... | sort -rn); do
-    bounty_dev_phased.sh <owner/repo> $issue
-done
+# 输出：Top 5 推荐（按金额和竞争度排序）
 ```
 
----
+### 2. 评估优先级
 
-### 2. Tier 1 Open Race 模式
+| 优先级 | 金额 | 竞争度 | 行动 |
+|--------|------|--------|------|
+| **P0** | >$200 | <10 评论 | 🚀 立即接 |
+| **P1** | >$100 | <20 评论 | ✅ 马上接 |
+| **P2** | >$100 | 20-50 评论 | ⚠️ 评估后接 |
+| **P3** | >$200 | >50 评论 | 🔥 可竞争 |
 
-**案例：SolFoundry**
-- 无需 claim，直接提交 PR
-- 先到先得，无需等待 assign
-- 72 小时 deadline，时间充裕
+### 3. 开发提交
 
-**执行方法：**
 ```bash
-# 1. Fork 项目
-gh repo fork <owner/repo> --clone
+# 单任务开发（4 阶段，不超时）
+bash scripts/bounty_dev_phased.sh <owner/repo> <issue> [amount]
 
-# 2. 开发并提交
-bounty_dev_phased.sh <owner/repo> <issue> <amount>
+# 批量开发（最多 5 个并行）
+bash scripts/bounty_batch_dev.sh <owner/repo> 11,29,30 5
 
-# 3. 直接创建 PR
-gh pr create --title "[BOUNTY #N] 描述" --body "Closes #N\n\nWallet: \$ALGORA_WALLET"
+# 批量提交 PR
+bash scripts/bounty_submit_batch.sh <work_dir> [owner/repo]
 ```
 
 ---
 
-### 3. 批量并行开发
+## 🔐 敏感信息管理
 
-**实战配置：**
+**钱包地址存储：**
 ```bash
-# 同时开发 4-5 个 issues（子代理并行）
-for issue in 11 29 30; do
-    bounty_dev_phased.sh SolFoundry/solfoundry $issue &
-done
-wait
-
-# 统一提交 PR
-for branch in bounty-*; do
-    cd /tmp/$branch && git push origin $branch
-    gh pr create ...
-done
-```
-
-**注意：** 最多 5 个并行，避免资源耗尽
-
----
-
-### 4. PR 标准化格式
-
-**标题格式：**
-```
-[BOUNTY #N] 简短描述
-```
-
-**PR Body 模板：**
-```markdown
-Closes #N
-
-## Implementation
-- ✅ 功能 1
-- ✅ 功能 2
-- ✅ 测试通过
-
-## Wallet
-- Platform: Algora
-- Token: USDT (TRC20)
-- Address: TGu4W5T6...
-
----
-*Submitted via GitHub Bounty Hunter v3.0*
-```
-
----
-
-### 5. 竞争分析流程
-
-**检查已有 PR 质量：**
-```bash
-# 1. 查看已有 PR
-gh pr list --repo <owner/repo> --state open
-
-# 2. 分析弱点
-- 代码完整性：是否实现全部功能？
-- 测试覆盖：有单元测试吗？
-- 文档质量：有 README/注释吗？
-- 响应速度：maintainer 有 comment 吗？
-
-# 3. 实现更好的版本
-if existing_pr_count > 0:
-    analyze_weakness()
-    implement_better_version()
-    comment_on_issue("Submitted a complete implementation with tests!")
-```
-
----
-
-### 6. 钱包地址管理
-
-**安全存储：**
-```bash
-# ~/.openclaw/secrets/algora.env
+# ~/.openclaw/secrets/algora.env（不要提交到 Git）
 export ALGORA_WALLET='TGu4W5T6...'
 export USDT_WALLET='TGu4W5T6...'
 ```
 
-**PR 中引用：**
-```bash
-# 从环境变量读取，不硬编码
-WALLET=${ALGORA_WALLET:-"TGu4W5T6..."}
-echo "Wallet: $WALLET" >> PR_BODY.md
-```
-
----
-
-### 7. 超时保护机制
-
-**每阶段自动保存：**
-```bash
-# Phase N 完成立即 commit
-git add -A
-git commit -m "Phase N complete: [description]"
-git push origin branch  # 防止本地丢失
-```
-
-**检测剩余时间：**
-```python
-import time
-start_time = time.time()
-timeout = 120  # 2 分钟
-
-# 每 30 秒检查
-if time.time() - start_time > timeout - 30:
-    save_progress()
-    submit_pr_early()
-```
-
----
-
-## 📈 实战成果（2026-03-20）
-
-| 项目 | PR 数 | 金额 | 状态 |
-|------|------|------|------|
-| homelab-stack | 21 | ~$3,000+ | 等待 merge |
-| SolFoundry | 8 | ~$1,250+ | 等待 merge |
-| **总计** | **29** | **~$4,250+** | **等待收款** |
-
-**关键成功因素：**
-1. ✅ 分阶段开发（0 超时丢失）
-2. ✅ 批量并行（效率提升 3 倍）
-3. ✅ 深耕单一项目（信任建立）
-4. ✅ 标准化 PR（专业印象）
-5. ✅ 竞争分析（差异化优势）
+**脚本自动读取：**
+- ✅ 环境变量优先
+- ✅ fallback 到 secrets 文件
+- ❌ 不硬编码在脚本中
 
 ## 📊 性能对比
 

@@ -41,8 +41,15 @@ echo "$BRANCHES" | while read branch; do
 done
 echo ""
 
-# 读取钱包地址
-WALLET="${ALGORA_WALLET:-${USDT_WALLET:-TGu4W5T6...}}"
+# 读取钱包地址（从环境变量或 secrets 文件）
+WALLET="${ALGORA_WALLET:-${USDT_WALLET:-}}"
+if [ -z "$WALLET" ] && [ -f "$HOME/.openclaw/secrets/algora.env" ]; then
+    WALLET=$(grep -E "^(ALGORA_WALLET|USDT_WALLET)=" "$HOME/.openclaw/secrets/algora.env" | head -1 | cut -d'=' -f2 | tr -d '"\'')
+fi
+if [ -z "$WALLET" ]; then
+    echo "⚠️  Warning: Wallet address not set in environment or secrets"
+    WALLET="YOUR_WALLET_HERE"
+fi
 
 # 批量提交 PR
 COUNT=0
