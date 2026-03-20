@@ -235,8 +235,19 @@ branch = os.environ.get('BRANCH_NAME', 'main')
 
 print("   Preparing PR submission...")
 
-# 读取钱包地址（安全方式）
-wallet = os.environ.get('ALGORA_WALLET', os.environ.get('USDT_WALLET', 'TGu4W5T6...'))
+# 读取钱包地址（从环境变量，不硬编码）
+wallet = os.environ.get('ALGORA_WALLET', '')
+if not wallet:
+    wallet = os.environ.get('USDT_WALLET', '')
+if not wallet:
+    # 从 secrets 文件读取（如果存在）
+    secrets_file = os.path.expanduser('~/.openclaw/secrets/algora.env')
+    if os.path.exists(secrets_file):
+        with open(secrets_file) as f:
+            for line in f:
+                if line.startswith('ALGORA_WALLET=') or line.startswith('USDT_WALLET='):
+                    wallet = line.split('=')[1].strip().strip('"\'')
+                    break
 
 # 创建标准化 PR 模板（实战验证格式）
 pr_template = f"""[BOUNTY #{issue}] Complete Implementation
@@ -315,9 +326,15 @@ pr_state = {
 with open(f"{work_dir}/.phase4_pr.json", 'w') as f:
     json.dump(pr_state, f, indent=2)
 
+if not wallet:
+    print("   ⚠️  Warning: Wallet address not set!")
+    print("   Set ALGORA_WALLET or USDT_WALLET environment variable")
+    wallet = "YOUR_WALLET_HERE"
+else:
+    print(f"   💰 Wallet: {wallet[:8]}...{wallet[-4:]}")
+
 print("   ✅ PR preparation complete")
 print(f"   📝 PR template: PR_TEMPLATE.md")
-print(f"   💰 Wallet: {wallet[:10]}...{wallet[-4:]}")
 PYTHON_PR
 
 # 提交 Phase 4 进度
