@@ -1,25 +1,26 @@
 # PRD 状态总结
 
-**更新时间**: 2026-03-17 15:10  
+**更新时间**: 2026-03-20 18:03  
 **更新者**: 小米辣 (PM + Dev) 🌶️
 
 ---
 
 ## 📊 PRD 总览
 
-**总 PRD 数量**: 25 个  
-**已完成**: 18 个  
+**总 PRD 数量**: 26 个  
+**已完成**: 19 个  
 **待开发**: 0 个  
-**暂缓**: 3 个  
+**关闭**: 3 个  
 **废弃**: 4 个  
 **暂停/废弃(旧)**: 3 个
 
 ---
 
-## ✅ 已完成（18 个）
+## ✅ 已完成（19 个）
 
 | PRD | 版本 | ClawHub ID | 测试 |
 |-----|------|------------|------|
+| **projectmind (项目智脑)** | **v1.2.2** | **k97dz4h7** | **112测试** |
 | agent-collab-platform | v1.17.0 | k971vakr | 16测试+34验证 |
 | auto-pipeline | v2.0 | k97e0z1h | 88测试 |
 | project-progress-tracker | v1.0.2 | k972ffb4 | 39+73验证 |
@@ -44,13 +45,21 @@
 
 ---
 
-## ⏸️ 暂缓（3 个）
+## ⏸️ 关闭（3 个）
 
 | PRD | 原因 | 恢复条件 |
 |-----|------|----------|
-| ai-safety-framework | 与 healthcheck 技能功能重叠 | 如有新安全需求再启动 |
-| email-auto-responder | 需 Gmail API，当前无邮件通道 | 邮箱接入后再启动 |
-| ai-state-persistence | OpenClaw 已有 session/memory 机制 | 价值验证后再启动 |
+| ai-safety-framework | ❌ 关闭 | 已被healthcheck技能覆盖 |
+| email-auto-responder | ❌ 关闭 | Gmail API受限，低优先级 |
+| ai-state-persistence | ❌ 关闭 | OpenClaw原生机制已满足 |
+
+---
+
+## 🔨 升级中（1 个）
+
+| PRD | 当前版本 | 目标版本 | 升级内容 |
+|-----|----------|----------|----------|
+| projectmind | v1.2.2 | v1.3.0 | PRD v1.2对照补缺：置信度标注、幻觉防护、进度异常检测、摘要确认、趋势分析引擎、语音模块 |
 
 ---
 

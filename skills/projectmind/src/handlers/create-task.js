@@ -39,18 +39,38 @@ function handleCreateTask(params) {
     }
   }
 
-  const result = createTask({
+  // AI生成标记与置信度
+  let description = params.description || '';
+  const aiGenerated = params.ai_generated === true;
+  const confidence = typeof params.confidence === 'number' ? params.confidence : null;
+
+  if (aiGenerated) {
+    description = description ? `${description}\n[AI生成，请核实]` : '[AI生成，请核实]';
+  }
+
+  const taskData = {
     project_id: project.id,
     parent_id: parentId,
     title,
-    description: params.description || '',
+    description,
     priority,
     assignee: params.assignee || '',
     estimate_days,
-  });
+  };
+  if (confidence !== null) {
+    taskData.confidence = confidence;
+  }
+  if (aiGenerated) {
+    taskData.ai_generated = 1;
+  }
+
+  const result = createTask(taskData);
 
   const taskId = result.lastInsertRowid;
-  logActivity(project.id, taskId, 'created', `任务「${title}」已创建`);
+  const logDetail = aiGenerated
+    ? `AI生成任务「${title}」已创建${confidence !== null ? `（置信度${confidence}）` : ''}`
+    : `任务「${title}」已创建`;
+  logActivity(project.id, taskId, 'created', logDetail);
 
   let msg = `✅ 任务已创建\n`;
   msg += `📋 #${taskId} ${title}\n`;
@@ -59,6 +79,10 @@ function handleCreateTask(params) {
   msg += `\n🏷️ 优先级：${priority}`;
   if (params.assignee) msg += ` | 👤 负责人：${params.assignee}`;
   if (estimate_days) msg += ` | ⏱️ 预估：${estimate_days}天`;
+
+  if (confidence < 0.6) {
+    msg += `\n\n⚠️ AI置信度较低（${confidence}），请核实`;
+  }
 
   return msg;
 }

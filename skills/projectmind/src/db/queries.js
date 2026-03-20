@@ -47,13 +47,14 @@ function getAllProjectNames() {
 /** 创建任务，返回新记录 */
 function createTask(params) {
   return db().prepare(`
-    INSERT INTO tasks (project_id, parent_id, title, description, priority, assignee, estimate_days, sort_order)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO tasks (project_id, parent_id, title, description, priority, assignee, estimate_days, sort_order, tags, confidence, ai_generated)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     params.project_id, params.parent_id || null, params.title,
     params.description || '', params.priority || 'medium',
     params.assignee || '', params.estimate_days || null,
-    params.sort_order || 0
+    params.sort_order || 0, params.tags || '[]',
+    params.confidence || null, params.ai_generated || 0
   );
 }
 
@@ -102,7 +103,7 @@ function updateTask(id, fields) {
   const setClauses = [];
   const params = [];
 
-  const allowed = ['title', 'description', 'status', 'priority', 'assignee', 'estimate_days', 'actual_days', 'parent_id', 'sort_order'];
+  const allowed = ['title', 'description', 'status', 'priority', 'assignee', 'estimate_days', 'actual_days', 'parent_id', 'sort_order', 'tags', 'confidence', 'ai_generated'];
   for (const key of allowed) {
     if (fields[key] !== undefined) {
       setClauses.push(`${key} = ?`);
@@ -144,12 +145,13 @@ function getTasksByProject(projectId) {
 /** UPSERT站会记录（INSERT OR REPLACE） */
 function upsertStandup(params) {
   return db().prepare(`
-    INSERT OR REPLACE INTO daily_updates (project_id, member_name, date, did_yesterday, doing_today, blockers, is_blocker, created_at)
-    VALUES (?, ?, date('now','localtime'), ?, ?, ?, ?, datetime('now','localtime'))
+    INSERT OR REPLACE INTO daily_updates (project_id, member_name, date, did_yesterday, doing_today, blockers, is_blocker, confidence, created_at)
+    VALUES (?, ?, date('now','localtime'), ?, ?, ?, ?, ?, datetime('now','localtime'))
   `).run(
     params.project_id, params.member_name,
     params.did_yesterday || '', params.doing_today || '',
-    params.blockers || '', (params.blockers || '').trim() ? 1 : 0
+    params.blockers || '', (params.blockers || '').trim() ? 1 : 0,
+    params.confidence || null
   );
 }
 
