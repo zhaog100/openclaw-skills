@@ -1,6 +1,6 @@
 {
   "name": "image-content-extractor",
-  "version": "2.2.0",
+  "version": "2.0.0",
   "description": "统一图片内容提取技能。集成terminal-ocr，支持终端/文档/通用三种模式，智能检测，自动提取内容生成Markdown。",
   "author": "miliger",
   "created": "2026-03-06",
