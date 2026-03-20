@@ -1,15 +1,15 @@
 # PRD 状态总结
 
-**更新时间**: 2026-03-20 18:03  
+**更新时间**: 2026-03-20 18:10  
 **更新者**: 小米辣 (PM + Dev) 🌶️
 
 ---
 
 ## 📊 PRD 总览
 
-**总 PRD 数量**: 26 个  
-**已完成**: 19 个  
-**待开发**: 0 个  
+**总 PRD 数量**: 28 个  
+**已完成**: 20 个  
+**待开发**: 2 个  
 **关闭**: 3 个  
 **废弃**: 4 个  
 **暂停/废弃(旧)**: 3 个
@@ -20,7 +20,7 @@
 
 | PRD | 版本 | ClawHub ID | 测试 |
 |-----|------|------------|------|
-| **projectmind (项目智脑)** | **v1.2.2** | **k97dz4h7** | **112测试** |
+| **projectmind (项目智脑)** | **v1.3.0** | **k97dz4h7** | **112测试+6项AI安全** |
 | agent-collab-platform | v1.17.0 | k971vakr | 16测试+34验证 |
 | auto-pipeline | v2.0 | k97e0z1h | 88测试 |
 | project-progress-tracker | v1.0.2 | k972ffb4 | 39+73验证 |
@@ -55,11 +55,16 @@
 
 ---
 
-## 🔨 升级中（1 个）
+## 📋 待开发（2 个，按优先级排序）
 
-| PRD | 当前版本 | 目标版本 | 升级内容 |
-|-----|----------|----------|----------|
-| projectmind | v1.2.2 | v1.3.0 | PRD v1.2对照补缺：置信度标注、幻觉防护、进度异常检测、摘要确认、趋势分析引擎、语音模块 |
+| 优先级 | PRD | 灵感来源 | 核心价值 | 预估工时 |
+|--------|-----|----------|----------|----------|
+| **P1** | **AgentLens（Agent透镜）** | HN Lucidic AI | 零接入Agent调试+失败分析+子代理监控 | 5天 |
+| **P2** | **ai-efficiency-monitor 升级为v2.0** | 自身需求 | AgentLens数据源，Token分析+浪费模式整合到AgentLens | 2天 |
+
+> **P1 AgentLens 说明**: OpenClaw原生Agent调试平台，对标Lucidic AI。核心差异：零接入（自动采集）、开源、私有部署。MVP包含会话追踪器+失败分析器+效率仪表盘+子代理监控。PRD: `docs/products/2026-03-20_agentlens_prd.md`
+
+> **P2 效率监控说明**: 现有bash脚本能力整合到AgentLens中，作为其"效率仪表盘"模块的数据源。不单独升级，而是被AgentLens吸收。
 
 ---
 
@@ -84,16 +89,12 @@
 
 ---
 
-## 📈 今日 ClawHub 发布汇总（2026-03-17）
+## 📈 今日 ClawHub 发布汇总（2026-03-20）
 
-| 技能 | 版本 | ClawHub ID |
-|------|------|------------|
-| sjykj-error-handler | 1.2.0 | k976cvkq |
-| auto-document-generator | 1.1.0 | k97daj97 |
-| ai-deterministic-control | 1.1.3 | k971t5dm |
-| sjykj-test-case-generator | 1.0.0 | k974q100 |
-| sjykj-auto-pipeline | 2.0.0 | k97e0z1h |
-| agent-collab-platform | 1.17.0 | k971vakr |
+| 技能 | 版本 | 说明 |
+|------|------|------|
+| projectmind | v1.3.0 | AI安全机制6项补缺+趋势分析+语音模块 |
+| autoflow | v1.0.2 | 安全审计修复：env统一+声明补全+setup.sh |
 | sjykj-project-progress-tracker | 1.0.2 | k972ffb4 |
 
 **今日合计**: 7 个技能发布/更新
