@@ -1,5 +1,5 @@
-# Git 忽略文件配置（精简版 v2.0）
-# 最后更新：2026-03-12
+# Git 忽略文件配置（精简版 v3.0）
+# 最后更新：2026-03-20
 
 # ===== 依赖和构建 =====
 node_modules/
@@ -17,38 +17,47 @@ venv/
 *.swp
 *~
 .vector-search-status.md
+.cache/
 
-# ===== 敏感配置 =====
+# ===== 敏感配置（secrets/ 必须忽略！）=====
 .clawhub/
 .clawtasks/
 .moltbook/
 .openclaw/
+secrets/
 .env
 .env.local
+*.env
+!*.env.example
 
-# ===== 日志和数据 =====
+# ===== 日志 =====
 logs/*.log
-skills/*/logs/*.log
-skills/*/data/*.json
+!logs/.gitkeep
 *.log
+skills/*/logs/*.log
+skills/*/monitor.pid
 
-# ===== 记忆文件（已备份到 MEMORY.md）=====
-memory/*.md
-!memory/README.md
+# ===== 技能数据 =====
+skills/*/data/*.json
+
+# ===== 记忆归档（旧日志不跟踪，日常日志跟踪）=====
+memory/archive/
 memory/*.json
+memory/emergent_*.json
+memory/heartbeat-state.json
 
-# ===== 历史报告文档 =====
-*报告.md
-*REPORT*.md
-*COMPLETE*.md
-*PLAN*.md
-*GUIDE.md
-*STATUS*.md
-*CHECK*.md
-*CONFIGURED.md
-*SETUP.md
-*SUMMARY.md
-*TODO*.md
+# ===== 历史报告文档（仅 archive 子目录）=====
+docs/archive/*GUIDE.md
+docs/archive/*报告.md
+docs/archive/*REPORT*.md
+docs/archive/*COMPLETE*.md
+docs/archive/*PLAN*.md
+docs/archive/*STATUS*.md
+docs/archive/*CHECK*.md
+docs/archive/*CONFIGURED.md
+docs/archive/*SETUP.md
+docs/archive/*SUMMARY.md
+docs/archive/*TODO*.md
 
 # ===== 媒体文件（GIF 和音频由 Git 忽略，图片由 LFS 管理）=====
 *.gif
@@ -63,33 +72,10 @@ test-*.sh
 # ===== 青龙面板 =====
 qinglong/
 
-# 临时子模块
+# ===== 子模块/外部项目（不跟踪）=====
 memu-engine-for-OpenClaw
 qmd
 backups/
 
-# Bounty Tasks 备份文件（每小时生成）
+# ===== Bounty Tasks 备份文件（每小时生成）=====
 data/bounty-tasks/bounty-tasks-*.json
-
-# 临时文件
-*.tmp
-*.bak
-*~
-
-# 日志文件
-logs/*.log
-!logs/.gitkeep
-
-# 缓存文件
-.cache/
-__pycache__/
-*.pyc
-
-# 环境变量
-.env
-*.env
-!*.env.example
-secrets/
-qmd
-skills/*/monitor.pid
-*.log
