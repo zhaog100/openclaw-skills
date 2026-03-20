@@ -1,17 +1,31 @@
 {
   "name": "projectmind",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "AI-native project management assistant for OpenClaw",
-  "files": ["SKILL.md", "README.md"],
+  "license": "MIT",
+  "author": "思捷娅科技 (SJYKJ)",
   "main": "src/db/connection.js",
+  "files": ["SKILL.md", "README.md", "src/", "config.example.json"],
   "dependencies": {
     "better-sqlite3": "^11.0.0"
   },
   "optionalDependencies": {
     "nodemailer": "^6.9.0"
-  ,
-  "license": "MIT"
-}
-,
-  "license": "MIT"
+  },
+  "openclaw": {
+    "requires": {
+      "bins": ["node"]
+    },
+    "optionalEnv": [
+      "PM_WECOM_WEBHOOK",
+      "PM_DINGTALK_WEBHOOK",
+      "PM_FEISHU_WEBHOOK",
+      "PM_FEISHU_SECRET",
+      "PM_SLACK_WEBHOOK",
+      "PM_SMTP_HOST",
+      "PM_SMTP_PORT",
+      "PM_SMTP_USER",
+      "PM_SMTP_PASS"
+    ]
+  }
 }

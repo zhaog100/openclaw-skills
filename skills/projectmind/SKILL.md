@@ -1,4 +1,28 @@
-version: 1.3.0
+---
+name: projectmind
+description: AI原生项目管理助手 — 自然语言管理任务、追踪进度、每日站会、风险预警、工时追踪、知识库
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": ["node"] },
+      "optionalEnv": [
+        "PM_WECOM_WEBHOOK",
+        "PM_DINGTALK_WEBHOOK",
+        "PM_DINGTALK_SECRET",
+        "PM_FEISHU_WEBHOOK",
+        "PM_FEISHU_SECRET",
+        "PM_SLACK_WEBHOOK",
+        "PM_SMTP_HOST",
+        "PM_SMTP_PORT",
+        "PM_SMTP_USER",
+        "PM_SMTP_PASS"
+      ],
+      "tags": ["project-management", "ai", "standup", "kanban", "risk", "time-tracking"]
+    }
+  }
+---
+
+version: 1.3.1
 # ProjectMind - AI原生项目管理助手
 
 MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
@@ -156,3 +180,25 @@ MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 - 所有SQL参数化，禁止字符串拼接
 - 通知模块默认disabled，通过 config.json 配置启用
 - handler返回格式化后的用户友好文本字符串
+
+## 安装
+
+```bash
+cd skills/projectmind
+npm install
+```
+
+> 依赖 `better-sqlite3`（原生模块），需Node.js + 编译环境（gcc/python3-make）。
+
+## 外部依赖说明
+
+- **通知推送（可选）**：启用后，技能会向配置的webhook URL或SMTP服务器发送HTTP POST请求。数据内容包括站会摘要、风险预警等。**默认关闭**，需手动编辑 `config.json` 启用。
+- **知识库搜索（可选）**：如安装了 `qmd` CLI，知识库搜索会调用 `qmd search` 子进程。未安装时自动降级为本地SQLite搜索。
+- **语音输出（可选）**：预留KittenTTS接口，MVP阶段未实际调用。
+
+## 安全建议
+
+1. 通知功能默认关闭，启用前请确认 webhook URL 和 SMTP 配置可信
+2. 数据库存储在技能目录下的 `data/projectmind.db`，不读取系统其他文件
+3. 所有用户输入通过参数化SQL处理，无注入风险
+4. 建议定期备份 `data/projectmind.db`
