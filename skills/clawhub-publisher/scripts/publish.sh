@@ -103,8 +103,8 @@ if [ -f "$PUBLISH_JS_PATH" ]; then
         read -p "是否自动修复? (Y/n): " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-            sudo cp "$PUBLISH_JS_PATH" "$PUBLISH_JS_PATH.bak"
-            sudo sed -i "s/form\.set('payload', JSON\.stringify({/form.set('payload', JSON.stringify({\n        acceptLicenseTerms: true,/" "$PUBLISH_JS_PATH"
+            cp "$PUBLISH_JS_PATH" "$PUBLISH_JS_PATH.bak"
+            sed -i "s/form\.set('payload', JSON\.stringify({/form.set('payload', JSON.stringify({\n        acceptLicenseTerms: true,/" "$PUBLISH_JS_PATH"
             echo "✅ publish.js 已修复"
             echo "   备份文件: $PUBLISH_JS_PATH.bak"
         else

@@ -60,8 +60,8 @@ API_TIMEOUT=$(cfg 'monitor.api_timeout_seconds' CTX_API_TIMEOUT 30)
 NOTIFICATION_COOLDOWN=$(cfg 'notifications.cooldown_seconds' CTX_COOLDOWN 3600)
 FEISHU_CHANNEL=$(cfg 'notifications.feishu_channel' CTX_FEISHU_CHANNEL "feishu")
 FEISHU_ACCOUNT=$(cfg 'notifications.feishu_account' CTX_FEISHU_ACCOUNT "main")
-FEISHU_TARGET=$(cfg 'notifications.feishu_target' CTX_FEISHU_TARGET "user:")
-QQ_TARGET=$(cfg 'notifications.qq_target' CTX_QQ_TARGET "")
+FEISHU_TARGET=your_feishu_target
+QQ_TARGET=your_qq_target
 
 # 路径（相对于 workspace）
 LOG_DIR="$WORKSPACE_DIR/$(cfg 'paths.log_dir' CTX_LOG_DIR 'logs')"

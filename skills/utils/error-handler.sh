@@ -180,6 +180,11 @@ safe_git_push() {
     fi
     
     # Git push（过滤警告，失败不中断）
+    # 推送确认
+    if [ "$AUTO_PUSH" != "true" ]; then
+        read -p "确认推送？(y/n): " confirm
+        [ "$confirm" != "y" ] && return
+    fi
     git push origin master 2>&1 | grep -v "$FILTER_PATTERN" || {
         log_warn "Git 推送失败，本地已保存"
         return 0  # 不中断

@@ -1,17 +1,20 @@
 {
   "name": "session-memory-enhanced",
-<<<<<<< HEAD
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Session-Memory Enhanced v4.0 - 统一增强版。融合 session-memory + memu-engine 核心功能。特性：结构化提取 + 向量检索 + 不可变分片 + 三位一体自动化 + 多代理隔离 + AI 摘要 + 零配置启动。",
   "author": "思捷娅科技 (SJYKJ)",
+  "requiredEnv": ["OPENAI_API_KEY"],
+  "requiredEnv": ["OPENAI_API_KEY"],
+  "optionalEnv": ["AUTO_COMMIT"],
   "license": "MIT",
   "copyright": "© 2026 思捷娅科技 (SJYKJ). All rights reserved.",
-=======
   "version": "4.0.2",
   "description": "Session-Memory Enhanced v4.0 - 统一增强版。融合 session-memory + memu-engine 核心功能。特性：结构化提取 + 向量检索 + 不可变分片 + 三位一体自动化 + 多代理隔离 + AI 摘要 + 零配置启动。",
   "author": "米粒儿",
+  "requiredEnv": ["OPENAI_API_KEY"],
+  "requiredEnv": ["OPENAI_API_KEY"],
+  "optionalEnv": ["AUTO_COMMIT"],
   "license": "MIT",
->>>>>>> 4c8083cdd342607c75894cbd7c4bbc132b36e911
   "keywords": [
     "session",
     "memory",

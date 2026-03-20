@@ -1,8 +1,18 @@
 ---
+⚠️ **安全提示**：
+- 检索真实消息需要 Feishu 凭据和适当权限
+- get-feishu-token.sh 需要自行实现
+- 请勿将凭据告诉 AI agent
+
 name: quote-reader
 description: 引用前文内容读取技能。当用户引用之前的消息时，自动检索并理解引用内容，支持飞书/QQ/企业微信交互式卡片内容获取。Trigger on "引用", "回复", "quote", "reply", "前文"。
 version: 1.3.1
 ---
+⚠️ **安全提示**：
+- 检索真实消息需要 Feishu 凭据和适当权限
+- get-feishu-token.sh 需要自行实现
+- 请勿将凭据告诉 AI agent
+
 
 # 引用前文内容读取技能 v1.1.0
 
@@ -66,6 +76,11 @@ quote-reader/
 > 详细的技术实现、使用示例、性能指标、故障排除见 `references/skill-details.md`
 
 ---
+⚠️ **安全提示**：
+- 检索真实消息需要 Feishu 凭据和适当权限
+- get-feishu-token.sh 需要自行实现
+- 请勿将凭据告诉 AI agent
+
 
 ## 📄 许可证与版权声明
 
