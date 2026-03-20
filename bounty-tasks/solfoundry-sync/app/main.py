@@ -8,11 +8,15 @@ GitHub: https://github.com/zhaog100/openclaw-skills
 """
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import logging
 import time
 from datetime import datetime
+
+# 导入路由
+from .api import router
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -24,26 +28,31 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# CORS 配置
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 注册路由
+app.include_router(router, prefix="/api")
+
 # ============== 数据模型 ==============
 
 class Bounty(BaseModel):
     id: str
     title: str
     description: str
-    tier: str  # T1, T2, T3
-    status: str  # open, claimed, completed, cancelled
+    tier: str
+    status: str
     category: str
     created_at: float
     updated_at: float
     github_issue_id: Optional[str] = None
     platform_id: Optional[str] = None
-
-class SyncStatus(BaseModel):
-    last_sync: datetime
-    pending_syncs: int
-    errors: List[Dict[str, Any]]
-    github_health: bool
-    platform_health: bool
 
 class GitHubWebhook(BaseModel):
     action: str
@@ -66,7 +75,8 @@ def root():
     return {
         "name": "SolFoundry Bi-directional Sync",
         "version": "1.0.0",
-        "status": "running"
+        "status": "running",
+        "docs": "/docs"
     }
 
 @app.get("/health")
@@ -76,34 +86,6 @@ def health_check():
         "status": "healthy",
         "timestamp": datetime.now().isoformat()
     }
-
-@app.get("/dashboard")
-def dashboard():
-    """同步状态仪表板"""
-    return SyncStatus(
-        last_sync=last_sync_time,
-        pending_syncs=len(sync_queue),
-        errors=sync_errors[-10:],  # 最近 10 个错误
-        github_health=True,
-        platform_health=True
-    )
-
-@app.get("/bounties")
-def list_bounties(status: Optional[str] = None, limit: int = 100):
-    """获取 bounty 列表"""
-    results = list(bounties_db.values())
-    
-    if status:
-        results = [b for b in results if b.status == status]
-    
-    return results[:limit]
-
-@app.get("/bounties/{bounty_id}")
-def get_bounty(bounty_id: str):
-    """获取单个 bounty"""
-    if bounty_id not in bounties_db:
-        raise HTTPException(status_code=404, detail="Bounty not found")
-    return bounties_db[bounty_id]
 
 @app.post("/webhook/github")
 async def github_webhook(webhook: GitHubWebhook, background_tasks: BackgroundTasks):
@@ -123,13 +105,12 @@ async def github_webhook(webhook: GitHubWebhook, background_tasks: BackgroundTas
     logger.info(f"收到 GitHub webhook: {action} - Issue #{issue.get('number')}")
     
     if action == "opened":
-        # 创建 bounty
         bounty_id = f"github-{issue['id']}"
         bounty = Bounty(
             id=bounty_id,
             title=issue['title'],
             description=issue.get('body', ''),
-            tier="T2",  # 默认 T2
+            tier="T2",
             status="open",
             category="general",
             created_at=time.time(),
@@ -141,11 +122,9 @@ async def github_webhook(webhook: GitHubWebhook, background_tasks: BackgroundTas
         logger.info(f"创建 bounty: {bounty_id}")
         
     elif action == "labeled":
-        # 更新 tier/category
         label = webhook.label
         if label:
             label_name = label.get('name', '').lower()
-            # 根据 label 更新 tier
             if 'tier-1' in label_name:
                 tier = "T1"
             elif 'tier-2' in label_name:
@@ -155,7 +134,6 @@ async def github_webhook(webhook: GitHubWebhook, background_tasks: BackgroundTas
             else:
                 tier = "T2"
             
-            # 更新对应 bounty
             for bounty in bounties_db.values():
                 if bounty.github_issue_id == str(issue['id']):
                     bounty.tier = tier
@@ -164,7 +142,6 @@ async def github_webhook(webhook: GitHubWebhook, background_tasks: BackgroundTas
                     break
                     
     elif action == "closed":
-        # 更新状态为 completed/cancelled
         for bounty in bounties_db.values():
             if bounty.github_issue_id == str(issue['id']):
                 bounty.status = "completed"
@@ -177,11 +154,7 @@ async def github_webhook(webhook: GitHubWebhook, background_tasks: BackgroundTas
 
 @app.post("/api/bounties")
 def create_bounty(bounty: Bounty):
-    """
-    Platform 创建 bounty → 同步到 GitHub
-    
-    （实际实现应调用 GitHub API 创建 issue）
-    """
+    """Platform 创建 bounty"""
     global last_sync_time
     
     bounties_db[bounty.id] = bounty
@@ -192,11 +165,7 @@ def create_bounty(bounty: Bounty):
 
 @app.put("/api/bounties/{bounty_id}")
 def update_bounty(bounty_id: str, updates: Dict[str, Any]):
-    """
-    Platform 更新 bounty → 同步到 GitHub
-    
-    （实际实现应调用 GitHub API 更新 issue）
-    """
+    """Platform 更新 bounty"""
     global last_sync_time
     
     if bounty_id not in bounties_db:
@@ -212,21 +181,6 @@ def update_bounty(bounty_id: str, updates: Dict[str, Any]):
     
     logger.info(f"更新 bounty {bounty_id}: {updates}")
     return bounty
-
-@app.get("/sync/queue")
-def get_sync_queue():
-    """获取同步队列状态"""
-    return {
-        "pending": len(sync_queue),
-        "items": sync_queue[:20]  # 最近 20 个
-    }
-
-@app.post("/sync/retry")
-def retry_failed_syncs():
-    """重试失败的同步"""
-    retried = len(sync_errors)
-    sync_errors.clear()
-    return {"retried": retried}
 
 if __name__ == "__main__":
     import uvicorn
