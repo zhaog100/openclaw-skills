@@ -2,11 +2,11 @@
   "enabled": true,
   "autoSwitch": true,
   "models": {
-    "simple": "bailian/qwen3.5-plus",
-    "normal": "bailian/qwen3.5-plus",
-    "complex": "bailian/qwen3.5-plus",
-    "coding": "bailian/qwen3.5-plus",
-    "vision": "bailian/qwen3.5-plus"
+    "simple": "zai/glm-5-turbo",
+    "normal": "zai/glm-5-turbo",
+    "complex": "zai/glm-5",
+    "coding": "zai/glm-5",
+    "vision": "zai/glm-5-turbo"
   },
   "rules": {
     "simpleTasks": ["闲聊", "简单问答", "日常对话"],
@@ -14,6 +14,26 @@
     "complexTasks": ["复杂推理", "创意写作", "技术分析"],
     "codingTasks": ["代码生成", "Bug 修复", "技能开发"],
     "visionTasks": ["图片识别", "OCR", "图表分析"]
+  },
+  "subagent": {
+    "defaultModel": "zai/glm-5-turbo",
+    "taskModelMap": {
+      "scan":       { "model": "zai/glm-5-turbo", "thinking": false, "desc": "扫描/搜索类：便宜快速" },
+      "search":     { "model": "zai/glm-5-turbo", "thinking": false, "desc": "搜索/信息收集" },
+      "monitor":    { "model": "zai/glm-5-turbo", "thinking": false, "desc": "监控/巡检" },
+      "review":     { "model": "zai/glm-5-turbo", "thinking": false, "desc": "简单Review" },
+      "develop":    { "model": "zai/glm-5",       "thinking": false, "desc": "开发/编码：质量优先" },
+      "coding":     { "model": "zai/glm-5",       "thinking": false, "desc": "编码实现" },
+      "fix":        { "model": "zai/glm-5",       "thinking": false, "desc": "Bug修复" },
+      "architecture":{ "model": "zai/glm-5",      "thinking": true,  "desc": "架构设计：深度思考" },
+      "design":     { "model": "zai/glm-5",       "thinking": true,  "desc": "复杂设计" },
+      "refactor":   { "model": "zai/glm-5",       "thinking": true,  "desc": "大型重构" }
+    },
+    "labelDetection": {
+      "turboPatterns": ["扫描", "scan", "搜索", "search", "监控", "monitor", "巡检", "查询", "fetch"],
+      "qualityPatterns": ["开发", "develop", "编码", "coding", "修复", "fix", "实现", "implement"],
+      "thinkingPatterns": ["架构", "architecture", "设计", "design", "重构", "refactor"]
+    }
   },
   "optimization": {
     "enabled": true,

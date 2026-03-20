@@ -52,4 +52,36 @@ smart-model-switch/
 - 切换后10分钟冷却期
 - 评分维度：长度(30%) + 关键词(40%) + 代码(20%) + 视觉(10%)
 
+## 🤖 子代理模型选择（Subagent Model Selection）
+
+子代理默认用 `glm-5-turbo`，但应根据任务类型自动选模型：
+
+### 任务类型 → 模型映射
+
+| 任务类型 | 模型 | Thinking | 说明 |
+|----------|------|----------|------|
+| 扫描/搜索/监控 | `glm-5-turbo` | ❌ | 便宜快速，高吞吐 |
+| Review/简单分析 | `glm-5-turbo` | ❌ | 够用就好 |
+| 开发/编码/修复 | `glm-5` | ❌ | 质量优先，减少bug |
+| 架构设计/重构 | `glm-5` | ✅ | 深度思考，复杂推理 |
+
+### sessions_spawn 建议
+
+spawn 子代理时，根据任务标签自动选模型：
+
+```
+标签含 scan/search/monitor → --model zai/glm-5-turbo
+标签含 develop/coding/fix  → --model zai/glm-5
+标签含 architecture/design → --model zai/glm-5 --thinking
+无明确标签                → 默认 zai/glm-5-turbo（省钱）
+```
+
+**检测关键词**：配置见 `config.json` → `subagent.labelDetection`
+
+### 省钱原则
+- ✅ 简单任务用 turbo，省钱省时间
+- ✅ 编码质量用 glm-5，避免返工浪费更多
+- ✅ 默认 turbo，只在需要时升级
+- ❌ 不要所有任务都用 glm-5
+
 > 详细文件类型映射、模型配置、使用示例见 `references/skill-details.md`
