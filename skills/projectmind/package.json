@@ -8,5 +8,9 @@
   },
   "optionalDependencies": {
     "nodemailer": "^6.9.0"
-  }
+  ,
+  "license": "MIT"
+}
+,
+  "license": "MIT"
 }
