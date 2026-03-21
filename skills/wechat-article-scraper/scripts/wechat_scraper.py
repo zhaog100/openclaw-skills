@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-微信文章爬取脚本
-使用 Playwright 浏览器自动化爬取微信公众号文章
-"""
+微信文章爬取技能
+爬取微信公众号文章内容，支持 Cookie 登录验证
 
+版权：MIT License | Copyright (c) 2026 小米辣 (PM + Dev)
+GitHub: https://github.com/zhaog100/openclaw-skills
+"""
 import sys
 import time
 import random

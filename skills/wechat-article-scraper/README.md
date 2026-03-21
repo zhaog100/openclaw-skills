@@ -83,7 +83,26 @@ MIT License - 免费使用、修改和重新分发
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - 创建者：小米辣 (PM + Dev)
 
-**版权**: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+## 📄 许可证与版权声明
+
+MIT License
+
+Copyright (c) 2026 小米辣 (PM + Dev)
+
+**免费使用、修改和重新分发时，需注明出处。**
+
+**出处**:
+- GitHub: https://github.com/zhaog100/openclaw-skills
+- 创建者：小米辣 (PM + Dev)
+
+**商业使用授权**:
+- 个人/开源：免费
+- 小微企业：¥999/年
+- 中型企业：¥4,999/年
+- 大型企业：¥19,999/年
+- 源码买断：¥99,999 一次性
+
+详情请查看：[LICENSE](../../LICENSE)
 
 **商业使用授权**:
 - 个人/开源：免费
