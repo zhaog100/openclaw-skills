@@ -326,6 +326,24 @@ if __name__ == '__main__':
     fix_issue()
 """
 
+
+def has_existing_pr(task):
+    """检查是否已有PR关联此issue"""
+    owner = task.get('repository_url', '').split('/')[-2]
+    repo = task.get('repository_url', '').split('/')[-1]
+    number = task.get('number')
+    try:
+        r = requests.get(
+            f'https://api.github.com/repos/{owner}/{repo}/pulls',
+            headers={'Authorization': f'token {GITHUB_TOKEN}'},
+            params={'state': 'open', 'head': f'zhaog100:bounty-{number}'},
+            timeout=10
+        )
+        if r.status_code == 200 and len(r.json()) > 0:
+            return True
+    except: pass
+    return False
+
 def fork_repo(owner, repo):
     """Fork仓库到zhaog100，返回fork的URL"""
     fork_url = f"https://api.github.com/repos/{owner}/{repo}/forks"
@@ -548,6 +566,9 @@ def main():
         for reason in reasons:
             log(f"  {reason}")
         
+        if has_existing_pr(task):
+            log(f"⏭️ 已有PR，跳过")
+            continue
         if claim_task(task):
             claimed += 1
             # 4. 开发（完整版：AI 生成 + 提交 + PR）
