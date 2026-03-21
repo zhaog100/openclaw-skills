@@ -200,7 +200,7 @@ def gather_repo_context(task):
     except: pass
     
     # 2. 获取文件树
-    for path in ['', 'src/', 'js/', 'lib/', 'app/']:
+    for path in ['']:
         try:
             r = requests.get(f"https://api.github.com/repos/{owner}/{repo}/contents/{path}", headers=headers, timeout=10)
             if r.status_code == 200:
@@ -284,17 +284,14 @@ def generate_code_with_openclaw(task):
 **任务 #{number}**: {title}
 **仓库**: {owner}/{repo}
 **完整描述**:
-{body[:2000]}
+{body[:1000]}
 
 **仓库上下文**:
 {repo_context}
 
 **要求**:
-1. 仔细分析issue描述中的需求和代码片段
-2. 生成完整的代码实现（不要模板、不要占位符）
-3. 代码必须能直接运行/编译
-4. 遵循仓库现有代码风格
-5. 只返回代码，用 ```语言 包裹，不要解释。"""
+- 生成完整可运行的代码，不要模板/占位符
+- 只返回代码，用 ```语言 包裹，不要解释"""
     
     # 通过OpenClaw Gateway，多模型fallback
     gw_url = os.getenv('OPENCLAW_GATEWAY_URL', 'http://127.0.0.1:18789/v1/chat/completions')
@@ -317,10 +314,10 @@ def generate_code_with_openclaw(task):
                 json={
                     'model': model,
                     'messages': [{'role': 'system', 'content': 'You are an expert developer. Return ONLY valid code, no markdown, no explanation.'}, {'role': 'user', 'content': prompt}],
-                    'max_tokens': 4000,
+                    'max_tokens': 2000,
                     'temperature': 0.1
                 },
-                timeout=60
+                timeout=30
             )
             if response.status_code == 200:
                 data = response.json()
@@ -350,8 +347,8 @@ def generate_code_with_openclaw(task):
             response = requests.post(
                 api_url,
                 headers={'Authorization': f'Bearer {api_key}', 'Content-Type': 'application/json'},
-                json={'model': os.getenv('AI_MODEL', 'gpt-4'), 'messages': [{'role': 'user', 'content': prompt}], 'max_tokens': 4000},
-                timeout=60
+                json={'model': os.getenv('AI_MODEL', 'gpt-4'), 'messages': [{'role': 'user', 'content': prompt}], 'max_tokens': 2000},
+                timeout=30
             )
             if response.status_code == 200:
                 code = response.json().get('choices', [{}])[0].get('message', {}).get('content', '')
