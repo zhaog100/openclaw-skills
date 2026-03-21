@@ -177,22 +177,40 @@ def generate_code_with_openclaw(task):
 
 只返回代码，不要解释。"""
     
-    # 方案1：通过OpenClaw CLI调用AI（推荐）
+    # 方案1：通过OpenClaw Gateway OpenAI兼容API（推荐，需启用gateway端点）
+    gw_url = os.getenv('OPENCLAW_GATEWAY_URL', 'http://127.0.0.1:18789/v1/chat/completions')
+    gw_token = os.getenv('OPENCLAW_GATEWAY_TOKEN', '')
     try:
-        result = subprocess.run(
-            ['openclaw', 'chat', '--message', prompt, '--json', '--no-stream'],
-            capture_output=True, text=True, timeout=120
+        headers = {'Content-Type': 'application/json'}
+        if gw_token:
+            headers['Authorization'] = f'Bearer {gw_token}'
+        response = requests.post(
+            gw_url,
+            headers=headers,
+            json={
+                'model': os.getenv('AI_MODEL', 'zai/glm-5-turbo'),
+                'messages': [{'role': 'system', 'content': 'You are an expert developer. Return ONLY valid code, no markdown, no explanation.'}, {'role': 'user', 'content': prompt}],
+                'max_tokens': 4000,
+                'temperature': 0.1
+            },
+            timeout=120
         )
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            code = data.get('content', '')
+        if response.status_code == 200:
+            data = response.json()
+            code = data.get('choices', [{}])[0].get('message', {}).get('content', '')
+            # 去掉markdown代码块包裹
+            if code and code.startswith('```'):
+                lines = code.split('\n')
+                code = '\n'.join(lines[1:-1]) if lines[-1].strip() == '```' else '\n'.join(lines[1:])
             if code:
-                log(f"✅ AI 代码生成成功（OpenClaw CLI）")
-                return code
+                log(f"✅ AI 代码生成成功（OpenClaw Gateway）")
+                return code.strip()
+        else:
+            log(f"⚠️ Gateway返回 {response.status_code}: {response.text[:100]}")
     except Exception as e:
-        log(f"⚠️ OpenClaw CLI 调用失败：{e}")
+        log(f"⚠️ Gateway调用失败：{e}")
 
-    # 方案2：通过环境变量配置的OpenAI兼容API
+    # 方案2：通过环境变量配置的外部API（DeepSeek/OpenAI等）
     api_url = os.getenv('AI_API_URL', '')
     api_key = os.getenv('AI_API_KEY', '')
     if api_url and api_key:
