@@ -183,23 +183,23 @@ def get_default_branch(task):
     return 'main'
 
 def gather_repo_context(task):
-    """收集仓库上下文：目录结构 + 相关源码"""
+    """收集仓库上下文：目录结构 + 实际源码内容"""
     owner = task.get('repository_url', '').split('/')[-2]
     repo = task.get('repository_url', '').split('/')[-1]
     headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+    body = task.get('body', '') or ''
     
     context_parts = []
     
-    # 1. 获取目录结构
+    # 1. 仓库基本信息
     try:
         r = requests.get(f"https://api.github.com/repos/{owner}/{repo}", headers=headers, timeout=10)
         if r.status_code == 200:
             info = r.json()
-            lang = info.get('language', 'unknown')
-            context_parts.append(f"仓库语言: {lang}")
+            context_parts.append(f"仓库语言: {info.get('language', 'unknown')}, 默认分支: {info.get('default_branch', 'main')}")
     except: pass
     
-    # 2. 获取文件树
+    # 2. 获取根目录文件列表
     for path in ['']:
         try:
             r = requests.get(f"https://api.github.com/repos/{owner}/{repo}/contents/{path}", headers=headers, timeout=10)
@@ -209,7 +209,25 @@ def gather_repo_context(task):
                     context_parts.append(f"目录 {path or '/'}: {', '.join(files[:20])}")
         except: pass
     
-    # 3. 从issue body提取代码片段
+    # 3. 读取issue中提到的源文件（关键改进！）
+    import re
+    file_refs = re.findall(r'[\w\-./]+\.\w{1,5}', body)
+    file_refs = [f for f in set(file_refs) if not f.startswith('http') and len(f) > 3][:5]
+    for file_path in file_refs:
+        try:
+            r = requests.get(
+                f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}",
+                headers=headers, timeout=10
+            )
+            if r.status_code == 200:
+                content = r.json().get('content', '')
+                if content:
+                    import base64
+                    decoded = base64.b64decode(content).decode('utf-8', errors='ignore')
+                    context_parts.append(f"\n--- 源文件: {file_path} ---\n{decoded[:1500]}")
+        except: pass
+    
+    # 4. 从issue body提取代码片段
     body = task.get('body', '') or ''
     import re
     code_blocks = re.findall(r'\`\`\`[\w]*\n(.*?)\`\`\`', body, re.DOTALL)
@@ -218,7 +236,7 @@ def gather_repo_context(task):
         for i, block in enumerate(code_blocks[:5]):
             context_parts.append(f"\`\`\`代码片段{i+1}:\n{block[:500]}\`\`\`")
     
-    # 4. 文件引用
+    # 5. 文件引用
     file_refs = re.findall(r'[\w\-./]+\.\w{1,5}', body)
     if file_refs:
         context_parts.append(f"\nIssue提到的文件: {', '.join(list(set(file_refs))[:10])}")
