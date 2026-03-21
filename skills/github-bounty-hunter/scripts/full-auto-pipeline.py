@@ -165,25 +165,79 @@ Let's get this done! 🚀"""
         log(f"❌ 异常：{e}")
         return False
 
+
+def gather_repo_context(task):
+    """收集仓库上下文：目录结构 + 相关源码"""
+    owner = task.get('repository_url', '').split('/')[-2]
+    repo = task.get('repository_url', '').split('/')[-1]
+    headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+    
+    context_parts = []
+    
+    # 1. 获取目录结构
+    try:
+        r = requests.get(f"https://api.github.com/repos/{owner}/{repo}", headers=headers, timeout=10)
+        if r.status_code == 200:
+            info = r.json()
+            lang = info.get('language', 'unknown')
+            context_parts.append(f"仓库语言: {lang}")
+    except: pass
+    
+    # 2. 获取文件树
+    for path in ['', 'src/', 'js/', 'lib/', 'app/']:
+        try:
+            r = requests.get(f"https://api.github.com/repos/{owner}/{repo}/contents/{path}", headers=headers, timeout=10)
+            if r.status_code == 200:
+                files = [f.get('name', '') for f in r.json() if f.get('type') == 'file']
+                if files:
+                    context_parts.append(f"目录 {path or '/'}: {', '.join(files[:20])}")
+        except: pass
+    
+    # 3. 从issue body提取代码片段
+    body = task.get('body', '') or ''
+    import re
+    code_blocks = re.findall(r'\`\`\`[\w]*\n(.*?)\`\`\`', body, re.DOTALL)
+    if code_blocks:
+        context_parts.append("\nIssue中引用的代码:")
+        for i, block in enumerate(code_blocks[:5]):
+            context_parts.append(f"\`\`\`代码片段{i+1}:\n{block[:500]}\`\`\`")
+    
+    # 4. 文件引用
+    file_refs = re.findall(r'[\w\-./]+\.\w{1,5}', body)
+    if file_refs:
+        context_parts.append(f"\nIssue提到的文件: {', '.join(set(file_refs)[:10])}")
+    
+    return '\n'.join(context_parts)
+
 def generate_code_with_openclaw(task):
     """调用 OpenClaw API 生成代码"""
     title = task.get('title', '')
     body = task.get('body', '') or ''
-    repo = task.get('repository_url', '').split('/')[-1]
+    repo_full = task.get('repository_url', '')
+    owner = repo_full.split('/')[-2]
+    repo = repo_full.split('/')[-1]
+    number = task.get('number')
     
-    prompt = f"""你是一个专业的开发者。请为以下 GitHub bounty 任务生成代码：
+    # 收集仓库上下文
+    log("📋 收集仓库上下文...")
+    repo_context = gather_repo_context(task)
+    
+    prompt = f"""你是专业的开发者。请为以下 GitHub bounty 任务生成完整、可运行的代码。
 
-**任务**: {title}
-**仓库**: {repo}
-**描述**: {body[:500]}
+**任务 #{number}**: {title}
+**仓库**: {owner}/{repo}
+**完整描述**:
+{body[:2000]}
 
-请：
-1. 分析问题
-2. 生成解决方案代码
-3. 提供完整的代码实现
-4. 确保代码可运行
+**仓库上下文**:
+{repo_context}
 
-只返回代码，不要解释。"""
+**要求**:
+1. 仔细分析issue描述中的需求和代码片段
+2. 生成完整的代码实现（不要模板、不要占位符）
+3. 代码必须能直接运行/编译
+4. 遵循仓库现有代码风格
+5. 只返回代码，用 ```语言 包裹，不要解释。"""
     
     # 方案1：通过OpenClaw Gateway OpenAI兼容API（推荐，需启用gateway端点）
     gw_url = os.getenv('OPENCLAW_GATEWAY_URL', 'http://127.0.0.1:18789/v1/chat/completions')
