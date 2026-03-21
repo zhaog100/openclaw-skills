@@ -175,7 +175,7 @@ python3 scripts/multi_scraper.py --forum devto --query "AI Agent"
 
 ### 文章平台
 - ✅ 微信公众号
-- ⏳ 小红书（开发中）
+- ✅ 小红书（已支持，需要 Cookie）
 - ⏳ 抖音（开发中）
 - ⏳ 知乎（开发中）
 - ⏳ 简书（开发中）

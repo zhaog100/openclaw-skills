@@ -314,3 +314,19 @@ def scrape_forum(forum, query, output_dir='./forum-articles', limit=10):
     ], capture_output=False)
     
     return result.returncode == 0
+
+
+def scrape_xiaohongshu(note_url, cookie, output_dir='./xiaohongshu-notes'):
+    """爬取小红书笔记"""
+    print(f"📱 爬取小红书笔记：{note_url}")
+    
+    import subprocess
+    result = subprocess.run([
+        sys.executable,
+        str(Path(__file__).parent / 'xiaohongshu_scraper.py'),
+        note_url,
+        '--cookie', cookie,
+        '--output', output_dir
+    ], capture_output=False)
+    
+    return result.returncode == 0
