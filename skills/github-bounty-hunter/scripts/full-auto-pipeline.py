@@ -312,7 +312,7 @@ def generate_code_with_openclaw(task):
                 'max_tokens': 4000,
                 'temperature': 0.1
             },
-            timeout=120
+            timeout=60
         )
         if response.status_code == 200:
             data = response.json()
@@ -583,7 +583,20 @@ def develop_task(task):
     
     return False
 
+import fcntl
+
+def acquire_lock():
+    """文件锁，防止cron并发"""
+    lock_file = open('/tmp/bounty-pipeline.lock', 'w')
+    try:
+        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return lock_file
+    except (IOError, OSError):
+        log("⏭️ 另一实例运行中，跳过")
+        sys.exit(0)
+
 def main():
+    lock = acquire_lock()
     """主流程"""
     log("=" * 60)
     log("🚀 全自动 Bounty 收割流程启动")
