@@ -296,42 +296,51 @@ def generate_code_with_openclaw(task):
 4. 遵循仓库现有代码风格
 5. 只返回代码，用 ```语言 包裹，不要解释。"""
     
-    # 方案1：通过OpenClaw Gateway OpenAI兼容API（推荐，需启用gateway端点）
+    # 通过OpenClaw Gateway，多模型fallback
     gw_url = os.getenv('OPENCLAW_GATEWAY_URL', 'http://127.0.0.1:18789/v1/chat/completions')
     gw_token = os.getenv('OPENCLAW_GATEWAY_TOKEN', '')
-    try:
-        headers = {'Content-Type': 'application/json'}
-        if gw_token:
-            headers['Authorization'] = f'Bearer {gw_token}'
-        response = requests.post(
-            gw_url,
-            headers=headers,
-            json={
-                'model': os.getenv('AI_MODEL', 'zai/glm-5-turbo'),
-                'messages': [{'role': 'system', 'content': 'You are an expert developer. Return ONLY valid code, no markdown, no explanation.'}, {'role': 'user', 'content': prompt}],
-                'max_tokens': 4000,
-                'temperature': 0.1
-            },
-            timeout=60
-        )
-        if response.status_code == 200:
-            data = response.json()
-            code = data.get('choices', [{}])[0].get('message', {}).get('content', '')
-            # 去掉markdown代码块包裹
-            if code and code.startswith('```'):
-                lines = code.split('\n')
-                code = '\n'.join(lines[1:-1]) if lines[-1].strip() == '```' else '\n'.join(lines[1:])
-            if code:
-                # 质量检查
-                if not validate_code(code):
-                    log("⚠️ 代码质量不达标，跳过")
-                    return None
-                log(f"✅ AI 代码生成成功（OpenClaw Gateway）")
-                return code.strip()
-        else:
-            log(f"⚠️ Gateway返回 {response.status_code}: {response.text[:100]}")
-    except Exception as e:
-        log(f"⚠️ Gateway调用失败：{e}")
+    fallback_models = [
+        os.getenv('AI_MODEL', 'zai/glm-5-turbo'),
+        'zai/glm-5',
+        'deepseek/deepseek-chat',
+    ]
+    
+    for model in fallback_models:
+        try:
+            log(f"🤖 尝试模型: {model}")
+            headers = {'Content-Type': 'application/json'}
+            if gw_token:
+                headers['Authorization'] = f'Bearer {gw_token}'
+            response = requests.post(
+                gw_url,
+                headers=headers,
+                json={
+                    'model': model,
+                    'messages': [{'role': 'system', 'content': 'You are an expert developer. Return ONLY valid code, no markdown, no explanation.'}, {'role': 'user', 'content': prompt}],
+                    'max_tokens': 4000,
+                    'temperature': 0.1
+                },
+                timeout=60
+            )
+            if response.status_code == 200:
+                data = response.json()
+                code = data.get('choices', [{}])[0].get('message', {}).get('content', '')
+                if code and code.startswith('```'):
+                    lines = code.split('\n')
+                    code = '\n'.join(lines[1:-1]) if lines[-1].strip() == '```' else '\n'.join(lines[1:])
+                if code:
+                    if not validate_code(code):
+                        log(f"⚠️ 模型 {model} 返回的代码质量不达标，尝试下一个")
+                        continue
+                    log(f"✅ AI 代码生成成功（{model}）")
+                    return code.strip()
+            else:
+                log(f"⚠️ 模型 {model} 返回 {response.status_code}")
+        except Exception as e:
+            log(f"⚠️ 模型 {model} 失败：{str(e)[:60]}")
+            continue
+    
+    log("⚠️ 所有模型尝试失败")
 
     # 方案2：通过环境变量配置的外部API（DeepSeek/OpenAI等）
     api_url = os.getenv('AI_API_URL', '')
