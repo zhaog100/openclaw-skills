@@ -225,6 +225,47 @@ def gather_repo_context(task):
     
     return '\n'.join(context_parts)
 
+
+def validate_code(code):
+    """代码质量检查，防止提交垃圾代码"""
+    # 去掉markdown包裹
+    clean = code.strip()
+    if clean.startswith("```"):
+        lines = clean.split("\n")
+        clean = "\n".join(lines[1:-1]) if len(lines) > 2 else clean
+    
+    # 检查空内容
+    if not clean or len(clean.strip()) < 20:
+        log("⚠️ 代码太短（<20字符）")
+        return False
+    
+    # 检查明显的失败响应
+    fail_patterns = [
+        "no response from openclaw",
+        "no response from",
+        "环境异常",
+        "无法访问",
+        "error",
+        "i don't have access",
+        "仓库找不到",
+        "i cannot access",
+        "请提供",
+        "please provide",
+    ]
+    lower = clean.lower()
+    for p in fail_patterns:
+        if p in lower:
+            log(f"⚠️ 代码包含无效内容: {p}")
+            return False
+    
+    # 检查有效代码行数（排除空行和注释）
+    code_lines = [l for l in clean.split("\n") if l.strip() and not l.strip().startswith(('#', '//', '"""'))]
+    if len(code_lines) < 3:
+        log(f"⚠️ 有效代码行数不足（{len(code_lines)}行）")
+        return False
+    
+    return True
+
 def generate_code_with_openclaw(task):
     """调用 OpenClaw API 生成代码"""
     title = task.get('title', '')
@@ -281,6 +322,10 @@ def generate_code_with_openclaw(task):
                 lines = code.split('\n')
                 code = '\n'.join(lines[1:-1]) if lines[-1].strip() == '```' else '\n'.join(lines[1:])
             if code:
+                # 质量检查
+                if not validate_code(code):
+                    log("⚠️ 代码质量不达标，跳过")
+                    return None
                 log(f"✅ AI 代码生成成功（OpenClaw Gateway）")
                 return code.strip()
         else:
@@ -307,7 +352,11 @@ def generate_code_with_openclaw(task):
         except Exception as e:
             log(f"⚠️ AI API 调用失败：{e}")
 
-    # 备用方案：生成代码模板框架
+    # 备用方案：不生成，模板代码没有价值
+    log("⚠️ 所有AI方案不可用，跳过开发（拒绝提交模板代码）")
+    return None
+    # 以下模板代码已弃用
+    # 废弃：
     log("⚠️ AI不可用，使用代码模板框架")
     return f"""# Auto-generated code for bounty task
 # Task: {title}
