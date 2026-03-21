@@ -295,3 +295,22 @@ if __name__ == '__main__':
         print("  python3 multi_scraper.py --batch urls.txt --output articles/")
         print("  python3 multi_scraper.py --platform xiaohongshu https://www.xiaohongshu.com/xxx")
         sys.exit(1)
+
+
+def scrape_forum(forum, query, output_dir='./forum-articles', limit=10):
+    """爬取论坛文章"""
+    print(f"📰 论坛冲浪：{forum}")
+    print(f"🔍 搜索关键词：{query}")
+    
+    # 调用论坛爬取脚本
+    import subprocess
+    result = subprocess.run([
+        sys.executable,
+        str(Path(__file__).parent / 'forum_scraper.py'),
+        query,
+        '--forum', forum,
+        '--output', output_dir,
+        '--limit', str(limit)
+    ], capture_output=False)
+    
+    return result.returncode == 0
