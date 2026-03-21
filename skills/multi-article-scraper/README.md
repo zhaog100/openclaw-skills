@@ -144,3 +144,43 @@ MIT License - 免费使用、修改和重新分发
 - 源码买断：¥99,999 一次性
 
 详情请查看：[LICENSE](../../LICENSE)
+
+## 📰 论坛冲浪
+
+### Dev.to
+
+```bash
+python3 scripts/forum_scraper.py "AI Agent" --forum devto --limit 10
+```
+
+### Hacker News
+
+```bash
+python3 scripts/forum_scraper.py "AI Agent" --forum hackernews --limit 10
+```
+
+### 全部论坛
+
+```bash
+python3 scripts/forum_scraper.py "AI Agent" --forum all --limit 10
+```
+
+### 集成到主脚本
+
+```bash
+python3 scripts/multi_scraper.py --forum devto --query "AI Agent"
+```
+
+## 🌐 支持平台总览
+
+### 文章平台
+- ✅ 微信公众号
+- ⏳ 小红书（开发中）
+- ⏳ 抖音（开发中）
+- ⏳ 知乎（开发中）
+- ⏳ 简书（开发中）
+
+### 论坛平台
+- ✅ Dev.to
+- ✅ Hacker News
+
