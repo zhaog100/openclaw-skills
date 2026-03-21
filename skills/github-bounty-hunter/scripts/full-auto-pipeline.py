@@ -48,6 +48,29 @@ def load_latest_tasks():
     log(f"✅ 找到 {len(items)} 个任务")
     return items
 
+
+# ── 仓库黑名单 ──
+BLACKLIST_REPOS = [
+    'zhaog100', 'Scottcjn', 'rustchain', 'solfoundry', 'aporthq', 'rohitdash08',
+    'Expensify', 'ubiquibot', 'bolivian', 'illbnm', 'conflux', 'WattCoin',
+    'devpool-directory', 'ANAVHEOBA', 'DenisZheng', 'PlatformNetwork',
+    'projectdiscovery', 'lnflash', 'SolFoundry'
+]
+
+BLACKLIST_LABELS = ['Core Team Only', 'restricted']
+
+def is_blacklisted(task):
+    """检查任务是否在黑名单中"""
+    repo_url = task.get('repository_url', '')
+    for bl in BLACKLIST_REPOS:
+        if f'/{bl}/' in repo_url:
+            return True
+    labels = [l.get('name', '') for l in task.get('labels', [])]
+    for bl_label in BLACKLIST_LABELS:
+        if bl_label in labels:
+            return True
+    return False
+
 def evaluate_task(task):
     """评估任务价值"""
     title = task.get('title', '').lower()
@@ -374,6 +397,8 @@ def main():
     log("📊 评估任务...")
     scored_tasks = []
     for task in tasks:
+        if is_blacklisted(task):
+            continue
         score, reasons = evaluate_task(task)
         if score > 30:  # 阈值
             scored_tasks.append((score, task, reasons))
