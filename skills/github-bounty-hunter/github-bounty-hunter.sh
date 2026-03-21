@@ -252,6 +252,10 @@ n.notify_new_bounty({
 })
 "
     ;;
+    auto|full-auto)
+        echo "🤖 启动全自动流程..."
+        python3 "$SCRIPTS_DIR/full-auto-pipeline.py"
+        ;;
     *)
         show_help
         ;;
