@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """
+__version__ = "v2.1"  # 2026-03-21 小米粒优化版
+# 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub Bounty Hunter - 全自动流水线 v2.0
 扫描 → 评估 → 认领 → AI 开发 → 自动提交 → 自动 PR → 收款
 
