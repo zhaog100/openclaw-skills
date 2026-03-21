@@ -4,15 +4,15 @@ _精心维护的记忆，提炼后的精华_
 
 ---
 
-## 🎯 当前状态（2026-03-21 21:44）
+## 🎯 当前状态（2026-03-22 04:20）
 
 **全自动Bounty收割流水线**：每30分钟扫描→评估→认领→fork→读源码→AI生成→质量检查→push→PR
-**今日PR**：8个提交（2个垃圾已关闭，4个被维护者关闭，2个open待审核）
-**FinMind PR**：22个，0 merged 0 review
-**APort PR**：15个，1 closed，14 open
+**今日新增PR**：5个（ComfyUI #8899/#8889/#8935/#8914 + RustChain #747）
+**累计Bounty PR**：38+个，$5,800+
+**FinMind/APort旧PR**：全部closed，0个open
 **ClawHub发布**：25+个技能
 **版权**：思捷娅科技 (SJYKJ)，MIT许可证
-**Git**：origin + xiaomila 双仓库
+**Git**：origin + xiaomili 双仓库
 **GitHub**：zhaog100
 
 ---
@@ -36,10 +36,11 @@ _精心维护的记忆，提炼后的精华_
 - **主代理直接开发** > 子代理共享目录
 - **独立branch** — 每个bounty从main创建独立branch
 - **Fork必须用Classic Token**
-- **默认分支先查** — `git symbolic-ref refs/remotes/origin/HEAD`
+- **默认分支先查** — `git symbolic-ref refs/remotes/origin/HEAD`（ComfyUI是master不是main）
 - **PR标题** — `[BOUNTY #N] 描述`，body必须 `Closes #N`
 - **Label检查** — 有"Core Team Only"的直接跳过
-- **内部沟通** — 统一用zhaog100/internal-team #1
+- **GitHub API直接操作** — clone超时时用blob→tree→commit→ref绕过（3-22教训）
+- **JSON Schema oneOf** — 对array类型有歧义，改为不限制或用additionalProperties
 - **Bounty黑名单** — ANAVHEOBA/DenisZheng/PlatformNetwork等18个仓库
 
 ### 自动流水线今日教训（实战总结）
