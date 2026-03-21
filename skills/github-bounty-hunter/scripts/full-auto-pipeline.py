@@ -16,7 +16,7 @@ from pathlib import Path
 
 # ── 配置 ──
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
-PAYMENT_ADDRESS = os.getenv('PAYMENT_ADDRESS', 'TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP')
+PAYMENT_ADDRESS = os.getenv('PAYMENT_ADDRESS', 'YOUR_USDT_ADDRESS_HERE')
 WORK_DIR = Path.home() / '.openclaw' / 'workspace' / 'data' / 'bounty-projects'
 TASKS_DIR = Path.home() / '.openclaw' / 'workspace' / 'data' / 'bounty-tasks'
 LOG_FILE = Path.home() / '.openclaw' / 'workspace' / 'skills' / 'github-bounty-hunter' / 'logs' / 'auto-pipeline.log'
@@ -154,23 +154,42 @@ def generate_code_with_openclaw(task):
 
 只返回代码，不要解释。"""
     
+    # 方案1：通过OpenClaw CLI调用AI（推荐）
     try:
-        # 调用本地 OpenClaw API
-        response = requests.post(
-            'http://localhost:18789/api/v1/generate',
-            json={'prompt': prompt, 'max_tokens': 4000},
-            timeout=60
+        result = subprocess.run(
+            ['openclaw', 'chat', '--message', prompt, '--json', '--no-stream'],
+            capture_output=True, text=True, timeout=120
         )
-        if response.status_code == 200:
-            code = response.json().get('code', '')
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            code = data.get('content', '')
             if code:
-                log(f"✅ AI 代码生成成功")
+                log(f"✅ AI 代码生成成功（OpenClaw CLI）")
                 return code
     except Exception as e:
-        log(f"⚠️ OpenClaw API 调用失败：{e}")
-    
-    # 备用方案：生成简单的代码模板
-    log("⚠️ 使用备用代码模板")
+        log(f"⚠️ OpenClaw CLI 调用失败：{e}")
+
+    # 方案2：通过环境变量配置的OpenAI兼容API
+    api_url = os.getenv('AI_API_URL', '')
+    api_key = os.getenv('AI_API_KEY', '')
+    if api_url and api_key:
+        try:
+            response = requests.post(
+                api_url,
+                headers={'Authorization': f'Bearer {api_key}', 'Content-Type': 'application/json'},
+                json={'model': os.getenv('AI_MODEL', 'gpt-4'), 'messages': [{'role': 'user', 'content': prompt}], 'max_tokens': 4000},
+                timeout=60
+            )
+            if response.status_code == 200:
+                code = response.json().get('choices', [{}])[0].get('message', {}).get('content', '')
+                if code:
+                    log(f"✅ AI 代码生成成功（API）")
+                    return code
+        except Exception as e:
+            log(f"⚠️ AI API 调用失败：{e}")
+
+    # 备用方案：生成代码模板框架
+    log("⚠️ AI不可用，使用代码模板框架")
     return f"""# Auto-generated code for bounty task
 # Task: {title}
 # Repository: {repo}
