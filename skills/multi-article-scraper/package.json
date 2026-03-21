@@ -1,0 +1,20 @@
+{
+  "name": "multi-article-scraper",
+  "version": "2.0.0",
+  "description": "多平台文章爬取技能 - 支持微信/小红书/抖音/知乎/简书等平台",
+  "author": "小米辣 (PM + Dev)",
+  "license": "MIT",
+  "scripts": {
+    "scrape": "python3 scripts/multi_scraper.py",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": ["wechat", "scraper", "crawler", "playwright", "openclaw", "multi-platform"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaog100/openclaw-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zhaog100/openclaw-skills/issues"
+  },
+  "homepage": "https://github.com/zhaog100/openclaw-skills/tree/main/skills/multi-article-scraper"
+}
