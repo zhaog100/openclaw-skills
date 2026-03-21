@@ -2,7 +2,7 @@
 # GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
 # GitHub Bounty Hunter - 主入口脚本
-# 版本：1.3.0
+# 版本：2.1.0 (AI 全自动)
 # 让 OpenClaw 自动化在 GitHub 上赚钱！
 
 set -e
@@ -270,3 +270,16 @@ replit)
     export GITHUB_TOKEN="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"
     python3 "$SCRIPTS_DIR/replit_monitor.py"
     ;;
+
+# 全自动模式（v2.1）
+auto_mode() {
+    echo "============================================================"
+    echo "🤖 全自动 Bounty 收割流程 v2.1"
+    echo "============================================================"
+    echo ""
+    echo "启动全自动流程：扫描→评估→认领→开发→提交→PR"
+    echo ""
+    python3 "$SCRIPTS_DIR/full-auto-pipeline.py"
+}
+
+# 命令路由

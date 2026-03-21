@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+import os
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv(os.path.expanduser("~/.openclaw/secrets/github-bounty-hunter.env"))
 """
 __version__ = "v2.1"  # 2026-03-21 小米粒优化版
 # 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
