@@ -80,6 +80,7 @@ ResonantOS/resonantos-alpha##50
 ResonantOS/resonantos-alpha##51
 ResonantOS/resonantos-alpha##63
 ResonantOS/resonantos-alpha#50
+RonenSdemocorp-mend/AutoGPT#22
 SPLURT-Station/S.P.L.U.R.T-tg#721
 SPLURT-Station/S.P.L.U.R.T-tg#849
 SPLURT-Station/S.P.L.U.R.T-tg#851
@@ -137,6 +138,7 @@ asymcrypto/gitforge-template#1
 asyncapi/.github##388
 asyncapi/website##529
 atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-#2
+ax958888/VPS-Kanban-Agent#10
 backend-br/me-contrata#186
 bitaps-com/jsbtc#46
 bountydotnew/bounty.new#193
@@ -144,6 +146,7 @@ bountydotnew/bounty.new#231
 bountydotnew/bounty.new#237
 bountydotnew/bounty.new#262
 chatmcp/mcpso##1
+citizenfx/fivem#3874
 clanker-devco/clanker-sdk#126
 clanktank/seal-skills#4
 code-payments/flipcash-program#5
@@ -177,6 +180,7 @@ jelly-legs-ai/Jelly-legs-unsteady-workshop##11
 jelly-legs-ai/Jelly-legs-unsteady-workshop#108
 jelly-legs-ai/Jelly-legs-unsteady-workshop#11
 jose-blockchain/curated-erc#24
+kimcartoon/mydic#6648
 libretro/RetroArch##5222
 libretro/RetroArch#6137
 lnflash/flash##282
@@ -219,4 +223,4 @@ zio/zio#9877
 zio/zio#9878
 zio/zio-blocks#519
 zio/zio-http#3472
-zio/zio-schema#754Comfy-Org/ComfyUI:bounty已停超过1年，comfyanonymous 2026-03-22确认，有价值的代码贡献但无奖励coollabsio/coolify##6894PlatformNetwork/bounty-challenge##35577PlatformNetwork/bounty-challenge##35926maplibre/maplibre-native##2410PlatformNetwork/bounty-challenge##35977
+zio/zio-schema#754Comfy-Org/ComfyUI:bounty已停超过1年，comfyanonymous 2026-03-22确认，有价值的代码贡献但无奖励coollabsio/coolify##6894PlatformNetwork/bounty-challenge##35577PlatformNetwork/bounty-challenge##35926maplibre/maplibre-native##2410PlatformNetwork/bounty-challenge##35977PlatformNetwork/bounty-challenge##35986
