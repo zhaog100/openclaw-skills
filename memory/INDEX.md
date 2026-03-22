@@ -1,20 +1,19 @@
 # Memory Index
 
-## 当前活跃日记
-| 日期 | 文件 | 主题 |
-|------|------|------|
-| 2026-03-10 | 2026-03-10.md | OpenClaw记忆管理学习 |
-| 2026-03-11 | 2026-03-11.md | 技能开发+Review |
-| 2026-03-12 | 2026-03-12.md | 版权保护+Error Handler发布 |
-| 2026-03-13 | 2026-03-13.md | Bounty收割+技能发布 |
+## 当前活跃
+| 文件 | 主题 |
+|------|------|
+| `memory/2026-03-22.md` | 格式优化+学习Shubham方法论 |
 
-## 归档（2026-03-14起移至 archive/）
-- archive/ 目录包含所有过期日报、学习笔记、heartbeat状态
-- 重要教训已提炼到 MEMORY.md
+## 归档（archive/）
+22个日期文件（2026-02-14 ~ 2026-03-21）+ `misc/` 子目录
 
 ## 核心文件
-- `MEMORY.md` — 长期记忆精华（根目录）
-- `MEMORY-LITE.md` — 精简版（archive内备份）
-- `archive/` — 历史归档
+- `MEMORY.md` — 长期记忆精华
+- `shared-context/` — 团队知识库（THESIS/FEEDBACK-LOG/SIGNALS）
 
-_最后更新：2026-03-21_
+## 规范
+- 每日日志 ≤ 50行，归档到 `archive/YYYY-MM-DD.md`
+- 详见 `memory/README.md`
+
+*最后更新：2026-03-22*
