@@ -1,13 +1,15 @@
 ---
 name: github-bounty-hunter
 description: GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，支持 Algora 平台，使用 /attempt 命令自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！v2.2 新增工作区结构化管理（QMD 索引、Git 同步、敏感信息保护）
-version: 2.1.0
+version: 3.0.0
 author: 米粒儿 + 小米辣
 ---
 
-# GitHub Bounty Hunter v4.1
+# GitHub Bounty Hunter v5.0
 
 自动化 GitHub 赏金/Grant 接单、开发、提交 PR + 工作区结构化管理。
+
+**v5.0 新增：** Bounty有效性预检、仓库级黑名单、认领前验证（防白干）
 
 **v4.0 新增：** 自动扫描cron、黑名单过滤、仓库隔离、commit验证
 
