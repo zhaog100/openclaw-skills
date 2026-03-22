@@ -20,7 +20,10 @@ BLACKLIST = [
     'zhaog100', 'Scottcjn', 'rustchain', 'solfoundry', 'aporthq', 
     'rohitdash08', 'Expensify', 'ubiquibot', 'ANAVHEOBA', 'DenisZheng',
     'PlatformNetwork', 'conflux', 'WattCoin', 'devpool-directory',
+    'Comfy-Org', 'illbnm', 'homelab-stack', 'FinMind', 'mcp-catalog',
 ]
+
+REPO_BLACKLIST_FILE = Path(os.path.expanduser('~/.openclaw/workspace/data/bounty-repo-blacklist.txt'))
 
 HEADERS = {'Authorization': f'token {GITHUB_TOKEN}', 'Accept': 'application/vnd.github.v3+json'}
 
@@ -36,6 +39,17 @@ def acquire_lock():
     except:
         log("⏭️ 另一实例运行中，跳过")
         sys.exit(0)
+
+def load_repo_blacklist():
+    """加载仓库级黑名单"""
+    if REPO_BLACKLIST_FILE.exists():
+        return set(line.strip().lower() for line in REPO_BLACKLIST_FILE.read_text().strip().split('\n') if line.strip() and not line.startswith('#'))
+    return set()
+
+def check_bounty_valid(owner, repo, number, body=''):
+    """预检bounty有效性，避免白干"""
+    from bounty_validity import check_bounty_validity as _check
+    return _check(owner, repo, number, body)
 
 def load_known():
     if KNOWN_FILE.exists():
@@ -83,13 +97,20 @@ def search_bounties():
     """搜索GitHub bounty issues（从本地文件+API补充）"""
     tasks = load_tasks_from_files()
     
-    # 过滤黑名单
+    # 过滤黑名单（用户+仓库级）
+    repo_blacklist = load_repo_blacklist()
     filtered = []
     for item in tasks:
         repo_url = item.get('repository_url', '')
         repo_full = item.get('repository_full_name', '') or ''
-        owner = repo_url.split('/')[-2] if '/' in repo_url else ''
-        if owner in BLACKLIST or repo_full.split('/')[0] in BLACKLIST:
+        r_owner = repo_url.split('/')[-2] if '/' in repo_url else ''
+        repo_key = f"{r_owner}/{repo_url.split('/')[-1]}".lower() if '/' in repo_url else ''
+        
+        # 用户级黑名单
+        if r_owner in BLACKLIST or repo_full.split('/')[0] in BLACKLIST:
+            continue
+        # 仓库级黑名单
+        if any(blocked in repo_key for blocked in repo_blacklist):
             continue
         filtered.append(item)
     
@@ -246,6 +267,16 @@ def main():
         
         log(f"\n任务评分：{score}")
         log(f"  📋 {key}: {title[:60]}")
+        
+        # 🔍 Bounty有效性预检（2026-03-22教训：先确认再认领）
+        body_text = (task.get('body', '') or '')[:2000]
+        valid, reason = check_bounty_valid(owner, repo, number, body_text)
+        if not valid:
+            log(f"  ❌ Bounty无效，跳过: {reason}")
+            known.add(key)
+            save_known(known)
+            continue
+        log(f"  ✅ Bounty有效性确认: {reason}")
         
         if not claim_task(task):
             log(f"  ⚠️ 认领失败，跳过")
