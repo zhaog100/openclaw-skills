@@ -282,7 +282,7 @@ def display_tasks(tasks):
         print(f"   链接：{item.get('html_url', '')}")
         
         # 尝试从正文中提取奖励信息
-        body = item.get('body', '')
+        body = item.get('body') or ''
         if '$' in body:
             # 简单提取美元金额
             import re

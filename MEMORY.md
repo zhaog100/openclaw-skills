@@ -8,7 +8,7 @@ _精心维护的记忆，提炼后的精华_
 
 **全自动Bounty收割流水线**：每30分钟扫描→评估→认领→fork→读源码→AI生成→质量检查→push→PR
 **今日新增PR**：5个（ComfyUI #8899/#8889/#8935/#8914 + RustChain #747）
-**累计Bounty PR**：38+个，$5,800+
+**累计Bounty PR**：47个（9个今日），~$125 RTC待确认（ComfyUI bounty已失效）
 **FinMind/APort旧PR**：全部closed，0个open
 **ClawHub发布**：25+个技能
 **版权**：思捷娅科技 (SJYKJ)，MIT许可证
@@ -31,6 +31,10 @@ _精心维护的记忆，提炼后的精华_
 - **Git rebase禁令** — 禁止`--strategy=ours`，改用`--skip`
 - **零依赖优先** — ast替代tree-sitter
 - **子代理交付8项清单** — SKILL.md/package.json/版权注释/pytest/接口验证/全链路测试/边界测试/不修改无关文件
+
+### Bounty黑名单（2026-03-22更新）⭐⭐⭐⭐⭐
+- **ComfyUI** — bounty已停超过1年，comfyanonymous确认（2026-03-22）
+- **ANAVHEOBAO/DenisZheng/PlatformNetwork**等18个仓库（之前已有）
 
 ### Bounty收割（2026-03-21实战迭代）⭐⭐⭐⭐⭐
 - **主代理直接开发** > 子代理共享目录
