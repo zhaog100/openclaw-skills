@@ -741,5 +741,63 @@
     "html_url": "https://github.com/snowdensb/AutoPrompt_demo/issues/25",
     "created_at": "2026-03-22T21:30:30.904217",
     "status": "claimed"
+  },
+  {
+    "key": "RonenSdemocorp-mend/AutoGPT#22",
+    "owner": "RonenSdemocorp-mend",
+    "repo": "AutoGPT",
+    "number": 22,
+    "title": "autogpt-forge-0.2.0: 21 vulnerabilities (highest severity is: 9.8)",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>autogpt-forge-0.2.0</b></summary>\n\n<p></p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/RonenSdemocorp-mend/AutoGPT/commit/699055160a7360da70b306320a7d6c5e35267c04\">699055160a7360da70b306320a7d6c5e35267c04</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (autogpt-forge version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2024-5751](https://www.mend.io/vulnerability-database/CVE-2024-5751) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2024-2952](https://www.mend.io/vulnerability-database/CVE-2024-2952) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-0994](https://www.mend.io/vulnerability-database/CVE-2026-0994) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.0% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2025-0628](https://www.mend.io/vulnerability-database/CVE-2025-0628) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2024-4888](https://www.mend.io/vulnerability-database/CVE-2024-4888) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-30922](https://www.mend.io/vulnerability-database/CVE-2026-30922) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.1% | pyasn1-0.5.1-py2.py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-23490](https://www.mend.io/vulnerability-database/CVE-2026-23490) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.0% | pyasn1-0.5.1-py2.py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2025-47273](https://www.mend.io/vulnerability-database/CVE-2025-47273) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.5% | setuptools-70.1.1-py3-none-any.whl | Transi",
+    "score": 40,
+    "labels": [
+      "Mend: dependency security vulnerability"
+    ],
+    "html_url": "https://github.com/RonenSdemocorp-mend/AutoGPT/issues/22",
+    "created_at": "2026-03-22T22:00:07.497242",
+    "status": "claimed"
+  },
+  {
+    "key": "ax958888/VPS-Kanban-Agent#10",
+    "owner": "ax958888",
+    "repo": "VPS-Kanban-Agent",
+    "number": 10,
+    "title": "bounty-hunter-skill 分析 重塑",
+    "body": "## 任務說明\n\n讀取 https://github.com/1sadjlk/bounty-hunter-skill\n\n執行分析與重塑作業。\n\n## 執行步驟\n\n1. 使用 skill-analyzer 分析 repository\n   ```bash\n   /root/workspace/agents/skill-analyzer analyze https://github.com/1sadjlk/bounty-hunter-skill -o /tmp/analysis-bounty-hunter.json\n   ```\n\n2. 確認安全評分後，使用 skill-builder 執行重塑\n   ```bash\n   /root/workspace/agents/skill-builder build /tmp/analysis-bounty-hunter.json -d /root/workspace/agents/ -v\n   ```\n\n3. 重塑完成後，將 skill 檔案新增至：\n   https://github.com/ax958888/VPS-Kanban-Agent/tree/cpx31-system-architecture/docs/kiro\n\n## 備註\n\n- 部署目錄：`/root/workspace/agents/`\n- 目標 branch：`cpx31-system-architecture`\n- 目標路徑：`docs/kiro/`",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/ax958888/VPS-Kanban-Agent/issues/10",
+    "created_at": "2026-03-22T22:00:10.993278",
+    "status": "claimed"
+  },
+  {
+    "key": "kimcartoon/mydic#6648",
+    "owner": "kimcartoon",
+    "repo": "mydic",
+    "number": 6648,
+    "title": "c32402",
+    "body": "# Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic | Read Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic online in high quality\n\nRead Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic online free and high quality. Fast loading speed, unique reading type: All pages - just need to scroll to read next page\n\n[https://readcomiconline.li/Comic/Avatar-The-Last-Airbender-The-Bounty-Hunter-and-the-Tea-Brewer](https://readcomiconline.li/Comic/Avatar-The-Last-Airbender-The-Bounty-Hunter-and-the-Tea-Brewer)",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/kimcartoon/mydic/issues/6648",
+    "created_at": "2026-03-22T22:30:07.347635",
+    "status": "claimed"
+  },
+  {
+    "key": "citizenfx/fivem#3874",
+    "owner": "citizenfx",
+    "repo": "fivem",
+    "number": 3874,
+    "title": "RAGE Streaming Budget (grcResourceCache) Saturates to 100% From Base Game Assets Alone — Build-Independent, Reproducible on Localhost With Zero Custom Content",
+    "body": "### What happened?\n\n# RAGE Streaming Budget (grcResourceCache) Saturates to 100% From Base Game Assets Alone — Build-Independent, Reproducible on Localhost With Zero Custom Content\n\n## Summary\n\nThe RAGE streaming pool (`grcore/ResourceCache`) fills to 99.7–100% capacity from base game assets alone, with zero custom streamed content. This is reproducible on localhost with no server infrastructure involved. The behavior is **not build-dependent** — tested on builds 3095 (The Chop Shop), 3258 (Bottom Dollar Bounties), and 3570 (Money Fronts), all producing the same saturation. The budget saturates on all tested VRAM tiers (10 GB, 12 GB, 16 GB), at any Extended Texture Budget slider setting, and does not release while stationary. On ≤12 GB VRAM cards, this results in synchronous evict-load stalls causing 0.5–2 second client freezes during area transitions.\n\n## Reproduction Steps\n\n**Environment — minimal localhost, zero custom content:**\n\n- FiveM localhost (no remote server, no server artifact dependency)\n- Game builds tested: **3095** (The Chop Shop), **3258** (Bottom Dollar Bounties), **3570** (Money Fronts) — all produce the same saturation\n- OneSync: enabled\n- Custom streamed assets: **NONE** — Lua script resources only, no maps, no vehicles, no clothing, no MLOs\n- No `increase_pool_size` overrides relevant to streaming\n- No streaming-related convars in server.cfg\n\n**Steps:**\n\n1. Launch FiveM with `+set moo 31338`, connect to localhost\n2. Open F8 console, run `strmem`\n3. Observe `grcore/ResourceCache` starting at ~2,200–3,500 MiB after spawn\n4. Drive or walk through the base game city — no specific route required, normal traversal through Los Santosa\n    Traversal via noclip accelerates the saturation due to covering more map area in less time, \n    but the same saturation occurs with normal on-foot/vehicle movement — it simply takes longer to reach ceiling.\n    5. Observe `grcore/ResourceCache` climbing to 99.7–100% of its budget ceiling\n6. Stop moving and stand still\n7. Observe the budget remaining pinned at ceiling with no meaningful eviction (only ~5 MiB fluctuation from LOD mip swaps)\n\n**This has been reproduced on:**\n\n| GPU | VRAM | Budget Ceiling (approx) | Saturated After Traversal? |\n|-----|------|------------------------|---------------------------|\n| RTX 5080 Laptop | 16 GB | ~9,639 MiB | Yes — 9,607 / 9,639 (99.7%) |\n| RTX 4070 | 12 GB | ~8,460 MiB | Yes — 8,460 / 8,460 (99.99%) |\n| RTX 3080 | 10–12 GB | ~7,000–8,000 MiB | Yes (100%) — severe freezes |\n\n**Lowering the Extended Texture Budget slider** reduces the ceiling but the pool still fills to 100% of whatever budget is allocated. With a reduced budget on the RTX 5080, usage went from 0 → 3,520 / 3,520 MiB (100%) from the same city traversal.\n\n## Top Streaming Consumers (All Base Game / DLC Assets)\n\nFrom the `strmem` output on the stripped localhost at budget saturation — no custom content present:\n\n| Asset | Total (MiB) | Source |\n|-------|-------------|--------|\n| cs5_3_cs5_03_pw",
+    "score": 20,
+    "labels": [
+      "bug",
+      "triage",
+      "crash"
+    ],
+    "html_url": "https://github.com/citizenfx/fivem/issues/3874",
+    "created_at": "2026-03-22T22:30:11.235049",
+    "status": "claimed"
   }
 ]
