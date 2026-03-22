@@ -122,16 +122,18 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
     print(f"🌐 平台：{platform_name}")
     
     with sync_playwright() as p:
-        # 启动浏览器（非 headless 模式，避免被检测）
+        # 启动浏览器（VPS无图形界面，使用headless）
+        import os
+        headless = os.getenv('HEADLESS', 'true').lower() == 'true'
         browser = p.chromium.launch(
-            headless=False,
+            headless=headless,
             args=['--disable-blink-features=AutomationControlled', '--no-sandbox']
         )
         
-        # 创建上下文
+        # 创建上下文（移动端UA绕过微信反爬）
         context = browser.new_context(
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            viewport={'width': 1920, 'height': 1080}
+            user_agent='Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
+            viewport={'width': 750, 'height': 1334}
         )
         
         # 导入 Cookie（如果有）
@@ -143,7 +145,7 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
         try:
             # 访问文章
             print(f"🌐 访问页面...")
-            page.goto(url, wait_until='domcontentloaded', timeout=30000)
+            page.goto(url, wait_until='domcontentloaded', timeout=60000)
             
             # 随机等待（模拟真实用户）
             time.sleep(random.uniform(2, 5))
