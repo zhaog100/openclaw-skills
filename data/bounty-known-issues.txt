@@ -87,7 +87,9 @@ TheAssemblyArmada/Thyme#884
 TheJollyLaMa/BigNuten_Vanilla##109
 TheJollyLaMa/BigNuten_Vanilla#158
 TheJollyLaMa/BigNuten_Vanilla#159
+TheJollyLaMa/BigNuten_Vanilla#160
 TheJollyLaMa/BigNuten_Vanilla#161
+TheJollyLaMa/BigNuten_Vanilla#162
 TheJollyLaMa/BigNuten_Vanilla#163
 TheSuperHackers/GeneralsGamePatch#2776
 WattCoin-Org/wattcoin#217
@@ -111,6 +113,7 @@ archestra-ai/archestra#3378
 asymcrypto/gitforge-template#1
 asyncapi/.github##388
 asyncapi/website##529
+atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-#2
 backend-br/me-contrata#186
 bitaps-com/jsbtc#46
 bountydotnew/bounty.new#193
@@ -147,6 +150,7 @@ jelly-legs-ai/Jelly-legs-unsteady-workshop#108
 jelly-legs-ai/Jelly-legs-unsteady-workshop#11
 libretro/RetroArch##5222
 lnflash/flash##282
+ls1intum/Thaii#26
 macro-wave/sos_rando#121
 nextcloud/mail##2269
 parse-community/parse-dashboard#2344
@@ -159,6 +163,10 @@ projectdiscovery/tlsx#819
 ritik4ever/stellar-bounty-board##1
 ritik4ever/stellar-bounty-board##17
 ritik4ever/stellar-bounty-board##3
+rsoreq-mend/AutoPrompt#6
+rsoreq-mend/AutoPrompt#9
+sharmas1ddharth/PICK_pytorch#13
+snowdensb/AutoPrompt_demo#25
 tgstation/tgstation#95484
 tomazzi14/github-genlayer#1
 ubounty-app/ubounty-demo##9
