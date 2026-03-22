@@ -618,128 +618,61 @@
     "status": "claimed"
   },
   {
-    "key": "TheJollyLaMa/BigNuten_Vanilla#162",
-    "owner": "TheJollyLaMa",
-    "repo": "BigNuten_Vanilla",
-    "number": 162,
-    "title": "Aave Yield Integration & Payout Logic for Long Competitions",
-    "body": "- If comp period is longer than X weeks, sweep all escrowed funds to Aave\n- Yield accrued through comp period distributed as bonus to winners at the end (on withdraw/settle)\n- Show yield stats & yield share UI on leaderboard, admin panel, and DNFT metadata\n- Payouts: at end, principle + winnings + yield to finishers, forfeiters lose pot\n\nLabels: v3.1.0, bounty: 1 BNUT\n",
-    "score": 25,
-    "labels": [
-      "bounty: 1 BNUT",
-      "V3.1.0"
-    ],
-    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/162",
-    "created_at": "2026-03-22T20:00:07.667850",
-    "status": "claimed"
-  },
-  {
-    "key": "TheJollyLaMa/BigNuten_Vanilla#160",
-    "owner": "TheJollyLaMa",
-    "repo": "BigNuten_Vanilla",
-    "number": 160,
-    "title": "Achievement DNFT Minting: Comps & Milestones",
-    "body": "For every competition, mint a unique 'Achievement' DNFT (openZep/ERC-721 or custom as needed) with:\n- Metadata: comp rules, creator, tokens, duration, group name, payout logic\n- Minted at start by admin, awarded to all users who complete\n- Links to on-chain escrow & IPFS data\n- Support ability to repeat comps and create new ones from saved templates\n\nLabels: v3.1.0, bounty: 1 BNUT\n",
-    "score": 25,
-    "labels": [
-      "bounty: 1 BNUT",
-      "V3.1.0"
-    ],
-    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/160",
-    "created_at": "2026-03-22T20:00:11.157239",
-    "status": "claimed"
-  },
-  {
-    "key": "atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-#2",
-    "owner": "atharvnaik1",
-    "repo": "Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-",
-    "number": 2,
-    "title": "Bounty: Design a Logo for Gracias AI App Store Auditor",
-    "body": "## Bounty: Logo Design\n\n**Reward: INR 500**\n\n### About the Project\n\n[Gracias AI](https://opensource.gracias.sh) is an open-source, AI-powered iOS App Store compliance auditor. Developers upload their `.ipa` files and get a comprehensive audit report against Apple's Review Guidelines — helping them avoid rejections before submission.\n\n### What We Need\n\nA modern, clean logo that represents:\n- **AI / Intelligence** — the product is powered by LLMs\n- **iOS / App Store** — the product is focused on Apple's ecosystem\n- **Security / Compliance** — the product audits apps for policy compliance\n- **Trust / Shield** — zero-trust architecture, open-source transparency\n\n### Requirements\n\n- Provide the logo in **SVG** format (vector)\n- Should work on both **dark and light backgrounds**\n- Include a **logomark** (icon only) and a **wordmark** variant (icon + \"Gracias AI\")\n- Minimal, modern style — no overly complex illustrations\n- Must be original work\n\n### Color Palette (current branding)\n\n| Color | Hex | Usage |\n|-------|-----|-------|\n| Purple | `#a855f7` | Primary brand color |\n| Blue | `#3b82f6` | Secondary / gradient |\n| White | `#ffffff` | Text on dark backgrounds |\n\n### How to Submit\n\n1. Fork this repository\n2. Add your logo files to a `logo/` directory\n3. Open a Pull Request with a preview of your designs\n4. Reference this issue in your PR\n\n### Current Favicon (for reference)\n\nThe app currently uses a simple SVG favicon with a purple-blue gradient and a star shape. The new logo should be a significant upgrade from this placeholder.\n\n---\n\n**First accepted submission wins the bounty.**",
-    "score": 70,
-    "labels": [
-      "help wanted",
-      "good first issue",
-      "bounty",
-      "design"
-    ],
-    "html_url": "https://github.com/atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-/issues/2",
-    "created_at": "2026-03-22T20:30:05.803423",
-    "status": "claimed"
-  },
-  {
-    "key": "rsoreq-mend/AutoPrompt#9",
-    "owner": "rsoreq-mend",
-    "repo": "AutoPrompt",
-    "number": 9,
-    "title": "sentence-transformers-2.2.2.tar.gz: 16 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>sentence-transformers-2.2.2.tar.gz</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260315175321_UYKVEI/python_VNILXV/202603151753221/env/lib/python3.9/site-packages/torch-2.8.0.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/rsoreq-mend/AutoPrompt/commit/e9fb81a389b0343ae911906852a911d38a80da23\">e9fb81a389b0343ae911906852a911d38a80da23</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (sentence-transformers version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-24747](https://www.mend.io/vulnerability-database/CVE-2026-24747) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.2-py3-none-any.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2025-55551](https://www.mend.io/vulnerability-database/CVE-2025-55551) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2025-68146](https://www.mend.io/vulnerability-database/CVE-2025-68146) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.3 | filelock-3.19.1-py3-none-any.whl | Transitive | N/A* | &#10060",
+    "key": "RonenSdemocorp-mend/AutoGPT#22",
+    "owner": "RonenSdemocorp-mend",
+    "repo": "AutoGPT",
+    "number": 22,
+    "title": "autogpt-forge-0.2.0: 21 vulnerabilities (highest severity is: 9.8)",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>autogpt-forge-0.2.0</b></summary>\n\n<p></p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/RonenSdemocorp-mend/AutoGPT/commit/699055160a7360da70b306320a7d6c5e35267c04\">699055160a7360da70b306320a7d6c5e35267c04</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (autogpt-forge version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2024-5751](https://www.mend.io/vulnerability-database/CVE-2024-5751) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2024-2952](https://www.mend.io/vulnerability-database/CVE-2024-2952) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-0994](https://www.mend.io/vulnerability-database/CVE-2026-0994) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.0% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2025-0628](https://www.mend.io/vulnerability-database/CVE-2025-0628) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2024-4888](https://www.mend.io/vulnerability-database/CVE-2024-4888) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-30922](https://www.mend.io/vulnerability-database/CVE-2026-30922) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.1% | pyasn1-0.5.1-py2.py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-23490](https://www.mend.io/vulnerability-database/CVE-2026-23490) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.0% | pyasn1-0.5.1-py2.py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2025-47273](https://www.mend.io/vulnerability-database/CVE-2025-47273) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.5% | setuptools-70.1.1-py3-none-any.whl | Transi",
     "score": 40,
     "labels": [
       "Mend: dependency security vulnerability"
     ],
-    "html_url": "https://github.com/rsoreq-mend/AutoPrompt/issues/9",
-    "created_at": "2026-03-22T21:30:16.131062",
+    "html_url": "https://github.com/RonenSdemocorp-mend/AutoGPT/issues/22",
+    "created_at": "2026-03-22T22:00:20.905425",
     "status": "claimed"
   },
   {
-    "key": "rsoreq-mend/AutoPrompt#6",
-    "owner": "rsoreq-mend",
-    "repo": "AutoPrompt",
-    "number": 6,
-    "title": "argilla-1.25.0-py3-none-any.whl: 10 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /Pipfile</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260315175321_UYKVEI/python_VNILXV/202603151753221/env/lib/python3.9/site-packages/pygments-2.19.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/rsoreq-mend/AutoPrompt/commit/e9fb81a389b0343ae911906852a911d38a80da23\">e9fb81a389b0343ae911906852a911d38a80da23</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2025-43859](https://www.mend.io/vulnerability-database/CVE-2025-43859) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.1 | h11-0.14.0-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-39689](https://www.mend.io/vulnerability-database/CVE-2024-39689) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | certifi-2024.2.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2024-3651](https://www.mend.io/vulnerability-database/CVE-2024-3651) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.2 | idna-3.6-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-33230](https://www.mend.io/vul",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/rsoreq-mend/AutoPrompt/issues/6",
-    "created_at": "2026-03-22T21:30:19.551300",
+    "key": "ax958888/VPS-Kanban-Agent#10",
+    "owner": "ax958888",
+    "repo": "VPS-Kanban-Agent",
+    "number": 10,
+    "title": "bounty-hunter-skill 分析 重塑",
+    "body": "## 任務說明\n\n讀取 https://github.com/1sadjlk/bounty-hunter-skill\n\n執行分析與重塑作業。\n\n## 執行步驟\n\n1. 使用 skill-analyzer 分析 repository\n   ```bash\n   /root/workspace/agents/skill-analyzer analyze https://github.com/1sadjlk/bounty-hunter-skill -o /tmp/analysis-bounty-hunter.json\n   ```\n\n2. 確認安全評分後，使用 skill-builder 執行重塑\n   ```bash\n   /root/workspace/agents/skill-builder build /tmp/analysis-bounty-hunter.json -d /root/workspace/agents/ -v\n   ```\n\n3. 重塑完成後，將 skill 檔案新增至：\n   https://github.com/ax958888/VPS-Kanban-Agent/tree/cpx31-system-architecture/docs/kiro\n\n## 備註\n\n- 部署目錄：`/root/workspace/agents/`\n- 目標 branch：`cpx31-system-architecture`\n- 目標路徑：`docs/kiro/`",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/ax958888/VPS-Kanban-Agent/issues/10",
+    "created_at": "2026-03-22T22:00:21.866396",
     "status": "claimed"
   },
   {
-    "key": "sharmas1ddharth/PICK_pytorch#13",
-    "owner": "sharmas1ddharth",
-    "repo": "PICK_pytorch",
-    "number": 13,
-    "title": "allennlp-1.0.0-py3-none-any.whl: 62 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>allennlp-1.0.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /requirements.txt</p>\n<p>\n\n</details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (allennlp version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.7-py3-none-any.whl | Transitive | 1.1.0 | &#10060; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.7-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-39705](https://www.mend.io/vulnerability-database/CVE-2024-39705) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | nltk-3.7-py3-none-any.whl | Transitive | 1.1.0 | &#10060; |\n| [CVE-2023-29824](https://www.mend.io/vulnerability-database/CVE-2023-29824) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | scipy-1.5.4-cp37-cp37m-manylinux1_x86_64.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-11394](https://www.mend.io/vulnerability-database/CVE-2024-11394) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | transformers-2.11.0-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-11393](https://www.mend.io/vulnerability-database/CVE-2024-11393) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | transformers-2.11.0-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2023-6730](https://www.mend.io/vulnerability-database/CVE-2023-6730) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | transformers-2.11.0-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-21441](https://www.mend.io/vulnerability-database/CVE-2026-21441) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | urllib3-1.26.9-py2.py3-none-any.whl | Transitive | 1.1.0 | &#10060; |\n| [CVE-2026-0994](https://www.mend.io/vulnerability-database/CVE-2026-0994) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | protobuf-3.20.1-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl | T",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/sharmas1ddharth/PICK_pytorch/issues/13",
-    "created_at": "2026-03-22T21:30:23.749741",
+    "key": "kimcartoon/mydic#6648",
+    "owner": "kimcartoon",
+    "repo": "mydic",
+    "number": 6648,
+    "title": "c32402",
+    "body": "# Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic | Read Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic online in high quality\n\nRead Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic online free and high quality. Fast loading speed, unique reading type: All pages - just need to scroll to read next page\n\n[https://readcomiconline.li/Comic/Avatar-The-Last-Airbender-The-Bounty-Hunter-and-the-Tea-Brewer](https://readcomiconline.li/Comic/Avatar-The-Last-Airbender-The-Bounty-Hunter-and-the-Tea-Brewer)",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/kimcartoon/mydic/issues/6648",
+    "created_at": "2026-03-22T22:30:11.970974",
     "status": "claimed"
   },
   {
-    "key": "ls1intum/Thaii#26",
-    "owner": "ls1intum",
-    "repo": "Thaii",
-    "number": 26,
-    "title": "nltk-3.9.1-py3-none-any.whl: 6 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>nltk-3.9.1-py3-none-any.whl</b></summary>\n\n<p>Natural Language Toolkit</p>\n<p>Library home page: <a href=\"https://files.pythonhosted.org/packages/4d/66/7d9e26593edda06e8cb531874633f7c2372279c3b0f46235539fe546df8b/nltk-3.9.1-py3-none-any.whl\">https://files.pythonhosted.org/packages/4d/66/7d9e26593edda06e8cb531874633f7c2372279c3b0f46235539fe546df8b/nltk-3.9.1-py3-none-any.whl</a></p>\n<p>Path to dependency file: /server/requirements.txt</p>\n<p>Path to vulnerable library: /server/requirements.txt</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/ls1intum/Thaii/commit/8233eb35f209c5b712ecc7d96645a2de905e8282\">8233eb35f209c5b712ecc7d96645a2de905e8282</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (nltk version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Direct | 3.9.3 | &#10060; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Direct | nltk - 3.9.3 | &#10060; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.1-py3-none-any.whl | Direct | 3.9.3 | &#10060; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.1-py3-none-any.whl | Direct | N/A | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.1-py3-none-any.whl | Direct | N/A | &#10060; |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | nltk-3.9.1-py3-none-any.whl | Direct | N/A | &#10060; |\n<p>**In some cases, Remediation PR cannot be created automatically for a vulnerability despite the availability of remediation</p>\n\n## Details\n\n<details>\n\n<summary><img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> CVE-2026-0848</summary>\n\n\n###  Vulnerable Library - <b>nltk-3.9.1-py3-none",
-    "score": 40,
+    "key": "citizenfx/fivem#3874",
+    "owner": "citizenfx",
+    "repo": "fivem",
+    "number": 3874,
+    "title": "RAGE Streaming Budget (grcResourceCache) Saturates to 100% From Base Game Assets Alone — Build-Independent, Reproducible on Localhost With Zero Custom Content",
+    "body": "### What happened?\n\n# RAGE Streaming Budget (grcResourceCache) Saturates to 100% From Base Game Assets Alone — Build-Independent, Reproducible on Localhost With Zero Custom Content\n\n## Summary\n\nThe RAGE streaming pool (`grcore/ResourceCache`) fills to 99.7–100% capacity from base game assets alone, with zero custom streamed content. This is reproducible on localhost with no server infrastructure involved. The behavior is **not build-dependent** — tested on builds 3095 (The Chop Shop), 3258 (Bottom Dollar Bounties), and 3570 (Money Fronts), all producing the same saturation. The budget saturates on all tested VRAM tiers (10 GB, 12 GB, 16 GB), at any Extended Texture Budget slider setting, and does not release while stationary. On ≤12 GB VRAM cards, this results in synchronous evict-load stalls causing 0.5–2 second client freezes during area transitions.\n\n## Reproduction Steps\n\n**Environment — minimal localhost, zero custom content:**\n\n- FiveM localhost (no remote server, no server artifact dependency)\n- Game builds tested: **3095** (The Chop Shop), **3258** (Bottom Dollar Bounties), **3570** (Money Fronts) — all produce the same saturation\n- OneSync: enabled\n- Custom streamed assets: **NONE** — Lua script resources only, no maps, no vehicles, no clothing, no MLOs\n- No `increase_pool_size` overrides relevant to streaming\n- No streaming-related convars in server.cfg\n\n**Steps:**\n\n1. Launch FiveM with `+set moo 31338`, connect to localhost\n2. Open F8 console, run `strmem`\n3. Observe `grcore/ResourceCache` starting at ~2,200–3,500 MiB after spawn\n4. Drive or walk through the base game city — no specific route required, normal traversal through Los Santosa\n    Traversal via noclip accelerates the saturation due to covering more map area in less time, \n    but the same saturation occurs with normal on-foot/vehicle movement — it simply takes longer to reach ceiling.\n    5. Observe `grcore/ResourceCache` climbing to 99.7–100% of its budget ceiling\n6. Stop moving and stand still\n7. Observe the budget remaining pinned at ceiling with no meaningful eviction (only ~5 MiB fluctuation from LOD mip swaps)\n\n**This has been reproduced on:**\n\n| GPU | VRAM | Budget Ceiling (approx) | Saturated After Traversal? |\n|-----|------|------------------------|---------------------------|\n| RTX 5080 Laptop | 16 GB | ~9,639 MiB | Yes — 9,607 / 9,639 (99.7%) |\n| RTX 4070 | 12 GB | ~8,460 MiB | Yes — 8,460 / 8,460 (99.99%) |\n| RTX 3080 | 10–12 GB | ~7,000–8,000 MiB | Yes (100%) — severe freezes |\n\n**Lowering the Extended Texture Budget slider** reduces the ceiling but the pool still fills to 100% of whatever budget is allocated. With a reduced budget on the RTX 5080, usage went from 0 → 3,520 / 3,520 MiB (100%) from the same city traversal.\n\n## Top Streaming Consumers (All Base Game / DLC Assets)\n\nFrom the `strmem` output on the stripped localhost at budget saturation — no custom content present:\n\n| Asset | Total (MiB) | Source |\n|-------|-------------|--------|\n| cs5_3_cs5_03_pw",
+    "score": 20,
     "labels": [
-      "Mend: dependency security vulnerability"
+      "bug",
+      "triage",
+      "crash"
     ],
-    "html_url": "https://github.com/ls1intum/Thaii/issues/26",
-    "created_at": "2026-03-22T21:30:27.290088",
-    "status": "claimed"
-  },
-  {
-    "key": "snowdensb/AutoPrompt_demo#25",
-    "owner": "snowdensb",
-    "repo": "AutoPrompt_demo",
-    "number": 25,
-    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120927_GBKAVL/python_CCFRLE/20260309120928/nltk-3.9.2-py3-none-any.whl</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/snowdensb/AutoPrompt_demo/commit/8be19058caa77d15d963d6657cb03707e75dfeaa\">8be19058caa77d15d963d6657cb03707e75dfeaa</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.5% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.6% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.3% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined |  | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/snowdensb/AutoPrompt_demo/issues/25",
-    "created_at": "2026-03-22T21:30:30.904217",
+    "html_url": "https://github.com/citizenfx/fivem/issues/3874",
+    "created_at": "2026-03-22T22:30:13.065349",
     "status": "claimed"
   },
   {
