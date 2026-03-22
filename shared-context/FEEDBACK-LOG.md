@@ -91,3 +91,10 @@ _记录重复出现的错误和纠正，避免重蹈覆辙_
 ---
 
 *版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)*
+
+## 2026-03-22 格式优化（官家指令）
+- 所有文件严格精简：SOUL.md≤60行，日志≤50行
+- 只写结果不写过程，不重复MEMORY.md已有内容
+- 每日日志统一模板：概览/完成/学习/教训/待办
+- archive/ 统一 YYYY-MM-DD.md 命名
+- KNOWLEDGE_FRAMEWORK 表格化，去冗余描述
