@@ -259,21 +259,15 @@ n.notify_new_bounty({
     *)
         show_help
         ;;
+    gitcoin)
+        echo "🚀 Gitcoin 监控..."
+        python3 "$SCRIPTS_DIR/gitcoin_monitor.py"
+        ;;
+    replit)
+        echo "🚀 Replit 监控..."
+        python3 "$SCRIPTS_DIR/replit_monitor.py"
+        ;;
 esac
-
-# Gitcoin 监控命令
-gitcoin)
-    echo "🚀 启动 Gitcoin 监控..."
-    export GITHUB_TOKEN="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"
-    python3 "$SCRIPTS_DIR/gitcoin_monitor.py"
-    ;;
-
-# Replit 监控命令
-replit)
-    echo "🚀 启动 Replit 监控..."
-    export GITHUB_TOKEN="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"
-    python3 "$SCRIPTS_DIR/replit_monitor.py"
-    ;;
 
 # 全自动模式（v2.1）
 auto_mode() {

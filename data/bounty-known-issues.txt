@@ -85,7 +85,12 @@ SolFoundry/solfoundry#339
 SolFoundry/solfoundry#345
 TheAssemblyArmada/Thyme#884
 TheJollyLaMa/BigNuten_Vanilla##109
+TheJollyLaMa/BigNuten_Vanilla#158
+TheJollyLaMa/BigNuten_Vanilla#159
+TheJollyLaMa/BigNuten_Vanilla#161
+TheJollyLaMa/BigNuten_Vanilla#163
 TheSuperHackers/GeneralsGamePatch#2776
+WattCoin-Org/wattcoin#217
 YahiaRagae/mushaf-imad-android#19
 YahiaRagae/mushaf-imad-android#24
 YahiaRagae/mushaf-imad-android#25
@@ -99,6 +104,7 @@ activepieces/activepieces#8284
 aden-hive/hive#5964
 algora-io/algora##213
 alxndlk/wallper-app#23
+amaybaum-prod/V-Achilles#175
 aolabsai/ao_pyth#9
 archestra-ai/archestra#1301
 archestra-ai/archestra#3378
@@ -113,8 +119,11 @@ bountydotnew/bounty.new#237
 chatmcp/mcpso##1
 clanker-devco/clanker-sdk#126
 clanktank/seal-skills#4
+code-payments/flipcash-program#5
+code-payments/flipcash-program#7
 coollabsio/coolify#7743
 cxlinux-ai/cx-core##428
+databuddy-analytics/Databuddy#267
 deskflow/deskflow#8031
 deskflow/deskflow#8032
 deskflow/deskflow#9599
@@ -127,6 +136,7 @@ foremetric/foremetric#2
 foremetric/foremetric#4
 frameprotocol/.github#6
 golemcloud/golem-cli#275
+gwdevhub/GWToolboxpp#1785
 hivemoot/colony##685
 humanaios-ui/lasting-light-ai#5
 illbnm/homelab-stack#3
