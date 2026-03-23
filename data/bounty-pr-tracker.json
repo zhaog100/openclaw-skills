@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-03-23T10:42:00+08:00",
+  "updated": "2026-03-23T11:28:22+08:00",
   "prs": [
     {
       "id": "PR-20260323-001",
@@ -13,7 +13,11 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-23",
-      "payment_platform": "direct"
+      "payment_platform": "direct",
+      "maintainer_active": true,
+      "repo_push": "2026-03-21",
+      "ping_sent": false,
+      "note": "REVIEW_REQUIRED, Greptile bot已审, 有希望"
     },
     {
       "id": "PR-20260323-002",
@@ -27,7 +31,18 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-23",
-      "payment_platform": "direct"
+      "payment_platform": "direct",
+      "maintainer_active": false,
+      "repo_push": "2025-12-09",
+      "maintainer_inactive_days": 107,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": "@glepretre"
+        }
+      ],
+      "note": "维护者3个月不活跃, 已ping等48h"
     },
     {
       "id": "PR-20260323-003",
@@ -41,7 +56,10 @@
       "status": "blocked",
       "blocked_reason": "zhaog100账号被仓库屏蔽",
       "submitted": null,
-      "payment_platform": "algora"
+      "payment_platform": "algora",
+      "maintainer_active": false,
+      "ping_sent": false,
+      "note": "zhaog100被屏蔽, 已放弃"
     },
     {
       "id": "PR-20260322-001",
@@ -54,7 +72,18 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "repo_push": "2026-02-26",
+      "maintainer_inactive_days": 182,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": "@OthmanImam @StelTade"
+        }
+      ],
+      "note": "维护者半年不活跃, 2star, 已ping等48h"
     },
     {
       "id": "PR-20260322-002",
@@ -67,7 +96,16 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
     },
     {
       "id": "PR-20260322-003",
@@ -80,7 +118,16 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
     },
     {
       "id": "PR-20260322-004",
@@ -93,7 +140,16 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
     },
     {
       "id": "PR-20260322-005",
@@ -106,7 +162,16 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
     },
     {
       "id": "PR-20260322-006",
@@ -119,7 +184,10 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": true,
+      "repo_push": "2026-03-23",
+      "note": "仓库今天还有push! REVIEW_REQUIRED, 最有希望"
     },
     {
       "id": "PR-20260322-007",
@@ -132,7 +200,18 @@
       "currency": "USD",
       "status": "open",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "repo_push": "2026-03-22",
+      "maintainer_inactive_days": 285,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": "@Chevalier12"
+        }
+      ],
+      "note": "维护者9个月不活跃, 3star, 已ping等48h"
     },
     {
       "id": "PR-20260318-001",
@@ -145,7 +224,8 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "algora"
+      "payment_platform": "algora",
+      "note": "维护者不审, 已关闭"
     },
     {
       "id": "PR-20260318-002",
@@ -158,7 +238,8 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "algora"
+      "payment_platform": "algora",
+      "note": "同上"
     },
     {
       "id": "PR-20260318-003",
@@ -171,7 +252,8 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "algora"
+      "payment_platform": "algora",
+      "note": "同上"
     },
     {
       "id": "PR-20260318-004",
@@ -184,7 +266,8 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "algora"
+      "payment_platform": "algora",
+      "note": "同上"
     },
     {
       "id": "PR-20260318-005",
@@ -197,7 +280,8 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "algora"
+      "payment_platform": "algora",
+      "note": "同上"
     },
     {
       "id": "PR-20260318-006",
@@ -208,9 +292,11 @@
       "title": "Base Infrastructure",
       "amount": 100,
       "currency": "USD",
-      "status": "open",
+      "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "维护者跑路, 已关闭"
     },
     {
       "id": "PR-20260318-007",
@@ -223,7 +309,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-008",
@@ -236,7 +324,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-009",
@@ -249,7 +339,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-010",
@@ -262,7 +354,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-011",
@@ -275,7 +369,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-012",
@@ -288,7 +384,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-013",
@@ -301,7 +399,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-014",
@@ -314,7 +414,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260318-015",
@@ -327,7 +429,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-18",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-008",
@@ -340,7 +444,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-009",
@@ -353,7 +459,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-010",
@@ -366,7 +474,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-011",
@@ -379,7 +489,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-012",
@@ -392,7 +504,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-013",
@@ -405,7 +519,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-014",
@@ -418,7 +534,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-015",
@@ -431,7 +549,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-016",
@@ -444,7 +564,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-017",
@@ -457,7 +579,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     },
     {
       "id": "PR-20260322-018",
@@ -470,7 +594,9 @@
       "currency": "USD",
       "status": "closed",
       "submitted": "2026-03-22",
-      "payment_platform": "unknown"
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "note": "同上"
     }
   ]
 }
