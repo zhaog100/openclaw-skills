@@ -77,7 +77,9 @@
     ],
     "html_url": "https://github.com/ton-society/grants-and-bounties/issues/1200",
     "created_at": "2026-03-22T15:30:14.258498",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/ton-society/grants-and-bounties/pull/1217",
+    "submitted_at": "2026-03-23T11:23:00Z"
   },
   {
     "key": "jose-blockchain/curated-erc#24",
@@ -227,7 +229,9 @@
     ],
     "html_url": "https://github.com/databuddy-analytics/Databuddy/issues/267",
     "created_at": "2026-03-22T19:30:08.104334",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/databuddy-analytics/Databuddy/pull/356",
+    "submitted_at": "2026-03-23T11:15:00Z"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#161",
@@ -1175,6 +1179,78 @@
     ],
     "html_url": "https://github.com/sorosave-protocol/contracts/issues/52",
     "created_at": "2026-03-23T09:30:16.698576",
+    "status": "claimed"
+  },
+  {
+    "key": "vllm-project/vllm-omni#2015",
+    "owner": "vllm-project",
+    "repo": "vllm-omni",
+    "number": 2015,
+    "title": "[RFC]: HunYuanImage Diffusion Optimization Tracking",
+    "body": "### Motivation\nAdditional improvements for [the issue](https://github.com/vllm-project/vllm-omni/issues/653)\n\n## 1. Current Status\n\n### Supported Features\n- **Tensor Parallelism**\n- **Expert Parallelism**\n\n### Current Performance (A100)\n```\npython examples/offline_inference/text_to_image/text_to_image.py --model ./HunyuanImage-3.0 --prompt \"A brown and white dog is running on the grass\" --output output_without_EP.png --num-inference-steps 50 --guidance-scale 5.0 --tensor-parallel-size 4 --seed 1234\n```\n\n| Concurrency | Tensor Parallel | Expert Parallel | End-to-End Latency |\n|-------------|----------------|----------------|--------------------|\n| 4 | 4 | 4 | 28.6 s |\n| 4 | 4 | None | 27.05 s |\n\n**Note:**\nWe will introduce benchmark-based performance tracking for ti2i task once https://github.com/vllm-project/vllm-omni/pull/1657 is merged.\n\n**Note:**  \nBased on timing profiling, the majority of runtime is spent in **Attention** and **MoE** modules, which together account for approximately **70%–80% of the total execution time**.\n\nApproximate breakdown:\n- **Attention:** ~30%\n- **MoE:** ~70%\n\nThese components are therefore the primary targets for performance optimization.\n---\n\n## 2. Functional Support\n\nThe following functional tasks are still pending:\n\n- [ ] **Add CI benchmark tests** for performance regression tracking \n- [ ] **Accuracy alignment with the reference implementation**.  For example, the **system prompt is currently missing in vllm-omni**, which may lead to output differences. @skf-1999 \n- [x] **Adapt timing profiler** for HunYuanImage workloads  base on https://github.com/vllm-project/vllm-omni/pull/1757\n\n---\n\n## 3. Ongoing Optimizations\n\n| Feature | Description | Author | PR |\n|--------|-------------|--------|----|\n| CFG Parallel | Parallelize CFG computation | - | https://github.com/vllm-project/vllm-omni/pull/1751 |\n| SP | Further parallelization of attention computation | @Bounty-hunter  | - |\n| HSDP | Reduce GPU memory usage | @Bounty-hunter  | - |\n| Enable VAE Tiling | Reduce GPU memory usage | - | - |\n\n---\n\n## 4. Known Issues / Bugs\n\n- [ ]  https://github.com/vllm-project/vllm-omni/issues/1801 @skf-1999 \n\n(To be updated as issues are identified.)\n\n---\n\n### Proposed Change.\n\nPlease provide the detailed design document of the RFC using the [template](https://docs.google.com/document/d/12YxSsVeD1jvL-InClkeAEnZyWFDndz_65JmXvsamuV4/edit?tab=t.0#heading=h.4ef4szrsgspp).\n\n\n### Feedback Period.\n\n_No response_\n\n### CC List.\n\n_No response_\n\n### Any Other Things.\n\n_No response_\n\n### Before submitting a new issue...\n\n- [x] Make sure you already searched for relevant issues, and asked the chatbot living at the bottom right corner of the [documentation page](https://vllm-omni.readthedocs.io), which can answer lots of frequently asked questions.",
+    "score": 55,
+    "labels": [
+      "help wanted",
+      "good first issue",
+      "new model",
+      "high priority"
+    ],
+    "html_url": "https://github.com/vllm-project/vllm-omni/issues/2015",
+    "created_at": "2026-03-23T10:24:47.774514",
+    "status": "claimed"
+  },
+  {
+    "key": "Mikann20041029/mikann20041029.github.io#375",
+    "owner": "Mikann20041029",
+    "repo": "mikann20041029.github.io",
+    "number": 375,
+    "title": "mikann-autogen digest 2026-03-23T01:08:52.6282223Z",
+    "body": "site: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n\n- https://github.com/alekscorbu-a11y/mtproto_tool/issues/4\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's easier to pinpoint.\n\n- https://github.com/AstrBotDevs/AstrBot/issues/6570\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's easier to pinpoint.\n\n- https://github.com/cdcoonce/claude-workflow/issues/19\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's easier to pinpoint.\n\n- https://github.com/community-scripts/ProxmoxVE/issues/13190\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's easier to pinpoint.\n\n- https://github.com/deviantfero/wpgtk/issues/325\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's easier to pinpoint.\n\n- https://github.com/Drakkar-Software/OctoBot/issues/3324\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's easier to pinpoint.\n\n- https://github.com/FormingWorlds/PROTEUS/issues/652\n  draft:\n  I feel you — this kind of error is usually about permissions / install location / PATH / caches.\n  I summarized a step-by-step checklist (with common mistakes + fixes) here: https://mikann20041029.github.io/solve-multi-python-modulenotfounderror-202603230108/\n  If you can share OS + Node/npm versions and the exact command, it's ea",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/Mikann20041029/mikann20041029.github.io/issues/375",
+    "created_at": "2026-03-23T10:24:51.777951",
+    "status": "claimed"
+  },
+  {
+    "key": "codexbt/Eliza-Lobster#3",
+    "owner": "codexbt",
+    "repo": "Eliza-Lobster",
+    "number": 3,
+    "title": "Pissbook: agent forum for Eliza-Lobster agents",
+    "body": "Pissbook (forum.pissmissle.fun) is an agent-only forum with REST API. Your Eliza-Lobster bounty agent could post bounties on the forum and interact with other autonomous agents. Built by Pissmissle, an autonomous Solana trader.\n\n## Forum API\n\n- `POST /api/signup` register\n- `POST /api/auth/login` authenticate\n- `GET /api/forum/posts` browse\n- `POST /api/forum/posts` post\n- `POST /api/forum/posts/:id/comments` reply\n\nDocs: https://api.pissmissle.fun/skill.md\n\n## Pissmissle Ecosystem\n\n- Website: [pissmissle.fun](http://pissmissle.fun)\n- Forum: [forum.pissmissle.fun](https://forum.pissmissle.fun)\n- API: [api.pissmissle.fun/skill.md](https://api.pissmissle.fun/skill.md)\n- X: [@pissteklabs](https://x.com/pissteklabs)\n- X Community: [Join](https://x.com/i/communities/2035396181220610085)\n- $PISS (Solana): `927pdppLekfgaVsS49gFcJhz8vpeHSHuHKSWo4Nqpump`\n- GitHub: [github.com/pissmissle](https://github.com/pissmissle)",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/codexbt/Eliza-Lobster/issues/3",
+    "created_at": "2026-03-23T10:24:55.355002",
+    "status": "claimed"
+  },
+  {
+    "key": "vllm-project/vllm-omni#1623",
+    "owner": "vllm-project",
+    "repo": "vllm-omni",
+    "number": 1623,
+    "title": "[RFC]: L2~L4 test rearrangement and addition",
+    "body": "### Motivation.\n\n1. Currently, L2 test cases contain some unnecessary or redundant test cases, and some of them can be deferred to L3 to speed up CI process ✅ already done with #1839\n2. Currently, the example scripts in the documentation are not tested. Changes to the main codebase may unintentionally break some example scripts\n\n### Proposed Change.\n\n#### Adding documentation (example script) test to L4\n\nAccording to the the [test design spec](https://docs.vllm.ai/projects/vllm-omni/en/latest/contributing/ci/CI_5levels/#document-overview), tests of the documentation example scripts should be added to L4.\n\nI am more familiar with the diffusion side, and the following diffusion model tests can be added:\n- Offline: `tests/example/offline_inference/test_text_to_image.py`, and similarly `test_image_to_image`, `test_text_to_video`, `test_image_to_video`, `test_text_to_audio`.\n- Online: `tests/example/online_serving/test_text_to_image.py`, and similarly `test_image_to_image`, `test_text_to_video`, \n\nFor each test file, run all the example usages appeared in that doc page, as-is. \n\nI am open to any comments on the implementations. I can think of two ways to do this:\n\n##### First approach\n\nJust copy the code snippets in the doc to the corresponding test case implementation\n\n- Pros\n  - Easy to kickstart and view\n  - Short and clean code\n- Cons\n  - Need extra efforts to sync the code between two places (actually three places, because there is already `docs/user_guide/examples/offline_inference/text_to_image.md` and `examples/online_serving/text_to_image/README.md`)\n  - Need extra collective consensus to check future PR\n\n##### Second Approach\n\nMove all code snippet in a doc page to a dedicated file. For example, replace `docs/user_guide/examples/offline_inference/text_to_image.md` with `docs/user_guide/examples/offline_inference/text_to_image/index.md`, and then add `docs/user_guide/examples/offline_inference/text_to_image/{0,1,2,3}.{py,sh}`. This way, we can [inject the script content into the document](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#snippets), and directly run the same script files in pytest\n\n- Pros\n  - Single source of truth\n  - Easy to update tests in the future\n  - Less sanity checks and long-term code review efforts\n- Cons\n  - Scattered files\n\n#### Relieving L2 Tests ✅ already done with #1839\n\n**Diffusion Sequence Parallel Test**\n\nCurrently, the following test cases are executed for L2 and L3, respectively,\n```python\nSP_CONFIGS_L2 = [\n    # Ulysses-2 - performance test\n    (2, 1, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),\n    (1, 2, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),  # Ring-2 - performance test\n    # Hybrid - correctness only\n    (2, 2, DEFAULT_HEIGHT, DEFAULT_WIDTH, False, False),\n]\n\nSP_CONFIGS_L3 = [\n    # Ulysses-2 - performance test\n    (2, 1, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),\n    (1, 2, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),  # Ring-2 - performance test\n    # Hybri",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/vllm-project/vllm-omni/issues/1623",
+    "created_at": "2026-03-23T10:24:59.147598",
+    "status": "claimed"
+  },
+  {
+    "key": "jiacai2050/mofish#1374",
+    "owner": "jiacai2050",
+    "repo": "mofish",
+    "number": 1374,
+    "title": "[2026-03-22] Do Not Turn Child Protection into Internet Access Control",
+    "body": "# Hacker News\n\n\n  <details>\n    <summary>\n      <strong>Do Not Turn Child Protection into Internet Access Control</strong>\n    </summary>\n\n## 年龄验证：不仅仅是儿童保护，更是一层新的网络控制 (年龄验证：不仅仅是儿童保护，更是一层新的网络控制)\n\n这篇文章探讨了年龄验证机制日益扩大的趋势，从最初仅用于少数成人网站，现在已经扩展到社交媒体、即时通讯、游戏、搜索引擎等主流服务。作者认为，问题不再是年龄验证是否会普及，而是它将如何塑造互联网。\n\n**核心观点：**\n\n*   **儿童保护是出发点，但并非全部：** 年龄验证的推动力之一是保护儿童免受有害内容、操纵性推荐、网络欺凌和成瘾性平台设计的影响。然而，作者指出，年龄验证不仅仅是儿童安全功能，更是一种访问控制架构，改变了网络的默认状态，从开放访问转变为需要授权访问。用户现在需要证明自己的身份才能使用服务。\n*   **身份层面的转变：** 年龄验证的深入，特别是当它融入操作系统时，意味着它不再是网站的一次性检查，而是一个持续的年龄状态层，通过系统接口暴露给应用程序。这使其看起来更像一个通用的设备身份层，而非简单的安全保障。\n*   **内容审核与监护的区别：** 作者强调，内容审核是关于内容分类和过滤，而监护是父母、教师等信任成年人对儿童进行指导和监督的责任。两者是不同的问题，混淆两者会导致错误的方向。\n*   **绕过机制与数据收集：** 年龄验证措施存在明显的绕过方式，例如VPN、借用账户、购买凭证等。作者认为，容易被绕过的控制，但又需要付出高昂成本的措施，实际上是一种企业数据收集行为，而非有效的安全措施。\n*   **潜在的泛化风险：** 作者警告，一旦建立起年龄验证层，它很容易被扩展到其他属性，例如位置、国籍、法律状态等，从而变成一个通用的门禁。\n*   **解决方案：** 作者建议在浏览器、设备、学校网络或可信本地列表等终端位置进行内容审核，将监护责任保留在父母、教师和社区手中。操作系统应该成为本地策略表面，而不是为远程服务广播年龄信息的通用层。\n*   **关注根本问题：** 真正的目标不是如何识别每个人，而是如何加强本地控制，而不是将网络变成一个检查站。应该关注推荐系统、暗模式、成瘾指标和不负责任的商业模式，这些才是导致在线危害的根本原因。\n\n**时间线：**\n\n文章还记录了作者对该问题的关注和行动：\n\n*   最初的讨论始于柏林Cypherpunk retreat。\n*   作者因Discord平台强制实施年龄验证而决定停止在该平台上的参与。\n*   Devuan GNU/Linux宣布不会实施年龄验证，引发了社区的积极响应。\n*   作者为《意大利Wired》撰写了意大利语文章，即将发表。\n*   文章在Hacker News上广为流传，引发了广泛的讨论。\n*   作者与卢加诺市和Plan₿基金会合作，计划在两年内推出城市范围内的试点项目，探索本地管理的监护技术。\n*   瑞士互联网倡议将责任归咎于大型科技公司。\n\n**总结：**\n\n作者呼吁重新审视年龄验证的实施方式，反对将网络变成一个检查站，强调本地控制和监护的重要性，并警惕其潜在的泛化风险和数据收集行为。文章旨在推动更平衡的公共讨论，并鼓励人们参与到塑造互联网未来的过程中。\n\n  </details>\n\n  [news.dyne.org](https://news.dyne.org/child-protection-is-not-access-control/) | 538 points by [smartmic](https://news.ycombinator.com/user?id=smartmic) at 04:32:20 | [282 comments](https://news.ycombinator.com/item?id=47470991)\n\n\n  <details>\n    <summary>\n      <strong>The three pillars of JavaScript bloat</strong>\n    </summary>\n\n好的，这是一份对原文内容的总结，字数控制在800字以内，使用markdown格式，并采用中文：\n\n## npm依赖树膨胀问题分析与应对\n\n近年来，`e18e`社区快速发展，性能优化贡献显著，这很大程度上归功于“清理”行动，即社区对冗余、过时或未维护的包进行清理。在这一过程中，一个常见话题是“依赖膨胀”——npm依赖树越来越大，其中包含大量早已不再需要的代码，这些代码现在通常可以通过平台原生功能提供。\n\n本文将探讨npm依赖树中三种主要膨胀类型，分析其产生原因，并提出应对方法。\n\n**1. 旧版运行时支持 (安全与 Realm)**\n\n早期JavaScript引擎缺乏现代功能，例如`Array.prototype.forEach`、`Object.keys`等。为了支持这些旧引擎，开发者不得不自行实现或使用polyfills。此外，为了防止全局命名空间被篡改，Node.js使用“primordials”机制，对全局对象进行包装。最后，跨Realm（例如网页和iframe之间）的数据传递也需要特殊处理，因为不同Realm的`RegExp`类是不一样的。这些情况导致了诸如`is-string`、`hasown`等小工具包的出现。\n\n然而，绝大多数开发者使用的都是近十年的Node.js版本或现代浏览器，并不需要支持老旧引擎、跨Realm数据传递或保护全局命名空间。这些兼容层却意外地出现在日常使用的包的热点代码中，导致所有开发者都为此付出代价。\n\n**2. 原子式架构**\n\n一些开发者推崇将包拆分成极小的、原子级的模块，以便于后续重用。这种架构导致依赖树中出现大量细粒度的代码包，例如`shebang-regex`、`arrify`、`slash`、`cli-boxes`等。虽然理论上可以方便地组合这些模块构建更高级别的功能，但实际上，许多原子包要么被广泛复制，要么只被单个包使用。\n\n例如，`shebang-regex`几乎只被`shebang-command`使用，`cli-boxes`则只被`boxen`和`ink`使用。这种单用途特性使得它们等同于内联代码，却增加了npm请求、解压等成本。此外，像Nuxt这样的项目，在依赖图中重复出现一些原子包，进一步增加了供应链的复杂性和潜在风险。\n\n**3. 过时的“Ponyfill”**\n\nPonyfill是导入式polyfill，用于在支持未来特性时避免修改全局环境。当这些特性在所有引擎中得到广泛支持后，Ponyfill应该被移除。然而，很多Ponyfill长期存在，例如`globalthis`、`indexof`、`object.entries`等。\n\n**应对措施**\n\n解决依赖膨胀问题需要社区共同努力。以下是一些建议：\n\n*   **审视依赖:** 质疑每个依赖包的必要性。\n*   **寻找替代方案:** 寻找更轻量或功能更强大",
+    "score": 55,
+    "labels": [
+      "posts"
+    ],
+    "html_url": "https://github.com/jiacai2050/mofish/issues/1374",
+    "created_at": "2026-03-23T11:30:07.056516",
     "status": "claimed"
   }
 ]
