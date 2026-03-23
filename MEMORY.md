@@ -10,15 +10,14 @@ _精心维护的记忆，提炼后的精华_
 
 ## 🎯 当前状态
 
-**时间**: 2026-03-22 19:58
+**时间**: 2026-03-23 09:49
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| Bounty 流水线 | ✅ 运行中 | 每 30 分钟扫描 |
-| homelab-stack | ✅ 100% 完成 | 14/14 PR 提交 |
-| 待审核 PR | 14 个 | $2,540 USDT |
-| 其他项目 | ~5 个 | ~$255 USDT |
-| **总计待审核** | **19+ PR** | **~$2,795 USDT** |
+| GeneralsGameCode #2434 | 🔍 PR 等审核 | $300, [PR #2485](https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485) |
+| Kozea/pygal #426 | 🔍 PR 等审核 | $300-500, [PR #579](https://github.com/Kozea/pygal/pull/579) |
+| coolify #7528 | ❌ 被屏蔽 | $200, 代码在fork, zhaog100被屏蔽 |
+| **总计待审核 PR** | **2 个** | **~$800-1,000** |
 | ClawHub 发布 | 25+ 个 | 技能 |
 | Git 仓库 | origin + xiaomili | 双仓库 |
 | GitHub | zhaog100 | 用户名 |
@@ -43,11 +42,19 @@ _精心维护的记忆，提炼后的精华_
 - **零依赖优先** — ast 替代 tree-sitter
 - **子代理交付 8 项清单** — SKILL.md/package.json/版权注释/pytest/接口验证/全链路测试/边界测试/不修改无关文件
 
-### Bounty 黑名单（2026-03-22 更新）⭐⭐⭐⭐⭐
+### Bounty 狩猎教训（2026-03-23 实战迭代）⭐⭐⭐⭐⭐
+
+1. **先评估再开发** — BJS #9 没先 research 就派子代理，浪费资源。流程：发现→research评估→确认可行→开发
+2. **验证 issue 时效性** — StateofScale $400 是 2019 年已取消的 issue，先看创建时间和最后活动
+3. **验证付款可靠性** — 优先选 Algora 标签确认的项目，`seeking funding` 标签=资金未到位
+4. **工作量与金额匹配** — Babylon.js GUI 引擎级改动市场价 $5K+，$300 明显不匹配
+
+### Bounty 黑名单（2026-03-23 更新）⭐⭐⭐⭐⭐
 
 | 仓库 | 原因 | 日期 |
 |------|------|------|
 | ComfyUI | bounty 已停超过 1 年 | 2026-03-22 |
+| coollabsio/coolify | 账号被屏蔽，批量评论被识别为spam | 2026-03-23 |
 | ANAVHEOBA | 黑名单 | - |
 | DenisZheng | 黑名单 | - |
 | PlatformNetwork | 黑名单 | - |

@@ -80,3 +80,4 @@ backups/
 # ===== Bounty Tasks 备份文件（每小时生成）=====
 data/bounty-tasks/bounty-tasks-*.json
 data/bounty-projects/
+GeneralsGameCode/
