@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "updated": "2026-03-23",
+  "prs": [
+    {
+      "id": "PR-20260323-001",
+      "repo": "TheSuperHackers/GeneralsGameCode",
+      "issue": 2434,
+      "pr": 2485,
+      "url": "https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485",
+      "title": "GLA Cash Bounty incorrect value for China Red Guard",
+      "amount": 300,
+      "currency": "USD",
+      "status": "review",
+      "submitted": "2026-03-23T06:58:00+08:00",
+      "payment_platform": "direct"
+    },
+    {
+      "id": "PR-20260323-002",
+      "repo": "Kozea/pygal",
+      "issue": 426,
+      "pr": 579,
+      "url": "https://github.com/Kozea/pygal/pull/579",
+      "title": "Add OHLC Candlestick Chart support",
+      "amount": 300,
+      "currency": "USD",
+      "max_amount": 500,
+      "status": "review",
+      "submitted": "2026-03-23T07:17:00+08:00",
+      "payment_platform": "direct"
+    },
+    {
+      "id": "PR-20260323-003",
+      "repo": "coollabsio/coolify",
+      "issue": 7528,
+      "pr": null,
+      "url": "https://github.com/zhaog100/coolify/tree/bounty/issue-7528",
+      "title": "Integrated backups for Git based Docker Composes",
+      "amount": 200,
+      "currency": "USD",
+      "status": "blocked",
+      "blocked_reason": "zhaog100账号被仓库屏蔽",
+      "submitted": null,
+      "payment_platform": "algora"
+    }
+  ]
+}
