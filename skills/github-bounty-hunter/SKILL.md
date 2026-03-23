@@ -43,7 +43,7 @@ author: 米粒儿 + 小米辣
 
 ```
 zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08
-|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin
+|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|coollabsio
 ```
 
 ## 🚀 核心命令
@@ -255,7 +255,18 @@ for bounty in sorted_list:
 ```
 发现 bounty
     ↓
-金额 > $200?
+① issue 创建时间 > 6个月且最后活动 > 3个月？
+    ├─ 是 → 检查是否已取消/过时 → 可能跳过 ❌
+    └─ 否 → 继续 ↓
+② 金额与工作量是否匹配？
+    ├─ 否（如引擎级改动只给$300）→ 跳过 ❌
+    └─ 是 → 继续 ↓
+③ 付款方式是否可靠？
+    ├─ `seeking funding` 标签 → 资金未到位，谨慎 ⚠️
+    ├─ 代币支付（非USDT/DAI）→ 高风险 ⚠️
+    ├─ Algora 确认 → 可靠 ✅
+    └─ 未明确 → 先问再接
+④ 金额 > $200?
     ├─ 是 → 竞争度 < 10?
     │       ├─ 是 → P0: 立即接 ✅
     │       └─ 否 → 竞争度 < 50?
@@ -367,6 +378,24 @@ export USDT_WALLET='TGu4W5T6...'
 PM 代理（发现→评估→接单）↔ Dev 代理（设计→开发→PR→跟进）
 
 > 详细 STATE.yaml 格式、错误自学习、平台集成细节见 `references/skill-details.md`
+
+---
+
+## ⚠️ 防屏蔽规则（v5.1 新增）
+
+> 2026-03-23 教训：zhaog100 被 coollabsio/coolify 屏蔽
+
+### 规则
+1. **同仓库最多评论 2 个 issue** — 不要批量留"我要做"的评论
+2. **先做再评论** — PR 提交后再在 issue 评论说明，不要空口接任务
+3. **评论内容要有价值** — 附带实现方案或技术分析，不要只说"I will work on this"
+4. **不要在短时间内（<1小时）对同一仓库评论 >3 个 issue**
+5. **认领前先检查账号状态** — `gh api repos/<owner>/<repo>/commits?author=zhaog100 --jq 'length'` 确认可访问
+
+### 违规后果
+- 被标记为 spam bot
+- 账号被仓库/组织屏蔽
+- 已有 fork 的代码无法提交 PR
 
 ---
 
