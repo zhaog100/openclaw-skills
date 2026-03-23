@@ -64,6 +64,7 @@ Juwebien/agent-marketplace##7
 Kanba-co/kanba#29
 Kanba-co/kanba#30
 LiveHelperChat/livehelperchat#1505
+Mikann20041029/mikann20041029.github.io#375
 OWASP-BLT/BLT-Next##118
 OWASP-BLT/BLT-Next##123
 OWASP-BLT/BLT-Next##124
@@ -193,6 +194,7 @@ clanker-devco/clanker-sdk#126
 clanktank/seal-skills#4
 code-payments/flipcash-program#5
 code-payments/flipcash-program#7
+codexbt/Eliza-Lobster#3
 commaai/openpilot#30693
 coollabsio/coolify##7528
 coollabsio/coolify#7743
@@ -224,6 +226,7 @@ immich-app/immich##12614
 jelly-legs-ai/Jelly-legs-unsteady-workshop##11
 jelly-legs-ai/Jelly-legs-unsteady-workshop#108
 jelly-legs-ai/Jelly-legs-unsteady-workshop#11
+jiacai2050/mofish#1374
 jose-blockchain/curated-erc#24
 kimcartoon/mydic#6648
 kodaksax/Bounty-production#395
@@ -274,6 +277,8 @@ vercel-labs/skills#719
 versila22/hotline-darons#1
 versila22/hotline-darons#2
 versila22/hotline-darons#3
+vllm-project/vllm-omni#1623
+vllm-project/vllm-omni#2015
 vllm-project/vllm-omni#2075
 zed-industries/zed#4440
 zio/izumi-reflect#404
