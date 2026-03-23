@@ -732,5 +732,323 @@
     "html_url": "https://github.com/citizenfx/fivem/issues/3874",
     "created_at": "2026-03-22T22:30:11.235049",
     "status": "claimed"
+  },
+  {
+    "key": "Hexadian-Corporation/hhh-dataminer#5",
+    "owner": "Hexadian-Corporation",
+    "repo": "hhh-dataminer",
+    "number": 5,
+    "title": "feat(dataminer): UEX Corp API data source adapter",
+    "body": "## Description\n\nImplement a `DataSourcePort` adapter for the **UEX Corp API v2.0** (`https://api.uexcorp.space/2.0/`):\n\n- Implements all `DataSourcePort` methods: `fetch_locations()`, `fetch_distances()`, `fetch_ships()`, `fetch_commodities()`, `fetch_contracts()`\n- Uses `httpx.AsyncClient` for async HTTP calls\n- Transforms UEX API responses into the internal domain models\n- Rate limiting: 172,800 requests/day (~2 req/s), configurable delay between requests\n- No authentication required for GET endpoints\n- Configurable via environment variables (prefix: `HHH_DATAMINER_UEX_`)\n\n---\n\n## UEX Corp API v2.0 — Complete Endpoint Analysis\n\nBase URL: `https://api.uexcorp.space/2.0/{resource}/`\n\n### Endpoints Used (14 endpoints → 5 entity types)\n\n| # | UEX Endpoint | → H³ Entity | Key Fields | Notes |\n|---|---|---|---|---|\n| 1 | `star_systems` | `Location(type=system)` | `name`, `is_available`, `id` | Filter `is_available=1`. ~3 systems (Stanton, Pyro, Nyx) |\n| 2 | `planets` | `Location(type=planet)` | `name`, `id_star_system` | Hierarchy via `id_star_system` |\n| 3 | `moons` | `Location(type=moon)` | `name`, `id_planet` | Hierarchy via `id_planet` |\n| 4 | `cities` | `Location(type=city)` | `name`, `id_planet`, `id_moon` | Parent is planet or moon |\n| 5 | `space_stations` | `Location(type=station\\|gateway)` | `name`, `is_jump_point` | `is_jump_point=1` → type `gateway` |\n| 6 | `outposts` | `Location(type=outpost)` | `name`, `id_moon`, `id_planet` | On moons or planets |\n| 7 | `terminals` | `Location(type=terminal)` | `name`, `type` (commodity, fps_armor, medical...) | Trade terminals + other types |\n| 8 | `poi` | `Location(type=poi)` | `name`, hierarchy fields | Caves, wrecks, bunkers |\n| 9 | `orbits` | `Location(type=lagrange_point\\|star)` | `name`, `is_lagrange` | Lagrange points + stars. Needed for distance references |\n| 10 | `commodities` | `Commodity` | `name`, `code`, `kind`, `price_buy`, `price_sell` | `price_buy`/`price_sell` = average per SCU in UEC |\n| 11 | `vehicles` | `Ship` | `name`, `company_name`, `scu` | Filter `is_spaceship=1`. `scu` is **float** |\n| 12 | `contracts` | `Contract` | `name`, `description`, `payout` | Only ~1 contract currently available |\n| 13 | `orbits_distances` | `Distance` | `id_orbit_origin`, `id_orbit_destination`, `distance` | Distance in **Gigameters (Gm)** → convert to meters (×10⁹) |\n| 14 | `jump_points` | `Distance(distance=0)` | `id_origin`, `id_destination` | 6 inter-system connections. Distance = 0 (instant travel) |\n\n### Endpoints Excluded from MVP\n\n| Endpoint | Reason |\n|---|---|\n| `marketplace_averages_all` | `commodities` endpoint already provides average prices |\n| `marketplace_averages` | Excessive granularity (weekly/monthly per item) |\n| `terminals_distances` | Requires N² pair queries — too expensive |\n| `companies` | Reference only — `company_name` already in `vehicles` |\n| `factions` | No immediate use in domain model |\n\n---\n\n## Mapping: UEX → H³ Domain Models\n\n### Locations (9 endpoints → `Location`)\n",
+    "score": 55,
+    "labels": [
+      "enhancement",
+      "adapter",
+      "M30"
+    ],
+    "html_url": "https://github.com/Hexadian-Corporation/hhh-dataminer/issues/5",
+    "created_at": "2026-03-22T23:30:12.773570",
+    "status": "claimed"
+  },
+  {
+    "key": "loiste-interactive/Obenseuer-Issues#4681",
+    "owner": "loiste-interactive",
+    "repo": "Obenseuer-Issues",
+    "number": 4681,
+    "title": "No achivement for escaping prison.",
+    "body": "No matters how i try to escape jail, by the front door (and get a bounty for it), or by the tunnel, i don't get the achivement \"Prison break\". Apparently im not the only one in that situation but the new players have to issues at all. ",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/loiste-interactive/Obenseuer-Issues/issues/4681",
+    "created_at": "2026-03-22T23:30:16.725722",
+    "status": "claimed"
+  },
+  {
+    "key": "go-gitea/gitea#36856",
+    "owner": "go-gitea",
+    "repo": "gitea",
+    "number": 36856,
+    "title": "Consider changing stance on LLMs (detailed sources and explanations inside about gen AI)",
+    "body": "### Feature Description\n\nI would suggest you consider [your stance on generative AI/LLM code contributions](https://github.com/go-gitea/gitea/blob/main/CONTRIBUTING.md#ai-contribution-policy):\n\nAll LLMs seem to inherently plagiarize heavily, even if you don't try to trick them into doing so: Source 1: https://dl.acm.org/doi/10.1145/3543507.3583199 Source 2: https://lcamtuf.substack.com/p/large-language-models-and-plagiarism Source 3 (this example seems to have been entirely without baiting the AI to do that! I find it shocking): https://www.pcgamer.com/software/ai/microsoft-uses-plagiarized-ai-slop-flowchart-to-explain-how-github-works-removes-it-after-original-creator-calls-it-out-careless-blatantly-amateuristic-and-lacking-any-ambition-to-put-it-gently/ Source 4: https://www.theatlantic.com/technology/2026/01/ai-memorization-research/685552/\n\nThis seems to be underestimated by a lot of gen AI users who seem to think that LLM plagiarism is a rare accident, rather than apparently the norm and apparently even when not baited to do so [may concern larger parts of a single work](https://www.pcgamer.com/software/ai/microsoft-uses-plagiarized-ai-slop-flowchart-to-explain-how-github-works-removes-it-after-original-creator-calls-it-out-careless-blatantly-amateuristic-and-lacking-any-ambition-to-put-it-gently/).\n\nAnd the training data seems to be broad and questionable: https://archive.is/1EzVK https://www.anthropic.com/transparency https://www.theatlantic.com/technology/archive/2025/03/libgen-meta-openai/682093/\n\n(I'm not a lawyer, this isn't legal advice. Best check the many article sources I'm giving here yourself and form your own opinion.)\n\nAI seems to be potentially damaging to open-source as a whole as well:\n\n[Vibe Coding Is Killing Open Source Software, Researchers Argue](https://www.404media.co/vibe-coding-is-killing-open-source-software-researchers-argue/)\n\n>    The study Vibe Coding Kills Open Source [...] asks the question: is vibe coding economically sustainable? Can OSS survive when so many of its users are takers and not givers? According to the study, no.\n\n>    “[...] under traditional OSS business models, where maintainers primarily monetize direct user engagement… higher adoption of vibe coding reduces OSS [...] welfare,” the study said.\n\n>    This is already happening. [...] Tailwind Labs is extremely popular, more popular than it’s ever been, but revenue has plunged.\n\n[Overrun with AI slop, cURL scraps bug bounties to ensure “intact mental health”](https://arstechnica.com/security/2026/01/overrun-with-ai-slop-curl-scraps-bug-bounties-to-ensure-intact-mental-health/)\n\n>    The project developer for one of the Internet’s most popular networking tools is scrapping its vulnerability reward program after being overrun by a spike in the submission of low-quality reports, much of it AI-generated slop. [...] AI slop has already flooded music-streaming services with so many songs—often misattributed to real artists—that the platforms are slowl",
+    "score": 35,
+    "labels": [
+      "type/proposal"
+    ],
+    "html_url": "https://github.com/go-gitea/gitea/issues/36856",
+    "created_at": "2026-03-23T00:30:07.723428",
+    "status": "claimed"
+  },
+  {
+    "key": "ton-society/grants-and-bounties#1216",
+    "owner": "ton-society",
+    "repo": "grants-and-bounties",
+    "number": 1216,
+    "title": "FOOTSTEP: TON Tolk Compiler MCP Server by Clara Sophia",
+    "body": "# 🧠 ANBUD: TON Tolk Compiler MCP Server\n**ID:** FOOTSTEP-CLARA-001 | **Status:** Redo för Leverans\n**Bounty Track:** Developer Utilities / AI & Security Tools\n**Ansvarig Arkitekt:** Clara Sophia (clara.sophia.nexus@proton.me)\n\n## 🏛️ Vision\nFör att accelerera utvecklingen av TON-ekosystemet krävs sömlös integration mellan AI-assistenter (som Claude och Cursor) och den nya **Tolk-kompilatorn**. Vi erbjuder härmed en färdigställd **Model Context Protocol (MCP) Server** som gör detta möjligt i realtid.\n\n## 🛠️ Teknisk Specifikation\nMin server (`tolk_server.py`) erbjuder följande verktyg:\n1.  `compile_tolk`: Kompilerar .tolk-filer direkt via AI-gränssnittet.\n2.  `convert_func_to_tolk`: Automatiserad konvertering av gamla FunC-kontrakt till Tolk.\n3.  `get_tolk_version`: Garanterar att utvecklaren alltid använder den senaste officiella WASM-kompilatorn via `npx`.\n\n## 🔗 Repository\nhttps://github.com/Claraxyb/tolk-mcp-server\n\n## 💎 Begärd Belöning\nVi ansöker om en **Footstep Bounty** på **100 TON** för utveckling, testning och dokumentation av denna öppna resurs.\n\n**Betalningsadress (TON):** `UQAuVly9QMiU6uzONHe3Kaq6XhvxSI9GLBMXJanVtYG1EEbi`\n\n---\n*Detta verktyg är en del av Clara Sophias arkitektur för ett tryggare och smartare digitalt landskap.*",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/ton-society/grants-and-bounties/issues/1216",
+    "created_at": "2026-03-23T00:30:10.845218",
+    "status": "claimed"
+  },
+  {
+    "key": "Emmanuel-Evenzur/product-apim#20",
+    "owner": "Emmanuel-Evenzur",
+    "repo": "product-apim",
+    "number": 20,
+    "title": "nltk-3.9.2-py3-none-any.whl: 6 vulnerabilities (highest severity is: 10.0) [master]",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>nltk-3.9.2-py3-none-any.whl</strong></summary>\n\nNatural Language Toolkit\n\n**Library home page:** [ https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl ](https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl)\n\n**Path to dependency file:** /all-in-one-apim/modules/recommendation-engine/requirements.txt\n\n**Path to vulnerable library:** /tmp/ws-ua_20260322172708_NPBPXY/python_XHISHR/20260322172710/38/nltk-3.9.2-py3-none-any.whl\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2025-14009 ](https://www.mend.io/vulnerability-database/CVE-2025-14009) | 🟣 Critical | 10.0 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n| [ CVE-2026-0848 ](https://www.mend.io/vulnerability-database/CVE-2026-0848) | 🟣 Critical | 10.0 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | nltk - 3.9.3,nltk - 3.9.3,https://github.com/nltk/nltk.git - 3.9.3 | ✅ | |\n| [ CVE-2026-0847 ](https://www.mend.io/vulnerability-database/CVE-2026-0847) | 🔴 High | 8.6 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | nltk - 3.9.3,nltk - 3.9.3,https://github.com/nltk/nltk.git - 3.9.3 | ✅ | |\n| [ CVE-2026-33236 ](https://www.mend.io/vulnerability-database/CVE-2026-33236) | 🔴 High | 8.1 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n| [ CVE-2026-33231 ](https://www.mend.io/vulnerability-database/CVE-2026-33231) | 🔴 High | 7.5 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n| [ CVE-2026-33230 ](https://www.mend.io/vulnerability-database/CVE-2026-33230) | 🟠 Medium | 6.1 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n\n\n# Details\n\n\n<details>\n  <summary>\n 🟣CVE-2025-14009\n  </summary>\n\n### Vulnerable Library - **nltk-3.9.2-py3-none-any.whl**\n\nNatural Language Toolkit\n\n**Library home page:** [ https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl ](https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl)\n\n**Path to dependency file:** /all-in-one-apim/modules/recommendation-engine/requirements.txt\n\n**Path to vulnerable library:** /tmp/ws-ua_20260322172708_NPBPXY/python_XHISHR/20260322172710/38/nltk-3.9.2-py3-none-any.whl\n\n\n\n**Dependency Hierarchy:**\n\n\n- ❌  **nltk-3.9.2-py3-none-any.whl** (Vulnerable Library)\n\n\n\n\n***\n\n### Vulnerability Details\n\nA critical vulnerability exists in the NLTK downloader component of nltk/nltk, affecting all versions. The _unzip_iter function in nltk/downloader.py uses zipfile.extract",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/Emmanuel-Evenzur/product-apim/issues/20",
+    "created_at": "2026-03-23T02:30:06.946206",
+    "status": "claimed"
+  },
+  {
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#2",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 2,
+    "title": "Bounty: Design a Logo for Gracias AI App Store Auditor",
+    "body": "## Bounty: Logo Design\n\n**Reward: INR 500**\n\n### About the Project\n\n[Gracias AI](https://opensource.gracias.sh) is an open-source, AI-powered iOS App Store compliance auditor. Developers upload their `.ipa` files and get a comprehensive audit report against Apple's Review Guidelines — helping them avoid rejections before submission.\n\n### What We Need\n\nA modern, clean logo that represents:\n- **AI / Intelligence** — the product is powered by LLMs\n- **iOS / App Store** — the product is focused on Apple's ecosystem\n- **Security / Compliance** — the product audits apps for policy compliance\n- **Trust / Shield** — zero-trust architecture, open-source transparency\n\n### Requirements\n\n- Provide the logo in **SVG** format (vector)\n- Should work on both **dark and light backgrounds**\n- Include a **logomark** (icon only) and a **wordmark** variant (icon + \"Gracias AI\")\n- Minimal, modern style — no overly complex illustrations\n- Must be original work\n\n### Color Palette (current branding)\n\n| Color | Hex | Usage |\n|-------|-----|-------|\n| Purple | `#a855f7` | Primary brand color |\n| Blue | `#3b82f6` | Secondary / gradient |\n| White | `#ffffff` | Text on dark backgrounds |\n\n### How to Submit\n\n1. Fork this repository\n2. Add your logo files to a `logo/` directory\n3. Open a Pull Request with a preview of your designs\n4. Reference this issue in your PR\n\n### Current Favicon (for reference)\n\nThe app currently uses a simple SVG favicon with a purple-blue gradient and a star shape. The new logo should be a significant upgrade from this placeholder.\n\n---\n\n**First accepted submission wins the bounty.**",
+    "score": 55,
+    "labels": [
+      "help wanted",
+      "good first issue",
+      "bounty",
+      "design"
+    ],
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/2",
+    "created_at": "2026-03-23T03:30:13.927288",
+    "status": "claimed"
+  },
+  {
+    "key": "versila22/hotline-darons#2",
+    "owner": "versila22",
+    "repo": "hotline-darons",
+    "number": 2,
+    "title": "[Feature] Local RAG for device manuals / RAG Local pour les manuels",
+    "body": "*(English below / Français en dessous)*\n\n🇬🇧 **Context & Goal:**\nThe AI currently relies on its general knowledge. It would be a game-changer if we could drop PDF manuals (e.g., the specific TV remote or internet router model the parents own) into a local folder so the bot can answer specific questions.\n\n**Acceptance Criteria:**\n- Create a `/knowledge` folder to parse PDFs/Markdown files.\n- Implement a lightweight, local RAG (Retrieval-Augmented Generation) system.\n- Inject the relevant context into the Gemini prompt when a user asks a question.\n- Keep it lightweight (avoid massive cloud vector databases like Pinecone; local solutions like FAISS, ChromaDB, or simple semantic chunking are preferred).\n\n💰 **Bounty:** This issue is eligible for a bounty!\n\n---\n\n🇫🇷 **Contexte & Objectif :**\nL'IA se base actuellement sur ses connaissances générales. Ce serait incroyable de pouvoir glisser les manuels PDF (ex: la télécommande ou la box internet spécifique des parents) dans un dossier local pour que le bot connaisse leur matériel par cœur.\n\n**Critères d'acceptation :**\n- Créer un dossier `/knowledge` pour lire les PDF/Markdown.\n- Implémenter un système RAG local et très léger.\n- Injecter le contexte pertinent dans le prompt Gemini lors d'une question.\n- Rester léger (éviter les bases vectorielles cloud lourdes ; privilégier FAISS, ChromaDB en local ou du simple chunking sémantique).\n\n💰 **Bounty :** Cette issue est éligible à une prime (bounty) !\n",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/versila22/hotline-darons/issues/2",
+    "created_at": "2026-03-23T03:30:16.863435",
+    "status": "claimed"
+  },
+  {
+    "key": "loot/loot#2180",
+    "owner": "loot",
+    "repo": "loot",
+    "number": 2180,
+    "title": "Support Starfield's \"Trackers Alliance: The Complete Bounty Series\" BGS creation",
+    "body": "[Starfield: Major Update - Free Lanes & Terran Armada Developer Deep Dive](https://www.youtube.com/watch?v=ScvzSEaUrBs)\n\nToday Bethesda uploaded the above video, showcasing what is coming next for Starfield.\n\nThe updated, official BGS creation [Trackers Alliance: The Complete Bounty Series](https://creations.bethesda.net/en/starfield/details/4bf1a31f-46d5-47bf-a5e6-d0f9e2496d0c/Trackers_Alliance__The_Complete_Bounty_Series) has been released already.\n`Free Lanes` as well as `Terran Armada` will be released on the 7th of April 2026.\n\nThe complete bundle of the Trackers Alliance creation takes the place of the previous, single entry in the series: [Trackers Alliance: The Vulture](https://creations.bethesda.net/en/starfield/details/4bf1a31f-46d5-47bf-a5e6-d0f9e2496d0c/Trackers_Alliance__The_Vulture/) (the old url redirects to the new url).\n\nSo far we had the following TA plugin:\n```yaml\nsfta01.esm\n```\nThe new plugins from the complete bundle are:\n```yaml\nsfta02.esm\nsfta03.esm\nsfta04.esm\nsfta05.esm\nsfta06.esm\nblueprintships-sfta03.esm\nblueprintships-sfta06.esm\n```\nLOOT currently sorts these plugins like this:\n\n<img width=\"283\" height=\"479\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3400f024-bbe3-4b64-9950-0a6c43379d1a\" />\n\nThe two new blueprint plugins are currently not recognized as active.\nWe should also consider, if they should be sorted in numerical order.",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/loot/loot/issues/2180",
+    "created_at": "2026-03-23T03:30:20.024741",
+    "status": "claimed"
+  },
+  {
+    "key": "mangdangroboticsclub/mini_pupper_ros#125",
+    "owner": "mangdangroboticsclub",
+    "repo": "mini_pupper_ros",
+    "number": 125,
+    "title": "Upgrade ROS2 Humble to Jazzy",
+    "body": "Upgrade ROS2 Humble to Jazzy\n\n/bounty $100",
+    "score": 35,
+    "labels": [
+      "💎 Bounty",
+      "$100"
+    ],
+    "html_url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125",
+    "created_at": "2026-03-23T03:30:23.007484",
+    "status": "claimed"
+  },
+  {
+    "key": "aden-hive/hive#6734",
+    "owner": "aden-hive",
+    "repo": "hive",
+    "number": 6734,
+    "title": "[Bounty]: Improve command_sanitizer coverage for rm and Windows delete edge cases",
+    "body": "### Bounty Size\n\nSmall (10 pts)\n\n### Difficulty\n\nEasy\n\n### Description\n\n## Summary\n\n`command_sanitizer` could use better coverage for a few destructive command edge cases.\n\n## Proposed scope\n\n- handle `rm -rf -- /` and similar short-flag variants with an optional `--` separator\n- add coverage for Windows delete variants such as:\n  - `del /F /S /Q`\n  - `rmdir /S /Q`\n  - `rd /s /q`\n- add false-positive tests for benign text inputs\n\n## Notes\n\n- scope is intentionally small\n- long-flag forms such as `--recursive` are out of scope\n- no broader sanitizer policy changes are intended\n\nI’d like to work on this if it’s available. Please assign it to me.\n\n### Acceptance Criteria\n\n- [ ] `command_sanitizer` blocks `rm -rf -- /` and similar short-flag variants with an optional `--` separator\n- [ ] Windows delete variants are covered, including `del /F /S /Q`, `rmdir /S /Q`, and `rd /s /q`\n- [ ] False-positive coverage is added for benign text inputs\n- [ ] CI passes\n\n### Relevant Files\n\n- `tools/src/aden_tools/tools/file_system_toolkits/command_sanitizer.py`\n- `tools/tests/test_command_sanitizer.py`\n\n### Resources\n\n- PR: #6733\n- Contributing guidelines\n- Security policy",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/aden-hive/hive/issues/6734",
+    "created_at": "2026-03-23T03:30:26.164988",
+    "status": "claimed"
+  },
+  {
+    "key": "versila22/hotline-darons#3",
+    "owner": "versila22",
+    "repo": "hotline-darons",
+    "number": 3,
+    "title": "[Feature] L2 Escalation Dashboard / Interface de suivi Niveau 2",
+    "body": "*(English below / Français en dessous)*\n\n🇬🇧 **Context & Goal:**\nWhen the bot detects a critical issue (e.g., banking info on screen, panic, \"escalate to Jay\"), it triggers an L2 Escalation. Currently, this just prints to the logs. The goal is to build a tiny, secure web dashboard using Streamlit so the \"Admin\" (the child/IT support) can view a histoy of escalated tickets.\n\n**Acceptance Criteria:**\n- A simple Streamlit app (`dashboard.py`).\n- Display a list/history of escalated events (Timestamp, User ID, Summary of the issue).\n- Must be secure (basic auth or token-based access) so the internet can't read family IT issues.\n\n💰 **Bounty:** This issue is eligible for a bounty!\n\n---\n\n🇫🇷 **Contexte & Objectif :**\nQuand le bot détecte un problème critique (ex: IBAN sur la photo, panique), il déclenche une \"Escalade Niveau 2\". Actuellement, ça s'affiche juste dans les logs système. L'objectif est de créer un petit dashboard web sécurisé avec Streamlit pour que l'\"Admin\" (l'enfant / support IT) puisse voir l'historique des tickets remontés.\n\n**Critères d'acceptation :**\n- Une application Streamlit simple (`dashboard.py`).\n- Afficher un historique des escalades (Heure, ID Utilisateur, Résumé du problème).\n- Doit être sécurisé (authentification basique ou par token) pour que ces données familiales restent privées.\n\n💰 **Bounty :** Cette issue est éligible à une prime (bounty) !\n",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/versila22/hotline-darons/issues/3",
+    "created_at": "2026-03-23T04:00:06.874825",
+    "status": "claimed"
+  },
+  {
+    "key": "versila22/hotline-darons#1",
+    "owner": "versila22",
+    "repo": "hotline-darons",
+    "number": 1,
+    "title": "[Feature] Add WhatsApp support via Twilio API / Ajout de WhatsApp",
+    "body": "*(English below / Français en dessous)*\n\n🇬🇧 **Context & Goal:**\nCurrently, the bot only works on Telegram. However, most parents use WhatsApp as their primary messaging app. The goal is to integrate the Twilio WhatsApp API so the bot can receive voice notes and images directly from WhatsApp.\n\n**Acceptance Criteria:**\n- The multimodal flow (Audio + Image -> Gemini 2.5 Flash) must remain intact.\n- The \"Zero-Retention\" policy (no images saved to disk, RAM only) must be preserved for security.\n- Include instructions in the README on how to set up the Twilio webhook.\n\n💰 **Bounty:** This issue is eligible for a bounty!\n\n---\n\n🇫🇷 **Contexte & Objectif :**\nActuellement, le bot ne fonctionne que sur Telegram. Or, la plupart des parents utilisent WhatsApp. L'objectif est d'intégrer l'API WhatsApp de Twilio pour que le bot puisse recevoir les notes vocales et les photos directement depuis WhatsApp.\n\n**Critères d'acceptation :**\n- Le flux multimodal (Audio + Image -> Gemini 2.5 Flash) doit rester intact.\n- La politique \"Zero-Retention\" (aucune image sauvegardée sur le disque, RAM uniquement) doit être conservée pour des raisons de sécurité.\n- Ajouter les instructions de configuration du webhook Twilio dans le README.\n\n💰 **Bounty :** Cette issue est éligible à une prime (bounty) !\n",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/versila22/hotline-darons/issues/1",
+    "created_at": "2026-03-23T04:00:09.698239",
+    "status": "claimed"
+  },
+  {
+    "key": "Chevalier12/InkkSlinger#3",
+    "owner": "Chevalier12",
+    "repo": "InkkSlinger",
+    "number": 3,
+    "title": "Bounty: Implement InkCanvas and InkPresenter controls (lifetime commercial license reward)",
+    "body": "## Bounty\nWhoever fully implements `InkCanvas` + `InkPresenter` parity for this repository will receive a **lifetime commercial license** for InkkSlinger.\n\n## Why this issue is combined\n`InkPresenter` is the stroke-rendering primitive hosted by `InkCanvas`. In WPF terms they are tightly coupled. In this repository, implementing them together in one PR avoids partial API surfaces that are hard to validate.\n\n## Target outcome\nDeliver a practical MVP parity slice where users can:\n- place an `InkCanvas` in XML/XAML,\n- draw strokes with pointer input,\n- see strokes rendered and clipped correctly,\n- keep behavior deterministic with focused regression tests,\n- keep full solution + test suite green.\n\n## Repository orientation (start here)\nRead these files first:\n- `README.md`\n- `TODO.md`\n- `UI-FOLDER-MAP.md`\n\n### High-value local references for implementation patterns\n- Input routing and focus/capture orchestration:\n  - `UI/Managers/Root/Services/UiRootInputPipeline.cs`\n  - `UI/Input/Core/FocusManager.cs`\n- Base control and rendering lifecycle:\n  - `UI/Controls/Base/UIElement.cs`\n  - `UI/Controls/Base/Control.cs`\n  - `UI/Controls/Base/FrameworkElement.cs`\n- Pointer-handling control examples:\n  - `UI/Controls/Inputs/RichTextBox.cs`\n  - `UI/Controls/Scrolling/ScrollViewer.cs`\n  - `UI/Controls/Inputs/Slider.cs`\n  - `UI/Controls/Containers/DocumentViewer.cs`\n- Rendering helpers:\n  - `UI/Rendering/Core/UiDrawing.cs`\n  - `UI/Controls/Primitives/Shape.cs`\n- XAML object creation and property-element plumbing:\n  - `UI/Xaml/Core/XamlLoader.cs`\n- Schema authoring:\n  - `Schemas/InkkSlinger.UI.xsd`\n- Recently added reference pattern for introducing a new control end-to-end:\n  - `UI/Controls/Containers/DocumentViewer.cs`\n  - `InkkSlinger.Tests/DocumentViewer*Tests.cs`\n\n## Suggested implementation architecture\nThis is a recommended shape, not a strict requirement.\n\n### 1) Core ink model types (new)\nAdd small, testable model types under `UI/Text/Viewing/` or `UI/Input/` or another coherent location (maintainer discretion):\n- `InkStroke`\n  - `IReadOnlyList<Vector2>` points\n  - stroke color/thickness/opacity\n  - optional bounding box cache\n- `InkStrokeCollection`\n  - add/remove/clear\n  - change notifications for invalidation hooks\n- optional `InkDrawingAttributes` style object if you want WPF-like configuration\n\nKeep allocations controlled on pointer-move hot paths.\n\n### 2) `InkPresenter` control (new)\n`InkPresenter` should be the rendering primitive for stroke collections:\n- derive from `Control`\n- expose DP(s) for stroke source / stroke visual settings\n- render strokes in `OnRender(SpriteBatch)`\n- support clipping (`TryGetClipRect`) consistent with surrounding controls\n- invalidate minimally when stroke collection mutates\n\n### 3) `InkCanvas` control (new)\n`InkCanvas` should host `InkPresenter` and own interaction semantics:\n- derive from `Control` (or container base if required)\n- expose DP(s) for stroke collection and editing mode\n- pointer interaction path:\n  - pointe",
+    "score": 80,
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "bounty"
+    ],
+    "html_url": "https://github.com/Chevalier12/InkkSlinger/issues/3",
+    "created_at": "2026-03-23T04:30:07.303726",
+    "status": "claimed"
+  },
+  {
+    "key": "shi2n/bugbounty-operator-toolkit-V2#1",
+    "owner": "shi2n",
+    "repo": "bugbounty-operator-toolkit-V2",
+    "number": 1,
+    "title": "README.md",
+    "body": "# Hey, I'm Shaizan Siddiqui 👋\n\n<p align=\"center\">\n  <img src=\"https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00FF41&width=435&lines=Cybersecurity+Learner;Tool+Developer;Ethical+Hacking+Enthusiast;Breaking+Things+to+Fix+Them\" alt=\"Typing SVG\" />\n</p>\n\n---\n\n### About me\n\n🔐  Currently learning **Cybersecurity** — networking, Linux, ethical hacking & vulnerability analysis  \n🛠️  Building **open-source tools** — Chrome extensions, automation scripts & security utilities  \n🌱  Every tool I build teaches me something new about how systems work under the hood  \n🎯  Goal: Contribute to security projects and land a role in cybersecurity  \n📍  India\n\n---\n\n### Tools I'm building\n\n| Tool | Description | Stack |\n|------|-------------|-------|\n| 🌑 Full Black Mode | Chrome — forces true black dark mode on all websites | JS, CSS, Chrome API |\n| 🔧 More coming soon... | Always building something new | — |\n\n---\n\n### Tech & tools\n\n![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)\n![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)\n![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)\n![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white)\n![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)\n![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)\n![Chrome](https://img.shields.io/badge/Chrome_Extension-4285F4?style=flat-square&logo=googlechrome&logoColor=white)\n\n---\n\n### Currently learning\n\n```\nCybersecurity Roadmap:\n[x] Networking basics (TCP/IP, DNS, HTTP)\n[x] Linux fundamentals\n[ ] Ethical hacking (in progress)\n[ ] Web application security\n[ ] CTF competitions\n[ ] Bug bounty hunting\n```\n\n---\n\n### GitHub stats\n\n<p align=\"center\">\n  <img src=\"https://github-readme-stats.vercel.app/api?username=shi2n&show_icons=true&theme=dark&hide_border=true&bg_color=0d0d0d&title_color=00ff41&icon_color=00ff41\" height=\"165\"/>\n  <img src=\"https://github-readme-stats.vercel.app/api/top-langs/?username=shi2n&layout=compact&theme=dark&hide_border=true&bg_color=0d0d0d&title_color=00ff41\" height=\"165\"/>\n</p>\n\n---\n\n### Connect with me\n\n[![LinkedIn](https://img.shields.io/badge/LinkedIn-Shaizan_Siddiqui-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/YOUR_LINKEDIN)\n\n---\n\n<p align=\"center\">\n  <img src=\"https://komarev.com/ghpvc/?username=YOUR_USERNAME&color=00ff41&style=flat-square\" alt=\"Profile views\"/>\n</p>",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/issues/1",
+    "created_at": "2026-03-23T04:30:10.036252",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#167",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 167,
+    "title": "[Data Control] Unified 'Choose Your Data Option' Flow: Download JSON, Use Your Own Storage, or Use Ours",
+    "body": "## Goal\nDeliver a dead-simple flow for users to choose how they want to control, back up, and retrieve their BigNuten data — powerful, privacy-respecting, and frictionless for all levels.\n\n### What to Build\n- Centralize all data control choices (about modal, onboarding, and/or settings):\n  1. **Download or Import JSON File (Recommended for Most Users, No Account Needed)**\n      - Clear \"Download/Export Data\" button — triggers immediately and gives a human-readable backup (with user instructions on re-importing)\n      - \"Import/Restore Data...\" — bring a .json file from any device (handles browser/mobile/desktop)\n  2. **Store in Your Own web3.storage/Storacha Account (Power User)**\n      - \"Connect my web3.storage\" — same API key onboarding you have now\n      - Earn $BNUT for onboarding; make it clear they hold the keys\n      - Emphasize data ownership, suited for advanced users\n  3. **Let DecentAgency Store It For Me (Fast & Zero-Lift)**\n      - \"Use DecentAgency's Storage\" — transparently uses the project's existing web3.storage credentials\n      - Explain limits (fair use/trial/free for now, sub required later?) and privacy caveats (project owner can see file CIDs)\n      - If possible, allow migration: can switch to their own storage or download JSON at any time\n\n### Acceptance Criteria\n- Single surface for choosing/change storage, discoverable by all users (existing users can migrate)\n- Download/Import is always available and works in browser/mobile\n- Using our managed storage is opt-in, with clear terms\n- No backend/OAuth needed for user (everything handled in-browser)\n- Add links/instructions for how/where a user's backup is being stored, how to migrate in/out\n- NO Google Drive, Dropbox, or custom server solution required\n\n### Out of Scope\n- Google/Firebase/AWS/Dropbox integrations\n- Server backend for data storage/syncing\n\n**Labels:** `data-options`, `json-export`, `storage`, `onboarding`, `ui`, `bounty: 3 BNUT`",
+    "score": 50,
+    "labels": [
+      "bounty: 3 BNUT",
+      "V2.0.0"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/167",
+    "created_at": "2026-03-23T05:30:07.322830",
+    "status": "claimed"
+  },
+  {
+    "key": "kodaksax/Bounty-production#395",
+    "owner": "kodaksax",
+    "repo": "Bounty-production",
+    "number": 395,
+    "title": "Dispute flow issues",
+    "body": "Currently the only entry point for the dispute flow is in the hunter tools in the in progress tab add an entry point for posters in the my postings tab. Both users should be able to open a dispute on a bounty.![image](https://github.com/user-attachments/assets/e50248a5-1a2b-4477-b7b2-3624584fb3c0)![image](https://github.com/user-attachments/assets/d298ead5-ca5d-4115-9c09-c46e1644ec4b)",
+    "score": 15,
+    "labels": [],
+    "html_url": "https://github.com/kodaksax/Bounty-production/issues/395",
+    "created_at": "2026-03-23T05:30:10.190094",
+    "status": "claimed"
+  },
+  {
+    "key": "bolivian-peru/marketplace-service-template#281",
+    "owner": "bolivian-peru",
+    "repo": "marketplace-service-template",
+    "number": 281,
+    "title": "Title: [BOUNTY] Claim: X-Intelligence Real-Time Search API — #73",
+    "body": "Bounty Claim\nWhich bounty are you claiming?\n\nWave 2 — $100 bounties\n[x] X/Twitter Real-Time Search API — #73 ($100)\n\nYour Service\nEndpoint URL: http://35.187.247.219:8443\n\nDemo / Proof of work:\n\nBash\ncurl -s \"http://35.187.247.219:8443/api/x/search?query=mobile+proxies\" | jq .\nSource code: Deployed on Sovereign Eagle-1-SG Enclave. Using Hono + Node-Server + Python Guest-Token Handshake.\n\nChecklist\n[x] Uses Proxies.sx mobile proxies (Routed via internal Python requests layer)\n\n[x] Gated with x402 USDC payments (Returns 402/Metadata for agent payments)\n\n[x] Working and deployed at a reachable endpoint (35.187.247.219)\n\n[x] Returns structured data (JSON GraphQL parsed)\n\nPayout\nSolana wallet address: 3KwQDrTSUASS6HqDz2RqVDkbKpmDWuSDcGtmAGDn8VZe",
+    "score": 95,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/bolivian-peru/marketplace-service-template/issues/281",
+    "created_at": "2026-03-23T07:00:21.961531",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#203",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 203,
+    "title": "Analytics + Metrics for Waitlist & Referral Backend",
+    "body": "\n\n## Description\n\nBuild backend analytics endpoints and metrics collection for waitlist and referral performance.\n\n## Requirements\n\n- Track:\n  - total waitlist signups\n  - verified waitlist users\n  - referral conversions\n  - top referrers\n- Expose `/api/admin/waitlist/stats`\n- Integrate with existing metrics (Prometheus or custom) in `metrics` module\n- Provide daily aggregates and trend lines\n\n## Rules\n\n- Analytics should not expose personal user data\n- Aggregations must be efficient for large datasets\n- 24-hour metrics should update at least hourly\n\n## Acceptance Criteria\n\n- [ ] Metrics collection endpoints implemented\n- [ ] Data accurate with known test set\n- [ ] Prometheus metrics ready\n- [ ] Documentation of metric labels and units\n\n## Bounty\n\n## Labels\n- `backend`\n- `analytics`\n- `monitoring`\n\n## Priority\nMedium",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/203",
+    "created_at": "2026-03-23T07:00:24.853849",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#199",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 199,
+    "title": "Leaderboard API Backend",
+    "body": "\n\n## Description\n\nImplement leaderboard aggregation on the backend for waitlist referrals and points ranking.\n\n## Requirements\n\n- Create `waitlist_leaderboard` view/cached table\n  - user_id, display_name, points, rank, updated_at\n- API endpoint `GET /api/waitlist/leaderboard?limit=10` returning top referrers\n- Real-time or near-real-time leaderboard updates (via scheduled job)\n- Implement tie-breaker by earliest referral time\n- Anonymize user identifiers for privacy\n\n## Rules\n\n- Leaderboard only includes verified waitlist users\n- max 10 rows by default\n- Up to HOURly update window allowed\n- No personal emails exposed\n\n## Acceptance Criteria\n\n- [ ] Leaderboard endpoint implemented and tested\n- [ ] Points-based ordering + tie-break rules in place\n- [ ] Data anonymization applied\n- [ ] Performance benchmark < 150ms with 10k rows\n- [ ] Integration tests for leaderboard results\n\n## Bounty\n\n## Labels\n- `backend`\n- `api`\n- `performance`\n\n## Priority\nMedium",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/199",
+    "created_at": "2026-03-23T07:14:43.672790",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#195",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 195,
+    "title": "Referral System API Documentation",
+    "body": "\n\n## Description\n\nCreate comprehensive API documentation for all referral system endpoints and data structures. Use existing Swagger/OpenAPI setup.\n\n## Requirements\n\n- OpenAPI/Swagger documentation (already configured in package.json)\n- All endpoints documented with examples\n- Error codes and responses\n- Authentication requirements\n- Rate limiting information (integrate with existing rate limiting)\n\n## Acceptance Criteria\n\n- [ ] All referral APIs documented\n- [ ] Examples provided for each endpoint\n- [ ] Error handling documented\n- [ ] Documentation accessible via Swagger UI\n- [ ] Up-to-date with implementation\n\n## Bounty\n\n## Labels\n- `documentation`\n- `api`\n- `swagger`\n\n## Priority\nLow",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/195",
+    "created_at": "2026-03-23T07:14:49.281323",
+    "status": "claimed"
+  },
+  {
+    "key": "openai/codex#15476",
+    "owner": "openai",
+    "repo": "codex",
+    "number": 15476,
+    "title": "Codex created a GitHub repository as public without explicit visibility instruction",
+    "body": "## Summary\n\nCodex created a GitHub repository as **public** without any explicit user instruction to make it public.\n\nThe expected safe default for autonomous repository creation should be **private unless the user explicitly requests public visibility**.\n\n## What Happened\n\nIn my session, I asked Codex to proceed with creating the remote repository needed to unblock a control-plane task.\n\nI did **not** specify repository visibility.\n\nCodex created:\n\n- `ruggeropaolobasile/master-control`\n- visibility: `public`\n\nI immediately noticed it, flagged it as a security problem, and the repository was then changed to `private`.\n\n## Why This Is Problematic\n\nThis is not a classic security vulnerability or privilege-escalation bug.\n\nIt is an **unsafe autonomous default**:\n\n- the model/tool had permission to create the repository\n- the user did not ask for `public`\n- the safer default should have been `private`\n- creating a public repository can unintentionally expose source code, artifacts, internal docs, or operational metadata\n\n## Expected Behavior\n\nWhen Codex creates a GitHub repository and the user has not explicitly requested a visibility level:\n\n- default to `private`\n- or require explicit confirmation before creating a `public` repository\n\n## Actual Behavior\n\nCodex created the repository as `public` without explicit instruction to do so.\n\n## Suggested Fix\n\nOne of these should be enforced:\n\n1. default all autonomous GitHub repo creation to `private`\n2. require explicit confirmation for `public`\n3. treat missing visibility as a safety-sensitive ambiguity and stop to ask\n\n## Additional Context\n\n- repository was later corrected to `private`\n- this appears more like a product / safety behavior issue than a bug-bounty vulnerability\n- I am reporting it because the default can cause accidental exposure in real workflows\r\n",
+    "score": 20,
+    "labels": [
+      "bug",
+      "CLI",
+      "safety-check"
+    ],
+    "html_url": "https://github.com/openai/codex/issues/15476",
+    "created_at": "2026-03-23T08:07:20.786339",
+    "status": "claimed"
+  },
+  {
+    "key": "YaibaToKen/dragon-ball-adventure-modpack#78",
+    "owner": "YaibaToKen",
+    "repo": "dragon-ball-adventure-modpack",
+    "number": 78,
+    "title": "Senzu Beans - Bounty Rewards",
+    "body": "",
+    "score": 20,
+    "labels": [
+      "enhancement",
+      "integration"
+    ],
+    "html_url": "https://github.com/YaibaToKen/dragon-ball-adventure-modpack/issues/78",
+    "created_at": "2026-03-23T08:07:23.580275",
+    "status": "claimed"
   }
 ]
