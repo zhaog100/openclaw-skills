@@ -5,11 +5,11 @@ version: 5.2.0
 author: 米粒儿 + 小米辣
 ---
 
-# GitHub Bounty Hunter v5.0
+# GitHub Bounty Hunter v5.2
 
 自动化 GitHub 赏金/Grant 接单、开发、提交 PR + 工作区结构化管理。
 
-**v5.0 新增：** Bounty有效性预检、仓库级黑名单、认领前验证（防白干）
+**v5.2 新增：** 维护者活跃度验证、/attempt确认机制、30个失败PR案例库
 
 **v4.0 新增：** 自动扫描cron、黑名单过滤、仓库隔离、commit验证
 
