@@ -1,3 +1,6 @@
+# Bounty 已知问题/已关闭任务列表
+# 总计：334 个
+# 最后更新：2026-03-23 18:08:26
 1712n/dn-institute#277
 1712n/dn-institute#425
 ANAVHEOBA/PrivacyLayer##100
@@ -23,6 +26,7 @@ ANAVHEOBA/PrivacyLayer##98
 ANAVHEOBA/PrivacyLayer##99
 AcademySoftwareFoundation/OpenCue##2190
 Aleks-NFT/AgentVault#5
+BruceFeIix/picker#2333
 Cap-go/capgo#1667
 CapSoftware/Cap##1540
 Chevalier12/InkkSlinger#3
@@ -34,6 +38,9 @@ Comfy-Org/ComfyUI#8899
 Comfy-Org/ComfyUI#8914
 Comfy-Org/ComfyUI#8935
 DenisZheng/agents-radar##134
+DimaMend/AutoPrompt2#10
+DimaMend/AutoPrompt2#13
+DimaMend/AutoPrompt2#22
 ERA-Projects/era-project-eng#655
 Emmanuel-Evenzur/product-apim#20
 Emmanuel-Evenzur/syetem_prompt##17
@@ -42,10 +49,18 @@ Emmanuel-Evenzur/syetem_prompt#19
 Emmanuel-Evenzur/syetem_prompt#21
 Emmanuel-Evenzur/syetem_prompt#29
 Emmanuel-Evenzur/syetem_prompt#30
+FinMind#106
+FinMind#108
+FinMind#110
+FinMind#111
+FinMind#112
 Flutter-Bounty-Hunters/super_editor#2998
 FreezingMoon/AncientBeast#2617
 FreezingMoon/AncientBeast#2651
 Hexadian-Corporation/hhh-dataminer#5
+INDIGOAZUL/la-tanda-web#154
+INDIGOAZUL/la-tanda-web#155
+INDIGOAZUL/la-tanda-web#156
 Jagadeeshftw/grainlify#397
 Jagadeeshftw/grainlify#660
 Jagadeeshftw/grainlify#735
@@ -63,7 +78,10 @@ JuliaEarth/GeoIO.jl#167
 Juwebien/agent-marketplace##7
 Kanba-co/kanba#29
 Kanba-co/kanba#30
+LederWorks/veiled-market#5723
+LederWorks/veiled-market#9424
 LiveHelperChat/livehelperchat#1505
+MM0x02/RSS-Push#452
 Mikann20041029/mikann20041029.github.io#375
 OWASP-BLT/BLT-Next##118
 OWASP-BLT/BLT-Next##123
@@ -94,6 +112,7 @@ ResonantOS/resonantos-alpha##51
 ResonantOS/resonantos-alpha##63
 ResonantOS/resonantos-alpha#50
 RonenSdemocorp-mend/AutoGPT#22
+SC-Bridge/sc-bridge#97
 SPLURT-Station/S.P.L.U.R.T-tg#721
 SPLURT-Station/S.P.L.U.R.T-tg#849
 SPLURT-Station/S.P.L.U.R.T-tg#851
@@ -125,6 +144,7 @@ StelTade/SwapTrade-Backend#200
 StelTade/SwapTrade-Backend#201
 StelTade/SwapTrade-Backend#202
 StelTade/SwapTrade-Backend#203
+TeklemariamA/motoko-the-civic-os--2-#16
 TheAssemblyArmada/Thyme#884
 TheJollyLaMa/BigNuten_Vanilla##102
 TheJollyLaMa/BigNuten_Vanilla##109
@@ -145,8 +165,10 @@ TheJollyLaMa/BigNuten_Vanilla#161
 TheJollyLaMa/BigNuten_Vanilla#162
 TheJollyLaMa/BigNuten_Vanilla#163
 TheJollyLaMa/BigNuten_Vanilla#167
+TheJollyLaMa/BigNuten_Vanilla#169
 TheSuperHackers/GeneralsGamePatch#2776
 TriliumNext/Trilium##649
+Tyaoo/picker#1322
 Uraxii/naous#226
 Uraxii/naous#238
 Uraxii/naous#246
@@ -165,6 +187,7 @@ YahiaRagae/mushaf-imad-android#34
 YaibaToKen/dragon-ball-adventure-modpack#61
 YaibaToKen/dragon-ball-adventure-modpack#62
 YaibaToKen/dragon-ball-adventure-modpack#78
+Yuliya65/AutoPrompt#15
 activepieces/activepieces#8284
 aden-hive/hive#5964
 aden-hive/hive#6734
@@ -188,14 +211,17 @@ bountydotnew/bounty.new#193
 bountydotnew/bounty.new#231
 bountydotnew/bounty.new#237
 bountydotnew/bounty.new#262
+chainreactors/picker#1186
 chatmcp/mcpso##1
 citizenfx/fivem#3874
 clanker-devco/clanker-sdk#126
 clanktank/seal-skills#4
 code-payments/flipcash-program#5
 code-payments/flipcash-program#7
+codehead-01/AutoPrompt#18
 codexbt/Eliza-Lobster#3
 commaai/openpilot#30693
+coolify#7528
 coollabsio/coolify##7528
 coollabsio/coolify#7743
 cxlinux-ai/cx-core##428
@@ -218,6 +244,19 @@ go-gitea/gitea#36856
 golemcloud/golem-cli#275
 gwdevhub/GWToolboxpp#1785
 hivemoot/colony##685
+homelab-stack#1
+homelab-stack#10
+homelab-stack#11
+homelab-stack#12
+homelab-stack#14
+homelab-stack#2
+homelab-stack#3
+homelab-stack#4
+homelab-stack#5
+homelab-stack#6
+homelab-stack#7
+homelab-stack#8
+homelab-stack#9
 humanaios-ui/lasting-light-ai#5
 illbnm/homelab-stack#3
 illbnm/homelab-stack#4
@@ -230,6 +269,9 @@ jiacai2050/mofish#1374
 jose-blockchain/curated-erc#24
 kimcartoon/mydic#6648
 kodaksax/Bounty-production#395
+kodaksax/Bounty-production#402
+laudantstolam/stargazer_newsletter#2
+laudantstolam/stargazer_newsletter#3
 libretro/RetroArch##5222
 libretro/RetroArch#6137
 lnflash/flash##282
@@ -240,6 +282,7 @@ macro-wave/sos_rando#121
 mangdangroboticsclub/mini_pupper_ros#125
 maplibre/maplibre-gl-js##982
 mate-desktop/mate-utils##206
+mautic/mautic#15980
 mohitagarwal24/Pokemon-Explorer#6
 nextcloud/android##19
 nextcloud/mail##2269
@@ -260,8 +303,11 @@ ritik4ever/stellar-bounty-board##3
 rsoreq-mend/AutoPrompt#6
 rsoreq-mend/AutoPrompt#9
 rsoreq-mend/tensorflow#20
+ruohong2018/ruohong2018.github.io#1137
+s0md3v/XSStrike#438
 sharmas1ddharth/PICK_pytorch#13
 shi2n/bugbounty-operator-toolkit-V2#1
+smallgig/Pickomino#350
 snowdensb/AutoPrompt_demo#25
 sorosave-protocol/contracts#52
 sorosave-protocol/frontend#80
@@ -281,6 +327,7 @@ vllm-project/vllm-omni#1623
 vllm-project/vllm-omni#2015
 vllm-project/vllm-omni#2075
 zed-industries/zed#4440
+zhuzhushiwojia/lobster-rewards#1
 zio/izumi-reflect#404
 zio/zio#8664
 zio/zio#9268
