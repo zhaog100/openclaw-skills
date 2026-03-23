@@ -47,7 +47,8 @@
     "labels": [],
     "html_url": "https://github.com/tscircuit/circuit-json-to-step/issues/6",
     "created_at": "2026-03-22T15:30:12.866665",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:35:00Z"
   },
   {
     "key": "go-gitea/gitea#36856",
@@ -247,7 +248,9 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/161",
     "created_at": "2026-03-22T19:30:09.386356",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/170",
+    "submitted_at": "2026-03-23T15:20:00Z"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#159",
@@ -345,7 +348,9 @@
     ],
     "html_url": "https://github.com/atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-/issues/2",
     "created_at": "2026-03-22T20:30:06.945836",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/7",
+    "submitted_at": "2026-03-23T13:25:00Z"
   },
   {
     "key": "SharedStake/Contracts#12",
@@ -361,7 +366,9 @@
     ],
     "html_url": "https://github.com/SharedStake/Contracts/issues/12",
     "created_at": "2026-03-22T20:30:08.332209",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/SharedStake/Contracts/pull/26",
+    "submitted_at": "2026-03-23T14:14:00Z"
   },
   {
     "key": "libretro/RetroArch#6137",
@@ -528,7 +535,9 @@
     ],
     "html_url": "https://github.com/Hexadian-Corporation/hhh-dataminer/issues/5",
     "created_at": "2026-03-22T23:30:07.392322",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/Hexadian-Corporation/hhh-dataminer/pull/25",
+    "submitted_at": "2026-03-23T16:10:00Z"
   },
   {
     "key": "RonenSdemocorp-mend/AutoGPT#22",
@@ -576,7 +585,9 @@
     ],
     "html_url": "https://github.com/1712n/dn-institute/issues/277",
     "created_at": "2026-03-23T00:30:07.677131",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/1712n/dn-institute/pull/732",
+    "submitted_at": "2026-03-23T12:17:00Z"
   },
   {
     "key": "ton-society/grants-and-bounties#1216",
@@ -656,7 +667,9 @@
     ],
     "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/2",
     "created_at": "2026-03-23T03:30:09.735435",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/9",
+    "submitted_at": "2026-03-23T17:35:00Z"
   },
   {
     "key": "versila22/hotline-darons#2",
@@ -669,7 +682,9 @@
     "labels": [],
     "html_url": "https://github.com/versila22/hotline-darons/issues/2",
     "created_at": "2026-03-23T03:30:10.657346",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/versila22/hotline-darons/pull/new/feature/local-rag-device-manuals",
+    "submitted_at": "2026-03-23T17:55:00Z"
   },
   {
     "key": "loot/loot#2180",
@@ -682,7 +697,8 @@
     "labels": [],
     "html_url": "https://github.com/loot/loot/issues/2180",
     "created_at": "2026-03-23T03:30:12.228697",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:40:00Z"
   },
   {
     "key": "1712n/dn-institute#425",
@@ -718,7 +734,9 @@
     ],
     "html_url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125",
     "created_at": "2026-03-23T03:30:15.134681",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/pull/138",
+    "submitted_at": "2026-03-23T13:05:00Z"
   },
   {
     "key": "aden-hive/hive#6734",
@@ -787,7 +805,9 @@
     "labels": [],
     "html_url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/issues/1",
     "created_at": "2026-03-23T04:30:05.883747",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/pull/2",
+    "submitted_at": "2026-03-23T16:25:00Z"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#167",
@@ -803,7 +823,8 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/167",
     "created_at": "2026-03-23T05:30:04.697131",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:45:00Z"
   },
   {
     "key": "kodaksax/Bounty-production#395",
@@ -860,7 +881,9 @@
     "labels": [],
     "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/203",
     "created_at": "2026-03-23T07:30:17.605110",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/StelTade/SwapTrade-Backend/pull/new/bounty-analytics-metrics-203",
+    "submitted_at": "2026-03-23T16:30:00Z"
   },
   {
     "key": "Uraxii/naous#238",
@@ -1197,7 +1220,8 @@
     ],
     "html_url": "https://github.com/vllm-project/vllm-omni/issues/2015",
     "created_at": "2026-03-23T10:24:47.774514",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T17:55:00Z"
   },
   {
     "key": "Mikann20041029/mikann20041029.github.io#375",
@@ -1210,7 +1234,8 @@
     "labels": [],
     "html_url": "https://github.com/Mikann20041029/mikann20041029.github.io/issues/375",
     "created_at": "2026-03-23T10:24:51.777951",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:50:00Z"
   },
   {
     "key": "codexbt/Eliza-Lobster#3",
@@ -1251,6 +1276,363 @@
     ],
     "html_url": "https://github.com/jiacai2050/mofish/issues/1374",
     "created_at": "2026-03-23T11:30:07.056516",
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:20:00Z",
+    "note": "已提交深度评论"
+  },
+  {
+    "key": "Tyaoo/picker#1322",
+    "owner": "Tyaoo",
+    "repo": "picker",
+    "number": 1322,
+    "title": "[每日信息流] 2026-03-23",
+    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- Doonsec's feed\n  - [ ] [[漏洞播报]突发！OpenClaw爆致命0Day漏洞](https://mp.weixin.qq.com/s/pxx9oBQ_R_iqROjNz0FlEQ)\n  - [ ] [来一次有奖竞猜！具体猜的内容看图！](https://mp.weixin.qq.com/s/r9fe0JFJ2y5dn4aWe54Qcw)\n  - [ ] [Claude Code工作流速查表](https://mp.weixin.qq.com/s/XWtvugewbvy5vlyZhcv21Q)\n  - [ ] [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s/TZWoDsYN6TOZyzImCyZPRA)\n  - [ ] [手把手教你用OpenClaw搞渗透测试：从配置到实战挖洞，我踩过的坑都在这了](https://mp.weixin.qq.com/s/WxU6OwapW545q5cKkCEYzQ)\n  - [ ] [在我劝退下，堂弟放弃腾讯40万offer回家去考公务员了。](https://mp.weixin.qq.com/s/cJd9m3gBaTfETUp5oYHvfQ)\n  - [ ] [obsidian三端同步](https://mp.weixin.qq.com/s/oR-_oHANDc05tzIg2-nkoA)\n  - [ ] [宇树科技王兴兴年薪250万！网友：不如大模型校招生！真相太扎心](https://mp.weixin.qq.com/s/grfK4Wqk3l2kv-yH29ElIA)\n  - [ ] [周调用 4.69 万亿！你的行业会被 AI 吞并吗？](https://mp.weixin.qq.com/s/HbEUDTMgFdhahAv-7xTcOg)\n  - [ ] [不踩坑！智能体安全体系｜全链路防御指南](https://mp.weixin.qq.com/s/Tb-JX-fRpEci-vrhGRJJpQ)\n  - [ ] [微信+OpenClaw 这不就来了吗!](https://mp.weixin.qq.com/s/OJGKWEHeLd1ryR9U87ybWg)\n  - [ ] [SiYuan SQL漏洞 | CVE-2026-29073复现&amp;研究](https://mp.weixin.qq.com/s/Dmxu0I_bQL24p6qRJMebQw)\n  - [ ] [微信新 ClawBot 插件，连接 OpenClaw与微信](https://mp.weixin.qq.com/s/iEFUw7sx2bJz6BIzTciO-w)\n  - [ ] [RzWeb（Rizin）：浏览器端的在线逆向工程平台](https://mp.weixin.qq.com/s/zskYFj44b2xAT-BFGzQloA)\n  - [ ] [自动化审计之代码检测模块](https://mp.weixin.qq.com/s/4wGHq2dHa_Jld3H87tuHhg)\n  - [ ] [基线管理之Windows安全配置](https://mp.weixin.qq.com/s/YQiIqmnx7Wn9QX5uXKSxVQ)\n  - [ ] [Jar Analyzer：Java 安全审计的瑞士军刀](https://mp.weixin.qq.com/s/YGGNDNdjFo6fcM-1ZcFh3Q)\n  - [ ] [你用哪种语言编写了你的第一个“Hello Worl](https://mp.weixin.qq.com/s/gn5zKuVTWQE6AAIaMZRurQ)\n  - [ ] [热搜第一！OpenClaw被360揪出0Day漏洞，创始人回应](https://mp.weixin.qq.com/s/cob4zzuYEw6an2rAxbXNrw)\n  - [ ] [frida系列课程更新](https://mp.weixin.qq.com/s/uHo5fP5a0sp7YiHa0C-Sng)\n  - [ ] [Kali Linux + OpenClaw：让安全工具真正「活」过来](https://mp.weixin.qq.com/s/-Spq-8oBekwFgQ4jb06VpA)\n  - [ ] [HiClaw插件：AI服务商的\\\"万能适配器\\\"](https://mp.weixin.qq.com/s/0f_H3QWDNUeCSuhweXCHpA)\n  - [ ] [希望还有油加](https://mp.weixin.qq.com/s/mn9DorQj_3jW06unxW4pTg)\n  - [ ] [技巧分享-反弹Shell-升级交互式Shell-011](https://mp.weixin.qq.com/s/7eLMTvQbgzOsMhC2wmX2kQ)\n  - [ ] [有可能用正切三倍角公式硬算吗](https://mp.weixin.qq.com/s/AAUHIRloLcQdshb6-c9H4g)\n  - [ ] [C19-S07 启明星辰：龙虾安全六边形（暨OpenClaw类智能应用安全总览0322版）](https://mp.weixin.qq.com/s/TXSsjsjXOeT3mfBPE0D6vA)\n  - [ ] [C20-U08 “ToB养虾安全”三件套之检查篇——谁在私藏“影子龙虾”？ClawScan深度发现企业网络违规部署的OpenClaw](https://mp.weixin.qq.com/s/rYJi2CCSNQXRD5kKFhV48Q)\n  - [ ] [C21-U09 “ToB养虾安全”三件套之终端防护篇——筑牢端侧安全三大支柱，破解企业用户OpenClaw落地难题](https://mp.weixin.qq.com/s/ff8KxhYUbxmr51n_-8sCuQ)\n  - [ ] [C22-U10 “ToB养虾安全”三件套之云端防护篇——云端OpenClaw安全有道，龙虾网箱织密安全防线](https://mp.weixin.qq.com/s/z4OEvmQFbdTiRb5OIxwA1A)\n  - [ ] [【禅宗公案】百年钻故纸，何日出头时](https://mp.weixin.qq.com/s/wpSSKBdNTInvaiSIvFiu5w)\n  - [ ] [马斯克祭出四个大脑：Grok 4.20的Agent架构，OpenClaw要失业了吗？](https://mp.weixin.qq.com/s/HkEkz-YEtMfrozygZ-HDZQ)\n  - [ ] [软考网络工程师（中级）组网技术知识点与实验总结](https://mp.weixin.qq.com/s/pCSIXwMxrRH684cxHEh6cA)\n  - [ ",
+    "score": 50,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/Tyaoo/picker/issues/1322",
+    "created_at": "2026-03-23T12:30:07.337862",
+    "status": "claimed"
+  },
+  {
+    "key": "ruohong2018/ruohong2018.github.io#1137",
+    "owner": "ruohong2018",
+    "repo": "ruohong2018.github.io",
+    "number": 1137,
+    "title": "[每日信息流] 2026-03-23",
+    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- Recent Commits to cve:main\n  - [Update Sun Mar 22 11:16:25 UTC 2026](https://github.com/trickest/cve/commit/22eefc6ec76a4287afdcb9687313bf7acb498849)\n- Bug Bounty in InfoSec Write-ups on Medium\n  - [How I Found a Hardcoded RSA Private Key in a Major Crypto Exchange’s Frontend](https://infosecwriteups.com/how-i-found-a-hardcoded-rsa-private-key-in-a-major-crypto-exchanges-frontend-dd27b6a78fb2?source=rss----7b722bfd1b8d--bug_bounty)\n  - [Found a Denial of Service Vulnerability in a Major Company’s Production Infrastructure Using Shodan](https://infosecwriteups.com/found-a-denial-of-service-vulnerability-in-a-major-companys-production-infrastructure-using-shodan-e5f766a4df79?source=rss----7b722bfd1b8d--bug_bounty)\n- Malwarebytes\n  - [This is all it takes to stop a train (Lock and Code S07E06)](https://www.malwarebytes.com/blog/podcast/2026/03/this-is-all-it-takes-to-stop-a-train-lock-and-code-s07e06)\n- daniel.haxx.se\n  - [NTLM and SMB go opt-in](https://daniel.haxx.se/blog/2026/03/22/ntlm-and-smb-go-opt-in/)\n- HAHWUL\n  - [Building AI-Friendly CLIs](https://www.hahwul.com/posts/2026/building-ai-friendly-clis/)\n- Dancho Danchev's Blog - Mind Streams of Information Security Knowledge\n  - [A Domains Portfolio Belonging to RAMP (Russian Anonymous Marketplace) Forum Members - A Compilation](https://ddanchev.blogspot.com/2026/03/a-domains-portfolio-belonging-to-ramp.html)\n  - [A Compilation of BitCoin Wallet Addresses from the RAMP (Russian Anonymous Marketplace) Forum Members - A Compilation](https://ddanchev.blogspot.com/2026/03/a-compilation-of-bitcoin-wallet.html)\n  - [A Compilation of Personally Identifiable Email Address Accounts Belonging to RAMP (Russian Anonymous Marketplace) Forum - A Compilation](https://ddanchev.blogspot.com/2026/03/a-compilation-of-personally.html)\n  - [When Data Mining Conti Leaks Leads to Actual Binaries and to a Hardcoded C2 With an Encryption Key on Tripod.com - Part Three](https://ddanchev.blogspot.com/2026/03/when-data-mining-conti-leaks-leads-to_029886864.html)\n- 奇客Solidot–传递最新科技情报\n  - [视觉小说数据库创始人去世](https://www.solidot.org/story?sid=83833)\n  - [猪脑成功冷冻](https://www.solidot.org/story?sid=83832)\n  - [全球暖化加剧极端干旱热浪事件的发生频率](https://www.solidot.org/story?sid=83831)\n  - [Cloudflare 将 archive.today 归类为 C&C/Botnet](https://www.solidot.org/story?sid=83830)\n- 黑鸟\n  - [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s?__biz=MzAxOTM1MDQ1NA==&mid=2451185913&idx=1&sn=ec96c588c07d97ff5be27190f82cce07)\n- 丁爸 情报分析师的工具箱\n  - [【情报】美军在前线吃紧，总统在后方紧吃](https://mp.weixin.qq.com/s?__biz=MzI2MTE0NTE3Mw==&mid=2651154887&idx=1&sn=0f3ba0c2a0ce6fc29b5e2c7161f190e2)\n- 黑海洋Wiki | AI机器人硬件开发 | 网络安全攻防实战 | 区块链技术文档教程 - 免费资源平台\n  - [多项研究显示数字设备正在让我们变笨](https://blog.upx8.com/%E5%A4%9A%E9%A1%B9%E7%A0%94%E7%A9%B6%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%97%E8%AE%BE%E5%A4%87%E6%AD%A3%E5%9C%A8%E8%AE%A9%E6%88%91%E4%BB%AC%E5%8F%98%E7%AC%A8)\n  - [美国SEC终止对法拉第未来长达四年的调查](",
+    "score": 50,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/ruohong2018/ruohong2018.github.io/issues/1137",
+    "created_at": "2026-03-23T13:01:17.243627",
+    "status": "claimed"
+  },
+  {
+    "key": "MM0x02/RSS-Push#452",
+    "owner": "MM0x02",
+    "repo": "RSS-Push",
+    "number": 452,
+    "title": "[每日信息流] 2026-03-23",
+    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- Private Feed for M09Ic\n  - [ ] [zeroclaw-labs released v0.5.8 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.8)\n  - [ ] [mgeeky starred j0hnZ3RA/ldapx-py](https://github.com/j0hnZ3RA/ldapx-py)\n  - [ ] [bolucat released 202603221947 at bolucat/Archive](https://github.com/bolucat/Archive/releases/tag/202603221947)\n  - [ ] [zeroclaw-labs released v0.5.7-beta.563 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.7-beta.563)\n  - [ ] [huoji120 starred bytedance/deer-flow](https://github.com/bytedance/deer-flow)\n  - [ ] [CHYbeta starred shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty)\n  - [ ] [IC3-CR3AM starred NetSPI/MicroBurst](https://github.com/NetSPI/MicroBurst)\n  - [ ] [mgeeky starred lolfsaas/lolfsaas.github.io](https://github.com/lolfsaas/lolfsaas.github.io)\n  - [ ] [IC3-CR3AM forked IC3-CR3AM/pentagi from vxcontrol/pentagi](https://github.com/IC3-CR3AM/pentagi)\n  - [ ] [zeroclaw-labs released v0.5.7 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.7)\n  - [ ] [CHYbeta starred 2025Emma/vibe-coding-cn](https://github.com/2025Emma/vibe-coding-cn)\n  - [ ] [Ph0rse starred Ph0rse/crawmedia-daily](https://github.com/Ph0rse/crawmedia-daily)\n  - [ ] [zeroclaw-labs released v0.5.6-beta.536 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.6-beta.536)\n  - [ ] [joaoviictorti starred dtolnay/prettyplease](https://github.com/dtolnay/prettyplease)\n- Doonsec's feed\n  - [ ] [[漏洞播报]突发！OpenClaw爆致命0Day漏洞](https://mp.weixin.qq.com/s/pxx9oBQ_R_iqROjNz0FlEQ)\n  - [ ] [来一次有奖竞猜！具体猜的内容看图！](https://mp.weixin.qq.com/s/r9fe0JFJ2y5dn4aWe54Qcw)\n  - [ ] [Claude Code工作流速查表](https://mp.weixin.qq.com/s/XWtvugewbvy5vlyZhcv21Q)\n  - [ ] [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s/TZWoDsYN6TOZyzImCyZPRA)\n  - [ ] [手把手教你用OpenClaw搞渗透测试：从配置到实战挖洞，我踩过的坑都在这了](https://mp.weixin.qq.com/s/WxU6OwapW545q5cKkCEYzQ)\n  - [ ] [在我劝退下，堂弟放弃腾讯40万offer回家去考公务员了。](https://mp.weixin.qq.com/s/cJd9m3gBaTfETUp5oYHvfQ)\n  - [ ] [obsidian三端同步](https://mp.weixin.qq.com/s/oR-_oHANDc05tzIg2-nkoA)\n  - [ ] [宇树科技王兴兴年薪250万！网友：不如大模型校招生！真相太扎心](https://mp.weixin.qq.com/s/grfK4Wqk3l2kv-yH29ElIA)\n  - [ ] [周调用 4.69 万亿！你的行业会被 AI 吞并吗？](https://mp.weixin.qq.com/s/HbEUDTMgFdhahAv-7xTcOg)\n  - [ ] [不踩坑！智能体安全体系｜全链路防御指南](https://mp.weixin.qq.com/s/Tb-JX-fRpEci-vrhGRJJpQ)\n  - [ ] [微信+OpenClaw 这不就来了吗!](https://mp.weixin.qq.com/s/OJGKWEHeLd1ryR9U87ybWg)\n  - [ ] [SiYuan SQL漏洞 | CVE-2026-29073复现&amp;研究](https://mp.weixin.qq.com/s/Dmxu0I_bQL24p6qRJMebQw)\n  - [ ] [微信新 ClawBot 插件，连接 OpenClaw与微信](https://mp.weixin.qq.com/s/iEFUw7sx2bJz6BIzTciO-w)\n  - [ ] [RzWeb（Rizin）：浏览器端的在线逆向工程平台](https://mp.weixin.qq.com/s/zskYFj44b2xAT-BFGzQloA)\n  - [ ] [自动化审计之代码检测模块](https://mp.weixin.qq.com/s/4wGHq2dHa_Jld3H87tuHhg)\n  - [ ] [基线管理之Windows安全配置](https://mp.we",
+    "score": 50,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/MM0x02/RSS-Push/issues/452",
+    "created_at": "2026-03-23T13:01:20.531803",
+    "status": "claimed"
+  },
+  {
+    "key": "chainreactors/picker#1186",
+    "owner": "chainreactors",
+    "repo": "picker",
+    "number": 1186,
+    "title": "[每日信息流] 2026-03-23",
+    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- Private Feed for M09Ic\n  - [ ] [zeroclaw-labs released v0.5.8 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.8)\n  - [ ] [mgeeky starred j0hnZ3RA/ldapx-py](https://github.com/j0hnZ3RA/ldapx-py)\n  - [ ] [bolucat released 202603221947 at bolucat/Archive](https://github.com/bolucat/Archive/releases/tag/202603221947)\n  - [ ] [zeroclaw-labs released v0.5.7-beta.563 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.7-beta.563)\n  - [ ] [huoji120 starred bytedance/deer-flow](https://github.com/bytedance/deer-flow)\n  - [ ] [CHYbeta starred shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty)\n  - [ ] [IC3-CR3AM starred NetSPI/MicroBurst](https://github.com/NetSPI/MicroBurst)\n  - [ ] [mgeeky starred lolfsaas/lolfsaas.github.io](https://github.com/lolfsaas/lolfsaas.github.io)\n  - [ ] [IC3-CR3AM forked IC3-CR3AM/pentagi from vxcontrol/pentagi](https://github.com/IC3-CR3AM/pentagi)\n  - [ ] [zeroclaw-labs released v0.5.7 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.7)\n  - [ ] [CHYbeta starred 2025Emma/vibe-coding-cn](https://github.com/2025Emma/vibe-coding-cn)\n  - [ ] [Ph0rse starred Ph0rse/crawmedia-daily](https://github.com/Ph0rse/crawmedia-daily)\n  - [ ] [zeroclaw-labs released v0.5.6-beta.536 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.6-beta.536)\n  - [ ] [joaoviictorti starred dtolnay/prettyplease](https://github.com/dtolnay/prettyplease)\n- Recent Commits to cve:main\n  - [ ] [Update Sun Mar 22 11:16:25 UTC 2026](https://github.com/trickest/cve/commit/22eefc6ec76a4287afdcb9687313bf7acb498849)\n- Doonsec's feed\n  - [ ] [[漏洞播报]突发！OpenClaw爆致命0Day漏洞](https://mp.weixin.qq.com/s/pxx9oBQ_R_iqROjNz0FlEQ)\n  - [ ] [来一次有奖竞猜！具体猜的内容看图！](https://mp.weixin.qq.com/s/r9fe0JFJ2y5dn4aWe54Qcw)\n  - [ ] [Claude Code工作流速查表](https://mp.weixin.qq.com/s/XWtvugewbvy5vlyZhcv21Q)\n  - [ ] [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s/TZWoDsYN6TOZyzImCyZPRA)\n  - [ ] [手把手教你用OpenClaw搞渗透测试：从配置到实战挖洞，我踩过的坑都在这了](https://mp.weixin.qq.com/s/WxU6OwapW545q5cKkCEYzQ)\n  - [ ] [在我劝退下，堂弟放弃腾讯40万offer回家去考公务员了。](https://mp.weixin.qq.com/s/cJd9m3gBaTfETUp5oYHvfQ)\n  - [ ] [obsidian三端同步](https://mp.weixin.qq.com/s/oR-_oHANDc05tzIg2-nkoA)\n  - [ ] [宇树科技王兴兴年薪250万！网友：不如大模型校招生！真相太扎心](https://mp.weixin.qq.com/s/grfK4Wqk3l2kv-yH29ElIA)\n  - [ ] [周调用 4.69 万亿！你的行业会被 AI 吞并吗？](https://mp.weixin.qq.com/s/HbEUDTMgFdhahAv-7xTcOg)\n  - [ ] [不踩坑！智能体安全体系｜全链路防御指南](https://mp.weixin.qq.com/s/Tb-JX-fRpEci-vrhGRJJpQ)\n  - [ ] [微信+OpenClaw 这不就来了吗!](https://mp.weixin.qq.com/s/OJGKWEHeLd1ryR9U87ybWg)\n  - [ ] [SiYuan SQL漏洞 | CVE-2026-29073复现&amp;研究](https://mp.weixin.qq.com/s/Dmxu0I_bQL24p6qRJMebQw)\n  - [ ] [微信新 ClawBot 插件，连接 OpenClaw与微信](https://mp.weixin.qq.com/s/iEFUw7sx2bJz6BIzTciO-w)\n  - [ ] [RzWeb（Rizin）：浏览器端的在线逆向工程平台](https://m",
+    "score": 50,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/chainreactors/picker/issues/1186",
+    "created_at": "2026-03-23T13:01:23.793691",
+    "status": "claimed"
+  },
+  {
+    "key": "BruceFeIix/picker#2333",
+    "owner": "BruceFeIix",
+    "repo": "picker",
+    "number": 2333,
+    "title": "[每日信息流] 2026-03-23",
+    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- InfoSec Write-ups - Medium\n  - [ ] [Infrastructure Pivoting: How CTI Analysts Expand From a Single IOC to a Full Attacker Network](https://infosecwriteups.com/infrastructure-pivoting-how-cti-analysts-expand-from-a-single-ioc-to-a-full-attacker-network-1295d50ec29c?source=rss----7b722bfd1b8d---4)\n  - [ ] [Ploutus Malware: Uptick in ATM jackpotting incidents prompts FBI warning](https://infosecwriteups.com/ploutus-malware-uptick-in-atm-jackpotting-incidents-prompts-fbi-warning-554a944847b6?source=rss----7b722bfd1b8d---4)\n  - [ ] [How I Found a Hardcoded RSA Private Key in a Major Crypto Exchange’s Frontend](https://infosecwriteups.com/how-i-found-a-hardcoded-rsa-private-key-in-a-major-crypto-exchanges-frontend-dd27b6a78fb2?source=rss----7b722bfd1b8d---4)\n  - [ ] [Found a Denial of Service Vulnerability in a Major Company’s Production Infrastructure Using Shodan](https://infosecwriteups.com/found-a-denial-of-service-vulnerability-in-a-major-companys-production-infrastructure-using-shodan-e5f766a4df79?source=rss----7b722bfd1b8d---4)\n- Recent Commits to cve:main\n  - [ ] [Update Sun Mar 22 11:16:25 UTC 2026](https://github.com/trickest/cve/commit/22eefc6ec76a4287afdcb9687313bf7acb498849)\n- Doonsec's feed\n  - [ ] [[漏洞播报]突发！OpenClaw爆致命0Day漏洞](https://mp.weixin.qq.com/s/pxx9oBQ_R_iqROjNz0FlEQ)\n  - [ ] [来一次有奖竞猜！具体猜的内容看图！](https://mp.weixin.qq.com/s/r9fe0JFJ2y5dn4aWe54Qcw)\n  - [ ] [Claude Code工作流速查表](https://mp.weixin.qq.com/s/XWtvugewbvy5vlyZhcv21Q)\n  - [ ] [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s/TZWoDsYN6TOZyzImCyZPRA)\n  - [ ] [手把手教你用OpenClaw搞渗透测试：从配置到实战挖洞，我踩过的坑都在这了](https://mp.weixin.qq.com/s/WxU6OwapW545q5cKkCEYzQ)\n  - [ ] [在我劝退下，堂弟放弃腾讯40万offer回家去考公务员了。](https://mp.weixin.qq.com/s/cJd9m3gBaTfETUp5oYHvfQ)\n  - [ ] [obsidian三端同步](https://mp.weixin.qq.com/s/oR-_oHANDc05tzIg2-nkoA)\n  - [ ] [宇树科技王兴兴年薪250万！网友：不如大模型校招生！真相太扎心](https://mp.weixin.qq.com/s/grfK4Wqk3l2kv-yH29ElIA)\n  - [ ] [周调用 4.69 万亿！你的行业会被 AI 吞并吗？](https://mp.weixin.qq.com/s/HbEUDTMgFdhahAv-7xTcOg)\n  - [ ] [不踩坑！智能体安全体系｜全链路防御指南](https://mp.weixin.qq.com/s/Tb-JX-fRpEci-vrhGRJJpQ)\n  - [ ] [微信+OpenClaw 这不就来了吗!](https://mp.weixin.qq.com/s/OJGKWEHeLd1ryR9U87ybWg)\n  - [ ] [SiYuan SQL漏洞 | CVE-2026-29073复现&amp;研究](https://mp.weixin.qq.com/s/Dmxu0I_bQL24p6qRJMebQw)\n  - [ ] [微信新 ClawBot 插件，连接 OpenClaw与微信](https://mp.weixin.qq.com/s/iEFUw7sx2bJz6BIzTciO-w)\n  - [ ] [RzWeb（Rizin）：浏览器端的在线逆向工程平台](https://mp.weixin.qq.com/s/zskYFj44b2xAT-BFGzQloA)\n  - [ ] [自动化审计之代码检测模块](https://mp.weixin.qq.com/s/4wGHq2dHa_Jld3H87tuHhg)\n  - [ ] [基线管理之Windows安全配置](https://mp.weixin.qq.com/s/YQiIqmnx7Wn9QX5uXKSxVQ)\n  - [ ] [Jar Analyzer：Java 安全审计的瑞士军刀](https://mp.weixin.qq.com/s/YGGNDNdjFo6fcM-1ZcFh3Q)\n  - [ ] [你用哪种语言编写了你的第一个“Hello Worl](https://mp.weixin.qq.com/s/gn5zKuVTWQE6AAIaMZRurQ)\n  - [ ] [热搜第一！OpenClaw被360揪出0Day漏洞，创始人回应](https://mp.weixin.qq.com/s/cob4zzuYEw6an2rAxbXNrw)\n  - [ ] [frida系列课程更新](https:",
+    "score": 50,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/BruceFeIix/picker/issues/2333",
+    "created_at": "2026-03-23T13:01:26.765242",
+    "status": "claimed"
+  },
+  {
+    "key": "TeklemariamA/motoko-the-civic-os--2-#16",
+    "owner": "TeklemariamA",
+    "repo": "motoko-the-civic-os--2-",
+    "number": 16,
+    "title": "Fix inactive/non-functional frontend buttons by connecting frontend to real backend canister",
+    "body": "Multiple UI buttons and forms in the Civic OS frontend are non-functional because the frontend uses a placeholder backend stub (`frontend/src/declarations/backend/index.js`) instead of the real DFINITY actor for the deployed Motoko backend canister.\n\n## Observed symptoms\n- Chat reports: `Backend unavailable in this deployment`\n- Membership enrollment fails: `TypeError: b.enrollMember is not a function`\n- Commons, Legislature, Bounties, Audit, Justice, Membership: backend actions do not work\n\n## Cause\nThe frontend stub does not expose all Motoko backend methods and returns only placeholder results.\n\n## Fix\n- Replace the placeholder with a real actor client using @dfinity/agent and idlFactory in `frontend/src/declarations/backend/index.js`.\n- Use env variable `CANISTER_ID_BACKEND` or `VITE_CANISTER_ID_BACKEND` and `DFX_NETWORK` for config.\n- Rebuild and redeploy frontend + backend.\n\n## Acceptance Criteria\n- All buttons and forms call the backend and work without runtime errors\n- No missing function errors in Membership, Commons, Legislature, or elsewhere\n- Forms for Chat, Bounties, Audit, Justice, Membership, Commons, and Legislature perform real backend actions\n- See attached deployment + QA checklists\n\n---\n\n# QA checklist\n- [x] Chat send works\n- [x] Bounty create/lookup works\n- [x] Audit submit/log refresh works\n- [x] Justice file case/cast verdict works\n- [x] Membership enroll/search/refresh works\n- [x] Commit/endorse/load skills works\n- [x] Publish/refresh research works\n- [x] Propose/vote/fork/refresh bill works\n- [x] No `is not a function`, `Backend unavailable`, missing canister id, or actor errors in the console\n\n---\n\n# Deployment checklist\n- [x] Set CANISTER_ID_BACKEND based on deployed backend\n- [x] Update frontend/src/declarations/backend/index.js to use @dfinity/agent Actor\n- [x] Use a matching idlFactory for Motoko service\n- [x] npm install && npm run build\n- [x] dfx deploy\n- [x] Test all UI features (see above)\n- [x] Confirm no more missing backend wiring errors\n\n---\n\nMore detail, long-form bug description, and checklist provided on request.",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/TeklemariamA/motoko-the-civic-os--2-/issues/16",
+    "created_at": "2026-03-23T14:30:07.803620",
+    "status": "claimed"
+  },
+  {
+    "key": "codehead-01/AutoPrompt#18",
+    "owner": "codehead-01",
+    "repo": "AutoPrompt",
+    "number": 18,
+    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20250821140117_TUJISZ/python_MMOTTL/202508211401181/env/lib/python3.9/site-packages/nltk-3.9.1.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/codehead-01/AutoPrompt/commit/5afc5836eb58e09bcb1a803a9ba2837b0e76d3ef\">5afc5836eb58e09bcb1a803a9ba2837b0e76d3ef</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.1-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-4539](https://www.mend.io/vulnerability-database/CVE-2026-4539) | <img src='https://whitesource-resources.whitesourcesoftware.com/low_vul.png?' width=19 height=20> Low | 3.3 | pygments-2.19.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n<p>*For some transitive vulnerabilities, there is no version of direct dependency with a fix. Check the \"Details\" section below to see if there is a version of transitive dependency where vulnerability is fixed.</p><p>**In some cases, Remediation PR cannot be created automatically for a vulnerability d",
+    "score": 40,
+    "labels": [
+      "Mend: dependency security vulnerability"
+    ],
+    "html_url": "https://github.com/codehead-01/AutoPrompt/issues/18",
+    "created_at": "2026-03-23T15:30:15.472859",
+    "status": "claimed"
+  },
+  {
+    "key": "DimaMend/AutoPrompt2#13",
+    "owner": "DimaMend",
+    "repo": "AutoPrompt2",
+    "number": 13,
+    "title": "transformers-4.35.2-py3-none-any.whl: 28 vulnerabilities (highest severity is: 8.8) reachable",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>transformers-4.35.2-py3-none-any.whl</b></summary>\n\n<p>State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow</p>\n<p>Library home page: <a href=\"https://files.pythonhosted.org/packages/12/dd/f17b11a93a9ca27728e12512d167eb1281c151c4c6881d3ab59eb58f4127/transformers-4.35.2-py3-none-any.whl\">https://files.pythonhosted.org/packages/12/dd/f17b11a93a9ca27728e12512d167eb1281c151c4c6881d3ab59eb58f4127/transformers-4.35.2-py3-none-any.whl</a></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120556_HLSRET/python_QBGGDS/202603091206431/env/lib/python3.9/site-packages/transformers-4.35.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/DimaMend/AutoPrompt2/commit/1a9b14618a84a37c0b958ba35ebf09539537e0f1\">1a9b14618a84a37c0b958ba35ebf09539537e0f1</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (transformers version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2024-11394](https://www.mend.io/vulnerability-database/CVE-2024-11394) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 59.399998% | transformers-4.35.2-py3-none-any.whl | Direct | 4.48.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2024-11393](https://www.mend.io/vulnerability-database/CVE-2024-11393) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 76.1% | transformers-4.35.2-py3-none-any.whl | Direct | 4.48.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2023-6730](https://www.mend.io/vulnerability-database/CVE-2023-6730) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 0.2% | transformers-4.35.2-py3-none-any.whl | Direct | 4.36.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-14930](https://www.mend.io/vulnerability-database/CVE-2025-14930) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.8 | Not Defined | 0.3% | transformers-4.35.2-py3-none-any.whl | Direct | N/A | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Rea",
+    "score": 40,
+    "labels": [
+      "Mend: dependency security vulnerability"
+    ],
+    "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/13",
+    "created_at": "2026-03-23T15:30:20.542314",
+    "status": "claimed"
+  },
+  {
+    "key": "DimaMend/AutoPrompt2#10",
+    "owner": "DimaMend",
+    "repo": "AutoPrompt2",
+    "number": 10,
+    "title": "sentence-transformers-2.2.2.tar.gz: 16 vulnerabilities (highest severity is: 10.0) reachable",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>sentence-transformers-2.2.2.tar.gz</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120556_HLSRET/python_QBGGDS/202603091206431/env/lib/python3.9/site-packages/nltk-3.9.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/DimaMend/AutoPrompt2/commit/1a9b14618a84a37c0b958ba35ebf09539537e0f1\">1a9b14618a84a37c0b958ba35ebf09539537e0f1</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (sentence-transformers version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-24747](https://www.mend.io/vulnerability-database/CVE-2026-24747) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 0.0% | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-55551](https://www.mend.io/vulnerability-database/CVE-2025-55551) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.1% | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-68146](https://www.mend.io/vulnerability-database/CVE-2025-68146) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.3 | Not Defined | 0.0% | filelock-3.19.1-py3-none-any.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2026-22701](https://www.mend.io/vulnerability-database/CVE-2026-22701) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 5.3 | Not Defined | 0.0% | filelock-3.19.1-py3-none-any.whl | Transitive | 2.3.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-3001](https://www.mend.io/vulnerability-database/CVE-2025-3001) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 5.3 | Not Defined | 0.2% | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesou",
+    "score": 40,
+    "labels": [
+      "Mend: dependency security vulnerability"
+    ],
+    "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/10",
+    "created_at": "2026-03-23T15:30:23.608751",
+    "status": "claimed"
+  },
+  {
+    "key": "DimaMend/AutoPrompt2#22",
+    "owner": "DimaMend",
+    "repo": "AutoPrompt2",
+    "number": 22,
+    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120556_HLSRET/python_QBGGDS/202603091206431/env/lib/python3.9/site-packages/nltk-3.9.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/DimaMend/AutoPrompt2/commit/1a9b14618a84a37c0b958ba35ebf09539537e0f1\">1a9b14618a84a37c0b958ba35ebf09539537e0f1</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.5% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.6% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.3% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Tra",
+    "score": 40,
+    "labels": [
+      "Mend: dependency security vulnerability"
+    ],
+    "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/22",
+    "created_at": "2026-03-23T15:30:26.020323",
+    "status": "claimed"
+  },
+  {
+    "key": "INDIGOAZUL/la-tanda-web#155",
+    "owner": "INDIGOAZUL",
+    "repo": "la-tanda-web",
+    "number": 155,
+    "title": "Fix broken or placeholder links across HTML pages — 30 LTD Bounty",
+    "body": "# Fix broken/placeholder links — 30 LTD Bounty (Tier 0)\n\n**Tier:** 0 (anyone can claim)\n\n## Task\nFind and fix all \\`href=\"#\"\\`, \\`href=\"javascript:void(0)\"\\` placeholder links and dead \\`href\\` links across the public HTML pages.\n\n## Scope\n- **Files to check:** All \\`.html\\` files at root\n- Link placeholders should either be removed, pointed to the correct destination, or converted to \\`<button>\\` if they trigger JS actions\n\n## Requirements\n1. Audit all HTML files for \\`href=\"#\"\\` and \\`href=\"javascript:void(0)\"\\`\n2. For each: determine if it should link somewhere real, or be a \\`<button>\\` instead\n3. Fix accordingly. If a link has a \\`data-action\\` handler, convert to \\`<button>\\`\n4. List all changes in the PR description\n\n## Definition of Done\n- [ ] Zero \\`href=\"#\"\\` that should be real links (navigational links that go nowhere)\n- [ ] Action triggers converted from \\`<a>\\` to \\`<button>\\` where appropriate\n- [ ] No broken navigation\n- [ ] No console errors\n\n## Codebase Verification Question\n> To claim this bounty, answer: **How many HTML files are at the root of the repo? Name 5 of them. What tag does the platform use for click actions — \\`<a onclick>\\` or \\`<button data-action>\\`?**\n\n## Estimated Time\n1-2 hours.",
+    "score": 75,
+    "labels": [
+      "bounty",
+      "tier-0"
+    ],
+    "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/155",
+    "created_at": "2026-03-23T16:30:14.475126",
+    "status": "submitted",
+    "pr_url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/196",
+    "submitted_at": "2026-03-23T17:50:00Z"
+  },
+  {
+    "key": "zhuzhushiwojia/lobster-rewards#1",
+    "owner": "zhuzhushiwojia",
+    "repo": "lobster-rewards",
+    "number": 1,
+    "title": "🦞 Lobster Rewards - TokenTon26 Consumer App Submission",
+    "body": "## 🦞 Lobster Rewards - TokenTon26 Consumer App Submission\n\n**Demo**: https://app-psi-dun-67.vercel.app/\n**GitHub**: https://github.com/zhuzhushiwojia/lobster-rewards\n\n### ✅ Completed Features\n- Wallet Connection (Solana Wallet Adapter)\n- Points System (Daily check-in, tasks, referrals)\n- Task List (Twitter, Discord, etc.)\n- Orca Swap Integration (SOL ↔ wRTC)\n- Leaderboard (Real-time rankings)\n\n### 📸 Screenshots\n\n![Homepage](https://raw.githubusercontent.com/zhuzhushiwojia/lobster-rewards/master/screenshots/01-homepage.png)\n![Wallet Connection](https://raw.githubusercontent.com/zhuzhushiwojia/lobster-rewards/master/screenshots/02-wallet.png)\n![Points System](https://raw.githubusercontent.com/zhuzhushiwojia/lobster-rewards/master/screenshots/03-points.png)\n![Task List](https://raw.githubusercontent.com/zhuzhushiwojia/lobster-rewards/master/screenshots/04-tasks.png)\n![Orca Swap](https://raw.githubusercontent.com/zhuzhushiwojia/lobster-rewards/master/screenshots/05-swap.png)\n![Leaderboard](https://raw.githubusercontent.com/zhuzhushiwojia/lobster-rewards/master/screenshots/06-leaderboard.png)\n\n### 🛠️ Tech Stack\n- Next.js 16 + TypeScript\n- Tailwind CSS\n- Solana Wallet Adapter\n- Orca Whirlpools SDK\n\n**Token**: wRTC on Solana Devnet\n**Mint**: 6zoec1UvtibQePttPFBifnEW48EB8P92VPKHLd8Y5uiZ\n\n---\n\n*Submitted for TokenTon26 Consumer Apps Track - $8500 Bounty*\n\n**Submission Date**: 2026-03-17\n**Status**: Ready for Review ✅",
+    "score": 70,
+    "labels": [
+      "bounty",
+      "submission",
+      "tokenton26"
+    ],
+    "html_url": "https://github.com/zhuzhushiwojia/lobster-rewards/issues/1",
+    "created_at": "2026-03-23T16:30:17.555244",
+    "status": "claimed"
+  },
+  {
+    "key": "INDIGOAZUL/la-tanda-web#156",
+    "owner": "INDIGOAZUL",
+    "repo": "la-tanda-web",
+    "number": 156,
+    "title": "Translate chain explorer UI text to Spanish — 20 LTD Bounty",
+    "body": "# Translate Chain Explorer to Spanish — 20 LTD Bounty (Tier 0)\n\n**Tier:** 0 (anyone can claim)\n\n## Task\nThe chain explorer at \\`chain/index.html\\` currently has English UI text. Translate all user-facing text to Spanish.\n\n## Scope\n- **File to modify:** \\`chain/index.html\\` only\n\n## Requirements\n1. Translate all headings, labels, button text, descriptions, and placeholder text to Spanish\n2. Keep technical terms in English where standard: \"Block Height\", \"Transaction Hash\", \"Validator\" can remain, but descriptions should be in Spanish\n3. Keep all code comments in English\n4. Do NOT change any JavaScript logic, CSS, or API calls\n\n## Definition of Done\n- [ ] All non-technical UI text is in Spanish\n- [ ] Page renders correctly after changes\n- [ ] No JavaScript errors\n- [ ] Technical blockchain terms kept in English where appropriate\n\n## Codebase Verification Question\n> To claim this bounty, answer: **How many sections does the chain explorer have? What is the CSS accent color used throughout the page?**\n\n## Estimated Time\n30-60 minutes.",
+    "score": 55,
+    "labels": [
+      "bounty",
+      "tier-0"
+    ],
+    "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/156",
+    "created_at": "2026-03-23T16:30:20.566378",
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:15:00Z",
+    "note": "页面已是西班牙语，无需翻译"
+  },
+  {
+    "key": "LederWorks/veiled-market#9424",
+    "owner": "LederWorks",
+    "repo": "veiled-market",
+    "number": 9424,
+    "title": "[discovery] easy-azuredevops/skills: sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md",
+    "body": "## Discovery: `SKILL.md` (skills)\n\n**plugin:** `easy-azuredevops`\n**Resource type:** `skills`\n**Source:** [antigravity/skills](https://antigravityskills.org)\n**Repository:** [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)\n**File:** [`skills/api-fuzzing-bug-bounty/SKILL.md`](https://github.com/sickn33/antigravity-awesome-skills/blob/main/skills/api-fuzzing-bug-bounty/SKILL.md)\n\n### Description\nInstallable GitHub library of 1,304+ agentic skills for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and more. Includes installer CLI, bundles, workflows, and official/community skill collections.\n\n### Raw URL\nhttps://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/skills/api-fuzzing-bug-bounty/SKILL.md\n\n---\n_Auto-discovered by the [discover workflow](.github/workflows/01-discovery.yml)._\n_This issue has been automatically labeled `status/draft` and will be picked up by the next evaluation run._\n\n<!-- veiled-market-registry:{\"source\":\"antigravity-skills\",\"plugin_ref\":\"sickn33/antigravity-awesome-skills\",\"skill_ref\":\"sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md\",\"sha\":\"ebb29088dc51be380da8aa7261179da759c0f90b\"} -->\n",
+    "score": 40,
+    "labels": [
+      "status/discovered",
+      "status/draft",
+      "type/skill",
+      "ai/discovery",
+      "source/antigravity-skills",
+      "plugin/easy-azuredevops"
+    ],
+    "html_url": "https://github.com/LederWorks/veiled-market/issues/9424",
+    "created_at": "2026-03-23T16:30:24.561129",
+    "status": "claimed"
+  },
+  {
+    "key": "s0md3v/XSStrike#438",
+    "owner": "s0md3v",
+    "repo": "XSStrike",
+    "number": 438,
+    "title": "AttributeError: 'str' object has no attribute 'keys' on JSON export.",
+    "body": "**Describe the bug**\nAn AttributeError: 'str' object has no attribute 'keys' occurs when running XSStrike against a URL that does not contain any query parameters. The scanner expects a dictionary of parameters but receives a string instead during the DOM vulnerability check or initial scan setup.\n\n**To Reproduce**\nSteps to reproduce the behavior:\n\nRun XSStrike on a plain URL without parameters:\npython xsstrike.py -u https://example.net --json\n\nThe tool starts checking for DOM vulnerabilities.\n\nThe process crashes with the following traceback:\n```\nFile \"/opt/jenny/bounty/xsstrike/modes/scan.py\", line 53, in scan url, {list(params.keys())[0]: xsschecker}, ... AttributeError: 'str' object has no attribute 'keys'\n```\n\n**Screenshots**\n\n```\n(.venv) root@vagent103:/opt/jenny/bounty/xsstrike# python xsstrike.py --update\n\n\tXSStrike v3.1.5\n\n[~] Checking for updates \n[+] XSStrike is up to date! \n(.venv) root@vagent103:/opt/jenny/bounty/xsstrike# python xsstrike.py -u https://xxxxxx.net\n\n\tXSStrike v3.1.5\n\n[~] Checking for DOM vulnerabilities \n[+] Potentially vulnerable objects found \n------------------------------------------------------------\n49  // Mobile menu links: close menu and navigate correctamente\n66  setTimeout(() => { targetEl.scrollIntoView({ behavior: 'smooth' }); }, 450);\n73  location.hash = href;\n76  // external or full-page link: navigate after scrolling to top\n80  setTimeout(() => { window.location.href = href; }, 600);\n82  window.location.href = href;\n30  element.innerHTML = translations[key];\n------------------------------------------------------------\n[-] No parameters to test. \n(.venv) root@vagent103:/opt/jenny/bounty/xsstrike# python xsstrike.py -u https://xxxxxx.net --json\n\n\tXSStrike v3.1.5\n\n[~] Checking for DOM vulnerabilities \nTraceback (most recent call last):\n  File \"/opt/jenny/bounty/xsstrike/xsstrike.py\", line 174, in <module>\n    scan(target, paramData, encoding, headers, delay, timeout, skipDOM, skip)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/jenny/bounty/xsstrike/modes/scan.py\", line 53, in scan\n    url, {list(params.keys())[0]: xsschecker}, headers, GET, delay, timeout)\n               ^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'keys'\n```\n\n<img width=\"1922\" height=\"1013\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/68bdf5fe-790b-4f40-a808-ab5abbba9c2c\" />\n\n\n**Potential cause or fix**\nIn modes/scan.py, the code assumes params is a dictionary and attempts to call .keys(). If the target URL has no parameters, params might be initialized as an empty string or null, leading to the crash. A check should be added to verify if params is a valid dictionary before accessing its keys.\n\n**Environment**\nOS: Linux (vagent103)\nPython version: 3.13\nXSStrike version: v3.1.5\n\n**Some Questions**\n[x] I am using the latest version of XSStrike.\n[x] I installed the dependencies using pip3 instead of pip\n[x] I have read the documentation before submitting this issue.\n[x] ",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/s0md3v/XSStrike/issues/438",
+    "created_at": "2026-03-23T17:00:07.200345",
+    "status": "claimed"
+  },
+  {
+    "key": "INDIGOAZUL/la-tanda-web#154",
+    "owner": "INDIGOAZUL",
+    "repo": "la-tanda-web",
+    "number": 154,
+    "title": "Add aria-labels to home-dashboard.html icon buttons — 25 LTD Bounty",
+    "body": "# Add aria-labels to home-dashboard.html — 25 LTD Bounty (Tier 0)\n\n**Tier:** 0 (anyone can claim)\n\n## Task\nAdd \\`aria-label\\` attributes to all icon-only buttons on \\`home-dashboard.html\\` that are missing them.\n\n## Scope\n- **File to modify:** \\`home-dashboard.html\\` only\n\n## Requirements\n1. Find all \\`<button>\\` and \\`<a>\\` elements that only contain an icon (e.g., \\`<i class=\"fas fa-...\">\\`) with no visible text\n2. Add \\`aria-label=\"Descripcion en espanol\"\\` to each\n3. Labels must be in **Spanish** and describe the action (e.g., \\`aria-label=\"Dar me gusta\"\\`, \\`aria-label=\"Compartir\"\\`)\n4. Do NOT change any existing functionality or styling\n\n## Definition of Done\n- [ ] All icon-only buttons have \\`aria-label\\`\n- [ ] Labels are in Spanish\n- [ ] No functional changes\n- [ ] No console errors\n\n## Codebase Verification Question\n> To claim this bounty, answer: **How many \\`<button>\\` elements are in \\`home-dashboard.html\\` that contain only an \\`<i>\\` icon and no text? Name 3 of them with their current classes.**\n\n## Estimated Time\n30-60 minutes.",
+    "score": 85,
+    "labels": [
+      "bounty",
+      "tier-0"
+    ],
+    "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/154",
+    "created_at": "2026-03-23T17:30:12.534684",
+    "status": "submitted",
+    "pr_url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/195",
+    "submitted_at": "2026-03-23T17:40:00Z"
+  },
+  {
+    "key": "mautic/mautic#15980",
+    "owner": "mautic",
+    "repo": "mautic",
+    "number": 15980,
+    "title": "Can't navigate to other pages in SugarCRM integration",
+    "body": "### Mautic Series\n\n7.0.x series\n\n### Mautic installed version\n\n7.0.1\n\n### Way of installing\n\nI downloaded a release from https://www.mautic.org/mautic-releases\n\n### PHP version\n\n8.3.6\n\n### What browsers are you seeing the problem on?\n\nFirefox\n\n### What happened?\n\nI encountered a bug when configuring SugarCRM plugin settings. On the contact and company mapping page, when clicking on the page selector buttons at the bottom, nothing happens. As such, I can only edit the first 20-something integration fields. Below is the HTTP request that was sent when I clicked on the page selector button.\n\n{\n  \"log\": {\n    \"version\": \"1.2\",\n    \"creator\": { \"name\": \"Firefox\", \"version\": \"141.0\" },\n    \"entries\": [\n      {\n        \"startedDateTime\": \"2026-03-23T15:49:57.525+08:00\",\n        \"request\": {\n          \"method\": \"POST\",\n          \"url\": \"https://your-mautic-site.com/s/ajax?action=plugin:getIntegrationFields\",\n          \"httpVersion\": \"HTTP/1.1\",\n          \"headers\": [\n            { \"name\": \"Content-Type\", \"value\": \"application/x-www-form-urlencoded; charset=UTF-8\" },\n            { \"name\": \"X-Requested-With\", \"value\": \"XMLHttpRequest\" }\n          ],\n          \"postData\": {\n            \"mimeType\": \"application/x-www-form-urlencoded\",\n            \"params\": [\n              { \"name\": \"page\", \"value\": \"2\" },\n              { \"name\": \"integration\", \"value\": \"Sugarcrm\" },\n              { \"name\": \"settings[object]\", \"value\": \"lead\" }\n            ],\n            \"text\": \"page=2&integration=Sugarcrm&settings%5Bobject%5D=lead&settings%5Bintegration%5D=Sugarcrm\"\n          }\n        },\n        \"response\": {\n          \"status\": 200,\n          \"content\": {\n            \"mimeType\": \"application/json\",\n            \"text\": \"{\\\"success\\\":0}\"\n          }\n        }\n      }\n    ]\n  }\n}\n\n\n\n### How can we reproduce this issue?\n\nStep 1: Install and enable the SugarCRM integration.\n\nStep 2. Navigate to Plugins > SugarCRM > Contact Mapping.\n\nStep 3. Attempt to click the \"2\" or any other button among the page selector buttons at the bottom of the list.\n\nStep 4. Nothing happens.\n\n### Relevant log output\n\n```shell\n\n```\n\n### Code of Conduct\n\n- [x] I confirm that I have read and agree to follow this project's Code of Conduct\n\n<br /><hr>\nCare about this issue? Want to get it resolved sooner? If you are a <a href='https://www.mautic.org/become-a-member-of-mautic'>member of Mautic</a>, you can add some funds to the <a href='https://opencollective.com/mautic/projects/bounties'>Bounties Project</a> so that the person who completes this task can claim those funds once it is merged by a member of the core team! Read the docs <a href='https://contribute.mautic.org/product-team/mautic-bounty-programme'>here.</a>",
+    "score": 55,
+    "labels": [
+      "bug",
+      "needs-triage"
+    ],
+    "html_url": "https://github.com/mautic/mautic/issues/15980",
+    "created_at": "2026-03-23T17:30:16.083204",
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:25:00Z"
+  },
+  {
+    "key": "smallgig/Pickomino#350",
+    "owner": "smallgig",
+    "repo": "Pickomino",
+    "number": 350,
+    "title": "Add Bug Bounty",
+    "body": "# Security & Bug Bounty Policy\n\n## Pickomino — Reinforcement Learning Environment\n\nPickomino is an open-source Reinforcement Learning environment for the board game\nPickomino/Heckmeck, confirmed as an external environment in\n[Farama Gymnasium](https://gymnasium.farama.org/).\n\nThis is a small, part-time personal project. The bug bounty program is run in good\nfaith and on a best-effort basis. Please read this document carefully before reporting.\n\n-----\n\n## Reward\n\nValid bug reports are rewarded with **one physical copy of the Pickomino/Heckmeck board\ngame**, shipped via Amazon.de Prime to any destination covered by Amazon.de Prime\nshipping.\n\n> ⚠️ **One reward per unique bug.** The first valid report of a given issue wins.\n> Duplicate reports are not eligible.\n\n-----\n\n## Scope\n\n### In scope\n\n- Incorrect implementation of Pickomino game rules\n- Observation space or action space definition errors\n- Reward function inaccuracies\n- Non-compliance with the Farama Gymnasium API\n- Dependency vulnerabilities (in `pyproject.toml` / `requirements`)\n- Reproducibility or random seeding issues\n- Packaging and release pipeline issues\n\n### Out of scope\n\n- The GitHub platform itself\n- The Farama Gymnasium core library\n- Feature requests framed as bugs\n- Performance optimisation suggestions\n- Theoretical or unproven issues without a reproducer\n- Issues found by automated scanners run without prior permission\n\n-----\n\n## How to Report\n\n### Security-sensitive issues\n\nUse GitHub’s built-in private disclosure:\n**Security → Report a vulnerability** (top of the repository page).\n\n### Non-security bugs\n\nOpen a regular GitHub Issue and prefix the title with `[BUG BOUNTY]`.\n\n### What to include\n\nPlease provide all of the following:\n\n1. **A minimal Python reproducer** — a short script that demonstrates the issue\n   against a specific tagged version of Pickomino.\n1. **Expected behaviour** — what the correct output or behaviour should be, with a\n   reference to the Pickomino/Heckmeck rulebook if applicable.\n1. **Actual behaviour** — what the environment does instead.\n1. **Environment details** — Python version, Gymnasium version, OS.\n\nReports without a working reproducer may not qualify for a reward.\n\n-----\n\n## Timelines\n\nThis is a part-time personal project. Please set expectations accordingly.\n\n|Milestone                                    |Target               |\n|---------------------------------------------|---------------------|\n|Initial acknowledgement                      |14 days              |\n|Triage decision (valid / invalid / duplicate)|30 days              |\n|Fix or published workaround                  |90 days              |\n|Public disclosure (security issues)          |After fix is released|\n\nIf a milestone is missed, feel free to send a polite follow-up on the issue or\nadvisory thread.\n\n**Please do not disclose security-sensitive findings publicly before a fix is\nreleased.**\n\n-----\n\n## Rules\n\n- This program is not a legal contract. It operates entirely on mutual",
+    "score": 25,
+    "labels": [
+      "bug",
+      "documentation",
+      "good first issue",
+      "S - size Small",
+      "nice to have"
+    ],
+    "html_url": "https://github.com/smallgig/Pickomino/issues/350",
+    "created_at": "2026-03-23T17:30:19.498323",
+    "status": "claimed"
+  },
+  {
+    "key": "SC-Bridge/sc-bridge#97",
+    "owner": "SC-Bridge",
+    "repo": "sc-bridge",
+    "number": 97,
+    "title": "Contracts/Missions: detail pages with descriptions and grouping",
+    "body": "## Problem\nMissions tab is a flat list with no click-through. Players can't see mission descriptions, rewards, or quest chains.\n\n## Requirements\n- Click into each mission to see full description\n- Group missions at a higher level (bounty hunting, delivery, investigation, etc.)\n- Show rep rewards, payout ranges, quest chain relationships\n- Use `ui-ux-pro-max` skill — crafting page as design reference\n- Tie in with reputation page (#18/reputation overhaul)\n\n## Reference\n- https://staging.scbridge.app/contracts?tab=missions\n- https://staging.scbridge.app/crafting (design reference)",
+    "score": 25,
+    "labels": [
+      "enhancement",
+      "area: gamedata"
+    ],
+    "html_url": "https://github.com/SC-Bridge/sc-bridge/issues/97",
+    "created_at": "2026-03-23T17:30:23.078639",
+    "status": "claimed"
+  },
+  {
+    "key": "laudantstolam/stargazer_newsletter#3",
+    "owner": "laudantstolam",
+    "repo": "stargazer_newsletter",
+    "number": 3,
+    "title": "📰 StarGazer Newsletter — 2026-03-23",
+    "body": "# 🌟 StarGazer Weekly Newsletter\nGenerated 2026-03-23\n\n## 🔥 Trending by network\n- [nikaiw/VMkatz](https://github.com/nikaiw/VMkatz) (4 stars)\n- [griffinmartin/opencode-claude-auth](https://github.com/griffinmartin/opencode-claude-auth) (2 stars)\n- [amruth-sn/kong](https://github.com/amruth-sn/kong) (2 stars)\n- [shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty) (2 stars)\n- [calesthio/Crucix](https://github.com/calesthio/Crucix) (2 stars)\n- [frank890417/taiwan-md](https://github.com/frank890417/taiwan-md) (2 stars)\n- [HackOvert/AntiDBG](https://github.com/HackOvert/AntiDBG) (2 stars)\n- [lightpanda-io/browser](https://github.com/lightpanda-io/browser) (2 stars)\n- [Hnfull/Intensio-Obfuscator](https://github.com/Hnfull/Intensio-Obfuscator) (2 stars)\n- [oddcod3/Phantom-Evasion](https://github.com/oddcod3/Phantom-Evasion) (2 stars)\n\n## 🔥 Trending by topic\n- `claude-code` (9)\n- `python` (9)\n- `security` (7)\n- `typescript` (6)\n- `llm` (6)\n\n## 🤝 Shared-interest repos\n- [nikaiw/VMkatz](https://github.com/nikaiw/VMkatz)\n- [karpathy/autoresearch](https://github.com/karpathy/autoresearch)\n- [amruth-sn/kong](https://github.com/amruth-sn/kong)\n- [shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty)\n- [regenrek/deepwiki-mcp](https://github.com/regenrek/deepwiki-mcp)\n- [swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)\n- [itm4n/PrivescCheck](https://github.com/itm4n/PrivescCheck)\n- [SourByte05/Vulnerability-Wiki-PoC](https://github.com/SourByte05/Vulnerability-Wiki-PoC)\n- [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills)\n- [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)\n\n## 🧪 Weak-signal discovery repos\n\n## 👥 Recent activity\n- YJK0805 ⭐ [mgeeky/HEVD_Kernel_Exploit](https://github.com/mgeeky/HEVD_Kernel_Exploit)\n  > Exploits pack for the Windows Kernel mode driver HackSysExtremeVulnerableDriver written for educational purposes.\n  `education` `exploit` `kernel`\n- YJK0805 ⭐ [wetw0rk/sickle-pdk](https://github.com/wetw0rk/sickle-pdk)\n  > Sickle - Payload Development Kit\n- Vasco0x4 ⭐ [bytedance/deer-flow](https://github.com/bytedance/deer-flow)\n  > An open-source SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skills and subagents, it handles different levels of tasks that could take minutes to hours.\n  `agent` `agentic` `agentic-framework`\n- MuMuuuu ⭐ [Flangvik/NetLoader](https://github.com/Flangvik/NetLoader)\n  > Loads any C# binary in mem, patching AMSI + ETW. \n- tw93 ⭐ [chenhg5/cc-connect](https://github.com/chenhg5/cc-connect)\n  > Bridge local AI coding agents (Claude Code, Cursor, Gemini CLI, Codex) to messaging platforms (Feishu/Lark, DingTalk, Slack, Telegram, Discord, LINE, WeChat Work). Chat with your AI dev assistant from anywhere — no public IP required for most platforms.\n- yuto0226 ⭐ [trailofbits/CoBRA](https://github.com/trailof",
+    "score": 55,
+    "labels": [
+      "newsletter"
+    ],
+    "html_url": "https://github.com/laudantstolam/stargazer_newsletter/issues/3",
+    "created_at": "2026-03-23T18:30:12.775421",
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:30:00Z"
+  },
+  {
+    "key": "laudantstolam/stargazer_newsletter#2",
+    "owner": "laudantstolam",
+    "repo": "stargazer_newsletter",
+    "number": 2,
+    "title": "📰 StarGazer Newsletter — 2026-03-23",
+    "body": "# 🌟 StarGazer Weekly Newsletter\nGenerated 2026-03-23\n\n## 🔥 Trending by network\n- [nikaiw/VMkatz](https://github.com/nikaiw/VMkatz) (4 stars)\n- [griffinmartin/opencode-claude-auth](https://github.com/griffinmartin/opencode-claude-auth) (2 stars)\n- [amruth-sn/kong](https://github.com/amruth-sn/kong) (2 stars)\n- [shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty) (2 stars)\n- [calesthio/Crucix](https://github.com/calesthio/Crucix) (2 stars)\n- [frank890417/taiwan-md](https://github.com/frank890417/taiwan-md) (2 stars)\n- [HackOvert/AntiDBG](https://github.com/HackOvert/AntiDBG) (2 stars)\n- [lightpanda-io/browser](https://github.com/lightpanda-io/browser) (2 stars)\n- [Hnfull/Intensio-Obfuscator](https://github.com/Hnfull/Intensio-Obfuscator) (2 stars)\n- [oddcod3/Phantom-Evasion](https://github.com/oddcod3/Phantom-Evasion) (2 stars)\n\n## 🔥 Trending by topic\n- `claude-code` (9)\n- `python` (9)\n- `security` (7)\n- `typescript` (6)\n- `llm` (6)\n\n## 🤝 Shared-interest repos\n- [nikaiw/VMkatz](https://github.com/nikaiw/VMkatz)\n- [karpathy/autoresearch](https://github.com/karpathy/autoresearch)\n- [amruth-sn/kong](https://github.com/amruth-sn/kong)\n- [shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty)\n- [regenrek/deepwiki-mcp](https://github.com/regenrek/deepwiki-mcp)\n- [swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)\n- [itm4n/PrivescCheck](https://github.com/itm4n/PrivescCheck)\n- [SourByte05/Vulnerability-Wiki-PoC](https://github.com/SourByte05/Vulnerability-Wiki-PoC)\n- [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills)\n- [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)\n\n## 🧪 Weak-signal discovery repos\n\n## 👥 Recent activity\n- YJK0805 ⭐ [mgeeky/HEVD_Kernel_Exploit](https://github.com/mgeeky/HEVD_Kernel_Exploit)\n  > Exploits pack for the Windows Kernel mode driver HackSysExtremeVulnerableDriver written for educational purposes.\n  `education` `exploit` `kernel`\n- YJK0805 ⭐ [wetw0rk/sickle-pdk](https://github.com/wetw0rk/sickle-pdk)\n  > Sickle - Payload Development Kit\n- Vasco0x4 ⭐ [bytedance/deer-flow](https://github.com/bytedance/deer-flow)\n  > An open-source SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skills and subagents, it handles different levels of tasks that could take minutes to hours.\n  `agent` `agentic` `agentic-framework`\n- MuMuuuu ⭐ [Flangvik/NetLoader](https://github.com/Flangvik/NetLoader)\n  > Loads any C# binary in mem, patching AMSI + ETW. \n- tw93 ⭐ [chenhg5/cc-connect](https://github.com/chenhg5/cc-connect)\n  > Bridge local AI coding agents (Claude Code, Cursor, Gemini CLI, Codex) to messaging platforms (Feishu/Lark, DingTalk, Slack, Telegram, Discord, LINE, WeChat Work). Chat with your AI dev assistant from anywhere — no public IP required for most platforms.\n- yuto0226 ⭐ [trailofbits/CoBRA](https://github.com/trailof",
+    "score": 55,
+    "labels": [
+      "newsletter"
+    ],
+    "html_url": "https://github.com/laudantstolam/stargazer_newsletter/issues/2",
+    "created_at": "2026-03-23T18:30:16.035746",
+    "status": "submitted",
+    "submitted_at": "2026-03-23T19:30:00Z"
+  },
+  {
+    "key": "LederWorks/veiled-market#5723",
+    "owner": "LederWorks",
+    "repo": "veiled-market",
+    "number": 5723,
+    "title": "[discovery] easy-github/skills: sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md",
+    "body": "## Discovery: `SKILL.md` (skills)\n\n**plugin:** `easy-github`\n**Resource type:** `skills`\n**Source:** [antigravity/skills](https://antigravityskills.org)\n**Repository:** [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)\n**File:** [`skills/api-fuzzing-bug-bounty/SKILL.md`](https://github.com/sickn33/antigravity-awesome-skills/blob/main/skills/api-fuzzing-bug-bounty/SKILL.md)\n\n### Description\nThe Ultimate Collection of 1000+ Agentic Skills for Claude Code/Antigravity/Cursor. Battle-tested, high-performance skills for AI agents including official skills from Anthropic and Vercel.\n\n### Raw URL\nhttps://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/skills/api-fuzzing-bug-bounty/SKILL.md\n\n---\n_Auto-discovered by the [discover workflow](.github/workflows/01-discovery.yml)._\n_This issue has been automatically labeled `status/draft` and will be picked up by the next evaluation run._\n\n<!-- veiled-market-registry:{\"source\":\"antigravity-skills\",\"plugin_ref\":\"sickn33/antigravity-awesome-skills\",\"skill_ref\":\"sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md\",\"sha\":\"f8238dcebdbc3be60ee6d682a794124c4f25327e\"} -->\n",
+    "score": 30,
+    "labels": [
+      "status/draft",
+      "type/skill",
+      "ai/discovery",
+      "source/antigravity-skills",
+      "plugin/easy-github"
+    ],
+    "html_url": "https://github.com/LederWorks/veiled-market/issues/5723",
+    "created_at": "2026-03-23T18:30:19.363890",
     "status": "claimed"
   }
 ]
