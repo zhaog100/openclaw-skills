@@ -1,6 +1,3 @@
-# Bounty 已知问题/已关闭任务列表
-# 总计：334 个
-# 最后更新：2026-03-23 18:08:26
 1712n/dn-institute#277
 1712n/dn-institute#425
 ANAVHEOBA/PrivacyLayer##100
@@ -26,9 +23,11 @@ ANAVHEOBA/PrivacyLayer##98
 ANAVHEOBA/PrivacyLayer##99
 AcademySoftwareFoundation/OpenCue##2190
 Aleks-NFT/AgentVault#5
+BasedHardware/omi#3039
 BruceFeIix/picker#2333
 Cap-go/capgo#1667
 CapSoftware/Cap##1540
+Chevalier12/InkkSlinger##5
 Chevalier12/InkkSlinger#3
 Chevalier12/InkkSlinger#5
 Choonster-WoW-AddOns/KillingBlow_Enhanced#2
@@ -49,15 +48,11 @@ Emmanuel-Evenzur/syetem_prompt#19
 Emmanuel-Evenzur/syetem_prompt#21
 Emmanuel-Evenzur/syetem_prompt#29
 Emmanuel-Evenzur/syetem_prompt#30
-FinMind#106
-FinMind#108
-FinMind#110
-FinMind#111
-FinMind#112
 Flutter-Bounty-Hunters/super_editor#2998
 FreezingMoon/AncientBeast#2617
 FreezingMoon/AncientBeast#2651
 Hexadian-Corporation/hhh-dataminer#5
+INDIGOAZUL/la-tanda-web##154
 INDIGOAZUL/la-tanda-web#154
 INDIGOAZUL/la-tanda-web#155
 INDIGOAZUL/la-tanda-web#156
@@ -78,20 +73,27 @@ JuliaEarth/GeoIO.jl#167
 Juwebien/agent-marketplace##7
 Kanba-co/kanba#29
 Kanba-co/kanba#30
+LederWorks/veiled-market##1134
+LederWorks/veiled-market##2463
+LederWorks/veiled-market#2463
 LederWorks/veiled-market#5723
 LederWorks/veiled-market#9424
 LiveHelperChat/livehelperchat#1505
 MM0x02/RSS-Push#452
 Mikann20041029/mikann20041029.github.io#375
+OWASP-BLT/BLT-API##57
+OWASP-BLT/BLT-Jobs##63
 OWASP-BLT/BLT-Next##118
 OWASP-BLT/BLT-Next##123
 OWASP-BLT/BLT-Next##124
 OWASP-BLT/BLT-Next##126
 OWASP-BLT/BLT-Next##127
 OWASP-BLT/BLT-Pool##94
+OWASP-BLT/BLT-Pool##96
 OWASP-BLT/BLT-SafeCloak##19
 Opty-Fi/defi-adapters#7
 PX4/PX4-Autopilot#22464
+Permify/permify#837
 PlatformNetwork/bounty-challenge##34565
 PlatformNetwork/bounty-challenge##35112
 PlatformNetwork/bounty-challenge##35116
@@ -104,6 +106,13 @@ PlatformNetwork/bounty-challenge##35221
 PlatformNetwork/bounty-challenge##35239
 PlatformNetwork/bounty-challenge##35254
 PlatformNetwork/bounty-challenge##36053
+PlatformNetwork/bounty-challenge##36273
+PlatformNetwork/bounty-challenge##36284
+PlatformNetwork/bounty-challenge##36296
+PlatformNetwork/bounty-challenge##36325
+PlatformNetwork/bounty-challenge##36358
+PlatformNetwork/bounty-challenge##36412
+PlatformNetwork/bounty-challenge##36503
 PlatformNetwork/bounty-challenge#35239 2026-03-21T13:30:51+08:00
 PortSwigger/extension-portal#238
 ProjectLiminality/InterBrain#382
@@ -158,6 +167,7 @@ TheJollyLaMa/BigNuten_Vanilla##161
 TheJollyLaMa/BigNuten_Vanilla##162
 TheJollyLaMa/BigNuten_Vanilla##163
 TheJollyLaMa/BigNuten_Vanilla##167
+TheJollyLaMa/BigNuten_Vanilla##169
 TheJollyLaMa/BigNuten_Vanilla#158
 TheJollyLaMa/BigNuten_Vanilla#159
 TheJollyLaMa/BigNuten_Vanilla#160
@@ -167,6 +177,8 @@ TheJollyLaMa/BigNuten_Vanilla#163
 TheJollyLaMa/BigNuten_Vanilla#167
 TheJollyLaMa/BigNuten_Vanilla#169
 TheSuperHackers/GeneralsGamePatch#2776
+Tribler/tribler##8667
+Tribler/tribler#8812
 TriliumNext/Trilium##649
 Tyaoo/picker#1322
 Uraxii/naous#226
@@ -188,6 +200,7 @@ YaibaToKen/dragon-ball-adventure-modpack#61
 YaibaToKen/dragon-ball-adventure-modpack#62
 YaibaToKen/dragon-ball-adventure-modpack#78
 Yuliya65/AutoPrompt#15
+ZecHub/zechub#1539
 activepieces/activepieces#8284
 aden-hive/hive#5964
 aden-hive/hive#6734
@@ -195,15 +208,20 @@ algora-io/algora##213
 alxndlk/wallper-app#23
 amaybaum-prod/V-Achilles#175
 aolabsai/ao_pyth#9
+arakoodev/EdgeChains#290
 archestra-ai/archestra#1301
 archestra-ai/archestra#3378
 asymcrypto/gitforge-template#1
 asyncapi/.github##388
 asyncapi/website##529
 atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-#2
+atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#11
+atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#12
+atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#14
 atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#2
 ax958888/VPS-Kanban-Agent#10
 backend-br/me-contrata#186
+base/contracts#217
 bitaps-com/jsbtc#46
 bolivian-peru/marketplace-service-template#281
 bolivian-peru/marketplace-service-template#284
@@ -221,7 +239,6 @@ code-payments/flipcash-program#7
 codehead-01/AutoPrompt#18
 codexbt/Eliza-Lobster#3
 commaai/openpilot#30693
-coolify#7528
 coollabsio/coolify##7528
 coollabsio/coolify#7743
 cxlinux-ai/cx-core##428
@@ -244,19 +261,6 @@ go-gitea/gitea#36856
 golemcloud/golem-cli#275
 gwdevhub/GWToolboxpp#1785
 hivemoot/colony##685
-homelab-stack#1
-homelab-stack#10
-homelab-stack#11
-homelab-stack#12
-homelab-stack#14
-homelab-stack#2
-homelab-stack#3
-homelab-stack#4
-homelab-stack#5
-homelab-stack#6
-homelab-stack#7
-homelab-stack#8
-homelab-stack#9
 humanaios-ui/lasting-light-ai#5
 illbnm/homelab-stack#3
 illbnm/homelab-stack#4
@@ -283,6 +287,7 @@ mangdangroboticsclub/mini_pupper_ros#125
 maplibre/maplibre-gl-js##982
 mate-desktop/mate-utils##206
 mautic/mautic#15980
+mlflow/mlflow##21656
 mohitagarwal24/Pokemon-Explorer#6
 nextcloud/android##19
 nextcloud/mail##2269
@@ -312,11 +317,15 @@ snowdensb/AutoPrompt_demo#25
 sorosave-protocol/contracts#52
 sorosave-protocol/frontend#80
 spaceandtimefdn/sxt-proof-of-sql#560
+tenstorrent/tt-metal##31286
+tenstorrent/tt-metal#31286
+tenstorrent/tt-metal#40494
 tgstation/tgstation#95484
 tomazzi14/github-genlayer#1
 ton-society/grants-and-bounties#1200
 ton-society/grants-and-bounties#1216
 tscircuit/circuit-json-to-step#6
+tscircuit/schematic-trace-solver#29
 ubounty-app/ubounty-demo##9
 unitystation/unitystation##10011
 vercel-labs/skills#719
@@ -326,6 +335,9 @@ versila22/hotline-darons#3
 vllm-project/vllm-omni#1623
 vllm-project/vllm-omni#2015
 vllm-project/vllm-omni#2075
+yosemite01/stellar-creator-portfolio#25
+yosemite01/stellar-creator-portfolio#6
+yosemite01/stellar-creator-portfolio#7
 zed-industries/zed#4440
 zhuzhushiwojia/lobster-rewards#1
 zio/izumi-reflect#404
@@ -337,4 +349,6 @@ zio/zio#9877
 zio/zio#9878
 zio/zio-blocks#519
 zio/zio-http#3472
-zio/zio-schema#754Comfy-Org/ComfyUI:bounty已停超过1年，comfyanonymous 2026-03-22确认，有价值的代码贡献但无奖励coollabsio/coolify##6894PlatformNetwork/bounty-challenge##35577PlatformNetwork/bounty-challenge##35926maplibre/maplibre-native##2410PlatformNetwork/bounty-challenge##35977PlatformNetwork/bounty-challenge##35986ANAVHEOBA/PrivacyLayer##94PlatformNetwork/bounty-challenge##36064OWASP-BLT/BLT-Next##120ValveSoftware/Proton##150jelly-legs-ai/Jelly-legs-unsteady-workshop##109nwjs/nw.js##1151StelTade/SwapTrade-Backend##184PlatformNetwork/bounty-challenge##36193StelTade/SwapTrade-Backend##197PlatformNetwork/bounty-challenge##36272
+zio/zio-schema#754Comfy-Org/ComfyUI:bounty已停超过1年，comfyanonymous 2026-03-22确认，有价值的代码贡献但无奖励coollabsio/coolify##6894PlatformNetwork/bounty-challenge##35577PlatformNetwork/bounty-challenge##35926maplibre/maplibre-native##2410PlatformNetwork/bounty-challenge##35977PlatformNetwork/bounty-challenge##35986ANAVHEOBA/PrivacyLayer##94PlatformNetwork/bounty-challenge##36064OWASP-BLT/BLT-Next##120ValveSoftware/Proton##150jelly-legs-ai/Jelly-legs-unsteady-workshop##109nwjs/nw.js##1151StelTade/SwapTrade-Backend##184PlatformNetwork/bounty-challenge##36193StelTade/SwapTrade-Backend##197PlatformNetwork/bounty-challenge##36272PlatformNetwork/bounty-challenge##36279PlatformNetwork/bounty-challenge##36285PlatformNetwork/bounty-challenge##36287coollabsio/coolify##7738PlatformNetwork/bounty-challenge##36306PlatformNetwork/bounty-challenge##36314PlatformNetwork/bounty-challenge##36346INDIGOAZUL/la-tanda-web##156LederWorks/veiled-market##9424smallgig/Pickomino##350LederWorks/veiled-market##5723PlatformNetwork/bounty-challenge##36494PlatformNetwork/bounty-challenge##36512PlatformNetwork/bounty-challenge##36514PlatformNetwork/bounty-challenge##36531StelTade/SwapTrade-Backend##194
+Jagadeeshftw/grainlify##778
+StelTade/SwapTrade-Backend##195
