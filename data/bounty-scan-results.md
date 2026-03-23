@@ -1,6 +1,7 @@
-# Bounty扫描结果 - 2026-03-23 09:30
+# Bounty扫描结果 - 2026-03-23 21:30
 
 | 仓库 | Issue | 标题 | 状态 |
 |------|-------|------|------|
-| PlatformNetwork/bounty-challenge | [PlatformNetwork/bounty-challenge##36272](https://github.com/PlatformNetwork/bounty-challenge/issues/36272) | Title: [BUG] [alpha] New Debug Configuration "Stop on entry" row toggles when cl | 待评估 |
-| mate-desktop/mate-utils | [mate-desktop/mate-utils##206](https://github.com/mate-desktop/mate-utils/issues/206) | Disk Usage Analyzer hover-text behaviour | 待评估 |
+| StelTade/SwapTrade-Backend | [StelTade/SwapTrade-Backend##194](https://github.com/StelTade/SwapTrade-Backend/issues/194) | Fraud Prevention and Validation | 待评估 |
+| Jagadeeshftw/grainlify | [Jagadeeshftw/grainlify##778](https://github.com/Jagadeeshftw/grainlify/issues/778) | Bounty escrow: dry-run simulation (bounty_escrow/escrow) | 待评估 |
+| StelTade/SwapTrade-Backend | [StelTade/SwapTrade-Backend##195](https://github.com/StelTade/SwapTrade-Backend/issues/195) | Referral System API Documentation | 待评估 |

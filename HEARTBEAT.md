@@ -1,9 +1,19 @@
 # HEARTBEAT.md
 
-## 轮换检查（每次1-2项）
+## 每次心跳必检（≤1项，轮换）
 - [ ] Bounty PR状态（review/合并）
 - [ ] GitHub Issues最新回复
 - [ ] 系统健康（Gateway/内存/磁盘）
+
+## 每次心跳必检（核心基础设施，不轮换）
+- [ ] **核心定时任务完整性** — 对照 MEMORY.md 定时任务表，逐项检查 crontab 是否存在：
+  - `seamless-switch.sh` (*/5 * * * *)
+  - `bounty_scanner` (*/30 * * * *)
+  - `github-bounty-hunter.sh` (*/30 * * * *)
+  - `monitor.py` (0 * * * *)
+  - `qmd update` (0 6 * * *)
+  - `daily-review 早/晚` (0 12 / 50 23)
+  - 缺失→立即修复→记录到 MEMORY.md 并通知官家
 
 ## 几天一次
 - [ ] 回顾memory/，提炼精华到MEMORY.md

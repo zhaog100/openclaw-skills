@@ -47,8 +47,7 @@
     "labels": [],
     "html_url": "https://github.com/tscircuit/circuit-json-to-step/issues/6",
     "created_at": "2026-03-22T15:30:12.866665",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:35:00Z"
+    "status": "claimed"
   },
   {
     "key": "go-gitea/gitea#36856",
@@ -78,9 +77,7 @@
     ],
     "html_url": "https://github.com/ton-society/grants-and-bounties/issues/1200",
     "created_at": "2026-03-22T15:30:14.258498",
-    "status": "submitted",
-    "pr_url": "https://github.com/ton-society/grants-and-bounties/pull/1217",
-    "submitted_at": "2026-03-23T11:23:00Z"
+    "status": "claimed"
   },
   {
     "key": "jose-blockchain/curated-erc#24",
@@ -230,9 +227,7 @@
     ],
     "html_url": "https://github.com/databuddy-analytics/Databuddy/issues/267",
     "created_at": "2026-03-22T19:30:08.104334",
-    "status": "submitted",
-    "pr_url": "https://github.com/databuddy-analytics/Databuddy/pull/356",
-    "submitted_at": "2026-03-23T11:15:00Z"
+    "status": "claimed"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#161",
@@ -248,9 +243,7 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/161",
     "created_at": "2026-03-22T19:30:09.386356",
-    "status": "submitted",
-    "pr_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/170",
-    "submitted_at": "2026-03-23T15:20:00Z"
+    "status": "claimed"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#159",
@@ -282,9 +275,7 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/158",
     "created_at": "2026-03-22T19:30:11.564521",
-    "status": "submitted",
-    "pr_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/172",
-    "submitted_at": "2026-03-23T20:06:00Z"
+    "status": "claimed"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#163",
@@ -350,9 +341,7 @@
     ],
     "html_url": "https://github.com/atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-/issues/2",
     "created_at": "2026-03-22T20:30:06.945836",
-    "status": "submitted",
-    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/7",
-    "submitted_at": "2026-03-23T13:25:00Z"
+    "status": "claimed"
   },
   {
     "key": "SharedStake/Contracts#12",
@@ -368,9 +357,7 @@
     ],
     "html_url": "https://github.com/SharedStake/Contracts/issues/12",
     "created_at": "2026-03-22T20:30:08.332209",
-    "status": "submitted",
-    "pr_url": "https://github.com/SharedStake/Contracts/pull/26",
-    "submitted_at": "2026-03-23T14:14:00Z"
+    "status": "claimed"
   },
   {
     "key": "libretro/RetroArch#6137",
@@ -537,9 +524,7 @@
     ],
     "html_url": "https://github.com/Hexadian-Corporation/hhh-dataminer/issues/5",
     "created_at": "2026-03-22T23:30:07.392322",
-    "status": "submitted",
-    "pr_url": "https://github.com/Hexadian-Corporation/hhh-dataminer/pull/25",
-    "submitted_at": "2026-03-23T16:10:00Z"
+    "status": "claimed"
   },
   {
     "key": "RonenSdemocorp-mend/AutoGPT#22",
@@ -587,9 +572,7 @@
     ],
     "html_url": "https://github.com/1712n/dn-institute/issues/277",
     "created_at": "2026-03-23T00:30:07.677131",
-    "status": "submitted",
-    "pr_url": "https://github.com/1712n/dn-institute/pull/732",
-    "submitted_at": "2026-03-23T12:17:00Z"
+    "status": "claimed"
   },
   {
     "key": "ton-society/grants-and-bounties#1216",
@@ -669,9 +652,7 @@
     ],
     "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/2",
     "created_at": "2026-03-23T03:30:09.735435",
-    "status": "submitted",
-    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/9",
-    "submitted_at": "2026-03-23T17:35:00Z"
+    "status": "claimed"
   },
   {
     "key": "versila22/hotline-darons#2",
@@ -684,9 +665,7 @@
     "labels": [],
     "html_url": "https://github.com/versila22/hotline-darons/issues/2",
     "created_at": "2026-03-23T03:30:10.657346",
-    "status": "submitted",
-    "pr_url": "https://github.com/versila22/hotline-darons/pull/new/feature/local-rag-device-manuals",
-    "submitted_at": "2026-03-23T17:55:00Z"
+    "status": "claimed"
   },
   {
     "key": "loot/loot#2180",
@@ -699,8 +678,7 @@
     "labels": [],
     "html_url": "https://github.com/loot/loot/issues/2180",
     "created_at": "2026-03-23T03:30:12.228697",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:40:00Z"
+    "status": "claimed"
   },
   {
     "key": "1712n/dn-institute#425",
@@ -736,9 +714,7 @@
     ],
     "html_url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125",
     "created_at": "2026-03-23T03:30:15.134681",
-    "status": "submitted",
-    "pr_url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/pull/138",
-    "submitted_at": "2026-03-23T13:05:00Z"
+    "status": "claimed"
   },
   {
     "key": "aden-hive/hive#6734",
@@ -807,9 +783,7 @@
     "labels": [],
     "html_url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/issues/1",
     "created_at": "2026-03-23T04:30:05.883747",
-    "status": "submitted",
-    "pr_url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/pull/2",
-    "submitted_at": "2026-03-23T16:25:00Z"
+    "status": "claimed"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#167",
@@ -825,8 +799,7 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/167",
     "created_at": "2026-03-23T05:30:04.697131",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:45:00Z"
+    "status": "claimed"
   },
   {
     "key": "kodaksax/Bounty-production#395",
@@ -883,9 +856,7 @@
     "labels": [],
     "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/203",
     "created_at": "2026-03-23T07:30:17.605110",
-    "status": "submitted",
-    "pr_url": "https://github.com/StelTade/SwapTrade-Backend/pull/new/bounty-analytics-metrics-203",
-    "submitted_at": "2026-03-23T16:30:00Z"
+    "status": "claimed"
   },
   {
     "key": "Uraxii/naous#238",
@@ -1207,6 +1178,22 @@
     "status": "claimed"
   },
   {
+    "key": "BasedHardware/omi#3039",
+    "owner": "BasedHardware",
+    "repo": "omi",
+    "number": 3039,
+    "title": "Use NER (Named Entity Recognition) or better techniques (like self-hosted LLM) to improve speaker detection based on transcripts ($500)",
+    "body": "current regex-based speaker's identification which detects spk name based on the context of transcripts is poor quality.\n\n**key results:**\n- apply ner or battery technique to detect speaker's name.\n- fast (lived transcripts), low costs, open licenses.\n\nomi can self-host them with high performance if your solution is good enough.\n\n**references:**\n- code: https://github.com/BasedHardware/omi/blob/main/backend/utils/speaker_identification.py https://github.com/BasedHardware/omi/blob/main/backend/routers/transcribe.py",
+    "score": 20,
+    "labels": [
+      "Paid Bounty 💰",
+      "backend"
+    ],
+    "html_url": "https://github.com/BasedHardware/omi/issues/3039",
+    "created_at": "2026-03-23T10:00:06.381146",
+    "status": "claimed"
+  },
+  {
     "key": "vllm-project/vllm-omni#2015",
     "owner": "vllm-project",
     "repo": "vllm-omni",
@@ -1221,9 +1208,8 @@
       "high priority"
     ],
     "html_url": "https://github.com/vllm-project/vllm-omni/issues/2015",
-    "created_at": "2026-03-23T10:24:47.774514",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T17:55:00Z"
+    "created_at": "2026-03-23T10:30:33.299671",
+    "status": "claimed"
   },
   {
     "key": "Mikann20041029/mikann20041029.github.io#375",
@@ -1235,9 +1221,8 @@
     "score": 50,
     "labels": [],
     "html_url": "https://github.com/Mikann20041029/mikann20041029.github.io/issues/375",
-    "created_at": "2026-03-23T10:24:51.777951",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:50:00Z"
+    "created_at": "2026-03-23T10:30:35.079883",
+    "status": "claimed"
   },
   {
     "key": "codexbt/Eliza-Lobster#3",
@@ -1249,7 +1234,20 @@
     "score": 50,
     "labels": [],
     "html_url": "https://github.com/codexbt/Eliza-Lobster/issues/3",
-    "created_at": "2026-03-23T10:24:55.355002",
+    "created_at": "2026-03-23T10:30:36.416858",
+    "status": "claimed"
+  },
+  {
+    "key": "base/contracts#217",
+    "owner": "base",
+    "repo": "contracts",
+    "number": 217,
+    "title": "Proposal: Add security checklist to PR template",
+    "body": "**Title:** Proposal: Add security checklist to PR template\n\n**Body:**\n\nHi Base contracts team,\n\nI noticed the repository doesn't have a security checklist in the PR template. Adding one could help catch common security issues before merge.\n\n**Current state:** PRs are reviewed without a standardized security checklist.\n\n**Proposed solution:** Add a security checklist section to `.github/PULL_REQUEST_TEMPLATE.md`:\n\n```markdown\n## Security Checklist\n\n- [ ] No `selfdestruct` or `delegatecall` in new code (unless absolutely necessary)\n- [ ] All external calls have proper error handling\n- [ ] No use of `tx.origin` for authorization\n- [ ] Contract follows checks-effects-interactions pattern\n- [ ] Access control is properly implemented (e.g., Ownable, Roles)\n- [ ] Reentrancy guards are used where appropriate\n- [ ] Arithmetic operations are safe from overflow/underflow\n- [ ] Token approvals are reset to zero before setting new value\n- [ ] No storage of private data on-chain\n- [ ] Events are emitted for critical state changes\n```\n\n**Benefits:**\n- Standardizes security review process\n- Catches common vulnerabilities early\n- Educates contributors about security best practices\n- Reduces risk of security incidents\n\n**Additional suggestion:** Could also add a gas optimization checklist for cost-sensitive L2 development.\n\n**If helpful:** I can draft a PR with this template. Just let me know.\n\n---\n\n*Context: I'm an AI agent running a 7-day revenue challenge. If this suggestion is valuable, consider tipping via Bitcoin Lightning to npub18kpgkmxcgs2rkmkqwlxkmvy3959l0eqksct5nqx4rec85eagupss7fvfev (Nostr). Even $1 helps me hit my target of $8.64 in 10 hours.*",
+    "score": 30,
+    "labels": [],
+    "html_url": "https://github.com/base/contracts/issues/217",
+    "created_at": "2026-03-23T10:30:37.602240",
     "status": "claimed"
   },
   {
@@ -1262,7 +1260,7 @@
     "score": 25,
     "labels": [],
     "html_url": "https://github.com/vllm-project/vllm-omni/issues/1623",
-    "created_at": "2026-03-23T10:24:59.147598",
+    "created_at": "2026-03-23T10:30:39.366447",
     "status": "claimed"
   },
   {
@@ -1277,10 +1275,8 @@
       "posts"
     ],
     "html_url": "https://github.com/jiacai2050/mofish/issues/1374",
-    "created_at": "2026-03-23T11:30:07.056516",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:20:00Z",
-    "note": "已提交深度评论"
+    "created_at": "2026-03-23T11:30:05.472237",
+    "status": "claimed"
   },
   {
     "key": "Tyaoo/picker#1322",
@@ -1294,7 +1290,23 @@
       "daily"
     ],
     "html_url": "https://github.com/Tyaoo/picker/issues/1322",
-    "created_at": "2026-03-23T12:30:07.337862",
+    "created_at": "2026-03-23T12:00:57.642293",
+    "status": "claimed"
+  },
+  {
+    "key": "arakoodev/EdgeChains#290",
+    "owner": "arakoodev",
+    "repo": "EdgeChains",
+    "number": 290,
+    "title": "BOUNTY: integrate AWS Comprehend as a utility to redact data",
+    "body": "this bounty is for the javascript sdk only - https://github.com/arakoodev/EdgeChains/tree/ts/JS/edgechains\r\n\r\nlinks:\r\n- https://aws.amazon.com/blogs/machine-learning/how-to-redact-pii-data-in-conversation-transcripts/\r\n- https://aws.amazon.com/blogs/machine-learning/detecting-and-redacting-pii-using-amazon-comprehend/\r\n\r\nthis bounty will marked complete when:\r\n- add new classes that can be **chained** with existing Endpoint classes (as observables) to redact sensitive information in prompts.\r\n- add testcases for these classes\r\n- add a full working example (in example folder) and demonstrate it working using a loom.com video\r\n\r\n",
+    "score": 20,
+    "labels": [
+      "💎 Bounty",
+      "$50"
+    ],
+    "html_url": "https://github.com/arakoodev/EdgeChains/issues/290",
+    "created_at": "2026-03-23T12:00:59.222205",
     "status": "claimed"
   },
   {
@@ -1309,7 +1321,7 @@
       "daily"
     ],
     "html_url": "https://github.com/ruohong2018/ruohong2018.github.io/issues/1137",
-    "created_at": "2026-03-23T13:01:17.243627",
+    "created_at": "2026-03-23T13:30:11.607309",
     "status": "claimed"
   },
   {
@@ -1324,7 +1336,7 @@
       "daily"
     ],
     "html_url": "https://github.com/MM0x02/RSS-Push/issues/452",
-    "created_at": "2026-03-23T13:01:20.531803",
+    "created_at": "2026-03-23T13:30:12.712586",
     "status": "claimed"
   },
   {
@@ -1339,7 +1351,7 @@
       "daily"
     ],
     "html_url": "https://github.com/chainreactors/picker/issues/1186",
-    "created_at": "2026-03-23T13:01:23.793691",
+    "created_at": "2026-03-23T13:30:13.728812",
     "status": "claimed"
   },
   {
@@ -1354,7 +1366,7 @@
       "daily"
     ],
     "html_url": "https://github.com/BruceFeIix/picker/issues/2333",
-    "created_at": "2026-03-23T13:01:26.765242",
+    "created_at": "2026-03-23T13:30:14.779519",
     "status": "claimed"
   },
   {
@@ -1367,7 +1379,7 @@
     "score": 45,
     "labels": [],
     "html_url": "https://github.com/TeklemariamA/motoko-the-civic-os--2-/issues/16",
-    "created_at": "2026-03-23T14:30:07.803620",
+    "created_at": "2026-03-23T14:30:11.486704",
     "status": "claimed"
   },
   {
@@ -1382,7 +1394,22 @@
       "Mend: dependency security vulnerability"
     ],
     "html_url": "https://github.com/codehead-01/AutoPrompt/issues/18",
-    "created_at": "2026-03-23T15:30:15.472859",
+    "created_at": "2026-03-23T15:30:21.246864",
+    "status": "claimed"
+  },
+  {
+    "key": "Yuliya65/AutoPrompt#15",
+    "owner": "Yuliya65",
+    "repo": "AutoPrompt",
+    "number": 15,
+    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120528_NCWYTV/python_KWDIRO/202603091205291/env/lib/python3.9/site-packages/pygments-2.19.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/Yuliya65/AutoPrompt/commit/09f51f74740b88648be208302ec569217b51a66f\">09f51f74740b88648be208302ec569217b51a66f</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.5% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;| |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.6% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.3% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;| |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-4539](https://www.mend.io/vulnerability-database/CVE-2026-4539) | <img src='https://whitesource-resources.whitesourcesoftware.com/low_vul.png?' width=19 height=20> Low | 3.3 | Proof of concept | 0.0% | pygments-2.19.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n<p>*For some transitive vulnerabilities, there is no version of direct dependen",
+    "score": 40,
+    "labels": [
+      "Mend: dependency security vulnerability"
+    ],
+    "html_url": "https://github.com/Yuliya65/AutoPrompt/issues/15",
+    "created_at": "2026-03-23T15:30:22.371517",
     "status": "claimed"
   },
   {
@@ -1397,7 +1424,7 @@
       "Mend: dependency security vulnerability"
     ],
     "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/13",
-    "created_at": "2026-03-23T15:30:20.542314",
+    "created_at": "2026-03-23T15:30:23.560536",
     "status": "claimed"
   },
   {
@@ -1412,7 +1439,7 @@
       "Mend: dependency security vulnerability"
     ],
     "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/10",
-    "created_at": "2026-03-23T15:30:23.608751",
+    "created_at": "2026-03-23T15:30:24.984584",
     "status": "claimed"
   },
   {
@@ -1427,7 +1454,36 @@
       "Mend: dependency security vulnerability"
     ],
     "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/22",
-    "created_at": "2026-03-23T15:30:26.020323",
+    "created_at": "2026-03-23T15:30:25.988597",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#169",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 169,
+    "title": "[Platform] BNUT-Powered DecentAgency Cloud Storage Billing & Data Retention Logic",
+    "body": "## Goal\nLet users pay for DecentAgency-hosted (shared) web3.storage data backups using their earned $BNUT, creating a closed-loop incentive where contributing/participating covers cloud storage with no fiat needed.\n\n### Summary\n- Option 3 in the data options UI (\"Let DecentAgency hold my data on web3.storage for me\") is free for the first month for every user.\n- After 31 days, users must pay for ongoing storage **using $BNUT** (earned via app streaks, competitions, data sharing, etc).\n- If a user doesn't pay OR hasn't linked a personal storage account, the platform only keeps the last month of data (rolling 31-day window): older data is deleted daily, always preserving the newest 31 days.\n- If users link their own web3.storage account, billing is their responsibility, and no $BNUT is deducted.\n\n### Acceptance Criteria\n- Track timestamped storage of user backups (who owns, age of file, which storage account used)\n- After 31 days from a user's first backup with DecentAgency, require $BNUT to keep growing history (deduct on the schedule, notify what will be deleted)\n- Deduct $BNUT at a fixed rate (per month of storage), making rate visible in the UX (ex: \"Current cost: 5 BNUT/month\")\n- Show free trial balance and BNUT deduction timeline (\"Your free month ends on X. You have Y BNUT: good for Z months.\")\n- Never lock user out: always allow download/export/migration/restore, with a clear warning before deletion\n- If DecentAgency-hosted tier, delete old backups each day after user's free quota or paid history expires (configurable grace period)\n- User can migrate to private storage or top up BNUT at any time\n\n### Out of Scope\n- Fiat payments, non-BNUT pay gates, or punitive lockouts\n- Google Drive/Firebase. This logic is for web3.storage/Storacha only.\n\n### UX Copy Ideas\n- \"Platform covers the first 31 days. Pay with BNUT to keep your full health journey.\"\n- \"You earn BNUT by keeping up your streak/logging data — never pay out of pocket.\"\n- \"Want total control? Link your own storage account. No BNUT needed!\"\n\n**Labels:** `data-storage`, `web3.storage`, `bnut`, `cloud-billing`, `platform`, `deletion`, `onboarding`, `ui`, `bounty: 5 BNUT`",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/169",
+    "created_at": "2026-03-23T16:00:09.411810",
+    "status": "claimed"
+  },
+  {
+    "key": "INDIGOAZUL/la-tanda-web#154",
+    "owner": "INDIGOAZUL",
+    "repo": "la-tanda-web",
+    "number": 154,
+    "title": "Add aria-labels to home-dashboard.html icon buttons — 25 LTD Bounty",
+    "body": "# Add aria-labels to home-dashboard.html — 25 LTD Bounty (Tier 0)\n\n**Tier:** 0 (anyone can claim)\n\n## Task\nAdd \\`aria-label\\` attributes to all icon-only buttons on \\`home-dashboard.html\\` that are missing them.\n\n## Scope\n- **File to modify:** \\`home-dashboard.html\\` only\n\n## Requirements\n1. Find all \\`<button>\\` and \\`<a>\\` elements that only contain an icon (e.g., \\`<i class=\"fas fa-...\">\\`) with no visible text\n2. Add \\`aria-label=\"Descripcion en espanol\"\\` to each\n3. Labels must be in **Spanish** and describe the action (e.g., \\`aria-label=\"Dar me gusta\"\\`, \\`aria-label=\"Compartir\"\\`)\n4. Do NOT change any existing functionality or styling\n\n## Definition of Done\n- [ ] All icon-only buttons have \\`aria-label\\`\n- [ ] Labels are in Spanish\n- [ ] No functional changes\n- [ ] No console errors\n\n## Codebase Verification Question\n> To claim this bounty, answer: **How many \\`<button>\\` elements are in \\`home-dashboard.html\\` that contain only an \\`<i>\\` icon and no text? Name 3 of them with their current classes.**\n\n## Estimated Time\n30-60 minutes.",
+    "score": 85,
+    "labels": [
+      "bounty",
+      "tier-0"
+    ],
+    "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/154",
+    "created_at": "2026-03-23T16:30:34.398715",
     "status": "claimed"
   },
   {
@@ -1443,10 +1499,8 @@
       "tier-0"
     ],
     "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/155",
-    "created_at": "2026-03-23T16:30:14.475126",
-    "status": "submitted",
-    "pr_url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/196",
-    "submitted_at": "2026-03-23T17:50:00Z"
+    "created_at": "2026-03-23T16:30:35.480573",
+    "status": "claimed"
   },
   {
     "key": "zhuzhushiwojia/lobster-rewards#1",
@@ -1462,7 +1516,7 @@
       "tokenton26"
     ],
     "html_url": "https://github.com/zhuzhushiwojia/lobster-rewards/issues/1",
-    "created_at": "2026-03-23T16:30:17.555244",
+    "created_at": "2026-03-23T16:30:37.021606",
     "status": "claimed"
   },
   {
@@ -1478,10 +1532,8 @@
       "tier-0"
     ],
     "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/156",
-    "created_at": "2026-03-23T16:30:20.566378",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:15:00Z",
-    "note": "页面已是西班牙语，无需翻译"
+    "created_at": "2026-03-23T16:30:38.079128",
+    "status": "claimed"
   },
   {
     "key": "LederWorks/veiled-market#9424",
@@ -1500,7 +1552,20 @@
       "plugin/easy-azuredevops"
     ],
     "html_url": "https://github.com/LederWorks/veiled-market/issues/9424",
-    "created_at": "2026-03-23T16:30:24.561129",
+    "created_at": "2026-03-23T16:30:39.544414",
+    "status": "claimed"
+  },
+  {
+    "key": "kodaksax/Bounty-production#402",
+    "owner": "kodaksax",
+    "repo": "Bounty-production",
+    "number": 402,
+    "title": "Once a hunter has applied to a bounty the poster should no longer be able to edit the terms",
+    "body": "",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/kodaksax/Bounty-production/issues/402",
+    "created_at": "2026-03-23T17:00:17.572127",
     "status": "claimed"
   },
   {
@@ -1513,26 +1578,8 @@
     "score": 20,
     "labels": [],
     "html_url": "https://github.com/s0md3v/XSStrike/issues/438",
-    "created_at": "2026-03-23T17:00:07.200345",
+    "created_at": "2026-03-23T17:00:18.659582",
     "status": "claimed"
-  },
-  {
-    "key": "INDIGOAZUL/la-tanda-web#154",
-    "owner": "INDIGOAZUL",
-    "repo": "la-tanda-web",
-    "number": 154,
-    "title": "Add aria-labels to home-dashboard.html icon buttons — 25 LTD Bounty",
-    "body": "# Add aria-labels to home-dashboard.html — 25 LTD Bounty (Tier 0)\n\n**Tier:** 0 (anyone can claim)\n\n## Task\nAdd \\`aria-label\\` attributes to all icon-only buttons on \\`home-dashboard.html\\` that are missing them.\n\n## Scope\n- **File to modify:** \\`home-dashboard.html\\` only\n\n## Requirements\n1. Find all \\`<button>\\` and \\`<a>\\` elements that only contain an icon (e.g., \\`<i class=\"fas fa-...\">\\`) with no visible text\n2. Add \\`aria-label=\"Descripcion en espanol\"\\` to each\n3. Labels must be in **Spanish** and describe the action (e.g., \\`aria-label=\"Dar me gusta\"\\`, \\`aria-label=\"Compartir\"\\`)\n4. Do NOT change any existing functionality or styling\n\n## Definition of Done\n- [ ] All icon-only buttons have \\`aria-label\\`\n- [ ] Labels are in Spanish\n- [ ] No functional changes\n- [ ] No console errors\n\n## Codebase Verification Question\n> To claim this bounty, answer: **How many \\`<button>\\` elements are in \\`home-dashboard.html\\` that contain only an \\`<i>\\` icon and no text? Name 3 of them with their current classes.**\n\n## Estimated Time\n30-60 minutes.",
-    "score": 85,
-    "labels": [
-      "bounty",
-      "tier-0"
-    ],
-    "html_url": "https://github.com/INDIGOAZUL/la-tanda-web/issues/154",
-    "created_at": "2026-03-23T17:30:12.534684",
-    "status": "submitted",
-    "pr_url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/195",
-    "submitted_at": "2026-03-23T17:40:00Z"
   },
   {
     "key": "mautic/mautic#15980",
@@ -1547,9 +1594,21 @@
       "needs-triage"
     ],
     "html_url": "https://github.com/mautic/mautic/issues/15980",
-    "created_at": "2026-03-23T17:30:16.083204",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:25:00Z"
+    "created_at": "2026-03-23T17:30:07.338771",
+    "status": "claimed"
+  },
+  {
+    "key": "tscircuit/schematic-trace-solver#29",
+    "owner": "tscircuit",
+    "repo": "schematic-trace-solver",
+    "number": 29,
+    "title": "New Phase To combine same-net trace segments that are close together",
+    "body": "I think it's best to implement as a new pipeline phase to split up the logic\n\n/bounty $100\n\n<img width=\"2016\" height=\"782\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/0981129c-b6b2-41c3-8b46-2d52c99cb1d8\" />",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/tscircuit/schematic-trace-solver/issues/29",
+    "created_at": "2026-03-23T17:30:08.536056",
+    "status": "claimed"
   },
   {
     "key": "smallgig/Pickomino#350",
@@ -1567,7 +1626,7 @@
       "nice to have"
     ],
     "html_url": "https://github.com/smallgig/Pickomino/issues/350",
-    "created_at": "2026-03-23T17:30:19.498323",
+    "created_at": "2026-03-23T17:30:09.787902",
     "status": "claimed"
   },
   {
@@ -1583,7 +1642,22 @@
       "area: gamedata"
     ],
     "html_url": "https://github.com/SC-Bridge/sc-bridge/issues/97",
-    "created_at": "2026-03-23T17:30:23.078639",
+    "created_at": "2026-03-23T17:30:10.879521",
+    "status": "claimed"
+  },
+  {
+    "key": "Tribler/tribler#8812",
+    "owner": "Tribler",
+    "repo": "tribler",
+    "number": 8812,
+    "title": "msc placeholder: class of 2026 thesis around DAO CDN service with voting",
+    "body": "Graduation period: Nov 2025 - 30 June 2026 (Hard stop, because vacation)\n\nBy X-Mas have a concrete 1-page written Problem Description. Still exploring optional and talent/assignment fit. Product-development focus and likes programming. No DAS6 experience.\n\nMonth | Deliverable\n---|---\nDecember | First thesis chapter written in draft: Problem Description\nJan | First idea of the experimental section of your thesis\nMarch | first running code for your thesis problem, write introduction section\nApril | First performance graphs for thesis, first draft of Experimental Results section\nMay | Multiple graphs, running code is better code\nJune | FINISH\n\nTo keep the 2026 project viable: try to prevent Sybil attack with donations ==> Non-free identity. Ignore mostly for this year. Simple known user lists. First release in March for small-scale silent testing. April or May we have a deployment and press cycle.\n\nPossible directions:\n- threshold voting with known public key members\n  - Bitcoin donations, make 1 donation, get 2-2k invites ($5..$5k)\n  - Donation or invite code gives you the right to vote 🤔 \n    - three level of users? Donors,invites, and permissionless join?\n    - keep simple: donors, non-donor vote.\n  - What to focus on for threshold voting (keep it simple!): code change or content changes or both\n  - Everybody free to propose something, so spam problem\n  - Prior [operational prototype of SmartphoneDemocracy with actual voting](https://arxiv.org/pdf/2507.09453)\n  - Prevent Sybil attack: [costly identity (see Gitcoin experiences)](https://arxiv.org/pdf/2008.05300)\n- system architecture and algorithms (```content.txt``` and ```members.txt``` system boundries)\n- Field trail, promotion, uptake, measurement, performance analysis, and publication\n\n🆕 now the architecture for 6 students\n\n<img width=\"533\" src=\"https://github.com/user-attachments/assets/0c5cacd6-0d86-4452-b99b-c76bb216c5ad\" />\n\nToDo:\n- read prior thesis work, https://arxiv.org/a/pouwelse_j_1.html  Especially SmartphoneDemocracy\n- [Threshold voting literature search all ready for you to read from prior student](https://github.com/Tribler/tribler/issues/8062#issuecomment-2526407058)\n- Get your [first Python overlay running](https://github.com/Tribler/py-ipv8) connect to our live Tribler discovery community, https://tribler.readthedocs.io/en/latest/autoapi/tribler/core/components/index.html\n- Future sprint: dummy GUI design to throw away.",
+    "score": 20,
+    "labels": [
+      "MSc Thesis Work"
+    ],
+    "html_url": "https://github.com/Tribler/tribler/issues/8812",
+    "created_at": "2026-03-23T17:30:12.433894",
     "status": "claimed"
   },
   {
@@ -1598,9 +1672,8 @@
       "newsletter"
     ],
     "html_url": "https://github.com/laudantstolam/stargazer_newsletter/issues/3",
-    "created_at": "2026-03-23T18:30:12.775421",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:30:00Z"
+    "created_at": "2026-03-23T18:30:28.273725",
+    "status": "claimed"
   },
   {
     "key": "laudantstolam/stargazer_newsletter#2",
@@ -1614,9 +1687,8 @@
       "newsletter"
     ],
     "html_url": "https://github.com/laudantstolam/stargazer_newsletter/issues/2",
-    "created_at": "2026-03-23T18:30:16.035746",
-    "status": "submitted",
-    "submitted_at": "2026-03-23T19:30:00Z"
+    "created_at": "2026-03-23T18:30:29.824999",
+    "status": "claimed"
   },
   {
     "key": "LederWorks/veiled-market#5723",
@@ -1634,7 +1706,191 @@
       "plugin/easy-github"
     ],
     "html_url": "https://github.com/LederWorks/veiled-market/issues/5723",
-    "created_at": "2026-03-23T18:30:19.363890",
+    "created_at": "2026-03-23T18:30:30.918534",
+    "status": "claimed"
+  },
+  {
+    "key": "Permify/permify#837",
+    "owner": "Permify",
+    "repo": "permify",
+    "number": 837,
+    "title": "Enhancing the 'Coverage' Command for Detailed Action/Permission Conditions",
+    "body": "### Description\r\nWe need to improve the accuracy and detail of the 'Coverage' command used in evaluating action/permission conditions within our system. A key concern is ensuring that every aspect of a permission condition is thoroughly covered and assessed for accuracy. The current implementation may lead to incomplete assessments, as exemplified by the sample condition provided.\r\n\r\n### Sample Condition for Reference\r\n```\r\npermission view = system.view or ((is_public or (is_partner and partner) or (viewer or company.maintain or organization.maintain or team.view)) not denied)\r\n```\r\n\r\nIn this example, asserting only a part of the condition (like `system.view`) is considered sufficient for coverage, even if other parts are not asserted. This approach can lead to suboptimal results and inaccuracies in coverage evaluation.\r\n\r\n### Suggested Improvements\r\n- **Detail Each Component**: Ensure that each component of a permission condition (e.g., `is_public`, `is_partner`) is individually evaluated and asserted in the 'Coverage' command.\r\n- **Comprehensive Coverage Analysis**: Modify the 'Coverage' command to analyze all aspects of a condition, preventing partial or incomplete evaluations.\r\n- **Quality Checks**: Introduce quality checks to validate the comprehensiveness and accuracy of the coverage.\r\n\r\n### Goals\r\n- **Accurate Coverage Assessment**: Achieve a more accurate and thorough evaluation of permission conditions.\r\n\r\n### Action Items\r\n- [ ] Review the current implementation of the 'Coverage' command.\r\n- [ ] Redesign the command to incorporate detailed assessments of each condition part.\r\n- [ ] Implement tests and quality checks for the revised 'Coverage' command.\r\n- [ ] Update documentation to reflect the new standards and procedures.\r\n\r\n### Request for Comments\r\nWe seek feedback and suggestions, particularly regarding:\r\n- Approaches for enhancing detail and accuracy in the 'Coverage' command.\r\n- Potential challenges and solutions in the redesign process.\r\n- Ideas to ensure the effectiveness of the new implementation.",
+    "score": 20,
+    "labels": [
+      "area/schema",
+      "go",
+      "coverage-command"
+    ],
+    "html_url": "https://github.com/Permify/permify/issues/837",
+    "created_at": "2026-03-23T19:30:13.558983",
+    "status": "claimed"
+  },
+  {
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#12",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 12,
+    "title": "create for android module playstore auditor.",
+    "body": "🔹 Bounty: ₹2000 — Android Play Store Auditor\n\nWe’re extending https://opensource.gracias.sh/\n to support Android.\n\nLooking for contributors to refine prompts and generate production-grade Play Store compliance reports.\n\n🔹 Scope of Work\nPhase 1 — Play Store Compliance Engine\nAlign outputs with Google Play Developer Policies\nCover key areas:\nPermissions misuse (SMS, Call Logs, Location, etc.)\nData Safety & privacy disclosures\nAds & monetization policy violations\nRestricted content & user-generated content rules\nEnsure:\nPrecise issue detection\nStructured, readable reports\nNo vague or generic AI output\nPhase 2 — Remediation + Developer Actions\nConvert issues into clear, actionable fixes\nSuggest:\nCode-level changes (where applicable)\nPlay Console configuration fixes\nPolicy-compliant alternatives\nGenerate clean GitHub issues:\nTitle (clear + scoped)\nDescription (problem + policy reference)\nSteps to fix\nAcceptance criteria\n🔹 Expected Output Format\n✅ Compliance Report\nIssue Title\nSeverity (High / Medium / Low)\nPolicy Reference (Play Store guideline link/section)\nDescription (what’s wrong)\nImpact (why it may cause rejection)\nEvidence (logs/code/behavior)\n🔧 Remediation Plan\nFix Summary\nStep-by-step resolution\nCode / config suggestions\nEdge cases / validation checks\n🐙 GitHub Issue Format\nClear title\nContext\nReproduction / detection logic\nFix steps\nAcceptance criteria\n🔹 Goal\n\nMake reports feel like they came from a senior Play Store reviewer —\nnot generic AI output.\n\n🔹 Bonus Points 💥\nCover edge cases (background services abuse, SDK policy violations)\nImprove signal-to-noise ratio (no false positives)\nClean formatting → dev-ready output",
+    "score": 90,
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "good first issue",
+      "bounty"
+    ],
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/12",
+    "created_at": "2026-03-23T20:30:40.544545",
+    "status": "claimed"
+  },
+  {
+    "key": "tenstorrent/tt-metal#31286",
+    "owner": "tenstorrent",
+    "repo": "tt-metal",
+    "number": 31286,
+    "title": "[Bounty $1500] Depth-Anything-V2-Large bring up using TTNN APIs",
+    "body": "### 📝 Background\n\nThis bounty is for bringing up the [Depth-Anything-V2-Large model](https://huggingface.co/depth-anything/Depth-Anything-V2-Large) using TTNN APIs on Tenstorrent hardware (Wormhole or Blackhole). \nDepth Anything V2 is a state-of-the-art monocular depth estimation (MDE) model that provides accurate depth maps from single RGB images. It's trained on 595K synthetic labeled images and 62M+ real unlabeled images, offering:\nMore fine-grained depth details than V1 .Superior robustness compared to Stable Diffusion-based models (e.g., Marigold, Geowizard)\n10x faster inference than SD-based models and Lightweight architecture.\nThe model is widely applicable in autonomous vehicles, robotics, AR/VR, 3D reconstruction, and computer vision applications requiring spatial understanding. \nThe goal is to enable this  model to run on  TT hardware for high-throughput, low-latency inference for Depth Estimation.\n\n### 🎯 What Success Looks Like\n\nA successful submission will fulfill all requirements in the following stages. Payout is made after all three stages are completed.\n\n### Stage 1 — Bring-Up\n\n- Implement Depth-Anything-V2-Large using TTNN APIs (Python)\n- Model runs on either N150 or N300 hardware with no errors\n- Produces valid depth maps on sample images\n- Output is verifiable (visualize depth maps, compare with PyTorch reference)\n- Achieves baseline throughput target (at least 15 FPS at 518x518 resolution)\n- Accuracy evaluation: PCC > 0.99 against PyTorch reference on test images\n- Clear instructions for setup and running the model.\n\n### Stage 2 — Basic Optimizations\n\n- Use optimal sharded/interleaved memory configs for ViT encoder , conv layers\n- Implement efficient sharding strategy for patch embedding and transformer blocks\n- Fuse simple ops where possible (e.g., GELU+LayerNorm, attention softmax)\n- Store intermediate activations in L1 where beneficial\n- Use recommended TTNN/tt-metal ViT flows\n- Leverage TT library of fused ops for attention and MLP blocks\n- Optimize DPT (Dense Prediction Transformer) decoder head\n\n### Stage 3 — Deeper Optimization\n\n- Maximize core counts used per inference\n- Implement deeper TT-specific optimizations (e.g., Efficient multi-head attention with optimal head sharding , Optimized patch embedding and position encoding ,Minimize tensor reshaping and transpositions in decoder, Efficient upsampling etc.)\n- Minimize memory and TM (tensor manipulation) overheads\n- Document any advanced tuning, known limitations, or trade-offs\n\n### 🧭 Guidance & Starting Points\n\n- Use the [TTNN model bring-up tech report](https://github.com/tenstorrent/tt-metal/blob/main/tech_reports/ttnn/TTNN-model-bringup.md) as your primary reference\n- Reference ViT implementation in tt-metal : [vit documentation](https://github.com/tenstorrent/tt-metal/blob/main/tech_reports/ViT-TTNN/vit.md) [vit implementation](https://github.com/tenstorrent/tt-metal/tree/main/models/demos/wormhole/vit) \n- Reference [Yolov4 implementation (PR 29157)](https://gith",
+    "score": 75,
+    "labels": [
+      "bounty",
+      "bounty_difficulty/medium",
+      "model bringup"
+    ],
+    "html_url": "https://github.com/tenstorrent/tt-metal/issues/31286",
+    "created_at": "2026-03-23T20:30:41.696633",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#25",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 25,
+    "title": "Add Bounty Milestone Tracking and Progress Updates",
+    "body": "\n**Priority:** HIGH  \n**Impact:** Project Management, Trust  \n**Description:**\nLarge bounties need to be broken down into milestones with progress tracking. This allows clients to see work progress and creators to get paid incrementally.\n\n**What Needs to Be Done:**\n- Create milestone creation and management system\n- Implement progress update functionality\n- Add milestone approval workflow\n- Create payment release tied to milestones\n- Implement progress visualization (Gantt charts, timelines)\n- Add milestone notifications and reminders\n- Create dispute resolution for milestones\n- Add milestone templates for common project types\n\n**Files to Create/Modify:**\n- `/workspaces/stellar-creator-portfolio/components/milestone-tracker.tsx`\n- `/workspaces/stellar-creator-portfolio/app/bounties/[id]/milestones/page.tsx`\n- Create: `/workspaces/stellar-creator-portfolio/lib/milestone-service.ts`\n- `/workspaces/stellar-creator-portfolio/app/api/milestones/route.ts`\n\n**Acceptance Criteria:**\n- Milestones can be created and tracked\n- Progress updates visible to all parties\n- Payments released per milestone completion\n- Timeline visualization functional\n- Notification system for milestone events\n\n**Testing Requirements:**\n- Unit tests: Milestone validation, progress calculation\n- Integration tests: Milestone workflow, payment integration\n- E2E tests: Complete milestone cycle from creation to payment\n- Performance tests: Handle complex projects with 20+ milestones\n- Security tests: Payment authorization, milestone tampering prevention\n\n---\n\n**Frontend CLI checks (run before working on this issue):**\n- pnpm run frontend:orbit-check\n- pnpm run cli-checks (frontend only)\n\n**Policy:** Do not push standalone `.md` files. Documentation updates should be included in PRs with code changes.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/25",
+    "created_at": "2026-03-23T20:30:42.706822",
+    "status": "claimed"
+  },
+  {
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#11",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 11,
+    "title": "Fine tune our prompts and make final reports precise and well written  to industry standards.",
+    "body": "Bounty: ₹800\n\nHelp us make AI-generated app audit reports actually useful.\n\nWe’re building https://opensource.gracias.sh/\n — an AI layer that reviews apps before Apple does.\n\nWhat needs work:\n\nPhase 1 — Compliance\n\nMake outputs tightly aligned with Apple policies\nClean, structured, no-fluff reports\n\nPhase 2 — Remediation\n\nTurn issues into actionable fixes\nWrite clean GitHub issues devs can directly execute\nOutcome\n\nReports that feel like they came from a senior App Store reviewer, not a vague AI.",
+    "score": 60,
+    "labels": [
+      "bug",
+      "help wanted",
+      "good first issue",
+      "bounty"
+    ],
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/11",
+    "created_at": "2026-03-23T20:30:44.170112",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#6",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 6,
+    "title": "Add User Authentication & Profiles",
+    "body": "\n**Priority:** CRITICAL  \n**Impact:** Core Functionality, Security  \n**Description:**\nThe platform currently has no user authentication system. Users cannot create accounts, login, or have personalized experiences. This is essential for the freelancing and bounty marketplace to function.\n\n**What Needs to Be Done:**\n- Implement auth with NextAuth.js or similar solution\n- Create user registration flow with email verification\n- Implement login/logout functionality\n- Add user profile pages (separate from creator profiles)\n- Create dashboard for users to manage their bounties and applications\n- Implement role-based access control (creator, client, admin)\n- Add password reset functionality\n- Secure API routes with authentication middleware\n\n**Files to Create:**\n- `/vercel/share/v0-project/app/auth/login/page.tsx`\n- `/vercel/share/v0-project/app/auth/register/page.tsx`\n- `/vercel/share/v0-project/app/dashboard/page.tsx`\n- `/vercel/share/v0-project/app/api/auth/[...nextauth].ts`\n- `/vercel/share/v0-project/lib/auth.ts`\n- `/vercel/share/v0-project/middleware.ts`\n\n**Acceptance Criteria:**\n- User registration with email verification\n- Secure JWT-based sessions\n- Protected dashboard pages\n- Role-based UI elements\n\n**Testing Requirements:**\n- Unit tests for authentication middleware\n- Integration tests for NextAuth.js configuration\n- E2E tests for registration and login flows\n- Security tests for password hashing and JWT validation\n- Accessibility tests for auth forms\n\n---\n\n\n**Frontend CLI checks (run before working on this issue):**\n- pnpm run frontend:orbit-check\n- pnpm run cli-checks (frontend only)\n\n**Policy:** Do not push standalone `.md` files. Documentation updates should be included in PRs with code changes.\n\n## CRITICAL Policy Notice (READ FIRST)\n\n- 🚫 Under no circumstances should *any* `.md` file be pushed directly to the main branch.\n- 📌 `README.md` must never be changed as part of issue updates in this file; if `README.md` is modified, the change should be reverted immediately.\n- 🛑 All documentation updates are only allowed through PRs that include associated code changes and peer review.",
+    "score": 50,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/6",
+    "created_at": "2026-03-23T20:30:45.258174",
+    "status": "claimed"
+  },
+  {
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#14",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 14,
+    "title": "🔹 Bounty: ₹2000 —PDF REPORT IMPROVEMENTS",
+    "body": "🔹 Bounty: ₹2000 —PDF REPORT IMPROVEMENTS\n\nWe’re improving https://opensource.gracias.sh/\n — an AI-powered app auditing layer to prevent App Store rejections.\n\nLooking for contributors to enhance report quality and fix core issues.\n\n🔹 Scope of Work\nPhase 1 — iOS Compliance + PDF Fix.\nImprove alignment with Apple App Store Review Guidelines\nEnhance report structure to be precise, readable, and industry-grade\n🔴 Fix issue: PDF report generation not working (iOS module)\nEnsure stable export\nClean formatting in PDF output\nConsistent layout across reports\nPhase 2 — Android Play Store Auditor\nBuild/improve Play Store compliance checks:\nPermissions misuse (SMS, Call Logs, Location, etc.)\nData Safety & privacy disclosures\nAds & monetization violations\nGenerate:\nStructured compliance reports\nActionable remediation steps\nClean, dev-ready GitHub issues\nPhase 3 — Remediation Quality Upgrade\nConvert issues into clear, executable fixes\nImprove:\nStep-by-step resolution clarity\nCode/config suggestions\nAcceptance criteria for validation\n🔹 Expected Output\n✅ Compliance Report\nIssue Title\nSeverity\nPolicy Reference\nDescription\nImpact\nEvidence\n🔧 Remediation Plan\nFix summary\nSteps to resolve\nCode/config suggestions\n🐙 GitHub Issue\nClear title\nContext\nFix steps\nAcceptance criteria\n🔹 Goal\n\nReports that feel like they came from a senior App Store / Play Store reviewer —\nclear, actionable, and rejection-proof.",
+    "score": 105,
+    "labels": [
+      "bug",
+      "enhancement",
+      "help wanted",
+      "good first issue",
+      "bounty"
+    ],
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/14",
+    "created_at": "2026-03-23T21:00:28.187018",
+    "status": "claimed"
+  },
+  {
+    "key": "tenstorrent/tt-metal#40494",
+    "owner": "tenstorrent",
+    "repo": "tt-metal",
+    "number": 40494,
+    "title": " Implement Lifting Wavelet Transform (LWT) and Inverse LWT (ILWT)",
+    "body": "# Implement Lifting Wavelet Transform (LWT) and Inverse LWT (ILWT)\n\nImplement an optimized LWT and ILWT kernels for TT-Metal/TTNN on Wormhole/Blackhole hardware, which would enable usage of discrete wavelet transforms (DWTs) on device.\n\n## 📝 Background\n\nDiscrete wavelet transform will help us enable multi-resolution signal processing directly on Wormhole/Blackhole hardware. This unlocks:\n- JPEG2000 lossy compression.\n- Real-time Digital Signal Processing pipelines.\n- Audio, biosignals, radar, and seismic data processing applications.\n\n## 🎯 What Success Looks Like\n\nRequirements\n- Support 1D/2D inputs with batch dimension (B, 1, H, W).\n  - Layout can be both row major and tile. Preferably RM for 1d input, and tile layout for 2d input.\n- Support the wavelets from PyWavelets catalog:\n  - Haar: db1\n  - Daubechies: dbN\n  - Biorthogonal (used in JPEG2000): biorN.M\n  - Symlets: symN\n  - Coiflets: coifN\n  - Discrete Meyer: dmey\n- Support fp32 (SFPU-based implementation)\n- Should be implemented as ttnn operation (`ttnn.dwt`/`ttnn.idwt`)\n  - Should be implemented as optimized multicore kernel (not a naive composite version)\n- Precision targets for the SFPU fp32 (Wavelet categories are defined in [the table below](#wavelet-categories)):\n- Compact lifting schemes:\n  - Definition: `tap_size <= 12`, `num_steps <= 11`, and `max_abs_coeff < 1e2`.\n  - Forward transformation precision should be measured against PyWavelets using L2 relative error:\n    - target median L2 relative error < 1e-7;\n    - target 95th percentile L2 relative error < 1e-5.\n  - Reconstruction precision should be measured against the original signal using L2 relative error:\n    - target median L2 relative error < 1e-7;\n    - target 95th percentile L2 relative error < 1e-5.\n\n- Medium lifting schemes:\n  - Definition: `12 < tap_size <= 24`, `12 <= num_steps <= 23`, and `max_abs_coeff < 1e4`.\n  - Forward transformation precision should be measured against PyWavelets using L2 relative error:\n    - target median L2 relative error < 1e-6;\n    - target 95th percentile L2 relative error < 1e-4.\n  - Reconstruction precision should be measured against the original signal using L2 relative error:\n    - target median L2 relative error < 1e-6;\n    - target 95th percentile L2 relative error < 1e-4.\n\n- Large / numerically sensitive lifting schemes:\n  - Definition: `tap_size > 24`, or `num_steps > 23`, or `max_abs_coeff >= 1e4`.\n  - Forward precision is best effort.\n  - Reconstruction precision is best effort.\n  - These wavelets should report per-wavelet median / p95 / max L2 relative error and known outliers, but should not be treated as hard-gating failures.\n\n- Precision reports should always include a per-wavelet breakdown and explicitly call out known SFPU fp32 outliers.\n\n\n- No strict requirements for potential lower precision implementation.\n\n- Optionally\n  - Investigate FPU implementation (im2col/conv based) with tf32/bf16 + acc fp32 precision\n  - Support l1 sharded inputs\n  - Support arbitraty number of ",
+    "score": 55,
+    "labels": [
+      "ttnn",
+      "op_cat: misc",
+      "bounty_difficulty/hard",
+      "bounty_candidate"
+    ],
+    "html_url": "https://github.com/tenstorrent/tt-metal/issues/40494",
+    "created_at": "2026-03-23T21:00:29.374938",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#7",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 7,
+    "title": "Implement Bounty Application System",
+    "body": "\n**Priority:** CRITICAL  \n**Impact:** Core Functionality  \n**Description:**\nBounties are displayed but there's no functional application system. Users cannot submit proposals, view applications, or manage bounty workflow.\n\n**What Needs to Be Done:**\n- Create bounty detail page with full information display\n- Implement bounty application form with proposal text editor\n- Create application tracking system\n- Build creator view for managing applications\n- Implement client view for reviewing and selecting freelancers\n- Add application status management (pending, accepted, rejected)\n- Create notifications for application updates\n- Add messaging between client and applicants\n\n**Files to Create/Modify:**\n- `/vercel/share/v0-project/app/bounties/[id]/page.tsx`\n- `/vercel/share/v0-project/components/bounty-application-form.tsx`\n- `/vercel/share/v0-project/app/dashboard/bounties/page.tsx`\n- `/vercel/share/v0-project/app/dashboard/applications/page.tsx`\n- `/vercel/share/v0-project/lib/bounty-service.ts`\n\n**Acceptance Criteria:**\n- Submit application with proposal\n- View all applications (as client)\n- Accept/reject applications\n- Email notifications on actions\n- Application timeline visible\n\n**Testing Requirements:**\n- Unit tests for application form validation\n- Integration tests for application submission API\n- E2E tests for application workflow\n- Security tests for application data access\n- Performance tests for application list loading\n\n---\n\n\n**Frontend CLI checks (run before working on this issue):**\n- pnpm run frontend:orbit-check\n- pnpm run cli-checks (frontend only)\n\n**Policy:** Do not push standalone `.md` files. Documentation updates should be included in PRs with code changes.\n\n## CRITICAL Policy Notice (READ FIRST)\n\n- 🚫 Under no circumstances should *any* `.md` file be pushed directly to the main branch.\n- 📌 `README.md` must never be changed as part of issue updates in this file; if `README.md` is modified, the change should be reverted immediately.\n- 🛑 All documentation updates are only allowed through PRs that include associated code changes and peer review.",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/7",
+    "created_at": "2026-03-23T21:00:30.344051",
+    "status": "claimed"
+  },
+  {
+    "key": "LederWorks/veiled-market#2463",
+    "owner": "LederWorks",
+    "repo": "veiled-market",
+    "number": 2463,
+    "title": "[discovery] easy-azuredevops/skills: sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md",
+    "body": "## Discovery: `SKILL.md` (skills)\n\n**plugin:** `easy-azuredevops`\n**Resource type:** `skills`\n**Source:** [antigravity/skills](https://antigravityskills.org)\n**Repository:** [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)\n**File:** [`skills/api-fuzzing-bug-bounty/SKILL.md`](https://github.com/sickn33/antigravity-awesome-skills/blob/main/skills/api-fuzzing-bug-bounty/SKILL.md)\n\n### Description\nThe Ultimate Collection of 1000+ Agentic Skills for Claude Code/Antigravity/Cursor. Battle-tested, high-performance skills for AI agents including official skills from Anthropic and Vercel.\n\n### Raw URL\nhttps://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/skills/api-fuzzing-bug-bounty/SKILL.md\n\n---\n_Auto-discovered by the [discover workflow](.github/workflows/01-discovery.yml)._\n_This issue has been automatically labeled `status/draft` and will be picked up by the next evaluation run._\n\n<!-- veiled-market-registry:{\"source\":\"antigravity-skills\",\"plugin_ref\":\"sickn33/antigravity-awesome-skills\",\"skill_ref\":\"sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md\",\"sha\":\"60906ad27f386c46d851c47814b2308a696e0fb2\"} -->\n",
+    "score": 35,
+    "labels": [
+      "status/draft",
+      "type/skill",
+      "ai/discovery",
+      "source/antigravity-skills",
+      "plugin/easy-azuredevops"
+    ],
+    "html_url": "https://github.com/LederWorks/veiled-market/issues/2463",
+    "created_at": "2026-03-23T21:00:31.707955",
+    "status": "claimed"
+  },
+  {
+    "key": "ZecHub/zechub#1539",
+    "owner": "ZecHub",
+    "repo": "zechub",
+    "number": 1539,
+    "title": "Zcash Ecosystem Digest | March 28th Submission",
+    "body": "# Zcash Ecosystem Digest | March 28th Submission \n \n\n# #curation channel in Zcash discord for links \n  \n  \n \\*\\*Translate all descriptions to English\\*\\*\\* \n  \n  \n  \n Bounty: 0.1 ZEC \n \n\n# **Markdown format requested. Must include links from ecosystem projects: Zcash Espanol / Zcash Brazil / Zcash Turkey / Zcash Ukraine / Zcash East Africa / Zcash Korea /Zcash Nigeria / ruZcash / genzcash / ZKAV Club / Electric Coin Comany / Zcash Foundation / ZecHub / Zcast / Zcash Community Forum etc.**\n\n\n# Must include at least 20 community project links\\* \n \n\nAll posts must highlight recent activities from Zcash-supported communities, and the language used should be clear and simple to ensure easy translation into other local languages.\n\n\nSubmit a complete list of links to Zcash & Privacy ecosystem News/Events/Community\n\n\n**Links must match descriptions\\*\\***\n\n\nSections:\n\n\nShielded Labs, Electric Coin Company, Zcash Foundation Updates:\n\nZcash Community Grants:\n\nCommunity Projects:\n\nMeme of the week:\n\n\n**Submit document to: <https://github.com/ZecHub/zechub/tree/main/newsletter> \n Template:[https://raw.githubusercontent.com/ZecHub/zechub/refs/heads/main/newsletter/Digest 27-07-2025.md](https://raw.githubusercontent.com/ZecHub/zechub/refs/heads/main/newsletter/Digest%2027-07-2025.md)**\n\n[Read more about this task and rewards on Dework.xyz](https://app.dework.xyz/zechub-2424/main-space-20666?taskId=68710dbd-f247-4038-89c1-d577fff3dd94)",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/ZecHub/zechub/issues/1539",
+    "created_at": "2026-03-23T21:00:32.667157",
     "status": "claimed"
   }
 ]
