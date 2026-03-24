@@ -1207,5 +1207,274 @@
     "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/775",
     "created_at": "2026-03-24T16:30:06.593860",
     "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#717",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 717,
+    "title": "Implement version helpers and semver reporting (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Implement version helpers and semver reporting (grainlify-core)\n\nDescription\n\nExpose and verify get_version, get_version_semver_string, get_version_numeric_encoded, and require_min_version behavior for integrators.\n\nRequirements and context\n\nSemantic version encoding must stay consistent with manifest; panics/errors must be predictable for too-low versions.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-version-helpers\n\nImplement changes\n\nWrite contract: grainlify-core/src/lib.rs (version getters)\nWrite tests: grainlify-core/src/test_serialization_compatibility.rs or new test module for version edge cases\nAdd documentation: grainlify-core-manifest.json cross-check and lib.rs examples\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): document and test semver version helpers\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/717",
+    "created_at": "2026-03-24T18:30:09.112285",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#718",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 718,
+    "title": "Implement multisig propose_upgrade flow (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Implement multisig propose_upgrade flow (grainlify-core)\n\nDescription\n\nEnsure propose_upgrade stores proposal state (wasm hash, proposer) and returns a stable proposal identifier.\n\nRequirements and context\n\nMust interoperate with approve_upgrade and execute_upgrade; no duplicate or overwritten proposals without explicit rules.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-propose-upgrade\n\nImplement changes\n\nWrite contract: grainlify-core/src/multisig.rs, grainlify-core/src/lib.rs\nWrite tests: grainlify-core/src/test/upgrade_rollback_tests.rs (multisig branches)\nAdd documentation: inline docs for proposal lifecycle\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): multisig propose_upgrade with tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/718",
+    "created_at": "2026-03-24T18:30:13.101958",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#24",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 24,
+    "title": "Add backend test suite for bounty lifecycle",
+    "body": "The core bounty state machine should be protected by automated tests. Should add unit and integration coverage for lifecycle actions.\n\nImplementation:\n\nTest create, reserve, submit, release, refund, and expiration flows  \nCover invalid transitions and error cases  \nAdd API-level tests for main routes  \nMake test commands easy to run locally\n\nAcceptance Criteria:\n\nLifecycle tests cover happy path and failures  \nAPI tests validate major routes  \nTest suite runs with a documented command  \nCoverage improves confidence in future refactors",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/24",
+    "created_at": "2026-03-24T19:30:12.874131",
+    "status": "claimed"
+  },
+  {
+    "key": "a-little-world/little-world-core#9",
+    "owner": "a-little-world",
+    "repo": "little-world-core",
+    "number": 9,
+    "title": "Bounty: Implement & Integrate 2FA",
+    "body": "back-end 2fa authentication and integrate it into existing authorization endpoints, then add a user-settings frontend",
+    "score": 15,
+    "labels": [
+      "contributions welcome"
+    ],
+    "html_url": "https://github.com/a-little-world/little-world-core/issues/9",
+    "created_at": "2026-03-24T19:30:16.769216",
+    "status": "claimed"
+  },
+  {
+    "key": "SPLURT-Station/S.P.L.U.R.T-tg#872",
+    "owner": "SPLURT-Station",
+    "repo": "S.P.L.U.R.T-tg",
+    "number": 872,
+    "title": "[BOUNTY] Suggestion #384",
+    "body": "### About the Bounty\n\n## Original issue text:\n\n**Suggestion:**\nadd bodycams for security and maybe heads. Saw it on monkeystation it is put on armour, it mostly serves for safety of seccies, as warder or whoever has acces to cameras can look to exactly what is going on with a specific secie. Also might add an RP flair when seccie turns off body cam for whatever RP reason.\n\n**Reason:**\n[BOUNTY] For the seccies.\n\n**Results:**\n23x <:In_help:1056296636348899408>\n3x <:In_harm:1056296637909192794>\n\n\n### Suggestion Reference\n\n**Suggested by:** dalaxiss_new\nhttps://discord.com/channels/908082639704064051/1404686278351655055/1482800154242449498\n\n### Contact Information\n\nContact `mos_ley` in discord for payment information.\n\nContact `dalaxiss_new` in discord for information about the requirements.\n\n### Payment Details\n\nPayment methods:\n- PayPal\n- Cryptocurrency\n\n",
+    "score": 85,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/872",
+    "created_at": "2026-03-24T20:30:16.712026",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#121",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 121,
+    "title": "Bounty Card Summary Component",
+    "body": "\n\n**Description:** A card showing a Bounty title, reward amount in USDC/XLM, deadline, and status badge.\n\n**Requirements and context:**\n- Format currency and dates using standard Intl APIs.\n\n**Suggested execution:**\n1. `git checkout -b feature/bounty-card`\n2. Build in `frontend/src/components/bounty/BountyCard.tsx`.\n\n**Test and commit:**\n- Ensure date formatting is correct.\n- `feat: implement bounty summary card`\n\n\n\n---",
+    "score": 70,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/121",
+    "created_at": "2026-03-24T20:30:20.905318",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#123",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 123,
+    "title": "[BACKEND] Bounty List GET endpoint scaffold",
+    "body": "\n\n**Description:** Paginated endpoint to fetch open Bounties, optionally filtered by Guild ID.\n\n**Requirements and context:**\n- Support optional `guildId` query param.\n\n**Suggested execution:**\n1. `git checkout -b feature/api-list-bounties`\n2. Implement `BountyController.findAll()`.\n\n**Test and commit:**\n- Test filter logic.\n- `feat: implement filterable bounty list endpoint`\n\n",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/123",
+    "created_at": "2026-03-24T20:30:24.252997",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#122",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 122,
+    "title": "[BACKEND] Bounty Creation DTO Validation schema",
+    "body": "\n\n**Description:** Validate incoming Bounty objects (amount > 0, deadline is in the future).\n\n**Requirements and context:**\n- Use custom class-validator decorators for date checks.\n\n**Suggested execution:**\n1. `git checkout -b feature/dto-bounty`\n2. Implement `CreateBountyDto`.\n\n**Test and commit:**\n- Test with past dates to trigger errors.\n- `feat: add bounty validation criteria`\n\n**Guidelines:** Closes #[issue_id].",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/122",
+    "created_at": "2026-03-24T20:30:26.396751",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#762",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 762,
+    "title": "Bounty escrow: RBAC roles (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: RBAC roles (bounty_escrow/escrow)\n\nDescription\n\nRole-gated actions per test_rbac.rs; admin vs operator vs participant.\n\nRequirements and context\n\nNo privilege escalation via cross-calls.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-rbac\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_rbac.rs\nAdd documentation: RBAC matrix\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): RBAC enforcement tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/762",
+    "created_at": "2026-03-24T20:30:32.233374",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#759",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 759,
+    "title": "Bounty escrow: refund flows (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: refund flows (bounty_escrow/escrow)\n\nDescription\n\nRefund before deadline, on expiry, and admin-assisted paths.\n\nRequirements and context\n\nCovers parity refund scenarios where applicable.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-refund\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_lifecycle.rs, test_expiration_and_dispute.rs\nAdd documentation: refund policy\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): refund flows and tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/759",
+    "created_at": "2026-03-24T21:00:11.817053",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#124",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 124,
+    "title": "Bounty Details GET endpoint scaffold",
+    "body": "\n**Description:** Fetch single Bounty by ID, including creator profile and assignee profile.\n\n**Requirements and context:**\n- Handle 404 cleanly via exception filters.\n\n**Suggested execution:**\n1. `git checkout -b feature/api-get-bounty`\n2. Implement `BountyService.findOne()`.\n\n**Test and commit:**\n- Request non-existent ID to ensure 404 is thrown.\n- `feat: get detailed bounty data by id`\n\n",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/124",
+    "created_at": "2026-03-24T21:00:18.106211",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#733",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 733,
+    "title": "Migration hooks and e2e upgrade tests (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Migration hooks and e2e upgrade tests (grainlify-core)\n\nDescription\n\nCover migration_hook_tests and e2e_upgrade_migration_tests for realistic version bumps.\n\nRequirements and context\n\nEnsure storage keys remain stable or migrated.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-migration-e2e\n\nImplement changes\n\nWrite tests: grainlify-core/src/migration_hook_tests.rs, grainlify-core/src/test/e2e_upgrade_migration_tests.rs\nAdd documentation: migration checklist\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\ntest(grainlify-core): end-to-end migration coverage\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/733",
+    "created_at": "2026-03-24T21:00:22.592796",
+    "status": "claimed"
+  },
+  {
+    "key": "exsonav-ux/support#15",
+    "owner": "exsonav-ux",
+    "repo": "support",
+    "number": 15,
+    "title": "[AUTO] Bounty Payment Inquiry - PR #1533",
+    "body": "## 📋 Support Case from @smseow001\n\n**Hello** @smseow001\n\n| Field | Details |\n|-------|---------|\n| **Source** | asnirbansifler/Support |\n| **Case Ref** | #54 |\n| **Reporter** | @dangvutjyrung |\n| **Priority** | priority-low |\n| **Status** | 🟡 Under Review |\n\n---\n\n### 📝 Issue Description:\n\n@smseow001 Thank you for reaching out. Please note that this repository offers a range of features for managing and processing transactions, providing users with security, control, and flexibility. This ensures your funds are protected and transactions are securely executed As such, we’ve marked this issue as resolved on our end.\n\nNext Steps:\n For help with transactions or transfer issues, we recommend contacting our support team directly.\n\n\n\n<blockquote><em>Hi Sophia,<br/>\n<br/>\nFollowing up on my previous inquiry (#1680). My PR #1533 was merged but I haven't received the bounty payment yet.<br/>\n<br/>\n**Updated Wallet Address:**<br/>\n`0x96BBaE875A91a48593f2356c4877B599C6b31A51`<br/>\n<br/>\n**Wallet Name:** smseow001<br/>\n<br/>\nCould you please check on the status of my payout?<br/>\n<br/>\nThanks!</em></blockquote>\n\n\n---\n\n### 📞 Official Support:\n- [Support Portal](https://gitdapps-auth.web.app)\n- Email: Git_response@proton.me\n\n---\n\n> *Logged by GitDapps Support Infrastructure*\n",
+    "score": 60,
+    "labels": [
+      "auto-detected",
+      "security",
+      "source:asnirbansifler",
+      "priority-low"
+    ],
+    "html_url": "https://github.com/exsonav-ux/support/issues/15",
+    "created_at": "2026-03-24T21:30:11.272063",
+    "status": "claimed"
+  },
+  {
+    "key": "connect-boiz/soroban-security-scanner#16",
+    "owner": "connect-boiz",
+    "repo": "soroban-security-scanner",
+    "number": 16,
+    "title": "Community Security Bounty Marketplace",
+    "body": "Description: Build a frontend portal where organizations can post \"Bounties\" for their contracts, inviting community researchers to find vulnerabilities using the scanner.\n\nRequirements:\n\nCreate a \"Bounty Board\" list view with filters for reward amount (XLM) and difficulty.\n\nImplement a secure \"Report Submission\" form that encrypts findings with the owner's public key.\n\nDisplay a countdown timer for active audits and \"First-to-Find\" bonuses.\n\nIntegrate with a Stellar wallet (Freighter) to allow owners to deposit XLM rewards.\n\nShow a \"Leaderboard\" of security researchers based on verified findings.\n\nAdd a \"Dispute\" button to trigger a decentralized review if a report is unfairly rejected.\n\nUse real-time notifications to alert researchers when a new contract is posted for scanning.",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/connect-boiz/soroban-security-scanner/issues/16",
+    "created_at": "2026-03-24T21:30:13.517227",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#730",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 730,
+    "title": "Governance proposals and voting (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Governance proposals and voting (grainlify-core)\n\nDescription\n\nExercise governance.rs Proposal, Vote, VotingScheme paths with clear error enums.\n\nRequirements and context\n\nAlign GovError with user-visible failures.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-governance\n\nImplement changes\n\nWrite contract: grainlify-core/src/governance.rs\nWrite tests: governance-focused tests in grainlify-core\nAdd documentation: governance_config.md section\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): governance proposal and voting tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/730",
+    "created_at": "2026-03-24T21:30:16.982714",
+    "status": "claimed"
+  },
+  {
+    "key": "GSA/data.gov#5802",
+    "owner": "GSA",
+    "repo": "data.gov",
+    "number": 5802,
+    "title": "[Onboard] Onboard John Yuda (Government Employee)",
+    "body": "Welcome! [The Onboarding wiki](https://github.com/gsa/data.gov/wiki/Onboarding-Offboarding) describes the onboarding process for new team members on Data.gov. You’ll learn mostly from pairing and interaction with your teammates but these are some handy resources to get you started.\n\nBelow are the tasks that will drive the onboarding process.\n\n### Tasks for admin or onboarding buddy\n\n- [ ] Review the rest of the checklist below before starting to work through it. Any step that does not seem relevant or necessary for the kind of work that the person onboarding will be doing should have a `-` in the checkbox and `~` around the line so it's clear that we will not be granting that particular kind of access for this person.\n- [x] Add team member to [TTS Slack](https://handbook.18f.gov/slack/#tts-staff)\n  - #datagov-alerts\n  - #datagov-devsecops\n  - #datagov-notifications\n\n- [ ] Invite team member to [Data.gov calendar](https://calendar.google.com/calendar/r/settings/calendar/Z3NhLmdvdl9zcjZ0NG52YjRhOTNjNnNzdHRxYXAzbjZtMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t) and events\n  - Daily sync\n  - Sprint planning\n  - Retro\n- [ ] Add team member to Google Drive\n  - [Data.gov](https://drive.google.com/drive/folders/0AMRwhrSyJ5R4Uk9PVA)\n  - [DevSecOps](https://drive.google.com/drive/folders/1Ac1dUmzTLTsDv8A8TSyLzrXo1a7hm4NF)\n- [ ] Add team member to email lists\n  - [Data.gov team list](https://groups.google.com/a/gsa.gov/forum/#!forum/datagovhelp)\n  - [Inventory help list](https://groups.google.com/a/gsa.gov/forum/#!forum/inventory-help)\n- [ ] Add team member to [Google Groups](https://groups.google.com/my-groups)\n  - datagov-team\n  - DataGov\n  - Data.gov Help\n- [ ] Make sure team member has 2FA enabled for their GitHub account and [request](https://github.com/GSA/GitHub-Administration/blob/master/README.md#requesting-access-to-the-gsa-organization) membership to GSA GitHub org\n- [ ] Add team member to a Data.gov GitHub teams:\n  - [ ] For development roles, add team member to [data-gov-dev-team](https://github.com/orgs/GSA/teams/data-gov-dev-team), and change their role to Maintainer if they are part of the PMO team.\n  - [ ] For non-development roles that aren't PMO, add them to [data-gov-team](https://github.com/orgs/GSA/teams/data-gov-team)\n- [ ] Add team member to [New Relic](https://account.newrelic.com/accounts/1601367/users) with Full Platform access, along with the following user groups:\n  - Solutions-Data.gov\n  - Solutions-Data.gov_Admin\n- [ ] Add team member to [Docker Hub](https://cloud.docker.com/orgs/datagov/teams)\n- [ ] Add team member to [Snyk](https://app.snyk.io/org/data.gov/manage/members)\n- [ ] Add team member to [Data.gov Google Analytics](https://analytics.google.com/analytics/web/#/a42145528p381392243/admin/suiteusermanagement/account) account\n  - Choose Viewer role for Contractors, or Administrator for PMO team members\n- [ ] Add team member to [Google Search Console](https://search.google.com/search-console/users?resource_id=sc-domain%3Adata.gov)",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/GSA/data.gov/issues/5802",
+    "created_at": "2026-03-24T23:30:08.756499",
+    "status": "claimed"
+  },
+  {
+    "key": "FreeCAD/FPA#442",
+    "owner": "FreeCAD",
+    "repo": "FPA",
+    "number": 442,
+    "title": "Bugfix Rewards Program Submission",
+    "body": "Program: https://blog.freecad.org/2026/03/21/the-bug-bounty-program-has-been-renewed/\nContributor: @captain0xff\n\nThe following issues were solved:\n* Issue: https://github.com/FreeCAD/FreeCAD/issues/17336\nPR: https://github.com/FreeCAD/FreeCAD/pull/27126\n* Issue: https://github.com/FreeCAD/FreeCAD/issues/7596\nPR: https://github.com/FreeCAD/FreeCAD/pull/27174\n* Issue: https://github.com/FreeCAD/FreeCAD/issues/27294\nPR: https://github.com/FreeCAD/FreeCAD/pull/27757\n* Issue: https://github.com/FreeCAD/FreeCAD/issues/27393, https://github.com/FreeCAD/FreeCAD/issues/19798\nPR: https://github.com/FreeCAD/FreeCAD/pull/28012\n* Issue: https://github.com/FreeCAD/FreeCAD/issues/28545\nPR: https://github.com/FreeCAD/FreeCAD/pull/28585\n",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/FreeCAD/FPA/issues/442",
+    "created_at": "2026-03-24T23:30:11.368848",
+    "status": "claimed"
+  },
+  {
+    "key": "SecOpsNews/news#66195",
+    "owner": "SecOpsNews",
+    "repo": "news",
+    "number": 66195,
+    "title": "[RegisterSec] HackerOne slams supplier for delayed breach notice after staff data exposed",
+    "body": "\n\n#### Nearly 300 employees caught up in intrusion at benefits provider Navia\n\nAlmost 300 HackerOne employees are caught up in a data breach, with the bug bounty biz slamming a third-party benefits provider for a weeks-long delay in notification.…\n\n\n\n<https://go.theregister.com/feed/www.theregister.com/2026/03/24/hackerone_supplier_breach/>\n\n",
+    "score": 20,
+    "labels": [
+      "RegisterSec"
+    ],
+    "html_url": "https://github.com/SecOpsNews/news/issues/66195",
+    "created_at": "2026-03-24T23:30:16.739755",
+    "status": "claimed"
   }
 ]
