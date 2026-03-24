@@ -59,10 +59,16 @@ FinMind#111
 FinMind#112
 Flutter-Bounty-Hunters/super_editor#2998
 FransDevelopment/agent-json#1
+FreeCAD/FPA#442
 FreezingMoon/AncientBeast#2617
 FreezingMoon/AncientBeast#2651
+GSA/data.gov#5802
 GalactiGuild/Stellar-Guilds#109
 GalactiGuild/Stellar-Guilds#110
+GalactiGuild/Stellar-Guilds#121
+GalactiGuild/Stellar-Guilds#122
+GalactiGuild/Stellar-Guilds#123
+GalactiGuild/Stellar-Guilds#124
 GalactiGuild/Stellar-Guilds#139
 GalactiGuild/Stellar-Guilds#140
 Grant-Stream/Grant-Stream-Contracts#101
@@ -74,12 +80,16 @@ Jagadeeshftw/grainlify#397
 Jagadeeshftw/grainlify#660
 Jagadeeshftw/grainlify#671
 Jagadeeshftw/grainlify#716
+Jagadeeshftw/grainlify#717
+Jagadeeshftw/grainlify#718
 Jagadeeshftw/grainlify#720
 Jagadeeshftw/grainlify#721
 Jagadeeshftw/grainlify#723
 Jagadeeshftw/grainlify#724
 Jagadeeshftw/grainlify#728
+Jagadeeshftw/grainlify#730
 Jagadeeshftw/grainlify#731
+Jagadeeshftw/grainlify#733
 Jagadeeshftw/grainlify#735
 Jagadeeshftw/grainlify#736
 Jagadeeshftw/grainlify#737
@@ -92,7 +102,9 @@ Jagadeeshftw/grainlify#748
 Jagadeeshftw/grainlify#751
 Jagadeeshftw/grainlify#752
 Jagadeeshftw/grainlify#757
+Jagadeeshftw/grainlify#759
 Jagadeeshftw/grainlify#760
+Jagadeeshftw/grainlify#762
 Jagadeeshftw/grainlify#766
 Jagadeeshftw/grainlify#767
 Jagadeeshftw/grainlify#769
@@ -126,6 +138,7 @@ Monkestation/Vanderlin#5791
 Monkestation/Vanderlin#5798
 Monkestation/Vanderlin#5805
 Monkestation/Vanderlin#5806
+Monkestation/Vanderlin#5807
 OWASP-BLT/BLT-Next##118
 OWASP-BLT/BLT-Next##123
 OWASP-BLT/BLT-Next##124
@@ -162,6 +175,8 @@ SPLURT-Station/S.P.L.U.R.T-tg#721
 SPLURT-Station/S.P.L.U.R.T-tg#849
 SPLURT-Station/S.P.L.U.R.T-tg#851
 SPLURT-Station/S.P.L.U.R.T-tg#871
+SPLURT-Station/S.P.L.U.R.T-tg#872
+SecOpsNews/news#66195
 SharedStake/Contracts#12
 SharedStake/Contracts#15
 Smartdevs17/stellarlend#54
@@ -235,6 +250,7 @@ YaibaToKen/dragon-ball-adventure-modpack#62
 YaibaToKen/dragon-ball-adventure-modpack#78
 Yuliya65/AutoPrompt#15
 ZecHub/zechub#1539
+a-little-world/little-world-core#9
 activepieces/activepieces#8284
 aden-hive/hive#5964
 aden-hive/hive#6734
@@ -275,6 +291,7 @@ code-payments/flipcash-program#7
 codehead-01/AutoPrompt#18
 codexbt/Eliza-Lobster#3
 commaai/openpilot#30693
+connect-boiz/soroban-security-scanner#16
 connect-boiz/soroban-security-scanner#20
 coolify#7528
 coollabsio/coolify##7528
@@ -291,6 +308,7 @@ desktop/desktop##9452
 devasignhq/devasign-api#76
 dextonai/agent-browser#1
 dotnet/sdk#53563
+exsonav-ux/support#15
 fabriziosalmi/enjoy##8
 fabriziosalmi/enjoy#8
 foremetric/foremetric#1
@@ -331,6 +349,7 @@ kodaksax/Bounty-production#395
 kodaksax/Bounty-production#402
 laudantstolam/stargazer_newsletter#2
 laudantstolam/stargazer_newsletter#3
+laudantstolam/stargazer_newsletter#6
 leonarduk/pension-risk-management-system#679
 libretro/RetroArch##5222
 libretro/RetroArch#6137
@@ -362,6 +381,7 @@ pypi/support##9877
 ritik4ever/stellar-bounty-board##1
 ritik4ever/stellar-bounty-board##17
 ritik4ever/stellar-bounty-board##3
+ritik4ever/stellar-bounty-board#24
 ritik4ever/stellar-bounty-board#29
 ritik4ever/stellar-bounty-board#34
 ritik4ever/stellar-bounty-board#8
