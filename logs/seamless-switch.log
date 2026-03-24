@@ -14177,3 +14177,5 @@
 [2026-03-16 16:10:01] 🔍 开始无感会话切换检查
 [2026-03-16 16:10:01] 📊 当前上下文使用率: 39%
 [2026-03-16 16:10:01] ✅ 上下文正常（39% < 85%）
+/bin/sh: 1: /root/.openclaw/workspace/skills/context-manager-v2/scripts/seamless-switch.sh: Permission denied
+/bin/sh: 1: /root/.openclaw/workspace/skills/context-manager-v2/scripts/seamless-switch.sh: Permission denied
