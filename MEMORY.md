@@ -10,14 +10,15 @@ _精心维护的记忆，提炼后的精华_
 
 ## 🎯 当前状态
 
-**时间**: 2026-03-23 09:49
+**时间**: 2026-03-23 21:50
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| GeneralsGameCode #2434 | 🔍 PR 等审核 | $300, [PR #2485](https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485) |
-| Kozea/pygal #426 | 🔍 PR 等审核 | $300-500, [PR #579](https://github.com/Kozea/pygal/pull/579) |
-| coolify #7528 | ❌ 被屏蔽 | $200, 代码在fork, zhaog100被屏蔽 |
-| **总计待审核 PR** | **2 个** | **~$800-1,000** |
+| vllm-omni #2080 | 🔍 审核中 | 最有希望，仓库活跃 |
+| GeneralsGameCode #2485 | 🔍 PR 等审核 | $300 |
+| pygal #579 | 🔍 PR 等审核 | $300-500 |
+| coolify #7528 | ❌ 被屏蔽 | zhaog100被屏蔽 |
+| **总计待审核 PR** | **3 个** | **~$800-1,000** |
 | ClawHub 发布 | 25+ 个 | 技能 |
 | Git 仓库 | origin + xiaomili | 双仓库 |
 | GitHub | zhaog100 | 用户名 |
@@ -58,15 +59,12 @@ _精心维护的记忆，提炼后的精华_
 3. **验证付款可靠性** — 优先选 Algora 标签确认的项目，`seeking funding` 标签=资金未到位
 4. **工作量与金额匹配** — Babylon.js GUI 引擎级改动市场价 $5K+，$300 明显不匹配
 
-### Bounty 黑名单（2026-03-23 更新）⭐⭐⭐⭐⭐
+### Bounty 黑名单（详见 skills/github-bounty-hunter）
 
-| 仓库 | 原因 | 日期 |
-|------|------|------|
-| ComfyUI | bounty 已停超过 1 年 | 2026-03-22 |
-| coollabsio/coolify | 账号被屏蔽，批量评论被识别为spam | 2026-03-23 |
-| ANAVHEOBA | 黑名单 | - |
-| DenisZheng | 黑名单 | - |
-| PlatformNetwork | 黑名单 | - |
+| 仓库 | 原因 |
+|------|------|
+| ComfyUI | bounty 已停超过 1 年 |
+| coollabsio/coolify | 账号被屏蔽 |
 
 ### 实战经验（2026-03-21 迭代）⭐⭐⭐⭐⭐
 
@@ -78,12 +76,9 @@ _精心维护的记忆，提炼后的精华_
 - **Label 检查** — 有 "Core Team Only" 的直接跳过
 
 ### 自动流水线教训
-
-- **代码质量门禁** — validate_code 检查长度/无效内容/有效行数
-- **文件锁** — fcntl 防止 cron 并发重叠
+- **代码质量门禁** — validate_code 检查长度/有效行数
 - **AI 多模型 fallback** — glm-5-turbo → glm-5 → deepseek-chat
-- **读源码再生成** — 从 issue 提取文件路径，GitHub API 读取实际源码
-- **PR 去重** — has_existing_pr 检查 fork 上是否已有对应分支
+- **读源码再生成** — GitHub API 读取实际源码
 
 ### Git & ClawHub
 
@@ -95,6 +90,13 @@ _精心维护的记忆，提炼后的精华_
 
 - **监控脚本必须有退出机制**（否则进程堆积）
 - **VMware 限制** — 无 GPU，无 CUDA/Vulkan
+
+### 2026-03-23 新进展
+
+- **赚钱方向拓展** — Bug Bounty 新方向，HackerOne 注册（ByteWyrmSec），待学习 PortSwigger → Hacker101
+- **京东青龙面板** — jd_faker2 Cookie 过期问题，根因：容器内 JD_COOKIE 环境变量未设置
+- **bounty_auto_hunter cron 权限问题** — github-bounty-hunter.sh Permission denied，需 chmod +x
+- **daily_review.sh 路径错误** — qmd 路径和 git 路径指向旧环境 /home/zhaog/，需修复
 
 ---
 
