@@ -2,21 +2,21 @@
 
 _精心维护的记忆，提炼后的精华_
 
-**版本**: v5.0  
-**最后更新**: 2026-03-22 19:58  
+**版本**: v6.0  
+**最后更新**: 2026-03-24 23:34  
 **维护**: 小米辣 (PM + Dev) 🌶️
 
 ---
 
 ## 🎯 当前状态
 
-**时间**: 2026-03-23 21:50
+**时间**: 2026-03-24 23:34
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| vllm-omni #2080 | 🔍 审核中 | 最有希望，仓库活跃 |
-| GeneralsGameCode #2485 | 🔍 PR 等审核 | $300 |
-| pygal #579 | 🔍 PR 等审核 | $300-500 |
+| pygal #579 | 🔍 PR 等审核 | OHLC K线图，维护者无Python能力，已请推荐reviewer |
+| vllm-omni #2080 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
+| GeneralsGameCode #2485 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
 | coolify #7528 | ❌ 被屏蔽 | zhaog100被屏蔽 |
 | **总计待审核 PR** | **3 个** | **~$800-1,000** |
 | ClawHub 发布 | 25+ 个 | 技能 |
@@ -52,12 +52,17 @@ _精心维护的记忆，提炼后的精华_
 - 完成后汇报结果（成功/失败/跳过+原因）
 - 多个任务并行派子代理，提高效率
 
-### Bounty 狩猎教训（2026-03-23 实战迭代）⭐⭐⭐⭐⭐
+### Bounty 狩猎教训（持续迭代）⭐⭐⭐⭐⭐
 
-1. **先评估再开发** — BJS #9 没先 research 就派子代理，浪费资源。流程：发现→research评估→确认可行→开发
-2. **验证 issue 时效性** — StateofScale $400 是 2019 年已取消的 issue，先看创建时间和最后活动
+1. **先评估再开发** — 流程：发现→research评估→确认可行→开发
+2. **验证 issue 时效性** — 先看创建时间和最后活动
 3. **验证付款可靠性** — 优先选 Algora 标签确认的项目，`seeking funding` 标签=资金未到位
-4. **工作量与金额匹配** — Babylon.js GUI 引擎级改动市场价 $5K+，$300 明显不匹配
+4. **工作量与金额匹配** — 市场价与金额差距大=不靠谱
+5. **防刷 bounty 识别**（2026-03-24 新增）:
+   - 同一用户反复刷"我来认领"= 刷存在感
+   - 无 Algora 标签 + 无人被 assign = 纸面数字
+   - 自报自修刷 bounty（如 nutshell #922）= 骗局
+   - 金额 >$100 但竞争 <3人 + Algora确认 = 好目标
 
 ### Bounty 黑名单（详见 skills/github-bounty-hunter）
 
@@ -65,6 +70,7 @@ _精心维护的记忆，提炼后的精华_
 |------|------|
 | ComfyUI | bounty 已停超过 1 年 |
 | coollabsio/coolify | 账号被屏蔽 |
+| illbnm/homelab-stack | 刷 bounty，无实际开发 |
 
 ### 实战经验（2026-03-21 迭代）⭐⭐⭐⭐⭐
 
@@ -76,6 +82,7 @@ _精心维护的记忆，提炼后的精华_
 - **Label 检查** — 有 "Core Team Only" 的直接跳过
 
 ### 自动流水线教训
+
 - **代码质量门禁** — validate_code 检查长度/有效行数
 - **AI 多模型 fallback** — glm-5-turbo → glm-5 → deepseek-chat
 - **读源码再生成** — GitHub API 读取实际源码
@@ -86,17 +93,18 @@ _精心维护的记忆，提炼后的精华_
 - **ClawHub slug** — 被占用时用 sjykj-前缀
 - **ClawHub 限流** — 每小时 5 个新 slug
 
-### 系统运维
+### 系统运维教训（2026-03-24 新增）⭐⭐⭐⭐
 
-- **监控脚本必须有退出机制**（否则进程堆积）
-- **VMware 限制** — 无 GPU，无 CUDA/Vulkan
+- **OpenClaw 升级后必须重启 Gateway** — 否则插件文件与内存不一致
+- **QMD bun 全局安装** — OpenClaw 升级可能破坏 better-sqlite3，用 `bun install -g @tobilu/qmd` 修复
+- **定期 openclaw doctor --repair** — 清理孤立 session 和旧状态目录
+- **磁盘告警线 70%** — 超过立即清理（今日从80%降至60%）
+- **Git push 前先 pull** — 避免 rebase 冲突，`git pull --rebase` + `GIT_EDITOR=true`
 
 ### 2026-03-23 新进展
 
 - **赚钱方向拓展** — Bug Bounty 新方向，HackerOne 注册（ByteWyrmSec），待学习 PortSwigger → Hacker101
 - **京东青龙面板** — jd_faker2 Cookie 过期问题，根因：容器内 JD_COOKIE 环境变量未设置
-- **bounty_auto_hunter cron 权限问题** — github-bounty-hunter.sh Permission denied，需 chmod +x
-- **daily_review.sh 路径错误** — qmd 路径和 git 路径指向旧环境 /home/zhaog/，需修复
 
 ---
 
@@ -104,12 +112,14 @@ _精心维护的记忆，提炼后的精华_
 
 | 时间 | 任务 | 用途 |
 |------|------|------|
+| */5 * * * * | seamless-switch.sh | Context 自动切换 |
 | */30 * * * * | bounty_scanner_lite.py | Bounty 轻量扫描 |
 | */30 * * * * | github-bounty-hunter.sh auto | Bounty 全自动收割 |
 | 0 * * * * | monitor.py | PR 监控 |
 | 0 6 * * * | qmd update | QMD 知识库更新 |
 | 0 12 * * * | daily-review.sh | 早间回顾 |
 | 50 23 * * * | daily_review.sh | 晚间回顾 |
+| 0 18 * * 5 | weekly_report.sh | 周五周报 |
 
 ---
 
@@ -118,8 +128,7 @@ _精心维护的记忆，提炼后的精华_
 ### 外贸知识库 (2026-03-22 创建)
 - **位置**: knowledge/trade/
 - **文件**: 4 个 (README, Incoterms, 出口流程，邮件模板)
-- **内容**: 国际贸易术语、出口流程、外贸邮件模板
-- **QMD 索引**: ✅ 已索引 (106 个文档)
+- **QMD 索引**: ✅ 已索引
 
 ### 未来规划赛道 (2026-03-22 创建)
 - **位置**: shared-context/FUTURE-TRACKS.md
@@ -133,7 +142,7 @@ _精心维护的记忆，提炼后的精华_
 |------|------|------|
 | GitHub Token | ghp_*** | ~/.openclaw/secrets/github-bounty-hunter.env |
 | 收款地址 | USDT/BTC | ~/.openclaw/secrets/wallet.env |
-| 定时任务 | crontab | /etc/crontab |
+| 定时任务 | crontab | 用户 crontab |
 | 核心技能 | github-bounty-hunter | skills/github-bounty-hunter/ |
 
 ---
