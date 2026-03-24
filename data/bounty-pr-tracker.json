@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-03-23T18:08:26+08:00",
+  "updated": "2026-03-24T14:42:00+08:00",
   "prs": [
     {
       "id": "PR-20260323-001",
@@ -16,8 +16,15 @@
       "payment_platform": "direct",
       "maintainer_active": true,
       "repo_push": "2026-03-21",
-      "ping_sent": false,
-      "note": "REVIEW_REQUIRED, Greptile bot已审, 有希望"
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-24T14:42:00+08:00",
+          "target": "maintainer",
+          "comment_url": "https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485#issuecomment-4115814395"
+        }
+      ],
+      "note": "REVIEW_REQUIRED, Greptile bot 已审，已 ping 催审 (2026-03-24 14:42)"
     },
     {
       "id": "PR-20260323-002",
@@ -42,7 +49,7 @@
           "target": "@glepretre"
         }
       ],
-      "note": "维护者3个月不活跃, 已ping等48h"
+      "note": "维护者 3 个月不活跃，已 ping 等 48h"
     },
     {
       "id": "PR-20260322-001",
@@ -66,7 +73,7 @@
           "target": "@OthmanImam @StelTade"
         }
       ],
-      "note": "维护者半年不活跃, 2star, 已ping等48h"
+      "note": "维护者半年不活跃，2star, 已 ping 等 48h"
     },
     {
       "id": "PR-20260322-002",
@@ -170,7 +177,7 @@
       "payment_platform": "unknown",
       "maintainer_active": true,
       "repo_push": "2026-03-23",
-      "note": "仓库今天还有push! REVIEW_REQUIRED, 最有希望"
+      "note": "仓库今天还有 push! REVIEW_REQUIRED, 最有希望"
     },
     {
       "id": "PR-20260322-007",
@@ -194,7 +201,7 @@
           "target": "@Chevalier12"
         }
       ],
-      "note": "维护者9个月不活跃, 3star, 已ping等48h"
+      "note": "维护者 9 个月不活跃，3star, 已 ping 等 48h"
     }
   ],
   "archived_count": 27
