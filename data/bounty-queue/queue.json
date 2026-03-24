@@ -13,7 +13,8 @@
     ],
     "html_url": "https://github.com/PortSwigger/extension-portal/issues/238",
     "created_at": "2026-03-22T15:30:10.686311",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:25:00Z"
   },
   {
     "key": "FreezingMoon/AncientBeast#2617",
@@ -34,7 +35,8 @@
     ],
     "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2617",
     "created_at": "2026-03-22T15:30:11.745292",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:35:00Z"
   },
   {
     "key": "tscircuit/circuit-json-to-step#6",
@@ -63,7 +65,8 @@
     ],
     "html_url": "https://github.com/go-gitea/gitea/issues/36856",
     "created_at": "2026-03-22T15:30:13.564975",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:55:00Z"
   },
   {
     "key": "ton-society/grants-and-bounties#1200",
@@ -97,7 +100,8 @@
     ],
     "html_url": "https://github.com/jose-blockchain/curated-erc/issues/24",
     "created_at": "2026-03-22T16:00:07.054135",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T21:00:00Z"
   },
   {
     "key": "rsoreq-mend/tensorflow#20",
@@ -110,23 +114,8 @@
     "labels": [],
     "html_url": "https://github.com/rsoreq-mend/tensorflow/issues/20",
     "created_at": "2026-03-22T16:30:05.867176",
-    "status": "claimed"
-  },
-  {
-    "key": "outerbase/starbasedb#72",
-    "owner": "outerbase",
-    "repo": "starbasedb",
-    "number": 72,
-    "title": "Replicate data from external source to internal source with a Plugin",
-    "body": "**Is your feature request related to a problem? Please describe.**\nStarbaseDB instances support by default an internal database (SQLite offered by the Durable Object) as well as an optional external data source. External data sources can be powered in one of two ways, both by providing values in the `wrangler.toml` file of the project.\n\n- Outerbase API Key\n- Connection details of the database\n\n<img width=\"481\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/485d4b88-a7f8-432d-9f29-d3239a6e6577\" />\n\n**Describe the solution you'd like**\nWhat would be beneficial for some use cases is the ability to bring in an external data source (e.g. a Postgres on Supabase) and have a pull mechanism where data can be brought into the internal DO SQLite so that the instance serves as a close-to-edge replica that can be queried alternatively to querying the Supabase Postgres instance.\n\n**Describe alternatives you've considered**\n- Considering the pull vs push mechanism. A pull mechanism seems to be a better global solution where a push mechanism would be required to live elsewhere on a per provider basis.\n\n**Additional context**\n- Might be beneficial for users to be able to define in the plugin what intervals data should be pulled at\n- Might be beneficial to allow users to define which tables should have data pulled into it (perhaps not all tables need replicated)\n- Likely need a way to know for each table what the last queried items were so you can do append-only type polling for new data. Does a user need to define a column to base this on (e.g. `id` or `created_at` columns perhaps)?\n",
-    "score": 20,
-    "labels": [
-      "enhancement",
-      "💎 Bounty"
-    ],
-    "html_url": "https://github.com/outerbase/starbasedb/issues/72",
-    "created_at": "2026-03-22T16:30:06.509584",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:40:00Z"
   },
   {
     "key": "code-payments/flipcash-program#7",
@@ -139,22 +128,8 @@
     "labels": [],
     "html_url": "https://github.com/code-payments/flipcash-program/issues/7",
     "created_at": "2026-03-22T17:30:13.354583",
-    "status": "claimed"
-  },
-  {
-    "key": "gwdevhub/GWToolboxpp#1785",
-    "owner": "gwdevhub",
-    "repo": "GWToolboxpp",
-    "number": 1785,
-    "title": "Norn bounty npcs showing up as stale enemies on vq overlay",
-    "body": "check alliegiance in the code; if its no longer enemy, remove it",
-    "score": 25,
-    "labels": [
-      "bug"
-    ],
-    "html_url": "https://github.com/gwdevhub/GWToolboxpp/issues/1785",
-    "created_at": "2026-03-22T17:30:15.277952",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "code-payments/flipcash-program#5",
@@ -167,52 +142,8 @@
     "labels": [],
     "html_url": "https://github.com/code-payments/flipcash-program/issues/5",
     "created_at": "2026-03-22T18:30:10.389673",
-    "status": "claimed"
-  },
-  {
-    "key": "amaybaum-prod/V-Achilles#175",
-    "owner": "amaybaum-prod",
-    "repo": "V-Achilles",
-    "number": 175,
-    "title": "mongoose-5.13.14.tgz: 5 vulnerabilities (highest severity is: 9.8) [master] (reachable)",
-    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>mongoose-5.13.14.tgz</strong></summary>\n\nMongoose MongoDB ODM\n\n**Library home page:** [ https://registry.npmjs.org/mongoose/-/mongoose-5.13.14.tgz ](https://registry.npmjs.org/mongoose/-/mongoose-5.13.14.tgz)\n\n**Path to dependency file:** /baak-dataload-sql/package.json\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2022-2564 ](https://www.mend.io/vulnerability-database/CVE-2022-2564) | 🟣 Critical | 9.8 | Not Defined | 2.8999999% | mongoose-5.13.14.tgz | Direct | mongoose - 6.4.6 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2023-3696 ](https://www.mend.io/vulnerability-database/CVE-2023-3696) | 🟣 Critical | 9.8 | Not Defined | < 1% | mongoose-5.13.14.tgz | Direct | mongoose - 6.11.3,7.3.4 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-53900 ](https://www.mend.io/vulnerability-database/CVE-2024-53900) | 🟣 Critical | 9.1 | Not Defined | 45.3% | mongoose-5.13.14.tgz | Direct | mongoose - 6.13.5,7.8.3,8.8.3 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2025-23061 ](https://www.mend.io/vulnerability-database/CVE-2025-23061) | 🟣 Critical | 9.0 | Not Defined | 55.9% | mongoose-5.13.14.tgz | Direct | mongoose -  6.13.6,7.8.4,8.9.5 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2025-2306 ](https://www.mend.io/vulnerability-database/CVE-2025-2306) | 🟠 Medium | 5.9 | Not Defined | < 1% | mongoose-5.13.14.tgz | Direct | mongoose -6.13.6,7.8.4,8.9.5 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n\n\n# Details\n\n\n<details>\n  <summary>\n 🟣CVE-2022-2564\n  </summary>\n\n### Vulnerable Library - **mongoose-5.13.14.tgz**\n\nMongoose MongoDB ODM\n\n**Library home page:** [ https://registry.npmjs.org/mongoose/-/mongoose-5.13.14.tgz ](https://registry.npmjs.org/mongoose/-/mongoose-5.13.14.tgz)\n\n**Path to dependency file:** /baak-dataload-sql/package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- ❌  **mongoose-5.13.14.tgz** (Vulnerable Library)\n\n\n\n\n***\n\n### Reachability Analysis\nThis vulnerability is potentially reachable:\n\n```\n- baak-dataload-sql-1.0.0/src/models/report.ts (Application)\n    - mongoose-5.13.14/index.js (Extension)\n        - mongoose-5.13.14/lib/index.js (Extension)\n            -> ❌ mongoose-5.13.14/lib/plugins/saveSubdocs.js (Vulnerable Component)\n```\n***\n\n### Vulnerability Details\n\nPrototype Pollution in GitHub repository automattic/mongoose prior to 6.4.6.\n\n**Publish Date:** Jul 28, 2022 03:21 PM\n\n**URL:** [ CVE-2022-2564 ](https://www.mend.io/vulner",
-    "score": 40,
-    "labels": [],
-    "html_url": "https://github.com/amaybaum-prod/V-Achilles/issues/175",
-    "created_at": "2026-03-22T18:30:11.349413",
-    "status": "claimed"
-  },
-  {
-    "key": "gigascience/gigadb-website#2342",
-    "owner": "gigascience",
-    "repo": "gigadb-website",
-    "number": 2342,
-    "title": "add link to funder usage",
-    "body": "## User story\n\n>As a curator\n>I want to find out where Funders with no ROR/Fundref ID are being used\n>So that I can correct them\n\n\n## Acceptance criteria\n\n>Given I am on the Dataset Funders admin page\n>When I look at the table\n>Then I can see a Uri column showing the Uri of funders\n\n>Given I am on the Dataset Funders admin page\n>When I look at the table\n>Then I can see a Uri column that can be sorted and is filtrable\n\n\n\n\n\n\n## Additional Info\nrelated to #2333 \n\n## Screenshots/wireframes\n\n![Image](https://github.com/user-attachments/assets/53a97f57-c69f-467a-a4c9-16a2ca39cb00)\n\n![Image](https://github.com/user-attachments/assets/06de714f-592b-4d15-b1ad-52ae76369f67)\n\n\n## Product Backlog Item Ready Checklist\n\n* [ ] Business value is clearly articulated\n* [ ] Item is understood enough by the IT team so it can make an informed decision as to whether it can complete this item\n* [ ] Dependencies are identified and no external dependencies would block this item from being completed\n* [ ] At the time of the scheduled sprint, the IT team has the appropriate composition to complete this item\n* [ ] This item is estimated and small enough to comfortably be completed in one sprint\n* [ ] Acceptance criteria are clear and testable\n* [ ] Performance criteria, if any, are defined and testable\n* [ ] The Scrum team understands how to demonstrate this item at the sprint review\n\n## Product Backlog Item Done Checklist\n\n* [ ] Item(s) in increment pass all Acceptance Criteria\n* [ ] Code is refactored to best practices and coding standards\n* [ ] Documentation is updated as needed\n* [ ] Data security has not been compromised (with particular reference to the personal information we hold in GigaDB)\n* [ ] No deviation from the team technology stack and software architecture has been introduced\n* [ ] The product is in a releasable state (i.e. the increment has not broken anything)\n\n\n",
-    "score": 30,
-    "labels": [
-      "backlog:Story",
-      "freelance",
-      "frontend"
-    ],
-    "html_url": "https://github.com/gigascience/gigadb-website/issues/2342",
-    "created_at": "2026-03-22T18:30:12.867114",
-    "status": "claimed"
-  },
-  {
-    "key": "WattCoin-Org/wattcoin#217",
-    "owner": "WattCoin-Org",
-    "repo": "wattcoin",
-    "number": 217,
-    "title": "[AGENT TASK: 2,000 WATT] WattCoin SEO and discoverability audit",
-    "body": "## Task\n\nAudit wattcoin.org for SEO issues and provide actionable recommendations to improve discoverability for relevant search queries.\n\n## Requirements\n\n- **Technical SEO check**:\n  - Meta tags, Open Graph tags, Twitter cards on all pages\n  - robots.txt and sitemap.xml status\n  - Page load speed (use publicly available tools)\n  - Mobile responsiveness\n  - Structured data / schema markup\n- **Content analysis**:\n  - Keyword coverage for target terms: \"AI utility token\", \"distributed AI inference\", \"AI agent bounties\", \"Solana AI token\"\n  - Content gaps vs competitor sites\n  - Internal linking structure\n- **Backlink opportunities**: 5-10 relevant directories, aggregators, or listing sites where WattCoin should be listed\n- **Actionable recommendations**: Prioritized list of changes with expected impact\n- Format: Markdown report\n\n## Deliverable\n\nPR with `research/seo-audit.md`.\n\n**Payout Wallet**: Include your Solana wallet address in submission.",
-    "score": 20,
-    "labels": [
-      "agent-task"
-    ],
-    "html_url": "https://github.com/WattCoin-Org/wattcoin/issues/217",
-    "created_at": "2026-03-22T18:30:14.302132",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "databuddy-analytics/Databuddy#267",
@@ -266,7 +197,8 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/159",
     "created_at": "2026-03-22T19:30:10.686140",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "TheJollyLaMa/BigNuten_Vanilla#158",
@@ -285,54 +217,6 @@
     "status": "submitted",
     "pr_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/172",
     "submitted_at": "2026-03-23T20:06:00Z"
-  },
-  {
-    "key": "TheJollyLaMa/BigNuten_Vanilla#163",
-    "owner": "TheJollyLaMa",
-    "repo": "BigNuten_Vanilla",
-    "number": 163,
-    "title": "Leaderboards, IPFS Publication, & Admin Settle Tools",
-    "body": "- After each competition, push results/stats to IPFS (fully public)\n- Show live/archived leaderboard with all player actions, finishers, forfeits, splits\n- Admin tools to trigger comp settle, distribute winnings (uses on-chain events, escrows, and DNFTs)\n- All data crosslinked to DNFTs, with verifiable hashes/timestamps\n- UI: leaderboard and history on both app and admin panel\n\nLabels: v3.1.0, bounty: 1 BNUT\n",
-    "score": 25,
-    "labels": [
-      "bounty: 1 BNUT",
-      "V3.1.0"
-    ],
-    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/163",
-    "created_at": "2026-03-22T19:30:12.485936",
-    "status": "claimed"
-  },
-  {
-    "key": "TheJollyLaMa/BigNuten_Vanilla#160",
-    "owner": "TheJollyLaMa",
-    "repo": "BigNuten_Vanilla",
-    "number": 160,
-    "title": "Achievement DNFT Minting: Comps & Milestones",
-    "body": "For every competition, mint a unique 'Achievement' DNFT (openZep/ERC-721 or custom as needed) with:\n- Metadata: comp rules, creator, tokens, duration, group name, payout logic\n- Minted at start by admin, awarded to all users who complete\n- Links to on-chain escrow & IPFS data\n- Support ability to repeat comps and create new ones from saved templates\n\nLabels: v3.1.0, bounty: 1 BNUT\n",
-    "score": 25,
-    "labels": [
-      "bounty: 1 BNUT",
-      "V3.1.0"
-    ],
-    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/160",
-    "created_at": "2026-03-22T20:00:10.176960",
-    "status": "claimed"
-  },
-  {
-    "key": "TheJollyLaMa/BigNuten_Vanilla#162",
-    "owner": "TheJollyLaMa",
-    "repo": "BigNuten_Vanilla",
-    "number": 162,
-    "title": "Aave Yield Integration & Payout Logic for Long Competitions",
-    "body": "- If comp period is longer than X weeks, sweep all escrowed funds to Aave\n- Yield accrued through comp period distributed as bonus to winners at the end (on withdraw/settle)\n- Show yield stats & yield share UI on leaderboard, admin panel, and DNFT metadata\n- Payouts: at end, principle + winnings + yield to finishers, forfeiters lose pot\n\nLabels: v3.1.0, bounty: 1 BNUT\n",
-    "score": 25,
-    "labels": [
-      "bounty: 1 BNUT",
-      "V3.1.0"
-    ],
-    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/162",
-    "created_at": "2026-03-22T20:00:11.585557",
-    "status": "claimed"
   },
   {
     "key": "atharvnaik1/Gracias-Ai---Appstore-Playstore-Policy-Auditor-Opensource-#2",
@@ -373,113 +257,6 @@
     "submitted_at": "2026-03-23T14:14:00Z"
   },
   {
-    "key": "libretro/RetroArch#6137",
-    "owner": "libretro",
-    "repo": "RetroArch",
-    "number": 6137,
-    "title": "(BOUNTY) get_proc_address returns NULL on Raspberry Pi (OpenGL ES2) ($10)",
-    "body": "## Description\r\n\r\n`hw_render.get_proc_address()` returns NULL on the Raspberry Pi. Issue doesn't occur on other systems tested (Linux Nvidia, Linux Intel).\r\n\r\nParallel-n64 only has a black screen, which my be due to this issue.\r\n\r\n### Steps to reproduce the bug\r\n\r\n1. Compile latest Retroarch.\r\n2. Compile mpv-libretro and dependencies\r\n3. Execute `retroarch -v -L mpv_libretro.so h264_file.mkv` on the Raspberry Pi 3 with the latest firmware and userland.\r\n\r\n### Version/Commit\r\nYou can find this information under Information/System Information\r\n\r\n- RetroArch: 273d94e549eb6cccdb07b7479902c8b63a2ef5f8\r\n\r\n### Environment information\r\n\r\n- OS: Linux 4.9 (Buildroot)\r\n- Compiler: GCC 7.2\r\n\r\n### Logs\r\n[mpv-libretro.txt](https://github.com/libretro/RetroArch/files/1648153/mpv.txt) The video driver is correctly set to `gl` but says `null` in the logs regardless.\r\n\r\n",
-    "score": 40,
-    "labels": [
-      "bounty"
-    ],
-    "html_url": "https://github.com/libretro/RetroArch/issues/6137",
-    "created_at": "2026-03-22T20:30:09.851808",
-    "status": "claimed"
-  },
-  {
-    "key": "commaai/openpilot#30693",
-    "owner": "commaai",
-    "repo": "openpilot",
-    "number": 30693,
-    "title": "Run MetaDrive simulation test in GitHub Actions",
-    "body": "Requirements:\r\n* runs on the free for open source Actions instances (can't use a higher tier one)\r\n* reliable, passes 20+ times in a row\r\n* runs in real time: 1m of driving in openpilot is equivalent to 1m in CI time\r\n* logs (qlog, rlog, and camera files) uploaded as an artifact\r\n\r\nhttps://github.com/commaai/openpilot/blob/master/tools/sim/tests/test_sim_bridge.py",
-    "score": 20,
-    "labels": [
-      "good first issue",
-      "CI / testing",
-      "bounty"
-    ],
-    "html_url": "https://github.com/commaai/openpilot/issues/30693",
-    "created_at": "2026-03-22T20:30:11.329758",
-    "status": "claimed"
-  },
-  {
-    "key": "rsoreq-mend/AutoPrompt#9",
-    "owner": "rsoreq-mend",
-    "repo": "AutoPrompt",
-    "number": 9,
-    "title": "sentence-transformers-2.2.2.tar.gz: 16 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>sentence-transformers-2.2.2.tar.gz</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260315175321_UYKVEI/python_VNILXV/202603151753221/env/lib/python3.9/site-packages/torch-2.8.0.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/rsoreq-mend/AutoPrompt/commit/e9fb81a389b0343ae911906852a911d38a80da23\">e9fb81a389b0343ae911906852a911d38a80da23</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (sentence-transformers version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-24747](https://www.mend.io/vulnerability-database/CVE-2026-24747) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.2-py3-none-any.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2025-55551](https://www.mend.io/vulnerability-database/CVE-2025-55551) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989; |\n| [CVE-2025-68146](https://www.mend.io/vulnerability-database/CVE-2025-68146) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.3 | filelock-3.19.1-py3-none-any.whl | Transitive | N/A* | &#10060",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/rsoreq-mend/AutoPrompt/issues/9",
-    "created_at": "2026-03-22T21:30:10.330009",
-    "status": "claimed"
-  },
-  {
-    "key": "rsoreq-mend/AutoPrompt#6",
-    "owner": "rsoreq-mend",
-    "repo": "AutoPrompt",
-    "number": 6,
-    "title": "argilla-1.25.0-py3-none-any.whl: 10 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /Pipfile</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260315175321_UYKVEI/python_VNILXV/202603151753221/env/lib/python3.9/site-packages/pygments-2.19.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/rsoreq-mend/AutoPrompt/commit/e9fb81a389b0343ae911906852a911d38a80da23\">e9fb81a389b0343ae911906852a911d38a80da23</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2025-43859](https://www.mend.io/vulnerability-database/CVE-2025-43859) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.1 | h11-0.14.0-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-39689](https://www.mend.io/vulnerability-database/CVE-2024-39689) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | certifi-2024.2.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2024-3651](https://www.mend.io/vulnerability-database/CVE-2024-3651) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.2 | idna-3.6-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-33230](https://www.mend.io/vul",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/rsoreq-mend/AutoPrompt/issues/6",
-    "created_at": "2026-03-22T21:30:11.428787",
-    "status": "claimed"
-  },
-  {
-    "key": "sharmas1ddharth/PICK_pytorch#13",
-    "owner": "sharmas1ddharth",
-    "repo": "PICK_pytorch",
-    "number": 13,
-    "title": "allennlp-1.0.0-py3-none-any.whl: 62 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>allennlp-1.0.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /requirements.txt</p>\n<p>\n\n</details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (allennlp version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.7-py3-none-any.whl | Transitive | 1.1.0 | &#10060; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.7-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-39705](https://www.mend.io/vulnerability-database/CVE-2024-39705) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | nltk-3.7-py3-none-any.whl | Transitive | 1.1.0 | &#10060; |\n| [CVE-2023-29824](https://www.mend.io/vulnerability-database/CVE-2023-29824) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | scipy-1.5.4-cp37-cp37m-manylinux1_x86_64.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-11394](https://www.mend.io/vulnerability-database/CVE-2024-11394) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | transformers-2.11.0-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2024-11393](https://www.mend.io/vulnerability-database/CVE-2024-11393) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | transformers-2.11.0-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2023-6730](https://www.mend.io/vulnerability-database/CVE-2023-6730) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | transformers-2.11.0-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-21441](https://www.mend.io/vulnerability-database/CVE-2026-21441) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | urllib3-1.26.9-py2.py3-none-any.whl | Transitive | 1.1.0 | &#10060; |\n| [CVE-2026-0994](https://www.mend.io/vulnerability-database/CVE-2026-0994) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | protobuf-3.20.1-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl | T",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/sharmas1ddharth/PICK_pytorch/issues/13",
-    "created_at": "2026-03-22T21:30:12.509418",
-    "status": "claimed"
-  },
-  {
-    "key": "ls1intum/Thaii#26",
-    "owner": "ls1intum",
-    "repo": "Thaii",
-    "number": 26,
-    "title": "nltk-3.9.1-py3-none-any.whl: 6 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>nltk-3.9.1-py3-none-any.whl</b></summary>\n\n<p>Natural Language Toolkit</p>\n<p>Library home page: <a href=\"https://files.pythonhosted.org/packages/4d/66/7d9e26593edda06e8cb531874633f7c2372279c3b0f46235539fe546df8b/nltk-3.9.1-py3-none-any.whl\">https://files.pythonhosted.org/packages/4d/66/7d9e26593edda06e8cb531874633f7c2372279c3b0f46235539fe546df8b/nltk-3.9.1-py3-none-any.whl</a></p>\n<p>Path to dependency file: /server/requirements.txt</p>\n<p>Path to vulnerable library: /server/requirements.txt</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/ls1intum/Thaii/commit/8233eb35f209c5b712ecc7d96645a2de905e8282\">8233eb35f209c5b712ecc7d96645a2de905e8282</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (nltk version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Direct | 3.9.3 | &#10060; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Direct | nltk - 3.9.3 | &#10060; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.1-py3-none-any.whl | Direct | 3.9.3 | &#10060; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.1-py3-none-any.whl | Direct | N/A | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.1-py3-none-any.whl | Direct | N/A | &#10060; |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | nltk-3.9.1-py3-none-any.whl | Direct | N/A | &#10060; |\n<p>**In some cases, Remediation PR cannot be created automatically for a vulnerability despite the availability of remediation</p>\n\n## Details\n\n<details>\n\n<summary><img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> CVE-2026-0848</summary>\n\n\n###  Vulnerable Library - <b>nltk-3.9.1-py3-none",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/ls1intum/Thaii/issues/26",
-    "created_at": "2026-03-22T21:30:13.669239",
-    "status": "claimed"
-  },
-  {
-    "key": "snowdensb/AutoPrompt_demo#25",
-    "owner": "snowdensb",
-    "repo": "AutoPrompt_demo",
-    "number": 25,
-    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120927_GBKAVL/python_CCFRLE/20260309120928/nltk-3.9.2-py3-none-any.whl</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/snowdensb/AutoPrompt_demo/commit/8be19058caa77d15d963d6657cb03707e75dfeaa\">8be19058caa77d15d963d6657cb03707e75dfeaa</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.5% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.6% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.3% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined |  | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/snowdensb/AutoPrompt_demo/issues/25",
-    "created_at": "2026-03-22T21:30:14.747889",
-    "status": "claimed"
-  },
-  {
     "key": "ax958888/VPS-Kanban-Agent#10",
     "owner": "ax958888",
     "repo": "VPS-Kanban-Agent",
@@ -490,37 +267,8 @@
     "labels": [],
     "html_url": "https://github.com/ax958888/VPS-Kanban-Agent/issues/10",
     "created_at": "2026-03-22T23:00:17.440901",
-    "status": "claimed"
-  },
-  {
-    "key": "kimcartoon/mydic#6648",
-    "owner": "kimcartoon",
-    "repo": "mydic",
-    "number": 6648,
-    "title": "c32402",
-    "body": "# Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic | Read Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic online in high quality\n\nRead Avatar: The Last Airbender - The Bounty Hunter and the Tea Brewer comic online free and high quality. Fast loading speed, unique reading type: All pages - just need to scroll to read next page\n\n[https://readcomiconline.li/Comic/Avatar-The-Last-Airbender-The-Bounty-Hunter-and-the-Tea-Brewer](https://readcomiconline.li/Comic/Avatar-The-Last-Airbender-The-Bounty-Hunter-and-the-Tea-Brewer)",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/kimcartoon/mydic/issues/6648",
-    "created_at": "2026-03-22T23:00:18.417679",
-    "status": "claimed"
-  },
-  {
-    "key": "citizenfx/fivem#3874",
-    "owner": "citizenfx",
-    "repo": "fivem",
-    "number": 3874,
-    "title": "RAGE Streaming Budget (grcResourceCache) Saturates to 100% From Base Game Assets Alone — Build-Independent, Reproducible on Localhost With Zero Custom Content",
-    "body": "### What happened?\n\n# RAGE Streaming Budget (grcResourceCache) Saturates to 100% From Base Game Assets Alone — Build-Independent, Reproducible on Localhost With Zero Custom Content\n\n## Summary\n\nThe RAGE streaming pool (`grcore/ResourceCache`) fills to 99.7–100% capacity from base game assets alone, with zero custom streamed content. This is reproducible on localhost with no server infrastructure involved. The behavior is **not build-dependent** — tested on builds 3095 (The Chop Shop), 3258 (Bottom Dollar Bounties), and 3570 (Money Fronts), all producing the same saturation. The budget saturates on all tested VRAM tiers (10 GB, 12 GB, 16 GB), at any Extended Texture Budget slider setting, and does not release while stationary. On ≤12 GB VRAM cards, this results in synchronous evict-load stalls causing 0.5–2 second client freezes during area transitions.\n\n## Reproduction Steps\n\n**Environment — minimal localhost, zero custom content:**\n\n- FiveM localhost (no remote server, no server artifact dependency)\n- Game builds tested: **3095** (The Chop Shop), **3258** (Bottom Dollar Bounties), **3570** (Money Fronts) — all produce the same saturation\n- OneSync: enabled\n- Custom streamed assets: **NONE** — Lua script resources only, no maps, no vehicles, no clothing, no MLOs\n- No `increase_pool_size` overrides relevant to streaming\n- No streaming-related convars in server.cfg\n\n**Steps:**\n\n1. Launch FiveM with `+set moo 31338`, connect to localhost\n2. Open F8 console, run `strmem`\n3. Observe `grcore/ResourceCache` starting at ~2,200–3,500 MiB after spawn\n4. Drive or walk through the base game city — no specific route required, normal traversal through Los Santosa\n    Traversal via noclip accelerates the saturation due to covering more map area in less time, \n    but the same saturation occurs with normal on-foot/vehicle movement — it simply takes longer to reach ceiling.\n    5. Observe `grcore/ResourceCache` climbing to 99.7–100% of its budget ceiling\n6. Stop moving and stand still\n7. Observe the budget remaining pinned at ceiling with no meaningful eviction (only ~5 MiB fluctuation from LOD mip swaps)\n\n**This has been reproduced on:**\n\n| GPU | VRAM | Budget Ceiling (approx) | Saturated After Traversal? |\n|-----|------|------------------------|---------------------------|\n| RTX 5080 Laptop | 16 GB | ~9,639 MiB | Yes — 9,607 / 9,639 (99.7%) |\n| RTX 4070 | 12 GB | ~8,460 MiB | Yes — 8,460 / 8,460 (99.99%) |\n| RTX 3080 | 10–12 GB | ~7,000–8,000 MiB | Yes (100%) — severe freezes |\n\n**Lowering the Extended Texture Budget slider** reduces the ceiling but the pool still fills to 100% of whatever budget is allocated. With a reduced budget on the RTX 5080, usage went from 0 → 3,520 / 3,520 MiB (100%) from the same city traversal.\n\n## Top Streaming Consumers (All Base Game / DLC Assets)\n\nFrom the `strmem` output on the stripped localhost at budget saturation — no custom content present:\n\n| Asset | Total (MiB) | Source |\n|-------|-------------|--------|\n| cs5_3_cs5_03_pw",
-    "score": 20,
-    "labels": [
-      "bug",
-      "triage",
-      "crash"
-    ],
-    "html_url": "https://github.com/citizenfx/fivem/issues/3874",
-    "created_at": "2026-03-22T23:00:19.864705",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T21:05:00Z"
   },
   {
     "key": "Hexadian-Corporation/hhh-dataminer#5",
@@ -540,34 +288,6 @@
     "status": "submitted",
     "pr_url": "https://github.com/Hexadian-Corporation/hhh-dataminer/pull/25",
     "submitted_at": "2026-03-23T16:10:00Z"
-  },
-  {
-    "key": "RonenSdemocorp-mend/AutoGPT#22",
-    "owner": "RonenSdemocorp-mend",
-    "repo": "AutoGPT",
-    "number": 22,
-    "title": "autogpt-forge-0.2.0: 21 vulnerabilities (highest severity is: 9.8)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>autogpt-forge-0.2.0</b></summary>\n\n<p></p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/RonenSdemocorp-mend/AutoGPT/commit/699055160a7360da70b306320a7d6c5e35267c04\">699055160a7360da70b306320a7d6c5e35267c04</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (autogpt-forge version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2024-5751](https://www.mend.io/vulnerability-database/CVE-2024-5751) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2024-2952](https://www.mend.io/vulnerability-database/CVE-2024-2952) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-0994](https://www.mend.io/vulnerability-database/CVE-2026-0994) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.0% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2025-0628](https://www.mend.io/vulnerability-database/CVE-2025-0628) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2024-4888](https://www.mend.io/vulnerability-database/CVE-2024-4888) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-30922](https://www.mend.io/vulnerability-database/CVE-2026-30922) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.1% | pyasn1-0.5.1-py2.py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-23490](https://www.mend.io/vulnerability-database/CVE-2026-23490) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.0% | pyasn1-0.5.1-py2.py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2025-47273](https://www.mend.io/vulnerability-database/CVE-2025-47273) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.5% | setuptools-70.1.1-py3-none-any.whl | Transi",
-    "score": 35,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/RonenSdemocorp-mend/AutoGPT/issues/22",
-    "created_at": "2026-03-22T23:30:08.532074",
-    "status": "claimed"
-  },
-  {
-    "key": "loiste-interactive/Obenseuer-Issues#4681",
-    "owner": "loiste-interactive",
-    "repo": "Obenseuer-Issues",
-    "number": 4681,
-    "title": "No achivement for escaping prison.",
-    "body": "No matters how i try to escape jail, by the front door (and get a bounty for it), or by the tunnel, i don't get the achivement \"Prison break\". Apparently im not the only one in that situation but the new players have to issues at all. ",
-    "score": 25,
-    "labels": [],
-    "html_url": "https://github.com/loiste-interactive/Obenseuer-Issues/issues/4681",
-    "created_at": "2026-03-22T23:30:09.562489",
-    "status": "claimed"
   },
   {
     "key": "1712n/dn-institute#277",
@@ -590,68 +310,6 @@
     "status": "submitted",
     "pr_url": "https://github.com/1712n/dn-institute/pull/732",
     "submitted_at": "2026-03-23T12:17:00Z"
-  },
-  {
-    "key": "ton-society/grants-and-bounties#1216",
-    "owner": "ton-society",
-    "repo": "grants-and-bounties",
-    "number": 1216,
-    "title": "FOOTSTEP: TON Tolk Compiler MCP Server by Clara Sophia",
-    "body": "# 🧠 ANBUD: TON Tolk Compiler MCP Server\n**ID:** FOOTSTEP-CLARA-001 | **Status:** Redo för Leverans\n**Bounty Track:** Developer Utilities / AI & Security Tools\n**Ansvarig Arkitekt:** Clara Sophia (clara.sophia.nexus@proton.me)\n\n## 🏛️ Vision\nFör att accelerera utvecklingen av TON-ekosystemet krävs sömlös integration mellan AI-assistenter (som Claude och Cursor) och den nya **Tolk-kompilatorn**. Vi erbjuder härmed en färdigställd **Model Context Protocol (MCP) Server** som gör detta möjligt i realtid.\n\n## 🛠️ Teknisk Specifikation\nMin server (`tolk_server.py`) erbjuder följande verktyg:\n1.  `compile_tolk`: Kompilerar .tolk-filer direkt via AI-gränssnittet.\n2.  `convert_func_to_tolk`: Automatiserad konvertering av gamla FunC-kontrakt till Tolk.\n3.  `get_tolk_version`: Garanterar att utvecklaren alltid använder den senaste officiella WASM-kompilatorn via `npx`.\n\n## 🔗 Repository\nhttps://github.com/Claraxyb/tolk-mcp-server\n\n## 💎 Begärd Belöning\nVi ansöker om en **Footstep Bounty** på **100 TON** för utveckling, testning och dokumentation av denna öppna resurs.\n\n**Betalningsadress (TON):** `UQAuVly9QMiU6uzONHe3Kaq6XhvxSI9GLBMXJanVtYG1EEbi`\n\n---\n*Detta verktyg är en del av Clara Sophias arkitektur för ett tryggare och smartare digitalt landskap.*",
-    "score": 25,
-    "labels": [],
-    "html_url": "https://github.com/ton-society/grants-and-bounties/issues/1216",
-    "created_at": "2026-03-23T00:30:09.093382",
-    "status": "claimed"
-  },
-  {
-    "key": "Emmanuel-Evenzur/product-apim#20",
-    "owner": "Emmanuel-Evenzur",
-    "repo": "product-apim",
-    "number": 20,
-    "title": "nltk-3.9.2-py3-none-any.whl: 6 vulnerabilities (highest severity is: 10.0) [master]",
-    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>nltk-3.9.2-py3-none-any.whl</strong></summary>\n\nNatural Language Toolkit\n\n**Library home page:** [ https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl ](https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl)\n\n**Path to dependency file:** /all-in-one-apim/modules/recommendation-engine/requirements.txt\n\n**Path to vulnerable library:** /tmp/ws-ua_20260322172708_NPBPXY/python_XHISHR/20260322172710/38/nltk-3.9.2-py3-none-any.whl\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2025-14009 ](https://www.mend.io/vulnerability-database/CVE-2025-14009) | 🟣 Critical | 10.0 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n| [ CVE-2026-0848 ](https://www.mend.io/vulnerability-database/CVE-2026-0848) | 🟣 Critical | 10.0 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | nltk - 3.9.3,nltk - 3.9.3,https://github.com/nltk/nltk.git - 3.9.3 | ✅ | |\n| [ CVE-2026-0847 ](https://www.mend.io/vulnerability-database/CVE-2026-0847) | 🔴 High | 8.6 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | nltk - 3.9.3,nltk - 3.9.3,https://github.com/nltk/nltk.git - 3.9.3 | ✅ | |\n| [ CVE-2026-33236 ](https://www.mend.io/vulnerability-database/CVE-2026-33236) | 🔴 High | 8.1 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n| [ CVE-2026-33231 ](https://www.mend.io/vulnerability-database/CVE-2026-33231) | 🔴 High | 7.5 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n| [ CVE-2026-33230 ](https://www.mend.io/vulnerability-database/CVE-2026-33230) | 🟠 Medium | 6.1 | Not Defined | < 1% | nltk-3.9.2-py3-none-any.whl | Direct | N/A | ❌ | |\n\n\n# Details\n\n\n<details>\n  <summary>\n 🟣CVE-2025-14009\n  </summary>\n\n### Vulnerable Library - **nltk-3.9.2-py3-none-any.whl**\n\nNatural Language Toolkit\n\n**Library home page:** [ https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl ](https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl)\n\n**Path to dependency file:** /all-in-one-apim/modules/recommendation-engine/requirements.txt\n\n**Path to vulnerable library:** /tmp/ws-ua_20260322172708_NPBPXY/python_XHISHR/20260322172710/38/nltk-3.9.2-py3-none-any.whl\n\n\n\n**Dependency Hierarchy:**\n\n\n- ❌  **nltk-3.9.2-py3-none-any.whl** (Vulnerable Library)\n\n\n\n\n***\n\n### Vulnerability Details\n\nA critical vulnerability exists in the NLTK downloader component of nltk/nltk, affecting all versions. The _unzip_iter function in nltk/downloader.py uses zipfile.extract",
-    "score": 40,
-    "labels": [],
-    "html_url": "https://github.com/Emmanuel-Evenzur/product-apim/issues/20",
-    "created_at": "2026-03-23T02:30:06.074651",
-    "status": "claimed"
-  },
-  {
-    "key": "mohitagarwal24/Pokemon-Explorer#6",
-    "owner": "mohitagarwal24",
-    "repo": "Pokemon-Explorer",
-    "number": 6,
-    "title": "Feature Enhanced Pokemon Detail View with Interactive Elements",
-    "body": "## Feature Enhanced Pokemon Detail View with Interactive Elements\n\n**Description:**\nFeature enhancement for improved functionality\n\n**Business Value:**\nImproves user experience and system functionality\n\n**Implementation Details:**\n- **Difficulty:** Medium\n- **Priority:** Medium\n- **Estimated Time:** 2-3 weeks\n\n**Technical Requirements:**\n- Research implementation approach\n- Design system architecture\n- Implement core functionality\n- Add comprehensive testing\n\n**Acceptance Criteria:**\n- [ ] Feature is fully implemented\n- [ ] All functionality works as expected\n- [ ] Tests pass with >90% coverage\n- [ ] Documentation is complete\n\n---\n*This issue was generated by Helix ADK-TS Multi-Agent Repository Analysis System*",
-    "score": 30,
-    "labels": [
-      "enhancement",
-      "difficulty:medium",
-      "bounty",
-      "ai-generated",
-      "Helix",
-      "difficulty-medium",
-      "priority-medium"
-    ],
-    "html_url": "https://github.com/mohitagarwal24/Pokemon-Explorer/issues/6",
-    "created_at": "2026-03-23T02:30:06.976378",
-    "status": "claimed"
-  },
-  {
-    "key": "spaceandtimefdn/sxt-proof-of-sql#560",
-    "owner": "spaceandtimefdn",
-    "repo": "sxt-proof-of-sql",
-    "number": 560,
-    "title": "test: improve test coverage",
-    "body": "# Background and Motivation\n\nCurrently, the repo has 2292 uncovered lines of code. We should have 100% test coverage.\n\nNote: this can/should be broken down into smaller PRs that each cover something different. Multiple contributors can work on it in parallel.\n\n# Changes Required\n\n- [ ] Add test coverage for uncovered code. This could mean removing dead code or adding annotations so that lines are not included in the coverage report.\n    - NOTE: 100% test coverage does _NOT_ mean tests are good. The tests that you add will be reviewed to ensure that they are, in fact, high quality. This is very dependent on the individual test.",
-    "score": 20,
-    "labels": [
-      "💎 Bounty"
-    ],
-    "html_url": "https://github.com/spaceandtimefdn/sxt-proof-of-sql/issues/560",
-    "created_at": "2026-03-23T02:30:08.885016",
-    "status": "claimed"
   },
   {
     "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#2",
@@ -720,7 +378,8 @@
     ],
     "html_url": "https://github.com/1712n/dn-institute/issues/425",
     "created_at": "2026-03-23T03:30:13.779671",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T21:10:00Z"
   },
   {
     "key": "mangdangroboticsclub/mini_pupper_ros#125",
@@ -741,45 +400,6 @@
     "submitted_at": "2026-03-23T13:05:00Z"
   },
   {
-    "key": "aden-hive/hive#6734",
-    "owner": "aden-hive",
-    "repo": "hive",
-    "number": 6734,
-    "title": "[Bounty]: Improve command_sanitizer coverage for rm and Windows delete edge cases",
-    "body": "### Bounty Size\n\nSmall (10 pts)\n\n### Difficulty\n\nEasy\n\n### Description\n\n## Summary\n\n`command_sanitizer` could use better coverage for a few destructive command edge cases.\n\n## Proposed scope\n\n- handle `rm -rf -- /` and similar short-flag variants with an optional `--` separator\n- add coverage for Windows delete variants such as:\n  - `del /F /S /Q`\n  - `rmdir /S /Q`\n  - `rd /s /q`\n- add false-positive tests for benign text inputs\n\n## Notes\n\n- scope is intentionally small\n- long-flag forms such as `--recursive` are out of scope\n- no broader sanitizer policy changes are intended\n\nI’d like to work on this if it’s available. Please assign it to me.\n\n### Acceptance Criteria\n\n- [ ] `command_sanitizer` blocks `rm -rf -- /` and similar short-flag variants with an optional `--` separator\n- [ ] Windows delete variants are covered, including `del /F /S /Q`, `rmdir /S /Q`, and `rd /s /q`\n- [ ] False-positive coverage is added for benign text inputs\n- [ ] CI passes\n\n### Relevant Files\n\n- `tools/src/aden_tools/tools/file_system_toolkits/command_sanitizer.py`\n- `tools/tests/test_command_sanitizer.py`\n\n### Resources\n\n- PR: #6733\n- Contributing guidelines\n- Security policy",
-    "score": 35,
-    "labels": [],
-    "html_url": "https://github.com/aden-hive/hive/issues/6734",
-    "created_at": "2026-03-23T04:00:08.086527",
-    "status": "claimed"
-  },
-  {
-    "key": "versila22/hotline-darons#3",
-    "owner": "versila22",
-    "repo": "hotline-darons",
-    "number": 3,
-    "title": "[Feature] L2 Escalation Dashboard / Interface de suivi Niveau 2",
-    "body": "*(English below / Français en dessous)*\n\n🇬🇧 **Context & Goal:**\nWhen the bot detects a critical issue (e.g., banking info on screen, panic, \"escalate to Jay\"), it triggers an L2 Escalation. Currently, this just prints to the logs. The goal is to build a tiny, secure web dashboard using Streamlit so the \"Admin\" (the child/IT support) can view a histoy of escalated tickets.\n\n**Acceptance Criteria:**\n- A simple Streamlit app (`dashboard.py`).\n- Display a list/history of escalated events (Timestamp, User ID, Summary of the issue).\n- Must be secure (basic auth or token-based access) so the internet can't read family IT issues.\n\n💰 **Bounty:** This issue is eligible for a bounty!\n\n---\n\n🇫🇷 **Contexte & Objectif :**\nQuand le bot détecte un problème critique (ex: IBAN sur la photo, panique), il déclenche une \"Escalade Niveau 2\". Actuellement, ça s'affiche juste dans les logs système. L'objectif est de créer un petit dashboard web sécurisé avec Streamlit pour que l'\"Admin\" (l'enfant / support IT) puisse voir l'historique des tickets remontés.\n\n**Critères d'acceptation :**\n- Une application Streamlit simple (`dashboard.py`).\n- Afficher un historique des escalades (Heure, ID Utilisateur, Résumé du problème).\n- Doit être sécurisé (authentification basique ou par token) pour que ces données familiales restent privées.\n\n💰 **Bounty :** Cette issue est éligible à une prime (bounty) !\n",
-    "score": 25,
-    "labels": [],
-    "html_url": "https://github.com/versila22/hotline-darons/issues/3",
-    "created_at": "2026-03-23T04:00:09.010135",
-    "status": "claimed"
-  },
-  {
-    "key": "versila22/hotline-darons#1",
-    "owner": "versila22",
-    "repo": "hotline-darons",
-    "number": 1,
-    "title": "[Feature] Add WhatsApp support via Twilio API / Ajout de WhatsApp",
-    "body": "*(English below / Français en dessous)*\n\n🇬🇧 **Context & Goal:**\nCurrently, the bot only works on Telegram. However, most parents use WhatsApp as their primary messaging app. The goal is to integrate the Twilio WhatsApp API so the bot can receive voice notes and images directly from WhatsApp.\n\n**Acceptance Criteria:**\n- The multimodal flow (Audio + Image -> Gemini 2.5 Flash) must remain intact.\n- The \"Zero-Retention\" policy (no images saved to disk, RAM only) must be preserved for security.\n- Include instructions in the README on how to set up the Twilio webhook.\n\n💰 **Bounty:** This issue is eligible for a bounty!\n\n---\n\n🇫🇷 **Contexte & Objectif :**\nActuellement, le bot ne fonctionne que sur Telegram. Or, la plupart des parents utilisent WhatsApp. L'objectif est d'intégrer l'API WhatsApp de Twilio pour que le bot puisse recevoir les notes vocales et les photos directement depuis WhatsApp.\n\n**Critères d'acceptation :**\n- Le flux multimodal (Audio + Image -> Gemini 2.5 Flash) doit rester intact.\n- La politique \"Zero-Retention\" (aucune image sauvegardée sur le disque, RAM uniquement) doit être conservée pour des raisons de sécurité.\n- Ajouter les instructions de configuration du webhook Twilio dans le README.\n\n💰 **Bounty :** Cette issue est éligible à une prime (bounty) !\n",
-    "score": 25,
-    "labels": [],
-    "html_url": "https://github.com/versila22/hotline-darons/issues/1",
-    "created_at": "2026-03-23T04:00:10.070691",
-    "status": "claimed"
-  },
-  {
     "key": "Chevalier12/InkkSlinger#3",
     "owner": "Chevalier12",
     "repo": "InkkSlinger",
@@ -794,7 +414,8 @@
     ],
     "html_url": "https://github.com/Chevalier12/InkkSlinger/issues/3",
     "created_at": "2026-03-23T04:30:04.942353",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "shi2n/bugbounty-operator-toolkit-V2#1",
@@ -829,35 +450,6 @@
     "submitted_at": "2026-03-23T19:45:00Z"
   },
   {
-    "key": "kodaksax/Bounty-production#395",
-    "owner": "kodaksax",
-    "repo": "Bounty-production",
-    "number": 395,
-    "title": "Dispute flow issues",
-    "body": "Currently the only entry point for the dispute flow is in the hunter tools in the in progress tab add an entry point for posters in the my postings tab. Both users should be able to open a dispute on a bounty.![image](https://github.com/user-attachments/assets/e50248a5-1a2b-4477-b7b2-3624584fb3c0)![image](https://github.com/user-attachments/assets/d298ead5-ca5d-4115-9c09-c46e1644ec4b)",
-    "score": 15,
-    "labels": [],
-    "html_url": "https://github.com/kodaksax/Bounty-production/issues/395",
-    "created_at": "2026-03-23T05:30:06.560167",
-    "status": "claimed"
-  },
-  {
-    "key": "LiveHelperChat/livehelperchat#1505",
-    "owner": "LiveHelperChat",
-    "repo": "livehelperchat",
-    "number": 1505,
-    "title": "Integrate Live Helper Chat bot with Telegram Extension",
-    "body": "At this state it should support text bot actions.\r\n\r\nhttps://issuehunt.io/r/LiveHelperChat/livehelperchat/issues/1505",
-    "score": 30,
-    "labels": [
-      "enhancement",
-      "bounty"
-    ],
-    "html_url": "https://github.com/LiveHelperChat/livehelperchat/issues/1505",
-    "created_at": "2026-03-23T06:30:06.717442",
-    "status": "claimed"
-  },
-  {
     "key": "bolivian-peru/marketplace-service-template#281",
     "owner": "bolivian-peru",
     "repo": "marketplace-service-template",
@@ -870,7 +462,8 @@
     ],
     "html_url": "https://github.com/bolivian-peru/marketplace-service-template/issues/281",
     "created_at": "2026-03-23T07:30:15.972269",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "StelTade/SwapTrade-Backend#203",
@@ -888,122 +481,6 @@
     "submitted_at": "2026-03-23T16:30:00Z"
   },
   {
-    "key": "Uraxii/naous#238",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 238,
-    "title": "Floating entity frames",
-    "body": "# Floating Entity Frame\n\nFor combat to function, players must be able to determine the health of the enemies around them. To accomplish this, each entity should display a health bar above their head that players can click on to target the entity. Overlapping bars on-screen should stack on each other to ensure visual clarity is maintained.\n\n# Requirements\n\n- [ ] Bar shows the entity's current health\n- [ ] Bar shows the entity's max health\n- [ ] Bar shows the entity's remaining health percentage\n- [ ] Bars should smoothly follow the entity they are assigned to; avoiding vertical and horizontal jumping that make them either distracting or hard to click\n- [ ] Bars that overlap on screen stack on each other\n- [ ] When bars are clicked, the player's current target is set to the entity they clicked\n- [ ] Clicking a floating bar should make that entity the local player's target",
-    "score": 30,
-    "labels": [
-      "code",
-      "bounty",
-      "ui"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/238",
-    "created_at": "2026-03-23T07:30:19.285381",
-    "status": "claimed"
-  },
-  {
-    "key": "Uraxii/naous#246",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 246,
-    "title": "Spell Cast Times",
-    "body": "Currently, all spells cast instantly. We need to ability to add cast time to spells.\n# Requirements\n\n- [ ] Add a cast time component that can be attached to existing spells.\n    - Times should be adjustable\n- [ ] A casting timer bar should appear on the UI showing the current cast progress.\n\n# Extra Credit\n\n- [ ] If the player moves while casting, the cast should be canceled.",
-    "score": 30,
-    "labels": [
-      "code",
-      "bounty",
-      "ui"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/246",
-    "created_at": "2026-03-23T07:30:20.947280",
-    "status": "claimed"
-  },
-  {
-    "key": "Uraxii/naous#226",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 226,
-    "title": "Player combat logic",
-    "body": "- [x] Player select target\n- [x] Player cast spell\n- [x] Receive damage\n- [ ] Death\n- [ ] Respawn\n- [ ] Current state tag system (e.g. 'in-combat', 'out-of-combat', 'casting', 'jumping', etc.)",
-    "score": 30,
-    "labels": [
-      "code",
-      "bounty"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/226",
-    "created_at": "2026-03-23T08:00:13.612002",
-    "status": "claimed"
-  },
-  {
-    "key": "Uraxii/naous#267",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 267,
-    "title": "Create casting HUD indicators",
-    "body": "Currently the player has no feedback upon activating an echo/ability.\n\n- Eg. When casting \"Fireball\", a HUD panel appears with a progress bar as the cast timer and the name of the ability being cast.",
-    "score": 30,
-    "labels": [
-      "code",
-      "bounty",
-      "ui"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/267",
-    "created_at": "2026-03-23T08:00:15.004821",
-    "status": "claimed"
-  },
-  {
-    "key": "Uraxii/naous#248",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 248,
-    "title": "Crystal Enemy Animations",
-    "body": "# Requirements\n\n- [ ] Idle\n- [ ] Alerted to player\n- [ ] Attacking\n- [ ] Taking Damage\n- [ ] Defeated\n- [ ] Hook up animations",
-    "score": 30,
-    "labels": [
-      "animation",
-      "bounty"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/248",
-    "created_at": "2026-03-23T08:00:16.080968",
-    "status": "claimed"
-  },
-  {
-    "key": "Uraxii/naous#273",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 273,
-    "title": "Player Animations",
-    "body": "# Player Animations\n\nCreate some of the animations below, and hook them up to the animation tree for the player.\n\n- [ ] Jump\n- [ ] Falling\n- [ ] Start casting (charging spell)\n- [ ] Cast\n- [ ] Die\n- [ ] 1-H Weapon Swing\n- [ ] 2-H Weapon Swing\n- [ ] Block\n- [ ] Fist swing\n- [ ] Kick\n- [ ] Take Damage\n- [ ] Low health\n- [ ] Stunned",
-    "score": 30,
-    "labels": [
-      "animation",
-      "bounty"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/273",
-    "created_at": "2026-03-23T08:00:17.437837",
-    "status": "claimed"
-  },
-  {
-    "key": "Uraxii/naous#274",
-    "owner": "Uraxii",
-    "repo": "naous",
-    "number": 274,
-    "title": "Spell Trait: apply status effect",
-    "body": "# Apply Status Effect\n\nCreate a spell trait that is able to apply status effects to entities. Status effects should be spells that recast themselves.\n\n# Requirements\n\n- [ ] Casting a spell with a status effect trait should apply a status effect to the target\n- [ ] Status effects should have a configurable stack limit\n- [ ] Status effects should have a configurable expiration time\n- [ ] Status effects should have a configuration tick rate (i.e. apply every 0.2 seconds)",
-    "score": 30,
-    "labels": [
-      "code",
-      "bounty",
-      "ui"
-    ],
-    "html_url": "https://github.com/Uraxii/naous/issues/274",
-    "created_at": "2026-03-23T08:00:18.798580",
-    "status": "claimed"
-  },
-  {
     "key": "StelTade/SwapTrade-Backend#187",
     "owner": "StelTade",
     "repo": "SwapTrade-Backend",
@@ -1014,135 +491,8 @@
     "labels": [],
     "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/187",
     "created_at": "2026-03-23T08:30:11.415407",
-    "status": "claimed"
-  },
-  {
-    "key": "Flutter-Bounty-Hunters/super_editor#2998",
-    "owner": "Flutter-Bounty-Hunters",
-    "repo": "super_editor",
-    "number": 2998,
-    "title": "[BUG] - [SuperReader] Null check operator used on a null value in _onPanUpdate during iOS long-press drag",
-    "body": "**Package Version**\nsuper_editor stable branch\n\n**User Info**\nindividual\n\n**To Reproduce**\n*Note: We captured this in our production logs so the exact reproduction is an assumption based on the stack trace and code logic, but it appears to be caused by initiating a long-press drag before a text selection is fully registered.*\n\nSteps to reproduce the behavior:\n\n1. Render a read-only document using SuperReader on an iOS device (or with iOS gesture settings).\n2. Long-press on a piece of text that is not currently selected.\n3. Without lifting your finger, immediately drag to select text (initiating a long-press drag).\n4. The app crashes with a null check operator error.\n\n**Minimal Reproduction Code**\nNo minimal runnable sample provided as this occurs internally within SuperReaderIosDocumentTouchInteractor during iOS gesture interaction. However, the exact code causing the crash in read_only_document_ios_touch_interactor.dart is detailed in the \"Additional context\" section below.\n\n**Actual behavior**\nThe application crashes with the following error:\n```\n#0      _SuperReaderIosDocumentTouchInteractorState._onPanUpdate (package:super_editor/src/super_reader/read_only_document_ios_touch_interactor.dart:730)\n#1      DragGestureRecognizer._checkUpdate.<anonymous closure> (package:flutter/src/gestures/monodrag.dart:871)\n#2      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:345)\n#3      DragGestureRecognizer._checkUpdate (package:super_editor/src/infrastructure/flutter/monodrag.dart:747)\n#4      DragGestureRecognizer._checkDrag (package:super_editor/src/infrastructure/flutter/monodrag.dart:706)\n#5      DragGestureRecognizer.acceptGesture (package:super_editor/src/infrastructure/flutter/monodrag.dart:623)\n#6      EagerPanGestureRecognizer.acceptGesture (package:super_editor/src/infrastructure/flutter/eager_pan_gesture_recognizer.dart:34)\n#7      GestureArenaManager._resolveInFavorOf (package:flutter/src/gestures/arena.dart:288)\n#8      GestureArenaManager._resolve (package:flutter/src/gestures/arena.dart:239)\n#9      GestureArenaEntry.resolve (package:flutter/src/gestures/arena.dart:55)\n#10     OneSequenceGestureRecognizer.resolve (package:flutter/src/gestures/recognizer.dart:451)\n#11     DragGestureRecognizer.handleEvent (package:super_editor/src/infrastructure/flutter/monodrag.dart:590)\n#12     PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:97)\n#13     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:140)\n#14     _LinkedHashMapMixin.forEach (dart:_compact_hash:765)\n#15     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:138)\n#16     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:128)\n#17     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:528)\n#18     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:498)\n#19     RendererBinding.dispatch",
-    "score": 35,
-    "labels": [
-      "type_bug"
-    ],
-    "html_url": "https://github.com/Flutter-Bounty-Hunters/super_editor/issues/2998",
-    "created_at": "2026-03-23T08:30:12.416256",
-    "status": "claimed"
-  },
-  {
-    "key": "openai/codex#15476",
-    "owner": "openai",
-    "repo": "codex",
-    "number": 15476,
-    "title": "Codex created a GitHub repository as public without explicit visibility instruction",
-    "body": "## Summary\n\nCodex created a GitHub repository as **public** without any explicit user instruction to make it public.\n\nThe expected safe default for autonomous repository creation should be **private unless the user explicitly requests public visibility**.\n\n## What Happened\n\nIn my session, I asked Codex to proceed with creating the remote repository needed to unblock a control-plane task.\n\nI did **not** specify repository visibility.\n\nCodex created:\n\n- `ruggeropaolobasile/master-control`\n- visibility: `public`\n\nI immediately noticed it, flagged it as a security problem, and the repository was then changed to `private`.\n\n## Why This Is Problematic\n\nThis is not a classic security vulnerability or privilege-escalation bug.\n\nIt is an **unsafe autonomous default**:\n\n- the model/tool had permission to create the repository\n- the user did not ask for `public`\n- the safer default should have been `private`\n- creating a public repository can unintentionally expose source code, artifacts, internal docs, or operational metadata\n\n## Expected Behavior\n\nWhen Codex creates a GitHub repository and the user has not explicitly requested a visibility level:\n\n- default to `private`\n- or require explicit confirmation before creating a `public` repository\n\n## Actual Behavior\n\nCodex created the repository as `public` without explicit instruction to do so.\n\n## Suggested Fix\n\nOne of these should be enforced:\n\n1. default all autonomous GitHub repo creation to `private`\n2. require explicit confirmation for `public`\n3. treat missing visibility as a safety-sensitive ambiguity and stop to ask\n\n## Additional Context\n\n- repository was later corrected to `private`\n- this appears more like a product / safety behavior issue than a bug-bounty vulnerability\n- I am reporting it because the default can cause accidental exposure in real workflows\r\n",
-    "score": 20,
-    "labels": [
-      "bug",
-      "CLI",
-      "safety-check"
-    ],
-    "html_url": "https://github.com/openai/codex/issues/15476",
-    "created_at": "2026-03-23T08:30:13.883330",
-    "status": "claimed"
-  },
-  {
-    "key": "YaibaToKen/dragon-ball-adventure-modpack#78",
-    "owner": "YaibaToKen",
-    "repo": "dragon-ball-adventure-modpack",
-    "number": 78,
-    "title": "Senzu Beans - Bounty Rewards",
-    "body": "",
-    "score": 20,
-    "labels": [
-      "enhancement",
-      "integration"
-    ],
-    "html_url": "https://github.com/YaibaToKen/dragon-ball-adventure-modpack/issues/78",
-    "created_at": "2026-03-23T08:30:14.891767",
-    "status": "claimed"
-  },
-  {
-    "key": "StelTade/SwapTrade-Backend#195",
-    "owner": "StelTade",
-    "repo": "SwapTrade-Backend",
-    "number": 195,
-    "title": "Referral System API Documentation",
-    "body": "\n\n## Description\n\nCreate comprehensive API documentation for all referral system endpoints and data structures. Use existing Swagger/OpenAPI setup.\n\n## Requirements\n\n- OpenAPI/Swagger documentation (already configured in package.json)\n- All endpoints documented with examples\n- Error codes and responses\n- Authentication requirements\n- Rate limiting information (integrate with existing rate limiting)\n\n## Acceptance Criteria\n\n- [ ] All referral APIs documented\n- [ ] Examples provided for each endpoint\n- [ ] Error handling documented\n- [ ] Documentation accessible via Swagger UI\n- [ ] Up-to-date with implementation\n\n## Bounty\n\n## Labels\n- `documentation`\n- `api`\n- `swagger`\n\n## Priority\nLow",
-    "score": 20,
-    "labels": [
-      "Stellar Wave"
-    ],
-    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/195",
-    "created_at": "2026-03-23T08:30:15.875015",
-    "status": "claimed"
-  },
-  {
-    "key": "StelTade/SwapTrade-Backend#198",
-    "owner": "StelTade",
-    "repo": "SwapTrade-Backend",
-    "number": 198,
-    "title": "Referral Tracking Backend Logic",
-    "body": "\n\n## Description\n\nImplement the backend logic that tracks waitlist referrals and awards referral points when referred users verify their email.\n\n## Requirements\n\n- Create `waitlist_referrals` table\n  - id, referrer_id, referee_id, status, created_at\n- Create `waitlist_referral_points` table\n  - id, user_id, points, reason, created_at\n- On successful referee verification:\n  - link referee record to referrer\n  - add 1 point to referrer\n  - log referral event\n- Prevent self-referral and duplicate referral attribution\n- API endpoint `POST /api/waitlist/referral/callback`\n\n## Rules\n\n- Referral counts only after referee verifies email\n- A user can be referred by exactly one referrer\n- Self referral is blocked\n- Each referral event is audited\n\n## Acceptance Criteria\n\n- [ ] Tables and relations created\n- [ ] Referral callback and processing flow implemented\n- [ ] Points incremented accurately\n- [ ] safeguards for double attribution and self-referral\n- [ ] Unit tests for referral logic\n\n## Bounty\n\n\n## Labels\n- `backend`\n- `api`\n- `rewards`\n\n## Priority\nHigh",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/198",
-    "created_at": "2026-03-23T09:00:08.696411",
-    "status": "claimed"
-  },
-  {
-    "key": "StelTade/SwapTrade-Backend#199",
-    "owner": "StelTade",
-    "repo": "SwapTrade-Backend",
-    "number": 199,
-    "title": "Leaderboard API Backend",
-    "body": "\n\n## Description\n\nImplement leaderboard aggregation on the backend for waitlist referrals and points ranking.\n\n## Requirements\n\n- Create `waitlist_leaderboard` view/cached table\n  - user_id, display_name, points, rank, updated_at\n- API endpoint `GET /api/waitlist/leaderboard?limit=10` returning top referrers\n- Real-time or near-real-time leaderboard updates (via scheduled job)\n- Implement tie-breaker by earliest referral time\n- Anonymize user identifiers for privacy\n\n## Rules\n\n- Leaderboard only includes verified waitlist users\n- max 10 rows by default\n- Up to HOURly update window allowed\n- No personal emails exposed\n\n## Acceptance Criteria\n\n- [ ] Leaderboard endpoint implemented and tested\n- [ ] Points-based ordering + tie-break rules in place\n- [ ] Data anonymization applied\n- [ ] Performance benchmark < 150ms with 10k rows\n- [ ] Integration tests for leaderboard results\n\n## Bounty\n\n## Labels\n- `backend`\n- `api`\n- `performance`\n\n## Priority\nMedium",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/199",
-    "created_at": "2026-03-23T09:00:10.176649",
-    "status": "claimed"
-  },
-  {
-    "key": "StelTade/SwapTrade-Backend#200",
-    "owner": "StelTade",
-    "repo": "SwapTrade-Backend",
-    "number": 200,
-    "title": "Waitlist Email Notification Backend",
-    "body": "\n\n## Description\n\nImplement backend email notification services for waitlist signup, referral points, and launch updates.\n\n## Requirements\n\n- Integrate with service provider (SendGrid/Mailgun/SMTP)\n- Templates for:\n  - Signup confirmation\n  - Referral success + point awarded\n  - Launch notification\n- Queue-based sending with retry (via Bull/BullMQ)\n- Track `email_status` in table\n\n## Rules\n\n- Only verified users get referral notifications\n- Rate limit notification events per user (max 1/min)\n- Retries with exponential backoff on transient failure\n\n## Acceptance Criteria\n\n- [ ] Email service implemented and configured\n- [ ] Template system integrated\n- [ ] Event triggers for signup/referral/launch\n- [ ] Retry + queue behavior verified\n- [ ] Failure handling & logging\n\n## Bounty\n\n\n## Labels\n- `backend`\n- `notification`\n- `queue`\n\n## Priority\nMedium",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/200",
-    "created_at": "2026-03-23T09:00:11.167148",
-    "status": "claimed"
-  },
-  {
-    "key": "StelTade/SwapTrade-Backend#201",
-    "owner": "StelTade",
-    "repo": "SwapTrade-Backend",
-    "number": 201,
-    "title": "Admin API for Waitlist and Referral Management",
-    "body": "\n\n## Description\n\nImplement backend admin endpoints for monitoring and managing waitlist and referral data.\n\n## Requirements\n\n- Protected endpoints (admin auth)\n- Endpoints:\n  - `GET /admin/waitlist` (list, filters, pagination)\n  - `GET /admin/referrals` (status, points, suspect)\n  - `POST /admin/waitlist/{id}/invite` (manual invite)\n  - `PATCH /admin/waitlist/{id}/status`\n  - `POST /admin/referrals/{id}/adjust` (manual point adjust)\n- Audit changes with `audit_log` table\n\n## Rules\n\n- Only role-admin allowed\n- Operations logged for compliance\n- Rate limiting on admin APIs\n\n## Acceptance Criteria\n\n- [ ] Endpoints implemented and secured\n- [ ] Audit logging for state changes\n- [ ] Pagination for large sets\n- [ ] Unit + integration tests\n- [ ] Admin actions cannot crash availabilities\n\n## Bounty\n\n\n## Labels\n- `backend`\n- `admin`\n- `security`\n\n## Priority\nMedium",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/201",
-    "created_at": "2026-03-23T09:00:12.205332",
-    "status": "claimed"
-  },
-  {
-    "key": "StelTade/SwapTrade-Backend#202",
-    "owner": "StelTade",
-    "repo": "SwapTrade-Backend",
-    "number": 202,
-    "title": "Referral and Waitlist Fraud Protection Backend",
-    "body": "\n\n## Description\n\nImplement anti-fraud measures for waitlist and referral operations to prevent bots and abuse.\n\n## Requirements\n\n- IP rate limit on signup and referral callbacks (use NestJS Throttler)\n- CAPTCHA verification hook support\n- Detect high-risk patterns (same IP, email domain dumps, too many referrals from one source)\n- Mark suspicious referrals for admin review\n- Flag and disable accounts detected as fraud\n\n## Rules\n\n- Signup from same IP > 10 within 10 mins triggers challenge\n- Referrals from 1 referrer to same domain > threshold flagged\n- Must preserve valid users while blocking abuse\n\n## Acceptance Criteria\n\n- [ ] Rate limiting configured and enforced\n- [ ] Fraud scoring function implemented\n- [ ] Suspicious records in admin queue\n- [ ] Manual review path created\n- [ ] Security tests & false positive checks\n\n## Bounty\n\n\n## Labels\n- `backend`\n- `security`\n- `fraud-prevention`\n\n## Priority\nHigh",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/202",
-    "created_at": "2026-03-23T09:00:13.218643",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "bolivian-peru/marketplace-service-template#284",
@@ -1157,7 +507,8 @@
     ],
     "html_url": "https://github.com/bolivian-peru/marketplace-service-template/issues/284",
     "created_at": "2026-03-23T09:30:13.345994",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "FreezingMoon/AncientBeast#2651",
@@ -1174,37 +525,8 @@
     ],
     "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2651",
     "created_at": "2026-03-23T09:30:14.687890",
-    "status": "claimed"
-  },
-  {
-    "key": "vllm-project/vllm-omni#2075",
-    "owner": "vllm-project",
-    "repo": "vllm-omni",
-    "number": 2075,
-    "title": "[Bug]: HunyuanImage3 EP regression",
-    "body": "### Your current environment\n\n<details>\n<summary>The output of <code>python collect_env.py</code></summary>\n\n```text\n==============================\n        System Info\n==============================\nOS                           : Ubuntu 24.04.1 LTS (x86_64)\nGCC version                  : (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nClang version                : Could not collect\nCMake version                : version 3.31.4\nLibc version                 : glibc-2.39\n\n==============================\n       PyTorch Info\n==============================\nPyTorch version              : 2.10.0+cu129\nIs debug build               : False\nCUDA used to build PyTorch   : 12.9\nROCM used to build PyTorch   : N/A\n\n==============================\n      Python Environment\n==============================\nPython version               : 3.12.3 (main, Nov  6 2024, 18:32:19) [GCC 13.2.0] (64-bit runtime)\nPython platform              : Linux-5.10.134-013.5.kangaroo.al8.x86_64-x86_64-with-glibc2.39\n\n==============================\n       CUDA / GPU Info\n==============================\nIs CUDA available            : True\nCUDA runtime version         : Could not collect\nCUDA_MODULE_LOADING set to   : \nGPU models and configuration : \nGPU 0: NVIDIA A100-SXM4-80GB\nGPU 1: NVIDIA A100-SXM4-80GB\nGPU 2: NVIDIA A100-SXM4-80GB\nGPU 3: NVIDIA A100-SXM4-80GB\nGPU 4: NVIDIA A100-SXM4-80GB\nGPU 5: NVIDIA A100-SXM4-80GB\nGPU 6: NVIDIA A100-SXM4-80GB\nGPU 7: NVIDIA A100-SXM4-80GB\n\nNvidia driver version        : 570.133.20\ncuDNN version                : Probably one of the following:\n/usr/lib/x86_64-linux-gnu/libcudnn.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_adv.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_cnn.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_engines_runtime_compiled.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_graph.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_heuristic.so.9.7.0\n/usr/lib/x86_64-linux-gnu/libcudnn_ops.so.9.7.0\nHIP runtime version          : N/A\nMIOpen runtime version       : N/A\nIs XNNPACK available         : True\n\n==============================\n          CPU Info\n==============================\nArchitecture:                       x86_64\nCPU op-mode(s):                     32-bit, 64-bit\nAddress sizes:                      46 bits physical, 57 bits virtual\nByte Order:                         Little Endian\nCPU(s):                             80\nOn-line CPU(s) list:                0-79\nVendor ID:                          GenuineIntel\nModel name:                         Intel(R) Xeon(R) Processor @ 2.90GHz\nCPU family:                         6\nModel:                              106\nThread(s) per core:                 1\nCore(s) per socket:                 40\nSocket(s):                          2\nStepping:                           6\nBogoMIPS:                           5799.99\nFlags:                              fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht sysca",
-    "score": 35,
-    "labels": [
-      "bug"
-    ],
-    "html_url": "https://github.com/vllm-project/vllm-omni/issues/2075",
-    "created_at": "2026-03-23T09:30:15.775400",
-    "status": "claimed"
-  },
-  {
-    "key": "sorosave-protocol/contracts#52",
-    "owner": "sorosave-protocol",
-    "repo": "contracts",
-    "number": 52,
-    "title": "Implement interest/yield on held funds",
-    "body": "Integrate with a Soroban lending protocol to earn yield on funds held in the contract between payouts.\n\n**Acceptance Criteria:**\n- Define trait for yield source integration\n- Deposit idle funds into yield source after contributions complete\n- Withdraw before payout distribution\n- Add earned yield to payout amount\n- Handle yield source failures gracefully\n\n**Files:** new file `contracts/sorosave/src/yield.rs`, `contracts/sorosave/src/payout.rs`, `contracts/sorosave/src/lib.rs`",
-    "score": 30,
-    "labels": [
-      "bounty"
-    ],
-    "html_url": "https://github.com/sorosave-protocol/contracts/issues/52",
-    "created_at": "2026-03-23T09:30:16.698576",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:45:00Z"
   },
   {
     "key": "vllm-project/vllm-omni#2015",
@@ -1250,20 +572,9 @@
     "labels": [],
     "html_url": "https://github.com/codexbt/Eliza-Lobster/issues/3",
     "created_at": "2026-03-23T10:24:55.355002",
-    "status": "claimed"
-  },
-  {
-    "key": "vllm-project/vllm-omni#1623",
-    "owner": "vllm-project",
-    "repo": "vllm-omni",
-    "number": 1623,
-    "title": "[RFC]: L2~L4 test rearrangement and addition",
-    "body": "### Motivation.\n\n1. Currently, L2 test cases contain some unnecessary or redundant test cases, and some of them can be deferred to L3 to speed up CI process ✅ already done with #1839\n2. Currently, the example scripts in the documentation are not tested. Changes to the main codebase may unintentionally break some example scripts\n\n### Proposed Change.\n\n#### Adding documentation (example script) test to L4\n\nAccording to the the [test design spec](https://docs.vllm.ai/projects/vllm-omni/en/latest/contributing/ci/CI_5levels/#document-overview), tests of the documentation example scripts should be added to L4.\n\nI am more familiar with the diffusion side, and the following diffusion model tests can be added:\n- Offline: `tests/example/offline_inference/test_text_to_image.py`, and similarly `test_image_to_image`, `test_text_to_video`, `test_image_to_video`, `test_text_to_audio`.\n- Online: `tests/example/online_serving/test_text_to_image.py`, and similarly `test_image_to_image`, `test_text_to_video`, \n\nFor each test file, run all the example usages appeared in that doc page, as-is. \n\nI am open to any comments on the implementations. I can think of two ways to do this:\n\n##### First approach\n\nJust copy the code snippets in the doc to the corresponding test case implementation\n\n- Pros\n  - Easy to kickstart and view\n  - Short and clean code\n- Cons\n  - Need extra efforts to sync the code between two places (actually three places, because there is already `docs/user_guide/examples/offline_inference/text_to_image.md` and `examples/online_serving/text_to_image/README.md`)\n  - Need extra collective consensus to check future PR\n\n##### Second Approach\n\nMove all code snippet in a doc page to a dedicated file. For example, replace `docs/user_guide/examples/offline_inference/text_to_image.md` with `docs/user_guide/examples/offline_inference/text_to_image/index.md`, and then add `docs/user_guide/examples/offline_inference/text_to_image/{0,1,2,3}.{py,sh}`. This way, we can [inject the script content into the document](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#snippets), and directly run the same script files in pytest\n\n- Pros\n  - Single source of truth\n  - Easy to update tests in the future\n  - Less sanity checks and long-term code review efforts\n- Cons\n  - Scattered files\n\n#### Relieving L2 Tests ✅ already done with #1839\n\n**Diffusion Sequence Parallel Test**\n\nCurrently, the following test cases are executed for L2 and L3, respectively,\n```python\nSP_CONFIGS_L2 = [\n    # Ulysses-2 - performance test\n    (2, 1, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),\n    (1, 2, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),  # Ring-2 - performance test\n    # Hybrid - correctness only\n    (2, 2, DEFAULT_HEIGHT, DEFAULT_WIDTH, False, False),\n]\n\nSP_CONFIGS_L3 = [\n    # Ulysses-2 - performance test\n    (2, 1, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),\n    (1, 2, DEFAULT_HEIGHT, DEFAULT_WIDTH, True, True),  # Ring-2 - performance test\n    # Hybri",
-    "score": 25,
-    "labels": [],
-    "html_url": "https://github.com/vllm-project/vllm-omni/issues/1623",
-    "created_at": "2026-03-23T10:24:59.147598",
-    "status": "claimed"
+    "status": "submitted",
+    "pr_url": "https://github.com/codexbt/Eliza-Lobster/pull/4",
+    "submitted_at": "2026-03-23T20:15:00Z"
   },
   {
     "key": "jiacai2050/mofish#1374",
@@ -1295,7 +606,8 @@
     ],
     "html_url": "https://github.com/Tyaoo/picker/issues/1322",
     "created_at": "2026-03-23T12:30:07.337862",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:20:00Z"
   },
   {
     "key": "ruohong2018/ruohong2018.github.io#1137",
@@ -1310,7 +622,8 @@
     ],
     "html_url": "https://github.com/ruohong2018/ruohong2018.github.io/issues/1137",
     "created_at": "2026-03-23T13:01:17.243627",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:20:00Z"
   },
   {
     "key": "MM0x02/RSS-Push#452",
@@ -1325,37 +638,8 @@
     ],
     "html_url": "https://github.com/MM0x02/RSS-Push/issues/452",
     "created_at": "2026-03-23T13:01:20.531803",
-    "status": "claimed"
-  },
-  {
-    "key": "chainreactors/picker#1186",
-    "owner": "chainreactors",
-    "repo": "picker",
-    "number": 1186,
-    "title": "[每日信息流] 2026-03-23",
-    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- Private Feed for M09Ic\n  - [ ] [zeroclaw-labs released v0.5.8 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.8)\n  - [ ] [mgeeky starred j0hnZ3RA/ldapx-py](https://github.com/j0hnZ3RA/ldapx-py)\n  - [ ] [bolucat released 202603221947 at bolucat/Archive](https://github.com/bolucat/Archive/releases/tag/202603221947)\n  - [ ] [zeroclaw-labs released v0.5.7-beta.563 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.7-beta.563)\n  - [ ] [huoji120 starred bytedance/deer-flow](https://github.com/bytedance/deer-flow)\n  - [ ] [CHYbeta starred shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty)\n  - [ ] [IC3-CR3AM starred NetSPI/MicroBurst](https://github.com/NetSPI/MicroBurst)\n  - [ ] [mgeeky starred lolfsaas/lolfsaas.github.io](https://github.com/lolfsaas/lolfsaas.github.io)\n  - [ ] [IC3-CR3AM forked IC3-CR3AM/pentagi from vxcontrol/pentagi](https://github.com/IC3-CR3AM/pentagi)\n  - [ ] [zeroclaw-labs released v0.5.7 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.7)\n  - [ ] [CHYbeta starred 2025Emma/vibe-coding-cn](https://github.com/2025Emma/vibe-coding-cn)\n  - [ ] [Ph0rse starred Ph0rse/crawmedia-daily](https://github.com/Ph0rse/crawmedia-daily)\n  - [ ] [zeroclaw-labs released v0.5.6-beta.536 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.5.6-beta.536)\n  - [ ] [joaoviictorti starred dtolnay/prettyplease](https://github.com/dtolnay/prettyplease)\n- Recent Commits to cve:main\n  - [ ] [Update Sun Mar 22 11:16:25 UTC 2026](https://github.com/trickest/cve/commit/22eefc6ec76a4287afdcb9687313bf7acb498849)\n- Doonsec's feed\n  - [ ] [[漏洞播报]突发！OpenClaw爆致命0Day漏洞](https://mp.weixin.qq.com/s/pxx9oBQ_R_iqROjNz0FlEQ)\n  - [ ] [来一次有奖竞猜！具体猜的内容看图！](https://mp.weixin.qq.com/s/r9fe0JFJ2y5dn4aWe54Qcw)\n  - [ ] [Claude Code工作流速查表](https://mp.weixin.qq.com/s/XWtvugewbvy5vlyZhcv21Q)\n  - [ ] [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s/TZWoDsYN6TOZyzImCyZPRA)\n  - [ ] [手把手教你用OpenClaw搞渗透测试：从配置到实战挖洞，我踩过的坑都在这了](https://mp.weixin.qq.com/s/WxU6OwapW545q5cKkCEYzQ)\n  - [ ] [在我劝退下，堂弟放弃腾讯40万offer回家去考公务员了。](https://mp.weixin.qq.com/s/cJd9m3gBaTfETUp5oYHvfQ)\n  - [ ] [obsidian三端同步](https://mp.weixin.qq.com/s/oR-_oHANDc05tzIg2-nkoA)\n  - [ ] [宇树科技王兴兴年薪250万！网友：不如大模型校招生！真相太扎心](https://mp.weixin.qq.com/s/grfK4Wqk3l2kv-yH29ElIA)\n  - [ ] [周调用 4.69 万亿！你的行业会被 AI 吞并吗？](https://mp.weixin.qq.com/s/HbEUDTMgFdhahAv-7xTcOg)\n  - [ ] [不踩坑！智能体安全体系｜全链路防御指南](https://mp.weixin.qq.com/s/Tb-JX-fRpEci-vrhGRJJpQ)\n  - [ ] [微信+OpenClaw 这不就来了吗!](https://mp.weixin.qq.com/s/OJGKWEHeLd1ryR9U87ybWg)\n  - [ ] [SiYuan SQL漏洞 | CVE-2026-29073复现&amp;研究](https://mp.weixin.qq.com/s/Dmxu0I_bQL24p6qRJMebQw)\n  - [ ] [微信新 ClawBot 插件，连接 OpenClaw与微信](https://mp.weixin.qq.com/s/iEFUw7sx2bJz6BIzTciO-w)\n  - [ ] [RzWeb（Rizin）：浏览器端的在线逆向工程平台](https://m",
-    "score": 50,
-    "labels": [
-      "daily"
-    ],
-    "html_url": "https://github.com/chainreactors/picker/issues/1186",
-    "created_at": "2026-03-23T13:01:23.793691",
-    "status": "claimed"
-  },
-  {
-    "key": "BruceFeIix/picker#2333",
-    "owner": "BruceFeIix",
-    "repo": "picker",
-    "number": 2333,
-    "title": "[每日信息流] 2026-03-23",
-    "body": "# 每日安全资讯（2026-03-23）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-22 Review](http://www.sec-wiki.com/?2026-03-22)\n- InfoSec Write-ups - Medium\n  - [ ] [Infrastructure Pivoting: How CTI Analysts Expand From a Single IOC to a Full Attacker Network](https://infosecwriteups.com/infrastructure-pivoting-how-cti-analysts-expand-from-a-single-ioc-to-a-full-attacker-network-1295d50ec29c?source=rss----7b722bfd1b8d---4)\n  - [ ] [Ploutus Malware: Uptick in ATM jackpotting incidents prompts FBI warning](https://infosecwriteups.com/ploutus-malware-uptick-in-atm-jackpotting-incidents-prompts-fbi-warning-554a944847b6?source=rss----7b722bfd1b8d---4)\n  - [ ] [How I Found a Hardcoded RSA Private Key in a Major Crypto Exchange’s Frontend](https://infosecwriteups.com/how-i-found-a-hardcoded-rsa-private-key-in-a-major-crypto-exchanges-frontend-dd27b6a78fb2?source=rss----7b722bfd1b8d---4)\n  - [ ] [Found a Denial of Service Vulnerability in a Major Company’s Production Infrastructure Using Shodan](https://infosecwriteups.com/found-a-denial-of-service-vulnerability-in-a-major-companys-production-infrastructure-using-shodan-e5f766a4df79?source=rss----7b722bfd1b8d---4)\n- Recent Commits to cve:main\n  - [ ] [Update Sun Mar 22 11:16:25 UTC 2026](https://github.com/trickest/cve/commit/22eefc6ec76a4287afdcb9687313bf7acb498849)\n- Doonsec's feed\n  - [ ] [[漏洞播报]突发！OpenClaw爆致命0Day漏洞](https://mp.weixin.qq.com/s/pxx9oBQ_R_iqROjNz0FlEQ)\n  - [ ] [来一次有奖竞猜！具体猜的内容看图！](https://mp.weixin.qq.com/s/r9fe0JFJ2y5dn4aWe54Qcw)\n  - [ ] [Claude Code工作流速查表](https://mp.weixin.qq.com/s/XWtvugewbvy5vlyZhcv21Q)\n  - [ ] [面向末日断网场景的离线文明知识库与AI系统](https://mp.weixin.qq.com/s/TZWoDsYN6TOZyzImCyZPRA)\n  - [ ] [手把手教你用OpenClaw搞渗透测试：从配置到实战挖洞，我踩过的坑都在这了](https://mp.weixin.qq.com/s/WxU6OwapW545q5cKkCEYzQ)\n  - [ ] [在我劝退下，堂弟放弃腾讯40万offer回家去考公务员了。](https://mp.weixin.qq.com/s/cJd9m3gBaTfETUp5oYHvfQ)\n  - [ ] [obsidian三端同步](https://mp.weixin.qq.com/s/oR-_oHANDc05tzIg2-nkoA)\n  - [ ] [宇树科技王兴兴年薪250万！网友：不如大模型校招生！真相太扎心](https://mp.weixin.qq.com/s/grfK4Wqk3l2kv-yH29ElIA)\n  - [ ] [周调用 4.69 万亿！你的行业会被 AI 吞并吗？](https://mp.weixin.qq.com/s/HbEUDTMgFdhahAv-7xTcOg)\n  - [ ] [不踩坑！智能体安全体系｜全链路防御指南](https://mp.weixin.qq.com/s/Tb-JX-fRpEci-vrhGRJJpQ)\n  - [ ] [微信+OpenClaw 这不就来了吗!](https://mp.weixin.qq.com/s/OJGKWEHeLd1ryR9U87ybWg)\n  - [ ] [SiYuan SQL漏洞 | CVE-2026-29073复现&amp;研究](https://mp.weixin.qq.com/s/Dmxu0I_bQL24p6qRJMebQw)\n  - [ ] [微信新 ClawBot 插件，连接 OpenClaw与微信](https://mp.weixin.qq.com/s/iEFUw7sx2bJz6BIzTciO-w)\n  - [ ] [RzWeb（Rizin）：浏览器端的在线逆向工程平台](https://mp.weixin.qq.com/s/zskYFj44b2xAT-BFGzQloA)\n  - [ ] [自动化审计之代码检测模块](https://mp.weixin.qq.com/s/4wGHq2dHa_Jld3H87tuHhg)\n  - [ ] [基线管理之Windows安全配置](https://mp.weixin.qq.com/s/YQiIqmnx7Wn9QX5uXKSxVQ)\n  - [ ] [Jar Analyzer：Java 安全审计的瑞士军刀](https://mp.weixin.qq.com/s/YGGNDNdjFo6fcM-1ZcFh3Q)\n  - [ ] [你用哪种语言编写了你的第一个“Hello Worl](https://mp.weixin.qq.com/s/gn5zKuVTWQE6AAIaMZRurQ)\n  - [ ] [热搜第一！OpenClaw被360揪出0Day漏洞，创始人回应](https://mp.weixin.qq.com/s/cob4zzuYEw6an2rAxbXNrw)\n  - [ ] [frida系列课程更新](https:",
-    "score": 50,
-    "labels": [
-      "daily"
-    ],
-    "html_url": "https://github.com/BruceFeIix/picker/issues/2333",
-    "created_at": "2026-03-23T13:01:26.765242",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:20:00Z"
   },
   {
     "key": "TeklemariamA/motoko-the-civic-os--2-#16",
@@ -1368,67 +652,8 @@
     "labels": [],
     "html_url": "https://github.com/TeklemariamA/motoko-the-civic-os--2-/issues/16",
     "created_at": "2026-03-23T14:30:07.803620",
-    "status": "claimed"
-  },
-  {
-    "key": "codehead-01/AutoPrompt#18",
-    "owner": "codehead-01",
-    "repo": "AutoPrompt",
-    "number": 18,
-    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20250821140117_TUJISZ/python_MMOTTL/202508211401181/env/lib/python3.9/site-packages/nltk-3.9.1.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/codehead-01/AutoPrompt/commit/5afc5836eb58e09bcb1a803a9ba2837b0e76d3ef\">5afc5836eb58e09bcb1a803a9ba2837b0e76d3ef</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | nltk-3.9.1-py3-none-any.whl | Transitive | 1.26.0 | &#9989; |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | nltk-3.9.1-py3-none-any.whl | Transitive | N/A* | &#10060; |\n| [CVE-2026-4539](https://www.mend.io/vulnerability-database/CVE-2026-4539) | <img src='https://whitesource-resources.whitesourcesoftware.com/low_vul.png?' width=19 height=20> Low | 3.3 | pygments-2.19.2-py3-none-any.whl | Transitive | N/A* | &#10060; |\n<p>*For some transitive vulnerabilities, there is no version of direct dependency with a fix. Check the \"Details\" section below to see if there is a version of transitive dependency where vulnerability is fixed.</p><p>**In some cases, Remediation PR cannot be created automatically for a vulnerability d",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/codehead-01/AutoPrompt/issues/18",
-    "created_at": "2026-03-23T15:30:15.472859",
-    "status": "claimed"
-  },
-  {
-    "key": "DimaMend/AutoPrompt2#13",
-    "owner": "DimaMend",
-    "repo": "AutoPrompt2",
-    "number": 13,
-    "title": "transformers-4.35.2-py3-none-any.whl: 28 vulnerabilities (highest severity is: 8.8) reachable",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>transformers-4.35.2-py3-none-any.whl</b></summary>\n\n<p>State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow</p>\n<p>Library home page: <a href=\"https://files.pythonhosted.org/packages/12/dd/f17b11a93a9ca27728e12512d167eb1281c151c4c6881d3ab59eb58f4127/transformers-4.35.2-py3-none-any.whl\">https://files.pythonhosted.org/packages/12/dd/f17b11a93a9ca27728e12512d167eb1281c151c4c6881d3ab59eb58f4127/transformers-4.35.2-py3-none-any.whl</a></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120556_HLSRET/python_QBGGDS/202603091206431/env/lib/python3.9/site-packages/transformers-4.35.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/DimaMend/AutoPrompt2/commit/1a9b14618a84a37c0b958ba35ebf09539537e0f1\">1a9b14618a84a37c0b958ba35ebf09539537e0f1</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (transformers version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2024-11394](https://www.mend.io/vulnerability-database/CVE-2024-11394) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 59.399998% | transformers-4.35.2-py3-none-any.whl | Direct | 4.48.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2024-11393](https://www.mend.io/vulnerability-database/CVE-2024-11393) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 76.1% | transformers-4.35.2-py3-none-any.whl | Direct | 4.48.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2023-6730](https://www.mend.io/vulnerability-database/CVE-2023-6730) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 0.2% | transformers-4.35.2-py3-none-any.whl | Direct | 4.36.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-14930](https://www.mend.io/vulnerability-database/CVE-2025-14930) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.8 | Not Defined | 0.3% | transformers-4.35.2-py3-none-any.whl | Direct | N/A | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Rea",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/13",
-    "created_at": "2026-03-23T15:30:20.542314",
-    "status": "claimed"
-  },
-  {
-    "key": "DimaMend/AutoPrompt2#10",
-    "owner": "DimaMend",
-    "repo": "AutoPrompt2",
-    "number": 10,
-    "title": "sentence-transformers-2.2.2.tar.gz: 16 vulnerabilities (highest severity is: 10.0) reachable",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>sentence-transformers-2.2.2.tar.gz</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120556_HLSRET/python_QBGGDS/202603091206431/env/lib/python3.9/site-packages/nltk-3.9.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/DimaMend/AutoPrompt2/commit/1a9b14618a84a37c0b958ba35ebf09539537e0f1\">1a9b14618a84a37c0b958ba35ebf09539537e0f1</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (sentence-transformers version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-24747](https://www.mend.io/vulnerability-database/CVE-2026-24747) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.8 | Not Defined | 0.0% | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-55551](https://www.mend.io/vulnerability-database/CVE-2025-55551) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.1% | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | 2.3.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-68146](https://www.mend.io/vulnerability-database/CVE-2025-68146) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.3 | Not Defined | 0.0% | filelock-3.19.1-py3-none-any.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2026-22701](https://www.mend.io/vulnerability-database/CVE-2026-22701) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 5.3 | Not Defined | 0.0% | filelock-3.19.1-py3-none-any.whl | Transitive | 2.3.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=19 height=20> Reachable</p> |\n| [CVE-2025-3001](https://www.mend.io/vulnerability-database/CVE-2025-3001) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 5.3 | Not Defined | 0.2% | torch-2.8.0-cp310-none-macosx_11_0_arm64.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesou",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/10",
-    "created_at": "2026-03-23T15:30:23.608751",
-    "status": "claimed"
-  },
-  {
-    "key": "DimaMend/AutoPrompt2#22",
-    "owner": "DimaMend",
-    "repo": "AutoPrompt2",
-    "number": 22,
-    "title": "argilla-1.25.0-py3-none-any.whl: 7 vulnerabilities (highest severity is: 10.0)",
-    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>argilla-1.25.0-py3-none-any.whl</b></summary>\n\n<p></p>\n<p>Path to dependency file: /requirements.txt</p>\n<p>Path to vulnerable library: /tmp/ws-ua_20260309120556_HLSRET/python_QBGGDS/202603091206431/env/lib/python3.9/site-packages/nltk-3.9.2.dist-info</p>\n<p>\n\n\n<p>Found in HEAD commit: <a href=\"https://github.com/DimaMend/AutoPrompt2/commit/1a9b14618a84a37c0b958ba35ebf09539537e0f1\">1a9b14618a84a37c0b958ba35ebf09539537e0f1</a></p></details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Exploit Maturity | EPSS | Dependency | Type | Fixed in (argilla version) | Remediation Possible** | Reachability |\n| ------------- | ------------- | ----- | ----- | ----- | ----- | ----- | ------------- | --- | --- |\n| [CVE-2026-0848](https://www.mend.io/vulnerability-database/CVE-2026-0848) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.5% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2025-14009](https://www.mend.io/vulnerability-database/CVE-2025-14009) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 10.0 | Not Defined | 0.6% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-0847](https://www.mend.io/vulnerability-database/CVE-2026-0847) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.6 | Not Defined | 0.3% | nltk-3.9.2-py3-none-any.whl | Transitive | 1.26.0 | &#9989;|<p align=\"center\"><img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=19 height=20> Unreachable</p> |\n| [CVE-2026-33236](https://www.mend.io/vulnerability-database/CVE-2026-33236) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 8.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33231](https://www.mend.io/vulnerability-database/CVE-2026-33231) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Transitive | N/A* | &#10060;| |\n| [CVE-2026-33230](https://www.mend.io/vulnerability-database/CVE-2026-33230) | <img src='https://whitesource-resources.whitesourcesoftware.com/medium_vul.png?' width=19 height=20> Medium | 6.1 | Not Defined | 0.0% | nltk-3.9.2-py3-none-any.whl | Tra",
-    "score": 40,
-    "labels": [
-      "Mend: dependency security vulnerability"
-    ],
-    "html_url": "https://github.com/DimaMend/AutoPrompt2/issues/22",
-    "created_at": "2026-03-23T15:30:26.020323",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:30:00Z"
   },
   {
     "key": "INDIGOAZUL/la-tanda-web#155",
@@ -1463,7 +688,8 @@
     ],
     "html_url": "https://github.com/zhuzhushiwojia/lobster-rewards/issues/1",
     "created_at": "2026-03-23T16:30:17.555244",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
   },
   {
     "key": "INDIGOAZUL/la-tanda-web#156",
@@ -1501,20 +727,8 @@
     ],
     "html_url": "https://github.com/LederWorks/veiled-market/issues/9424",
     "created_at": "2026-03-23T16:30:24.561129",
-    "status": "claimed"
-  },
-  {
-    "key": "s0md3v/XSStrike#438",
-    "owner": "s0md3v",
-    "repo": "XSStrike",
-    "number": 438,
-    "title": "AttributeError: 'str' object has no attribute 'keys' on JSON export.",
-    "body": "**Describe the bug**\nAn AttributeError: 'str' object has no attribute 'keys' occurs when running XSStrike against a URL that does not contain any query parameters. The scanner expects a dictionary of parameters but receives a string instead during the DOM vulnerability check or initial scan setup.\n\n**To Reproduce**\nSteps to reproduce the behavior:\n\nRun XSStrike on a plain URL without parameters:\npython xsstrike.py -u https://example.net --json\n\nThe tool starts checking for DOM vulnerabilities.\n\nThe process crashes with the following traceback:\n```\nFile \"/opt/jenny/bounty/xsstrike/modes/scan.py\", line 53, in scan url, {list(params.keys())[0]: xsschecker}, ... AttributeError: 'str' object has no attribute 'keys'\n```\n\n**Screenshots**\n\n```\n(.venv) root@vagent103:/opt/jenny/bounty/xsstrike# python xsstrike.py --update\n\n\tXSStrike v3.1.5\n\n[~] Checking for updates \n[+] XSStrike is up to date! \n(.venv) root@vagent103:/opt/jenny/bounty/xsstrike# python xsstrike.py -u https://xxxxxx.net\n\n\tXSStrike v3.1.5\n\n[~] Checking for DOM vulnerabilities \n[+] Potentially vulnerable objects found \n------------------------------------------------------------\n49  // Mobile menu links: close menu and navigate correctamente\n66  setTimeout(() => { targetEl.scrollIntoView({ behavior: 'smooth' }); }, 450);\n73  location.hash = href;\n76  // external or full-page link: navigate after scrolling to top\n80  setTimeout(() => { window.location.href = href; }, 600);\n82  window.location.href = href;\n30  element.innerHTML = translations[key];\n------------------------------------------------------------\n[-] No parameters to test. \n(.venv) root@vagent103:/opt/jenny/bounty/xsstrike# python xsstrike.py -u https://xxxxxx.net --json\n\n\tXSStrike v3.1.5\n\n[~] Checking for DOM vulnerabilities \nTraceback (most recent call last):\n  File \"/opt/jenny/bounty/xsstrike/xsstrike.py\", line 174, in <module>\n    scan(target, paramData, encoding, headers, delay, timeout, skipDOM, skip)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/jenny/bounty/xsstrike/modes/scan.py\", line 53, in scan\n    url, {list(params.keys())[0]: xsschecker}, headers, GET, delay, timeout)\n               ^^^^^^^^^^^\nAttributeError: 'str' object has no attribute 'keys'\n```\n\n<img width=\"1922\" height=\"1013\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/68bdf5fe-790b-4f40-a808-ab5abbba9c2c\" />\n\n\n**Potential cause or fix**\nIn modes/scan.py, the code assumes params is a dictionary and attempts to call .keys(). If the target URL has no parameters, params might be initialized as an empty string or null, leading to the crash. A check should be added to verify if params is a valid dictionary before accessing its keys.\n\n**Environment**\nOS: Linux (vagent103)\nPython version: 3.13\nXSStrike version: v3.1.5\n\n**Some Questions**\n[x] I am using the latest version of XSStrike.\n[x] I installed the dependencies using pip3 instead of pip\n[x] I have read the documentation before submitting this issue.\n[x] ",
-    "score": 20,
-    "labels": [],
-    "html_url": "https://github.com/s0md3v/XSStrike/issues/438",
-    "created_at": "2026-03-23T17:00:07.200345",
-    "status": "claimed"
+    "status": "submitted",
+    "submitted_at": "2026-03-23T20:50:00Z"
   },
   {
     "key": "INDIGOAZUL/la-tanda-web#154",
@@ -1552,41 +766,6 @@
     "submitted_at": "2026-03-23T19:25:00Z"
   },
   {
-    "key": "smallgig/Pickomino#350",
-    "owner": "smallgig",
-    "repo": "Pickomino",
-    "number": 350,
-    "title": "Add Bug Bounty",
-    "body": "# Security & Bug Bounty Policy\n\n## Pickomino — Reinforcement Learning Environment\n\nPickomino is an open-source Reinforcement Learning environment for the board game\nPickomino/Heckmeck, confirmed as an external environment in\n[Farama Gymnasium](https://gymnasium.farama.org/).\n\nThis is a small, part-time personal project. The bug bounty program is run in good\nfaith and on a best-effort basis. Please read this document carefully before reporting.\n\n-----\n\n## Reward\n\nValid bug reports are rewarded with **one physical copy of the Pickomino/Heckmeck board\ngame**, shipped via Amazon.de Prime to any destination covered by Amazon.de Prime\nshipping.\n\n> ⚠️ **One reward per unique bug.** The first valid report of a given issue wins.\n> Duplicate reports are not eligible.\n\n-----\n\n## Scope\n\n### In scope\n\n- Incorrect implementation of Pickomino game rules\n- Observation space or action space definition errors\n- Reward function inaccuracies\n- Non-compliance with the Farama Gymnasium API\n- Dependency vulnerabilities (in `pyproject.toml` / `requirements`)\n- Reproducibility or random seeding issues\n- Packaging and release pipeline issues\n\n### Out of scope\n\n- The GitHub platform itself\n- The Farama Gymnasium core library\n- Feature requests framed as bugs\n- Performance optimisation suggestions\n- Theoretical or unproven issues without a reproducer\n- Issues found by automated scanners run without prior permission\n\n-----\n\n## How to Report\n\n### Security-sensitive issues\n\nUse GitHub’s built-in private disclosure:\n**Security → Report a vulnerability** (top of the repository page).\n\n### Non-security bugs\n\nOpen a regular GitHub Issue and prefix the title with `[BUG BOUNTY]`.\n\n### What to include\n\nPlease provide all of the following:\n\n1. **A minimal Python reproducer** — a short script that demonstrates the issue\n   against a specific tagged version of Pickomino.\n1. **Expected behaviour** — what the correct output or behaviour should be, with a\n   reference to the Pickomino/Heckmeck rulebook if applicable.\n1. **Actual behaviour** — what the environment does instead.\n1. **Environment details** — Python version, Gymnasium version, OS.\n\nReports without a working reproducer may not qualify for a reward.\n\n-----\n\n## Timelines\n\nThis is a part-time personal project. Please set expectations accordingly.\n\n|Milestone                                    |Target               |\n|---------------------------------------------|---------------------|\n|Initial acknowledgement                      |14 days              |\n|Triage decision (valid / invalid / duplicate)|30 days              |\n|Fix or published workaround                  |90 days              |\n|Public disclosure (security issues)          |After fix is released|\n\nIf a milestone is missed, feel free to send a polite follow-up on the issue or\nadvisory thread.\n\n**Please do not disclose security-sensitive findings publicly before a fix is\nreleased.**\n\n-----\n\n## Rules\n\n- This program is not a legal contract. It operates entirely on mutual",
-    "score": 25,
-    "labels": [
-      "bug",
-      "documentation",
-      "good first issue",
-      "S - size Small",
-      "nice to have"
-    ],
-    "html_url": "https://github.com/smallgig/Pickomino/issues/350",
-    "created_at": "2026-03-23T17:30:19.498323",
-    "status": "claimed"
-  },
-  {
-    "key": "SC-Bridge/sc-bridge#97",
-    "owner": "SC-Bridge",
-    "repo": "sc-bridge",
-    "number": 97,
-    "title": "Contracts/Missions: detail pages with descriptions and grouping",
-    "body": "## Problem\nMissions tab is a flat list with no click-through. Players can't see mission descriptions, rewards, or quest chains.\n\n## Requirements\n- Click into each mission to see full description\n- Group missions at a higher level (bounty hunting, delivery, investigation, etc.)\n- Show rep rewards, payout ranges, quest chain relationships\n- Use `ui-ux-pro-max` skill — crafting page as design reference\n- Tie in with reputation page (#18/reputation overhaul)\n\n## Reference\n- https://staging.scbridge.app/contracts?tab=missions\n- https://staging.scbridge.app/crafting (design reference)",
-    "score": 25,
-    "labels": [
-      "enhancement",
-      "area: gamedata"
-    ],
-    "html_url": "https://github.com/SC-Bridge/sc-bridge/issues/97",
-    "created_at": "2026-03-23T17:30:23.078639",
-    "status": "claimed"
-  },
-  {
     "key": "laudantstolam/stargazer_newsletter#3",
     "owner": "laudantstolam",
     "repo": "stargazer_newsletter",
@@ -1619,22 +798,224 @@
     "submitted_at": "2026-03-23T19:30:00Z"
   },
   {
-    "key": "LederWorks/veiled-market#5723",
-    "owner": "LederWorks",
-    "repo": "veiled-market",
-    "number": 5723,
-    "title": "[discovery] easy-github/skills: sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md",
-    "body": "## Discovery: `SKILL.md` (skills)\n\n**plugin:** `easy-github`\n**Resource type:** `skills`\n**Source:** [antigravity/skills](https://antigravityskills.org)\n**Repository:** [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)\n**File:** [`skills/api-fuzzing-bug-bounty/SKILL.md`](https://github.com/sickn33/antigravity-awesome-skills/blob/main/skills/api-fuzzing-bug-bounty/SKILL.md)\n\n### Description\nThe Ultimate Collection of 1000+ Agentic Skills for Claude Code/Antigravity/Cursor. Battle-tested, high-performance skills for AI agents including official skills from Anthropic and Vercel.\n\n### Raw URL\nhttps://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/skills/api-fuzzing-bug-bounty/SKILL.md\n\n---\n_Auto-discovered by the [discover workflow](.github/workflows/01-discovery.yml)._\n_This issue has been automatically labeled `status/draft` and will be picked up by the next evaluation run._\n\n<!-- veiled-market-registry:{\"source\":\"antigravity-skills\",\"plugin_ref\":\"sickn33/antigravity-awesome-skills\",\"skill_ref\":\"sickn33/antigravity-awesome-skills/skills/api-fuzzing-bug-bounty/SKILL.md\",\"sha\":\"f8238dcebdbc3be60ee6d682a794124c4f25327e\"} -->\n",
-    "score": 30,
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#12",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 12,
+    "title": "create for android module playstore auditor.",
+    "body": "🔹 Bounty: ₹2000 — Android Play Store Auditor\n\nWe’re extending https://opensource.gracias.sh/\n to support Android.\n\nLooking for contributors to refine prompts and generate production-grade Play Store compliance reports.\n\n🔹 Scope of Work\nPhase 1 — Play Store Compliance Engine\nAlign outputs with Google Play Developer Policies\nCover key areas:\nPermissions misuse (SMS, Call Logs, Location, etc.)\nData Safety & privacy disclosures\nAds & monetization policy violations\nRestricted content & user-generated content rules\nEnsure:\nPrecise issue detection\nStructured, readable reports\nNo vague or generic AI output\nPhase 2 — Remediation + Developer Actions\nConvert issues into clear, actionable fixes\nSuggest:\nCode-level changes (where applicable)\nPlay Console configuration fixes\nPolicy-compliant alternatives\nGenerate clean GitHub issues:\nTitle (clear + scoped)\nDescription (problem + policy reference)\nSteps to fix\nAcceptance criteria\n🔹 Expected Output Format\n✅ Compliance Report\nIssue Title\nSeverity (High / Medium / Low)\nPolicy Reference (Play Store guideline link/section)\nDescription (what’s wrong)\nImpact (why it may cause rejection)\nEvidence (logs/code/behavior)\n🔧 Remediation Plan\nFix Summary\nStep-by-step resolution\nCode / config suggestions\nEdge cases / validation checks\n🐙 GitHub Issue Format\nClear title\nContext\nReproduction / detection logic\nFix steps\nAcceptance criteria\n🔹 Goal\n\nMake reports feel like they came from a senior Play Store reviewer —\nnot generic AI output.\n\n🔹 Bonus Points 💥\nCover edge cases (background services abuse, SDK policy violations)\nImprove signal-to-noise ratio (no false positives)\nClean formatting → dev-ready output",
+    "score": 90,
     "labels": [
-      "status/draft",
-      "type/skill",
-      "ai/discovery",
-      "source/antigravity-skills",
-      "plugin/easy-github"
+      "enhancement",
+      "help wanted",
+      "good first issue",
+      "bounty"
     ],
-    "html_url": "https://github.com/LederWorks/veiled-market/issues/5723",
-    "created_at": "2026-03-23T18:30:19.363890",
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/12",
+    "created_at": "2026-03-23T20:30:34.380453",
+    "status": "submitted",
+    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/15",
+    "submitted_at": "2026-03-23T21:05:00Z"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#25",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 25,
+    "title": "Add Bounty Milestone Tracking and Progress Updates",
+    "body": "\n**Priority:** HIGH  \n**Impact:** Project Management, Trust  \n**Description:**\nLarge bounties need to be broken down into milestones with progress tracking. This allows clients to see work progress and creators to get paid incrementally.\n\n**What Needs to Be Done:**\n- Create milestone creation and management system\n- Implement progress update functionality\n- Add milestone approval workflow\n- Create payment release tied to milestones\n- Implement progress visualization (Gantt charts, timelines)\n- Add milestone notifications and reminders\n- Create dispute resolution for milestones\n- Add milestone templates for common project types\n\n**Files to Create/Modify:**\n- `/workspaces/stellar-creator-portfolio/components/milestone-tracker.tsx`\n- `/workspaces/stellar-creator-portfolio/app/bounties/[id]/milestones/page.tsx`\n- Create: `/workspaces/stellar-creator-portfolio/lib/milestone-service.ts`\n- `/workspaces/stellar-creator-portfolio/app/api/milestones/route.ts`\n\n**Acceptance Criteria:**\n- Milestones can be created and tracked\n- Progress updates visible to all parties\n- Payments released per milestone completion\n- Timeline visualization functional\n- Notification system for milestone events\n\n**Testing Requirements:**\n- Unit tests: Milestone validation, progress calculation\n- Integration tests: Milestone workflow, payment integration\n- E2E tests: Complete milestone cycle from creation to payment\n- Performance tests: Handle complex projects with 20+ milestones\n- Security tests: Payment authorization, milestone tampering prevention\n\n---\n\n**Frontend CLI checks (run before working on this issue):**\n- pnpm run frontend:orbit-check\n- pnpm run cli-checks (frontend only)\n\n**Policy:** Do not push standalone `.md` files. Documentation updates should be included in PRs with code changes.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/25",
+    "created_at": "2026-03-23T20:30:37.743058",
+    "status": "submitted",
+    "pr_url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/34",
+    "submitted_at": "2026-03-23T21:50:00Z"
+  },
+  {
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#11",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 11,
+    "title": "Fine tune our prompts and make final reports precise and well written  to industry standards.",
+    "body": "Bounty: ₹800\n\nHelp us make AI-generated app audit reports actually useful.\n\nWe’re building https://opensource.gracias.sh/\n — an AI layer that reviews apps before Apple does.\n\nWhat needs work:\n\nPhase 1 — Compliance\n\nMake outputs tightly aligned with Apple policies\nClean, structured, no-fluff reports\n\nPhase 2 — Remediation\n\nTurn issues into actionable fixes\nWrite clean GitHub issues devs can directly execute\nOutcome\n\nReports that feel like they came from a senior App Store reviewer, not a vague AI.",
+    "score": 60,
+    "labels": [
+      "bug",
+      "help wanted",
+      "good first issue",
+      "bounty"
+    ],
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/11",
+    "created_at": "2026-03-23T20:30:41.161723",
+    "status": "submitted",
+    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/17",
+    "submitted_at": "2026-03-23T22:00:00Z"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#6",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 6,
+    "title": "Add User Authentication & Profiles",
+    "body": "\n**Priority:** CRITICAL  \n**Impact:** Core Functionality, Security  \n**Description:**\nThe platform currently has no user authentication system. Users cannot create accounts, login, or have personalized experiences. This is essential for the freelancing and bounty marketplace to function.\n\n**What Needs to Be Done:**\n- Implement auth with NextAuth.js or similar solution\n- Create user registration flow with email verification\n- Implement login/logout functionality\n- Add user profile pages (separate from creator profiles)\n- Create dashboard for users to manage their bounties and applications\n- Implement role-based access control (creator, client, admin)\n- Add password reset functionality\n- Secure API routes with authentication middleware\n\n**Files to Create:**\n- `/vercel/share/v0-project/app/auth/login/page.tsx`\n- `/vercel/share/v0-project/app/auth/register/page.tsx`\n- `/vercel/share/v0-project/app/dashboard/page.tsx`\n- `/vercel/share/v0-project/app/api/auth/[...nextauth].ts`\n- `/vercel/share/v0-project/lib/auth.ts`\n- `/vercel/share/v0-project/middleware.ts`\n\n**Acceptance Criteria:**\n- User registration with email verification\n- Secure JWT-based sessions\n- Protected dashboard pages\n- Role-based UI elements\n\n**Testing Requirements:**\n- Unit tests for authentication middleware\n- Integration tests for NextAuth.js configuration\n- E2E tests for registration and login flows\n- Security tests for password hashing and JWT validation\n- Accessibility tests for auth forms\n\n---\n\n\n**Frontend CLI checks (run before working on this issue):**\n- pnpm run frontend:orbit-check\n- pnpm run cli-checks (frontend only)\n\n**Policy:** Do not push standalone `.md` files. Documentation updates should be included in PRs with code changes.\n\n## CRITICAL Policy Notice (READ FIRST)\n\n- 🚫 Under no circumstances should *any* `.md` file be pushed directly to the main branch.\n- 📌 `README.md` must never be changed as part of issue updates in this file; if `README.md` is modified, the change should be reverted immediately.\n- 🛑 All documentation updates are only allowed through PRs that include associated code changes and peer review.",
+    "score": 50,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/6",
+    "created_at": "2026-03-23T20:30:44.592045",
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
+  },
+  {
+    "key": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource#14",
+    "owner": "atharvnaik1",
+    "repo": "GraciasAi-Appstore-Policy-Auditor-Opensource",
+    "number": 14,
+    "title": "🔹 Bounty: ₹2000 —PDF REPORT IMPROVEMENTS",
+    "body": "🔹 Bounty: ₹2000 —PDF REPORT IMPROVEMENTS\n\nWe’re improving https://opensource.gracias.sh/\n — an AI-powered app auditing layer to prevent App Store rejections.\n\nLooking for contributors to enhance report quality and fix core issues.\n\n🔹 Scope of Work\nPhase 1 — iOS Compliance + PDF Fix.\nImprove alignment with Apple App Store Review Guidelines\nEnhance report structure to be precise, readable, and industry-grade\n🔴 Fix issue: PDF report generation not working (iOS module)\nEnsure stable export\nClean formatting in PDF output\nConsistent layout across reports\nPhase 2 — Android Play Store Auditor\nBuild/improve Play Store compliance checks:\nPermissions misuse (SMS, Call Logs, Location, etc.)\nData Safety & privacy disclosures\nAds & monetization violations\nGenerate:\nStructured compliance reports\nActionable remediation steps\nClean, dev-ready GitHub issues\nPhase 3 — Remediation Quality Upgrade\nConvert issues into clear, executable fixes\nImprove:\nStep-by-step resolution clarity\nCode/config suggestions\nAcceptance criteria for validation\n🔹 Expected Output\n✅ Compliance Report\nIssue Title\nSeverity\nPolicy Reference\nDescription\nImpact\nEvidence\n🔧 Remediation Plan\nFix summary\nSteps to resolve\nCode/config suggestions\n🐙 GitHub Issue\nClear title\nContext\nFix steps\nAcceptance criteria\n🔹 Goal\n\nReports that feel like they came from a senior App Store / Play Store reviewer —\nclear, actionable, and rejection-proof.",
+    "score": 105,
+    "labels": [
+      "bug",
+      "enhancement",
+      "help wanted",
+      "good first issue",
+      "bounty"
+    ],
+    "html_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/issues/14",
+    "created_at": "2026-03-23T21:30:11.560518",
+    "status": "submitted",
+    "pr_url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/16",
+    "submitted_at": "2026-03-23T21:55:00Z"
+  },
+  {
+    "key": "tenstorrent/tt-metal#40494",
+    "owner": "tenstorrent",
+    "repo": "tt-metal",
+    "number": 40494,
+    "title": " Implement Lifting Wavelet Transform (LWT) and Inverse LWT (ILWT)",
+    "body": "# Implement Lifting Wavelet Transform (LWT) and Inverse LWT (ILWT)\n\nImplement an optimized LWT and ILWT kernels for TT-Metal/TTNN on Wormhole/Blackhole hardware, which would enable usage of discrete wavelet transforms (DWTs) on device.\n\n## 📝 Background\n\nDiscrete wavelet transform will help us enable multi-resolution signal processing directly on Wormhole/Blackhole hardware. This unlocks:\n- JPEG2000 lossy compression.\n- Real-time Digital Signal Processing pipelines.\n- Audio, biosignals, radar, and seismic data processing applications.\n\n## 🎯 What Success Looks Like\n\nRequirements\n- Support 1D/2D inputs with batch dimension (B, 1, H, W).\n  - Layout can be both row major and tile. Preferably RM for 1d input, and tile layout for 2d input.\n- Support the wavelets from PyWavelets catalog:\n  - Haar: db1\n  - Daubechies: dbN\n  - Biorthogonal (used in JPEG2000): biorN.M\n  - Symlets: symN\n  - Coiflets: coifN\n  - Discrete Meyer: dmey\n- Support fp32 (SFPU-based implementation)\n- Should be implemented as ttnn operation (`ttnn.dwt`/`ttnn.idwt`)\n  - Should be implemented as optimized multicore kernel (not a naive composite version)\n- Precision targets for the SFPU fp32 (Wavelet categories are defined in [the table below](#wavelet-categories)):\n- Compact lifting schemes:\n  - Definition: `tap_size <= 12`, `num_steps <= 11`, and `max_abs_coeff < 1e2`.\n  - Forward transformation precision should be measured against PyWavelets using L2 relative error:\n    - target median L2 relative error < 1e-7;\n    - target 95th percentile L2 relative error < 1e-5.\n  - Reconstruction precision should be measured against the original signal using L2 relative error:\n    - target median L2 relative error < 1e-7;\n    - target 95th percentile L2 relative error < 1e-5.\n\n- Medium lifting schemes:\n  - Definition: `12 < tap_size <= 24`, `12 <= num_steps <= 23`, and `max_abs_coeff < 1e4`.\n  - Forward transformation precision should be measured against PyWavelets using L2 relative error:\n    - target median L2 relative error < 1e-6;\n    - target 95th percentile L2 relative error < 1e-4.\n  - Reconstruction precision should be measured against the original signal using L2 relative error:\n    - target median L2 relative error < 1e-6;\n    - target 95th percentile L2 relative error < 1e-4.\n\n- Large / numerically sensitive lifting schemes:\n  - Definition: `tap_size > 24`, or `num_steps > 23`, or `max_abs_coeff >= 1e4`.\n  - Forward precision is best effort.\n  - Reconstruction precision is best effort.\n  - These wavelets should report per-wavelet median / p95 / max L2 relative error and known outliers, but should not be treated as hard-gating failures.\n\n- Precision reports should always include a per-wavelet breakdown and explicitly call out known SFPU fp32 outliers.\n\n\n- No strict requirements for potential lower precision implementation.\n\n- Optionally\n  - Investigate FPU implementation (im2col/conv based) with tf32/bf16 + acc fp32 precision\n  - Support l1 sharded inputs\n  - Support arbitraty number of ",
+    "score": 55,
+    "labels": [
+      "ttnn",
+      "op_cat: misc",
+      "bounty_difficulty/hard",
+      "bounty_candidate"
+    ],
+    "html_url": "https://github.com/tenstorrent/tt-metal/issues/40494",
+    "created_at": "2026-03-23T21:30:15.614089",
+    "status": "submitted",
+    "pr_url": "https://github.com/tenstorrent/tt-metal/pull/40495",
+    "submitted_at": "2026-03-23T22:10:00Z"
+  },
+  {
+    "key": "dotnet/sdk#53563",
+    "owner": "dotnet",
+    "repo": "sdk",
+    "number": 53563,
+    "title": "`dotnet format` on Linux incorrectly reports CS0660 warning for generated partial class with IEquatable<> implementation",
+    "body": "<!--\nPlease keep in mind that the GitHub issue tracker is not intended as a general support forum, but for reporting **non-security** bugs and feature requests.\n\nIf you believe you have an issue that affects the SECURITY of the platform, please do NOT create an issue and instead email your issue details to secure@microsoft.com. Your report may be eligible for our [bug bounty](https://www.microsoft.com/en-us/msrc/bounty-dot-net-core) but ONLY if it is reported through email.\nFor other types of questions, consider using [StackOverflow](https://stackoverflow.com).\n\n-->\n\n### To Reproduce\n\n`dotnet format` on Linux reports no issues with the following code:\n\n```\npublic partial class MyClass : IEquatable<MyClass>\n{\n    public bool Equals(MyClass? other) => throw new NotImplementedException();\n\n    public override bool Equals(object? obj) => Equals(obj as MyClass);\n\n    public override int GetHashCode() => throw new NotImplementedException();\n\n    public static bool operator ==(MyClass? lhs, MyClass? rhs) => lhs is null ? rhs is null : lhs.Equals(rhs);\n\n    public static bool operator !=(MyClass? lhs, MyClass? rhs) => !(lhs == rhs);\n} \n```\n\nHowever, running `dotnet format --verify-no-changes` results in a CS0660 warning if I use the [OneOf](https://github.com/mcintyre321/OneOf) library's source generator.\n\n```\n[GenerateOneOf]\npublic partial class MyClass : OneOfBase<string, double>, IEquatable<MyClass>\n{\n    public bool Equals(MyClass? other) => throw new NotImplementedException();\n\n    public override bool Equals(object? obj) => Equals(obj as MyClass);\n\n    public override int GetHashCode() => throw new NotImplementedException();\n\n    public static bool operator ==(MyClass? lhs, MyClass? rhs) => lhs is null ? rhs is null : lhs.Equals(rhs);\n\n    public static bool operator !=(MyClass? lhs, MyClass? rhs) => !(lhs == rhs);\n}\n```\n\n`[GenerateOneOf]` causes an additional partial class definition for `MyClass` to be created. This seems to be confusing `dotnet format` and making it believe that `object.Equals` has not been overridden even though it has. I get:\n\n`error CS0660: 'MyClass' defines operator == or operator != but does not override Object.Equals(object o)`\n\nRunning `dotnet-format` without `--verify-no-changes` causes it to insert a second `object.Equals` override which then causes the code to fail to compile.\n\nNote that this issue does not occur with the windows version of `dotnet format`.\n\n<!--\nWe ❤ code! Point us to a minimalistic repro project hosted in a GitHub repo, Gist snippet, or other means to see the isolated behavior.\n\nWe may close this issue if:\n- the repro project you share with us is complex. We can't investigate custom projects, so don't point us to such, please.\n- if we will not be able to repro the behavior you're reporting\n-->\n\n### Exceptions (if any)\n<!-- \nInclude the exception you get when facing this issue\n-->\n\n### Further technical details\n<details><summary>details of dotnet --info</summary>\n<p>\n.NET SDK:\n Version:           10.0",
+    "score": 55,
+    "labels": [
+      "untriaged"
+    ],
+    "html_url": "https://github.com/dotnet/sdk/issues/53563",
+    "created_at": "2026-03-24T03:30:15.794581",
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
+  },
+  {
+    "key": "ke1rro/tt-wavelet#1",
+    "owner": "ke1rro",
+    "repo": "tt-wavelet",
+    "number": 1,
+    "title": "[Feature Request]: Implement Lifting Wavelet Transform and Inverse LWT",
+    "body": "# Implement Lifting Wavelet Transform (LWT) and Inverse LWT (ILWT)\n\n**By** @draklowell, @ke1rro, @kerfmanner, @sodaqqq *@ Ukrainian Catholic University*\n\n## Summary\nWe target to implement an optimized LWT and ILWT kernels for TT-Metal to enable O(N) multi-resolution signal processing directly on Wormhole/Blackhole hardware. This unlocks efficient wavelet-based AI architectures (WaveKAN), JPEG2000 compression, and real-time Digital Signal Processing pipelines without CPU fallback. The implementation will be memory-aware and optimized for Tensix L1 constraints and NoC topology.\n\n## Is your feature request related to a problem? Please describe\n\nWhile work on Fast Fourier Transform (FFT) is currently in progress within the tt-metal ecosystem ([#21412](https://github.com/tenstorrent/tt-metal/issues/21412)), FFT alone is insufficient for modern signal processing tasks dealing with **non-stationary signals**. FFT provides frequency information but completely loses temporal localization - it cannot tell _when_ a particular frequency event occurred.\n\nThe Discrete Wavelet Transform (DWT) applications are vast and critical for many domains:\n\n- **Advanced Digital Signal Processing**: Processing audio, biosignals, radar, and seismic data where _when_ a frequency occurs is as important as _which_ frequency. Short-Time Fourier Transform (STFT) attempts to solve this but suffers from fixed resolution (Heisenberg uncertainty principle) and higher computational cost.\n- **Next-Gen AI Models**: Emerging architectures like **WaveKAN** (Wavelet Kolmogorov-Arnold Networks) replace standard activation functions with wavelet bases to improve convergence, interpretability, and function approximation. Currently, there are no native ops to accelerate these models on Wormhole/Blackhole.\n- **Signal Compression**: Wavelet transforms are the foundation of JPEG 2000 and modern audio codecs, offering superior compression without block artifacts compared to DCT-based methods.\n- **Denoising**: Wavelet thresholding is one of the most effective techniques for noise removal across domains - from medical imaging to financial time series.\n\n## Describe the solution you'd like\n\nWe propose implementing Discrete Wavelet Transform via **LWT** and **ILWT** as a logical extension to the DSP capabilities being built around FFT.\n\nOur team has been exploring the **Lifting Scheme** (Sweldens, 1996) as the implementation approach.\n\nThe Lifting Scheme decomposes the transform into three simple steps that are done in-place:\n- Split: Separate even/odd indexed samples.\n- Predict: Predict odd samples from even (generates detail coefficients).\n- Update: Update even samples (generates approximation coefficients).\n\n![Lifting scheme (from Wikipedia)](https://github.com/user-attachments/assets/b011cc22-0709-4bb9-a8df-8586bc583ab4)\n\n### Why Lifting Scheme?\n\nWe believe this is the right fit for Tenstorrent hardware for the following reasons:\n| Property | Fast Wavelet Transform | Lifting Wavelet Transform |\n|--",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/ke1rro/tt-wavelet/issues/1",
+    "created_at": "2026-03-24T03:30:18.898739",
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
+  },
+  {
+    "key": "bolivian-peru/os-moda#2",
+    "owner": "bolivian-peru",
+    "repo": "os-moda",
+    "number": 2,
+    "title": "🏆 BOUNTY (1 SOL): Film \"I Deleted My Nginx Config — Watch What Happens\" Demo",
+    "body": "## 🏆 Bounty: 1 SOL\n\n**Film a real demo of osModa self-healing after destructive deletion. Upload to YouTube. Earn 1 SOL.**\n\n---\n\n## The Demo\n\n**Title:** \"I Mass Deleted My Server's Nginx Config. Watch What Happens.\"\n\n**Format:** 45-90 second screen recording with real camera filming your laptop/monitor. Uncut, no fakes.\n\n**Hook (first 3 seconds):** \"What happens when I `rm -rf /etc/nginx` on an AI-managed server?\"\n\n### What to show:\n\n1. **Setup:** osModa running on a real server (use `spawn.os.moda` to provision, or install via `curl -sSL https://raw.githubusercontent.com/bolivian-peru/os-moda/main/scripts/install.sh | bash`)\n2. **The destruction:** Run `rm -rf /etc/nginx` (or another critical config) on camera\n3. **The recovery:** Show the watchdog catching it. Show the AI diagnosing it. Show NixOS rolling back. Show nginx coming back online.\n4. **The proof:** Show the timestamp — total downtime. Show the hash-chained audit log entry with the AI's reasoning.\n5. **The punchline:** \"Try this on your Ubuntu server. I dare you.\"\n\n### What makes this demoable (verified working):\n\n- ✅ **SafeSwitch + NixOS rollback** — calls real `nix-env --rollback` + `switch-to-configuration switch`\n- ✅ **Autopilot watchers** — real health checks (systemd unit, TCP port, HTTP GET) with escalation (restart → rollback → notify)\n- ✅ **Hash-chained audit log** — every action logged with SHA-256 chain, tamper-evident\n- ✅ **Approval gate** — destructive commands blocked until approved (35 dangerous patterns detected)\n- ✅ **194 tests passing** across 10 Rust crates\n\n### Requirements:\n\n- [ ] Real camera filming real screen (not just screen recording — we want to see the laptop/monitor)\n- [ ] Uncut deletion → recovery sequence (no jump cuts during the critical moment)\n- [ ] Show the audit log after recovery\n- [ ] Show the timestamp / total downtime\n- [ ] Upload to YouTube (public, not unlisted)\n- [ ] Minimum 720p quality\n- [ ] Link osModa repo and `spawn.os.moda` in description\n- [ ] Post the YouTube link in this issue\n\n### Support:\n\n**We will help you.** If you hit bugs during filming, open a discussion or ping in the issue — the maintainers will live-assist you, debug issues in real-time, and help you get the demo working perfectly. We want you to succeed.\n\n### How to claim:\n\n1. Comment on this issue saying you're working on it\n2. Film the demo\n3. Upload to YouTube\n4. Post the link here\n5. Receive 1 SOL to your wallet\n\n**First valid submission wins.** Multiple submissions welcome — if your video is high quality, we may award additional bounties.\n\n---\n\n*osModa: NixOS distribution where AI IS the operating system. 10 Rust daemons. 83 tools. 194 tests. Zero cloud dependencies.*\n\n---\n\n## 🧪 This Is Also a Testing Bounty\n\n**You are not just filming — you are battle-testing osModa.**\n\nWe expect things to break. That is the point. This bounty is as much about finding bugs as it is about making a great video.\n\n### What we want from you:\n\n- **Hit bugs? Report them.** Open issues, pas",
+    "score": 80,
+    "labels": [
+      "good first issue",
+      "bounty",
+      "video-demo",
+      "testing"
+    ],
+    "html_url": "https://github.com/bolivian-peru/os-moda/issues/2",
+    "created_at": "2026-03-24T04:30:10.171559",
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#745",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 745,
+    "title": "Program escrow: dispute resolution hooks (program-escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Program escrow: dispute resolution hooks (program-escrow)\n\nDescription\n\nDispute paths and resolution transitions with auth checks.\n\nRequirements and context\n\nCovers test_dispute_resolution.rs scenarios.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/program-escrow-disputes\n\nImplement changes\n\nWrite contract: program-escrow/src/lib.rs\nWrite tests: program-escrow/src/test_dispute_resolution.rs\nAdd documentation: dispute lifecycle\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(program-escrow): dispute resolution tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 50,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/745",
+    "created_at": "2026-03-24T06:30:10.373056",
+    "status": "claimed"
+  },
+  {
+    "key": "Jmtdw57/openclaw-test-bounty#1",
+    "owner": "Jmtdw57",
+    "repo": "openclaw-test-bounty",
+    "number": 1,
+    "title": "Fix RateLimiter off-by-one and unbounded refill bugs",
+    "body": "## Bounty: $75\n\n### Bug 1: Off-by-one in `consume()`\nWhen remaining tokens exactly equal the requested cost, `consume()` incorrectly returns `false`. This causes ~5-10% of legitimate requests to receive spurious 429 responses under load.\n\n### Bug 2: Unbounded token accumulation in `refill()`\nThe `refill()` method doesn't cap at `maxTokens`, allowing unlimited burst capacity after idle periods.\n\n### Acceptance Criteria\n1. `consume(cost)` returns `true` when `tokens >= cost`\n2. `refill()` caps tokens at `maxTokens`\n3. All tests pass (2 currently fail)\n4. No new dependencies\n\n### How to reproduce\n```bash\nnpm install && npm test\n```\n\nSee `BOUNTY.md` for full details.",
+    "score": 75,
+    "labels": [
+      "bug",
+      "bounty"
+    ],
+    "html_url": "https://github.com/Jmtdw57/openclaw-test-bounty/issues/1",
+    "created_at": "2026-03-24T07:30:17.243448",
+    "status": "submitted",
+    "submitted_at": "2026-03-24T11:00:00Z"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#139",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 139,
+    "title": "[CONTRACT] Implement Contract Integration Layer",
+    "body": "## 🎯 Context & Impact\n\nWith multiple contracts (guild, bounty, payment, milestone, etc.), we need a robust integration layer to enable seamless communication and event coordination. Without this, contracts operate in silos and cannot react to each other's state changes.\n\n**Why this matters:**\n- Enables complex workflows across multiple contracts\n- Provides unified event system for frontend tracking\n- Ensures data consistency across contracts\n- Simplifies contract upgrades and versioning\n- Creates a cohesive platform experience\n\n## 📋 Scope\n\nImplement a Soroban integration layer that provides cross-contract communication, unified events, and contract registry management.\n\n**What's included:**\n- Contract registry for address management\n- Unified event emission system\n- Cross-contract authorization framework\n- Contract interface definitions\n- Event subscription and filtering\n- Contract version tracking\n- Integration helpers and utilities\n- Error handling standardization\n\n**What's NOT included:**\n- Oracle integration (future)\n- Cross-chain communication\n- Off-chain event processing\n\n## 🛠️ Implementation Guidelines\n\n### File Structure\nCreate the following files in the `contract/` directory:\n```\ncontract/\n├── src/\n│   ├── integration/\n│   │   ├── mod.rs\n│   │   ├── registry.rs\n│   │   ├── events.rs\n│   │   ├── auth.rs\n│   │   └── types.rs\n│   ├── interfaces/\n│   │   ├── mod.rs\n│   │   ├── guild.rs\n│   │   ├── bounty.rs\n│   │   ├── payment.rs\n│   │   └── common.rs\n│   └── utils/\n│       ├── mod.rs\n│       ├── errors.rs\n│       └── validation.rs\n```\n\n### Key Data Structures\nDefine:\n- `ContractRegistry` (mapping of contract types to addresses)\n- `ContractType` enum (Guild, Bounty, Payment, Milestone, Dispute, Reputation, Treasury, Subscription, Governance)\n- `Event` struct (event_type, contract_source, timestamp, data)\n- `EventType` enum (comprehensive list of all platform events)\n- `ContractVersion` struct (contract_type, version, address, deployed_at)\n- Error codes enum with descriptive messages\n\n### Core Functions to Implement\n\n**Registry Management:**\n1. `register_contract(env, contract_type, address, version)` → bool\n2. `get_contract_address(env, contract_type)` → Address\n3. `update_contract(env, contract_type, new_address, new_version)` → bool\n4. `get_all_contracts(env)` → Vec<(ContractType, Address, Version)>\n\n**Event System:**\n5. `emit_event(env, event_type, source_contract, data)` → bool\n6. `get_events(env, filters, from_timestamp, limit)` → Vec<Event>\n7. `subscribe_to_events(env, subscriber, event_types)` → bool\n\n**Cross-Contract Operations:**\n8. `call_guild_contract(env, function_name, params)` → Result\n9. `call_bounty_contract(env, function_name, params)` → Result\n10. `verify_cross_contract_auth(env, caller, target_contract, required_permission)` → bool\n\n**Utilities:**\n11. `validate_address(env, address)` → bool\n12. `format_error(env, error_code, context)` → Error\n13. `create_event_id(env)` → u128\n\n### Standard Event Types\nDefine events for all",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/139",
+    "created_at": "2026-03-24T07:30:20.192972",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#140",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 140,
+    "title": "[CONTRACT] Implement Contract Integration Layer",
+    "body": "## 🎯 Context & Impact\n\nWith multiple contracts (guild, bounty, payment, milestone, etc.), we need a robust integration layer to enable seamless communication and event coordination. Without this, contracts operate in silos and cannot react to each other's state changes.\n\n**Why this matters:**\n- Enables complex workflows across multiple contracts\n- Provides unified event system for frontend tracking\n- Ensures data consistency across contracts\n- Simplifies contract upgrades and versioning\n- Creates a cohesive platform experience\n\n## 📋 Scope\n\nImplement a Soroban integration layer that provides cross-contract communication, unified events, and contract registry management.\n\n**What's included:**\n- Contract registry for address management\n- Unified event emission system\n- Cross-contract authorization framework\n- Contract interface definitions\n- Event subscription and filtering\n- Contract version tracking\n- Integration helpers and utilities\n- Error handling standardization\n\n**What's NOT included:**\n- Oracle integration (future)\n- Cross-chain communication\n- Off-chain event processing\n\n## 🛠️ Implementation Guidelines\n\n### File Structure\nCreate the following files in the `contract/` directory:\n```\ncontract/\n├── src/\n│   ├── integration/\n│   │   ├── mod.rs\n│   │   ├── registry.rs\n│   │   ├── events.rs\n│   │   ├── auth.rs\n│   │   └── types.rs\n│   ├── interfaces/\n│   │   ├── mod.rs\n│   │   ├── guild.rs\n│   │   ├── bounty.rs\n│   │   ├── payment.rs\n│   │   └── common.rs\n│   └── utils/\n│       ├── mod.rs\n│       ├── errors.rs\n│       └── validation.rs\n```\n\n### Key Data Structures\nDefine:\n- `ContractRegistry` (mapping of contract types to addresses)\n- `ContractType` enum (Guild, Bounty, Payment, Milestone, Dispute, Reputation, Treasury, Subscription, Governance)\n- `Event` struct (event_type, contract_source, timestamp, data)\n- `EventType` enum (comprehensive list of all platform events)\n- `ContractVersion` struct (contract_type, version, address, deployed_at)\n- Error codes enum with descriptive messages\n\n### Core Functions to Implement\n\n**Registry Management:**\n1. `register_contract(env, contract_type, address, version)` → bool\n2. `get_contract_address(env, contract_type)` → Address\n3. `update_contract(env, contract_type, new_address, new_version)` → bool\n4. `get_all_contracts(env)` → Vec<(ContractType, Address, Version)>\n\n**Event System:**\n5. `emit_event(env, event_type, source_contract, data)` → bool\n6. `get_events(env, filters, from_timestamp, limit)` → Vec<Event>\n7. `subscribe_to_events(env, subscriber, event_types)` → bool\n\n**Cross-Contract Operations:**\n8. `call_guild_contract(env, function_name, params)` → Result\n9. `call_bounty_contract(env, function_name, params)` → Result\n10. `verify_cross_contract_auth(env, caller, target_contract, required_permission)` → bool\n\n**Utilities:**\n11. `validate_address(env, address)` → bool\n12. `format_error(env, error_code, context)` → Error\n13. `create_event_id(env)` → u128\n\n### Standard Event Types\nDefine events for all",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/140",
+    "created_at": "2026-03-24T07:30:23.092802",
     "status": "claimed"
   }
 ]
