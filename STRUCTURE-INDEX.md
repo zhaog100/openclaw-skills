@@ -1,7 +1,8 @@
 # 📚 结构化索引总览
 
-_最后更新：2026-03-24 15:08_  
-_维护：小米辣 (PM + Dev) 🌶️_
+_最后更新：2026-03-24 16:32_  
+_维护：小米辣 (PM + Dev) 🌶️_  
+_版本：v2.0 - 双仓库分离后_
 
 ---
 
@@ -11,20 +12,28 @@ _维护：小米辣 (PM + Dev) 🌶️_
 
 ```
 memory/
-├── YYYY-MM-DD.md          # 每日笔记（按日期）
+├── YYYY-MM-DD.md          # 每日笔记（按日期）→ 仅 xiaomila
 ├── agents/                # Agent 相关记忆
 ├── audit-YYYY-MM-DD.md    # 审计报告
 ├── heartbeat-state.json   # 心跳状态
 ├── INDEX.md               # 记忆索引
+├── MEMORY-INDEX.md        # 记忆系统索引
 └── README.md              # 使用说明
 ```
 
 **当前文件**：
-| 文件 | 大小 | 最后更新 |
-|------|------|----------|
-| 2026-03-22.md | 8.3KB | 03-23 10:20 |
-| 2026-03-23.md | 1.4KB | 03-24 12:58 |
-| audit-2026-03-22.md | 5.1KB | 03-22 22:42 |
+| 文件 | 大小 | 最后更新 | 推送目标 |
+|------|------|----------|----------|
+| 2026-03-20.md | 19.6KB | 03-24 15:23 | xiaomila |
+| 2026-03-22.md | 8.3KB | 03-23 10:20 | xiaomila |
+| 2026-03-23.md | 1.4KB | 03-24 12:58 | xiaomila |
+| 2026-03-24.md | 6.4KB | 03-24 15:22 | xiaomila |
+| audit-2026-03-22.md | 5.1KB | 03-22 22:42 | origin |
+| MEMORY-INDEX.md | 2.2KB | 03-24 15:09 | origin |
+
+**双仓库规则**：
+- ✅ origin: 索引文件、审计报告、README
+- ✅ xiaomila: 每日笔记、个人文章
 
 ---
 
@@ -33,14 +42,8 @@ memory/
 ```
 knowledge/
 ├── trade/                 # 外贸知识库 ⭐
-│   ├── README.md
-│   ├── Incoterms.md
-│   ├── 出口流程.md
-│   └── 邮件模板.md
 ├── articles/              # 技术文章
-├── ai-skills/             # AI 技能
-├── ai-system-design/      # AI 系统设计
-├── ai-testing/            # AI 测试
+├── ai-*/                  # AI 相关 (skills/system-design/testing)
 ├── archives/              # 归档内容
 ├── content-creation/      # 内容创作
 ├── financial-ai-testing/  # 金融 AI 测试
@@ -58,9 +61,10 @@ knowledge/
 ```
 
 **统计**：
-- **总文档数**: 107 个
-- **QMD 索引**: ✅ 已索引
+- **总文档数**: 108 个
+- **QMD 索引**: ✅ 已索引 (knowledge collection)
 - **主要分类**: 18 个主题目录
+- **推送目标**: ✅ origin (公共知识)
 
 ---
 
@@ -72,11 +76,24 @@ knowledge/
 └── xiaomila    → zhaog100/xiaomila-skills    (个人技能)
 ```
 
-**推送规则**：
+**推送规则**（2026-03-24 教训固化）：
 ```
 辣推辣，公推公 ✅
-个人内容 → xiaomila
-公共内容 → origin
+
+✅ origin (公共):
+- 结构化索引文件
+- 核心配置 (AGENTS.md, HEARTBEAT.md, MEMORY.md)
+- 技能文档
+- 知识库
+- 公共归档
+
+✅ xiaomila (个人):
+- 每日笔记 (memory/YYYY-MM-DD.md)
+- 个人评估报告
+- 个人回顾文档
+- bounty-completed 归档
+
+❌ 禁止：同一个 commit 推两个仓库
 ```
 
 ---
