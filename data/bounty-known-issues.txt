@@ -29,6 +29,7 @@ AReid987/aigency-v1.0.0#224
 AcademySoftwareFoundation/OpenCue##2190
 Aleks-NFT/AgentVault#5
 BruceFeIix/picker#2333
+BruceFeIix/picker#2336
 Cap-go/capgo#1667
 CapSoftware/Cap##1540
 Chevalier12/InkkSlinger#3
@@ -57,6 +58,7 @@ FinMind#110
 FinMind#111
 FinMind#112
 Flutter-Bounty-Hunters/super_editor#2998
+FransDevelopment/agent-json#1
 FreezingMoon/AncientBeast#2617
 FreezingMoon/AncientBeast#2651
 GalactiGuild/Stellar-Guilds#109
@@ -74,6 +76,7 @@ Jagadeeshftw/grainlify#671
 Jagadeeshftw/grainlify#716
 Jagadeeshftw/grainlify#720
 Jagadeeshftw/grainlify#721
+Jagadeeshftw/grainlify#723
 Jagadeeshftw/grainlify#724
 Jagadeeshftw/grainlify#728
 Jagadeeshftw/grainlify#731
@@ -105,6 +108,7 @@ Jagadeeshftw/grainlify#791
 Jagadeeshftw/grainlify#792
 Jagadeeshftw/grainlify#797
 Jagadeeshftw/grainlify#799
+Jagadeeshftw/grainlify#801
 Jmtdw57/openclaw-test-bounty#1
 JuliaEarth/GeoIO.jl#167
 Juwebien/agent-marketplace##7
@@ -115,9 +119,11 @@ LederWorks/veiled-market#5723
 LederWorks/veiled-market#9424
 LiveHelperChat/livehelperchat#1505
 MM0x02/RSS-Push#452
+MM0x02/RSS-Push#453
 Mikann20041029/mikann20041029.github.io#375
 Monkestation/Vanderlin#5791
 Monkestation/Vanderlin#5798
+Monkestation/Vanderlin#5805
 OWASP-BLT/BLT-Next##118
 OWASP-BLT/BLT-Next##123
 OWASP-BLT/BLT-Next##124
@@ -141,6 +147,7 @@ PlatformNetwork/bounty-challenge##35254
 PlatformNetwork/bounty-challenge##36053
 PlatformNetwork/bounty-challenge#35239 2026-03-21T13:30:51+08:00
 PortSwigger/extension-portal#238
+ProSkillsMD/proskills#2695
 ProjectLiminality/InterBrain#382
 ResonantOS/resonantos-alpha##50
 ResonantOS/resonantos-alpha##51
@@ -253,7 +260,10 @@ bountydotnew/bounty.new#193
 bountydotnew/bounty.new#231
 bountydotnew/bounty.new#237
 bountydotnew/bounty.new#262
+cashubtc/nutshell#921
+cashubtc/nutshell#922
 chainreactors/picker#1186
+chainreactors/picker#1187
 chatmcp/mcpso##1
 citizenfx/fivem#3874
 clanker-devco/clanker-sdk#126
@@ -351,15 +361,18 @@ ritik4ever/stellar-bounty-board##1
 ritik4ever/stellar-bounty-board##17
 ritik4ever/stellar-bounty-board##3
 ritik4ever/stellar-bounty-board#29
+ritik4ever/stellar-bounty-board#34
 ritik4ever/stellar-bounty-board#8
 rsoreq-mend/AutoPrompt#34
 rsoreq-mend/AutoPrompt#6
 rsoreq-mend/AutoPrompt#9
 rsoreq-mend/tensorflow#20
 ruohong2018/ruohong2018.github.io#1137
+ruohong2018/ruohong2018.github.io#1138
 s0md3v/XSStrike#438
 sharmas1ddharth/PICK_pytorch#13
 shi2n/bugbounty-operator-toolkit-V2#1
+shloka23/temp-portfolio#1
 smallgig/Pickomino#350
 snowdensb/AutoPrompt_demo#25
 sorosave-protocol/contracts#52

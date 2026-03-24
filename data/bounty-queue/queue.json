@@ -1017,5 +1017,180 @@
     "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/140",
     "created_at": "2026-03-24T07:30:23.092802",
     "status": "claimed"
+  },
+  {
+    "key": "ProSkillsMD/proskills#2695",
+    "owner": "ProSkillsMD",
+    "repo": "proskills",
+    "number": 2695,
+    "title": "[SUBMISSION] bounty-hunter-skill",
+    "body": "**Repo:** https://github.com/futeyaoshi/bounty-hunter-skill\n\n**Description:** OpenClaw skill for Niuma Bounty Platform (task.niuma.works) on XLayer\n\n**Author:** futeyaoshi\n\n**Source:** GitHub auto-discovery (Scout)",
+    "score": 20,
+    "labels": [
+      "submission",
+      "auto-discovered",
+      "curio:routed-to-rocket",
+      "rocket-pass"
+    ],
+    "html_url": "https://github.com/ProSkillsMD/proskills/issues/2695",
+    "created_at": "2026-03-24T13:00:09.971445",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#34",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 34,
+    "title": "Add architecture diagram and flow documentation",
+    "body": "Contributors will move faster if the project architecture is easier to understand. Should document the frontend, backend, and contract flow visually.\n\nImplementation:\n\nAdd a simple architecture diagram to the docs or README  \nExplain how the frontend, backend, and contract scaffold relate  \nDocument the bounty lifecycle from creation to release  \nInclude deployment architecture where relevant\n\nAcceptance Criteria:\n\nArchitecture diagram is added to the repo  \nCore system flow is described clearly  \nNew contributors can understand the project structure faster  \nDocumentation is readable directly on GitHub",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/34",
+    "created_at": "2026-03-24T13:00:13.350744",
+    "status": "claimed"
+  },
+  {
+    "key": "chainreactors/picker#1187",
+    "owner": "chainreactors",
+    "repo": "picker",
+    "number": 1187,
+    "title": "[每日信息流] 2026-03-24",
+    "body": "# 每日安全资讯（2026-03-24）\n\n- Private Feed for M09Ic\n  - [ ] [joaoviictorti starred microsoft/RustTraining](https://github.com/microsoft/RustTraining)\n  - [ ] [spf13 starred obra/superpowers](https://github.com/obra/superpowers)\n  - [ ] [bolucat released 202603232003 at bolucat/Archive](https://github.com/bolucat/Archive/releases/tag/202603232003)\n  - [ ] [mgeeky starred shuvonsec/claude-bug-bounty](https://github.com/shuvonsec/claude-bug-bounty)\n  - [ ] [ManassehZhou forked ManassehZhou/accesskey_tools from kohlersbtuh15/accesskey_tools](https://github.com/ManassehZhou/accesskey_tools)\n  - [ ] [liamg contributed to infracost/go-proto](https://github.com/infracost/go-proto/pull/6)\n  - [ ] [liamg contributed to infracost/proto](https://github.com/infracost/proto/pull/38)\n  - [ ] [safedv starred 0xMarcio/cve](https://github.com/0xMarcio/cve)\n  - [ ] [github released v0.4.0 at github/spec-kit](https://github.com/github/spec-kit/releases/tag/v0.4.0)\n  - [ ] [ZeddYu starred slopus/happy](https://github.com/slopus/happy)\n  - [ ] [zema1 starred Y5neKO/Suo5forNodejs](https://github.com/Y5neKO/Suo5forNodejs)\n  - [ ] [DVKunion starred raminfp/redis_exploit](https://github.com/raminfp/redis_exploit)\n  - [ ] [safedv starred mamatb/OneWordlistToListThemAll](https://github.com/mamatb/OneWordlistToListThemAll)\n  - [ ] [Ascotbe starred rasbt/llm-architecture-gallery](https://github.com/rasbt/llm-architecture-gallery)\n  - [ ] [PeiQi0 starred 0xrsydn/polymarket-crypto-toolkit](https://github.com/0xrsydn/polymarket-crypto-toolkit)\n  - [ ] [WAY29 starred lexiforest/curl_cffi](https://github.com/lexiforest/curl_cffi)\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-23 Review](http://www.sec-wiki.com/?2026-03-23)\n- Doonsec's feed\n  - [ ] [Upload Labs 第11关：双写后缀绕过文件上传限制](https://mp.weixin.qq.com/s/PQj9RAmvvJL9No5vVwGz8Q)\n  - [ ] [首个武器化HDMI-CEC协议的安卓电视盒僵尸网络](https://mp.weixin.qq.com/s/L5gGW_L4y2gPeiZeLWmPtw)\n  - [ ] [一次基于Struts框架项目的代码审计](https://mp.weixin.qq.com/s/PlWU_oGPLunFf3n07VLejw)\n  - [ ] [一次针对电商的钓鱼事件](https://mp.weixin.qq.com/s/IhydbLuceUcjEuuuxeOnIw)\n  - [ ] [【案例分享】某社交平台并发签到漏洞：白帽子如何用一个接口刷21天签到？](https://mp.weixin.qq.com/s/NQP8AB4ZMI2wlC1hxiDU1w)\n  - [ ] [大模型安全深度学习指南：数据隐私泄露专题(1)](https://mp.weixin.qq.com/s/3hSbSo_cIkVpFrkq50QOlQ)\n  - [ ] [【开源情报】3.9巴林爆炸源自美军爱国者导弹](https://mp.weixin.qq.com/s/cGTvloYxkaF0I1sEJhEbdQ)\n  - [ ] [【培训】开源情报分析师实战能力培训班-4月成都开班](https://mp.weixin.qq.com/s/lLz0t7eCsCvzq2dA3KsE1g)\n  - [ ] [【高危漏洞预警】PyTorch反序列化漏洞 (CVE-2026-4538)](https://mp.weixin.qq.com/s/qY75RbrA81mPAib1B7tKfg)\n  - [ ] [泛微E-cology10存在远程代码执行漏洞(QVD-2026-14149) 附POC](https://mp.weixin.qq.com/s/-IJ-Z2s-pVbkQJHzNSM26w)\n  - [ ] [JNDI注入-ldap篇](https://mp.weixin.qq.com/s/jHLVsy2cxeoLV663DC8sCQ)\n  - [ ] [【CTF】2026PolarCTF春季赛wp（WEB篇）](https://mp.weixin.qq.com/s/yjiTfc7QA2JQtdKlIrWfPw)\n  - [ ] [你认为哪种语言最好？](https://mp.weixin.qq.com/s/uT4N1eyytErjV5xwrLw9uQ)\n  - [ ] [40+前大厂P8拿到70万offer，连夜失眠：不是钱少，是面子太沉](https://mp.weixin.qq.com/s/78u5iq6OXAGf0KufT3jlgg)\n  - [ ] [CSP绕过工具：cspbypass](https://mp.weixin.qq.co",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/chainreactors/picker/issues/1187",
+    "created_at": "2026-03-24T13:30:12.897375",
+    "status": "claimed"
+  },
+  {
+    "key": "MM0x02/RSS-Push#453",
+    "owner": "MM0x02",
+    "repo": "RSS-Push",
+    "number": 453,
+    "title": "[每日信息流] 2026-03-24",
+    "body": "# 每日安全资讯（2026-03-24）\n\n- Reverse Engineering\n  - [ ] [/r/ReverseEngineering's Weekly Questions Thread](https://www.reddit.com/r/ReverseEngineering/comments/1s19snm/rreverseengineerings_weekly_questions_thread/)\n  - [ ] [We got Skype to log in - One major step in figuring out the popular 2000s IM client](https://www.reddit.com/r/ReverseEngineering/comments/1s1tphp/we_got_skype_to_log_in_one_major_step_in_figuring/)\n  - [ ] [TIL you can detect a UEFI bootkit from usermode by just asking it nicely](https://www.reddit.com/r/ReverseEngineering/comments/1s1l9p8/til_you_can_detect_a_uefi_bootkit_from_usermode/)\n  - [ ] [I built an FPGA reimplementation of the 3dfx Voodoo 1](https://www.reddit.com/r/ReverseEngineering/comments/1s1lg56/i_built_an_fpga_reimplementation_of_the_3dfx/)\n  - [ ] [Using local LLM and Ghidra to analyze malware (Part 2)](https://www.reddit.com/r/ReverseEngineering/comments/1s1jx46/using_local_llm_and_ghidra_to_analyze_malware/)\n  - [ ] [I tried multiple tools ( Httpstoolkit, frida, burp , pcapdroid and others ) uses these on rooted phone.. but 1 app is not working / opening with these apps... I just need its api / ws from where it fetch data... can anyone help?](https://www.reddit.com/r/ReverseEngineering/comments/1s1rjmd/i_tried_multiple_tools_httpstoolkit_frida_burp/)\n- Doonsec's feed\n  - [ ] [Upload Labs 第11关：双写后缀绕过文件上传限制](https://mp.weixin.qq.com/s/PQj9RAmvvJL9No5vVwGz8Q)\n  - [ ] [首个武器化HDMI-CEC协议的安卓电视盒僵尸网络](https://mp.weixin.qq.com/s/L5gGW_L4y2gPeiZeLWmPtw)\n  - [ ] [一次基于Struts框架项目的代码审计](https://mp.weixin.qq.com/s/PlWU_oGPLunFf3n07VLejw)\n  - [ ] [一次针对电商的钓鱼事件](https://mp.weixin.qq.com/s/IhydbLuceUcjEuuuxeOnIw)\n  - [ ] [【案例分享】某社交平台并发签到漏洞：白帽子如何用一个接口刷21天签到？](https://mp.weixin.qq.com/s/NQP8AB4ZMI2wlC1hxiDU1w)\n  - [ ] [大模型安全深度学习指南：数据隐私泄露专题(1)](https://mp.weixin.qq.com/s/3hSbSo_cIkVpFrkq50QOlQ)\n  - [ ] [【开源情报】3.9巴林爆炸源自美军爱国者导弹](https://mp.weixin.qq.com/s/cGTvloYxkaF0I1sEJhEbdQ)\n  - [ ] [【培训】开源情报分析师实战能力培训班-4月成都开班](https://mp.weixin.qq.com/s/lLz0t7eCsCvzq2dA3KsE1g)\n  - [ ] [【高危漏洞预警】PyTorch反序列化漏洞 (CVE-2026-4538)](https://mp.weixin.qq.com/s/qY75RbrA81mPAib1B7tKfg)\n  - [ ] [泛微E-cology10存在远程代码执行漏洞(QVD-2026-14149) 附POC](https://mp.weixin.qq.com/s/-IJ-Z2s-pVbkQJHzNSM26w)\n  - [ ] [JNDI注入-ldap篇](https://mp.weixin.qq.com/s/jHLVsy2cxeoLV663DC8sCQ)\n  - [ ] [【CTF】2026PolarCTF春季赛wp（WEB篇）](https://mp.weixin.qq.com/s/yjiTfc7QA2JQtdKlIrWfPw)\n  - [ ] [你认为哪种语言最好？](https://mp.weixin.qq.com/s/uT4N1eyytErjV5xwrLw9uQ)\n  - [ ] [40+前大厂P8拿到70万offer，连夜失眠：不是钱少，是面子太沉](https://mp.weixin.qq.com/s/78u5iq6OXAGf0KufT3jlgg)\n  - [ ] [CSP绕过工具：cspbypass](https://mp.weixin.qq.com/s/YcVpH_5U_1uVNPA9PZvRRg)\n  - [ ] [大疆员工爆料：上个月从华为跳大疆。华为是910，大疆是1011，总时长差不多，大疆是保证双休的，氛围和管理，感觉差不多。](https://mp.weixin.qq.com/s/7aAvLjDVtj4YMErmcbLpBg)\n  - [ ] [暗网泄露:日本的公司信息](https://mp.weixin.qq.com/s/BkWleio7VVak_72ahvTrzw)\n  - [ ] [报文格式大全（协议地图）](https://mp.weixin.qq.com/s/lekkEgpyZmPdG7JHzpySlw)\n  - [ ] [IT项目管理表格大全，涵盖从项目启动、计划、执行控制到收尾的全生命周期](https://mp.weixin.qq.com/s/rQGY9tmEX5HscRv5jftBMA)\n  - [ ] [2",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/MM0x02/RSS-Push/issues/453",
+    "created_at": "2026-03-24T13:30:16.061940",
+    "status": "claimed"
+  },
+  {
+    "key": "ruohong2018/ruohong2018.github.io#1138",
+    "owner": "ruohong2018",
+    "repo": "ruohong2018.github.io",
+    "number": 1138,
+    "title": "[每日信息流] 2026-03-24",
+    "body": "# 每日安全资讯（2026-03-24）\n\n- SecWiki News\n  - [SecWiki News 2026-03-23 Review](http://www.sec-wiki.com/?2026-03-23)\n- Tenable Blog\n  - [The hidden cost of AI speed: Unmanaged cyber risk](https://www.tenable.com/blog/secure-ai-attack-surface-exposure-management)\n- Microsoft Security Blog\n  - [Case study: How predictive shielding in Defender stopped GPO-based ransomware before it started](https://www.microsoft.com/en-us/security/blog/2026/03/23/case-study-predictive-shielding-defender-stopped-gpo-based-ransomware-before-started/)\n- Recent Commits to cve:main\n  - [Update Mon Mar 23 11:30:41 UTC 2026](https://github.com/trickest/cve/commit/8a2fe5ed6f1e1a35cb540c0d1069ecf365011562)\n- 先知安全技术社区\n  - [PolarCTF2026春季个人赛 Web方向全解](https://xz.aliyun.com/news/91814)\n- 先知安全技术社区\n  - [PolarCTF2026春季个人赛 Web方向全解](https://xz.aliyun.com/news/91814)\n- 嘶吼 RoarTalk – 网络安全行业综合服务平台,4hou.com\n  - [【附下载】深度拆解OpenClaw“龙虾”风险：AI时代供应链安全，为何成了行业致命软肋？](https://www.4hou.com/posts/5MqX)\n  - [嘶吼安全动态｜国家级电力AI中试基地启用，华为、百度入驻筑牢能源AI安全 OpenWebUI服务器遭攻击，被植入挖矿与信息窃取恶意代码](https://www.4hou.com/posts/2XnA)\n- No Headback\n  - [book driven development](http://xargin.com/book-driven-development/)\n- paper - Last paper\n  - [增强网络入侵检测系统：一种抵御对抗攻击的多层集成方法](https://paper.seebug.org/3474/)\n- Bug Bounty in InfoSec Write-ups on Medium\n  - [Understanding the insecure deserialization vulnerability](https://infosecwriteups.com/understanding-the-insecure-deserialization-vulnerability-9e95f3d7723a?source=rss----7b722bfd1b8d--bug_bounty)\n- Malwarebytes\n  - [FriendlyDealer mimics official app stores to push unvetted gambling apps](https://www.malwarebytes.com/blog/scams/2026/03/friendlydealer-mimics-official-app-stores-to-push-unvetted-gambling-apps)\n  - [The March Madness scam playbook](https://www.malwarebytes.com/blog/news/2026/03/the-march-madness-scam-playbook)\n  - [Advanced Flow will make Android sideloading safer](https://www.malwarebytes.com/blog/news/2026/03/advanced-flow-will-make-android-sideloading-safer)\n  - [A week in security (March 16 &#8211; March 22)](https://www.malwarebytes.com/blog/uncategorized/2026/03/a-week-in-security-march-16-march-22)\n- Reverse Engineering\n  - [/r/ReverseEngineering's Weekly Questions Thread](https://www.reddit.com/r/ReverseEngineering/comments/1s19snm/rreverseengineerings_weekly_questions_thread/)\n  - [We got Skype to log in - One major step in figuring out the popular 2000s IM client](https://www.reddit.com/r/ReverseEngineering/comments/1s1tphp/we_got_skype_to_log_in_one_major_step_in_figuring/)\n  - [TIL you can detect a UEFI bootkit from usermode by just asking it nicely](https://www.reddit.com/r/ReverseEngineering/comments/1s1l9p8/til_you_can_detect_a_uefi_bootkit_from_usermode/)\n  - [I built an FPGA reimplementation of the 3dfx Voodoo 1](https://www.reddit.com/r/ReverseEngineering/comments/1s1lg56/i_built_an_fpga_reimplementation_of_the_3dfx/)\n  - [Using local LLM and Ghidra to analyze malware (Part 2)](https://www.reddit.com/r/ReverseEngineering/comments/1s1jx46/using_local_ll",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/ruohong2018/ruohong2018.github.io/issues/1138",
+    "created_at": "2026-03-24T13:30:19.135110",
+    "status": "claimed"
+  },
+  {
+    "key": "BruceFeIix/picker#2336",
+    "owner": "BruceFeIix",
+    "repo": "picker",
+    "number": 2336,
+    "title": "[每日信息流] 2026-03-24",
+    "body": "# 每日安全资讯（2026-03-24）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-23 Review](http://www.sec-wiki.com/?2026-03-23)\n- Microsoft Security Blog\n  - [ ] [Case study: How predictive shielding in Defender stopped GPO-based ransomware before it started](https://www.microsoft.com/en-us/security/blog/2026/03/23/case-study-predictive-shielding-defender-stopped-gpo-based-ransomware-before-started/)\n- 先知安全技术社区\n  - [ ] [PolarCTF2026春季个人赛 Web方向全解](https://xz.aliyun.com/news/91814)\n- Tenable Blog\n  - [ ] [The hidden cost of AI speed: Unmanaged cyber risk](https://www.tenable.com/blog/secure-ai-attack-surface-exposure-management)\n- 嘶吼 RoarTalk – 网络安全行业综合服务平台,4hou.com\n  - [ ] [【附下载】深度拆解OpenClaw“龙虾”风险：AI时代供应链安全，为何成了行业致命软肋？](https://www.4hou.com/posts/5MqX)\n  - [ ] [第十九届全国大学生信息安全竞赛（创新实践能力赛）暨第三届“长城杯”网数智安全大赛（防护赛）半决赛圆满举办](https://www.4hou.com/posts/33op)\n  - [ ] [梆梆安全“全系统加固体验月”开放报名中](https://www.4hou.com/posts/1Mmq)\n  - [ ] [嘶吼安全动态｜国家级电力AI中试基地启用，华为、百度入驻筑牢能源AI安全 OpenWebUI服务器遭攻击，被植入挖矿与信息窃取恶意代码](https://www.4hou.com/posts/2XnA)\n- Recent Commits to cve:main\n  - [ ] [Update Mon Mar 23 11:30:41 UTC 2026](https://github.com/trickest/cve/commit/8a2fe5ed6f1e1a35cb540c0d1069ecf365011562)\n- No Headback\n  - [ ] [book driven development](http://xargin.com/book-driven-development/)\n- InfoSec Write-ups - Medium\n  - [ ] [192.168.1.1 Walks Into Every House on the Street](https://infosecwriteups.com/192-168-1-1-walks-into-every-house-on-the-street-169e6e4d95d5?source=rss----7b722bfd1b8d---4)\n  - [ ] [[13 Cubed] Trouble at ACME Challenge — Investigating Windows Endpoint](https://infosecwriteups.com/13-cubed-trouble-at-acme-challenge-investigating-windows-endpoint-9cada1bcd47b?source=rss----7b722bfd1b8d---4)\n  - [ ] [Insecure Output Handling: Exploiting XSS in LLM Applications (Part 1)](https://infosecwriteups.com/insecure-output-handling-exploiting-xss-in-llm-applications-part-1-ad8b992f7e42?source=rss----7b722bfd1b8d---4)\n  - [ ] [Jordak Linux Lab Proving Grounds](https://infosecwriteups.com/jordak-linux-lab-proving-grounds-d07b6c12900a?source=rss----7b722bfd1b8d---4)\n  - [ ] [Understanding the insecure deserialization vulnerability](https://infosecwriteups.com/understanding-the-insecure-deserialization-vulnerability-9e95f3d7723a?source=rss----7b722bfd1b8d---4)\n  - [ ] [Shellcode Analysis: Egg Hunters, Encoders, and Polymorphism](https://infosecwriteups.com/shellcode-analysis-egg-hunters-encoders-and-polymorphism-e0cbb76c5871?source=rss----7b722bfd1b8d---4)\n- Bug Bounty in InfoSec Write-ups on Medium\n  - [ ] [Understanding the insecure deserialization vulnerability](https://infosecwriteups.com/understanding-the-insecure-deserialization-vulnerability-9e95f3d7723a?source=rss----7b722bfd1b8d--bug_bounty)\n- Reverse Engineering\n  - [ ] [/r/ReverseEngineering's Weekly Questions Thread](https://www.reddit.com/r/ReverseEngineering/comments/1s19snm/rreverseengineerings_weekly_questions_thread/)\n  - [ ] [We got Skype to log in - One major step in figuring out the popular 2000s IM client](https:/",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/BruceFeIix/picker/issues/2336",
+    "created_at": "2026-03-24T13:30:22.512368",
+    "status": "claimed"
+  },
+  {
+    "key": "FransDevelopment/agent-json#1",
+    "owner": "FransDevelopment",
+    "repo": "agent-json",
+    "number": 1,
+    "title": "Agent Identity Working Group — integration points",
+    "body": "Standing reference for WG members exploring how agent.json connects to the identity/transport/execution stack.\n\n## Integration points\n\n| WG Layer | agent.json Connection |\n|----------|----------------------|\n| **Identity (OATR)** | Tier 3 manifests use Ed25519 + `did:web` — same key type and DID method as the registry |\n| **Transport (QSP-1)** | Encrypted channels carry intent invocations declared in the manifest |\n| **Execution (ArkForge)** | Receipts attest to actions that correspond to declared intents |\n| **Resolution (DID module)** | Resolves Tier 3 identity directly — no adapter needed |\n| **Discovery (Agora)** | agent.json is the structured manifest that a discovery layer indexes |\n| **Commerce (APS)** | Bounty/incentive/price model defines service-side economics; APS handles agent-side delegation |\n\n## Relevant files\n\nA service participating in the full WG stack hosts three well-known files:\n\n```\n/.well-known/agent.json        — capability manifest (this spec)\n/.well-known/agent-trust.json  — OATR domain verification\n/.well-known/did.json          — DID document\n```\n\n## Discussion\n\nPrimary WG coordination happens on [corpollc/qntm#5](https://github.com/corpollc/qntm/issues/5). Use this issue for agent.json-specific questions — schema, intents, payment rails, Tier 3 identity, validator, examples.\n\n## Links\n\n- [Specification](https://github.com/FransDevelopment/agent-json/blob/main/SPECIFICATION.md)\n- [JSON Schema](https://github.com/FransDevelopment/agent-json/blob/main/schema.json)\n- [Examples](https://github.com/FransDevelopment/agent-json/tree/main/examples)\n- [CLI Validator](https://www.npmjs.com/package/agent-json-validate)\n- [OATR Registry](https://github.com/FransDevelopment/open-agent-trust-registry)\n- [WG Coordination Thread](https://github.com/corpollc/qntm/issues/5)",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/FransDevelopment/agent-json/issues/1",
+    "created_at": "2026-03-24T13:30:25.600624",
+    "status": "claimed"
+  },
+  {
+    "key": "cashubtc/nutshell#921",
+    "owner": "cashubtc",
+    "repo": "nutshell",
+    "number": 921,
+    "title": "[Security] P2PK Signature Deduplication Bypass (Medium-High)",
+    "body": "---\ntitle: \"Security: P2PK Signature Deduplication Bypass (Medium-High)\"\nlabels: [\"security\", \"bug\", \"p2pk\"]\nassignees: []\n---\n\n## 🚨 Security Vulnerability Report\n\n**Severity:** Medium-High  \n**Component:** P2PK Signature Handling  \n**File:** `cashu/wallet/p2pk.py` (lines 221, 232)  \n**Impact:** Multi-signature bypass, potential double-spend  \n**Bounty:** Requesting payment in Cashu ecash  \n\n---\n\n## Summary\n\nA vulnerability in the P2PK signature deduplication logic allows the same signature to be added multiple times to a proof by using different hex encodings (uppercase vs lowercase). This could enable attackers to bypass multi-signature requirements or attempt double-spend attacks.\n\n---\n\n## Technical Details\n\n### Vulnerable Code\n\n**File:** `cashu/wallet/p2pk.py`  \n**Lines:** 221, 232\n\n```python\ndef add_signatures_to_proofs(\n    self, proofs: List[Proof], signatures: List[str]\n) -> List[Proof]:\n    # ...\n    if proof_signatures and s not in proof_signatures:  # ← VULNERABLE\n        p.witness = P2PKWitness(\n            signatures=proof_signatures + [s]\n        ).model_dump_json()\n```\n\n### The Bug\n\nThe deduplication check uses **string comparison** on hex-encoded signatures. Hex strings have multiple valid representations:\n\n```python\nsignature_bytes.hex().lower()  # \"7fae1faf...\"\nsignature_bytes.hex().upper()  # \"7FAE1FAF...\"  ← Same signature, different string!\n```\n\n### Proof of Concept\n\n```python\n# Create a signature\nsig_bytes = get_signature()  # 64 bytes\nsig_lower = sig_bytes.hex().lower()\nsig_upper = sig_bytes.hex().upper()\n\n# Add to proof\nproof = Proof(...)\nwallet.add_signatures_to_proofs([proof], [sig_lower])\n\n# Add same signature with different encoding\nwallet.add_signatures_to_proofs([proof], [sig_upper])\n\n# Proof now has 2 \"different\" signatures (really the same one)\nwitness = P2PKWitness.from_witness(proof.witness)\nassert len(witness.signatures) == 2  # ← Should be 1!\n```\n\n### Test Results\n\n```\n=== Signature Encoding Test ===\nLower: 7fae1fafdfed98facb45bc65a9e83344...\nUpper: 7FAE1FAFDFED98FACB45BC65A9E83344...\n\nString comparison:\n  lower == upper: False\n\nDeduplication test:\n  lower in [lower]: True\n  upper in [lower]: False  ← VULNERABILITY!\n\n❌ VULNERABILITY: Same signature with different encoding NOT detected!\n```\n\n---\n\n## Impact\n\n### 1. Multi-Signature Bypass (High Impact)\n\n**Scenario:** P2PK 2-of-2 lock requiring Alice + Bob signatures\n\n**Attack:**\n1. Alice signs → adds signature `S_A` (lowercase)\n2. Alice adds `S_A` again (uppercase) as \"second\" signature\n3. Proof now has 2 signatures (both from Alice)\n4. Bob's signature not required\n5. Attacker (Alice) unlocks funds alone\n\n**Impact:** Complete bypass of multi-signature security\n\n### 2. Double-Spend Attack (Medium Impact)\n\n**Scenario:** Spending locked proof\n\n**Attack:**\n1. Create transaction with signature `S` (lowercase)\n2. Create second transaction with signature `S` (uppercase)\n3. Both transactions validate (different strings)\n4. Double-spend successful\n\n**Impact:** Loss of fund",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/cashubtc/nutshell/issues/921",
+    "created_at": "2026-03-24T14:30:10.914324",
+    "status": "claimed"
+  },
+  {
+    "key": "shloka23/temp-portfolio#1",
+    "owner": "shloka23",
+    "repo": "temp-portfolio",
+    "number": 1,
+    "title": "two additional vulnerabilities",
+    "body": "\nWe're informing you about two additional vulnerabilities (CVE-2025-55184 and CVE-2025-55183) identified in the React Server Components (RSC) implementation, affecting frameworks such as Next.js.\n--\nThe React2Shell incident sparked community research into React Server Components, and these vulnerabilities were discovered by an external security researcher through Vercel and Meta's bug bounty program. We're grateful for this community effort.\nThere is no evidence these vulnerabilities have been exploited.\nWhat we've found:CVE-2025-55184 (High Severity – Denial of Service): A malicious HTTP request sent to any App Router endpoint can, when deserialized, cause the server process to hang and consume CPU. This impacts all versions handling RSC requests. The initial fix was incomplete and did not fully prevent denial-of-service attacks for all payload types, resulting in CVE-2025-67779.  CVE-2025-55183 (Medium Severity – Source Code Exposure): A malicious HTTP request sent to any App Router endpoint can return the compiled source code of Server Actions. This could reveal business logic, but would not expose secrets unless they were hardcoded directly into a Server Action's code.\nSecurity Bulletin\nWhat you should do:Update your applications to the latest patched versionEven customers who have patched against React2Shell need to upgrade to the latest version. Updates to React2Shell will continue to be posted in the React2Shell Security Bulletin.\nVisit the latest Security Bulletin to learn more and for guidance on automated fixes.\nWe will continue to monitor for emerging risks and remain committed to transparent, timely disclosures.\n- The Vercel Security Team\n \n\n<br class=\"Apple-interchange-newline\">We're informing you about two additional vulnerabilities (CVE-2025-55184 and CVE-2025-55183) identified in the React Server Components (RSC) implementation, affecting frameworks such as Next.js. \n\nThe React2Shell incident sparked community research into React Server Components, and these vulnerabilities were discovered by an external security researcher through Vercel and Meta's bug bounty program. We're grateful for this community effort.\n\nThere is no evidence these vulnerabilities have been exploited.\n\nWhat we've found:\n\nCVE-2025-55184 (High Severity – Denial of Service): A malicious HTTP request sent to any App Router endpoint can, when deserialized, cause the server process to hang and consume CPU. This impacts all versions handling RSC requests. The initial fix was incomplete and did not fully prevent denial-of-service attacks for all payload types, resulting in CVE-2025-67779.  \nCVE-2025-55183 (Medium Severity – Source Code Exposure): A malicious HTTP request sent to any App Router endpoint can return the compiled source code of Server Actions. This could reveal business logic, but would not expose secrets unless they were hardcoded directly into a Server Action's code.\n[Security Bulletin](https://tracking.inflection.io/02522a2b2726fb0a03bb19f2d8d9524d/g",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/shloka23/temp-portfolio/issues/1",
+    "created_at": "2026-03-24T14:30:14.607753",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#723",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 723,
+    "title": "Implement monitoring: health_check and analytics views (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Implement monitoring: health_check and analytics views (grainlify-core)\n\nDescription\n\nExpose health_check and get_analytics per monitoring module design for operators.\n\nRequirements and context\n\nRead-only views must be bounded and panic-free on empty state.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-monitoring-views\n\nImplement changes\n\nWrite contract: grainlify-core/src/lib.rs (monitoring submodule)\nWrite tests: grainlify-core/src/test/invariant_entrypoints_tests.rs\nAdd documentation: monitoring fields meaning\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): health and analytics view functions\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/723",
+    "created_at": "2026-03-24T14:30:19.003326",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#801",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 801,
+    "title": "View facade: list and lookup queries (view-facade)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: View facade: list and lookup queries (view-facade)\n\nDescription\n\nlist_contracts, contract_count, get_contract behave for dashboards.\n\nRequirements and context\n\nO(n) scan acceptable; document limits.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/view-facade-queries\n\nImplement changes\n\nWrite contract: view-facade/src/lib.rs\nWrite tests: view-facade/src/test.rs\nAdd documentation: query examples\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(view-facade): query API coverage\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/801",
+    "created_at": "2026-03-24T14:30:22.892506",
+    "status": "claimed"
+  },
+  {
+    "key": "cashubtc/nutshell#922",
+    "owner": "cashubtc",
+    "repo": "nutshell",
+    "number": 922,
+    "title": "[Security #2] DLEQ Verification Bypass (Medium-High)",
+    "body": "---\ntitle: \"Security #2: DLEQ Verification Bypass (Medium-High)\"\nlabels: [\"security\", \"bug\", \"p2pk\", \"dleq\"]\nassignees: []\n---\n\n## 🚨 Security Vulnerability Report #2\n\n**Severity:** Medium-High  \n**Component:** DLEQ Proof Verification  \n**File:** `cashu/wallet/wallet.py` (lines 938-940)  \n**Impact:** Fake proof acceptance, potential double-spend  \n**Bounty:** Requesting payment in Cashu ecash  \n\n**Related:** Issue #921 (Signature Deduplication Bypass)\n\n---\n\n## Summary\n\nA second vulnerability has been discovered in the Cashu wallet implementation. The DLEQ verification function returns early without validating proofs when a proof is missing DLEQ data, allowing attackers to submit invalid or fake proofs.\n\n---\n\n## Technical Details\n\n### Vulnerable Code\n\n**File:** `cashu/wallet/wallet.py`  \n**Lines:** 938-940\n\n```python\ndef verify_proofs_dleq(self, proofs: List[Proof]):\n    \"\"\"Verifies DLEQ proofs in proofs.\"\"\"\n    for proof in proofs:\n        if not proof.dleq:\n            logger.trace(\"No DLEQ proof in proof.\")\n            return  # ← VULNERABLE: Returns without validation!\n```\n\n### The Bug\n\nWhen any proof is missing DLEQ data, the function:\n1. Logs a trace message\n2. **Returns immediately**\n3. **Performs NO cryptographic validation**\n4. Invalid proofs are accepted as valid\n\n### Proof of Concept\n\n```python\nfrom cashu.wallet.crud import Proof\n\n# Create proof without DLEQ\nproof = Proof(\n    id='test123',\n    amount=100,\n    secret='test_secret',\n    C='02' + '00'*31,\n    dleq=None  # No DLEQ!\n)\n\n# Verify - should fail but doesn't!\nwallet.verify_proofs_dleq([proof])\n# Function returns without error!\n# Proof accepted without validation!\n```\n\n### Test Results\n\n```\nTest 1: Verify proof without DLEQ\n  ❌ VULNERABILITY: Proof without DLEQ was accepted!\n     Function returned without error\n\n❌ VULNERABILITY CONFIRMED!\n```\n\n---\n\n## Impact\n\n### 1. Fake Proof Acceptance (High)\n\n**Attack:**\n1. Create proof with arbitrary amount\n2. Set `dleq=None`\n3. Wallet accepts without validation\n4. Attacker spends fake ecash\n\n**Impact:** Complete bypass of proof validation\n\n### 2. Proof Modification (High)\n\n**Attack:**\n1. Take valid 100 sat proof\n2. Modify amount to 10000 sats\n3. DLEQ becomes invalid (removed)\n4. Wallet accepts inflated proof\n\n**Impact:** Value inflation, theft\n\n### 3. Combined with Issue #921 (Critical)\n\nIf exploited together with the signature deduplication bypass (Issue #921):\n\n1. Create proof with fake value\n2. Add \"multiple signatures\" (same sig, different encodings)\n3. Remove DLEQ to bypass validation\n4. Proof appears to have multi-sig approval\n5. Mint pays out inflated amount\n\n**Combined Severity:** Critical!\n\n---\n\n## Recommended Fix\n\n### Option 1: Raise Exception (Recommended)\n\n```python\ndef verify_proofs_dleq(self, proofs: List[Proof]):\n    for proof in proofs:\n        if not proof.dleq:\n            raise Exception(\"Proof missing DLEQ\")  # ← FIX\n        # ... validate\n```\n\n### Option 2: Skip and Continue\n\n```python\ndef verify_proofs_dleq(self, proofs:",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/cashubtc/nutshell/issues/922",
+    "created_at": "2026-03-24T15:00:08.954886",
+    "status": "claimed"
   }
 ]

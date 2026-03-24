@@ -3,7 +3,7 @@
 # 每小时检查一次，发现付款邮件立即通知
 
 GMAIL_USER="zhaog100@gmail.com"
-GMAIL_PASS=$(grep GMAIL_PASS /root/.openclaw/secrets/gmail.env 2>/dev/null | cut -d= -f2)
+GMAIL_PASS=$(grep GMAIL_PASS $HOME/.openclaw/secrets/gmail.env 2>/dev/null | cut -d= -f2)
 LOG_FILE="/tmp/gmail_payment_check.log"
 STATE_FILE="/tmp/gmail_payment_seen_ids.txt"
 
