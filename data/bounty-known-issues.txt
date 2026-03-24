@@ -124,6 +124,7 @@ Mikann20041029/mikann20041029.github.io#375
 Monkestation/Vanderlin#5791
 Monkestation/Vanderlin#5798
 Monkestation/Vanderlin#5805
+Monkestation/Vanderlin#5806
 OWASP-BLT/BLT-Next##118
 OWASP-BLT/BLT-Next##123
 OWASP-BLT/BLT-Next##124
