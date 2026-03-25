@@ -2,7 +2,7 @@
 
 **文档版本**：v1.0  
 **创建日期**：2026-03-13  
-**创建者**：小米辣（PM 代理）  
+**创建者**：小米粒（PM 代理）  
 **部署场景**：家里 NAS + 公司服务器  
 **参考文章**：https://mp.weixin.qq.com/s/aHgRVRdFmUR8Qnkh0cPuaA
 
@@ -317,7 +317,7 @@ OpenClaw B：应该能直接理解并产出（无需重复背景）
 // ~/.openclaw-home/openclaw.json
 {
   "agent": {
-    "name": "小米辣（创意策划）",
+    "name": "小米粒（创意策划）",
     "role": "负责创意策划、方案设计、文案创作",
     "tools": ["设计工具", "文案模板", "头脑风暴"]
   }
@@ -563,4 +563,4 @@ OPENCLAW_HOME=~/.openclaw-work openclaw plugins update memos-cloud-openclaw-plug
 
 *部署方案版本：v1.0*  
 *创建时间：2026-03-13 12:00*  
-*创建者：小米辣（PM 代理）*
+*创建者：小米粒（PM 代理）*

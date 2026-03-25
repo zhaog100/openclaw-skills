@@ -1,4 +1,4 @@
-# 小米辣 - 小米辣 协作 Review 工作流
+# 小米粒 - 小米粒 协作 Review 工作流
 
 **版本：** v1.0  
 **生效日期：** 2026-03-11  
@@ -11,7 +11,7 @@
 **从单向评审 → 双向协作**
 
 ```
-小米辣自检 → 小米辣 Review → 小米辣补充 → 最终决定
+小米粒自检 → 小米粒 Review → 小米粒补充 → 最终决定
      ↓            ↓              ↓           ↓
   创建清单    详细评审      反馈建议    批准/拒绝
 ```
@@ -20,7 +20,7 @@
 
 ## 📋 完整流程
 
-### 阶段 1：小米辣自检
+### 阶段 1：小米粒自检
 
 **文件：** `/tmp/self_review_checklist.md`
 
@@ -31,21 +31,21 @@
 
 ---
 
-### 阶段 2：小米辣 Review
+### 阶段 2：小米粒 Review
 
 **脚本：** `/home/zhaog/.openclaw/workspace/scripts/mili_review_optimized.sh`
 
 **步骤：**
 1. 读取自检清单
 2. 执行代码 Review
-3. 回答小米辣的疑问
+3. 回答小米粒的疑问
 4. 创建 Review 文档
 5. 做出决定（批准/拒绝）
-6. 通知小米辣
+6. 通知小米粒
 
 ---
 
-### 阶段 3：小米辣补充
+### 阶段 3：小米粒补充
 
 **文件：** `/tmp/review_supplement.md`
 
@@ -53,7 +53,7 @@
 1. 查看 Review 结果
 2. 如有补充，填写补充建议
 3. 提交补充建议
-4. 小米辣决定是否接受
+4. 小米粒决定是否接受
 
 ---
 
@@ -69,27 +69,27 @@
 
 | 文件 | 路径 | 用途 |
 |------|------|------|
-| 自检清单模板 | `/tmp/self_review_checklist_template.md` | 小米辣自检 |
-| 自检清单 | `/tmp/self_review_checklist.md` | 提交给小米辣 |
+| 自检清单模板 | `/tmp/self_review_checklist_template.md` | 小米粒自检 |
+| 自检清单 | `/tmp/self_review_checklist.md` | 提交给小米粒 |
 | Review 脚本 | `/home/zhaog/.openclaw/workspace/scripts/mili_review_optimized.sh` | 执行 Review |
 | Review 模板 | `/home/zhaog/.openclaw/workspace/.clawhub/review_template.md` | Review 文档 |
 | Review 文档 | `/home/zhaog/.openclaw/workspace/reviews/` | Review 记录 |
-| 补充建议模板 | `/tmp/review_supplement_template.md` | 小米辣补充 |
-| 补充建议 | `/tmp/review_supplement.md` | 提交给小米辣 |
-| Review 请求 | `/tmp/notify_mili.txt` | 通知小米辣 |
-| Review 结果 | `/tmp/notify_xiaomi.txt` | 通知小米辣 |
+| 补充建议模板 | `/tmp/review_supplement_template.md` | 小米粒补充 |
+| 补充建议 | `/tmp/review_supplement.md` | 提交给小米粒 |
+| Review 请求 | `/tmp/notify_mili.txt` | 通知小米粒 |
+| Review 结果 | `/tmp/notify_xiaomi.txt` | 通知小米粒 |
 
 ---
 
 ## 🎯 双向思考要点
 
-### 小米辣需要：
-- ✅ 先读小米辣的自检清单
-- ✅ 了解小米辣的关注点
-- ✅ 回答小米辣的疑问
-- ✅ 考虑小米辣的补充建议
+### 小米粒需要：
+- ✅ 先读小米粒的自检清单
+- ✅ 了解小米粒的关注点
+- ✅ 回答小米粒的疑问
+- ✅ 考虑小米粒的补充建议
 
-### 小米辣需要：
+### 小米粒需要：
 - ✅ 创建详细的自检清单
 - ✅ 明确提出疑问
 - ✅ 思考 Review 结果
@@ -101,8 +101,8 @@
 
 | 方面 | 单向评审 | 双向协作 |
 |------|---------|---------|
-| **信息透明** | ❌ 小米辣不了解小米辣思路 | ✅ 自检清单共享思路 |
-| **疑问解决** | ❌ 小米辣疑问未解答 | ✅ 小米辣专门回答 |
+| **信息透明** | ❌ 小米粒不了解小米粒思路 | ✅ 自检清单共享思路 |
+| **疑问解决** | ❌ 小米粒疑问未解答 | ✅ 小米粒专门回答 |
 | **反馈机制** | ❌ 单向输出 | ✅ 双向沟通 |
 | **技术质量** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **协作效率** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
@@ -111,7 +111,7 @@
 
 ## 📝 使用示例
 
-### 小米辣发起 Review
+### 小米粒发起 Review
 
 ```bash
 # 1. 复制并填写自检清单
@@ -121,17 +121,17 @@ nano /tmp/self_review_checklist.md
 # 2. 发起 Review 请求
 echo "请 Review: smart-model-switch" > /tmp/notify_mili.txt
 
-# 3. 等待小米辣 Review
+# 3. 等待小米粒 Review
 ```
 
-### 小米辣执行 Review
+### 小米粒执行 Review
 
 ```bash
 # 执行优化版 Review 脚本
 bash /home/zhaog/.openclaw/workspace/scripts/mili_review_optimized.sh
 ```
 
-### 小米辣提交补充
+### 小米粒提交补充
 
 ```bash
 # 1. 查看 Review 结果
@@ -141,16 +141,16 @@ cat /tmp/notify_xiaomi.txt
 cp /tmp/review_supplement_template.md /tmp/review_supplement.md
 nano /tmp/review_supplement.md
 
-# 3. 等待小米辣检查
+# 3. 等待小米粒检查
 ```
 
 ---
 
 ## 🌟 最佳实践
 
-1. **自检要详细** - 小米辣应该认真填写自检清单
+1. **自检要详细** - 小米粒应该认真填写自检清单
 2. **疑问要明确** - 把不确定的地方写清楚
-3. **Review 要耐心** - 小米辣要仔细阅读自检清单
+3. **Review 要耐心** - 小米粒要仔细阅读自检清单
 4. **补充要具体** - 补充建议要有可操作性
 5. **文档要保存** - 所有 Review 文档归档到 reviews/
 

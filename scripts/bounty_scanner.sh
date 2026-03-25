@@ -9,7 +9,7 @@ KNOWN_FILE="$WORKSPACE/data/bounty-known-issues.txt"
 mkdir -p "$WORKSPACE/data"
 
 # 排除关键词（空格分隔）
-EXCLUDE_PATTERN="zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin"
+EXCLUDE_PATTERN="zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|cxlinux-ai|PX4|JuliaEarth|dashtesting"
 
 scan_github() {
     echo "[$(date '+%Y-%m-%d %H:%M')] GitHub扫描..." >> /tmp/bounty_scanner.log

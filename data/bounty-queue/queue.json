@@ -495,5 +495,325 @@
     "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/156",
     "created_at": "2026-03-25T12:30:25.950820",
     "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#759",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 759,
+    "title": "Bounty escrow: refund flows (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: refund flows (bounty_escrow/escrow)\n\nDescription\n\nRefund before deadline, on expiry, and admin-assisted paths.\n\nRequirements and context\n\nCovers parity refund scenarios where applicable.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-refund\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_lifecycle.rs, test_expiration_and_dispute.rs\nAdd documentation: refund policy\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): refund flows and tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/759",
+    "created_at": "2026-03-25T12:00:34.500519",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#789",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 789,
+    "title": "Bounty escrow: query filters (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: query filters (bounty_escrow/escrow)\n\nDescription\n\ntest_query_filters in analytics tests for deadline/amount filters.\n\nRequirements and context\n\nStable ordering for pagination assumptions.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-query-filters\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_analytics_monitoring.rs\nAdd documentation: query API\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): query filter tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/789",
+    "created_at": "2026-03-25T12:00:35.456762",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#762",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 762,
+    "title": "Bounty escrow: RBAC roles (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: RBAC roles (bounty_escrow/escrow)\n\nDescription\n\nRole-gated actions per test_rbac.rs; admin vs operator vs participant.\n\nRequirements and context\n\nNo privilege escalation via cross-calls.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-rbac\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_rbac.rs\nAdd documentation: RBAC matrix\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): RBAC enforcement tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/762",
+    "created_at": "2026-03-25T12:00:36.498911",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#805",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 805,
+    "title": "Shared traits: escrow interface alignment (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Shared traits: escrow interface alignment (bounty_escrow/escrow)\n\nDescription\n\ntraits.rs definitions used by cross-contract tests stay consistent with lib entrypoints.\n\nRequirements and context\n\nBreaking trait changes require version bump.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-traits\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/traits.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_cross_contract_interface.rs\nAdd documentation: trait mapping table\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): escrow traits documentation and tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/805",
+    "created_at": "2026-03-25T12:00:37.458787",
+    "status": "claimed"
+  },
+  {
+    "key": "JesseRWeigel/demigods-fate#16",
+    "owner": "JesseRWeigel",
+    "repo": "demigods-fate",
+    "number": 16,
+    "title": "Add multiplayer support and testing",
+    "body": "## Description\nTest and fix multiplayer functionality. The mod should work on dedicated servers with multiple players.\n\n## Tasks\n- [ ] Test with 2+ players on a dedicated server\n- [ ] Verify god-parent data persists per-player correctly\n- [ ] Test ability cooldowns don't leak between players\n- [ ] Test HUD overlay shows correctly for each player's own data\n- [ ] Test camp safe zones work for all players\n- [ ] Test drachma economy doesn't desync\n- [ ] Test bounty system tracks per-player\n- [ ] Test quest system tracks per-player\n- [ ] Fix any client-server sync issues (abilities currently execute client-side)\n- [ ] Add proper network packets for ability activation (currently uses direct calls)",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/JesseRWeigel/demigods-fate/issues/16",
+    "created_at": "2026-03-25T12:00:38.829174",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#156",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 156,
+    "title": "Implement Fee Mechanism for Platform Operations",
+    "body": "Add a fee mechanism to escrow contracts to support platform operations. Fees can be collected on fund locks, releases, or as a percentage of payouts. This enables sustainable platform economics.\n\n**Requirements and context:**\n\n- No fee mechanism currently exists\n- Need configurable fee rates\n- Should support fee recipient address\n- Fees should be optional and admin-configurable\n- Component locations:\n  - `contracts/bounty_escrow/contracts/escrow/src/lib.rs`\n  - `contracts/program-escrow/src/lib.rs`\n\n**Suggested execution:**\n\n1. Fork the repo and create a branch\n   ```bash\n   git checkout -b feat/fee-mechanism\n   ```\n\n2. Implement changes\n   - Add fee configuration to contract storage\n   - Implement fee calculation functions\n   - Add fee collection on relevant operations\n   - Support percentage-based and fixed fees\n   - Add fee recipient address\n   - Emit fee collection events\n   - Add admin functions to update fee rates\n\n3. Test and commit\n   - Test fee calculation accuracy\n   - Test fee collection on different operations\n   - Test fee rate updates\n   - Test zero-fee scenarios\n   - Verify fee recipient receives funds\n   - Include fee structure documentation\n\n**Example commit message:**\n```\nfeat: implement fee mechanism for platform operations\n```\n\n**Guidelines:**\n- Assignment required before starting\n- PR description must include: `Closes #[issue_id]`",
+    "score": 15,
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "good first issue",
+      "Stellar Wave",
+      "Smart-Contract"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/156",
+    "created_at": "2026-03-25T12:30:04.103934",
+    "status": "claimed"
+  },
+  {
+    "key": "sushiwushi/bug-bounty-dorks#31",
+    "owner": "sushiwushi",
+    "repo": "bug-bounty-dorks",
+    "number": 31,
+    "title": "Dork not showing exact results",
+    "body": "The \"15th dork: white hat program \"is not showing the proper bug bounty programs, or let’s say VDPs. It’s just showing the keywords that contain the word \"program.\" It is not showing whether it relates to any bug bounty program. It's only few program that really has the white hat bug bounty program.",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/sushiwushi/bug-bounty-dorks/issues/31",
+    "created_at": "2026-03-25T13:30:07.654824",
+    "status": "claimed"
+  },
+  {
+    "key": "verl-project/verl#1782",
+    "owner": "verl-project",
+    "repo": "verl",
+    "number": 1782,
+    "title": "Atropos integration ($2500 bounty)",
+    "body": "Hey! Nous Research here - we're the authors of an LLM RL environments repo called [atropos](https://github.com/NousResearch/atropos) which is designed to provide rollouts for multi-environment runs, and where each individual env can be single-turn, multi-turn, or multi-agent, R1-zero style, or have a custom chat template. Furthermore, environments can define token-level advantages and so are not necessarily tied to the same RL training algorithm.\n\nEach environment is a self-contained microservice and we have an API that sequesters rollouts from all of the environments. A trainer can request a batch of data from the API. Here's our writeup of our [API spec](https://github.com/NousResearch/atropos/tree/main/atroposlib/api). \n\nHere's [an example integration into Axolotl](https://github.com/axolotl-ai-cloud/plugin-atropos) from the Axolotl authors, and our own [minimal example trainer](https://github.com/NousResearch/atropos/tree/main/example_trainer).\n\n===========================\nEDIT:\n\n- The integration must use GRPO (but support the optional token-level advantage overrides when provided.). \nPlease expose the usual verl configurables as in [this example](https://github.com/volcengine/verl/blob/main/examples%2Fgrpo_trainer%2Frun_qwen2_5-3b_gsm8k_grpo_lora.sh).\n- Atropos doesn't spin up inference servers - we need verl to spin these servers up and then provide their endpoints to Atropos.\n- verl should also manage policy weight updates to the inference server.\n- Both the verl team and Nous team must approve your PR. \n\n===========================\n\nWe are offering a bounty of $2500 for an online RL integration, paid out at the time the PR is merged into verl main.\n\nIf there are multiple competing integrations we reserve the right to select the one we deem highest quality.\n\n",
+    "score": 50,
+    "labels": [
+      "call for contribution"
+    ],
+    "html_url": "https://github.com/verl-project/verl/issues/1782",
+    "created_at": "2026-03-25T13:30:08.744214",
+    "status": "claimed"
+  },
+  {
+    "key": "Uniswap/v4-core#1028",
+    "owner": "Uniswap",
+    "repo": "v4-core",
+    "number": 1028,
+    "title": "[SECURITY DISCLOSURE] Critical Vulnerability found in ERC6909.sol",
+    "body": "**Enterprise-Grade Bug Report**\r\n\r\n**Contract:** ERC6909\r\n**Version:** 0.8.0\r\n**Audited On:** 21 March 2026\r\n\r\n**Introduction:**\r\nThis audit was conducted on the provided Solmate-based ERC6909 contract implementation. The audit focused on identifying potential critical and high-severity security vulnerabilities.\r\n\r\n**Findings:**\r\n\r\n### Critical Severity\r\n\r\n1. **Reentrancy Vulnerability** in transferFrom function:\r\nThe `transferFrom` function uses a conditional statement to check if the sender has sufficient allowance to transfer the specified amount. However, this check is performed before updating the `balanceOf` and `allowance` mappings. This allows a malicious user to repeatedly call `transferFrom` in a loop, each time reducing the sender's allowance, ultimately causing a reentrancy attack.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, reentrancy-safe operations should be performed within a lock or using the OpenZeppelin reentrancy modifier.\r\n\r\n2. **Arithmetic Overflow Vulnerability** in balanceOf and allowance mappings:\r\nThe contract uses mappings to store balance and allowance data. However, the data type used for this mapping (uint256) may cause arithmetic overflows when the balances or allowance amounts approach the maximum limit of uint256.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, consider using data types with a larger maximum value or using libraries that handle arithmetic overflows safely, such as SafeMath or OpenZeppelin's SafeMath library.\r\n\r\n### High Severity\r\n\r\n1. **Missing Input Validation** in transfer and transferFrom functions:\r\nThe `transfer` and `transferFrom` functions lack proper input validation. Specifically, they do not check if the `receiver` address is not the zero address (0x0).\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, add input validation to check for zero addresses and other invalid conditions.\r\n\r\n2. **Incorrect Gas Optimizations in setOperator function:**\r\nThe `setOperator` function uses a mapping to store operator status, which can lead to excessive storage growth and associated gas costs over time.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, consider using a Merkle tree or other gas-efficient data structures to store operator status.\r\n\r\n3. **Missing Authorization Checks** in certain functions:\r\nFunctions like `approve` and `transfer` lack proper authorization checks.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, add authorization checks to ensure that only authorized parties can execute these functions.\r\n\r\n**Recommendations:**\r\n\r\nTo address these vulnerabilities, consider the following recommendations:\r\n\r\n1. Apply reentrancy-safe operations within a lock or using the OpenZeppelin reentrancy modifier.\r\n2. Use data types with a larger maximum value or libraries that handle arithmetic overflows safely.\r\n3. Implement input validation for zero addresses and other invalid conditions in all functions.\r\n4. Consider using Merkle trees or other gas-efficient data structures to stor",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/Uniswap/v4-core/issues/1028",
+    "created_at": "2026-03-25T13:30:10.021819",
+    "status": "claimed"
+  },
+  {
+    "key": "gitcoinco/gitcoin_co_30#300",
+    "owner": "gitcoinco",
+    "repo": "gitcoin_co_30",
+    "number": 300,
+    "title": "Giveth — Decentralized Donations with Quadratic Funding & Streaming",
+    "body": "<!--\nIMPORTANT: This template is automatically parsed by a script to generate content files.\n- Fill in all metadata fields below — do NOT rename or remove the field labels (e.g. \"Short Description\", \"Tags\").\n- The bold field labels (e.g. **Short Description**) are used as keys during parsing. Changing them will break the automation.\n- You can use markdown formatting in the Description section and add images.\n-->\n\n## Metadata\n- **Slug**: giveth\n- **Short Description**: Giveth — a decentralized donations platform using Quadratic Funding, Superfluid streams, and contributor reward tokens to fund public goods and crypto-native projects.\n- **Tags**: `giveth, qf, superfluid, donations, public-goods`\n- **Featured**: false\n- **Authors**: GBOYEE\n\n## Banner Image\n![Banner](https://raw.githubusercontent.com/GBOYEE/gitcoin-assets/main/giveth/banner.png)\n\n## Description\n**Category**: App  \n**Status**: Active  \n**Website**: https://giveth.io  \n**Launch Date**: 2018 (platform), 2020 (QF rounds)  \n**Blockchains**: Ethereum, Polygon, Optimism, others via cross-chain bridges  \n**Social Links**: \n- Twitter: https://x.com/giveth\n- Discord: https://discord.gg/giveth\n- GitHub: https://github.com/Giveth\n- Docs: https://docs.giveth.io\n\n### Overview\nGiveth is a decentralized donations platform that combines Quadratic Funding (QF) with crypto-native features like streaming payments (Superfluid) and contributor reward tokens (GIV). It enables donors to fund public goods and projects while giving contributors ongoing incentives, creating a sustainable funding loop beyond one-time grants.\n\n### Key Features\n- **Quadratic Funding rounds**: Community‑driven matching pools amplify small donations.\n- **Superfluid integration**: Donors can stream funds continuously (e.g., monthly DAI streams) rather than one‑off.\n- **GIV rewards**: Contributors earn GIV tokens for verified contributions, which can be used to boost project matching or governance.\n- **Multi‑chain**: Deployments on Ethereum, Polygon, Optimism; low‑gas environments improve UX.\n- **Open source**: MIT‑licensed, community‑maintained contracts and UI.\n\n### How Giveth Differs from Gitcoin Grants\n- **Streaming donations**: Instead of a single contribution, donors commit a stream (e.g., 10 DAI/month) that accrues over time. This provides predictable funding for projects.\n- **Contributor rewards**: Donors receive GIV tokens, incentivizing repeat engagement and creating a “donor‑to‑governor” flywheel.\n- **Unified ecosystem**: Giveth runs its own QF rounds but also hosts external rounds (e.g., Gitcoin, Polygon) on the same platform.\n\n### Use Cases\n- **Public goods**: Open‑source tooling, climate projects, social impact.\n- **DAO funding**: Experimental rounds for DAO treasuries.\n- **Ecosystem grants**:partnered rounds with Polygon, Optimism, etc.\n- **Recurring support**: Projects can receive steady income via streams rather than lump sums.\n\n### Getting Started for Builders\n1. **Explore docs**: https://docs.giveth.io\n2. **Clone t",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/gitcoinco/gitcoin_co_30/issues/300",
+    "created_at": "2026-03-25T13:30:11.817813",
+    "status": "claimed"
+  },
+  {
+    "key": "allknowledge34/UpdateApp#5",
+    "owner": "allknowledge34",
+    "repo": "UpdateApp",
+    "number": 5,
+    "title": "$0.4 Bounty : Login fails with \"Invalid Email\" after successful signup and OTP verification",
+    "body": "### Description\nAfter completing the signup process successfully, login does not work with the same email and password.\nThe app shows an **\"Invalid Email\"** error during login.\n\n### Signup Flow\n1. User signs up using:\n   - Name\n   - Email\n   - Phone number\n   - Password\n2. After signup, the app redirects to **phone number OTP verification**\n3. OTP is entered correctly and verified\n4. Account is created successfully\n\n### Issue\nAfter logging out, when trying to log in using the **same email and password** used during signup,\nthe login fails and shows **\"Invalid Email\"** error.\n\n### Steps to Reproduce\n1. Open the app\n2. Go to Signup screen\n3. Enter name, email, phone number, and password\n4. Verify phone number using OTP\n5. Logout after successful signup\n6. Go to Login screen\n7. Enter the same email and password\n8. Login fails with \"Invalid Email\" error\n\n### Expected Behavior\nUser should be able to log in successfully using the same email and password after signup.\n\n### Actual Behavior\nLogin fails with \"Invalid Email\" error even though the account was created successfully.\n\n### Platform\n- Java (Android)\n- Email & Phone OTP Authentication\n\n### Additional Information\n- OTP verification works correctly\n- Signup flow completes without any error\n- Issue happens only during login after signup\n",
+    "score": 40,
+    "labels": [
+      "bug",
+      "bounty"
+    ],
+    "html_url": "https://github.com/allknowledge34/UpdateApp/issues/5",
+    "created_at": "2026-03-25T14:00:06.011312",
+    "status": "claimed"
+  },
+  {
+    "key": "Uniswap/v4-core#1022",
+    "owner": "Uniswap",
+    "repo": "v4-core",
+    "number": 1022,
+    "title": "[SECURITY DISCLOSURE] Critical Vulnerability found in ERC6909.sol",
+    "body": "**BUG REPORT**\r\n\r\n**Contract Name:** ERC6909\r\n**Severity:** HIGH\r\n**Report Date:** March 21, 2026\r\n\r\n**Summary:**\r\nThe ERC6909 contract is vulnerable to several high-severity bugs, including unguarded transfers, approval bypassing, and operator mismanagement. These vulnerabilities can be exploited by malicious users to drain assets, steal approvals, and manipulate operator status.\r\n\r\n**Vulnerabilities:**\r\n\r\n1. **Unprotected Transfer**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `transfer` function does not check if the sender has sufficient balance before performing the transfer. This allows an attacker to transfer more assets than they own, potentially draining the contract's assets.\r\n\t* **Exploit:** An attacker can call `transfer` with a malicious `amount` parameter, exceeding their own balance.\r\n\t* **Recommendation:** Add a balance check before performing the transfer: `require(balanceOf[msg.sender][id] >= amount, \"Insufficient balance\");`\r\n2. **Approval Bypass**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `transferFrom` function does not properly check the allowance when the sender is not the same as the message sender. This allows an attacker to bypass the approval mechanism and steal assets.\r\n\t* **Exploit:** An attacker can call `transferFrom` with a malicious `sender` parameter, bypassing the approval check.\r\n\t* **Recommendation:** Update the allowance check to account for the sender: `if (msg.sender != sender && !isOperator[sender][msg.sender]) { ... }` should be `if (msg.sender != sender && (allowance[sender][msg.sender][id] < amount || !isOperator[sender][msg.sender])) { ... }`\r\n3. **Operator Mismanagement**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `setOperator` function allows an operator to be set without proper authorization. This can lead to unauthorized access to assets.\r\n\t* **Exploit:** An attacker can call `setOperator` to grant themselves operator status without the owner's consent.\r\n\t* **Recommendation:** Add a check to ensure only the owner can set operators: `require(msg.sender == owner, \"Only the owner can set operators\");`\r\n4. **Reentrancy Vulnerability**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `transfer` and `transferFrom` functions emit events, which can lead to reentrancy attacks. An attacker can exploit this to drain assets.\r\n\t* **Exploit:** An attacker can create a contract that listens for the `Transfer` event and reenters the `transfer` or `transferFrom` function.\r\n\t* **Recommendation:** Use a reentrancy lock or a more secure pattern, such as the Checks-Effects-Interactions pattern.\r\n5. **Unsecured Internal Functions**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `_mint` and `_burn` functions are not secured against external calls. This allows an attacker to manipulate asset balances.\r\n\t* **Exploit:** An attacker can call `_mint` or `_burn` directly to alter asset balances.\r\n\t* **Recommendation:** Make these functions internal or secure them against external calls.\r\n\r\n**Conclusion:**\r\nThe ER",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Uniswap/v4-core/issues/1022",
+    "created_at": "2026-03-25T14:00:08.575010",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#719",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 719,
+    "title": "Implement multisig approve_upgrade flow (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Implement multisig approve_upgrade flow (grainlify-core)\n\nDescription\n\nAuthorize signers to approve pending upgrade proposals until threshold rules are met.\n\nRequirements and context\n\nPrevent double-counting approvals; enforce signer set membership.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-approve-upgrade\n\nImplement changes\n\nWrite contract: grainlify-core/src/multisig.rs\nWrite tests: grainlify-core/src/test/upgrade_rollback_tests.rs\nAdd documentation: security notes on threshold and replay\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): multisig approve_upgrade with coverage\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/719",
+    "created_at": "2026-03-25T14:00:10.084058",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#803",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 803,
+    "title": "Soroban escrow: identity module (soroban/contracts/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Soroban escrow: identity module (soroban/contracts/escrow)\n\nDescription\n\nidentity.rs and identity_test.rs for address binding rules.\n\nRequirements and context\n\nPrevent spoofed identities on claims.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/soroban-escrow-identity\n\nImplement changes\n\nWrite contract: soroban/contracts/escrow/src/identity.rs\nWrite tests: soroban/contracts/escrow/src/identity_test.rs\nAdd documentation: identity guarantees\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(soroban-escrow): identity module tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/803",
+    "created_at": "2026-03-25T14:00:11.033490",
+    "status": "claimed"
+  },
+  {
+    "key": "algora-io/algora#224",
+    "owner": "algora-io",
+    "repo": "algora",
+    "number": 224,
+    "title": "## 🚀 Feature Request: Real-Time Bounty Activity Signals",
+    "body": "### Problem\nCurrently, it’s difficult for contributors to evaluate whether a bounty is active, trustworthy, or worth investing time in. Many bounties appear inactive or abandoned, which reduces engagement and confidence in the platform.\n\n### Proposed Solution\nIntroduce real-time activity indicators for each bounty to improve transparency and decision-making.\n\n### Key Features\n- 👥 Number of Active Contributors  \n  Show how many contributors are currently working on or have claimed the bounty.\n\n- 🕒 Last Activity Timestamp  \n  Display the most recent activity (e.g., issue comment, commit, PR update).\n\n- 🔀 PRs Submitted  \n  Show the number of pull requests linked to the bounty.\n\n- 🔥 “Hot / Active Bounty” Badge  \n  Automatically label bounties as “Hot” or “Active” based on recent activity signals (e.g., frequent updates, multiple contributors, recent PRs).\n\n### Expected Impact\n- Helps contributors quickly identify active and promising bounties  \n- Increases trust and platform transparency  \n- Improves bounty completion rate  \n- Encourages more engagement on active issues  \n\n### Optional Enhancements\n- Activity trend graph (last 24h / 7 days)  \n- Notifications for activity spikes  \n- Sorting/filtering by activity level  \n\n### Notes\nThis feature could leverage existing GitHub integration data (issues, PRs, commits) to calculate activity signals in near real-time.",
+    "score": 65,
+    "labels": [],
+    "html_url": "https://github.com/algora-io/algora/issues/224",
+    "created_at": "2026-03-25T14:30:06.476942",
+    "status": "claimed"
+  },
+  {
+    "key": "EricGrill/decentralized-predictive-market-bitcoin#2",
+    "owner": "EricGrill",
+    "repo": "decentralized-predictive-market-bitcoin",
+    "number": 2,
+    "title": "Add formal security audit checklist",
+    "body": "## Security Enhancement\n\n**Problem:**\nBefore mainnet deployment, a comprehensive security audit is needed.\n\n**Proposed Solution:**\nCreate a formal security audit checklist:\n\n1. **Cryptographic Review:**\n   - Schnorr signature correctness\n   - Key generation entropy\n   - ZK proof verification\n\n2. **Smart Contract Audit:**\n   - Taproot script analysis\n   - Payout condition verification\n   - Edge case handling\n\n3. **Economic Analysis:**\n   - Incentive alignment\n   - Attack cost analysis\n   - Game theory validation\n\n4. **External Audit:**\n   - Engage professional auditors\n   - Bug bounty program\n   - Testnet incentives\n\n**Priority:** High",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/EricGrill/decentralized-predictive-market-bitcoin/issues/2",
+    "created_at": "2026-03-25T14:30:07.457576",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#32",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 32,
+    "title": "Add bounty recommendations by label and skill",
+    "body": "Contributors should discover issues that match their interests more easily. Should add simple recommendation logic based on labels or categories.\n\nImplementation:\n\nCreate a lightweight recommendation strategy using labels or repo tags  \nSurface recommended bounties near the main board or profile page  \nExplain why a bounty is recommended  \nKeep logic simple and transparent\n\nAcceptance Criteria:\n\nUsers can see recommended bounties  \nRecommendations are based on visible criteria  \nUI explains recommendation reasons  \nFeature does not replace normal browsing",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/32",
+    "created_at": "2026-03-25T14:30:08.495934",
+    "status": "claimed"
+  },
+  {
+    "key": "SigNoz/signoz#7875",
+    "owner": "SigNoz",
+    "repo": "signoz",
+    "number": 7875,
+    "title": "[Dashboard Request] CloudNativePG dashboard",
+    "body": "<!-- Use this template to request a new dashboard for the SigNoz Dashboards repository. Providing detailed information will help us understand your needs better and speed up the dashboard creation process. -->\n\n## Dashboard Name\n\n<!-- Provide the name for the requested dashboard. Be specific (e.g., \"MySQL Monitoring Dashboard\"). -->\n\nCloudNativePG Dashboard\n\n## Expected Dashboard Sections and Panels\n\n(Can be tweaked (add or remove panels/sections) according to available metrics)\n\n### Section Name\n\n<!-- Brief description of what this section should display (e.g., \"Resource usage metrics for MySQL database\"). -->\n\n### Panel Name\n\n<!-- Description of the panel (e.g., \"Displays current CPU usage, memory usage, etc.\"). -->\n\n<!-- - **Example:**\n  - **Section**: Resource Metrics\n    - **Panel**: CPU Usage - Displays the current CPU usage across all database instances.\n    - **Panel**: Memory Usage - Displays the total memory used by the MySQL process. -->\n\n<!-- Repeat this format for any additional sections or panels. -->\n\n## Expected Dashboard Variables\n\n<!-- List any dashboard variables that should be included in the dashboard. Examples could be `deployment.environment`, `hostname`, `region`, etc. -->\n\n## Additional Comments or Requirements\n\n<!-- Include any other details, special requirements, or specific visualizations you'd like to request for this dashboard. -->\n\n## References or Screenshots\n\n<!-- Add any references or screenshots of requested dashboard if available. -->\n\nIt could look something like the following, see their docs [here](https://cloudnative-pg.io/documentation/preview/quickstart/#grafana-dashboard) for their built-in grafana dashboard.\n\nAnd [this](https://github.com/cloudnative-pg/grafana-dashboards/blob/main/charts/cluster/grafana-dashboard.json) is the link to their grafana dashboard JSON on their GitHub.\n\n![Image](https://github.com/user-attachments/assets/2b1128ab-897b-4181-ab86-b0f45550622e)\n\n## 📋 Notes\n\nPlease review the [CONTRIBUTING.md](https://github.com/SigNoz/dashboards/blob/main/CONTRIBUTING.md) for guidelines on dashboard structure, naming conventions, and how to submit a pull request.\n",
+    "score": 35,
+    "labels": [
+      "dashboard-template"
+    ],
+    "html_url": "https://github.com/SigNoz/signoz/issues/7875",
+    "created_at": "2026-03-25T14:30:09.641529",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#800",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 800,
+    "title": "View facade: register and deregister (view-facade)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: View facade: register and deregister (view-facade)\n\nDescription\n\nAdmin-only register(address, kind, version) and deregister(address); verify auth.\n\nRequirements and context\n\nRegistry list append/remove stability.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/view-facade-register\n\nImplement changes\n\nWrite contract: view-facade/src/lib.rs\nWrite tests: view-facade/src/test.rs\nAdd documentation: ContractKind enum\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(view-facade): register and deregister tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/800",
+    "created_at": "2026-03-25T14:30:10.706235",
+    "status": "claimed"
+  },
+  {
+    "key": "mautic/mautic#15969",
+    "owner": "mautic",
+    "repo": "mautic",
+    "number": 15969,
+    "title": "Tags page: clicking sort headers adds an extra filter/search field",
+    "body": "### Mautic Series\n\n7.0.x series\n\n### Mautic installed version\n\n7.0.1\n\n### Way of installing\n\nI installed with composer using https://github.com/mautic/recommended-project\n\n### PHP version\n\n8.2.29\n\n### What browsers are you seeing the problem on?\n\n_No response_\n\n### What happened?\n\nSummary\nOn the Tags page, clicking a sortable column header such as \"Name\" or \"ID\" triggers sorting, but it also causes an additional filter/search field to appear at the top of the table.\n\n### How can we reproduce this issue?\n\nSteps to reproduce\n1. Go to Tags\n2. Open the tags list\n3. Click the \"Name\" column header or the \"ID\" column header\n\nActual result\nThe list is sorted, but an extra filter/search field appears above the table.\n\nExpected result\nThe list should sort normally without adding another filter/search field.\n\n\n### Relevant log output\n\n```shell\n\n```\n\n### Code of Conduct\n\n- [x] I confirm that I have read and agree to follow this project's Code of Conduct\n\n<br /><hr>\nCare about this issue? Want to get it resolved sooner? If you are a <a href='https://www.mautic.org/become-a-member-of-mautic'>member of Mautic</a>, you can add some funds to the <a href='https://opencollective.com/mautic/projects/bounties'>Bounties Project</a> so that the person who completes this task can claim those funds once it is merged by a member of the core team! Read the docs <a href='https://contribute.mautic.org/product-team/mautic-bounty-programme'>here.</a>",
+    "score": 50,
+    "labels": [
+      "bug",
+      "needs-triage"
+    ],
+    "html_url": "https://github.com/mautic/mautic/issues/15969",
+    "created_at": "2026-03-25T15:30:06.330994",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#766",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 766,
+    "title": "Bounty escrow: multi-token fees (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: multi-token fees (bounty_escrow/escrow)\n\nDescription\n\nFee calculation across token types per test_multi_token_fees.rs.\n\nRequirements and context\n\nEnsure fee recipient cannot drain principal via rounding.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-multitoken-fees\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_multi_token_fees.rs\nAdd documentation: multi-token fee notes\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): multi-token fee tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/766",
+    "created_at": "2026-03-25T15:30:07.395247",
+    "status": "claimed"
+  },
+  {
+    "key": "Axionvera/axionvera-sdk#2",
+    "owner": "Axionvera",
+    "repo": "axionvera-sdk",
+    "number": 2,
+    "title": "Issue 202: chore: Define Standardized GitHub PR and Issue Templates",
+    "body": "## Description\nTo manage external contributions effectively during the bounty program, we need strict templates for bug reports, feature requests, and pull requests to ensure maintainers get all necessary context upfront.\n\n## Requirements\n- [ ] Create `.github/ISSUE_TEMPLATE/bug_report.md` requiring Node version, SDK version, and a minimum reproducible example.\n- [ ] Create `.github/ISSUE_TEMPLATE/feature_request.md` focusing on the proposed API signature and use case.\n- [ ] Create `.github/PULL_REQUEST_TEMPLATE.md` with a mandatory checklist (tests passed, docs updated, linted).",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Axionvera/axionvera-sdk/issues/2",
+    "created_at": "2026-03-25T15:30:08.507231",
+    "status": "claimed"
   }
 ]

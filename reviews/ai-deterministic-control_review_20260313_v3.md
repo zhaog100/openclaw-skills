@@ -1,7 +1,7 @@
 # Review 报告 - AI 确定性控制工具 v1.1.0（P0 功能补充版）
 
 **Review 对象**：ai-deterministic-control v1.1.0  
-**Review 者**：小米辣（PM 代理）  
+**Review 者**：小米粒（PM 代理）  
 **Review 时间**：2026-03-13 11:45  
 **Issue**：#7  
 **Git 提交**：a086c45, 8c22eaf  
@@ -252,5 +252,5 @@ FAILED test/test_p0_features.py::TestAlertManager::test_send_alert_cooldown
 ---
 
 **Review 完成时间**：2026-03-13 11:45  
-**Review 者**：小米辣（PM 代理）  
+**Review 者**：小米粒（PM 代理）  
 **状态**：✅ 通过，批准发布 v1.1.0（需修复 1 个测试）

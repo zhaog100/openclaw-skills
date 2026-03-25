@@ -42,7 +42,7 @@ clawhub install agent-collab-platform
 
 ### 使用
 
-#### 启动PM代理（小米辣）
+#### 启动PM代理（小米粒）
 ```bash
 cd skills/agent-collab-platform
 ./skill.sh agent_a

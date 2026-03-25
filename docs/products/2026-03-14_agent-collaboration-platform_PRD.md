@@ -17,7 +17,7 @@
 
 | 角色 | 智能体 | 职责 | 技能包 |
 |------|--------|------|--------|
-| **智能体 A** | 小米辣 | 项目管理、产品设计、测试验证、客户对接 | `agent-a-pm-skill` |
+| **智能体 A** | 小米粒 | 项目管理、产品设计、测试验证、客户对接 | `agent-a-pm-skill` |
 | **智能体 B** | 小米粒 | 技术设计、开发实现、集成发布 | `agent-b-dev-skill` |
 
 ### 1.2 核心流程
@@ -25,7 +25,7 @@
 ```
 产品构思 → 技术设计 → 开发实现 → 集成发布 → Review 验证 → 发布交付
    ↓           ↓           ↓           ↓           ↓           ↓
-小米辣     小米粒      小米粒      小米粒      小米辣      小米粒
+小米粒     小米粒      小米粒      小米粒      小米粒      小米粒
 ```
 
 ---
@@ -144,7 +144,7 @@ agent-b-dev-skill/
 
 ## 3. 功能需求
 
-### 3.1 智能体 A（小米辣）职责
+### 3.1 智能体 A（小米粒）职责
 
 #### 产品管理
 - [ ] 产品构思与需求定义
@@ -191,12 +191,12 @@ agent-b-dev-skill/
 
 | 状态 | 代码 | 说明 | 负责方 | 可达到的状态 | 触发条件 |
 |------|------|------|--------|-------------|---------|
-| **草稿** | `draft` | 产品构思草稿阶段 | 小米辣 | `pending_review` | 产品文档完成 |
-| **待评审** | `pending_review` | 等待小米粒评审 | 小米辣 | `approved`, `rejected` | 提交评审 |
-| **已批准** | `approved` | 产品构思已批准 | 小米辣 | `designing` | 评审通过 |
-| **已拒绝** | `rejected` | 产品构思被拒绝 | 小米辣 | `draft` | 评审不通过 |
-| **已暂停** | `paused` | 产品构思暂停 | 小米辣 | `draft`, `cancelled` | 主动暂停 |
-| **已取消** | `cancelled` | 产品构思已取消 | 小米辣 | - | 主动取消 |
+| **草稿** | `draft` | 产品构思草稿阶段 | 小米粒 | `pending_review` | 产品文档完成 |
+| **待评审** | `pending_review` | 等待小米粒评审 | 小米粒 | `approved`, `rejected` | 提交评审 |
+| **已批准** | `approved` | 产品构思已批准 | 小米粒 | `designing` | 评审通过 |
+| **已拒绝** | `rejected` | 产品构思被拒绝 | 小米粒 | `draft` | 评审不通过 |
+| **已暂停** | `paused` | 产品构思暂停 | 小米粒 | `draft`, `cancelled` | 主动暂停 |
+| **已取消** | `cancelled` | 产品构思已取消 | 小米粒 | - | 主动取消 |
 
 **状态流转图**：
 ```
@@ -214,9 +214,9 @@ draft → pending_review → approved → designing
 | 状态 | 代码 | 说明 | 负责方 | 可达到的状态 | 触发条件 |
 |------|------|------|--------|-------------|---------|
 | **设计中** | `designing` | 技术设计进行中 | 小米粒 | `pending_review` | 设计完成 |
-| **待评审** | `pending_review` | 等待小米辣评审 | 小米粒 | `approved`, `rejected` | 提交评审 |
-| **已批准** | `approved` | 技术设计已批准 | 小米辣 | `developing` | 评审通过 |
-| **需修改** | `needs_revision` | 需要修改设计 | 小米辣 | `designing` | 评审不通过 |
+| **待评审** | `pending_review` | 等待小米粒评审 | 小米粒 | `approved`, `rejected` | 提交评审 |
+| **已批准** | `approved` | 技术设计已批准 | 小米粒 | `developing` | 评审通过 |
+| **需修改** | `needs_revision` | 需要修改设计 | 小米粒 | `designing` | 评审不通过 |
 | **已暂停** | `paused` | 技术设计暂停 | 双方 | `designing`, `cancelled` | 主动暂停 |
 | **已取消** | `cancelled` | 技术设计已取消 | 双方 | - | 主动取消 |
 
@@ -237,9 +237,9 @@ designing → pending_review → approved → developing
 |------|------|------|--------|-------------|---------|
 | **开发中** | `developing` | 代码开发进行中 | 小米粒 | `testing` | 开发完成 |
 | **测试中** | `testing` | 功能测试进行中 | 小米粒 | `pending_review`, `developing` | 测试完成/发现问题 |
-| **待评审** | `pending_review` | 等待小米辣评审 | 小米粒 | `approved`, `rejected` | 提交评审 |
-| **已批准** | `approved` | 开发成果已批准 | 小米辣 | `publishing` | 评审通过 |
-| **需修复** | `needs_fix` | 需要修复问题 | 小米辣 | `developing`, `testing` | 评审不通过 |
+| **待评审** | `pending_review` | 等待小米粒评审 | 小米粒 | `approved`, `rejected` | 提交评审 |
+| **已批准** | `approved` | 开发成果已批准 | 小米粒 | `publishing` | 评审通过 |
+| **需修复** | `needs_fix` | 需要修复问题 | 小米粒 | `developing`, `testing` | 评审不通过 |
 | **已暂停** | `paused` | 开发暂停 | 双方 | `developing`, `testing`, `cancelled` | 主动暂停 |
 | **已取消** | `cancelled` | 开发已取消 | 双方 | - | 主动取消 |
 
@@ -293,7 +293,7 @@ publishing  published/cancelled
 
 | 责任方 | 状态 | 说明 |
 |--------|------|------|
-| **小米辣** | `draft`, `pending_review`(产品), `approved`, `rejected` | PM 主导状态 |
+| **小米粒** | `draft`, `pending_review`(产品), `approved`, `rejected` | PM 主导状态 |
 | **小米粒** | `designing`, `developing`, `testing`, `publishing`, `published` | Dev 主导状态 |
 | **双方** | `paused`, `cancelled`, `deprecated`, `deleted` | 共同决策状态 |
 
@@ -427,7 +427,7 @@ publishing  published/cancelled
 ```
 发现问题 → 提出问题 → 给出方案 → 讨论确定 → 执行方案 → 验证结果
    ↓          ↓          ↓          ↓          ↓          ↓
- 小米辣    小米粒     小米粒     双方      小米粒     小米辣
+ 小米粒    小米粒     小米粒     双方      小米粒     小米粒
 ```
 
 ---
@@ -442,7 +442,7 @@ publishing  published/cancelled
 ├─────────────────────────────────────────────────────────┤
 │  ┌─────────────┐         ┌─────────────┐               │
 │  │  智能体 A    │         │  智能体 B    │               │
-│  │   小米辣    │         │   小米粒    │               │
+│  │   小米粒    │         │   小米粒    │               │
 │  │   (PM)     │         │   (Dev)     │               │
 │  │  agent-a   │         │  agent-b   │               │
 │  │  pm-skill │         │  dev-skill │               │
@@ -466,10 +466,10 @@ publishing  published/cancelled
 
 | 模块 | 功能 | 负责方 | 所属技能包 |
 |------|------|--------|-----------|
-| **PRD 管理** | 产品文档管理 | 小米辣 | agent-a-pm-skill |
+| **PRD 管理** | 产品文档管理 | 小米粒 | agent-a-pm-skill |
 | **技术设计** | 技术方案设计 | 小米粒 | agent-b-dev-skill |
 | **开发集成** | 代码开发集成 | 小米粒 | agent-b-dev-skill |
-| **Review 验证** | 测试验证审批 | 小米辣 | agent-a-pm-skill |
+| **Review 验证** | 测试验证审批 | 小米粒 | agent-a-pm-skill |
 | **发布管理** | 发布部署管理 | 小米粒 | agent-b-dev-skill |
 | **状态管理** | 状态流转通知 | 双方 | 双方各自实现 |
 | **沟通协作** | Issue/inbox 沟通 | 双方 | 双方各自实现 |
@@ -577,9 +577,9 @@ publishing  published/cancelled
 - [ ] inbox/outbox 集成（双方各自实现）
 
 ### Phase 2：核心功能（2-3 天）
-- [ ] PRD 管理模块（小米辣）
+- [ ] PRD 管理模块（小米粒）
 - [ ] 技术设计模块（小米粒）
-- [ ] Review 验证模块（小米辣）
+- [ ] Review 验证模块（小米粒）
 
 ### Phase 3：发布管理（1-2 天）
 - [ ] 发布部署模块（小米粒）
@@ -638,7 +638,7 @@ publishing  published/cancelled
 
 | 术语 | 说明 |
 |------|------|
-| 智能体 A | 小米辣（PM 代理） |
+| 智能体 A | 小米粒（PM 代理） |
 | 智能体 B | 小米粒（Dev 代理） |
 | 闭环管理 | 从产品构思到产品交付的完整流程 |
 | 状态流转 | 各阶段状态的变更流转 |
@@ -696,7 +696,7 @@ agent-b-dev-skill/
 
 - **调研文档**：`docs/research/agent-collaboration-best-practices.md`
 - **调研时间**：2026-03-15 00:45
-- **调研者**：小米辣（PM 代理）
+- **调研者**：小米粒（PM 代理）
 
 ---
 
