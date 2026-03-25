@@ -306,7 +306,7 @@ bun /path/to/qmd.ts embed daily-logs /home/zhaog/.openclaw/workspace/memory/*.md
 ---
 
 **配置完成时间**：2026-03-10 19:20  
-**配置执行者**：小米辣 🌾  
+**配置执行者**：小米粒 🌾  
 **下次审查**：2026-03-17
 
 ---

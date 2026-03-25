@@ -2,7 +2,7 @@
 name: github-bounty-hunter
 description: GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，支持 Algora 平台，使用 /attempt 命令自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！v2.2 新增工作区结构化管理（QMD 索引、Git 同步、敏感信息保护）
 version: 5.2.0
-author: 米粒儿 + 小米辣
+author: 米粒儿 + 小米粒
 ---
 
 # GitHub Bounty Hunter v5.2
@@ -473,7 +473,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：小米辣 (PM + Dev)
+- 创建者：小米粒 (PM + Dev)
 
 **商业使用授权**：
 - 个人/开源：免费

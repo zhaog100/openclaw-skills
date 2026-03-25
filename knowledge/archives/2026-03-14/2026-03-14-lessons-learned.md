@@ -196,7 +196,7 @@ git rebase --abort  # 放弃rebase
 
 ### PM代理职责
 
-**小米辣（PM）**：
+**小米粒（PM）**：
 - ✅ 产品规划
 - ✅ PRD创建
 - ✅ 需求分析

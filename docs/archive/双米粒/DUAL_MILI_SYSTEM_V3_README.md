@@ -20,33 +20,33 @@
 ### 完整流程（6个阶段）
 
 ```bash
-# 阶段1：小米辣创建产品构思
+# 阶段1：小米粒创建产品构思
 bash scripts/mili_product_v3.sh <功能名> concept
 
-# 阶段2：小米辣编写需求文档
+# 阶段2：小米粒编写需求文档
 bash scripts/mili_product_v3.sh <功能名> prd
 
 # 阶段3：双方并行分析
-# 小米辣
+# 小米粒
 bash scripts/mili_product_v3.sh <功能名> analyze
 
-# 小米辣
+# 小米粒
 bash scripts/xiaomi_dev_v3.sh <功能名> analyze
 
-# 阶段4：小米辣开发与自检
+# 阶段4：小米粒开发与自检
 bash scripts/xiaomi_dev_v3.sh <功能名> dev
 bash scripts/xiaomi_dev_v3.sh <功能名> check
 
-# 阶段5：小米辣Review
+# 阶段5：小米粒Review
 bash scripts/mili_product_v3.sh <功能_name> review
 
-# 阶段6：小米辣Review后思考
+# 阶段6：小米粒Review后思考
 bash scripts/xiaomi_dev_v3.sh <功能名> think
 
-# 阶段7：小米辣5层验收
+# 阶段7：小米粒5层验收
 bash scripts/mili_product_v3.sh <功能名> accept
 
-# 阶段8：小米辣发布
+# 阶段8：小米粒发布
 bash scripts/xiaomi_dev_v3.sh <功能名> commit
 bash scripts/xiaomi_dev_v3.sh <功能名> publish
 ```
@@ -55,7 +55,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 
 ## 📋 核心清单
 
-### 小米辣（产品经理 + 质量官）
+### 小米粒（产品经理 + 质量官）
 
 **12维度Review**：
 - ✅ 代码结构清晰
@@ -78,7 +78,7 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 - ✅ Layer 4: 功能完整性
 - ✅ Layer 5: 用户体验
 
-### 小米辣（开发者 + 测试者）
+### 小米粒（开发者 + 测试者）
 
 **开发前自检**（4个维度）：
 - ✅ 代码质量
@@ -99,12 +99,12 @@ bash scripts/xiaomi_dev_v3.sh <功能名> publish
 ```
 /root/.openclaw/workspace/
 ├── docs/
-│   ├── products/              # 产品文档（小米辣）
+│   ├── products/              # 产品文档（小米粒）
 │   ├── reviews/               # Review文档（双方）
 │   └── strategies/            # 策略文档
 ├── scripts/
-│   ├── mili_product_v3.sh    # 小米辣脚本
-│   └── xiaomi_dev_v3.sh      # 小米辣脚本
+│   ├── mili_product_v3.sh    # 小米粒脚本
+│   └── xiaomi_dev_v3.sh      # 小米粒脚本
 └── .clawhub/
     ├── product_template.md
     ├── dev_template.md

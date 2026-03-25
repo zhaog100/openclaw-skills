@@ -563,7 +563,7 @@ npm test
 
 ---
 
-**文档维护者**：小米辣 🌾  
+**文档维护者**：小米粒 🌾  
 **最后更新**：2026-03-10  
 **参考技能**：smart-model-switch/context-manager/quote-reader 等
 

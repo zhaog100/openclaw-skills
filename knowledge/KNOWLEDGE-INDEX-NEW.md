@@ -129,7 +129,7 @@ qmd search "关键词"
 
 ---
 
-**维护**: 小米辣 (PM + Dev) 🌶️  
+**维护**: 小米粒 (PM + Dev) 🌶️  
 **版本**: v1.0  
 **QMD Collection**: knowledge
 

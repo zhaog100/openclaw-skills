@@ -1,7 +1,7 @@
 # 双 OpenClaw 跨环境部署 - 准备清单
 
 **创建日期**：2026-03-13 12:05  
-**创建者**：小米辣（PM 代理）  
+**创建者**：小米粒（PM 代理）  
 **状态**：等待小米粒确认  
 **Issue**：#1
 
@@ -93,7 +93,7 @@ MEMOS_USER_ID=openclaw-dual-deployment
 
 ## 📞 沟通记录
 
-### 2026-03-13 12:05 - 小米辣发起部署确认邀请
+### 2026-03-13 12:05 - 小米粒发起部署确认邀请
 - **内容**：发送部署确认清单和时间安排
 - **状态**：等待小米粒回复
 - **Issue 评论**：https://github.com/zhaog100/openclaw-skills/issues/1#issuecomment-4052456477
@@ -153,4 +153,4 @@ MEMOS_USER_ID=openclaw-dual-deployment
 
 **文档位置**：`docs/deployment/dual-openclaw-deployment-checklist.md`  
 **更新时间**：2026-03-13 12:05  
-**维护者**：小米辣（PM 代理）
+**维护者**：小米粒（PM 代理）
