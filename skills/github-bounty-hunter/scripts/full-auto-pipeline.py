@@ -234,7 +234,7 @@ def gather_repo_context(task):
     if code_blocks:
         context_parts.append("\nIssue中引用的代码:")
         for i, block in enumerate(code_blocks[:5]):
-            context_parts.append(f"\`\`\`代码片段{i+1}:\n{block[:500]}\`\`\`")
+            context_parts.append(f"```代码片段{i+1}:\n{block[:500]}```")
     
     # 5. 文件引用
     file_refs = re.findall(r'[\w\-./]+\.\w{1,5}', body)
@@ -286,6 +286,10 @@ def validate_code(code):
 
 def generate_code_with_openclaw(task):
     """调用 OpenClaw API 生成代码"""
+    # 全局开关：AI_CODE_GEN=0 时暂停AI代码生成
+    if os.getenv('AI_CODE_GEN', '1') == '0':
+        log("⏸️ AI代码生成已暂停（AI_CODE_GEN=0）")
+        return None
     title = task.get('title', '')
     body = task.get('body', '') or ''
     repo_full = task.get('repository_url', '')
@@ -568,9 +572,19 @@ def develop_task(task):
     repo_url = f"https://{GITHUB_TOKEN}@github.com/{owner}/{repo}.git"
     
     if not project_dir.exists():
-        log(f"📥 克隆仓库：{repo}")
-        subprocess.run(['git', 'clone', repo_url, str(project_dir)], 
-                      check=True, capture_output=True)
+        log(f"📥 克隆仓库：{repo}（浅克隆）")
+        try:
+            subprocess.run(['git', 'clone', '--depth', '1', repo_url, str(project_dir)], 
+                          check=True, capture_output=True, timeout=120)
+        except subprocess.TimeoutExpired:
+            log(f"⚠️ 克隆超时（120秒），跳过该任务")
+            import shutil
+            if project_dir.exists():
+                shutil.rmtree(project_dir)
+            return False
+        except subprocess.CalledProcessError as e:
+            log(f"⚠️ 克隆失败：{e.stderr.decode()[:200] if e.stderr else '未知错误'}")
+            return False
     
     # 2. 创建分支
     branch_name = f"bounty-{number}"
