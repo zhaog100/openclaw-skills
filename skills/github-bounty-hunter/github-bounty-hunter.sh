@@ -190,6 +190,38 @@ main() {
         status)
             do_status
             ;;
+        auto|full-auto)
+            echo "🤖 启动全自动流程..."
+            python3 "$SCRIPTS_DIR/full-auto-pipeline.py"
+            ;;
+        algora)
+            echo "🚀 启动 Algora 专项监控..."
+            python3 "$SCRIPTS_DIR/algora_monitor.py"
+            ;;
+        pr)
+            echo "📦 自动提交 PR..."
+            python3 "$SCRIPTS_DIR/auto_pr.py" "$@"
+            ;;
+        state)
+            echo "📊 查看 STATE.yaml..."
+            python3 "$SCRIPTS_DIR/state_manager.py"
+            ;;
+        stats)
+            echo "📈 查看统计信息..."
+            python3 -c "
+from scripts.state_manager import StateManager
+sm = StateManager()
+stats = sm.get_stats()
+print('总任务数:', stats['total'])
+print('总奖金: \$' + str(stats['total_bounty']))
+print('已收款: \$' + str(stats['paid']))
+print('状态分布:', stats['by_status'])
+"
+            ;;
+        notify)
+            echo "📬 查看 QQ 通知..."
+            python3 "$SCRIPTS_DIR/qq_notify.py"
+            ;;
         help|--help|-h)
             show_help
             ;;
@@ -205,79 +237,4 @@ main() {
 # 运行主函数
 main "$@"
 
-# Phase 2 新功能
-case "$1" in
-    algora)
-        echo "🚀 启动 Algora 专项监控..."
-        python3 "$SCRIPTS_DIR/algora_monitor.py"
-        ;;
-    apply)
-        echo "🙋 自动评论接单..."
-        python3 "$SCRIPTS_DIR/auto_apply.py" "$2"
-        ;;
-    pr)
-        echo "📦 自动提交 PR..."
-        python3 "$SCRIPTS_DIR/auto_pr.py" "$2" "$3" "$4"
-        ;;
-    state)
-        echo "📊 查看 STATE.yaml..."
-        python3 "$SCRIPTS_DIR/state_manager.py"
-        ;;
-    stats)
-        echo "📈 查看统计信息..."
-        python3 -c "
-from scripts.state_manager import StateManager
-sm = StateManager()
-stats = sm.get_stats()
-print('总任务数:', stats['total'])
-print('总奖金: $' + str(stats['total_bounty']))
-print('已收款: $' + str(stats['paid']))
-print('状态分布:', stats['by_status'])
-"
-        ;;
-    notify)
-        echo "📬 查看 QQ 通知..."
-        python3 "$SCRIPTS_DIR/qq_notify.py"
-        ;;
-    notify-test)
-        echo "🧪 测试 QQ 通知..."
-        python3 -c "
-from scripts.qq_notify import QQNotifier
-n = QQNotifier()
-n.notify_new_bounty({
-    'title': '测试任务',
-    'platform': 'Algora',
-    'amount': 1000,
-    'url': 'https://github.com/test'
-})
-"
-    ;;
-    auto|full-auto)
-        echo "🤖 启动全自动流程..."
-        python3 "$SCRIPTS_DIR/full-auto-pipeline.py"
-        ;;
-    *)
-        show_help
-        ;;
-    gitcoin)
-        echo "🚀 Gitcoin 监控..."
-        python3 "$SCRIPTS_DIR/gitcoin_monitor.py"
-        ;;
-    replit)
-        echo "🚀 Replit 监控..."
-        python3 "$SCRIPTS_DIR/replit_monitor.py"
-        ;;
-esac
-
-# 全自动模式（v2.1）
-auto_mode() {
-    echo "============================================================"
-    echo "🤖 全自动 Bounty 收割流程 v2.1"
-    echo "============================================================"
-    echo ""
-    echo "启动全自动流程：扫描→评估→认领→开发→提交→PR"
-    echo ""
-    python3 "$SCRIPTS_DIR/full-auto-pipeline.py"
-}
-
-# 命令路由
+# (Phase 2 commands merged into main() above)
