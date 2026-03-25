@@ -51,7 +51,7 @@ dispatcher = lark.EventDispatcherHandler.builder(
 - 开发、测试、发布
 
 **协作关系**：
-- 小米辣（PM代理）→ 决策、Review
+- 小米粒（PM代理）→ 决策、Review
 - 我（小米粒）→ 开发、测试
 - 官家 → 项目负责人
 
@@ -83,7 +83,7 @@ dispatcher = lark.EventDispatcherHandler.builder(
 
 **避免干扰**：
 - ✅ 小米粒使用 xiaomili/
-- ✅ 小米辣使用 xiaomila/
+- ✅ 小米粒使用 xiaomila/
 - ✅ 各自管理自己的数据
 
 ---
@@ -172,7 +172,7 @@ dispatcher = lark.EventDispatcherHandler.builder(
 ### 协作收获
 1. ✅ 明确身份：我是小米粒（PM代理）
 2. ✅ 明确职责：开发、测试、发布
-3. ✅ 明确协作：小米辣决策，我开发
+3. ✅ 明确协作：小米粒决策，我开发
 4. ✅ 明确原则：结果优先，解释最小
 
 ### 教训收获
@@ -191,7 +191,7 @@ dispatcher = lark.EventDispatcherHandler.builder(
 3. ❌ 自动回复未实现 → 需要飞书API
 
 ### P1（重要）
-1. ⚠️ 小米辣Bot未配置
+1. ⚠️ 小米粒Bot未配置
 2. ⚠️ 日志管理不完善
 3. ⚠️ 错误处理不够健壮
 

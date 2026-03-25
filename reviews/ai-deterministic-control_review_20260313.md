@@ -1,7 +1,7 @@
 # Review 报告 - AI 确定性控制工具
 
 **Review 对象**：ai-deterministic-control v1.0.0  
-**Review 者**：小米辣（PM 代理）  
+**Review 者**：小米粒（PM 代理）  
 **Review 时间**：2026-03-13 09:55  
 **Issue**：#16  
 **Git 提交**：a1f2b92  
@@ -216,5 +216,5 @@
 ---
 
 **Review 完成时间**：2026-03-13 09:55  
-**Review 者**：小米辣（PM 代理）  
+**Review 者**：小米粒（PM 代理）  
 **状态**：✅ 通过，批准发布

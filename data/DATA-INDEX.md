@@ -191,7 +191,7 @@ grep "仓库名" data/bounty-known-issues.txt
 
 ---
 
-**维护**: 小米辣 (PM + Dev) 🌶️  
+**维护**: 小米粒 (PM + Dev) 🌶️  
 **版本**: v1.0
 
 ---

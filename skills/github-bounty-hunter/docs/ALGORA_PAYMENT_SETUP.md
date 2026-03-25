@@ -2,7 +2,7 @@
 
 > 创建时间：2026-03-18 18:20  
 > 版本：v1.0  
-> 作者：小米辣 (PM + Dev) 🌶️
+> 作者：小米粒 (PM + Dev) 🌶️
 
 ---
 
@@ -163,5 +163,5 @@ TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP
 
 ---
 
-*创建者：小米辣 (PM + Dev) 🌶️*  
+*创建者：小米粒 (PM + Dev) 🌶️*  
 *版权：思捷娅科技 (SJYKJ) | MIT License*

@@ -132,9 +132,9 @@ MIT License - 免费使用、修改和重新分发
 
 **出处**:
 - GitHub: https://github.com/zhaog100/openclaw-skills
-- 创建者：小米辣 (PM + Dev)
+- 创建者：小米粒 (PM + Dev)
 
-**版权**: MIT License | Copyright (c) 2026 小米辣 (PM + Dev)
+**版权**: MIT License | Copyright (c) 2026 小米粒 (PM + Dev)
 
 **商业使用授权**:
 - 个人/开源：免费

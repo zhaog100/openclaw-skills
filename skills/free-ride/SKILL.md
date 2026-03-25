@@ -103,7 +103,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：小米辣 (miliger)
+- 创建者：小米粒 (miliger)
 
 **商业使用授权**：
 - 小微企业（<10 人）：¥999/年

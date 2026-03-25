@@ -58,7 +58,7 @@
 
 **功能**：
 - ✅ 检查最近更新的Issues（自上次检查时间）
-- ✅ 识别新评论（小米辣的回复）
+- ✅ 识别新评论（小米粒的回复）
 - ✅ 写入通知日志（`logs/new_comments.log`）
 - ✅ 轻量级，快速执行（<1秒）
 
@@ -68,7 +68,7 @@
 bash scripts/check_github_issues.sh
 
 # 心跳系统自动调用（HEARTBEAT.md）
-- [ ] **GitHub Issues**：检查小米辣的最新回复（30秒检查机制）⭐⭐⭐⭐⭐
+- [ ] **GitHub Issues**：检查小米粒的最新回复（30秒检查机制）⭐⭐⭐⭐⭐
 ```
 
 ---
@@ -79,7 +79,7 @@ bash scripts/check_github_issues.sh
 ```markdown
 ## 定期检查（每次轮换 1-2 项）
 
-- [ ] **GitHub Issues**：检查小米辣的最新回复（30秒检查机制）⭐⭐⭐⭐⭐
+- [ ] **GitHub Issues**：检查小米粒的最新回复（30秒检查机制）⭐⭐⭐⭐⭐
 - [ ] 邮件、日历...
 ```
 
@@ -121,7 +121,7 @@ bash scripts/check_github_issues.sh
 心跳轮询 → 检查GitHub Issues → 发现新评论 → 主动告知
 ```
 
-### 场景2：小米辣回复Issue
+### 场景2：小米粒回复Issue
 ```
 心跳轮询 → check_github_issues.sh → 写入日志 → 我看到并回复
 ```

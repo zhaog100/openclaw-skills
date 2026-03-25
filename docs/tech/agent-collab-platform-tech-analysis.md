@@ -10,7 +10,7 @@
 
 ## 📋 分析概述
 
-本文档基于小米辣（PM）创建的智能体协作平台PRD，进行技术实现分析。
+本文档基于小米粒（PM）创建的智能体协作平台PRD，进行技术实现分析。
 
 **核心目标**：实现双米粒在飞书群的实时协作沟通
 
@@ -31,7 +31,7 @@
     ↓ (读取所有群消息)
 消息分发器 (Message Router)
     ↓           ↓
-小米辣处理器  小米粒处理器
+小米粒处理器  小米粒处理器
     ↓           ↓
 共享数据库 (SQLite)
     ↓
@@ -94,14 +94,14 @@ def message_dispatcher(event):
     # 3. 智能路由
     if sender_type == "官家":
         # 官家消息 → 两个Bot都处理
-        route_to_bot("小米辣", message)
         route_to_bot("小米粒", message)
-    elif sender_type == "小米辣":
-        # 小米辣消息 → 只给小米粒
         route_to_bot("小米粒", message)
     elif sender_type == "小米粒":
-        # 小米粒消息 → 只给小米辣
-        route_to_bot("小米辣", message)
+        # 小米粒消息 → 只给小米粒
+        route_to_bot("小米粒", message)
+    elif sender_type == "小米粒":
+        # 小米粒消息 → 只给小米粒
+        route_to_bot("小米粒", message)
 ```
 
 #### 流程2：Bot处理与回复
@@ -196,7 +196,7 @@ python-dotenv>=1.0.0
 | 项目初始化 + 配置 | 2小时 | P0 |
 | 数据库设计 + 实现 | 3小时 | P0 |
 | 消息分发器开发 | 4小时 | P0 |
-| 小米辣Bot处理器 | 2小时 | P0 |
+| 小米粒Bot处理器 | 2小时 | P0 |
 | 小米粒Bot处理器 | 2小时 | P0 |
 | 消息路由逻辑 | 2小时 | P0 |
 | 单元测试 | 3小时 | P0 |

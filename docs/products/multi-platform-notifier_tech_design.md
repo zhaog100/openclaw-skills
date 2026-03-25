@@ -1,7 +1,7 @@
 # 技术设计 - multi-platform-notifier
 
 **版本**: v1.0  
-**设计者**: 小米辣 (PM + Dev)  
+**设计者**: 小米粒 (PM + Dev)  
 **设计时间**: 2026-03-16 07:52  
 **基于 PRD**: 2026-03-16_multi-platform-notifier_PRD.md
 
@@ -375,4 +375,4 @@ feishu=https://open.feishu.cn/open-apis/bot/v2/hook/xxx
 
 *设计版本：v1.0*  
 *最后更新：2026-03-16 07:52*  
-*设计者：小米辣 (PM + Dev)*
+*设计者：小米粒 (PM + Dev)*
