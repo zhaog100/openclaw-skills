@@ -110,10 +110,30 @@ EOF
     fi
 }
 
-# 检索QQ消息（待实现）
+# 检索QQ消息
+# OpenClaw QQBot 插件已将引用内容嵌入消息体，格式为 [引用消息开始]...[引用消息结束]
+# 如果引用内容已嵌入 detect-quote 的 quoted_text 字段，直接使用
 retrieve_qq_message() {
     local message_id="$1"
-    echo "{\"error\": \"QQ平台暂未实现\", \"message_id\": \"$message_id\"}"
+    local quoted_text="$2"  # 嵌入的引用文本（从 detect-quote 传入）
+
+    # 如果有嵌入的引用文本，直接返回
+    if [ -n "$quoted_text" ] && [ "$quoted_text" != "null" ]; then
+        cat <<EOF
+{
+  "id": "embedded",
+  "content": "$quoted_text",
+  "timestamp": "$(date -Iseconds)",
+  "role": "qq_user",
+  "source": "qq_embedded"
+}
+EOF
+        return 0
+    fi
+
+    # 如果只有 message_id，暂无法通过 API 获取（QQ Bot API 不提供历史消息查询）
+    echo "{\"error\": \"QQ历史消息暂不支持API查询，但引用内容已由OpenClaw嵌入消息体\", \"message_id\": \"$message_id\"}"
+    return 1
 }
 
 # 检索企业微信消息（待实现）
@@ -162,7 +182,19 @@ get_suggested_response() {
 # 主提取逻辑
 main() {
     local quoted_message
-    if [ -n "$MESSAGE_ID" ] && [ "$MESSAGE_ID" != "null" ]; then
+    if [ "$PLATFORM" = "qq" ] && [ -n "$QUOTED_TEXT" ] && [ "$QUOTED_TEXT" != "null" ] && [ "$QUOTED_TEXT" != "\"null\"" ]; then
+        # QQ 平台：直接使用嵌入的引用文本
+        quoted_message=$(cat <<EOF
+{
+  "id": "embedded",
+  "content": "$QUOTED_TEXT",
+  "timestamp": "$(date -Iseconds)",
+  "role": "qq_user",
+  "source": "qq_embedded"
+}
+EOF
+)
+    elif [ -n "$MESSAGE_ID" ] && [ "$MESSAGE_ID" != "null" ]; then
         quoted_message=$(retrieve_message "$MESSAGE_ID" "$PLATFORM")
     else
         quoted_message=$(cat <<EOF

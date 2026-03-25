@@ -14,8 +14,11 @@
         "\\[reply:([0-9]+)\\]",
         "\\[quote:([0-9]+)\\]"
       ],
+      "embedded_quote_start": "\\[引用消息开始\\]",
+      "embedded_quote_end": "\\[引用消息结束\\]",
+      "embedded_unavailable": "原始内容不可用",
       "message_id_prefix": "",
-      "description": "QQ引用格式"
+      "description": "QQ引用格式（OpenClaw QQBot 插件会将引用内容嵌入消息体）"
     },
     "telegram": {
       "patterns": [
