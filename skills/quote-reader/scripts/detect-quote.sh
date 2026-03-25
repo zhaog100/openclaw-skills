@@ -54,11 +54,21 @@ EOF
     return 1
 }
 
-# 检测QQ引用
+# 检测QQ引用（两种模式：原始标记 + OpenClaw嵌入格式）
 detect_qq_quote() {
     local message="$1"
     
+    # 模式1：原始 [reply:xxx] / [quote:xxx] 标记
     local quote_id=$(echo "$message" | grep -oP '\[(?:quote|reply):\K[0-9]+(?=\])' | head -1)
+    
+    # 模式2：OpenClaw QQBot 嵌入的引用格式 [引用消息开始]...[引用消息结束]
+    local has_embedded=false
+    local embedded_text=""
+    if echo "$message" | grep -q '\[引用消息开始\]'; then
+        has_embedded=true
+        # 使用 awk 处理多行引用内容
+        embedded_text=$(echo "$message" | awk '/\[引用消息开始\]/{found=1;next} /\[引用消息结束\]/{found=0} found' | tr '\n' ' ' | sed 's/^ *//;s/ *$//')
+    fi
     
     if [ -n "$quote_id" ]; then
         echo "$(cat <<EOF
@@ -67,6 +77,26 @@ detect_qq_quote() {
   "platform": "qq",
   "message_id": "$quote_id",
   "quoted_text": null,
+  "quote_type": "reference",
+  "quote_position": 0
+}
+EOF
+)"
+        return 0
+    elif [ "$has_embedded" = true ]; then
+        local is_unavailable=false
+        if echo "$embedded_text" | grep -q '原始内容不可用'; then
+            is_unavailable=true
+            embedded_text=""
+        fi
+        echo "$(cat <<EOF
+{
+  "has_quote": true,
+  "platform": "qq",
+  "message_id": null,
+  "quoted_text": $([ -n "$embedded_text" ] && echo "\"$embedded_text\"" || echo "null"),
+  "quote_type": "embedded",
+  "quote_unavailable": $is_unavailable,
   "quote_position": 0
 }
 EOF
@@ -106,20 +136,21 @@ EOF
 
 # 主检测逻辑
 main() {
-    local result=$(detect_feishu_quote "$USER_MESSAGE")
-    if [ $? -eq 0 ]; then
+    local result
+    result=$(detect_feishu_quote "$USER_MESSAGE"); local rc=$?
+    if [ $rc -eq 0 ]; then
         echo "$result"
         exit 0
     fi
     
-    result=$(detect_qq_quote "$USER_MESSAGE")
-    if [ $? -eq 0 ]; then
+    result=$(detect_qq_quote "$USER_MESSAGE"); rc=$?
+    if [ $rc -eq 0 ]; then
         echo "$result"
         exit 0
     fi
     
-    result=$(detect_generic_quote "$USER_MESSAGE")
-    if [ $? -eq 0 ]; then
+    result=$(detect_generic_quote "$USER_MESSAGE"); rc=$?
+    if [ $rc -eq 0 ]; then
         echo "$result"
         exit 0
     fi
