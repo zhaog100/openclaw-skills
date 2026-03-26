@@ -1,44 +1,55 @@
-# 小米椒工作区 🌶️‍🔥
+# 🌶️‍🔥 小米椒 · 新媒体运营工作区
 
-**新媒体运营专家** - 专注于公众号、小红书、抖音、视频号等主流平台运营
+**Agent ID**: `xiaomijiao`
 
-## 目录结构
+## 📁 目录结构
 
 ```
-xiaomijiao_workspace/
-├── memory/          # 每日运营日志
-├── docs/            # 运营文档
-├── intel/           # 项目规划
-├── skills/          # 技能文件（共享）
-├── logs/            # 日志文件
-├── SOUL.md          # 人格定义
-├── AGENTS.md        # 行为规范
-├── MEMORY.md        # 长期记忆
-└── README.md        # 本文件
+xiaomijiao/
+├── SOUL.md            # 角色定义与决策原则
+├── IDENTITY.md        # 人格特质
+├── USER.md            # 官家画像
+├── COMMS.md           # 沟通规则（官家↔小米椒）
+├── MEMORY.md          # 长期记忆 v2.0
+├── AGENTS.md          # Agent 启动配置
+├── HEARTBEAT.md       # 心跳检查
+├── TOOLS.md           # 工具说明
+├── README.md          # 本文件
+│
+├── intel/             # 📊 运营情报库
+│   ├── 热点选题.md
+│   ├── 选品调研.md
+│   ├── 内容初稿.md         # P0 v2
+│   ├── P1-助眠好物框架.md
+│   ├── 运营待办.md
+│   ├── 数据复盘.md         # 模板
+│   ├── 品牌过往爆款.md     # 模板
+│   ├── 平台规则更新.md     # 模板
+│   └── 每周运营规划.md     # 模板
+│
+├── memory/            # 🧠 每日记忆
+│   └── 2026-03-25.md
+│
+├── scripts/           # ⚙️ 自动化
+│   └── xiaomijiao-cron.sh  # 定时任务（6个子命令）
+│
+└── logs/              # 📋 日志（7天自动清理）
 ```
 
-## Git 推送规则
+## ⏰ 定时任务
 
-| 内容类型 | 推送目标 |
-|---------|---------|
-| `skills/` | `git push origin` |
-| `memory/` | `git push xiaomijiao` |
-| `docs/` | `git push xiaomijiao` |
-| `intel/` | `git push xiaomijiao` |
-| `*.md` | `git push xiaomijiao` |
+| 类型 | 任务 | 时间 |
+|------|------|------|
+| Gateway | 午间回顾 | 每天 12:00 |
+| Gateway | 晚间回顾 | 每天 23:50 |
+| Shell | QMD 更新 | 06:10 |
+| Shell | 周报 | 周五 18:10 |
+| Shell | 错误统计 | 每小时:10 |
+| Shell | 日志清理 | 02:10 |
 
-**口诀**：技能推 origin，个人推 xiaomijiao
-
-## 配置位置
-
-| 配置项 | 路径 |
-|--------|------|
-| 工作区 | `~/.openclaw/xiaomijiao_workspace` |
-| Gateway | `~/.openclaw-media/openclaw.json` |
-| Agent | `~/.openclaw/agents/xiaomijiao/agent/` |
-| 微信 | `~/.openclaw-media/.openclaw/openclaw-weixin/` |
-| QQ | `~/.openclaw-media/.openclaw/qqbot/` |
+## 🔗 外部资源
+- Git: `xiaomila` → github.com/zhaog100/xiaomila-skills.git（main 分支）
+- QMD: 集合 `xiaomijiao`（19个文档）
 
 ---
-
-**版权：** MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+_v2.0 | 2026-03-25_
