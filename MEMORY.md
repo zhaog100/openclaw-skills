@@ -14,11 +14,11 @@ _精心维护的记忆，提炼后的精华_
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| illbnm/homelab-stack #10 | 🔍 PR等审核 | $280 Observability Stack，已认领并完成 |
-| pygal #579 | 🔍 PR等审核 | OHLC K线图 |
-| vllm-omni #2080 | 🔍 待确认 | 仓库权限问题 |
-| GeneralsGameCode #2485 | 🔍 待确认 | 仓库权限问题 |
-| **总计待审核 PR** | **4 个** | **~$1,080** |
+| illbnm/homelab-stack #364 | 🔍 PR审核中 | $280 Observability Stack，可合并，等待审核 |
+| pygal #579 | ✅ 已完成 | OHLC K线图（PR可能已合并/关闭） |
+| vllm-omni #2080 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
+| GeneralsGameCode #2485 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
+| **总计待审核 PR** | **3 个** | **~$800-1,000** |
 | **MiniMax模型** | ✅ 已配置 | M2.7 + M2.7-highspeed |
 | ClawHub 发布 | 25+ 个 | 技能 |
 | Git 仓库 | origin + xiaomili | 双仓库 |
