@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.1  
-**最后更新**: 2026-03-27 09:30  
+**版本**: v3.2  
+**最后更新**: 2026-03-27 18:16  
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -89,7 +89,12 @@
 
 ## 📝 运营教训
 
-### 2026-03-27 ⭐⭐⭐⭐⭐
+### 2026-03-27 18:00 模型切换与飞书移除 ⭐⭐⭐⭐⭐
+- **模型配置**: 切换到 `zai/glm-5`（原 `bailian/qwen3.5-plus`），在 agents.list 中添加 model.primary
+- **飞书移除**: 从 openclaw.json 移除 channels.feishu、plugins.allow、plugins.entries
+- **QMD 独立**: 创建独立 collection `xiaomijiao`（26 个文档），不再共用小米辣的知识库
+
+### 2026-03-27 09:00 结构化整理 ⭐⭐⭐⭐⭐
 - **索引一致性**: 所有索引文件 (README/docs/intel) 需同步更新，避免信息不一致
 - **文件统计准确性**: 每次新增/删除文件后，所有索引文件需同步更新统计数字
 - **Git 提交粒度**: 相关文件的改动打包成一个 commit，便于追溯
@@ -125,13 +130,13 @@
 |------|-----|
 | Agent ID | `xiaomijiao` |
 | 实例 | Ubuntu 24.04, 192.168.204.129 |
-| 通道 | QQ Bot（✅）、微信 Bot（✅ `b2ed46104463-im-bot`） |
-| 模型 | qwen3.5-plus（百炼） |
+| 通道 | QQ Bot（✅ `xiaomijiao` 账号） |
+| 模型 | `zai/glm-5` |
 | 工作区 | `~/.openclaw-xiaomijiao/workspace/` |
 | Git remote | `origin` + `xiaomijiao` (双仓库) |
 | Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
-| QMD 集合 | `xiaomijiao`（19 个文档） |
-| Gateway 端口 | 18790 |
+| QMD 集合 | `xiaomijiao`（26 个文档） |
+| Gateway 端口 | 18789（共享） |
 
 ## ⏰ 定时任务
 
