@@ -107,6 +107,30 @@ EOF
     return 1
 }
 
+# 检测微信引用（openclaw-weixin 插件格式：[引用: xxx]\n用户消息）
+detect_weixin_quote() {
+    local message="$1"
+
+    if echo "$message" | grep -qP '^\[引用:\s*.+\]'; then
+        local quoted_text=$(echo "$message" | grep -oP '^\[引用:\s*\K.+?(?=\])' | head -1)
+
+        echo "$(cat <<EOF
+{
+  "has_quote": true,
+  "platform": "weixin",
+  "message_id": null,
+  "quoted_text": "$quoted_text",
+  "quote_type": "embedded",
+  "quote_position": 0
+}
+EOF
+)"
+        return 0
+    fi
+
+    return 1
+}
+
 # 检测通用引用标记
 detect_generic_quote() {
     local message="$1"
@@ -144,6 +168,12 @@ main() {
     fi
     
     result=$(detect_qq_quote "$USER_MESSAGE"); rc=$?
+    if [ $rc -eq 0 ]; then
+        echo "$result"
+        exit 0
+    fi
+    
+    result=$(detect_weixin_quote "$USER_MESSAGE"); rc=$?
     if [ $rc -eq 0 ]; then
         echo "$result"
         exit 0

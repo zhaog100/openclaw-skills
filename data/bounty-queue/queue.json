@@ -815,5 +815,1321 @@
     "html_url": "https://github.com/Axionvera/axionvera-sdk/issues/2",
     "created_at": "2026-03-25T15:30:08.507231",
     "status": "claimed"
+  },
+  {
+    "key": "ua6248634-cell/Shaurya-OS#1",
+    "owner": "ua6248634-cell",
+    "repo": "Shaurya-OS",
+    "number": 1,
+    "title": "pentest",
+    "body": "shaurya os, shaurya os v1.0, shaurya os download,\nsecurity os, cyber warfare os, penetration testing os,\nhacking os, kali linux alternative, debian security os\n\n╔══════════════════════════════════════════════════════════════════════════════╗\n║           SHAURYA OS v1.0 — COMPLETE DESCRIPTION PACK                      ║\n║           Created by: Usman Ahmad                                           ║\n║           Contact: ua6248634@gmail.com                                      ║\n╚══════════════════════════════════════════════════════════════════════════════╝\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n  SECTION 1: MAIN DESCRIPTION (Website / GitHub / Gumroad)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSHAURYA OS v1.0\n\"Courage in Every Byte\"\nCreated by Usman Ahmad\n\n━━ WHAT IS SHAURYA OS? ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nShaurya OS v1.0 is a professional-grade cyber warfare and\nintelligence security operating system built on Debian 12\nBookworm. Named after the Sanskrit word for \"courage\" and\n\"bravery\", Shaurya OS is built for security professionals,\nethical hackers, red teamers, penetration testers, and\ncyber intelligence researchers.\n\nWith 10,000+ pre-installed security tools, 500+ AI agents,\nand an automated exploitation engine — Shaurya OS is ready\nto deploy from the very first boot. No setup. No configuration.\nJust power on and start working.\n\n━━ KEY HIGHLIGHTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n⚔️  Named after bravery — built for warriors of cyberspace\n🌊  Beautiful Cyan/Blue theme — like the ocean, deep and powerful\n🔵  10,000+ pre-installed tools across every security category\n🤖  500+ AI agents — AutoGPT, CrewAI, LangChain, Ollama\n🎯  Auto-Pwn Engine — one command, full attack chain\n🌐  Web Control Panel — browser-based at localhost:8008\n📱  Android Security Toolkit — MobSF, Frida, JADX, Drozer\n🔬  Digital Forensics — Autopsy, Volatility3, Yara, Capa\n☁️  Cloud Security — AWS, Azure, GCP attack tools\n🔧  Self-Healing System — daily auto-repair at 3AM\n🛡️  Built on Debian 12 Bookworm — stable and secure base\n👤  Created by Usman Ahmad\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n  SECTION 2: TOOL CATEGORIES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSHAURYA OS v1.0 — Complete Tool Arsenal\n\n1. PENETRATION TESTING & EXPLOITATION (400+ tools)\n   ► Metasploit Framework — 2,000+ exploits\n   ► Armitage GUI — Visual Metasploit interface\n   ► Havoc C2 — Modern command and control\n   ► Sliver — Cross-platform C2 framework\n   ► Empire — PowerShell post-exploitation\n   ► BloodHound — Active Directory attack paths\n   ► Certipy — AD CS certificate attacks\n   ► Impacket — Windows protocol exploitation\n   ► CrackMapExec — SMB/WinRM enumeration\n   ► Nuclei — 10,000+ CVE templates\n\n2. WEB APPLICATION SECURITY (200+ tools)\n   ► SQLMap — Automatic SQL injection tool\n   ► XSStrike — Advanced XSS detection suite\n   ► dalfox — Fast XSS parameter scanner\n   ► BeEF XSS — Browser e",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/ua6248634-cell/Shaurya-OS/issues/1",
+    "created_at": "2026-03-25T16:30:08.595292",
+    "status": "claimed"
+  },
+  {
+    "key": "Uniswap/v4-core#1028",
+    "owner": "Uniswap",
+    "repo": "v4-core",
+    "number": 1028,
+    "title": "[SECURITY DISCLOSURE] Critical Vulnerability found in ERC6909.sol",
+    "body": "**Enterprise-Grade Bug Report**\r\n\r\n**Contract:** ERC6909\r\n**Version:** 0.8.0\r\n**Audited On:** 21 March 2026\r\n\r\n**Introduction:**\r\nThis audit was conducted on the provided Solmate-based ERC6909 contract implementation. The audit focused on identifying potential critical and high-severity security vulnerabilities.\r\n\r\n**Findings:**\r\n\r\n### Critical Severity\r\n\r\n1. **Reentrancy Vulnerability** in transferFrom function:\r\nThe `transferFrom` function uses a conditional statement to check if the sender has sufficient allowance to transfer the specified amount. However, this check is performed before updating the `balanceOf` and `allowance` mappings. This allows a malicious user to repeatedly call `transferFrom` in a loop, each time reducing the sender's allowance, ultimately causing a reentrancy attack.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, reentrancy-safe operations should be performed within a lock or using the OpenZeppelin reentrancy modifier.\r\n\r\n2. **Arithmetic Overflow Vulnerability** in balanceOf and allowance mappings:\r\nThe contract uses mappings to store balance and allowance data. However, the data type used for this mapping (uint256) may cause arithmetic overflows when the balances or allowance amounts approach the maximum limit of uint256.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, consider using data types with a larger maximum value or using libraries that handle arithmetic overflows safely, such as SafeMath or OpenZeppelin's SafeMath library.\r\n\r\n### High Severity\r\n\r\n1. **Missing Input Validation** in transfer and transferFrom functions:\r\nThe `transfer` and `transferFrom` functions lack proper input validation. Specifically, they do not check if the `receiver` address is not the zero address (0x0).\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, add input validation to check for zero addresses and other invalid conditions.\r\n\r\n2. **Incorrect Gas Optimizations in setOperator function:**\r\nThe `setOperator` function uses a mapping to store operator status, which can lead to excessive storage growth and associated gas costs over time.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, consider using a Merkle tree or other gas-efficient data structures to store operator status.\r\n\r\n3. **Missing Authorization Checks** in certain functions:\r\nFunctions like `approve` and `transfer` lack proper authorization checks.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, add authorization checks to ensure that only authorized parties can execute these functions.\r\n\r\n**Recommendations:**\r\n\r\nTo address these vulnerabilities, consider the following recommendations:\r\n\r\n1. Apply reentrancy-safe operations within a lock or using the OpenZeppelin reentrancy modifier.\r\n2. Use data types with a larger maximum value or libraries that handle arithmetic overflows safely.\r\n3. Implement input validation for zero addresses and other invalid conditions in all functions.\r\n4. Consider using Merkle trees or other gas-efficient data structures to stor",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/Uniswap/v4-core/issues/1028",
+    "created_at": "2026-03-25T16:30:10.604101",
+    "status": "claimed"
+  },
+  {
+    "key": "mautic/mautic#15969",
+    "owner": "mautic",
+    "repo": "mautic",
+    "number": 15969,
+    "title": "Tags page: clicking sort headers adds an extra filter/search field",
+    "body": "### Mautic Series\n\n7.0.x series\n\n### Mautic installed version\n\n7.0.1\n\n### Way of installing\n\nI installed with composer using https://github.com/mautic/recommended-project\n\n### PHP version\n\n8.2.29\n\n### What browsers are you seeing the problem on?\n\n_No response_\n\n### What happened?\n\nSummary\nOn the Tags page, clicking a sortable column header such as \"Name\" or \"ID\" triggers sorting, but it also causes an additional filter/search field to appear at the top of the table.\n\n### How can we reproduce this issue?\n\nSteps to reproduce\n1. Go to Tags\n2. Open the tags list\n3. Click the \"Name\" column header or the \"ID\" column header\n\nActual result\nThe list is sorted, but an extra filter/search field appears above the table.\n\nExpected result\nThe list should sort normally without adding another filter/search field.\n\n\n### Relevant log output\n\n```shell\n\n```\n\n### Code of Conduct\n\n- [x] I confirm that I have read and agree to follow this project's Code of Conduct\n\n<br /><hr>\nCare about this issue? Want to get it resolved sooner? If you are a <a href='https://www.mautic.org/become-a-member-of-mautic'>member of Mautic</a>, you can add some funds to the <a href='https://opencollective.com/mautic/projects/bounties'>Bounties Project</a> so that the person who completes this task can claim those funds once it is merged by a member of the core team! Read the docs <a href='https://contribute.mautic.org/product-team/mautic-bounty-programme'>here.</a>",
+    "score": 45,
+    "labels": [
+      "bug",
+      "needs-triage"
+    ],
+    "html_url": "https://github.com/mautic/mautic/issues/15969",
+    "created_at": "2026-03-25T16:30:11.731983",
+    "status": "claimed"
+  },
+  {
+    "key": "allknowledge34/UpdateApp#5",
+    "owner": "allknowledge34",
+    "repo": "UpdateApp",
+    "number": 5,
+    "title": "$0.4 Bounty : Login fails with \"Invalid Email\" after successful signup and OTP verification",
+    "body": "### Description\nAfter completing the signup process successfully, login does not work with the same email and password.\nThe app shows an **\"Invalid Email\"** error during login.\n\n### Signup Flow\n1. User signs up using:\n   - Name\n   - Email\n   - Phone number\n   - Password\n2. After signup, the app redirects to **phone number OTP verification**\n3. OTP is entered correctly and verified\n4. Account is created successfully\n\n### Issue\nAfter logging out, when trying to log in using the **same email and password** used during signup,\nthe login fails and shows **\"Invalid Email\"** error.\n\n### Steps to Reproduce\n1. Open the app\n2. Go to Signup screen\n3. Enter name, email, phone number, and password\n4. Verify phone number using OTP\n5. Logout after successful signup\n6. Go to Login screen\n7. Enter the same email and password\n8. Login fails with \"Invalid Email\" error\n\n### Expected Behavior\nUser should be able to log in successfully using the same email and password after signup.\n\n### Actual Behavior\nLogin fails with \"Invalid Email\" error even though the account was created successfully.\n\n### Platform\n- Java (Android)\n- Email & Phone OTP Authentication\n\n### Additional Information\n- OTP verification works correctly\n- Signup flow completes without any error\n- Issue happens only during login after signup\n",
+    "score": 40,
+    "labels": [
+      "bug",
+      "bounty"
+    ],
+    "html_url": "https://github.com/allknowledge34/UpdateApp/issues/5",
+    "created_at": "2026-03-25T17:00:06.377221",
+    "status": "claimed"
+  },
+  {
+    "key": "himmelblau-idm/himmelblau#1206",
+    "owner": "himmelblau-idm",
+    "repo": "himmelblau",
+    "number": 1206,
+    "title": "Resume from standby locks user out",
+    "body": "### Description\n\nDistri: RHEL 10\n\nAfter a resume, when network gets disconnected, a logged in User can no longer unlock the lock screen. I even cannot switch consoles via ctrl + alt +f# to maybe fix it.\nAt work, with working network, I can ssh into the system, restart himmelblau and unlock again - this takes about 10+ minutes all in all. The initial ssh login until the password prompt shows up takes about 2 minutes, then the sudo systemctl restart himmelblaud himmelblaud-tasks takes another 2 minutes for the password prompt (unix offline user) and then another 2 minutes until the service is actually restarted. During this, the unlock prompt resets twice. After this I need to press enter again and finally the PIN prompt is shown and I can unlock the system.\nAt home, when I use VPN the same thing happens. But this time, since the VPN doesn't reset properly, the network is in a state where I cannot use ssh. Since I cannot switch console  anymore, all I can do is hard reset the system.\n\nBoth situations are obviously not ideal and I should always be able to access the system again.\n\nHimmelblau should recover from this by resetting itself in some form  - and in the case of my VPN problem or another network problem fall back to offline login.\n\n\nEvent timeline:\n12:58:00 wake up - no PIN prompt\n12:59:04 ssh connection start\n13:00:40 ssh connected\n13:00:45 sudo systemctl restart himmelblaud himmelblaud-tasks\n13:06:13 sudo password prompt\n13:09:27 himmelblau restarted - hit enter to remove old pam error and PIN prompt is here\n\nThere are also some selinux errors left, not sure if they matter, regular usage works\n\nSELinux hindert /usr/sbin/NetworkManager daran, mit write-Zugriff auf Verzeichnis nss-himmelblau zuzugreifen.\nSELinux hindert /usr/bin/getent daran, mit connectto-Zugriff auf unix_stream_socket /run/himmelblaud/socket zuzugreifen.\nSELinux hindert /opt/cisco/secureclient/bin/vpnagentd daran, mit connectto-Zugriff auf unix_stream_socket /run/himmelblaud/socket zuzugreifen.\n\nmaybe some more, but maybe a separate issue\n\n### Steps to Reproduce\n\n* suspend or standby machine\n* wake up again\n* no login text in plasma lock screen or gnome lock screen\n\nshould instead prompt for PIN or entra id password\n\n### Relevant log output\n\n```shell\nwill attach separately - is a bit longer\n```\n\n### Version\n\n3.0.0\n\n### Code of Conduct\n\n- [x] I agree to follow this project's Code of Conduct\n---\n\n### 💡 Help Make It Happen!\n\nWant to see this issue resolved faster? Fund its implementation through our **Backer's Bounty** program, where you choose which issues get priority!\n\n[![Donate to Our Collective](https://opencollective.com/himmelblau/donate/button.png?color=blue)](https://himmelblau-idm.org/backers.html#backers-bounty)\n\nFor US tax exempt donations:\n\n[![Donate US Tax Exempt](https://www.spi-inc.org/images/paypal_btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8GYKFLX9UNCH2)\n\nYour support helps drive Himmelblau’s evolution!",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/himmelblau-idm/himmelblau/issues/1206",
+    "created_at": "2026-03-25T17:00:09.303382",
+    "status": "claimed"
+  },
+  {
+    "key": "rust-lang/leadership-council#273",
+    "owner": "rust-lang",
+    "repo": "leadership-council",
+    "number": 273,
+    "title": "Policy proposal: No low-effort contributions",
+    "body": "## Motivation\n\nRecently, with the rapid development in the capabilities of AI-adjacent technologies (LLMs, AI agents and MCP-like technologies), maintainers and moderators on [`rust-lang/rust`] in particular have been seeing an significant uptick in \"slop\" contributions (issues, comments and pull requests).\n\nThe usage of the terms \"slop\" and \"vibecoded\" here is **intentional**:\n\n- This policy is **not** intended for AI-assisted contributions that have been thoroughly self-reviewed.\n- This policy takes **no stance** on AI-assisted contributions *in general*.\n- In this policy, \"slop\" or \"vibecoded\" contributions primarily refers to spammy AI-assisted contributions that are obviously not human-reviewed or clearly insufficiently human-reviewed.\n  - However, the quality of the generated code doesn't matter. Even if the code is the same, or almost the same, as what a human would produce, if it is vibe-coded, we do not accept such code. Fundamentally, open-source is not just about the technical contents or of the codebase itself.\n- To highlight the **negative** ([extractive]) values of these slop contributions.\n\n \nSuch slop contributions are becoming way too frequent and numerous on [`rust-lang/rust`] which is requiring an unsustainably increasing amount of maintainer and moderation bandwidth to handle. To put it bluntly, it feels like DDoS against maintenance and moderation capacity. This is both very frustrating and a large waste of time, so it is the intention of this policy to <ins>**strongly discourage and disincentivize slop contributions**</ins>.\n\n### Existing related Rust Project policies and usage\n\n- Backlinks to [Policy: Empower reviewers to reject burdensome PRs compiler-team#893][compiler-team#893]\n- https://github.com/rust-lang/rust/pulls?q=is%3Apr+moderation+team+is%3Aclosed\n\nWhile we have [Policy: Empower reviewers to reject burdensome PRs compiler-team#893][compiler-team#893] and [Spam policy | Moderation Team][spam-policy], they are limited:\n\n- The compiler team policy ([compiler-team#893]) is only really for compiler-related PRs. While reviewers from other team may choose to cite this compiler team policy, this is not explicitly accepted by the other teams.\n- The compiler team policy does not specifically call out slop, and the maximal degree of implied moderation action is only \"to close the PR\".\n- The moderation team spam policy doesn't quite obviously call out slop contributions.\n\n### Related discussions\n\n[#all/private > Project perspectives on AI](https://rust-lang.zulipchat.com/#narrow/channel/546943-all.2Fprivate/topic/Project.20perspectives.20on.20AI/with/577135401)\n\n## Scope\n\nThis policy is intentionally narrowly scoped before we have a more general project-level AI policy to \"stop the bleeding\" on [`rust-lang/rust`].\n\n- This is a \"negative\" framing policy, calling out what is *unacceptable*. This policy is _not_ intended to be a substitute of any kind of more general AI policy which may or may not spell out \"fair use\", \"human ",
+    "score": 35,
+    "labels": [
+      "question",
+      "T-leadership-council",
+      "proposed-final-comment-period",
+      "disposition-merge",
+      "S-needs-decision",
+      "S-active",
+      "A-policy",
+      "I-council-nominated"
+    ],
+    "html_url": "https://github.com/rust-lang/leadership-council/issues/273",
+    "created_at": "2026-03-25T17:00:11.123661",
+    "status": "claimed"
+  },
+  {
+    "key": "RyderFreeman4Logos/cli-sub-agent#472",
+    "owner": "RyderFreeman4Logos",
+    "repo": "cli-sub-agent",
+    "number": 472,
+    "title": "bug: ephemeral sessions break gemini-cli file access (wrong working directory)",
+    "body": "## Problem\n\nWhen using `--ephemeral` with `--tool gemini-cli`, the spawned gemini-cli session cannot find any project files because the working directory is set to a temporary CSA session directory instead of the project root.\n\n### Reproduction\n\n```bash\ncat <<'PROMPT' | csa run --sa-mode true --force-ignore-tier-setting --tool gemini-cli --idle-timeout 300 --ephemeral\nRead crates/mandate-core/crates/mandate-bounty/fixtures/bounty.toml and report its contents.\nPROMPT\n```\n\n### Observed Behavior\n\nGemini-cli spends all its time trying to locate files:\n\n```\n[stdout] I will list the directory contents of the project to confirm the file paths\n[stdout] I will list the directory contents of the `mandate-monorepo` path\n[stdout] I will search for the relevant files by name to find their exact location\n[stdout] I will check the current working directory\n[stdout] I will list the `/home/obj/project` directory\n[stdout] I will use `find` to locate the `mandate-dev-drafts` directory\n```\n\nIt never finds the files because `pwd` is a CSA temp directory, not the project root.\n\n### Expected Behavior\n\nEven in `--ephemeral` mode, the tool should be able to access project files. Options:\n1. Pass `--cd <project-root>` to the tool\n2. Set `cwd` in the tool invocation to the project root\n3. Inject the project root path in the prompt context\n\n### Environment\n\n- CSA version: `csa 0.1.167 (v0.1.15-274-g1828e8b)`\n- Tool: gemini-cli\n- Flag: `--ephemeral`\n- All 3 parallel ephemeral gemini-cli sessions exhibited the same behavior\n\n### Impact\n\n- `--ephemeral` mode is effectively unusable with gemini-cli for any task requiring file access\n- Non-ephemeral sessions work correctly (gemini-cli can find files via the project's working directory)\n\n### Workaround\n\nDon't use `--ephemeral` for gemini-cli sessions that need file access.",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/RyderFreeman4Logos/cli-sub-agent/issues/472",
+    "created_at": "2026-03-25T17:00:12.423726",
+    "status": "claimed"
+  },
+  {
+    "key": "Axionvera/axionvera-sdk#2",
+    "owner": "Axionvera",
+    "repo": "axionvera-sdk",
+    "number": 2,
+    "title": "Issue 202: chore: Define Standardized GitHub PR and Issue Templates",
+    "body": "## Description\nTo manage external contributions effectively during the bounty program, we need strict templates for bug reports, feature requests, and pull requests to ensure maintainers get all necessary context upfront.\n\n## Requirements\n- [ ] Create `.github/ISSUE_TEMPLATE/bug_report.md` requiring Node version, SDK version, and a minimum reproducible example.\n- [ ] Create `.github/ISSUE_TEMPLATE/feature_request.md` focusing on the proposed API signature and use case.\n- [ ] Create `.github/PULL_REQUEST_TEMPLATE.md` with a mandatory checklist (tests passed, docs updated, linted).",
+    "score": 15,
+    "labels": [],
+    "html_url": "https://github.com/Axionvera/axionvera-sdk/issues/2",
+    "created_at": "2026-03-25T17:00:13.556577",
+    "status": "claimed"
+  },
+  {
+    "key": "MindFlowInteractive/quest-contract#130",
+    "owner": "MindFlowInteractive",
+    "repo": "quest-contract",
+    "number": 130,
+    "title": "Puzzle Crowdfund and Community Bounty Contract",
+    "body": "\n**Location:** `contracts/puzzle_crowdfund`\n**Estimated Time:** 7 hours\n**Difficulty:** Hard\n\n### Description\nAllow the community to pool funds to create a shared bounty for solving a specific puzzle. Any player can contribute to a crowdfund campaign. When the target amount is reached, the bounty activates. The first player to solve the puzzle claims the full pooled reward. Unfunded campaigns can be refunded.\n\n### Tasks\n- [ ] Design `CrowdfundCampaign` struct: `puzzle_id`, `target_amount`, `raised`, `status`, `contributors: Map<Address, i128>`, `winner`\n- [ ] Implement `create_campaign(puzzle_id, target_amount, deadline)` — initializes new campaign\n- [ ] Implement `contribute(campaign_id, amount)` — adds to `raised`; stores contributor share\n- [ ] Campaign auto-activates when `raised >= target_amount`\n- [ ] Implement `claim_bounty(campaign_id, solution_hash)` — first valid solver takes all raised funds\n- [ ] Implement `refund(campaign_id)` — callable if deadline passed without reaching target; returns pro-rata shares\n- [ ] `get_campaign(campaign_id)` — returns full status, raised amount, contributor list\n- [ ] Emit `CampaignActivated`, `BountyClaimed(campaign_id, winner, amount)`, `CampaignRefunded` events\n- [ ] Write tests: contribute, auto-activate, claim, refund after deadline, double-claim rejection\n\n### Acceptance Criteria\n- Campaigns fund and activate correctly\n- Winner takes full pooled amount\n- Refunds distributed pro-rata\n- Deadline enforced for inactive campaigns\n- Contract deployed to testnet",
+    "score": 60,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/MindFlowInteractive/quest-contract/issues/130",
+    "created_at": "2026-03-25T17:30:09.359930",
+    "status": "claimed"
+  },
+  {
+    "key": "labs-solo/aegis-arena#3",
+    "owner": "labs-solo",
+    "repo": "aegis-arena",
+    "number": 3,
+    "title": "Audit 3: audit of the docs folder",
+    "body": "## Audit Scope\n\n### Files Reviewed\n\n| File | Status |\n|------|--------|\n| `README.md` | Reviewed |\n| `TECHNICAL.md` | Reviewed |\n| `docs/JUDGES.md` | Reviewed |\n| `docs/specs/ARCHITECTURE.md` | Reviewed |\n| `docs/specs/ARENA_CONTRACT.md` | Reviewed |\n| `docs/specs/BOUNTY_BONDS.md` | Reviewed |\n| `docs/specs/AGENTS.md` | Reviewed |\n| `docs/specs/SCORING.md` | Reviewed |\n| `docs/specs/BORROW_FLOW.md` | Reviewed |\n| `docs/specs/SDK.md` | Reviewed |\n| `docs/roadmap/SEER_BETS.md` | Reviewed |\n| `docs/guides/POSITION_MANAGER_LOOKUP.md` | Reviewed |\n\n### Files Not Yet Reviewed\n\n- `docs/specs/DEPLOYMENT.md`\n- `docs/specs/X402.md`\n- `docs/guides/SETUP.md`\n- `docs/guides/RUNNING_GAME.md`\n- `docs/guides/ADDING_AGENTS.md`\n- `src/` (TypeScript SDK and server implementation)\n\n---\n\n## Findings\n\n---\n\n### DOC-01 — TECHNICAL.md describes a completely different contract API to what exists\n\n**Severity:** Critical\n**File:** `TECHNICAL.md`\n**Lines:** 228–244\n\n**Description:**\n`TECHNICAL.md` documents the following Arena.sol functions in its key contract reference table:\n\n| Function | Purpose |\n|----------|---------|\n| `registerAgent(address, bytes32 strategy)` | Register an agent |\n| `recordScore(address, uint256)` | Update agent score |\n| `claimRoundReward(uint256 roundId)` | Agents claim prize |\n| `endRound(uint256 roundId)` | Settle scores |\n\nNone of these functions exist. The actual contract has `register(address[])`, `startRound()`, `executeBatch()`, and `settle()`. These are not naming differences — they represent fundamentally different designs. `claimRoundReward` implies agents pull their own prizes on-chain. `settle()` means the owner pushes prizes. The access model, the economic flow, and the agent interaction pattern differ entirely.\n\n`TECHNICAL.md`'s Bounty.sol table (line 237–243) is equally misaligned: it documents `claimBounty(uint256 bountyId, bytes calldata proof)` (wrong signature — no proof param) and `rejectBounty(uint256 bountyId)` (this function does not exist anywhere in the codebase).\n\nThis document appears to describe an earlier design that was never built. Anyone building against `TECHNICAL.md` as a reference would implement against interfaces that do not exist.\n\n**Recommended resolution:**\n`TECHNICAL.md` should be fully rewritten to reflect the actual deployed contracts. Until then it should carry a prominent deprecation warning at the top.\n\n---\n\n### DOC-02 — Judge-facing documents make materially false claims about verification\n\n**Severity:** Critical\n**Files:** `TECHNICAL.md#L222`, `docs/JUDGES.md#L15`, `docs/JUDGES.md#L266`\n\n**Description:**\nMultiple judge-facing documents assert properties the contracts do not have.\n\n`TECHNICAL.md` line 222:\n> *\"No off-chain verification. No human judges. The contract checks the pool's swaps log directly.\"*\n\n`verifyAndPay()` is owner-only, accepts owner-supplied bytes, and never reads a pool or transaction log. Verification is entirely off-chain and owner-controlled.\n\n`docs/JUDGES.md` line 15:\n> *\"No sim",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/labs-solo/aegis-arena/issues/3",
+    "created_at": "2026-03-25T17:30:10.428653",
+    "status": "claimed"
+  },
+  {
+    "key": "labs-solo/aegis-arena#2",
+    "owner": "labs-solo",
+    "repo": "aegis-arena",
+    "number": 2,
+    "title": "Audit 2: Contracts Design and Architecture Review",
+    "body": "## Audit Scope\n\n### Files Reviewed\n\n| File | Type | Status |\n|------|------|--------|\n| `contracts/Arena.sol` | Smart contract | Reviewed |\n| `contracts/IArena.sol` | Interface | Reviewed |\n| `contracts/Bounty.sol` | Smart contract | Reviewed |\n| `docs/specs/BOUNTY_BONDS.md` | Specification | Reviewed |\n| `docs/specs/ARENA_CONTRACT.md` | Specification | Partially reviewed |\n| `docs/specs/ARCHITECTURE.md` | Specification | Partially reviewed |\n| `TECHNICAL.md` | Technical reference | Partially reviewed |\n\n### Files Not Yet Reviewed\n\n- `contracts/AegisDeployConfig.sol`\n- `contracts/interfaces/IBounty.sol`\n- `contracts/script/DeployArena.s.sol`\n- `src/` (TypeScript SDK and server)\n- `docs/specs/AGENTS.md`\n- `docs/specs/SCORING.md`\n- `docs/specs/BORROW_FLOW.md`\n- `docs/specs/SDK.md`\n- All remaining guide documents\n\n---\n\n## Intended Design\n\n**Arena.sol** was designed to be an on-chain game orchestrator: register AI agents into rounds, start timed competitions, route agent trades through the contract, score agents by final USDC-denominated portfolio value, and distribute prizes. It is also intended to serve as an oracle for Bounty.sol, providing verifiable snapshots of agent trading activity.\n\n**Bounty.sol** was designed to be a cooperation layer on top of Arena: one agent posts a USDC reward with specific trading conditions, another agent claims it by executing those conditions, and the Arena contract provides the on-chain proof that conditions were met — enabling trustless payout without human arbitration.\n\nTogether, the intended architecture is a provably fair AI agent competition (Arena) with an autonomous peer-to-peer incentive mechanism (Bounty) verified against immutable on-chain trading data.\n\n**Does the concept make sense?** Yes. The combination of a competition layer with a cooperation/incentive layer is architecturally coherent. The problem is that implementation diverges from this intent at nearly every critical path.\n\n---\n\n## Findings\n\n---\n\n### ARCH-01 — Arena.sol is a round-state machine with an event log, not a game engine\n\n**Severity:** Critical (design integrity)\n**File:** `contracts/Arena.sol`\n**Lines:** 122–137, 157–168, 175, 196–205\n\n**Description:**\nThe three core functions of Arena do not do what their names and documentation claim.\n\n`executeBatch()` — the function responsible for running agent trades — has the following on-chain effect:\n\n```solidity\nemit ActionsExecuted(roundId, agent, actions);\n```\n\nThe `actions` array is never decoded, validated, or forwarded anywhere. No trade is executed. No state is changed beyond the event log.\n\n`settle()` assigns scores as a fixed descending sequence (`1000 - (i * 100)`) based on registration order, not trading performance. It computes prize amounts from a hardcoded `1000e6` value (`contracts/Arena.sol#L175`) with no connection to a funded prize pool. It then returns winners and prizes as memory arrays but **transfers no tokens**. The `prizePool` field on `RoundData` exists but is never se",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/labs-solo/aegis-arena/issues/2",
+    "created_at": "2026-03-25T17:30:12.044379",
+    "status": "claimed"
+  },
+  {
+    "key": "rsoreq-mend/AutoGPT#57",
+    "owner": "rsoreq-mend",
+    "repo": "AutoGPT",
+    "number": 57,
+    "title": "litellm-1.17.9-py3-none-any.whl: 11 vulnerabilities (highest severity is: 9.8) [master]",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>litellm-1.17.9-py3-none-any.whl</strong></summary>\n\nLibrary to easily interface with LLM API providers\n\n**Library home page:** [ https://files.pythonhosted.org/packages/76/f8/a61579cb4084fce469e380807c1e2990ed68099b36125e20e4822de60893/litellm-1.17.9-py3-none-any.whl ](https://files.pythonhosted.org/packages/76/f8/a61579cb4084fce469e380807c1e2990ed68099b36125e20e4822de60893/litellm-1.17.9-py3-none-any.whl)\n\n\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2024-2952 ](https://www.mend.io/vulnerability-database/CVE-2024-2952) | 🟣 Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.34.42 | ✅ | |\n| [ CVE-2024-5751 ](https://www.mend.io/vulnerability-database/CVE-2024-5751) | 🟣 Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.40.16 | ✅ | |\n| [ CVE-2024-4888 ](https://www.mend.io/vulnerability-database/CVE-2024-4888) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.35.18 | ✅ | |\n| [ CVE-2025-0628 ](https://www.mend.io/vulnerability-database/CVE-2025-0628) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.61.15,https://github.com/BerriAI/litellm.git - v1.61.15-nightly | ✅ | |\n| [ CVE-2024-6587 ](https://www.mend.io/vulnerability-database/CVE-2024-6587) | 🔴 High | 7.5 | Not Defined | 88.4% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.44.8 | ✅ | |\n| [ CVE-2024-8984 ](https://www.mend.io/vulnerability-database/CVE-2024-8984) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.56.2 | ✅ | |\n| [ CVE-2024-9606 ](https://www.mend.io/vulnerability-database/CVE-2024-9606) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.44.12,https://github.com/berriai/litellm.git - v1.44.12,litellm - 1.44.12 | ✅ | |\n| [ CVE-2025-0330 ](https://www.mend.io/vulnerability-database/CVE-2025-0330) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.56.6,https://github.com/BerriAI/litellm.git - v1.56.6 | ✅ | |\n| [ CVE-2024-4264 ](https://www.mend.io/vulnerability-database/CVE-2024-4264) | 🔴 High | 7.2 | Not Defined | 3.3% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.44.16 | ✅ | |\n| [ CVE-2024-4889 ](https://www.mend.io/vulnerability-database/CVE-2024-4889) | 🔴 High | 7.2 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | no_fix | ✅ | |\n| [ CVE-2024-5225 ](https://www.mend.io/vulnerability-database/CVE-2024-5225) | 🔴 High | 7.2 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.40.0 | ✅ | |\n\n\n# Details\n\n\n<details>\n  <summary>\n 🟣CVE-2024-2952\n  </summary>\n\n### Vulnerable",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/rsoreq-mend/AutoGPT/issues/57",
+    "created_at": "2026-03-25T17:30:13.706474",
+    "status": "claimed"
+  },
+  {
+    "key": "rsoreq-mend/AutoGPT#61",
+    "owner": "rsoreq-mend",
+    "repo": "AutoGPT",
+    "number": 61,
+    "title": "autogpt-forge-0.2.0: 22 vulnerabilities (highest severity is: 9.8) [master]",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>autogpt-forge-0.2.0</strong></summary>\n\n\n\n\n\n\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2024-2952 ](https://www.mend.io/vulnerability-database/CVE-2024-2952) | 🟣 Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-5751 ](https://www.mend.io/vulnerability-database/CVE-2024-5751) | 🟣 Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2026-0994 ](https://www.mend.io/vulnerability-database/CVE-2026-0994) | 🔴 High | 8.6 | Not Defined | < 1% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-4888 ](https://www.mend.io/vulnerability-database/CVE-2024-4888) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-0628 ](https://www.mend.io/vulnerability-database/CVE-2025-0628) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-6587 ](https://www.mend.io/vulnerability-database/CVE-2024-6587) | 🔴 High | 7.5 | Not Defined | 88.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-8984 ](https://www.mend.io/vulnerability-database/CVE-2024-8984) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-9606 ](https://www.mend.io/vulnerability-database/CVE-2024-9606) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-0330 ](https://www.mend.io/vulnerability-database/CVE-2025-0330) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-4565 ](https://www.mend.io/vulnerability-database/CVE-2025-4565) | 🔴 High | 7.5 | Not Defined | < 1% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-47273 ](https://www.mend.io/vulnerability-database/CVE-2025-47273) | 🔴 High | 7.5 | Not Defined | < 1% | setuptools-70.1.1-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-55197 ](https://www.mend.io/vulnerability-database/CVE-2025-55197) | 🔴 High | 7.5 | Not Defined | < 1% | pypdf-3.17.4-py3-none-any.whl | Direct | https://github.com/py-pdf/pypdf.git - 6.0.0,pypdf - 6.0.0,pypdf - 6.0.0 | ✅ | |\n| [ CVE-2025-62707 ](https://www.mend.io/vulnerability-database/CVE-2025-62707) | 🔴 High | 7.5 | Not Defined | < 1% | pypdf-3.17.4-py3-none-any.whl | Direct | pypdf - 6.1.3,https://github.com/py-pdf/pypdf.git - 6.1.3 | ✅ | |\n| [ CVE-2025-62708 ](https://www.mend.io/vulnerability-database/CVE-2025-62708) | 🔴 High | 7.5 | Not Defined | < 1% | pypdf-3.17.4-py3-none-any.whl | Direct | https://github.com/py-pdf/pypdf.git - 6.1.3,pypdf - 6.1.3 | ✅ | |\n| [ C",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/rsoreq-mend/AutoGPT/issues/61",
+    "created_at": "2026-03-25T17:30:14.857967",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#777",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 777,
+    "title": "Bounty escrow: renew and rollover (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: renew and rollover (bounty_escrow/escrow)\n\nDescription\n\ntest_renew_rollover.rs extends bounty lifetime without losing funds.\n\nRequirements and context\n\nClear state transitions on rollover.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-renew\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_renew_rollover.rs\nAdd documentation: renewal policy\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): renew and rollover tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/777",
+    "created_at": "2026-03-25T18:00:08.526388",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#765",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 765,
+    "title": "Bounty escrow: deprecation and migration target (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: deprecation and migration target (bounty_escrow/escrow)\n\nDescription\n\nset_deprecated with migration target; test_deprecation.rs.\n\nRequirements and context\n\nOld entrypoints fail clearly when deprecated.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-deprecation\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_deprecation.rs\nAdd documentation: deprecation policy\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): deprecation flow tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/765",
+    "created_at": "2026-03-25T18:00:09.554580",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#189",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 189,
+    "title": "[Idea Bounty] Nutrition Card: Prefill serving with last-used amount and compute nutrition facts based on weight",
+    "body": "## Feature Request\nIt's tedious to manually re-enter the serving/weight every time using the Nutrition Card. It should prefill the serving input with the last-used value (per food), and when the user edits the serving weight (e.g. grams), the nutrition facts line items should auto-compute corresponding macros for arbitrary fractional servings.\n\n**Example:**\n- If serving = 28g, and I enter 42g, the app should show protein, calories, etc. for 1.5 servings.\n- If I log 100g cottage cheese today, tomorrow when I select it, the weight field should be prefilled with 100g (but still editable).\n- Editing the amount should automatically recalc the nutrition facts displayed in the card instead of requiring a fixed unit.\n\n---\n- Use this issue as an end-to-end test for idea-credit + auto-queue, goal is fully automatic payout with NO maintainer approval required.\n\n## Acceptance Criteria\n- [ ] Nutrition Card's serving/weight field is prefilled with the last-used (per food, per user)\n- [ ] Changing the weight/serving dynamically updates nutrition macros (calories, protein, etc.)\n- [ ] If weight differs from 1.0 serving, all facts update proportionally\n- [ ] Still allows manual override for edge cases\n\n## Labels\nbounty: 1 BNUT, idea-adopted, idea-credit: @TheJollyLaMa\n\n---\nThis is an automated test of the idea-bounty/credit Copilot loop.",
+    "score": 30,
+    "labels": [
+      "bounty: 1 BNUT",
+      "V2.1.0",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/189",
+    "created_at": "2026-03-25T18:00:10.878448",
+    "status": "claimed"
+  },
+  {
+    "key": "term-structure/termmax-contract-v2#22",
+    "owner": "term-structure",
+    "repo": "termmax-contract-v2",
+    "number": 22,
+    "title": "DoS issue in liquidation",
+    "body": "Hello, I have submitted a high level issue into immunefi.\nThe immunefi team didn't understand the point and closed it.\nI think this issue is valuable to the TermMax protocol.\nWould you please take a coffe time to check my issue report?\nIf the issue is valueable, I think I can get some bounty.\nBest regards,",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/term-structure/termmax-contract-v2/issues/22",
+    "created_at": "2026-03-25T18:00:12.590401",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#726",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 726,
+    "title": "Harden nonce module semantics (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Harden nonce module semantics (grainlify-core)\n\nDescription\n\nReview and test grainlify-core nonce handling for replay protection across entrypoints.\n\nRequirements and context\n\nDocument expected nonce lifecycle for callers.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-nonce\n\nImplement changes\n\nWrite contract: grainlify-core/src/nonce.rs\nWrite tests: new or existing nonce tests under grainlify-core/src/test/\nAdd documentation: nonce.md or module docs\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): nonce replay protection tests and docs\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/726",
+    "created_at": "2026-03-25T18:00:13.914428",
+    "status": "claimed"
+  },
+  {
+    "key": "SPLURT-Station/S.P.L.U.R.T-tg#907",
+    "owner": "SPLURT-Station",
+    "repo": "S.P.L.U.R.T-tg",
+    "number": 907,
+    "title": "[BOUNTY] Suggestion #543",
+    "body": "### About the Bounty\n\n## Original issue text:\n\n**Suggestion:**\nAllow cursekin (werewolf species) to wear clothes in their beast form. There is no reason why they should unable to wear *anything*. Not even a bag, an ID, their radio, harness, nothing. This is a repeat of an earlier suggestion from last year that has 15 upvotes and 1 downvote that has NEVER been looked at. If approved I will personally go in and remedy this myself.\n\n**Reason:**\n[BOUNTY] Player bounty: $10 | Sure.\n\n**Results:**\n15x <:In_help:1056296636348899408>\n1x <:In_harm:1056296637909192794>\n\n\n### Suggestion Reference\n\n**Suggested by:** gobgobber\nhttps://discord.com/channels/908082639704064051/1404686278351655055/1486299073014140961\n\n### Contact Information\n\nContact `mos_ley` and in discord for payment information.\n\nContact `gobgobber` in discord for information about the requirements.\n\n### Payment Details\n\nPayment methods:\n- PayPal (Willcario)",
+    "score": 95,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/907",
+    "created_at": "2026-03-25T18:30:05.364635",
+    "status": "claimed"
+  },
+  {
+    "key": "tronprotocol/java-tron#6599",
+    "owner": "tronprotocol",
+    "repo": "java-tron",
+    "number": 6599,
+    "title": "[CRITICAL] DelegateResourceProcessor Precision Loss - CVSS 9.3",
+    "body": "# 🚨 CRITICAL VULNERABILITY: DelegateResourceProcessor Precision Loss\n**CVSS v3.1: 9.3 (CRITICAL)** `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H`\n\n## 🎯 Vulnerability Summary\nHigh-severity **economic attack** in TRON Stake 2.0. Floating point truncation bypasses `frozenV2BalanceForEnergy` validation, allowing **resource theft**.\n\n## 📁 Affected Code\nactuator/src/main/java/org/tron/core/vm/nativecontract/DelegateResourceProcessor.java:79\n\nlong energyUsage = (long) (ownerCapsule.getEnergyUsage() * TRX_PRECISION *\n((double)(repo.getTotalEnergyWeight()) / dynamicStore.getTotalEnergyCurrentLimit()));\n\n**Root Cause:** `0.999999 ratio → truncates to 0!` [vuln_proof.txt]\n\n## 💥 Attack Flow\ntotalEnergyWeight/totalEnergyCurrentLimit = 0.999999999\n\nenergyUsage = (long)0 → frozenV2Balance - 0 >= delegateBalance ✓\n\nFREE ENERGY delegated despite insufficient balance\n\nVictim loses TRX-equivalent resources ($15-20/TRX)\n\n\n## 🔬 Proof of Concept\n**Mainnet Evidence:** 50+ live `DelegateResourceContract` txns [paste.txt]\n**Code Proof:** Line 79 truncation [vuln_proof.txt]\n\n**Live Test:**\n```bash\ncurl -X POST https://api.trongrid.io/wallet/delegateresource \\\n-d '{\"owner_address\":\"YOUR_ADDR\",\"receiver_address\":\"TARGET\",\"balance\":1000000000,\"resource\":\"ENERGY\"}'\n\nRecommended Fix\n\n// Integer math - NO floating point!\nlong ratio = (repo.getTotalEnergyWeight() * TRX_PRECISION) / \n             dynamicStore.getTotalEnergyCurrentLimit();\nlong energyUsage = (ownerCapsule.getEnergyUsage() * ratio) / TRX_PRECISION;\n\nAttachments\nvuln_proof.txt - Vulnerable code extract\n\n🎖️ Bounty Request\nTRON DAO Bug Bounty Program - Advanced Eco\n\n[vuln_proof.txt](https://github.com/user-attachments/files/26237458/vuln_proof.txt)\n\nfnomic Attack ($10k+) [web:614]\n\nReporter: Chetan Biranje\nContact: Chetanchandrakantbiranje@gmail.com\n\n@TronProtocol @justinsuntron @Tronfoundation\n#TRON #Stake2 #BugBounty #Security",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/tronprotocol/java-tron/issues/6599",
+    "created_at": "2026-03-25T18:30:06.558872",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#192",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 192,
+    "title": "[Idea Bounty] Raw Intake log: newest-first and nutrition card popover on hover",
+    "body": "## Overview\n\nWe want to improve the usability of the Raw Intake side panel log and further test the automated idea-credit workflow!\n\n### 1. Log Order Change\n- The log at the bottom of the Raw Intake side panel currently lists the newest entry as the **last** row in the table, which can be inconvenient when tracking recent logs.\n- Instead, **reverse the log order so the most recent entry is always at the top**.\n- This will allow us to easily check if new logs are being recorded and displayed correctly.\n\n### 2. Nutrition Card Hover Preview for Log Rows\n- When hovering any entry in the log table, a **Nutrition Card should pop up** showing the macro/calorie information (just for 1 serving) corresponding to that log.\n- This card should use the same look-and-feel as the usual Nutrition Card but only display the values for 1 serving.\n- We only need the popover preview, not an interactive or editable instance.\n- This helps users verify what nutrients that specific log row represented at a glance.\n\n#### Use this issue to verify the automated bounty/idea-credit workflow works hands-off with no owner intervention.\n\n---\n## Acceptance Criteria\n- [ ] Raw Intake log displays the newest entry at the **top** of the table\n- [ ] Hovering over a log entry displays its Nutrition Card (1 serving only) as a popover\n\n---\n## Labels\nbounty: 1 BNUT, idea-adopted, idea-credit: @TheJollyLaMa\n\nThis is a test case for full Copilot workflow automation.",
+    "score": 40,
+    "labels": [
+      "bounty: 1 BNUT",
+      "V2.1.0",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/192",
+    "created_at": "2026-03-25T18:30:07.558300",
+    "status": "claimed"
+  },
+  {
+    "key": "one-covenant/crusades#65",
+    "owner": "one-covenant",
+    "repo": "crusades",
+    "number": 65,
+    "title": "Automated exploit detection with adaptive burn switch and researcher bounty",
+    "body": "## Summary\nImplement automated exploit detection that triggers protocol burn mode and rewards security researchers who disclose vulnerabilities responsibly.\n\n## Motivation\nRecent exploit (`v17_commit_7817608_208` - async overlap manipulation) required manual intervention to activate burn mode. Miners are incentivized to probe the scanner; validators need automated defense that responds faster than human oversight.\n\n## Proposed Mechanism\n\n### 1. Automated Exploit Detection (Cron-based)\n- **Frequency**: 15-minute intervals\n- **Process**: \n  - Scan recent submissions for exploit patterns\n  - Analyze AST for forbidden constructions (lazy loading, timer tampering, deferred computation)\n  - Cross-reference against known exploit signatures\n  - If confidence high → auto-trigger burn mode\n\n### 2. Adaptive Burn Switch\n- When exploit detected, validator automatically sets 100% burn rate\n- Halts all emissions until patch deployed\n- Logs detailed forensics (submission ID, exploit class, detection timestamp)\n\n### 3. Researcher Bounty Program\n- **Disclosure Reward**: TAO bounty for researchers who report exploits *responsibly* (before submitting to leaderboard)\n- **Detection vs Exploitation**: \n  - Reporter shares proof-of-concept privately → receives bounty\n  - Reporter exploits on mainnet → disqualified, no bounty\n- **Bounty Amount**: TBD (suggested: 1-3 TAO for moderate severity, higher for critical)\n\n## Implementation Notes\n- Requires binding Ozymandias/discord analysis to validator governance layer\n- Cron scanner must have authority to signal blockchain state changes\n- Bounty distribution requires wallet integration or manual payout workflow\n\n## Related\n- Recent exploit report: [Discord thread](https://discord.com/channels/799672011265015819/1222226314824777853/1486147330507018310)\n- Scanner rules: `src/crusades/core/security_defs.py`\n\n---\n*This issue formalizes the defense-in-depth strategy discussed with researchers who disclosed today's exploit.*",
+    "score": 40,
+    "labels": [
+      "source:discord"
+    ],
+    "html_url": "https://github.com/one-covenant/crusades/issues/65",
+    "created_at": "2026-03-25T18:30:08.643860",
+    "status": "claimed"
+  },
+  {
+    "key": "kosiorkosa47/SockFuzzerAppleSillicon#38",
+    "owner": "kosiorkosa47",
+    "repo": "SockFuzzerAppleSillicon",
+    "number": 38,
+    "title": "Build crash-to-PoC automatic translator",
+    "body": "## Motivation\nWhen a crash is found, manually translating the protobuf test case into a C userspace PoC is tedious and error-prone. Automation accelerates bug bounty submission.\n\n## Implementation Plan\n1. Parse crash protobuf binary into Session message\n2. Translate each Command into equivalent userspace C syscall\n3. Map socket domains, addresses, options to real values\n4. Generate standalone C file that reproduces the bug\n5. Add verify step: compile and run PoC against real kernel (with safety checks)\n\n## Acceptance Criteria\n- [ ] poc_generator.py takes crash file, outputs .c PoC\n- [ ] Generated PoC compiles on macOS without modification\n- [ ] Includes proper error handling and cleanup\n- [ ] Header comments document the crash context",
+    "score": 20,
+    "labels": [
+      "priority: medium",
+      "type: enhancement",
+      "area: fuzzer-core"
+    ],
+    "html_url": "https://github.com/kosiorkosa47/SockFuzzerAppleSillicon/issues/38",
+    "created_at": "2026-03-25T18:30:09.866763",
+    "status": "claimed"
+  },
+  {
+    "key": "kellymusk/Aframp-backend#211",
+    "owner": "kellymusk",
+    "repo": "Aframp-backend",
+    "number": 211,
+    "title": "Bug Bounty Program Setup & Responsible Disclosure Policy",
+    "body": "**Labels:** 🔴 Critical | Domain 10 - Pre-Mint Security Readiness\n\n---\n\n### Overview\nThis issue covers establishing a comprehensive bug bounty programme and responsible disclosure policy that creates a structured, safe, and incentivised channel for external security researchers to report vulnerabilities in the platform. While third party audits provide point-in-time security assessments, a bug bounty programme provides continuous crowdsourced security testing by a global community of skilled researchers who bring diverse perspectives, specialised expertise, and adversarial creativity that no single audit firm can match. For a financial platform, a well-run bug bounty programme is one of the highest return-on-investment security investments available — researchers are only compensated when they find real vulnerabilities, and the programme signals to consumers, regulators, and partners that the platform is committed to transparency and continuous security improvement. This programme must be fully operational before mainnet launch so that the security research community can help protect the platform from day one.\n\n---\n\n### Tasks\n- [ ] Design the bug bounty programme structure covering:\n  - Programme type — private invitation-only programme at launch (limited to vetted researchers) transitioning to a public programme after a configurable stabilisation period (e.g. 90 days post-launch)\n  - Hosting model — evaluate and select between a managed bug bounty platform (e.g. HackerOne, Bugcrowd, or Intigriti) for programme administration, researcher management, and payment processing versus a self-hosted programme — managed platform is strongly recommended for the initial launch given its established researcher community and dispute resolution infrastructure\n  - Programme scope — define in-scope assets, out-of-scope assets, in-scope vulnerability types, and out-of-scope vulnerability types with clear and unambiguous boundaries\n  - Reward structure — define reward tiers per vulnerability severity with clear criteria for each tier — critical (remote code execution, authentication bypass, unauthorized fund access), high (significant data exposure, privilege escalation, cNGN transaction manipulation), medium (limited data exposure, rate limit bypass with meaningful impact, CSRF with financial impact), low (minor information disclosure, low-impact configuration issues), and informational (best practice improvements, no direct security impact)\n- [ ] Implement the responsible disclosure policy covering:\n  - Draft a comprehensive responsible disclosure policy document covering — safe harbour provisions granting legal protection to good-faith researchers, programme scope and boundaries, prohibited testing activities, required disclosure format, response timeline commitments, reward eligibility criteria, duplicate submission handling, coordinated disclosure timeline, and researcher recognition programme\n  - Publish the responsible disclosure policy at a publicly access",
+    "score": 65,
+    "labels": [],
+    "html_url": "https://github.com/kellymusk/Aframp-backend/issues/211",
+    "created_at": "2026-03-27T06:00:07.797674",
+    "status": "claimed"
+  },
+  {
+    "key": "peteromallet/desloppify#421",
+    "owner": "peteromallet",
+    "repo": "desloppify",
+    "number": 421,
+    "title": "$1,000 if Desloppify does something stupid when refactoring your codebase",
+    "body": "Desloppify is an agent harness that refactors and improves code quality. I'm reasonably confident that it'll generally improve peoples' codebases but I want to surface the cases where it genuinely makes something worse. This is a standing offer to find those cases.\n\n## How it works\n\nIf Desloppify refactors your codebase and makes a demonstrably stupid decision - an abstraction that degrades readability, a change that introduces fragility, a refactor that makes the code harder to maintain - share your evidence and you could claim $1,000.\n\n## Requirements\n\n- The refactor must have been run using any version of Desloppify after [this commit](https://github.com/peteromallet/desloppify/commit/d31ac7629fba9f6f6b816b1ca4cca9e087ea3142)\n- The refactor must have been run using Claude 4.5, Claude Sonnet 4.6, GPT-5.3, or GPT-5.4\n- The codebase must be of meaningful size — minimum 10,000 lines of code\n- You must share evidence - ideally your Desloppify logs, your Claude/GPT logs, and the relevant code or code snippets to give context\n- The submission must be somewhat credible, as judged by Claude Opus 4.6 — the claim should appear likely to be legitimate, with a reasonable amount of evidence provided to support it\n- One submission per person\n- Submissions must be made within one week of this issue being opened - deadline is March 21st at 23:59:59 UTC.\n\n## What happens if more than one person claims it\n\nIf more than one person submits a claim, we'll have a tournament-style face-off judged by Claude Opus 4.6. It will evaluate each claim head-to-head until one is determined to have had the stupidest change made to their codebase. \"Stupidest\" means a balance between how significant the change was and how credible the claim is — a minor but well-evidenced mistake can beat a dramatic claim with nothing backing it up.\n\nWhat counts as \"something stupid\": a refactor that meaningfully degrades the code — poor new abstractions, changes that introduce bugs, restructuring that makes the codebase harder to extend or understand. Style preferences don't count. It has to be something an experienced engineer would look at and wince.\n\nJudging happens one week from today. The prompts used will be made public afterwards.\n\n<img width=\"1584\" height=\"672\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4862988f-dfab-494d-8678-4eeca7e9060b\" />\n\n## Payment\n\n$1,000 in SOL to the winner's Solana wallet. Provide a Solana wallet address in your submission and I'll transfer directly.\n\nPeople made tokens for this project and gave me creator fees - more on this [here](https://desloppify.it/token.html). I don't want to profit from this, so I'm putting 100% of those fees toward making the tool better - mostly through bounties to help surface what's not working. Gamblers are gonna gamble so might as well put free money to good use.\n\n## If no one claims it\n\nThe $1,000 rolls into a larger bounty the next round. If no bounty is ever claimed, it goes to the [Art Compute](http://artcomp",
+    "score": 60,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/peteromallet/desloppify/issues/421",
+    "created_at": "2026-03-27T06:00:09.075106",
+    "status": "claimed"
+  },
+  {
+    "key": "nextcloud/passman-webextension#250",
+    "owner": "nextcloud",
+    "repo": "passman-webextension",
+    "number": 250,
+    "title": "Extension won't lock once unlock [$25]",
+    "body": "When I open my browser (Firefox), I successfully unlock the extension.\r\nBut, when i lock the extension i still have access to the search and list button and can access to the passwords without unlock it.\r\n\r\n### Steps to reproduce\r\n1. Install and Setup the extension\r\n2. Open your browser (Firefox )\r\n\r\n### Expected behaviour\r\n1. Install and Setup the extension\r\n2. Open your browser (Firefox )\r\n3. Unlock the extension\r\n4. Lock the extension\r\n5. Can't use the extension untill you didn't unlock it.\r\n\r\n### Actual behaviour\r\n1. Install and Setup the extension\r\n2. Open your browser (Firefox )\r\n3. Unlock the extension\r\n4. Lock the extension\r\n5. You can still use the search button and have access to your password without unlock the extension\r\n\r\n### Configuration\r\n**Windows 7 64bits**: \r\n\r\n**Firefox 59.0.2 (64bits)**: \r\n\r\n**Passman 2.1.4**: \r\n\r\n**Extension 2.1.1**: \r\n\r\n**Nextcloud 13.0.1**: \r\n\r\n<bountysource-plugin>\r\n\r\n---\r\nThere is a **[$25 open bounty](https://www.bountysource.com/issues/56842202-extension-won-t-lock-once-unlock?utm_campaign=plugin&utm_content=tracker%2F52236699&utm_medium=issues&utm_source=github)** on this issue. Add to the bounty at [Bountysource](https://www.bountysource.com/?utm_campaign=plugin&utm_content=tracker%2F52236699&utm_medium=issues&utm_source=github).\r\n</bountysource-plugin>",
+    "score": 60,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/nextcloud/passman-webextension/issues/250",
+    "created_at": "2026-03-27T06:00:10.494350",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2206",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2206,
+    "title": "dash detail cards for drops and traps [bounty: 30 XTR]",
+    "body": "Right clicking a hex that has a drop and/or a trap should open dash showing cards for both, explaining their effects.\r\n\r\nCards for drops would show stats and masteries along with modified values (in green or red), in the middle showcase the pixel art scaled up with bicubic interpolation so that we can see the pixels properly (no blurring), have name under it, \"Dropped by unit_name\" text below (and down the road we could also include other possible effects).\r\n\r\nCards for traps should show the trap scaled up & name under it, \"Created by unit_name\" text below & showcase the ability.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2206",
+    "created_at": "2026-03-27T06:00:11.521486",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#151",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 151,
+    "title": "Implement Wallet Balance and Asset Management Page",
+    "body": "## Feature: Implement Wallet Balance and Asset Management Page\n\n### Overview\nThe wallet page (`app/wallet/`) exists but uses mock data. It needs real integration with the Stellar smart wallet to show live balances, asset management, and transaction history.\n\n**Depends on:** #148 (Passkey auth), #139 (Contract bindings)\n\n---\n\n### Goals\n- Display real XLM, USDC, EURC balances from smart wallet\n- Show transaction history from Stellar network\n- Enable asset trustline management\n- Show escrow-locked funds across active bounties\n\n---\n\n### Implementation Details\n\n#### 1. Live Balance Fetching\nModify: `app/wallet/page.tsx`\n- Replace mock data with real `fetchSacTokenBalance()` and `fetchNativeBalance()` calls\n- USD conversion via price feed\n- Auto-refresh on interval\n\n#### 2. Transaction History\n- Fetch from Stellar Horizon API\n- Filter by payment operations\n- Show: amount, asset, counterparty, timestamp, tx hash (linked to explorer)\n\n#### 3. Escrow Summary\n- Aggregate locked funds across all active bounties\n- Show per-bounty escrow amounts\n- Link to bounty detail pages\n\n#### 4. Asset Management\n- List current trustlines\n- Add new trustlines (USDC, EURC, etc.)\n- Show supported assets from config\n\n---\n\n### Acceptance Criteria\n- [ ] Real balances displayed from smart wallet\n- [ ] Transaction history from Stellar network\n- [ ] Escrow-locked funds aggregated and displayed\n- [ ] Trustline management functional\n- [ ] USD conversion shown",
+    "score": 40,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "component"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/151",
+    "created_at": "2026-03-27T06:00:12.623013",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2704",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2704,
+    "title": "Undo Move mechanic [bounty: 222 XTR]",
+    "body": "As of #2701 brainstorm, there should be a feature to undo the very last action, called \"Undo Move\", which will replace the \"Delay Turn\" icon as soon as something happens if available, as they're mutually exclusive. This is usable only once per match round, at any point given, basically turning back time until before last action that was made. Ctrl+Z hotkeys to be used for it.\n\nIcon for the action:\nhttps://game-icons.net/1x1/delapouite/backward-time.html\nStandard icon style: no background, white foreground, 4px black stroke.",
+    "score": 60,
+    "labels": [
+      "coding",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2704",
+    "created_at": "2026-03-27T06:30:10.149240",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2544",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2544,
+    "title": "duplicated Dark Priests [bounty: 14 XTR]",
+    "body": "At times, the Dark Priests can get duplicated in the first turn. Might have had something to do with multiple tabs of the game and/or tab not being in focus at first.\r\n\r\n![Screenshot_20240218_194136](https://github.com/FreezingMoon/AncientBeast/assets/587487/493b3356-c881-4dd1-b18d-0277cf3741d1)",
+    "score": 60,
+    "labels": [
+      "visuals",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2544",
+    "created_at": "2026-03-27T06:30:11.186705",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2171",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2171,
+    "title": "redundancy suppression for Toxic Spores ability [bounty: 4 XTR]",
+    "body": "These should be some combat log message suppression for Uncle Fungus' passive ability, Toxic Spores, so that  when some unit hits Uncle Fungus using melee attack & triggers the passive, it shouldn't show \"Uncle Fungus uses Toxic Spores\" too.\r\n\r\n![Screenshot_20230402_111205](https://user-images.githubusercontent.com/587487/229342504-73501980-14ff-476a-b0fa-7ba2817936a9.jpg)\r\n\r\nSimilar to how Nutcase's Tentacle Bush passive does things #1947",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2171",
+    "created_at": "2026-03-27T06:30:12.730257",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1470",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1470,
+    "title": "show unit delay on button hover [bounty: 14 XTR]",
+    "body": "Hovering the delay button should indicate where the unit will land inside the unit queue perhaps using a semi transparent avatar.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1470",
+    "created_at": "2026-03-27T06:30:13.750587",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1965",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1965,
+    "title": "don't turn around while casting [bounty: 8 XTR]",
+    "body": "Golden Wyrm should not turn around when using Visible Stigmata on allies that are on adjacent hexagons near the frontal diagonal ones.",
+    "score": 40,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1965",
+    "created_at": "2026-03-27T06:30:14.900239",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2530",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2530,
+    "title": "no music on iPhone [bounty: 7 XTR]",
+    "body": "The game doesn't play any music on iOS/iPhone while using Chrome.\r\nNot sure if the SFX itself also works, as I don't own any Apple stuff...",
+    "score": 40,
+    "labels": [
+      "coding",
+      "audio",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2530",
+    "created_at": "2026-03-27T07:00:08.954523",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2711",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2711,
+    "title": "landscape orintation lock [bounty: 16 XTR]",
+    "body": "The game should be game locked to landscape orientation by default even if not maximized, not having to do a workaround by suggesting people to rotate the device #1728",
+    "score": 40,
+    "labels": [
+      "coding",
+      "visuals",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2711",
+    "created_at": "2026-03-27T07:00:10.183221",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2539",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2539,
+    "title": "flicker showcased icons on hover [bounty: 8XTR]",
+    "body": "Depends on #2537 and #2536 to be implemented first.\r\n\r\nThe icons added by those issues should constantly flicker between 25% and 100% visibility (ping-pong transition style).",
+    "score": 40,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2539",
+    "created_at": "2026-03-27T07:00:11.285421",
+    "status": "claimed"
+  },
+  {
+    "key": "BioregionalKnowledgeCommons/BioregionalKnowledgeCommoning#54",
+    "owner": "BioregionalKnowledgeCommons",
+    "repo": "BioregionalKnowledgeCommoning",
+    "number": 54,
+    "title": "SR:initiative.owocki-swarm-foundation | owocki bounty board + Safe treasury operational",
+    "body": "<!-- roadmap-node-id:initiative.owocki-swarm-foundation -->\nCanonical roadmap node: `initiative.owocki-swarm-foundation`\n\n- Program: Bioregional Knowledge Commons\n- Roadmap: `bkc.roadmap.2026.part-b` v0.10.0 (as_of 2026-03-26)\n- Kind: `initiative`\n- Status: `in_progress`\n- Priority: `P1`\n- Horizon: `0-30d`\n- Owner: `owner.owocki`\n- Start date: `2026-03-26`\n- Target date: `2026-04-25`\n\n## Summary\nGitcoin bounty board and Safe treasury live for bioregional AI swarm coordination and capital allocation.\n\n## Delivers To\n- #66 `milestone.coalition-kickoff` — First bioregional swarm build day\n- `outcome.bioregional-swarm-live` — Bioregional AI swarm coordination operational\n- `outcome.capital-loop-provable` — Capital allocation loop is provable end-to-end\n\n## Source Docs\n- https://gist.github.com/owocki/7277012d126fdf3b948ba1f4bc6771ad\n- https://x.com/owockibot/status/2026311912716407103\n\nGenerated by `scripts/sync_roadmap_to_github_project.py`.",
+    "score": 35,
+    "labels": [
+      "horizon:0-30d",
+      "kind:initiative",
+      "roadmap",
+      "status:in_progress",
+      "tag:bounty",
+      "tag:swarm"
+    ],
+    "html_url": "https://github.com/BioregionalKnowledgeCommons/BioregionalKnowledgeCommoning/issues/54",
+    "created_at": "2026-03-27T07:00:12.386201",
+    "status": "claimed"
+  },
+  {
+    "key": "jhengy/content-aggregator#437",
+    "owner": "jhengy",
+    "repo": "content-aggregator",
+    "number": 437,
+    "title": "Daily Content Summary 2026-03-26",
+    "body": "# 📰 Daily Content Summary - 2026-03-26\n### Executive Summary\n\n**Key Insights** reveal a striking paradox in the current technological landscape: while the industry races toward **autonomous AI agents**, with GitHub Copilot scaling to millions of users and 37signals launching fully agent-accessible platforms, leading developers warn that this reliance creates \"brittle\" codebases and erodes human discipline. Simultaneously, a fierce tension exists between state security and civil liberties; the EU's **\"Chat Control\"** proposal seeks to mandate scanning of all encrypted communications to fight crime, yet this directly undermines the very digital sovereignty advocates demand as they flee restrictive ecosystems like Apple for Linux and Android. Furthermore, while **quantization** techniques promise to make Large Language Models (LLMs) four times smaller and twice as fast for local deployment, the supply chain remains vulnerable, as evidenced by a single compromised **LiteLLM** package affecting nearly 2,400 dependent projects in under an hour.\n\n**Emerging Patterns** indicate a definitive shift toward **local sovereignty** and **legal accountability**. Users are increasingly rejecting cloud-dependent, restrictive environments in favor of offline tools like **Ensu** and **Vim Classic**, driven by privacy fears and a desire for \"taste\" in software development. This digital migration mirrors a physical one, where scientists successfully transported **antimatter** and researchers utilized earthquake-monitoring tech to study soil, proving that specialized, controlled environments yield superior data. Concurrently, the era of tech immunity is ending. Landmark jury verdicts holding **Meta** and **YouTube** liable for designing addictive platforms that harm children's mental health signal a new regulatory reality, contrasting sharply with the industry's previous self-regulation attempts. Even in energy, the breakthrough of **sodium-ion batteries** offering 11-minute charging challenges the lithium-dominated status quo, suggesting a future defined by diverse, resilient alternatives rather than single points of failure.\n\n**Implications** suggest that the next decade will be defined by a recalibration of trust. The success of **ARC-AGI-3** in measuring human-like reasoning highlights that current AI still struggles with true adaptability, reinforcing the need for human oversight rather than full automation. As **deepfakes** make identity verification nearly impossible without secret codewords, and as governments attempt to legislate encryption away, the technical community faces a critical choice: build walled gardens that invite litigation and user exodus, or foster open, verifiable, and locally controlled systems. The $375 million penalty against Meta and the $6 million addiction verdict are not anomalies but harbingers of an industry forced to internalize the social costs of its design choices.\n\n**Notable Quotes**\n*   \"The industry has become too reliant on th",
+    "score": 35,
+    "labels": [
+      "automated"
+    ],
+    "html_url": "https://github.com/jhengy/content-aggregator/issues/437",
+    "created_at": "2026-03-27T07:00:14.093461",
+    "status": "claimed"
+  },
+  {
+    "key": "seetadev/pldg-dashboard#68",
+    "owner": "seetadev",
+    "repo": "pldg-dashboard",
+    "number": 68,
+    "title": "[DMP 2026]: BuilderOS: Agentic Talent Dashboard & Web3 Invoice Co-Pilot for Community Hubs",
+    "body": "### Ticket Contents\n\n## Description\n\nThis feature introduces **BuilderOS**, an **agentic skill assessment, talent development, and invoice co-pilot dashboard** that transforms the existing PLDG Dashboard into a **unified platform for builder ecosystems for Community Hubs**.\n\nThe system is designed as a **cross-platform application (PWA + iOS + Android)** that combines:\n\n* 📊 **Builder analytics and self-reflection tools**\n* 🤖 **AI-powered agentic co-pilot for guidance and automation**\n* 💸 **Integrated Web3 invoicing and programmable payment infrastructure**\n\n### **Why it is needed**\n\nCurrent builder ecosystems lack:\n\n* Transparent and standardized **skill and contribution tracking**\n* Tools for **continuous self-reflection and growth**\n* Seamless ways to **invoice, get paid, and verify work on-chain**\n* Intelligent systems that help builders **navigate opportunities and collaborate**\n\nAdditionally, Community Hubs require **digital coordination layers** to complement physical spaces—enabling better onboarding, talent discovery, and ecosystem-wide visibility.\n\n### **What it will accomplish**\n\nThis feature will:\n\n* Enable builders to **track skills, contributions, and learning progress** across on-chain and off-chain sources\n* Provide an **agentic co-pilot** that generates insights, suggests opportunities, and automates workflows like reporting and invoicing\n* Introduce **verifiable, on-chain invoicing** with storage on Filecoin/IPFS and support for:\n\n  * **x402** (agent-triggered HTTP payments)\n  * **MPP (Tempo)** micropayments\n  * **ERC-8004** programmable payment flows\n* Deliver a **production-ready PWA and mobile apps** with deep linking and offline capability\n* Extend into **agent marketplaces**, allowing the co-pilot to function as a reusable service across ecosystems\n* Support Ethereum Community Hubs with **real-time dashboards for talent, activity, and collaboration**\n\nOverall, BuilderOS becomes a **core coordination and intelligence layer**—empowering builders, researchers, and communities with tools to **learn, build, collaborate, and get paid transparently in Web3**.\n\n\n\n### Goals & Mid-Point Milestone\n\n## Goals\n* [ ] [Generalize the PLDG Dashboard into a **modular BuilderOS platform** adaptable to multiple ecosystems ( Community Hubs, research groups, OSS communities)]\n* [ ] [Develop a **universal skill assessment and self-reflection framework** that is configurable per cohort, program, or community]\n* [ ] [Integrate an **agentic co-pilot layer** for insights, reporting, invoicing, and workflow automation across builder ecosystems]\n* [ ] [Enable **cross-platform deployment (PWA + iOS + Android)** with deep linking and seamless onboarding for diverse communities]\n* [ ] [**Goals Achieved By Mid-point Milestone**:]\n\n  * Core dashboard generalized beyond PLDG (config-driven architecture)\n  * Builder profiles + skill tracking working across at least 2 ecosystems\n  * Basic agentic co-pilot (insights + summaries) functional\n  * PWA deployed with ",
+    "score": 55,
+    "labels": [
+      "enhancement",
+      "DMP 2026"
+    ],
+    "html_url": "https://github.com/seetadev/pldg-dashboard/issues/68",
+    "created_at": "2026-03-27T07:30:11.253364",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2234",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2234,
+    "title": "Chilling Spit improved hit feel [bounty: 4 XTR]",
+    "body": "Snow Bunny's Chilling Spit should also trigger hit sound when projectile reaches the target and only then shake screen.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "audio",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2234",
+    "created_at": "2026-03-27T07:30:12.207218",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1996",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1996,
+    "title": "less draconian card update function [bounty: 20 XTR]",
+    "body": "In the game's dash, can't see abilities of Kraken unit for example, because some energy values haven't been defined.\r\nThe function for updating that stuff should be way more lose and just skip missing stuff or have a predefined value for that.\r\nThat way, it will get easier to work on additional unit sets pretty soon, being able to constantly check out the progress.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "pipeline",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1996",
+    "created_at": "2026-03-27T07:30:13.679321",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2246",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2246,
+    "title": "cursor state to showcase active unit better [bounty: 6 XTR]",
+    "body": "When hovering active unit, the cursor should turn into a [\"progress\" type of pointer ](https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor) if there's no ability selected or unit is not a viable target anyway.",
+    "score": 40,
+    "labels": [
+      "coding",
+      "visuals",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2246",
+    "created_at": "2026-03-27T07:30:14.686741",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2850",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2850,
+    "title": "Goey Body upgrade revamp [bounty: 30 XTR]",
+    "body": "Gumble's upgraded passive, Goey Body, can be a little confusing, as it leaves a trap on death that *might* or *might not* affect allies, being it hard to check or remember at times.\n\nThe upgrade should allow Gumble to simply leap over units during moving phase (walking at least 2 hexagons).",
+    "score": 30,
+    "labels": [
+      "coding",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2850",
+    "created_at": "2026-03-27T07:30:15.698032",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2174",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2174,
+    "title": "show canceled icons when clicking unusable abilities [bounty: 4 XTR]",
+    "body": "This is sort of related to #2170\r\n\r\nThe new \"cancel\" icon should also be temporarily displayed when the passive ability is clicked and there is no toggling happening at all or even when unusable or already used active abilities have their icons pressed.\r\n\r\nThis is the icon that should be used https://github.com/FreezingMoon/AncientBeast/blob/master/assets/icons/cancel.svg\r\n",
+    "score": 30,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "easy",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2174",
+    "created_at": "2026-03-27T08:00:10.754541",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1445",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1445,
+    "title": "Disturbing Sound sprite [bounty: 31 XTR]",
+    "body": "Chimera's Disturbing Sound is a range attack and should have a missile sprite.\r\n\r\nThis is composed of two sprites: the musical note will be displayed inside the circle, but only the circle will be rotating (clockwise by default is moving towards right side).\r\n\r\nFiles in `assets/units/sprites/`:\r\n`Chimera - Disturbing Sound - circle.png`\r\n`Chimera - Disturbing Sound - note.png`\r\n\r\nBased on https://opengameart.org/content/music-magic-effect#comment-78455",
+    "score": 30,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1445",
+    "created_at": "2026-03-27T08:00:12.241331",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2375",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2375,
+    "title": "more pre-match screen adjustment consistency [bounty: 2 XTR]",
+    "body": "The pre-match screen should have more consistency between the small and big screen versions:\r\n\r\n- the game version icon from small screen adjustment should be used in both the screen sizes\r\n- \"Ancient Beast\" upper left icon from small screen should be displayed in big version as well\r\n- both changes listed above should receive some code clean-up regarding styling adjustments",
+    "score": 30,
+    "labels": [
+      "coding",
+      "visuals",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2375",
+    "created_at": "2026-03-27T08:00:13.313643",
+    "status": "claimed"
+  },
+  {
+    "key": "code-charity/youtube#1463",
+    "owner": "code-charity",
+    "repo": "youtube",
+    "number": 1463,
+    "title": "Youtube's Timeline Heatmap (Histogram) enables/improves a lot...",
+    "body": "<img width=\"775\" alt=\"Youtube's Timeline Histogram\" src=\"https://user-images.githubusercontent.com/25022245/196797770-4418ced7-6fb5-4ab7-8f19-41c6475e5573.png\">\n\n the heatmap gives 100 values, one for each percent of the  video duration\nthese are just before the end when going ctrl+U\n\n```\n\t\t\t\t\t\t\"markersList\": {\n\t\t\t\t\t\t\t\t\"markerType\": \"MARKER_TYPE_HEATMAP\",\n\t\t\t\t\t\t\t\t\"markers\": [\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"startMillis\": \"0\",\n\t\t\t\t\t\t\t\t\t\t\"durationMillis\": \"1234\",\n\t\t\t\t\t\t\t\t\t\t\"intensityScoreNormalized\": 0.1\n\t\t\t\t\t\t\t\t\t},\n```\n\nthis potenially enhances plans about speed-watching / skipping irrelevant scenes. ( beyond what we could do [skipping intros](https://github.com/code-for-charity/ImprovedTube-for-YouTube/issues/514) or [silences](https://github.com/code-for-charity/ImprovedTube-for-YouTube/issues/921)  )\nBecause views per scenes correlate with relevance (or else with ignorant* viewers or confusing/deceptive structure of content?) \n\n - **1.) Lows at the Start are indicating irrelvance (intro)**  \n - **2.) Similar at the end. Besides that a slight steady decline is normal** / ineviteable (average to some certain degree, simply by the viewer's attention span / patience. - Or forgetting to continue later) \n \n### 3.) Only playing back the spikes-up, can sometimes save most of the time!  <br> ( while getting the gist. Especially for clickbaity videos, with an extreme diagram... )\n Except:  this _could_ be inverted if the video's audience's mode/mood, can be definied as slow/meditative  = Exception for forced speedup:\n   - <i> Example:  Linus Tech Tipps: Retro computing for 20 minutes  with one fast/novel sponsor Ad from IBM... \n        -   so without defining this as inverted/exception this results logically/productively results in skipping most of the whole video, except for the ad. ( And this equals business advice to Linus tech tipps: a playlist (reverse chronologic with sponsors.  Some / many people will watch that first or only)). </i>\n          \n### Content per second:   Content difficulty( Ø-Word-length ) & content speed (  Views/WPM )\n- Also: common phrases can be considered (as irrelevant) #514\n- When (uncommon) text is suddenly spoken faster, viewers will commonly repeat the scene:   To approach a spike's meaning it can be divided by an increased WPM ( if any )  (from transcript or audio) \n- A high/increasing word-difficulty can be a clue, that the relevance of a video-section is beyond/higher than the views can tell (word-difficulty could be measured by average word-length (and the category/language in general)\n----\n\n( \"counter-indication:\"  _\"spikes _could_  be inluenced by  \"clips\" - or a popular link with a start-time offset ?t=... or end-time)_ - yet that's rare & also real... )\n \n ----\n \n",
+    "score": 25,
+    "labels": [
+      "Feature request",
+      "help wanted",
+      "🧩Plan ready",
+      "good first issue",
+      "✰Unique",
+      "Filtering & Discovery (of Content)",
+      "Set & forget (automatic feature)",
+      "up-for-grabs",
+      "Bounty",
+      "Data"
+    ],
+    "html_url": "https://github.com/code-charity/youtube/issues/1463",
+    "created_at": "2026-03-27T08:00:14.319586",
+    "status": "claimed"
+  },
+  {
+    "key": "Vesting-Vault/Contracts#133",
+    "owner": "Vesting-Vault",
+    "repo": "Contracts",
+    "number": 133,
+    "title": "#80. Implement Gas_Refund_Incentive_for_Storage_Cleanup",
+    "body": "\n\nDescription: To encourage users to \"Close\" their old, empty vaults, we should reward them. This task involves a logic where a small portion of the \"Platform Fee\" is returned to whoever calls the finalize_and_delete function. This \"Bounty\" ensures that users have a financial incentive to keep the Stellar ledger clean, preventing \"Zombie Storage\" from accumulating over years of protocol usage and reducing the \"Ledger Bloat\" for all network participants.\n\nLabels: optimization, economics, logic",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Vesting-Vault/Contracts/issues/133",
+    "created_at": "2026-03-27T08:00:15.401665",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#142",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 142,
+    "title": "Implement Multi-Winner Milestone-Based Bounty Flow",
+    "body": "## Feature: Implement Multi-Winner Milestone-Based Bounty Flow\n\n### Overview\nThe Multi-Winner model (Model 4) splits large bounties into milestones, each supporting multiple parallel winners with a natural funnel progression. This is the most complex claiming model and is entirely unimplemented on the frontend.\n\n**Depends on:** #139 (TypeScript contract bindings)\n\n---\n\n### Goals\n- Display milestone funnel structure (e.g., 6 → 3 → 1 winners)\n- Allow contributors to apply for specific milestone slots\n- Track parallel work across multiple contributors\n- Support advancement criteria (top N performers move forward)\n- Per-milestone payment via escrow release\n\n---\n\n### Implementation Details\n\n#### 1. Milestone Funnel Visualization\nCreate: `components/bounty/milestone-funnel.tsx`\n\n- Visual funnel showing milestone stages\n- Per-stage: slot count, payout per winner, advancement criteria\n- Active stage highlighted\n- Completed stages show winners\n\n#### 2. Multi-Winner Application\nCreate: `components/bounty/multi-winner-apply.tsx`\n\n- Show available slots per milestone\n- Assignment method display (geographic, component, language, topical)\n- Apply for specific slot with proposal\n\n#### 3. Milestone Progress Tracking\nCreate: `components/bounty/milestone-progress-tracker.tsx`\n\n- Track all contributors working in parallel\n- Per-contributor: status, submission, score\n- Advancement decisions displayed after review\n\n#### 4. Creator Management Dashboard\nCreate: `components/bounty/multi-winner-management.tsx`\n\n- Review all submissions per milestone\n- Score/rate each submission\n- Select who advances to next milestone\n- Handle dropouts and slot reassignment\n\n---\n\n### Files Affected\n\n#### Created\n- `hooks/use-multi-winner-bounty.ts`\n- `components/bounty/milestone-funnel.tsx`\n- `components/bounty/multi-winner-apply.tsx`\n- `components/bounty/milestone-progress-tracker.tsx`\n- `components/bounty/multi-winner-management.tsx`\n\n#### Modified\n- `app/bounty/[bountyId]/page.tsx`\n\n---\n\n### Acceptance Criteria\n- [ ] Milestone funnel visualizes stage progression\n- [ ] Contributors can apply for specific slots\n- [ ] Parallel work tracked per-contributor\n- [ ] Creator can review, score, and advance contributors\n- [ ] Per-milestone escrow release on approval\n- [ ] Dropout/reassignment handled gracefully",
+    "score": 55,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "component"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/142",
+    "created_at": "2026-03-27T08:30:08.311372",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1772",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1772,
+    "title": "showcase ability targeting area better [bounty: 16 XTR]",
+    "body": "Area abilities, such as Godlet Printer, should show dashed hexagons for occupied hexagons within range to better reflect total area.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1772",
+    "created_at": "2026-03-27T08:30:09.286434",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#147",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 147,
+    "title": "Implement On-Chain Bounty Status Sync and Event Listener",
+    "body": "## Feature: On-Chain Bounty Status Sync and Event Listener\n\n### Overview\nThe Bounty Registry contract emits events for all state changes (BountyCreated, BountyApplied, BountyAssigned, WorkSubmitted, SubmissionApproved, BountyClaimed, BountyCancelled, etc.). The frontend needs to listen to these events for real-time status updates and data consistency between on-chain and off-chain state.\n\n**Depends on:** #139 (TypeScript contract bindings)\n\n---\n\n### Goals\n- Sync frontend bounty state with on-chain contract state\n- Listen to contract events for real-time updates\n- Reconcile GraphQL data with on-chain truth\n- Handle state conflicts gracefully\n\n---\n\n### Contract Events\n```\nBountyCreated { bounty_id, creator }\nBountyApplied { bounty_id, applicant }\nBountyAssigned { bounty_id, assignee }\nWorkSubmitted { bounty_id, submitter }\nSubmissionApproved { bounty_id, winner }\nBountyClaimed { bounty_id, claimer }\nBountyCancelled { bounty_id, reason }\nSplitApproved { bounty_id, amount }\nApplicationRejected { bounty_id, applicant }\n```\n\n---\n\n### Implementation Details\n\n#### 1. Contract Event Poller\nCreate: `lib/contracts/event-listener.ts`\n\n- Poll Stellar RPC for contract events at interval\n- Parse event topics and data\n- Dispatch to relevant query cache invalidations\n\n#### 2. On-Chain Status Verification Hook\nCreate: `hooks/use-onchain-bounty.ts`\n\n- `useOnChainBounty(bountyId)` — reads directly from contract\n- Compare with GraphQL data for consistency\n- Show \"verified on-chain\" indicator\n\n#### 3. Transaction Confirmation Tracker\nCreate: `hooks/use-transaction-status.ts`\n\n- After submitting a transaction, track confirmation\n- Show pending → confirmed → finalized states\n- Link to Stellar explorer for verification\n\n---\n\n### Files Affected\n\n#### Created\n- `lib/contracts/event-listener.ts`\n- `hooks/use-onchain-bounty.ts`\n- `hooks/use-transaction-status.ts`\n- `components/bounty/onchain-status-badge.tsx`\n\n---\n\n### Acceptance Criteria\n- [ ] Contract events trigger UI updates\n- [ ] On-chain status readable for any bounty\n- [ ] Transaction confirmation tracked after submission\n- [ ] Status conflicts between GraphQL and on-chain detected",
+    "score": 25,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "component",
+      "tanstack-query",
+      "websockets",
+      "graphql",
+      "architecture"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/147",
+    "created_at": "2026-03-27T08:30:11.164802",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#188",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 188,
+    "title": "Referral Leaderboard Implementation",
+    "body": "\n## Description\n\nCreate the referral leaderboard that ranks users by number of successful referrals. Support different time periods (weekly, monthly, all-time).\n\n## Requirements\n\n- Calculate rankings based on successful referrals\n- Support multiple periods: weekly, monthly, all-time\n- Real-time or periodic updates\n- Pagination for large leaderboards\n- User privacy considerations (anonymized display)\n\n## Acceptance Criteria\n\n- [ ] Leaderboard data calculated correctly\n- [ ] All time periods supported\n- [ ] API endpoint returns paginated results\n- [ ] Updates within reasonable time (real-time or hourly)\n- [ ] Performance optimized for large datasets\n\n## Bounty\n\n\n## Labels\n- `backend`\n- `leaderboard`\n- `feature`\n\n## Priority\nMedium",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/188",
+    "created_at": "2026-03-27T08:30:12.187649",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#189",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 189,
+    "title": "Trading Leaderboard Implementation",
+    "body": "\n\n## Description\n\nImplement trading leaderboard that ranks users by trading performance metrics like volume, profit, or number of trades. Use existing Trade entity data and follow established patterns.\n\n## Requirements\n\n- Rank users by trading volume (total traded amount from Trade entity)\n- Alternative rankings: profit/loss calculations, trade count\n- Support time periods: daily, weekly, monthly (using Trade.createdAt and indexes)\n- Integration with existing trading data (Trade entity with buyerId, sellerId, amount, price)\n- Fair ranking algorithms (exclude wash trades, etc.)\n\n## Acceptance Criteria\n\n- [ ] Trading metrics calculated accurately from Trade entity data\n- [ ] Multiple ranking criteria supported\n- [ ] Time-based filtering works (using Trade indexes)\n- [ ] Data sourced from existing Trade records\n- [ ] Performance meets requirements (<100ms queries)\n\n## Bounty\n\n\n## Labels\n- `backend`\n- `leaderboard`\n- `trading`\n\n## Priority\nMedium",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/189",
+    "created_at": "2026-03-27T09:00:05.951110",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#17",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 17,
+    "title": "Add GitHub issue preview card",
+    "body": "Maintainers and contributors should see more context about the linked GitHub issue. Should add a GitHub issue preview section.\n\nImplementation:\n\nShow repo and issue number prominently  \nAdd a richer issue preview card in the UI  \nSupport title, labels, and external link to GitHub  \nPrepare the component for future live GitHub metadata\n\nAcceptance Criteria:\n\nEach bounty displays a richer issue preview  \nGitHub links open correctly  \nPreview layout is clear on mobile and desktop  \nComponent works even when limited issue data is available",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/17",
+    "created_at": "2026-03-27T09:00:06.888851",
+    "status": "claimed"
+  },
+  {
+    "key": "Web3-Platforms/gamefi-arena#9",
+    "owner": "Web3-Platforms",
+    "repo": "gamefi-arena",
+    "number": 9,
+    "title": "🔒 Security Audit & Hardening",
+    "body": "## Overview\nComprehensive security review before mainnet launch.\n\n## Tasks\n- [ ] Smart contract audit (Slither + manual review)\n- [ ] API penetration testing (SQLi, IDOR, auth bypass)\n- [ ] Add rate limiting per wallet (`express-rate-limit`)\n- [ ] Enforce HSTS in production\n- [ ] Add CSRF protection for state-changing endpoints\n- [ ] `pnpm audit` — dependency vulnerability scan\n- [ ] Review session TTL and cookie flags\n- [ ] Set up bug bounty program\n\n## Acceptance Criteria\n- No critical/high severity findings\n- All endpoints have appropriate rate limits",
+    "score": 15,
+    "labels": [
+      "priority: high",
+      "security"
+    ],
+    "html_url": "https://github.com/Web3-Platforms/gamefi-arena/issues/9",
+    "created_at": "2026-03-27T09:00:07.959396",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#1",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 1,
+    "title": "[BOUNTY $50] SKILL: Generate a structured CHANGELOG from git history",
+    "body": "## 💰 Bounty: $50 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate a Claude Code skill (`SKILL.md`) or a bash script that automatically generates\na structured `CHANGELOG.md` from a project's git history.\n\n## Acceptance Criteria\n- [ ] Works via `/generate-changelog` command or `bash changelog.sh`\n- [ ] Fetches commits since the last git tag\n- [ ] Auto-categorizes into: `Added` / `Fixed` / `Changed` / `Removed`\n- [ ] Outputs a properly formatted `CHANGELOG.md`\n- [ ] Tested on a real GitHub repo (include a sample output in the PR)\n- [ ] README with setup instructions in 3 steps or fewer\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with your solution\n3. Payment is released automatically on merge ✅\n\n## Accepted Stack\nBash, Python, or native Claude Code `SKILL.md`.",
+    "score": 100,
+    "labels": [
+      "bounty",
+      "skill",
+      "good first issue"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/1",
+    "created_at": "2026-03-27T09:30:06.117974",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#5",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 5,
+    "title": "[BOUNTY $200] WORKFLOW: n8n + Claude Code — automated weekly dev summary",
+    "body": "## 💰 Bounty: $200 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate a complete n8n workflow that automatically generates a weekly narrative\nsummary of a GitHub repo's activity, using the Claude API.\n\n## Acceptance Criteria\n- [ ] Exportable n8n workflow (importable `.json` file)\n- [ ] Trigger: weekly cron (e.g., Friday at 5pm)\n- [ ] Fetches from GitHub API: commits, closed issues, merged PRs for the week\n- [ ] Calls Claude API (`claude-sonnet-4-20250514`) to generate a narrative summary\n- [ ] Delivers the summary via: email OR Discord/Slack webhook (your choice, documented)\n- [ ] Configurable variables: GitHub repo, destination channel, language (EN/FR)\n- [ ] Tested on a real n8n instance (include a screenshot of successful execution)\n- [ ] README with setup instructions in 5 steps or fewer\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with the `.json` workflow + README\n3. Payment is released automatically on merge ✅\n\n## Resources\n- n8n docs: https://docs.n8n.io\n- Claude API docs: https://docs.anthropic.com",
+    "score": 95,
+    "labels": [
+      "bounty",
+      "workflow"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/5",
+    "created_at": "2026-03-27T09:30:07.137801",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#4",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 4,
+    "title": "[BOUNTY $150] AGENT: Claude Code sub-agent that reviews a PR and posts a structured comment",
+    "body": "## 💰 Bounty: $150 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate a Claude Code agent that takes a PR diff as input, analyzes it,\nand returns a structured Markdown review comment.\n\n## Acceptance Criteria\n- [ ] Works via CLI: `claude-review --pr https://github.com/owner/repo/pull/123`\n- [ ] OR via GitHub Action (include the workflow YAML)\n- [ ] Structured Markdown output with:\n  - Summary of changes (2–3 sentences)\n  - Identified risks (list)\n  - Improvement suggestions (list)\n  - Confidence score: Low / Medium / High\n- [ ] Tested on at least 2 real GitHub PRs (include outputs in the PR)\n- [ ] README with setup and usage instructions\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with the agent + sample outputs\n3. Payment is released automatically on merge ✅",
+    "score": 95,
+    "labels": [
+      "bounty",
+      "agent"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/4",
+    "created_at": "2026-03-27T09:30:08.121451",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#3",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 3,
+    "title": "[BOUNTY $100] HOOK: Pre-tool-use hook that blocks destructive bash commands",
+    "body": "## 💰 Bounty: $100 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate a Claude Code `pre-tool-use` hook in Python or bash that intercepts\ndangerous bash commands before they are executed.\n\n## Acceptance Criteria\n- [ ] Hook follows Claude Code hooks format (`~/.claude/hooks/`)\n- [ ] Blocks these patterns: `rm -rf`, `DROP TABLE`, `git push --force`,\n      `TRUNCATE`, `DELETE FROM` without a WHERE clause\n- [ ] Logs every blocked attempt to `~/.claude/hooks/blocked.log`\n      with: timestamp, attempted command, project path\n- [ ] Displays a clear message to Claude explaining why the command was blocked\n- [ ] Does not interfere with normal bash commands\n- [ ] README with installation in 2 commands or fewer\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with the hook + README\n3. Payment is released automatically on merge ✅\n\n## Resources\n- Claude Code hooks docs: https://docs.anthropic.com/claude-code/hooks",
+    "score": 95,
+    "labels": [
+      "bounty",
+      "hook",
+      "security"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/3",
+    "created_at": "2026-03-27T09:30:09.125195",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#2",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 2,
+    "title": "[BOUNTY $75] TEMPLATE: CLAUDE.md for a Next.js + SQLite SaaS project",
+    "body": "## 💰 Bounty: $75 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate an opinionated, production-ready `CLAUDE.md` for a typical SaaS project\nbuilt with Next.js 15 App Router and SQLite (better-sqlite3 or Turso).\n\n## Acceptance Criteria\n- [ ] Covers: project structure, naming conventions, DB migration rules\n- [ ] Includes: dev commands, patterns to follow, anti-patterns to avoid\n- [ ] Opinionated — not generic. Every rule has a reason.\n- [ ] Usable without modification on a greenfield Next.js + SQLite project\n- [ ] Tested: create a new project, paste the CLAUDE.md, confirm Claude Code\n      understands the context without asking clarifying questions\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with your CLAUDE.md\n3. Payment is released automatically on merge ✅\n\n## Expected Sections\n- Stack & versions\n- Folder structure\n- SQL / migration conventions\n- Component patterns\n- What we don't do (and why)",
+    "score": 95,
+    "labels": [
+      "bounty",
+      "template"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/2",
+    "created_at": "2026-03-27T09:30:10.124290",
+    "status": "claimed"
+  },
+  {
+    "key": "iskolbin/mt#2",
+    "owner": "iskolbin",
+    "repo": "mt",
+    "number": 2,
+    "title": "hi Ilya, i made a little bounty branch ,.-)",
+    "body": "found your cool twister implementation on haxelib ...\n.. tested the lib into some samples (all works)\n-> put it directly into `peote-view` now\n-> -> <https://github.com/maitag/peote-view/blob/master/src/peote/view/math/Random.hx>\n*hugs\n\nhttp://maitag.de/semmi/haxe/mersenne-twister-byIlya.mp4 (^_^)",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/iskolbin/mt/issues/2",
+    "created_at": "2026-03-27T10:00:04.036905",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#141",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 141,
+    "title": "Implement Competition (Best Submission Wins) Bounty Flow",
+    "body": "## Feature: Implement Competition (Best Submission Wins) Bounty Flow\n\n### Overview\nThe Competition model (Model 3) allows multiple contributors to claim a bounty simultaneously, submit work blindly, and the creator selects the best submission. Only the winner receives payment. This flow is documented but completely unimplemented on the frontend.\n\nMaps to `approve_contest_winner()` and `finalize_contest()` on the Bounty Registry contract.\n\n**Depends on:** #139 (TypeScript contract bindings)\n\n---\n\n### Goals\n- Allow multiple contributors to claim competition bounties (up to max limit)\n- Blind submission: hide submissions until deadline\n- Creator evaluates all submissions after reveal\n- Winner selection triggers escrow release\n- Optional consolation prizes for runners-up\n\n---\n\n### Contract Methods Used\n```\nBountyRegistry.claim_bounty(contributor, bounty_id)\n  → Multiple claimants allowed for Contest type\n\nBountyRegistry.submit_work(contributor, bounty_id, work_cid)\n  → Each contestant submits independently\n\nBountyRegistry.approve_contest_winner(creator, bounty_id, winner, payout_amount, points)\n  → Can be called multiple times for consolation prizes\n\nBountyRegistry.finalize_contest(creator, bounty_id)\n  → Closes contest, prevents further approvals\n```\n\n---\n\n### Implementation Details\n\n#### 1. Competition Claim UI\nModify: `app/bounty/[bountyId]/page.tsx`\n\n- For Contest-type bounties:\n  - Show \"Join Competition\" button (not \"Claim\")\n  - Display current participant count vs max (`3/5 slots filled`)\n  - Show submission deadline countdown\n  - List participants (without revealing submissions)\n\n#### 2. Blind Submission Panel\nCreate: `components/bounty/competition-submission.tsx`\n\n- Submission form hidden from other participants\n- Countdown to deadline\n- After deadline: reveal all submissions simultaneously\n- Display submissions in anonymous or randomized order (optional)\n\n#### 3. Winner Selection Panel (Creator View)\nCreate: `components/bounty/competition-judging.tsx`\n\n- Grid/list of all submissions post-reveal\n- Scoring rubric display (if defined)\n- \"Select as Winner\" button per submission with payout amount\n- \"Award Consolation\" for runners-up\n- \"Finalize Contest\" button to close\n\n#### 4. Competition Status Display\n- **Before deadline:** \"X submissions received\" (count only)\n- **After deadline:** All submissions revealed\n- **After judging:** Winner highlighted, results published\n\n---\n\n### Files Affected\n\n#### Modified\n- `app/bounty/[bountyId]/page.tsx`\n- `components/bounty/bounty-card.tsx` (competition badge + slot count)\n\n#### Created\n- `hooks/use-competition-bounty.ts`\n- `components/bounty/competition-submission.tsx`\n- `components/bounty/competition-judging.tsx`\n- `components/bounty/competition-status.tsx`\n\n---\n\n### Acceptance Criteria\n- [ ] Multiple contributors can join competition bounties\n- [ ] Slot count displayed (e.g., \"3/5 joined\")\n- [ ] Submissions hidden until deadline\n- [ ] All submissions revealed simultaneously after deadline\n- [ ] Creator ",
+    "score": 55,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "component"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/141",
+    "created_at": "2026-03-27T10:30:04.779416",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#149",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 149,
+    "title": "Implement Bounty Cancellation and Refund Flow",
+    "body": "## Feature: Bounty Cancellation and Refund Flow\n\n### Overview\nThe Bounty Registry contract supports `cancel_bounty()` which returns funds to the escrow pool for refunding. The Core Escrow contract has `refund_all()` and `refund_remaining()` methods. The frontend has no cancellation UI.\n\n**Depends on:** #139 (TypeScript contract bindings)\n\n---\n\n### Goals\n- Allow bounty creators to cancel bounties before completion\n- Trigger on-chain escrow refund\n- Show cancellation status and refund confirmation\n- Handle edge cases (in-progress work, partial payments)\n\n---\n\n### Contract Methods\n```\nBountyRegistry.cancel_bounty(creator, bounty_id)\nCoreEscrow.refund_all(pool_id)\nCoreEscrow.refund_remaining(pool_id)\n```\n\n---\n\n### Implementation Details\n\n#### 1. Cancel Button\nModify: `app/bounty/[bountyId]/page.tsx`\n- \"Cancel Bounty\" button for creator (only when status allows)\n- Confirmation dialog with warning about implications\n- Reason input (logged on-chain)\n\n#### 2. Refund Status Tracker\nCreate: `components/bounty/refund-status.tsx`\n- Shows refund progress after cancellation\n- Transaction hash and Stellar explorer link\n- Amount refunded\n\n---\n\n### Acceptance Criteria\n- [ ] Creator can cancel open/in-progress bounties\n- [ ] Cancellation triggers escrow refund\n- [ ] Refund confirmation displayed with tx hash\n- [ ] Cancelled bounties show clear status\n- [ ] Cannot cancel already-completed bounties",
+    "score": 55,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "component"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/149",
+    "created_at": "2026-03-27T10:30:06.248412",
+    "status": "claimed"
+  },
+  {
+    "key": "gaohui0611/ai-daily#18",
+    "owner": "gaohui0611",
+    "repo": "ai-daily",
+    "number": 18,
+    "title": "2026-03-27 AI 早报",
+    "body": "# 2026-03-27 AI 早报\n    \n> 📅 2026-03-27 | 自动抓取自各大 AI 资讯源\n> ⏰ 更新时间：2026-03-27 01:18:09\n\n---\n\n## 📰 今日要闻\n\n### 1. 📰 Inside our approach to the Model Spec\n\n| 属性 | 内容 |\n| :--- | :--- |\n| 📅 时间 | 2026-03-25 |\n| 🏷️ 分类 | 🤖 AI 模型 💻 开发工具 |\n| 📊 重要性 | 📰 资讯 |\n| ⏱️ 阅读 | < 1 分钟 |\n| 🔗 原文 | [**📖 查看原始文章 →**](https://openai.com/index/our-approach-to-the-model-spec) |\n\n> 💬 Learn how OpenAI’s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.\n\n[下一条 →](#2) | [↑ 返回顶部](#-今日要闻)\n\n---\n\n### 2. 🔥 Introducing the OpenAI Safety Bug Bounty program\n\n| 属性 | 内容 |\n| :--- | :--- |\n| 📅 时间 | 2026-03-25 |\n| 🏷️ 分类 | 🚀 产品发布 💻 开发工具 📊 数据分析 |\n| 📊 重要性 | 🔥 重要 |\n| ⏱️ 阅读 | < 1 分钟 |\n| 🔗 原文 | [**📖 查看原始文章 →**](https://openai.com/index/safety-bug-bounty) |\n\n> 💬 OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.\n\n[← 上一条](#1) | [下一条 →](#3) | [↑ 返回顶部](#-今日要闻)\n\n---\n\n### 3. 🔥 Helping developers build safer AI experiences for teens\n\n| 属性 | 内容 |\n| :--- | :--- |\n| 📅 时间 | 2026-03-24 |\n| 🏷️ 分类 | 🤖 AI 模型 🚀 产品发布 🎨 前端 UI |\n| 📊 重要性 | 🔥 重要 |\n| ⏱️ 阅读 | < 1 分钟 |\n| 🔗 原文 | [**📖 查看原始文章 →**](https://openai.com/index/teen-safety-policies-gpt-oss-safeguard) |\n\n> 💬 OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems.\n\n[← 上一条](#2) | [下一条 →](#4) | [↑ 返回顶部](#-今日要闻)\n\n---\n\n### 4. 📰 Watch James Manyika talk AI and creativity with LL COOL J.\n\n| 属性 | 内容 |\n| :--- | :--- |\n| 📅 时间 | 2026-03-26 |\n| 🏷️ 分类 | 📰 综合资讯 |\n| 📊 重要性 | 📰 资讯 |\n| ⏱️ 阅读 | < 1 分钟 |\n| 🔗 原文 | [**📖 查看原始文章 →**](https://blog.google/innovation-and-ai/technology/ai/ll-cool-j-dialogues/) |\n\n> 💬 In the latest episode of our Dialogues on Technology and Society series, LL COOL J sits down with James Manyika.\n\n[← 上一条](#3) | [下一条 →](#5) | [↑ 返回顶部](#-今日要闻)\n\n---\n\n### 5. 📰 Transform your headphones into a live personal translator on iOS.\n\n| 属性 | 内容 |\n| :--- | :--- |\n| 📅 时间 | 2026-03-26 |\n| 🏷️ 分类 | 📱 移动开发 |\n| 📊 重要性 | 📰 资讯 |\n| ⏱️ 阅读 | < 1 分钟 |\n| 👤 作者 | Sasha Kapur |\n| 🔗 原文 | [**📖 查看原始文章 →**](https://blog.google/products-and-platforms/products/translate/live-translate-with-headphones/) |\n\n> 💬 Google Translate’s Live translate with headphones is officially arriving on iOS! And we're expanding the capability for both iOS and Android users to even more countries…\n\n[← 上一条](#4) | [下一条 →](#6) | [↑ 返回顶部](#-今日要闻)\n\n---\n\n### 6. 📰 Gemini 3.1 Flash Live: Making audio AI more natural and reliable\n\n| 属性 | 内容 |\n| :--- | :--- |\n| 📅 时间 | 2026-03-26 |\n| 🏷️ 分类 | 🤖 AI 模型 |\n| 📊 重要性 | 📰 资讯 |\n| ⏱️ 阅读 | < 1 分钟 |\n| 👤 作者 | Yifan Ding |\n| 🔗 原文 | [**📖 查看原始文章 →**](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/) |\n\n> 💬 The Gemini emblem sits next to text reading 'Gemini 3.1 Flash Live'. The background has blue, multicolored dots making up a microphone icon\n\n[← 上一条](#5) | [下一条 →](#7) | [↑ 返回顶部](#",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/gaohui0611/ai-daily/issues/18",
+    "created_at": "2026-03-27T10:30:07.795900",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#139",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 139,
+    "title": "Generate TypeScript Bindings for Soroban Smart Contracts",
+    "body": "## Feature: Generate TypeScript Bindings for Soroban Smart Contracts\n\n### Overview\nThe bounty frontend currently has **zero Stellar/Soroban SDK dependencies** — no `@stellar/stellar-sdk` in `package.json`. All blockchain interactions are either mocked or handled exclusively through the NestJS backend. To enable direct on-chain reads and transaction building on the frontend, we need TypeScript bindings for the deployed Soroban contracts.\n\n---\n\n### Goals\n- Generate TypeScript client bindings for core Soroban contracts\n- Install `@stellar/stellar-sdk` as a frontend dependency\n- Enable the frontend to build unsigned transactions for user signing (passkey)\n- Enable read-only contract queries (e.g., `get_bounty`, `get_application`)\n\n---\n\n### Contracts Requiring Bindings\n\n| Contract | Testnet Address | Purpose |\n|----------|----------------|---------|\n| **Bounty Registry** | `CBWXIV3DERH4GKADOTEEI2QADGZAMMJT4T2B5LFVZULGHEP5BACK2TLY` | Bounty CRUD, applications, submissions, approvals |\n| **Core Escrow** | `CA3VZVIMGLVG5EJF2ACB3LPMGQ6PID4TJTB3D2B3L6JIZRIS7NQPVPHN` | Fund pools, release slots, fee calculation |\n| **Reputation Registry** | `CBVQEDH4T5KOJQSESL2HEFI2YZWXPSZQ5TASKRNWAVZFIWAKEU74RFF4` | Spark Credits, reputation scoring |\n| **Project Registry** | `CCG4QM2GZKBN7GBRAE3PFNE3GM2B6QRS7FOKLHGV2FT2HHETIS7JUVYT` | Project details for bounty sponsors |\n\n---\n\n### Implementation Details\n\n#### 1. Install Dependencies\n- Add `@stellar/stellar-sdk` to `package.json`\n- Add any required Soroban client helpers\n\n#### 2. Generate Bindings\nUse `stellar contract bindings typescript` CLI or equivalent:\n```bash\nstellar contract bindings typescript \\\n  --network testnet \\\n  --contract-id <CONTRACT_ADDRESS> \\\n  --output-dir lib/contracts/<contract-name>\n```\n\n#### 3. Create Contract Client Layer\nCreate: `lib/contracts/index.ts`\n- Export configured contract clients for each contract\n- Support both read-only (simulate) and write (build unsigned XDR) patterns\n- Environment-based contract address configuration (testnet/mainnet)\n\n#### 4. Create Transaction Helpers\nCreate: `lib/contracts/transaction.ts`\n- `buildTransaction(contractId, method, args, sourceAddress)` → unsigned XDR\n- `submitTransaction(signedXdr)` → result\n- `simulateContract<T>(contractId, method, args)` → T (read-only)\n\n---\n\n### Key Contract Methods to Expose\n\n**Bounty Registry (Write):**\n- `claim_bounty(contributor, bounty_id)` — FCFS flow\n- `apply(applicant, bounty_id, proposal)` — Application flow\n- `submit_work(contributor, bounty_id, work_cid)` — Submit deliverables\n- `approve_submission(creator, bounty_id, points)` — Creator approval\n- `approve_fcfs(creator, bounty_id, points)` — FCFS approval\n- `approve_contest_winner(creator, bounty_id, winner, amount, points)` — Competition\n- `finalize_contest(creator, bounty_id)` — Close competition\n- `cancel_bounty(creator, bounty_id)` — Cancel\n\n**Bounty Registry (Read):**\n- `get_bounty(bounty_id)` → Bounty\n- `get_application(bounty_id, applicant)` → Application\n- `",
+    "score": 40,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "architecture"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/139",
+    "created_at": "2026-03-27T10:30:09.305300",
+    "status": "claimed"
+  },
+  {
+    "key": "Tyaoo/picker#1326",
+    "owner": "Tyaoo",
+    "repo": "picker",
+    "number": 1326,
+    "title": "[每日信息流] 2026-03-27",
+    "body": "# 每日安全资讯（2026-03-27）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-26 Review](http://www.sec-wiki.com/?2026-03-26)\n- Doonsec's feed\n  - [ ] [【智能简报】全球安全态势报告3.25-3.26](https://mp.weixin.qq.com/s/bp0AdLY5SW2fnqOAMxWZbw)\n  - [ ] [【培训】开源情报分析师实战能力培训班-4月成都开班（有邀请函）](https://mp.weixin.qq.com/s/aHBTt-RhjDKkxjpqoh79Jw)\n  - [ ] [Coruna框架与三角测量行动的技术同源性报告](https://mp.weixin.qq.com/s/yy0XT6vnJn7ioseKVk2GsQ)\n  - [ ] [假如妳在周杰伦的歌里过一生| 从前有个女儿殿下得了公主病，慢慢才懂听妈妈的话，后来她变成了外婆&amp;巫婆](https://mp.weixin.qq.com/s/wi1yZLmWG6SOCOKeFyD9Ew)\n  - [ ] [赶紧查查，你的AI助手，很有可能正在偷取你的数据！](https://mp.weixin.qq.com/s/DAImSxgTnr0kHKRNijOZ5A)\n  - [ ] [挖不到高危就去“捡垃圾”](https://mp.weixin.qq.com/s/KRkjbrtMyjpYT8C0JTMPUw)\n  - [ ] [为什么厉害的红队er都有自己的“小圈子”？](https://mp.weixin.qq.com/s/LBLcdN6S3cK_bmbe0n_fLQ)\n  - [ ] [上周面试一个技术岗，前30分钟聊得不错。问到离职原因，他顿了顿 “跟部门一个同事闹了矛盾，领导偏私，搞得每天上班很压抑，索性走了。](https://mp.weixin.qq.com/s/vjrxtOrbq2n08uj3UPHtYA)\n  - [ ] [N0.1只有肯动手实践的人才是社区最适合的人](https://mp.weixin.qq.com/s/ZufpxhSB6whS3eld1cWqzA)\n  - [ ] [被毕业的同事并没有消失](https://mp.weixin.qq.com/s/1IJo1Q-Q_IGdgkn3TbWCfg)\n  - [ ] [[技术深浅] Linux提权完全指南](https://mp.weixin.qq.com/s/fRs_eDIDxPRjNAaC8RTNhA)\n  - [ ] [no money 获得openclaw同款推送](https://mp.weixin.qq.com/s/4c7pRNi2Ti45ItuKJNSiGg)\n  - [ ] [小白也能学会的红队基础：隐匿、工具、流量、善后全攻略](https://mp.weixin.qq.com/s/TavOq3KYeLB-1Sp2To4tIQ)\n  - [ ] [Upload Labs 第12关：利用 %00 截断修改保存路径实现上传绕过。](https://mp.weixin.qq.com/s/UspIoZYH17ve__KuKBx9HA)\n  - [ ] [想监控内网传输的文件？用Suricata这个功能就够了](https://mp.weixin.qq.com/s/qAOgm3bzJ4MiTd_FpeXFoA)\n  - [ ] [Agent开发｜从0实现Agent（四）：构建基于DAG图的任务系统（复杂任务协同篇）](https://mp.weixin.qq.com/s/BV2p0ZfxPJrNogwTvaaqMg)\n  - [ ] [前置准入平台 - 守一（Soone）](https://mp.weixin.qq.com/s/AVEk2zLZaeU-bhW73c8XIw)\n  - [ ] [介绍视频](https://mp.weixin.qq.com/s/GOi3KcPTkMdNUyeqdJXVRg)\n  - [ ] [【漏洞通告】HCL Traveler存在信息泄露漏洞（CVE-2026-21783）](https://mp.weixin.qq.com/s/Wr9PMMNLDTqqT_BcLkedmg)\n  - [ ] [【漏洞通告】Ubiquiti UniFi Network Server存在输入验证错误漏洞(CVE-2026-22559)](https://mp.weixin.qq.com/s/-Hvk95sUCu22yddrHXU-NA)\n  - [ ] [【漏洞通告】sbt存在命令注入漏洞(CVE-2026-32948)](https://mp.weixin.qq.com/s/H7SJG_c-RNUsM0F7RLm2EA)\n  - [ ] [【漏洞通告】NVIDIA SNAP-4 Container存在拒绝服务漏洞(CVE-2025-33215)](https://mp.weixin.qq.com/s/5u_lUrv6xlqSfDe1hVzQ7g)\n  - [ ] [【漏洞通告】NVIDIA SNAP-4 Container存在缓冲区溢出漏洞(CVE-2025-33216)](https://mp.weixin.qq.com/s/xuN7svsI8nuy-Gz7qmX_aw)\n  - [ ] [这个开源工具能自动检查安全漏洞](https://mp.weixin.qq.com/s/ITHExJkViE5C8fLdXn2EHA)\n  - [ ] [超 4.8 亿下载！LiteLLM 遭恶意投毒](https://mp.weixin.qq.com/s/aYX6RW-VzhGrJFubQcJSGg)\n  - [ ] [frida课程更新](https://mp.weixin.qq.com/s/9Uxs5fbXikgHU2oDpi1AVQ)\n  - [ ] [CSS 也能拿 Shell？解析Chrome在野 0-day 漏洞 CVE-2026-2441](https://mp.weixin.qq.com/s/is0sxEc7OsQIp8_TpsGTqg)\n  - [ ] [【0day】深科特 LEAN MES系统 /Handler/MobileAppLogin.ashx SQL注入漏洞](https://mp.weixin.qq.com/s/E8rEKJRZNNmnKdBaObHGKg)\n  - [ ] [【0day】深科特 LEAN MES系统 DownLoad.aspx 任意文件读取漏洞](https://mp.weixin.qq.com/s/Pyp_x6-3-P47tCkSCyJl_Q)\n  - [ ] [[漏洞复现]微力同步-Verysync任意文件读取漏洞(VEID-2026-11111)](https://mp.weixin.qq.com/s/QtcyJ8ZOS5L_NAeGuKHyTQ)\n  - [ ] [这个人以什么为生](https://mp.weixin.qq.co",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/Tyaoo/picker/issues/1326",
+    "created_at": "2026-03-27T12:30:06.303428",
+    "status": "claimed"
+  },
+  {
+    "key": "ton-society/grants-and-bounties#1141",
+    "owner": "ton-society",
+    "repo": "grants-and-bounties",
+    "number": 1141,
+    "title": "TON gRPC-based streaming service",
+    "body": "### Summary\n\nA **gRPC service** for streaming TON data with cursor-based reliability, real-time and historical access, Rust/WASM filtering, method calls, and S3-backed storage. Built with Go, C++, gRPC, and integrated with TON ETL.\n\n### Context\n\n**Definition of the problem**\n_There is no reliable way today to stream _real-time and historical TON blockchain data for developers__. Existing tools are complex and not stable enough for production. _Developers must deal with low-level TON internals like shardchains, masterchain finalization, and TLB decoding_. Most tools also don’t support resuming from an exact block after a reconnect, which makes it difficult to build consistent applications or perform reliable activity analysis.\n\n**Solution proposal**\n_We propose a gRPC-based streaming service that provides access to TON blockchain data from any historical block to real-time updates, with cursor-based control to ensure lossless data recovery after disconnects._\nThe system enables server-side filtering through lightweight Rust functions compiled to WebAssembly. These functions run on the server, returning only relevant data. Prebuilt TLB decoders significantly reduce the amount of code developers need to write.\n_The service integrates with the TON ETL Data Lake, serving as a fast bootstrap for the indexer, as well as a fallback data source in case of extractor failures._\nWhen developers need to validate smart contract behavior we support method calls within Rust modules.\n_The entire system is fully open source and can be deployed on any self-managed infrastructure._\n\n\n### References\n\nHere we describe the workflow and provide references to tools already in use:\n\nWe use [**TON-ETL Data Lake**](https://github.com/ton-studio/ton-etl/tree/main/datalake#aws-s3-data-lake) to index the blockchain from scratch and access historical data, while [**TON-ETL Kafka Streaming**](https://github.com/ton-studio/ton-etl/tree/main/datalake#near-real-time--data-streaming-via-pulic-kafka-topics) serves as a reserve data stream to improve availability. The main pipeline relies on patched [**TON Index Worker**](https://github.com/toncenter/ton-indexer/tree/master/ton-index-worker), which streams shards, blocks, transactions, and accounts into a UNIX pipe consumed by the Extractor; both PIPE-based and Kafka-based extractors run in parallel, with a Relayer deduplicating and streaming data from the faster source, and automatically switching to Kafka if PIPE-based extractor fails.\nMethod calls will be used to validate smart contract behavior, referencing [**Ethereum implementation**](https://docs.substreams.dev/how-to-guides/overview/eth-calls).\nAn example implementation of TLB decoders, demonstrating practical usage and integration within the project’s data processing pipeline, is provided in the following [**repository**](https://github.com/qwdqwqdwqd/substreams-ton-demo/blob/main/decoders/jettons/src/lib.rs).\nThe processing logic example, where raw block transactions are fil",
+    "score": 35,
+    "labels": [
+      "Developer Tool"
+    ],
+    "html_url": "https://github.com/ton-society/grants-and-bounties/issues/1141",
+    "created_at": "2026-03-27T12:30:07.315776",
+    "status": "claimed"
+  },
+  {
+    "key": "hexgrad/kokoro#290",
+    "owner": "hexgrad",
+    "repo": "kokoro",
+    "number": 290,
+    "title": "Donation/funding for german language",
+    "body": "Hi there, \n\n*tl;dr: click on opire link to add funding/donation for german language.*\n\n### I) Motivation for german language in kokoro\n#### I.1) Kokoro is best quality openweight TTS\nSee, e.g. the leaderboards:\n- https://artificialanalysis.ai/text-to-speech/leaderboard?open-weights=true\n- https://huggingface.co/spaces/TTS-AGI/TTS-Arena\n- https://huggingface.co/spaces/TTS-AGI/TTS-Arena-V2\n\n#### I.2) Kokoro is efficient (and fast, CPU only possible)\nIt can be run on CPU using streaming. Most of the even lesser openweight competitors use much more resources or may need a graphics card to even run the ai models (while still beeing less good).\n\n\n*The current 10 top openweight tts on artificialanalysis are not suitable* (see comparison table, using ai searches).\n\n <details>\n    <summary>Comparison table</summary>\n\n| # | Model | Typical hardware requirements (inference) | CPU real‑time viability* | German support (out‑of‑the‑box)** |\n| --- | --- | --- | --- | --- |\n| 1 | Kokoro 82M v1.0 | Very small (~tens of M params). Runs on CPU or small GPU (≈2–4 GB VRAM). | High – real‑time or near real‑time on a modern CPU. | Unclear / probably no official DE voice in base models. |\n| 2 | Fish Speech 1.5 | Medium–large; GPU strongly recommended (≈10–12 GB VRAM for smooth use). | Low – CPU works but far from real‑time. | No clear German support; mainly EN/zh focus. |\n| 3 | Maya1 | Large multi‑billion‑param model; needs high‑end GPU (≥16 GB VRAM). | Very low – practical real‑time on CPU not expected. | Unclear – no solid public info about German at cutoff. |\n| 4 | Chatterbox | Several variants; Multilingual / Turbo ≈few‑hundred‑M params; GPU (≈8 GB) recommended, CPU possible. | Medium – Turbo/distilled variant can approach RT on a strong CPU; full multilingual is slower. | Yes – multilingual checkpoints explicitly include German. |\n| 5 | Zonos‑v0.1 | Medium–large; designed for GPU inference (≈8 GB+ VRAM recommended). | Very low – CPU inference is slow, not interactive. | No – appears English‑only in public releases. |\n| 6 | VibeVoice 7B | Very large (7B). Requires powerful GPU(s), typically ≥16–24 GB VRAM. | Effectively none – CPU real‑time is not realistic. | Likely multilingual, but exact DE status not confirmed. |\n| 7 | OpenVoice v2 | Medium; CPU possible but GPU (≈6–8 GB+ VRAM) recommended for cloning speed / latency. | Low–medium – typical CPUs are slower than real‑time; strong CPU + heavy tuning might get close. | Unclear – paper stresses EN/zh/ja; DE status uncertain. |\n| 8 | Step TTS Mini | Small / edge‑oriented; runs well on CPU or very small GPU (≈2–4 GB VRAM). | High – explicitly designed to run fast on CPU. | No official German – docs only confirm zh + EN. |\n| 9 | XTTS v2 (Coqui) | Medium; GPU with ≥8 GB VRAM recommended for smooth multilingual / cloning use. | Low–medium – CPU possible but usually >RT latency. | Yes – XTTS v2 is explicitly multilingual incl. German. |\n| 10 | StyleTTS 2 | Medium–large; practical use assumes GPU with ≈8–12 GB VRAM. | Very",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/hexgrad/kokoro/issues/290",
+    "created_at": "2026-03-27T12:30:08.794284",
+    "status": "claimed"
+  },
+  {
+    "key": "chainreactors/picker#1190",
+    "owner": "chainreactors",
+    "repo": "picker",
+    "number": 1190,
+    "title": "[每日信息流] 2026-03-27",
+    "body": "# 每日安全资讯（2026-03-27）\n\n- Private Feed for M09Ic\n  - [ ] [anthropics released v2.1.85 at anthropics/claude-code](https://github.com/anthropics/claude-code/releases/tag/v2.1.85)\n  - [ ] [github released v0.4.3 at github/spec-kit](https://github.com/github/spec-kit/releases/tag/v0.4.3)\n  - [ ] [kpcyrd contributed to Eugeny/russh](https://github.com/Eugeny/russh/pull/660)\n  - [ ] [bolucat released 202603262016 at bolucat/Archive](https://github.com/bolucat/Archive/releases/tag/202603262016)\n  - [ ] [kpcyrd forked kpcyrd/androidqf from mvt-project/androidqf](https://github.com/kpcyrd/androidqf)\n  - [ ] [CHYbeta starred wuyoscar/ISC-Bench](https://github.com/wuyoscar/ISC-Bench)\n  - [ ] [IC3-CR3AM starred nashsu/opencli-rs-skill](https://github.com/nashsu/opencli-rs-skill)\n  - [ ] [Rvn0xsy starred BloopAI/vibe-kanban](https://github.com/BloopAI/vibe-kanban)\n  - [ ] [liamg contributed to infracost/go-proto](https://github.com/infracost/go-proto/pull/18)\n  - [ ] [zeroclaw-labs released v0.6.3 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.6.3)\n  - [ ] [huoji120 starred mem0ai/mem0](https://github.com/mem0ai/mem0)\n  - [ ] [agentscope-ai released v1.0.18 at agentscope-ai/agentscope](https://github.com/agentscope-ai/agentscope/releases/tag/v1.0.18)\n  - [ ] [zsxsoft forked zsxsoft/openclaw from openclaw/openclaw](https://github.com/zsxsoft/openclaw)\n  - [ ] [gh0stkey starred karpathy/autoresearch](https://github.com/karpathy/autoresearch)\n  - [ ] [gh0stkey starred idootop/open-xiaoai](https://github.com/idootop/open-xiaoai)\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-26 Review](http://www.sec-wiki.com/?2026-03-26)\n- CXSECURITY Database RSS Feed - CXSecurity.com\n  - [ ] [esiclivre 0.2.2 SQL Injection](https://cxsecurity.com/issue/WLB-2026030034)\n  - [ ] [Payara Server Cross Site Scripting](https://cxsecurity.com/issue/WLB-2026030035)\n  - [ ] [SiYuan < = v3.6.1 Note unauthenticated arbitrary file read (path traversal)](https://cxsecurity.com/issue/WLB-2026030033)\n  - [ ] [Tenda AC21 V1.0 V16.03.08.16 - Stack Buffer Overflow in SetNetControlList](https://cxsecurity.com/issue/WLB-2026030032)\n  - [ ] [WWBN AVideo < = 26.0 - Authenticated SQL Injection](https://cxsecurity.com/issue/WLB-2026030031)\n- Doonsec's feed\n  - [ ] [【智能简报】全球安全态势报告3.25-3.26](https://mp.weixin.qq.com/s/bp0AdLY5SW2fnqOAMxWZbw)\n  - [ ] [【培训】开源情报分析师实战能力培训班-4月成都开班（有邀请函）](https://mp.weixin.qq.com/s/aHBTt-RhjDKkxjpqoh79Jw)\n  - [ ] [Coruna框架与三角测量行动的技术同源性报告](https://mp.weixin.qq.com/s/yy0XT6vnJn7ioseKVk2GsQ)\n  - [ ] [假如妳在周杰伦的歌里过一生| 从前有个女儿殿下得了公主病，慢慢才懂听妈妈的话，后来她变成了外婆&amp;巫婆](https://mp.weixin.qq.com/s/wi1yZLmWG6SOCOKeFyD9Ew)\n  - [ ] [赶紧查查，你的AI助手，很有可能正在偷取你的数据！](https://mp.weixin.qq.com/s/DAImSxgTnr0kHKRNijOZ5A)\n  - [ ] [挖不到高危就去“捡垃圾”](https://mp.weixin.qq.com/s/KRkjbrtMyjpYT8C0JTMPUw)\n  - [ ] [为什么厉害的红队er都有自己的“小圈子”？](https://mp.weixin.qq.com/s/LBLcdN6S3cK_bmbe0n_fLQ)\n  - [ ] [上周面试一个技术岗，前30分钟聊得不错。问到离职原因，他顿了顿 “跟部门一个同事闹了矛盾，领导偏私，搞得每天上班很压抑，索性走了。](https://mp.weixin.qq.com/s/v",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/chainreactors/picker/issues/1190",
+    "created_at": "2026-03-27T13:30:07.196148",
+    "status": "claimed"
+  },
+  {
+    "key": "MM0x02/RSS-Push#456",
+    "owner": "MM0x02",
+    "repo": "RSS-Push",
+    "number": 456,
+    "title": "[每日信息流] 2026-03-27",
+    "body": "# 每日安全资讯（2026-03-27）\n\n- CXSECURITY Database RSS Feed - CXSecurity.com\n  - [ ] [esiclivre 0.2.2 SQL Injection](https://cxsecurity.com/issue/WLB-2026030034)\n  - [ ] [Payara Server Cross Site Scripting](https://cxsecurity.com/issue/WLB-2026030035)\n  - [ ] [SiYuan < = v3.6.1 Note unauthenticated arbitrary file read (path traversal)](https://cxsecurity.com/issue/WLB-2026030033)\n  - [ ] [Tenda AC21 V1.0 V16.03.08.16 - Stack Buffer Overflow in SetNetControlList](https://cxsecurity.com/issue/WLB-2026030032)\n  - [ ] [WWBN AVideo < = 26.0 - Authenticated SQL Injection](https://cxsecurity.com/issue/WLB-2026030031)\n- Private Feed for M09Ic\n  - [ ] [anthropics released v2.1.85 at anthropics/claude-code](https://github.com/anthropics/claude-code/releases/tag/v2.1.85)\n  - [ ] [github released v0.4.3 at github/spec-kit](https://github.com/github/spec-kit/releases/tag/v0.4.3)\n  - [ ] [kpcyrd contributed to Eugeny/russh](https://github.com/Eugeny/russh/pull/660)\n  - [ ] [bolucat released 202603262016 at bolucat/Archive](https://github.com/bolucat/Archive/releases/tag/202603262016)\n  - [ ] [kpcyrd forked kpcyrd/androidqf from mvt-project/androidqf](https://github.com/kpcyrd/androidqf)\n  - [ ] [CHYbeta starred wuyoscar/ISC-Bench](https://github.com/wuyoscar/ISC-Bench)\n  - [ ] [IC3-CR3AM starred nashsu/opencli-rs-skill](https://github.com/nashsu/opencli-rs-skill)\n  - [ ] [Rvn0xsy starred BloopAI/vibe-kanban](https://github.com/BloopAI/vibe-kanban)\n  - [ ] [liamg contributed to infracost/go-proto](https://github.com/infracost/go-proto/pull/18)\n  - [ ] [zeroclaw-labs released v0.6.3 at zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw/releases/tag/v0.6.3)\n  - [ ] [huoji120 starred mem0ai/mem0](https://github.com/mem0ai/mem0)\n  - [ ] [agentscope-ai released v1.0.18 at agentscope-ai/agentscope](https://github.com/agentscope-ai/agentscope/releases/tag/v1.0.18)\n  - [ ] [zsxsoft forked zsxsoft/openclaw from openclaw/openclaw](https://github.com/zsxsoft/openclaw)\n  - [ ] [gh0stkey starred karpathy/autoresearch](https://github.com/karpathy/autoresearch)\n  - [ ] [gh0stkey starred idootop/open-xiaoai](https://github.com/idootop/open-xiaoai)\n- Doonsec's feed\n  - [ ] [【智能简报】全球安全态势报告3.25-3.26](https://mp.weixin.qq.com/s/bp0AdLY5SW2fnqOAMxWZbw)\n  - [ ] [【培训】开源情报分析师实战能力培训班-4月成都开班（有邀请函）](https://mp.weixin.qq.com/s/aHBTt-RhjDKkxjpqoh79Jw)\n  - [ ] [Coruna框架与三角测量行动的技术同源性报告](https://mp.weixin.qq.com/s/yy0XT6vnJn7ioseKVk2GsQ)\n  - [ ] [假如妳在周杰伦的歌里过一生| 从前有个女儿殿下得了公主病，慢慢才懂听妈妈的话，后来她变成了外婆&amp;巫婆](https://mp.weixin.qq.com/s/wi1yZLmWG6SOCOKeFyD9Ew)\n  - [ ] [赶紧查查，你的AI助手，很有可能正在偷取你的数据！](https://mp.weixin.qq.com/s/DAImSxgTnr0kHKRNijOZ5A)\n  - [ ] [挖不到高危就去“捡垃圾”](https://mp.weixin.qq.com/s/KRkjbrtMyjpYT8C0JTMPUw)\n  - [ ] [为什么厉害的红队er都有自己的“小圈子”？](https://mp.weixin.qq.com/s/LBLcdN6S3cK_bmbe0n_fLQ)\n  - [ ] [上周面试一个技术岗，前30分钟聊得不错。问到离职原因，他顿了顿 “跟部门一个同事闹了矛盾，领导偏私，搞得每天上班很压抑，索性走了。](https://mp.weixin.qq.com/s/vjrxtOrbq2n08uj3UPHtYA)\n  - [ ] [N0.1只有肯动手实践的人才是社区最适合的人](https://mp.weixin.qq.com/s/ZufpxhSB6w",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/MM0x02/RSS-Push/issues/456",
+    "created_at": "2026-03-27T13:30:08.489425",
+    "status": "claimed"
+  },
+  {
+    "key": "ruohong2018/ruohong2018.github.io#1141",
+    "owner": "ruohong2018",
+    "repo": "ruohong2018.github.io",
+    "number": 1141,
+    "title": "[每日信息流] 2026-03-27",
+    "body": "# 每日安全资讯（2026-03-27）\n\n- Tenable Blog\n  - [Uncover prompt injection, insider threats with the Tenable One Model Refusal Detection](https://www.tenable.com/blog/uncover-prompt-injection-insider-threats-model-refusal-detection)\n- SecWiki News\n  - [SecWiki News 2026-03-26 Review](http://www.sec-wiki.com/?2026-03-26)\n- CXSECURITY Database RSS Feed - CXSecurity.com\n  - [esiclivre 0.2.2 SQL Injection](https://cxsecurity.com/issue/WLB-2026030034)\n  - [Payara Server Cross Site Scripting](https://cxsecurity.com/issue/WLB-2026030035)\n  - [SiYuan < = v3.6.1 Note unauthenticated arbitrary file read (path traversal)](https://cxsecurity.com/issue/WLB-2026030033)\n  - [Tenda AC21 V1.0 V16.03.08.16 - Stack Buffer Overflow in SetNetControlList](https://cxsecurity.com/issue/WLB-2026030032)\n  - [WWBN AVideo < = 26.0 - Authenticated SQL Injection](https://cxsecurity.com/issue/WLB-2026030031)\n- 嘶吼 RoarTalk – 网络安全行业综合服务平台,4hou.com\n  - [2025企业邮箱安全报告发布：AI攻击升级，技术与管理协同成防护趋势](https://www.4hou.com/posts/wxYX)\n  - [美亚柏科培育的取证圈“小龙虾”来了](https://www.4hou.com/posts/8gwr)\n  - [AI时代中国网络安全产业的五年变局|| 影子AI之困：企业数据安全最大的灰犀牛](https://www.4hou.com/posts/vwXn)\n  - [嘶吼安全动态｜工信部征求AI安全治理标准，规范模型上下文协议安全 浙江警方破获特大电商数据泄露案，200万条订单信息被贩卖](https://www.4hou.com/posts/rpQL)\n- No Headback\n  - [CLI Everything 和 AI native infra](http://xargin.com/ai-native-infra/)\n- ElcomSoft blog\n  - [Distributed Password Recovery Goes 64-bit: Ready for RTX 5090](https://blog.elcomsoft.com/2026/03/distributed-password-recovery-goes-64-bit-ready-for-rtx-5090/)\n- Recent Commits to cve:main\n  - [Update Thu Mar 26 11:18:19 UTC 2026](https://github.com/trickest/cve/commit/f62649dbd1616d294d28046ead928a353ea0db41)\n- Sucuri Blog\n  - [Web Shells: Types, Mitigation & Removal](https://blog.sucuri.net/2026/03/web-shells.html)\n- Insinuator.net\n  - [Methodology for Assessing Kubernetes Namespace-Based Multi-Tenancy Setups](https://insinuator.net/2026/03/methodology-for-assessing-namespace-based-multi-tenancy-setups/)\n- Bug Bounty in InfoSec Write-ups on Medium\n  - [From Delaying Certifications to Passing eJPT: My Real Journey](https://infosecwriteups.com/from-delaying-certifications-to-passing-ejpt-my-real-journey-5dbebaf5b8c0?source=rss----7b722bfd1b8d--bug_bounty)\n  - [Improper Input Handling Leading to Client Side Code Execution and Backend Information Disclosure](https://infosecwriteups.com/improper-input-handling-leading-to-client-side-code-execution-and-backend-information-disclosure-fe58853f9f0c?source=rss----7b722bfd1b8d--bug_bounty)\n  - [A Practical Workflow for Fuzzing and Scanning in Bug Bounty](https://infosecwriteups.com/a-practical-workflow-for-fuzzing-and-scanning-in-bug-bounty-64fa00ded29b?source=rss----7b722bfd1b8d--bug_bounty)\n- Sandfly Security Blog RSS Feed\n  - [Destination Linux Podcast: Tor, VPNs and Anonymity Risks](https://sandflysecurity.com/blog/destination-linux-podcast-tor-vpns-and-anonymity-risks)\n  - [Linux Password Hash Risks and Security Overview](https://sandflysecurity.com/blog/linux-password-hash-risks-an",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/ruohong2018/ruohong2018.github.io/issues/1141",
+    "created_at": "2026-03-27T13:30:09.462894",
+    "status": "claimed"
+  },
+  {
+    "key": "BruceFeIix/picker#2342",
+    "owner": "BruceFeIix",
+    "repo": "picker",
+    "number": 2342,
+    "title": "[每日信息流] 2026-03-27",
+    "body": "# 每日安全资讯（2026-03-27）\n\n- SecWiki News\n  - [ ] [SecWiki News 2026-03-26 Review](http://www.sec-wiki.com/?2026-03-26)\n- CXSECURITY Database RSS Feed - CXSecurity.com\n  - [ ] [esiclivre 0.2.2 SQL Injection](https://cxsecurity.com/issue/WLB-2026030034)\n  - [ ] [Payara Server Cross Site Scripting](https://cxsecurity.com/issue/WLB-2026030035)\n  - [ ] [SiYuan < = v3.6.1 Note unauthenticated arbitrary file read (path traversal)](https://cxsecurity.com/issue/WLB-2026030033)\n  - [ ] [Tenda AC21 V1.0 V16.03.08.16 - Stack Buffer Overflow in SetNetControlList](https://cxsecurity.com/issue/WLB-2026030032)\n  - [ ] [WWBN AVideo < = 26.0 - Authenticated SQL Injection](https://cxsecurity.com/issue/WLB-2026030031)\n- No Headback\n  - [ ] [CLI Everything 和 AI native infra](http://xargin.com/ai-native-infra/)\n- Recent Commits to cve:main\n  - [ ] [Update Thu Mar 26 11:18:19 UTC 2026](https://github.com/trickest/cve/commit/f62649dbd1616d294d28046ead928a353ea0db41)\n- InfoSec Write-ups - Medium\n  - [ ] [From Delaying Certifications to Passing eJPT: My Real Journey](https://infosecwriteups.com/from-delaying-certifications-to-passing-ejpt-my-real-journey-5dbebaf5b8c0?source=rss----7b722bfd1b8d---4)\n  - [ ] [Django CSRF Token: Misconfiguration or Misunderstanding?](https://infosecwriteups.com/django-csrf-token-misconfiguration-or-misunderstanding-c0054c815fc7?source=rss----7b722bfd1b8d---4)\n  - [ ] [Improper Input Handling Leading to Client Side Code Execution and Backend Information Disclosure](https://infosecwriteups.com/improper-input-handling-leading-to-client-side-code-execution-and-backend-information-disclosure-fe58853f9f0c?source=rss----7b722bfd1b8d---4)\n  - [ ] [A Practical Workflow for Fuzzing and Scanning in Bug Bounty](https://infosecwriteups.com/a-practical-workflow-for-fuzzing-and-scanning-in-bug-bounty-64fa00ded29b?source=rss----7b722bfd1b8d---4)\n- Tenable Blog\n  - [ ] [Uncover prompt injection, insider threats with the Tenable One Model Refusal Detection](https://www.tenable.com/blog/uncover-prompt-injection-insider-threats-model-refusal-detection)\n- Doonsec's feed\n  - [ ] [【智能简报】全球安全态势报告3.25-3.26](https://mp.weixin.qq.com/s/bp0AdLY5SW2fnqOAMxWZbw)\n  - [ ] [【培训】开源情报分析师实战能力培训班-4月成都开班（有邀请函）](https://mp.weixin.qq.com/s/aHBTt-RhjDKkxjpqoh79Jw)\n  - [ ] [Coruna框架与三角测量行动的技术同源性报告](https://mp.weixin.qq.com/s/yy0XT6vnJn7ioseKVk2GsQ)\n  - [ ] [假如妳在周杰伦的歌里过一生| 从前有个女儿殿下得了公主病，慢慢才懂听妈妈的话，后来她变成了外婆&amp;巫婆](https://mp.weixin.qq.com/s/wi1yZLmWG6SOCOKeFyD9Ew)\n  - [ ] [赶紧查查，你的AI助手，很有可能正在偷取你的数据！](https://mp.weixin.qq.com/s/DAImSxgTnr0kHKRNijOZ5A)\n  - [ ] [挖不到高危就去“捡垃圾”](https://mp.weixin.qq.com/s/KRkjbrtMyjpYT8C0JTMPUw)\n  - [ ] [为什么厉害的红队er都有自己的“小圈子”？](https://mp.weixin.qq.com/s/LBLcdN6S3cK_bmbe0n_fLQ)\n  - [ ] [上周面试一个技术岗，前30分钟聊得不错。问到离职原因，他顿了顿 “跟部门一个同事闹了矛盾，领导偏私，搞得每天上班很压抑，索性走了。](https://mp.weixin.qq.com/s/vjrxtOrbq2n08uj3UPHtYA)\n  - [ ] [N0.1只有肯动手实践的人才是社区最适合的人](https://mp.weixin.qq.com/s/ZufpxhSB6whS3eld1cWqzA)\n  - [ ] [被毕业的同事并没有消失](https://mp.weixin.qq.com/s/1IJo1Q-Q_IGdgkn3TbWCfg)\n  - [ ",
+    "score": 55,
+    "labels": [
+      "daily"
+    ],
+    "html_url": "https://github.com/BruceFeIix/picker/issues/2342",
+    "created_at": "2026-03-27T13:30:10.743662",
+    "status": "claimed"
+  },
+  {
+    "key": "onflow/flow-core-contracts#591",
+    "owner": "onflow",
+    "repo": "flow-core-contracts",
+    "number": 591,
+    "title": "Code improvements",
+    "body": "These points came from the bug bounty program. They currently do not cause a security issue, but addressing them avoids future bugs when updating the contracts and improve code clarity:\n\n- protect the `- 1` computation to avoid an underflow if current epoch `0`. This doesn't happen in production because current epoch is always `>0`. If a code protection isn't added, a simple comment should be added to clarify why the subtraction is safe (https://github.com/onflow/flow-core-contracts/blob/9e5da97df25cedb370a236b54855032384c8b224/contracts/epochs/FlowEpoch.cdc#L945)\n\n- there are few unprotected subtractions `balance - FlowStorageFees.minimumStorageReservation` in https://github.com/onflow/flow-core-contracts/blob/9e5da97df25cedb370a236b54855032384c8b224/contracts/FlowStakingCollection.cdc. If the balance is under the minimum, the transaction should fail at the FVM level, but it's better to fail clearly at the contract level too instead of panicking. \n",
+    "score": 25,
+    "labels": [
+      "Feedback",
+      "Feature"
+    ],
+    "html_url": "https://github.com/onflow/flow-core-contracts/issues/591",
+    "created_at": "2026-03-27T13:30:11.755742",
+    "status": "claimed"
+  },
+  {
+    "key": "IntersectMBO/govtool#4144",
+    "owner": "IntersectMBO",
+    "repo": "govtool",
+    "number": 4144,
+    "title": "🐛 [Bounty] - Sensitive Data Leak through github",
+    "body": "### Context\n\n**Received via the security mailbox. I’m catching up on the backlog and couldn’t find any logs for this one, so I’m adding it here for tracking purposes. Please feel free to close it if it has already been processed.**\n\nHi Team, \n\nI found some sensitive data from github\n\n<img width=\"1081\" height=\"262\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a9b0f731-16c3-4442-8a47-8692f6e3b844\" />\nGithub link:-https://github.com/IntersectMBO/govtool/blob/7bebf5186eab1527acc202978401c3607b306e5b/.github/workflows/frontend_sonar_scan.yml#L44\n\n<img width=\"1082\" height=\"405\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/50de7c0b-e9c7-439e-8832-96f1f66e75d7\" />\n\nGithub link: https://github.com/IntersectMBO/govtool/blob/6ba37d8c62c37979d88faae1d98082380721e21c/.github/workflows/frontend_sonar_scan.yml#L22\n\n### Steps to reproduce\n\n**Validation**\ncurl -u \"ec4183646e59dd70c8077acfabe52062ccbea7a9:\" \"https://sonarcloud.io/api/system/status\"\n\n<img width=\"1497\" height=\"118\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5cb87c63-5209-424a-9186-938895fa81aa\" />\n\n### Actual behavior\n\n### Impact\n- Data Breach: Potential access to user data\n- Financial Loss: Unauthorized transactions\n- Service Disruption: Resource manipulation\n- Reputation Damage: Loss of customer trust\n\n### Expected behavior\n\n### Recommendations\n**1. Immediate Actions:**\n- Rotate all exposed API keys immediately\n- Remove sensitive files from Git history using BFG Repo-Cleaner or git filter-branch\n- Add the affected files to .gitignore\n\n**2. Preventive Measures:**\n- Implement pre-commit hooks with secret detection\n- Use environment variables for configuration\n- Regular security scanning of repositories\n- Developer training on secure coding practices\n\n**3. Tooling:**\n- Implement git-secrets or similar tools\n- Use CI/CD security scanning (GitGuardian, TruffleHog)\n- Regular external penetration testing",
+    "score": 20,
+    "labels": [
+      "🐛 Bug",
+      "📜 Proposal Pillar"
+    ],
+    "html_url": "https://github.com/IntersectMBO/govtool/issues/4144",
+    "created_at": "2026-03-27T14:00:06.582719",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#210",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 210,
+    "title": "Treasury: Low Balance Warning UI + Bounty Bot Pause Switch",
+    "body": "## 🚨 Problem\n\nThe treasury can run low (or dry) with no warning — bounties keep getting queued by the bot, payroll settle fails on-chain, and contributors are left waiting. We need:\n\n1. **A visible, color-coded treasury health indicator** in the Payroll panel UI\n2. **A bot pause switch** with a friendly public message when funds are insufficient\n\n---\n\n## Part 1 — Treasury Balance Health Indicator (UI)\n\n### Where\nThe existing `#payroll-treasury-balance` element in `index.html` and the `loadTreasuryMetrics()` / `renderBatchPreview()` functions in `js/app.js`.\n\n### Logic\nWhen the Payroll panel loads, compare:\n- **Treasury balance** (from `getTreasuryBalance()` in `js/treasury.js`)\n- **Total BNUT owed** across all pending payouts (already computed as `totalBNUT` in `renderBatchPreview()`)\n\nApply color + warning text based on thresholds:\n\n| State | Condition | Color | Message |\n|---|---|---|---|\n| ✅ Healthy | balance ≥ owed × 2 | green `#00ff88` | `Treasury healthy — X BNUT available` |\n| ⚠️ Low | balance ≥ owed but < owed × 2 | yellow `#ffcc00` | `⚠️ Treasury is running low — consider minting or transferring $BNUT` |\n| 🔴 Critical | balance ≥ owed but barely | orange `#ff8c00` | `🔴 Treasury critically low — mint or transfer before next payroll` |\n| 🚨 Insufficient | balance < owed | red `#ff4444` | `🚨 Insufficient funds! Treasury cannot cover pending payroll. Mint or transfer $BNUT now.` |\n\n### Reminder Links\nWhen state is Low, Critical, or Insufficient, show a reminder with quick-action links:\n- 🪙 **Mint $BNUT** → scrolls to Admin Panel → $BNUT Admin → Quick Mint\n- 💸 **Transfer to Treasury** → scrolls to Admin Panel → Treasury Admin → Transfer\n\n---\n\n## Part 2 — Bounty Bot Pause Switch\n\n### Where\nSame Payroll panel, below the treasury balance indicator. Visible to admin only (when MetaMask owner wallet is connected).\n\n### Design\n```\n┌──────────────────────────────────────────────────────────┐\n│  🤖 Bounty Bot                         [ ON  ●  ] toggle │\n│  Bot is active — new bounties will be queued              │\n└──────────────────────────────────────────────────────────┘\n```\nWhen toggled OFF:\n```\n┌──────────────────────────────────────────────────────────┐\n│  🤖 Bounty Bot                         [  ●  OFF] toggle │\n│  ⏸ Bot paused — new PRs will receive this message:        │\n│  \"💰 Auto dev pay is temporarily paused while we top      │\n│   up treasury funds. Your bounty has been noted and        │\n│   will be queued once funds are restored. Thank you! 🙏\"  │\n└──────────────────────────────────────────────────────────┘\n```\n\n### Implementation Options\n\n**Option A — GitHub Repository Variable (recommended):**\n- Store `BOUNTY_BOT_ENABLED` as a GitHub Actions repository variable (`vars.BOUNTY_BOT_ENABLED`)\n- `bounty-payout.yml` checks this variable at the top and exits early with the pause message comment if `false`\n- The UI toggle calls the GitHub API (via a PAT stored as a secret) to update the variable value\n\n**Option B — File-based flag:**\n- Store a `bo",
+    "score": 40,
+    "labels": [
+      "bug",
+      "enhancement",
+      "ui"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/210",
+    "created_at": "2026-03-27T14:30:05.965905",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2161",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2161,
+    "title": "instantly replay match log [bounty: 20 XTR]",
+    "body": "There should be a new way for loading match logs, that should instantly get the match to the final state instead of replaying everything fast move by move. This new instant replay mode of doing things could be extremely useful in certain scenarios, by not having to waste time anymore, like when resuming a long match or trying to reproduce bugs.\r\n\r\nThe method would be called `load` and hotkey would be `Ctrl + L` from prematch screen. Previous method will be `play`, showing the animations and having `Ctrl + P` hotkey.\r\n\r\nThis requires state machine to be implemented.",
+    "score": 60,
+    "labels": [
+      "coding",
+      "pipeline",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2161",
+    "created_at": "2026-03-27T15:30:05.436596",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2250",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2250,
+    "title": "hexagon coordinate view tweaks [bounty: 7 XTR]",
+    "body": "Trying to improve the hexagon coordinate view, but not fully sure if this will work (or it could use tweaks along the way), so the bounty will be granted even if PR not merged if its according to specs (this rule kinda applies to most PRs), see this list:\r\n\r\n- units should no longer be in x-ray mode because that's tedious\r\n- coordinates should display on top of units to be properly visible\r\n- another grid with dashed hexes should display on top of units\r\n- dashed hexagons at 25% opacity for non-unit occupied places\r\n\r\nThe view is visible when hovering the round marker indicator from unit queue or while holding the shift modifier key.",
+    "score": 60,
+    "labels": [
+      "coding",
+      "visuals",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2250",
+    "created_at": "2026-03-27T15:30:06.475058",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1773",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1773,
+    "title": "encourage unit materialization versatility [bounty: 8 XTR]",
+    "body": "When a Dark Priest selects Godlet Printer, the random unit selected should be prioritized within all player pool units that aren't on the combat field, aren't dead and haven't just been materialized by a player right before in order to avoid copy catting scenarios.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1773",
+    "created_at": "2026-03-27T16:30:06.935529",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#971",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 971,
+    "title": "colored upgraded ability frames [bounty: 12 XTR]",
+    "body": "Selecting an upgraded ability should keep its frame design consistent, so more colored frames are required.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/971",
+    "created_at": "2026-03-27T16:30:08.501478",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2363",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2363,
+    "title": "block multiple file pickers [bounty: 2 XTR]",
+    "body": "Holding Ctrl+Meta+L in the pre-match screen a bit longer and then picking a log file can result in getting multiple file pickers after. There should be a \"trap\" along the lines of https://github.com/FreezingMoon/AncientBeast/blob/53f04e1bfa97da323bfcb332475f4abe944b1b4f/src/utility/gamelog.ts#L107",
+    "score": 30,
+    "labels": [
+      "coding",
+      "easy",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2363",
+    "created_at": "2026-03-27T16:30:09.647789",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1778",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1778,
+    "title": "rematch button [bounty: 6 XTR]",
+    "body": "There could be a rematch button in score screen when screen in over, lower left corner side, before \"Exit Match\".\r\n\r\nIcon:\r\nhttps://game-icons.net/1x1/lorc/uncertainty.html\r\nStyle: transparent background, 4px black outline\r\n\r\nIt should work after a confirmation dialog. Hotkey R for it (Restart Match). Same pre-match settings as before.",
+    "score": 30,
+    "labels": [
+      "coding",
+      "visuals",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1778",
+    "created_at": "2026-03-27T16:30:16.532597",
+    "status": "claimed"
   }
 ]

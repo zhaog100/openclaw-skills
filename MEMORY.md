@@ -2,23 +2,24 @@
 
 _精心维护的记忆，提炼后的精华_
 
-**版本**: v6.0  
-**最后更新**: 2026-03-24 23:34  
-**维护**: 小米辣 (PM + Dev) 🌶️
+**版本**: v7.0  
+**最后更新**: 2026-03-27 16:30  
+**维护**: 小米粒 (PM + Dev) 🌶️
 
 ---
 
 ## 🎯 当前状态
 
-**时间**: 2026-03-24 23:34
+**时间**: 2026-03-27 16:30
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| pygal #579 | 🔍 PR 等审核 | OHLC K线图，维护者无Python能力，已请推荐reviewer |
-| vllm-omni #2080 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
-| GeneralsGameCode #2485 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
-| coolify #7528 | ❌ 被屏蔽 | zhaog100被屏蔽 |
-| **总计待审核 PR** | **3 个** | **~$800-1,000** |
+| illbnm/homelab-stack #10 | 🔍 PR等审核 | $280 Observability Stack，已认领并完成 |
+| pygal #579 | 🔍 PR等审核 | OHLC K线图 |
+| vllm-omni #2080 | 🔍 待确认 | 仓库权限问题 |
+| GeneralsGameCode #2485 | 🔍 待确认 | 仓库权限问题 |
+| **总计待审核 PR** | **4 个** | **~$1,080** |
+| **MiniMax模型** | ✅ 已配置 | M2.7 + M2.7-highspeed |
 | ClawHub 发布 | 25+ 个 | 技能 |
 | Git 仓库 | origin + xiaomili | 双仓库 |
 | GitHub | zhaog100 | 用户名 |
@@ -39,7 +40,7 @@ _精心维护的记忆，提炼后的精华_
 ### 开发规范
 
 - **不产生幻觉** — 实际完成所有步骤，不能假设结果
-- **Git rebase 禁令** — 禁止 `--strategy=ours`，改用 `--skip`
+- **Git rebase 禁令** — 禁止 `--strategy=ours`，改用 `--skip`（2026-03-25 整理时子代理仍用了 ours，需加强）
 - **零依赖优先** — ast 替代 tree-sitter
 - **子代理交付 8 项清单** — SKILL.md/package.json/版权注释/pytest/接口验证/全链路测试/边界测试/不修改无关文件
 
@@ -99,6 +100,15 @@ _精心维护的记忆，提炼后的精华_
 - **QMD bun 全局安装** — OpenClaw 升级可能破坏 better-sqlite3，用 `bun install -g @tobilu/qmd` 修复
 - **定期 openclaw doctor --repair** — 清理孤立 session 和旧状态目录
 - **磁盘告警线 70%** — 超过立即清理（今日从80%降至60%）
+
+### 模型配置教训（2026-03-27 新增）⭐⭐⭐⭐
+
+- **双文件配置** — 新模型需在两个文件配置：
+  1. `~/.openclaw/agents/main/agent/models.json` (提供商+模型定义)
+  2. `~/.openclaw/openclaw.json` (白名单+别名)
+- **Gateway必须重启** — 配置后必须重启Gateway才能生效
+- **会话锁定机制** — 当前会话无法切换模型，需创建新会话
+- **API测试先行** — 用curl测试API连接，避免配置错误
 - **Git push 前先 pull** — 避免 rebase 冲突，`git pull --rebase` + `GIT_EDITOR=true`
 
 ### 2026-03-23 新进展

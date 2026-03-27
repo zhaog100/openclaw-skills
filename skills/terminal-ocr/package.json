@@ -1,7 +1,7 @@
 {
   "name": "terminal-ocr",
-  "version": "0.3.0",
-  "description": "终端截图OCR识别技能。专门处理终端/命令行界面的截图，提取文本内容并进行分析。",
+  "version": "0.3.1",
+  "description": "终端截图OCR识别技能。专门处理终端/命令行界面的截图，提取文本内容并进行分析。v0.3.1 新增微信Bot通道支持。",
   "author": "SJYKJ",
   "license": "MIT",
   "copyright": "Copyright (c) 2026 思捷娅科技 (SJYKJ)",
@@ -14,7 +14,7 @@
     "text-extraction"
   ],
   "openclaw": {
-    "skillVersion": "0.3.0",
+    "skillVersion": "0.3.1",
     "minOpenClawVersion": "2026.3.1",
     "triggers": [
       "terminal ocr",

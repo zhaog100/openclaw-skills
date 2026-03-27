@@ -44,6 +44,15 @@ echo "输出："
 echo "$RESULT4" | jq .
 echo ""
 
+# 测试4.5：微信引用
+echo "测试4.5：微信引用"
+MESSAGE4_5="[引用: 善，继续学习吧] 今天学了什么？"
+echo "输入：$MESSAGE4_5"
+RESULT4_5=$("$SCRIPT_DIR/detect-quote.sh" "$MESSAGE4_5")
+echo "输出："
+echo "$RESULT4_5" | jq .
+echo ""
+
 echo "=== 测试引用提取功能 ==="
 echo ""
 
