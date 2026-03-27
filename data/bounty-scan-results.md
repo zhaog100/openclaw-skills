@@ -16,3 +16,10 @@
 | JuliaEarth/GeoIO.jl | [JuliaEarth/GeoIO.jl#167](https://github.com/JuliaEarth/GeoIO.jl/issues/167) | Native support for GeoPackage file format | Algora |
 | PX4/PX4-Autopilot | [PX4/PX4-Autopilot#22464](https://github.com/PX4/PX4-Autopilot/issues/22464) | Fix and rewrite collision prevention | Algora |
 | go-gitea/gitea | [go-gitea/gitea#24635](https://github.com/go-gitea/gitea/issues/24635) | [Proposal] Support configuring permissions of automatic tokens of Actions jobs | Algora |
+| archestra-ai/archestra | [archestra-ai/archestra#3378](https://github.com/archestra-ai/archestra/issues/3378) | Agent schedule triggers | Algora |
+| Cap-go/capgo | [Cap-go/capgo#1667](https://github.com/Cap-go/capgo/issues/1667) | security issues retribution | Algora |
+| deskflow/deskflow | [deskflow/deskflow#8031](https://github.com/deskflow/deskflow/issues/8031) | Clipboard support in XDG Desktop Portal (Wayland) | Algora |
+| deskflow/deskflow | [deskflow/deskflow#8032](https://github.com/deskflow/deskflow/issues/8032) | Persist Input Capture XDG Desktop Portal dialog (Wayland) | Algora |
+| PX4/PX4-Autopilot | [PX4/PX4-Autopilot#22464](https://github.com/PX4/PX4-Autopilot/issues/22464) | Fix and rewrite collision prevention | Algora |
+| qdrant/qdrant | [qdrant/qdrant#3322](https://github.com/qdrant/qdrant/issues/3322) | Per-collection metrics for Prometheus | Algora |
+| zio/izumi-reflect | [zio/izumi-reflect#481](https://github.com/zio/izumi-reflect/issues/481) | Subtype relation for refined type fails | Algora |
