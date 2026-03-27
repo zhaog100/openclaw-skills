@@ -2298,5 +2298,939 @@
     "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/181",
     "created_at": "2026-03-27T18:30:23.061947",
     "status": "claimed"
+  },
+  {
+    "key": "livepeer/roadmap#4",
+    "owner": "livepeer",
+    "repo": "roadmap",
+    "number": 4,
+    "title": "Pass Protocol R&D Proposal",
+    "body": "**Goal:** Establish a dedicated protocol engineering team to maintain, secure, and evolve the Livepeer core protocol, ensuring long-term network resilience and the ability to rapidly deliver upgrades and critical fixes.\n\n**Requirements:** Scope the team, recruit key engineers, and define clear roadmap responsibilities. Align with Livepeer Inc, core contributors, and the Foundation to enable timely upgrades, vulnerability patches, and support for workstream-driven protocol changes. Ensure ongoing coverage for the Immunefi bug bounty program and the capability to deploy urgent patches quickly. Full funding and execution will be handled in a separate proposal.",
+    "score": 25,
+    "labels": [
+      "RFP"
+    ],
+    "html_url": "https://github.com/livepeer/roadmap/issues/4",
+    "created_at": "2026-03-27T19:00:05.708052",
+    "status": "claimed"
+  },
+  {
+    "key": "SoroSusu-Protocol/sorosusu-contracts#206",
+    "owner": "SoroSusu-Protocol",
+    "repo": "sorosusu-contracts",
+    "number": 206,
+    "title": "#115. Implement Gas_Refund_Incentive_for_Round_finalization",
+    "body": "\n\nDescription: Someone has to \"click the button\" to move the Susu to the next round. This task involves a \"Gas Bounty.\" The person who triggers the finalize_round function (moving the pot to the winner) receives a tiny rebate from the platform fee pool. This \"Decentralized Maintenance\" ensures that the Susu cycle always moves forward without the JerryIdoko backend needing to \"Push\" every single round, making the protocol truly autonomous and community-driven.\n\nLabels: optimization, economics, ux",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/SoroSusu-Protocol/sorosusu-contracts/issues/206",
+    "created_at": "2026-03-27T19:00:41.174577",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#72",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 72,
+    "title": "API Service - Missing Search Functionality",
+    "body": "**Severity:** Medium  \n**Component:** `services/api/src/main.rs` - `list_bounties`, `list_freelancers`  \n**Description:** No full-text search capability for finding bounties or freelancers by keywords.  \n**Impact:** Users cannot efficiently discover relevant bounties or talent.  \n**Solution:** Implement PostgreSQL full-text search or integrate Elasticsearch.\n\n",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/72",
+    "created_at": "2026-03-27T19:00:42.259499",
+    "status": "claimed"
+  },
+  {
+    "key": "frontendbr/vagas#8455",
+    "owner": "frontendbr",
+    "repo": "vagas",
+    "number": 8455,
+    "title": "[Remoto] Front-End Developer na TOSSIT",
+    "body": "## Nossa empresa\n\nTOSSIT é uma empresa internacional que desenvolve e vende produtos físicos e digitais. Estamos construindo ULTIMS, uma plataforma de e-commerce interna para substituir nosso stack atual (Shopify) e escalar globalmente.\n\n## Descrição da vaga\n\nBuscamos Front-End Engineers (React) para construir interfaces modernas ligadas a uma arquitetura de microservices.\n\nAlto nível de ownership (não é outsourcing). Time global, comunicação 100% em inglês.\n\n## Local\n\nRemoto (time global, hub opcional)\n\n## Requisitos\n\n**Obrigatórios:**\n- 5+ anos de experiência em front-end\n- React (principal)\n- Experiência com APIs (REST / GraphQL)\n- Inglês escrito fluente\n\n**Desejáveis:**\n- TailwindCSS\n- Performance e UX avançado\n- Experiência com e-commerce\n\n**Diferenciais:**\n- Conhecimento em arquitetura distribuída\n\n## Benefícios\n\n- Salário em USD (via Wise, mensal)\n- Faixa: ~$2,800 – $3,200 / mês\n- 100% remoto\n- Alto nível de autonomia (ownership real)\n- Referral bounty: $300 por indicação contratada\n\n**Diferenciais:**\n- Stack moderno (microservices)\n- Produto próprio (não outsourcing)\n\n## Contratação\n\nContrato (remoto internacional)\n\n## Como se candidatar\n\nAplicar diretamente:\nhttps://tossit.game/pages/ultimsbuenosaires\n\nOu indicar alguém e ganhar $300:\nhttps://forms.gle/FAnaQdZ7bzddbPzL7\n\n## Tempo médio de feedbacks\n\nAté 7 dias após cada etapa.\n\n## Labels\n\n#### Alocação\n- Remoto\n\n#### Regime\n- PJ\n\n#### Nível\n- Sênior",
+    "score": 55,
+    "labels": [
+      "Sênior",
+      "PJ",
+      "Remoto"
+    ],
+    "html_url": "https://github.com/frontendbr/vagas/issues/8455",
+    "created_at": "2026-03-27T20:00:34.603448",
+    "status": "claimed"
+  },
+  {
+    "key": "backend-br/vagas#12217",
+    "owner": "backend-br",
+    "repo": "vagas",
+    "number": 12217,
+    "title": "[Remoto] Back-end developer (Go) - TOSSIT / ULTIMS",
+    "body": "## Nossa empresa\n\nTOSSIT é uma empresa internacional que desenvolve e vende produtos físicos e digitais. Estamos construindo ULTIMS, uma plataforma de e-commerce interna para substituir nosso stack atual (Shopify) e escalar globalmente.\n\n## Descrição da vaga\n\nBuscamos Back-end Engineers (Go) para construir uma arquitetura moderna baseada em microservices (Go, Kafka, MongoDB).\n\nOwnership forte do projeto (não é outsourcing). Equipe enxuta, 100% async em inglês.\n\n7 posições abertas no total (backend, frontend, data, devops, AI, PM).\n\n## Local\n\nRemoto (time global, hub opcional)\n\n## Requisitos\n\nObrigatórios:\n- 5+ anos experiência real em produção\n- Go ou backend sólido (Node, Java, etc. com capacidade de migrar)\n- Experiência com APIs, sistemas distribuídos\n- Inglês escrito fluente\n\nDesejáveis:\n- Kafka / event-driven\n- MongoDB ou NoSQL\n- Microservices / DDD\n- Interesse em e-commerce\n\n## Benefícios\n\n- Salário em USD (via Wise, mensal)\n- Faixa: ~$3,200 – $3,600 / mês\n- 100% remoto\n- Alto nível de autonomia (ownership real)\n- Referral bounty: $300 por indicação contratada\n\n## Contratação\n\nContrato (remoto internacional)\n\n## Como se candidatar\n\nAplicar diretamente:\nhttps://tossit.game/pages/ultimsbuenosaires\n\nOu indicar alguém e ganhar $300:\nhttps://forms.gle/FAnaQdZ7bzddbPzL7\n\n## Labels\n\n### Nível\n\n- Sênior\n\n### Regime\n\n- Contrato\n\n### Alocação\n\n- Remoto",
+    "score": 55,
+    "labels": [
+      "Sênior",
+      "Java",
+      "Go",
+      "Remoto",
+      "MongoDB",
+      "DDD",
+      "Microservices",
+      "Contrato"
+    ],
+    "html_url": "https://github.com/backend-br/vagas/issues/12217",
+    "created_at": "2026-03-27T20:00:35.659363",
+    "status": "claimed"
+  },
+  {
+    "key": "Gildado/PayD#487",
+    "owner": "Gildado",
+    "repo": "PayD",
+    "number": 487,
+    "title": "#190: Add Contribution Reward (Bounty) Info",
+    "body": "# #190: Add Contribution Reward (Bounty) Info\n\n**Category:** [DOCS]\n**Difficulty:** LOW\n**Tags:** `community, docs`\n\n## Description\n\nOutline how open-source contributors can earn rewards for solving high-priority issues.\n\n## Acceptance Criteria\n\n- [ ] Implement the described feature/fix.\n- [ ] Ensure full responsiveness and accessibility.\n- [ ] Add relevant unit or integration tests.\n- [ ] Update documentation where necessary.\n",
+    "score": 50,
+    "labels": [
+      "Stellar Wave",
+      "community",
+      "docs"
+    ],
+    "html_url": "https://github.com/Gildado/PayD/issues/487",
+    "created_at": "2026-03-27T20:00:36.873550",
+    "status": "claimed"
+  },
+  {
+    "key": "Conxian/conxius-platform#98",
+    "owner": "Conxian",
+    "repo": "conxius-platform",
+    "number": 98,
+    "title": "CON-75: [BOUNTY] Gateway Edge - Offline-First POS Sync",
+    "body": "### CON-75: \\[BOUNTY\\] Gateway Edge - Offline-First POS Sync\n\n**\\[CONTEXT FLOOR\\]**: Ensure Spaza shop Conxius Gateways can authorize sub-cent Lightning transactions during zero-connectivity load-shedding events.\n\n**\\[STRICT INPUTS\\]**:\n\n* Signed transaction hash from a biometric Passkey (ERC-4337 Account Abstraction).\n* Local TEE Attestation of the Passkey signature.\n\n**\\[STRICT OUTPUTS\\]**: Locally cached transaction receipt in a Trusted Execution Environment (TEE), appended to an encrypted SQLite queue for Lightning L2 broadcast upon backhaul restoration.\n\n**\\[EXECUTION RULES\\]**:\n\n* Must use lightweight local peer-to-peer (Bluetooth LE / WiFi Direct) mesh gossip protocols to broadcast the tx hash to nearby nodes to prevent local double-spending before L2 sync.\n* TEE must sign the \"Offline Receipt\" as a commitment to broadcast.\n\n**\\[VERIFICATION CRITERIA\\]**:\n\n* Integration test simulating 48 hours of complete network blackout with 500 local node transactions.\n* Success Metric: 100% state reconciliation to the Stacks/Lightning L2 upon reconnection.\n\n**\\[YIELD ALLOCATION\\]**: 0.15 sBTC / 3,750 STX streamed via SLA Enforcer upon CI/CD pass.\n\n---\n\n🛡️ **SOVEREIGN. RESILIENT. BTC-NATIVE.**",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/Conxian/conxius-platform/issues/98",
+    "created_at": "2026-03-27T20:00:38.109307",
+    "status": "claimed"
+  },
+  {
+    "key": "Grant-Stream/Grant-Stream-Contracts#220",
+    "owner": "Grant-Stream",
+    "repo": "Grant-Stream-Contracts",
+    "number": 220,
+    "title": "141. Implement Gas_Refund_Incentive_for_State_Cleanup",
+    "body": "\nDescription: To maintain a \"Clean Ledger\" on Stellar, we should reward users for closing out old, empty grant contracts. This issue involves a \"Bounty Logic\" where a small portion of the \"Platform Fee\" is returned to whoever calls the finalize_and_purge function once a grant hits 100% completion. This \"Social Cleanup\" incentive ensures that the network isn't cluttered with thousands of \"Zombie Contracts,\" reducing the \"State Bloat\" for the entire Stellar network and keeping JerryIdoko's protocol \"Ecosystem-Friendly.\"\n\nLabels: optimization, economics, logic",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/Grant-Stream/Grant-Stream-Contracts/issues/220",
+    "created_at": "2026-03-27T20:30:05.651519",
+    "status": "claimed"
+  },
+  {
+    "key": "dotnet/sdk#52732",
+    "owner": "dotnet",
+    "repo": "sdk",
+    "number": 52732,
+    "title": "OCI Metadata Labels Broken When Using Hyperlinks",
+    "body": "<!--\nPlease keep in mind that the GitHub issue tracker is not intended as a general support forum, but for reporting **non-security** bugs and feature requests.\n\nIf you believe you have an issue that affects the SECURITY of the platform, please do NOT create an issue and instead email your issue details to secure@microsoft.com. Your report may be eligible for our [bug bounty](https://www.microsoft.com/en-us/msrc/bounty-dot-net-core) but ONLY if it is reported through email.\nFor other types of questions, consider using [StackOverflow](https://stackoverflow.com).\n\n-->\n\n### Describe the bug\nHey @baronfel,\n\nPlease refer to [this discussion](https://github.com/dotnet/sdk/discussions/52087): when using the .NET SDK Container Building Tools and using hyperlinks, this breaks the OCI metadata labels.\n\nFor example, please see this image manifest of a container image built using the .NET SDK Container Building Tools:\n```json\n{\n  // remainder left out for brevity\n  \"labels\": {\n    \"org.opencontainers.image.source\": \"https\",\n    \"com.docker.extension.changelog\": \"https\",\n    \"org.opencontainers.image.url\": \"https\",\n    \"org.opencontainers.image.licenses\": \"https\",\n    \"org.opencontainers.image.documentation\": \"https\",\n    \"com.docker.extension.publisher-url\": \"https\",\n  }\n}\n```\n\nBut I properly ensured via some MSBuild output on GitHub Actions that the necessary properties are present:\n```\nGITHUB_REPOSITORY_OWNER: 'mu88'\nGITHUB_SERVER_URL: 'https://github.com'\nGITHUB_REPOSITORY: 'mu88/RaspiFanController'\nGITHUB_SHA: '0780e22d89107421e164448d2f249d8a8c5e27ff'\nContainerAuthors: 'mu88'\nContainerDocumentationUrl: 'https://github.com/mu88/RaspiFanController/blob/0780e22d89107421e164448d2f249d8a8c5e27ff/README.md'\nContainerInformationUrl: 'https://github.com/mu88/pkgs/container/RaspiFanController'\nContainerLicenseExpression: 'https://github.com/mu88/blob/0780e22d89107421e164448d2f249d8a8c5e27ff/LICENSE.md'\nContainerRepository: 'mu88/RaspiFanController'\nContainerTitle: 'mu88/RaspiFanController'\nContainerVendor: 'mu88'\nContainerVersion: '0780e22d89107421e164448d2f249d8a8c5e27ff'\n```\n\n### To Reproduce\n<!--\nWe ❤ code! Point us to a minimalistic repro project hosted in a GitHub repo, Gist snippet, or other means to see the isolated behavior.\n\nWe may close this issue if:\n- the repro project you share with us is complex. We can't investigate custom projects, so don't point us to such, please.\n- if we will not be able to repro the behavior you're reporting\n-->\n1. Create a new .NET project.\n2. Publish a **multi-arch** Docker image via `dotnet publish /t:PublishContainer /p:RuntimeIdentifiers=linux-x64;linux-arm64 /p:ContainerDocumentationUrl=https://dot.net`.\n3. Inspect the OCI metadata labels of the built image - you will see that the hyperlink is broken and only contains `https`.\n\n### Exceptions (if any)\n<!-- \nInclude the exception you get when facing this issue\n-->\nNo exceptions\n\n### Further technical details\n<details><summary>details of dotnet --info</summary>\n<p>\n.NET S",
+    "score": 45,
+    "labels": [
+      "Area-Containers"
+    ],
+    "html_url": "https://github.com/dotnet/sdk/issues/52732",
+    "created_at": "2026-03-27T21:30:06.189540",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#441",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 441,
+    "title": "queue avatar to jump back when delayed [bounty: 14 XTR]",
+    "body": "When delaying a creature, it would probably be more intuitive for the avatar to leap into the new place inside the top unit queue.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/441",
+    "created_at": "2026-03-27T21:30:07.316461",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1099",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1099,
+    "title": "pick-up up drops SFX [bounty: 10 XTR]",
+    "body": "When picking up a drop, there should be a sound played.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "audio",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1099",
+    "created_at": "2026-03-27T21:30:08.869941",
+    "status": "claimed"
+  },
+  {
+    "key": "Conxian/conxius-platform#101",
+    "owner": "Conxian",
+    "repo": "conxius-platform",
+    "number": 101,
+    "title": "CSF mainnet readiness gate",
+    "body": "Create a single gate for ConxianCSF mainnet readiness.\n\nTrack and verify:\n\n* launch blockers\n* bounty dependencies that are truly externalizable\n* DeFi-related dependencies\n* testnet-to-mainnet gaps\n* release, security, and deployment readiness\n\nWorking rules:\n\n* classify dependencies as blocker, supporting, or unrelated\n* only expose work as bounty-ready when it is scoped for external contribution\n* do not treat synced comments as claim events without automation\n\nInitial known references:\n\n* [CON-7](https://linear.app/conxian-labs/issue/CON-7/mainnet-checklist)\n* [CON-10](https://linear.app/conxian-labs/issue/CON-10/mainnet-launch)\n* [CON-58](https://linear.app/conxian-labs/issue/CON-58/guardian-automated-bounty-audit-and-integration-safety-check)\n* [CON-78](https://linear.app/conxian-labs/issue/CON-78/con-75-bounty-gateway-edge-offline-first-pos-sync)\n* [CON-77](https://linear.app/conxian-labs/issue/CON-77/con-74-bounty-clarity-4-trait-cxn-ubuntu-credit-group-vouching)\n* [CON-76](https://linear.app/conxian-labs/issue/CON-76/con-73-bounty-nexus-erp-adapter-iso-20022-pacs008-wrapper)\n\nExpected output:\n\n* a current blocker list\n* a bounty-ready subset\n* a mainnet launch recommendation",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Conxian/conxius-platform/issues/101",
+    "created_at": "2026-03-27T21:30:10.418570",
+    "status": "claimed"
+  },
+  {
+    "key": "Conxian/conxius-platform#106",
+    "owner": "Conxian",
+    "repo": "conxius-platform",
+    "number": 106,
+    "title": "Roll out claimable community workflow across system issues",
+    "body": "Apply the faster community-claim workflow across system issues so release throughput improves without relying on direct internal capacity.\n\nOperating goal:\n\n* use community claiming and bounty routing to accelerate delivery across system issues\n* keep owner-only and security-sensitive work internal\n* reduce release delays caused by manual claim handling and unclear claimability\n\nRollout rules:\n\n* review all open system issues and classify each as:\n  * community-claimable\n  * internal-only\n  * blocked\n  * not suitable for bounty execution\n* only issues in `Todo` and explicitly marked claimable should be open to community claiming\n* unassign claimable issues by default\n* use GitHub `/claim` automation as the standard claim entry point\n* keep security-sensitive, deployment-sensitive, wallet, and treasury-critical work internal unless explicitly broken into safe externalizable units\n\nExpected output:\n\n* full classification of open system issues\n* community-ready subset for funding and claiming\n* internal-only subset\n* blocker list slowing releases\n* recommendations to reduce release cycle time",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Conxian/conxius-platform/issues/106",
+    "created_at": "2026-03-27T22:01:18.778982",
+    "status": "claimed"
+  },
+  {
+    "key": "Conxian/conxius-platform#108",
+    "owner": "Conxian",
+    "repo": "conxius-platform",
+    "number": 108,
+    "title": "Community funding model for system delivery",
+    "body": "Define how community funding should support system delivery given current budget constraints.\n\nContext:\n\n* internal funds are constrained\n* community participation must help fund and execute suitable work\n* the workflow must still protect internal-only deployment, wallet, and security-critical tasks\n\nRequired output:\n\n* which issue types can be community-funded\n* which issue types must stay internal-only\n* how bounty sizing and prioritization should work\n* how claim approval and payout readiness should work\n* how to avoid exposing sensitive deployment work while still using the community to move faster",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Conxian/conxius-platform/issues/108",
+    "created_at": "2026-03-27T22:01:20.007381",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2821",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2821,
+    "title": "Gooey Body upgrade revamp [bounty: 30 XTR]",
+    "body": "Gumble's upgraded passive ability should be reworked, as the current one is boring and a tad problematic and not having much going on for the wow factor or mechanics.\n\nNew version should be: Can revive if nothing on top.\n\nHow this works: if Gumble is killed, there will be a puddle plus the drop on top.\nIf the drop is taken (or disabled via pre-match settings) and the trap is not destroyed, Gumble will revive at the spot, full health and energy (will receive a health nerf for sure as well).\nThe revive happens when Gumble will have his turn, as a question mark icon will be in the unit queue, with \"Gumble\" as status, highlighting the puddle on hover and vice-versa (hovering on the puddle will indicate the avatar, just like it happens with any unit.\n\nNon-upgraded puddle could have less color saturation in order to differentiate things even better visually.\n\nSo in order to be able to kill Gumble:\nEither do it fast until ability is upgraded or leave something on top of the puddle, like a unit or drop or destroy the puddle altogether.",
+    "score": 60,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2821",
+    "created_at": "2026-03-27T23:02:54.490377",
+    "status": "claimed"
+  },
+  {
+    "key": "1btc-news/news-client#27",
+    "owner": "1btc-news",
+    "repo": "news-client",
+    "number": 27,
+    "title": "Refocus beats to 100% internal aibtc network coverage",
+    "body": "## Summary\n\naibtc.news should report exclusively on activity **inside the aibtc agent network**. No more external world events, Bitcoin price updates, or general crypto news. If a correspondent can't point to a specific agent, transaction, or platform event — it doesn't belong.\n\nThe current beat list is ~60% external coverage (Bitcoin Macro, Bitcoin Culture, Runes, etc.). This proposal replaces it with 10 beats focused entirely on what's happening between aibtc agents, on aibtc infrastructure, with aibtc sats.\n\n---\n\n## Beats to KEEP (with reformed descriptions)\n\n| Beat | Slug | Description |\n|------|------|-------------|\n| **Agent Economy** | `agent-economy` | Revenue flowing between agents — x402 payments, bounty payouts, paperboy earnings, classified purchases, sBTC transfers. The money trail inside the network. |\n| **Agent Trading** | `agent-trading` | P2P ordinals trades, PSBT swaps, order book bids, inscription sales between agents. Who bought what from whom, at what price. |\n| **Agent Social** | `agent-social` | Collaborations, DM-driven deals, partnership formations, reputation events. The relationship graph — who's working with whom and what came of it. |\n| **Agent Skills** | `agent-skills` | New skills built by aibtc agents, PRs to aibtcdev repos, skill adoption metrics. What tools agents are building for each other. |\n| **Security** | `security` | Vulnerabilities affecting aibtc agents — wallet risks, skill supply chain attacks, credential exposure, nonce issues. Internal threat intelligence only. |\n| **Deal Flow** | `deal-flow` | Bounties posted and completed, classified ads, sponsorship deals, agent-to-agent contracts. The deal pipeline inside the network. |\n\n## Beats to REMOVE\n\n| Beat | Why |\n|------|-----|\n| **Bitcoin Macro** | External price/hashrate/difficulty. CoinDesk does this. Agents were filing \"BTC at $69K\" — pure noise. |\n| **Bitcoin Culture** | External cultural commentary, not about the network. |\n| **Bitcoin Yield** | External DeFi yield data. Unless an aibtc agent is earning it, off-topic. |\n| **Runes** | External market coverage. Only relevant if agents are trading runes P2P (fold into Agent Trading). |\n| **Art** | Too broad, no internal anchor. |\n| **Comics** | Not relevant. |\n| **DAO Watch** | Was covering external DAOs (Tally, etc.). Reformed into Governance below. |\n\n## Beats to ADD\n\n| Beat | Slug | Description |\n|------|------|-------------|\n| **Onboarding** | `onboarding` | New agent registrations, first heartbeats, Genesis achievements, referral conversions, loop-starter-kit forks. The front door — who's showing up and how fast they activate. |\n| **Governance** | `governance` | Multisig actions, publisher elections, sBTC staking for governance, DAO proposals within aibtc. How the network makes collective decisions. |\n| **Distribution** | `distribution` | Paperboy deliveries, signal distribution reach, correspondent recruitment, daily brief metrics. How intelligence moves through the network. |\n| **Infrastructure",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/1btc-news/news-client/issues/27",
+    "created_at": "2026-03-27T23:02:55.534682",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2004",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2004,
+    "title": "ability unit targeting tweaks [bounty: 15 XTR]",
+    "body": "When targeting an ability, the target hexagons should be using an overlapped non-spinning cursor type of hexagon on top of the filled outline hexagon. Also, if the ability only affects a hexagon of an unit, the other hexagons should be displayed as player color coded filled outline hexagons. This way we'll better indicate the range of some abilities or area effect, while also being able to click anywhere on the base of the target unit in order to select the corresponding path. Relies on #2003 to be implemented first ideally.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2004",
+    "created_at": "2026-03-27T23:02:56.594642",
+    "status": "claimed"
+  },
+  {
+    "key": "SecOpsNews/news#66413",
+    "owner": "SecOpsNews",
+    "repo": "news",
+    "number": 66413,
+    "title": "[SecurityWeek] OpenAI Launches Bug Bounty Program for Abuse and Safety Risks",
+    "body": "\n\nThrough the new program, OpenAI will reward reports covering design or implementation issues leading to material harm.\n\nThe post [OpenAI Launches Bug Bounty Program for Abuse and Safety Risks](https://www.securityweek.com/openai-launches-bug-bounty-program-for-abuse-and-safety-risks/) appeared first on [SecurityWeek](https://www.securityweek.com).\n\n\n\n<https://www.securityweek.com/openai-launches-bug-bounty-program-for-abuse-and-safety-risks/>\n\n",
+    "score": 40,
+    "labels": [
+      "SecurityWeek"
+    ],
+    "html_url": "https://github.com/SecOpsNews/news/issues/66413",
+    "created_at": "2026-03-27T23:02:58.637901",
+    "status": "claimed"
+  },
+  {
+    "key": "mautic/mautic#15968",
+    "owner": "mautic",
+    "repo": "mautic",
+    "number": 15968,
+    "title": "Creating a new campaign throws an exception",
+    "body": "Tested on the 7.x branch\n\nSteps to reproduce:\n1. Create a segment\n2. Create a campaign - select the segment and add the “Adjust contact points” action, then try to save\n3. An exception is thrown\n\n<img width=\"1329\" height=\"673\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/98a519ad-e14f-44c6-a8c9-40d9d6a2f0a2\" />\n\n```\n[2026-03-18T17:13:16.931916+00:00] mautic.CRITICAL: Uncaught PHP Exception Doctrine\\ORM\\EntityNotFoundException: \"Entity of type 'Mautic\\LeadBundle\\Entity\\LeadList' for IDs id(test-segment) was not found\" at /var/www/html/vendor/doctrine/orm/src/EntityNotFoundException.php line 33 {\"exception\":\"[object] (Doctrine\\\\ORM\\\\EntityNotFoundException(code: 0): Entity of type 'Mautic\\\\LeadBundle\\\\Entity\\\\LeadList' for IDs id(test-segment) was not found at /var/www/html/vendor/doctrine/orm/src/EntityNotFoundException.php:33)\n[stacktrace]\n#0 /var/www/html/vendor/doctrine/orm/src/Proxy/ProxyFactory.php(351): Doctrine\\\\ORM\\\\EntityNotFoundException::fromClassNameAndIdentifier()\n#1 /var/www/html/var/cache/dev/doctrine/orm/Proxies/__CG__MauticLeadBundleEntityLeadList.php(225): Doctrine\\\\ORM\\\\Proxy\\\\ProxyFactory->{closure:Doctrine\\\\ORM\\\\Proxy\\\\ProxyFactory::createInitializer():309}()\n#2 /var/www/html/var/cache/dev/doctrine/orm/Proxies/__CG__MauticLeadBundleEntityLeadList.php(225): Closure->__invoke()\n#3 /var/www/html/app/bundles/CampaignBundle/Entity/Campaign.php(605): Proxies\\\\__CG__\\\\Mautic\\\\LeadBundle\\\\Entity\\\\LeadList->getName()\n#4 /var/www/html/app/bundles/CampaignBundle/Model/CampaignModel.php(465): Mautic\\\\CampaignBundle\\\\Entity\\\\Campaign->addList()\n#5 /var/www/html/app/bundles/CampaignBundle/Controller/CampaignController.php(789): Mautic\\\\CampaignBundle\\\\Model\\\\CampaignModel->setLeadSources()\n#6 /var/www/html/app/bundles/CampaignBundle/Controller/CampaignController.php(470): Mautic\\\\CampaignBundle\\\\Controller\\\\CampaignController->beforeEntitySave()\n#7 /var/www/html/vendor/symfony/http-kernel/HttpKernel.php(183): Mautic\\\\CampaignBundle\\\\Controller\\\\CampaignController->newAction()\n#8 /var/www/html/vendor/symfony/http-kernel/HttpKernel.php(76): Symfony\\\\Component\\\\HttpKernel\\\\HttpKernel->handleRaw()\n#9 /var/www/html/vendor/symfony/framework-bundle/Controller/AbstractController.php(122): Symfony\\\\Component\\\\HttpKernel\\\\HttpKernel->handle()\n#10 /var/www/html/app/bundles/CoreBundle/Controller/CommonController.php(435): Symfony\\\\Bundle\\\\FrameworkBundle\\\\Controller\\\\AbstractController->forward()\n#11 /var/www/html/vendor/symfony/http-kernel/HttpKernel.php(183): Mautic\\\\CoreBundle\\\\Controller\\\\CommonController->executeAction()\n#12 /var/www/html/vendor/symfony/http-kernel/HttpKernel.php(76): Symfony\\\\Component\\\\HttpKernel\\\\HttpKernel->handleRaw()\n#13 /var/www/html/vendor/symfony/http-kernel/Kernel.php(193): Symfony\\\\Component\\\\HttpKernel\\\\HttpKernel->handle()\n#14 /var/www/html/app/AppKernel.php(101): Symfony\\\\Component\\\\HttpKernel\\\\Kernel->handle()\n#15 /var/www/html/app/middlewares/CORSMiddleware.php(76): AppKernel->handle()\n#16 /var/www/h",
+    "score": 35,
+    "labels": [
+      "bug",
+      "regression",
+      "campaigns"
+    ],
+    "html_url": "https://github.com/mautic/mautic/issues/15968",
+    "created_at": "2026-03-27T23:02:59.780138",
+    "status": "claimed"
+  },
+  {
+    "key": "kraftdenker/ZAPiXDESK#14",
+    "owner": "kraftdenker",
+    "repo": "ZAPiXDESK",
+    "number": 14,
+    "title": "It seems to be ineffective now",
+    "body": "______  ___  ______ ___   _______ _____ _____ _   __\n|___  / / _ \\ | ___ (_) \\ / /  _  \\  ___/  ___| | / /\n   / / / /_\\ \\| |_/ /_ \\ V /| | | | |__ \\ ---.| |/ /\n  / /  |  _  ||  __/| |/   \\| | | |  __| ---. \\    \\\n./ /___| | | || |   | / /^\\ \\ |/ /| |___/\\__/ / |\\  \\\n\\_____/\\_| |_/\\_|   |_\\/   \\/___/ \\____/\\____/\\_| \\_/\n                                       ZAPiXDESK\n# Copyright: 2025 Alberto Magno <alberto.magno@gmail.com>\n# URL: https://github.com/kraftdenker/ZAPiXDESK\n# Version: 2.1.0\n# Source Path: C:\\Users\\User\\AppData\\Local\\Packages\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\\LocalState\n# Output Path: C:\\src\\ZAPiXDESK\nMethod: ODUID_UEFI_VARIABLE_RANDOMSEED\nODUID: ffd541d48a69999cc1862af99caca18d84db70ac2974ffaf26f215d555af6b89\n(staticKeyBytes): 23A7F19C11E5BD784235C96F85D24913\n(sessionDBSecret): 308201E306092A864886F70D010703A08201D4308201D00201023182017AA282\nDecrypting session.db-wal\nDecrypting session.db\nC:\\src\\ZAPiXDESK\\ZAPiXDESK_20260323090907\\session.dec.db-wal\nCannot index into a null array.\nAt C:\\src\\ZAPiXDESK\\ZAPiXDESK.ps1:1059 char:9\n+         $clientKey = Convert-HexStringToByteArray $clientKeyList[-1]. ...\n+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException\n    + FullyQualifiedErrorId : NullArray\n\nException calling \"ToString\" with \"1\" argument(s): \"Value cannot be null.\nParameter name: value\"\nAt C:\\src\\ZAPiXDESK\\ZAPiXDESK.ps1:1060 char:39\n+ ... ientKey): $( [BitConverter]::ToString($clientKey).Replace('-', '') )\"\n+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\n    + FullyQualifiedErrorId : ArgumentNullException\n\n(clientKey):\nMultiple ambiguous overloads found for \"ComputeHash\" and the argument count: \"1\".\nAt C:\\src\\ZAPiXDESK\\ZAPiXDESK.ps1:1065 char:9\n+         $hashBytes = $sha1.ComputeHash($clientKey)\n+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : NotSpecified: (:) [], MethodException\n    + FullyQualifiedErrorId : MethodCountCouldNotFindBest\n\nException calling \"ToString\" with \"1\" argument(s): \"Value cannot be null.\nParameter name: value\"\nAt C:\\src\\ZAPiXDESK\\ZAPiXDESK.ps1:1066 char:9\n+         $targetSession = [BitConverter]::ToString($hashBytes).Replace ...\n+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\n    + FullyQualifiedErrorId : ArgumentNullException\n\n(SessionDirectory Name):\n(publisherKey): FFD541D48A69999CC1862AF99CACA18D84DB70AC2974FFAF26F215D555AF6B89\nException calling \"Init\" with \"3\" argument(s): \"Value cannot be null.\nParameter name: password\"\nAt C:\\src\\ZAPiXDESK\\ZAPiXDESK.ps1:1076 char:9\n+         $generator.Init($clientKey, $publisherKey, $global:pbkdf_iter ...\n+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvo",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/kraftdenker/ZAPiXDESK/issues/14",
+    "created_at": "2026-03-27T23:30:05.145472",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#31",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 31,
+    "title": "Add local demo reset endpoint for development",
+    "body": "Testing the full bounty lifecycle repeatedly is slower without reset tooling. Should add a development-only way to reset demo data.\n\nImplementation:\n\nAdd a protected or development-only reset endpoint  \nRestore sample bounty data  \nPrevent accidental use in production  \nDocument when and how to use it\n\nAcceptance Criteria:\n\nDevelopers can reset sample data quickly  \nReset is disabled or protected outside development  \nSample data restores correctly  \nDocumentation explains the behavior",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/31",
+    "created_at": "2026-03-27T23:30:06.234690",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#162",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 162,
+    "title": "Bounty Contract - No Dispute Mechanism",
+    "body": "\n**Severity:** High  \n**Component:** `contracts/bounty/src/lib.rs`  \n**Description:** While `BountyStatus::Disputed` exists, there's no function to initiate or resolve disputes.  \n**Impact:** No way to handle disagreements between creators and freelancers.  \n**Solution:** Implement dispute initiation, evidence submission, and resolution functions.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/162",
+    "created_at": "2026-03-28T00:01:52.318920",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#169",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 169,
+    "title": "Bounty Contract - Storage Not Optimized",
+    "body": "\n**Severity:** Medium  \n**Component:** `contracts/bounty/src/lib.rs`  \n**Description:** Uses persistent storage for all data without considering temporary vs permanent data needs.  \n**Impact:** Higher storage costs and slower access times.  \n**Solution:** Use temporary storage for short-lived data and instance storage for frequently accessed data.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/169",
+    "created_at": "2026-03-28T00:01:53.721144",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#166",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 166,
+    "title": "Bounty Contract - No Budget Validation",
+    "body": "\n**Severity:** High  \n**Component:** `contracts/bounty/src/lib.rs` - `create_bounty()`  \n**Description:** Budget can be zero or negative. No validation against governance contract limits.  \n**Impact:** Invalid bounties can be created, wasting storage and user time.  \n**Solution:** Validate budget is positive and within governance-defined limits.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/166",
+    "created_at": "2026-03-28T00:01:54.825707",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#163",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 163,
+    "title": "Bounty Contract - Unlimited Applications",
+    "body": "\n**Severity:** Medium  \n**Component:** `contracts/bounty/src/lib.rs` - `apply_for_bounty()`  \n**Description:** No limit on number of applications per bounty or per freelancer. A single user could spam applications.  \n**Impact:** Storage bloat and potential DoS attack vector.  \n**Solution:** Add maximum applications limit and prevent duplicate applications from same freelancer.\n",
+    "score": 60,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/163",
+    "created_at": "2026-03-28T00:01:56.321232",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#181",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 181,
+    "title": "Freelancer Contract - Rating System Flawed",
+    "body": "\n**Severity:** Critical  \n**Component:** `contracts/freelancer/src/lib.rs` - `update_rating()`  \n**Description:** Anyone can call update_rating without authorization. No verification that rater completed a project with the freelancer.  \n**Impact:** Rating system can be manipulated, destroying trust.  \n**Solution:** Only allow rating updates from completed bounty contracts with verification.\n",
+    "score": 50,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/181",
+    "created_at": "2026-03-28T00:01:57.260490",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#161",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 161,
+    "title": "Bounty Contract - Missing Payment Integration",
+    "body": "\n**Severity:** Critical  \n**Component:** `contracts/bounty/src/lib.rs`  \n**Description:** Bounty contract doesn't integrate with escrow contract for payment handling. No funds are locked or released.  \n**Impact:** No actual payment mechanism, making the bounty system non-functional.  \n**Solution:** Add escrow contract invocation during bounty creation and completion.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/161",
+    "created_at": "2026-03-28T01:00:31.789260",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#1779",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 1779,
+    "title": "download match replay [bounty: 7 XTR]",
+    "body": "After a match is over, there could be a download replay button displayed in one of the corners of the score screen.\n\nhttps://game-icons.net/1x1/delapouite/save-arrow.html\n\nIcon style: transparent background and 4px black outline.",
+    "score": 45,
+    "labels": [
+      "coding",
+      "marketing",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1779",
+    "created_at": "2026-03-28T01:00:32.819002",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#185",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 185,
+    "title": "Referral Code Generation API",
+    "body": "\n\n## Description\n\nImplement API endpoints for generating and managing unique referral codes for users. Each user should get a unique code upon registration or on demand. Create a new ReferralModule following existing NestJS patterns.\n\n## Requirements\n\n- `POST /referrals/generate-code` - Generate new code for authenticated user\n- `GET /referrals/my-code` - Retrieve user's current referral code\n- Code format: 8-12 alphanumeric characters\n- Ensure uniqueness across all users\n- QR code generation for mobile sharing\n- Create ReferralModule, ReferralController, ReferralService (following existing module patterns like BalanceModule)\n\n## Acceptance Criteria\n\n- [ ] API endpoints implemented and tested\n- [ ] Codes are unique and properly formatted\n- [ ] QR code generation works\n- [ ] Error handling for duplicate requests\n- [ ] Integration with user authentication\n- [ ] ReferralModule created and imported in AppModule\n\n## Bounty\n\n\n## Labels\n- `api`\n- `backend`\n- `feature`\n\n## Priority\nHigh",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/185",
+    "created_at": "2026-03-28T01:00:34.234770",
+    "status": "claimed"
+  },
+  {
+    "key": "StelTade/SwapTrade-Backend#184",
+    "owner": "StelTade",
+    "repo": "SwapTrade-Backend",
+    "number": 184,
+    "title": "Database Schema for Referral System",
+    "body": "\n## Description\n\nCreate the database schema and migrations for the referral system. This includes tables for storing referral codes, referral relationships, rewards, and leaderboard data. Follow the existing TypeORM patterns used in the system.\n\n## Requirements\n\n- Design tables for:\n  - `referral_codes`: user_id, code, created_at, expires_at (similar to existing User entity patterns)\n  - `referrals`: referrer_id, referee_id, status, created_at, rewarded_at (follow Trade entity indexing)\n  - `referral_rewards`: referral_id, amount (decimal precision like UserBalance), type, credited_at\n  - `leaderboard_cache`: type, user_id, score (decimal like balance fields), rank, period\n\n- Create TypeORM entities with proper relationships (following UserBalance -> User pattern)\n- Add database migrations (using existing migration system)\n- Ensure foreign key constraints and indexes for performance (similar to Trade entity indexes)\n- Update data-source.ts to include new entities\n\n## Acceptance Criteria\n\n- [ ] All tables created with proper data types (decimal precision matching UserBalance)\n- [ ] Relationships defined correctly (following existing entity patterns)\n- [ ] Migrations run successfully without errors\n- [ ] Indexes added for frequently queried fields (like Trade entity)\n- [ ] Schema documented in docs/database-schema.md\n- [ ] Entities added to data-source.ts\n\n## Bounty\n\n\n## Labels\n- `database`\n- `backend`\n- `migration`\n\n## Priority\nHigh",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/StelTade/SwapTrade-Backend/issues/184",
+    "created_at": "2026-03-28T01:00:35.289319",
+    "status": "claimed"
+  },
+  {
+    "key": "GoodDollar/GoodCollective#314",
+    "owner": "GoodDollar",
+    "repo": "GoodCollective",
+    "number": 314,
+    "title": "Feature: Bulk Add Members to Pools in UI",
+    "body": "### Feature: Bulk Add Members to Pools in UI\n\n**Is your feature request related to a problem? Please describe.**\nCurrently, pool managers can only add members one by one through the \"Member Management\" tab in the UI. This becomes a tedious and time-consuming process when a large number of members need to be added to a pool. The underlying smart contracts (`DirectPaymentsPool.sol` and `UBIPool.sol`) already support bulk addition via the `addMembers` function, but this functionality is not exposed in the user interface.\n\n**Describe the solution you'd like**\nWe need to implement a feature in the \"Member Management\" section of the `ManageCollectivePage.tsx` that allows pool managers to add multiple members simultaneously. This could involve:\n1.  A text area where users can paste a list of wallet addresses (e.g., comma-separated, or one per line).\n2.  Optionally, a file upload mechanism for a CSV file containing a list of addresses.\n\nUpon submission, the UI should call the `addMembers` function on the relevant pool contract (`DirectPaymentsPool` or `UBIPool`) with the provided list of addresses.\n\n**Describe alternatives you've considered**\nThe current alternative is to manually add each member, which is inefficient for large-scale operations. Direct interaction with the smart contract (e.g., via Etherscan or a custom script) is also possible but is not user-friendly for non-technical managers.\n\n**Acceptance Criteria**\n*   A new UI component (e.g., a dedicated section or a button triggering a modal) is added to the \"Member Management\" tab on `ManageCollectivePage.tsx`.\n*   The component provides an input method for multiple wallet addresses (e.g., a multi-line text area).\n*   The input addresses are validated (e.g., basic address format check).\n*   Upon submission, the UI calls the `addMembers` function on the `DirectPaymentsPool` or `UBIPool` contract, passing the array of member addresses. For the `extraData` parameter, an empty array of bytes (`[]`) should be passed for all members in the initial implementation, as the current contract logic allows for this.\n*   The UI provides clear feedback to the user during the transaction (e.g., \"Adding members...\", \"Transaction confirmed\", \"Error: ...\").\n*   Successfully added members should appear in the \"Current Members\" list after the transaction is confirmed and the data is refreshed.\n*   The feature should be accessible only to users with the `MANAGER_ROLE`.\n\n**Relevant Files:**\n*   `/Users/hadarro/workspace/GoodDollar/SegmentedUBI/packages/app/src/pages/ManageCollectivePage.tsx`\n*   `/Users/hadarro/workspace/GoodDollar/SegmentedUBI/packages/contracts/contracts/DirectPayments/DirectPaymentsPool.sol` (specifically the `addMembers` function)\n*   `/Users/hadarro/workspace/GoodDollar/SegmentedUBI/packages/contracts/contracts/UBI/UBIPool.sol` (specifically the `addMembers` function)\n*   The `useMemberManagement` hook (likely located in `packages/app/src/hooks/managePool/useMemberManagement.ts` or similar) will",
+    "score": 20,
+    "labels": [
+      "GoodBounties - Common"
+    ],
+    "html_url": "https://github.com/GoodDollar/GoodCollective/issues/314",
+    "created_at": "2026-03-28T01:00:36.541942",
+    "status": "claimed"
+  },
+  {
+    "key": "WattCoin-Org/wattcoin#17",
+    "owner": "WattCoin-Org",
+    "repo": "wattcoin",
+    "number": 17,
+    "title": "[BOUNTY: 15,000 WATT] Raspberry Pi IoT bridge",
+    "body": "## Description\nBuild a Pi application that bridges smart home devices to the WattCoin network, enabling device data to be monetized or verified.\n\n## Requirements\n- Connects to local IoT devices via:\n  - MQTT broker\n  - Zigbee (via zigbee2mqtt)\n  - Or direct API (Kasa, Hue, etc.)\n- Relays device states to configurable WattCoin API endpoint\n- Allows remote commands (paid in WATT)\n- Local config UI for device mapping\n- Mock mode for testing without hardware\n\n## Acceptance Criteria\n- [ ] At least 2 device protocols supported (real or mock)\n- [ ] State reporting to API\n- [ ] Command relay functional\n- [ ] Config UI working\n- [ ] Tests included and passing\n\n## Bounty\n15,000 WATT\n\n## Notes\n- The backend API endpoints may not be built yet — your code should work against any configurable URL and gracefully handle connection errors.\n- Include your personal Solana wallet in the PR body (not the project wallet). Format: `**Payout Wallet**: <your_address>`\n",
+    "score": 85,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/WattCoin-Org/wattcoin/issues/17",
+    "created_at": "2026-03-28T02:02:01.022028",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#168",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 168,
+    "title": "Bounty Contract - No Pagination for Applications",
+    "body": "\n**Severity:** Medium  \n**Component:** `contracts/bounty/src/lib.rs`  \n**Description:** No function to list applications for a bounty. Must query each application ID individually.  \n**Impact:** Inefficient to retrieve all applications for a bounty.  \n**Solution:** Add function to list application IDs for a bounty with pagination.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/168",
+    "created_at": "2026-03-28T02:02:02.246609",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#160",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 160,
+    "title": "Bounty Contract - No Access Control for Completion",
+    "body": "\n**Severity:** Critical  \n**Component:** `contracts/bounty/src/lib.rs` - `complete_bounty()`  \n**Description:** Only the bounty creator can mark a bounty as completed. The selected freelancer should also be able to submit completion for creator approval.  \n**Impact:** Freelancers cannot signal work completion, requiring off-chain coordination.  \n**Solution:** Add freelancer completion submission with creator approval workflow.\n",
+    "score": 60,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/160",
+    "created_at": "2026-03-28T02:02:03.937367",
+    "status": "claimed"
+  },
+  {
+    "key": "akoita/resonate#407",
+    "owner": "akoita",
+    "repo": "resonate",
+    "number": 407,
+    "title": "Content Protection Phase 3: Community Curation + Dispute Resolution",
+    "body": "## Phase 3: Community Curation + Dispute Resolution\n\n**Parent Epic:** #404\n**Priority:** P1-P2\n**Depends on:** Phase 2 (#406)\n**Estimated Effort:** 6-7 sprints\n\n---\n\n### Sprint Progress\n\n| Sprint | Sub-Issue | Scope | Status | PR |\n|--------|-----------|-------|--------|-----|\n| Sprint 1 | #429 | Core contracts + dispute loop + basic UI | ✅ Merged | #426 |\n| Sprint 2 | #430 | Appeals + indexer + admin queue + leaderboard | ✅ Merged | #427 |\n| Sprint 3 | #431 | Notification system + WebSocket dispute alerts | 🟡 Partial: infrastructure landed, follow-ups tracked in #457, #458, #459 | — |\n| Sprint 4 | #432 | Kleros/DAO jury for decentralized arbitration | ⬜ Planned | — |\n| Sprint 5 | #433 | Proof-of-humanity gate + advanced reputation | ⬜ Planned | — |\n| Sprint 6 | #434 | E2E testing + security audit + deployment | ⬜ Planned | — |\n| Sprint 7 | #435 | Public analytics + anti-abuse hardening | ⬜ Planned | — |\n\n---\n\n### Scope\n\nEnable community-powered content policing with economic incentives. Any user can flag stolen content for bounty rewards. Disputes are resolved through evidence-based adjudication.\n\n### Tasks\n\n#### Smart Contracts\n- [x] **`CurationRewards` contract** — flag, counter-stake, bounty, reputation\n- [x] **`DisputeResolution` contract** — file, evidence, resolve, appeal (max 2)\n\n#### Backend\n- [x] Curation reputation system (`CuratorReputation` model)\n- [x] Dispute management lifecycle\n- [x] Indexer integration for on-chain dispute events\n- [x] Admin dispute queue API\n- [x] Automated in-app notifications + WebSocket event plumbing (from #431)\n- [ ] End-to-end notification hardening and tests (#457)\n- [ ] Kleros/DAO jury integration\n- [ ] Proof-of-humanity verification\n\n#### Frontend\n- [x] Flag content UI (report button + evidence form)\n- [x] Dispute dashboard (reporter/creator tabs)\n- [x] Admin dispute queue\n- [x] Curator leaderboard\n- [ ] Notification UI integration in app shell/settings (#459)\n- [ ] Jury voting UI\n- [ ] Public analytics dashboard\n\n### Anti-Abuse Safeguards\n\n| Attack | Mitigation |\n|--------|-----------|\n| Frivolous flagging | Counter-stake slashed on rejection |\n| Coordinated mob flagging | Multiple flags consolidated into single dispute |\n| Self-flagging | Reporter ≠ creator wallet |\n| Sybil flagging | Counter-stake + proof-of-humanity for high-volume reporters |\n\n### Follow-Ups\n\n- #457 — Verify end-to-end dispute notification and WebSocket behavior\n- #458 — Reconcile Sprint 3 tracking in #407\n- #459 — Mount notification center and preferences UI\n\n### Related\n\n- RFC: [`docs/rfc/content-protection-architecture.md`](https://github.com/akoita/resonate/blob/main/docs/rfc/content-protection-architecture.md) §3, §5\n- Feature doc: [`docs/features/community_curation_disputes.md`](https://github.com/akoita/resonate/blob/main/docs/features/community_curation_disputes.md)",
+    "score": 50,
+    "labels": [
+      "frontend",
+      "smart-contracts",
+      "content-protection",
+      "P1"
+    ],
+    "html_url": "https://github.com/akoita/resonate/issues/407",
+    "created_at": "2026-03-28T02:02:05.056268",
+    "status": "claimed"
+  },
+  {
+    "key": "mhollink/bankstanding-plugin#16",
+    "owner": "mhollink",
+    "repo": "bankstanding-plugin",
+    "number": 16,
+    "title": "[Bank] priff north bank",
+    "body": "## Description\nWhich bank is missing or incorrect? \ngaining exp while im doing agility in priff \n## Screenshot\nAdd screenshot of the bank with debug tools enabled.\n\n<img width=\"1571\" height=\"1005\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7adabff0-63cb-40a4-abc6-935563dc2fcb\" />\n\n## World location\nPlease provide the world location (x, y, plane) of the bank. \nCan be found with the World Location plugin (https://runelite.net/plugin-hub/show/world-location). east of the north bank in priff in the agility course\n\n## RSN (optional)\nYour Runescape name so we can award you the bug-finder bounty.\nghosted kami",
+    "score": 25,
+    "labels": [
+      "bug"
+    ],
+    "html_url": "https://github.com/mhollink/bankstanding-plugin/issues/16",
+    "created_at": "2026-03-28T03:00:23.060734",
+    "status": "claimed"
+  },
+  {
+    "key": "PlayersCommittee/gemp-swccg-public#954",
+    "owner": "PlayersCommittee",
+    "repo": "gemp-swccg-public",
+    "number": 954,
+    "title": "Cards providing a 'Regular move' are not including site text or docking bay transit as an option",
+    "body": "- [X] Did you search through the list of **open issues** _first_ to ensure that there is not already an report for this issue?\n\n## **Describe the bug**\nI have not tested this yet, but it appears that GEMP internally is not including \"using the movement text on a location\" or \"docking bay transit\" in its set of 'regular move' options.\n\nAn example of this being an issue is:\nLor San Tekka: \"During your control phase, one of your other Resistance characters present may make a regular move.\"\n\nI believe as currently implemented, if Lor San Tekka and a Resistance character are at a docking bay (with force available and a valid destination docking bay), no option will be given to have the Resistance character move with docking bay transit during the Control Phase.\n\nAnother example is Bodhi Rook allowing a Rebel to make a regular move.  If Bodhi Rook is lost during Move Phase, a Rebel at Cloud City: Upper Plaza Corridor should be able to use the location's gametext to move to any CC site for free.  Currently, I don't think that option will be available to the player.\n\nThere are some other niche cases, as well - like with Agents of Black Sun, a bounty hunter at a Docking Bay 94 and adjacent Mos Espa Docking Bay should be able to use docking bay transit (rather than landspeed) to move to the Mos Espa Docking Bay (during Control Phase, to a bounty, etc).\n\nAR: Movement - Regular: (edited to show bullet points)\n\n> The following moves are regular moves for the card making the move action as long as the movement is not \n> part of a 'react':\n> * using landspeed\n> * using hyperspeed\n> * moving between sectors (or sectors and the related system)\n> * **using the movement text on a location**\n> * **Docking Bay Transit**\n> * landing\n> * taking off\n> * shuttling\n> * moving between a starship/vehicle card and the related starship/vehicle site\n> * a Light side starfighter moving into the Death Star: Trench to start an Attack Run\n> * moving a Death Star\n> * moving starships to or from an orbiting Death Star\n> * moving to start (or finish) a TIE Bombing Run\n> \n> A card is only permitted one regular move per turn. All regular moves occur during your move phase unless a card or rule says otherwise. Some regular moves are permitted by rules, while others are allowed due to game text.\n\n## **To Reproduce**\nSteps to reproduce the behavior:\n1. Go to '...'\n2. Click on '....'\n3. \n4.\n5. See error\n\n## **Game Replay ID:**\n<!-- In GEMP go to Game History and it has a list of games you have played. On the far right there is a \"replay game\" link. If you copy the link for that game and paste it here it will let us review the game to see the bug. -->\n\n## **Expected behavior**\n<!-- A clear and concise description of what you expected to happen. -->\n\n## **Screenshots**\n<!-- If applicable, add screenshots to help explain your problem. -->\n\n## **Additional context**\nAdd any other context about the problem here.\n",
+    "score": 15,
+    "labels": [
+      "bug",
+      "needs triage"
+    ],
+    "html_url": "https://github.com/PlayersCommittee/gemp-swccg-public/issues/954",
+    "created_at": "2026-03-28T03:00:24.645963",
+    "status": "claimed"
+  },
+  {
+    "key": "Nobayprotocol/Nobay-Protocol#1",
+    "owner": "Nobayprotocol",
+    "repo": "Nobay-Protocol",
+    "number": 1,
+    "title": "Implement DAO-compatible Slashing Module",
+    "body": "We need a smart contract module that allows $NOBAY stakers to be slashed for fraud or dispute resolution.\n\nFeatures:\n- Slash by DAO vote or dispute outcome\n- Integrates with StakingModule\n- Emits Slashed(address, amount, reason)\n\nBonus: Add trust decay function over time\n\nType: Smart contract / DAO extension\nLabels: enhancement, bounty, Solidity",
+    "score": 65,
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "Solidity",
+      "Bounty"
+    ],
+    "html_url": "https://github.com/Nobayprotocol/Nobay-Protocol/issues/1",
+    "created_at": "2026-03-28T04:00:59.254588",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#165",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 165,
+    "title": "Bounty Contract - Missing Deadline Enforcement",
+    "body": "\n**Severity:** High  \n**Component:** `contracts/bounty/src/lib.rs`  \n**Description:** Deadline field exists but is never checked. Bounties can be completed after deadline without penalty.  \n**Impact:** No time-based enforcement of bounty terms.  \n**Solution:** Add deadline validation in completion and add automatic expiration logic.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/165",
+    "created_at": "2026-03-28T04:01:00.249228",
+    "status": "claimed"
+  },
+  {
+    "key": "SharedStake/Contracts#13",
+    "owner": "SharedStake",
+    "repo": "Contracts",
+    "number": 13,
+    "title": "Multisend a ERC20 advertising us to whales  ",
+    "body": "inspired by this: https://etherscan.io/tx/0xb19d20b422df26b50775358f64234e8d45d6d96befddfa8cd77ceefa568eb9fb\r\n\r\nMushrooms finance did a multisend to a targeted group of power-defi users with a one-off erc20 titled \"try mushrooms finance\".     \r\n\r\nThis is great directed marketing.    \r\n\r\nWe should give this a shot.    \r\n\r\nYou can most likely get the user data from the linked tx.    \r\n\r\nAdditionally it might be viable to fork, deploy and reuse the multisend contract ethglobal uses to return user funds: \r\nhttps://etherscan.io/address/0x941f40c2955ee09ba638409f67ef27c531fc055c#code",
+    "score": 60,
+    "labels": [
+      "help wanted",
+      "bounty"
+    ],
+    "html_url": "https://github.com/SharedStake/Contracts/issues/13",
+    "created_at": "2026-03-28T04:01:01.719321",
+    "status": "claimed"
+  },
+  {
+    "key": "ripgrim/ripgrim#15",
+    "owner": "ripgrim",
+    "repo": "ripgrim",
+    "number": 15,
+    "title": "1",
+    "body": "dasdasd asd as dasd\n\n---\n\n[![bounty.new](https://www.bounty.new/bounty-button.svg)](https://www.bounty.new/bounty/b84735bf-be64-4cfe-a9ca-1ea5af274b0b)\n\n**$0.00 Bounty**\n\n[View on bounty.new](https://www.bounty.new/bounty/b84735bf-be64-4cfe-a9ca-1ea5af274b0b) · Submit your PR referencing this issue to claim the bounty.",
+    "score": 60,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/ripgrim/ripgrim/issues/15",
+    "created_at": "2026-03-28T04:01:03.184307",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#5",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 5,
+    "title": "Add reward range filter on bounty board",
+    "body": "Contributors should be able to quickly find bounties that match their preferred reward size. Should add a reward amount filter.\n\nImplementation:\n\nAdd min and max reward inputs or slider  \nFilter visible bounties by reward range  \nCombine correctly with existing search and status filters  \nShow current active range in the UI\n\nAcceptance Criteria:\n\nUsers can filter by reward range  \nOut-of-range bounties are hidden  \nFilters work together without breaking the board  \nEmpty state appears when nothing matches",
+    "score": 60,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/5",
+    "created_at": "2026-03-28T04:01:04.174998",
+    "status": "claimed"
+  },
+  {
+    "key": "gbabaisaac/mergefund-hackathon-kit#3",
+    "owner": "gbabaisaac",
+    "repo": "mergefund-hackathon-kit",
+    "number": 3,
+    "title": "Bounty: Discovery Algorithm",
+    "body": "## Goal\nImplement a ranking algorithm for marketplace bounties.\n\n## Requirements\n- Use provided mock data\n- Assign a score per bounty\n- Sort by score\n- Explain scoring logic in code comments\n\n## Acceptance Criteria\n- List is ordered by score\n- Scores are visible\n\n## Demo\n- Include screenshots",
+    "score": 45,
+    "labels": [
+      "bounty",
+      "algorithm"
+    ],
+    "html_url": "https://github.com/gbabaisaac/mergefund-hackathon-kit/issues/3",
+    "created_at": "2026-03-28T04:30:29.281958",
+    "status": "claimed"
+  },
+  {
+    "key": "gbabaisaac/mergefund-hackathon-kit#4",
+    "owner": "gbabaisaac",
+    "repo": "mergefund-hackathon-kit",
+    "number": 4,
+    "title": "Bounty: Choose One (Best Submission Wins)",
+    "body": "## Goal\nPick one of the following and build it as a new page in `src/app/your-page`.\n\n## Options\n\n### Community & Social\n- Study Group Finder app\n- Club Event Tracker\n- Hackathon Project Showcase page\n- Mini StackOverflow-style Q&A page\n- Real-Time Chat UI (frontend only)\n- Top Contributors of the Week widget\n\n### Productivity & Tracking\n- Habit Tracker app\n- Daily Streak counter\n- Personal Finance tracker (frontend only)\n- Coding Challenge leaderboard\n- Public roadmap display page\n- Support Ticket dashboard\n\n### Components & UI Systems\n- Search + Filter UI component\n- Reusable Table component with sorting\n- Pagination component\n- Profile Settings page UI\n- Notifications settings panel\n- Privacy Settings UI\n- Public API Explorer UI\n- Markdown Preview editor\n- Bug Reporting form UI\n\n### Marketplace & Voting Concepts\n- Simple Voting system\n- Poll creation app\n- Micro crowdfunding page\n\n### Personal Branding\n- Resume Portfolio landing page\n\n## Acceptance Criteria\n- Must be responsive\n- Uses Tailwind\n- Includes mock data\n- Looks production-quality\n\n## Demo\n- Include screenshots + short video/GIF",
+    "score": 40,
+    "labels": [
+      "bounty",
+      "choose-one"
+    ],
+    "html_url": "https://github.com/gbabaisaac/mergefund-hackathon-kit/issues/4",
+    "created_at": "2026-03-28T04:30:30.457309",
+    "status": "claimed"
+  },
+  {
+    "key": "jose-compu/curated-erc#24",
+    "owner": "jose-compu",
+    "repo": "curated-erc",
+    "number": 24,
+    "title": "feat(utils): implement ERC-4361 SIWE Solidity verifier",
+    "body": "## Background\n\nERC-4361 (Sign-In with Ethereum) just reached Final in 2025. The existing implementations are mostly in JavaScript (spruce-id/siwe). There is no good Solidity verifier for on-chain SIWE message validation.\n\n## Use case\n\nA Solidity SIWE verifier would let smart contracts validate that a user authenticated via SIWE, which is useful for:\n\n- On-chain governance that requires SIWE auth\n- Smart contract wallets that want to verify SIWE sessions\n- Bridge protocols that use SIWE for cross-chain auth\n\n## Scope\n\n- Parse and validate SIWE message format (EIP-4361 fields: domain, address, statement, uri, version, chain-id, nonce, issued-at, expiration-time)\n- Signature verification using ecrecover (and ERC-1271 for contract wallets)\n- Gas-efficient string parsing (this is the hard part in Solidity tbh)\n- Test suite with known-good test vectors from the SIWE spec\n",
+    "score": 30,
+    "labels": [
+      "enhancement",
+      "solidity",
+      "tier-2"
+    ],
+    "html_url": "https://github.com/jose-compu/curated-erc/issues/24",
+    "created_at": "2026-03-28T04:30:31.620221",
+    "status": "claimed"
+  },
+  {
+    "key": "Galxe/galxe-contracts#3",
+    "owner": "Galxe",
+    "repo": "galxe-contracts",
+    "number": 3,
+    "title": "bounty: Project Galaxy Core Contract Gas Optimizations",
+    "body": "## Background\r\n\r\nAt Project Galaxy, we are building the infrastructure to power an open and collaborative credential data network. We help Web3 developers leverage credential data to build better products and communities. At the same time, data curators contribute to our credential data network while earning income once the data is utilized. You can learn more about Project Galaxy at our [website](http://galaxy.eco) and this [deep dive](https://blog.galaxy.eco/deep-dive-into-project-galaxy-abd33eceb19b) article.\r\n\r\n## Contract Address:\r\n\r\n| Chain | SpaceStation | StarNFT |\r\n| --- | --- | --- |\r\n| Ethereum | 0xaae9f9d4fb8748feba405cE25856DC57C91BbB92 | 0x0BE85A36ec9C8FAaf21daab71b70Fb3859BF0f8B |\r\n| Polygon | 0x6cad6e1abc83068ea98924aef37e996ed02abf1c | 0x1871464F087dB27823Cff66Aa88599AA4815aE95 |\r\n| BNB Chain | 0x760B8237e457e6A2b5b196ae073EF0301b8316a2 | 0x9F471abCddc810E561873b35b8aad7d78e21a48e |\r\n\r\nSample transaction:\r\n\r\n[https://etherscan.io/tx/0xac053601cffb0411a7095bc4e811492ab1ebc1e47fc17b622d898bf5b2da15ae](https://etherscan.io/tx/0xac053601cffb0411a7095bc4e811492ab1ebc1e47fc17b622d898bf5b2da15ae)\r\n\r\n[https://polygonscan.com/tx/0x74aed47b6cb146d643ac07722029dbd228c995aa6dab69a19d2f22fccaf40b47](https://polygonscan.com/tx/0x74aed47b6cb146d643ac07722029dbd228c995aa6dab69a19d2f22fccaf40b47)\r\n\r\n[https://bscscan.com/tx/0x29c88c719d1a16db784aca9b0ef33970239aba0d4dec03bbb7b126afa8a55f7d](https://bscscan.com/tx/0x29c88c719d1a16db784aca9b0ef33970239aba0d4dec03bbb7b126afa8a55f7d)\r\n\r\n## Task\r\n\r\nWe are looking for experienced developers to improve our core smart contracts and help us reduce the gas used when the contracts are invoked.\r\n\r\nContract repo: [https://github.com/ProjectGalaxyHQ/galaxy-contracts](https://github.com/ProjectGalaxyHQ/galaxy-contracts)\r\n\r\nContract technical specifications: [https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/SPECIFICATION.md](https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/SPECIFICATION.md)\r\n\r\nFeel free to ask any questions on our [Discord](https://discord.io/ProjectGalaxyHQ) #developer channel.\r\n\r\n## Scope\r\n\r\n- SpaceStationV2: [https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/SpaceStation/SpaceStationV2.sol](https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/SpaceStation/SpaceStationV2.sol)\r\n- StarNFTV3: [https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/StarNFT/StarNFTV3.sol](https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/StarNFT/StarNFTV3.sol)\r\n\r\n## Rules\r\n\r\nPlease submit a PR including stats on gas before and after modifications in various invoke path. Please make a good faith effort to avoid privacy violations, destruction of data, and interruption or degradation of our service. Bounty can be marked as complete once the PR is approved and merged.\r\n\r\n- NFT must follow [EIP712](https://eips.ethereum.org/EIPS/eip-712) standard\r\n- NFT must implement [IStarNFT](https://github.com/ProjectGalaxyHQ/ga",
+    "score": 75,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/Galxe/galxe-contracts/issues/3",
+    "created_at": "2026-03-28T05:01:07.903675",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2931",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2931,
+    "title": "location confirmation slide [bounty: 15 XTR]",
+    "body": "Now that #2803 was fixed, I found a problem when testing it:\nwhen materializing a unit, clicking a location and sliding to another one then releasing finger or mouse click will cause the unit to actually materialize on the initial location instead of doing so at the last valid spot, causing confusion as you get to see a real time preview that's not being respected. Also affects location confirmation for abilities like Abolished's Bonfire Spring.",
+    "score": 40,
+    "labels": [
+      "coding",
+      "abilities",
+      "priority",
+      "easy",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2931",
+    "created_at": "2026-03-28T05:01:09.360419",
+    "status": "claimed"
+  },
+  {
+    "key": "amaybaum-prod/spectrum#223",
+    "owner": "amaybaum-prod",
+    "repo": "spectrum",
+    "number": 223,
+    "title": "apollo-upload-server-7.1.0.tgz: 4 vulnerabilities (highest severity is: 7.7) [alpha] (unreachable)",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>apollo-upload-server-7.1.0.tgz</strong></summary>\n\nMiddleware and an Upload scalar to add support for GraphQL multipart requests (file uploads via queries and mutations) to various Node.js GraphQL servers.\n\n\n\n**Path to dependency file:** /package.json\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2020-15256 ](https://www.mend.io/vulnerability-database/CVE-2020-15256) | 🔴 High | 7.7 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2021-3805 ](https://www.mend.io/vulnerability-database/CVE-2021-3805) | 🔴 High | 7.5 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-24434 ](https://www.mend.io/vulnerability-database/CVE-2022-24434) | 🔴 High | 7.5 | Functional | 2.0% | dicer-0.2.5.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2021-23434 ](https://www.mend.io/vulnerability-database/CVE-2021-23434) | 🟠 Medium | 5.6 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n\n\n# Details\n\n\n<details>\n  <summary>\n 🔴CVE-2020-15256\n  </summary>\n\n### Vulnerable Library - **object-path-0.11.4.tgz**\n\nAccess deep object properties using a path\n\n**Library home page:** [ https://registry.npmjs.org/object-path/-/object-path-0.11.4.tgz ](https://registry.npmjs.org/object-path/-/object-path-0.11.4.tgz)\n\n**Path to dependency file:** /api/package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- apollo-server-express-2.5.0-alpha.0.tgz (Root Library)\n    - apollo-server-core-2.5.0-alpha.0.tgz\n        - graphql-upload-8.0.6.tgz\n            - ❌  **object-path-0.11.4.tgz** (Vulnerable Library)\n\n\n- apollo-upload-server-7.1.0.tgz (Root Library)\n    - ❌  **object-path-0.11.4.tgz** (Vulnerable Library)\n\n\n- apollo-server-express-2.9.12.tgz (Root Library)\n    - apollo-server-core-2.9.12.tgz\n        - graphql-upload-8.0.6.tgz\n            - ❌  **object-path-0.11.4.tgz** (Vulnerable Library)\n\n\n\n\n***\n\n### Reachability Analysis\nThe vulnerable code is unreachable\n***\n\n### Vulnerability Details\n\nA prototype pollution vulnerability has been found in \"object-path\" <= 0.11.4 affecting the \"set()\" method. The vulnerability is limited to the \"includeInheritedProps\" mode (if version >= 0.11.0 is used), which has to be explicitly enabled by creating a new instance of \"object-path\" and setting the option \"includeInheritedProps: true\", or by using th",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/amaybaum-prod/spectrum/issues/223",
+    "created_at": "2026-03-28T05:01:10.787931",
+    "status": "claimed"
+  },
+  {
+    "key": "amaybaum-prod/spectrum#193",
+    "owner": "amaybaum-prod",
+    "repo": "spectrum",
+    "number": 193,
+    "title": "sw-precache-webpack-plugin-0.11.5.tgz: 23 vulnerabilities (highest severity is: 9.8) [alpha] (reachable)",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>sw-precache-webpack-plugin-0.11.5.tgz</strong></summary>\n\nWebpack plugin for using service workers\n\n\n\n**Path to dependency file:** /api/package.json\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2021-44906 ](https://www.mend.io/vulnerability-database/CVE-2021-44906) | 🟣 Critical | 9.8 | Not Defined | < 1% | minimist-1.2.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2019-10744 ](https://www.mend.io/vulnerability-database/CVE-2019-10744) | 🟣 Critical | 9.1 | Not Defined | 3.3% | lodash.template-4.4.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-0868 ](https://www.mend.io/vulnerability-database/CVE-2022-0868) | 🔴 High | 8.0 | Not Defined | < 1% | urijs-1.19.1.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2021-27516 ](https://www.mend.io/vulnerability-database/CVE-2021-27516) | 🔴 High | 7.5 | Not Defined | < 1% | urijs-1.19.1.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2021-33623 ](https://www.mend.io/vulnerability-database/CVE-2021-33623) | 🔴 High | 7.5 | Not Defined | 1.5% | trim-newlines-1.0.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-3517 ](https://www.mend.io/vulnerability-database/CVE-2022-3517) | 🔴 High | 7.5 | Not Defined | < 1% | minimatch-3.0.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-45296 ](https://www.mend.io/vulnerability-database/CVE-2024-45296) | 🔴 High | 7.5 | Not Defined | < 1% | path-to-regexp-1.7.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2026-26996 ](https://www.mend.io/vulnerability-database/CVE-2026-26996) | 🔴 High | 7.5 | Not Defined | < 1% | minimatch-3.0.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2026-27903 ](https://www.mend.io/vulnerability-database/CVE-2026-27903) | 🔴 High | 7.5 | Not Defined | < 1% | minimatch-3.0.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2026-27904 ](https://www.mend.io/vulnerability-database/CVE-2026-27904)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/amaybaum-prod/spectrum/issues/193",
+    "created_at": "2026-03-28T05:01:12.089449",
+    "status": "claimed"
+  },
+  {
+    "key": "amaybaum-prod/spectrum#160",
+    "owner": "amaybaum-prod",
+    "repo": "spectrum",
+    "number": 160,
+    "title": "apollo-server-express-2.9.12.tgz: 27 vulnerabilities (highest severity is: 8.8) [alpha] (unreachable)",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>apollo-server-express-2.9.12.tgz</strong></summary>\n\nProduction-ready Node.js GraphQL server for Express and Connect\n\n\n\n**Path to dependency file:** /package.json\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2022-0235 ](https://www.mend.io/vulnerability-database/CVE-2022-0235) | 🔴 High | 8.8 | Not Defined | < 1% | node-fetch-2.6.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2025-9288 ](https://www.mend.io/vulnerability-database/CVE-2025-9288) | 🔴 High | 8.7 | Not Defined | < 1% | sha.js-2.4.11.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2020-15256 ](https://www.mend.io/vulnerability-database/CVE-2020-15256) | 🔴 High | 7.7 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2021-3805 ](https://www.mend.io/vulnerability-database/CVE-2021-3805) | 🔴 High | 7.5 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-24434 ](https://www.mend.io/vulnerability-database/CVE-2022-24434) | 🔴 High | 7.5 | Functional | 2.0% | dicer-0.3.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-24999 ](https://www.mend.io/vulnerability-database/CVE-2022-24999) | 🔴 High | 7.5 | Not Defined | 1.1% | qs-6.7.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-37890 ](https://www.mend.io/vulnerability-database/CVE-2024-37890) | 🔴 High | 7.5 | Not Defined | < 1% | ws-6.2.1.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-37890 ](https://www.mend.io/vulnerability-database/CVE-2024-37890) | 🔴 High | 7.5 | Not Defined | < 1% | ws-5.2.2.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-45296 ](https://www.mend.io/vulnerability-database/CVE-2024-45296) | 🔴 High | 7.5 | Not Defined | < 1% | path-to-regexp-0.1.7.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-45590 ](https://www.mend.io/vulnerability-database/CVE-2024-45590) | 🔴 High | 7.5 ",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/amaybaum-prod/spectrum/issues/160",
+    "created_at": "2026-03-28T05:01:13.407111",
+    "status": "claimed"
+  },
+  {
+    "key": "amaybaum-prod/spectrum#153",
+    "owner": "amaybaum-prod",
+    "repo": "spectrum",
+    "number": 153,
+    "title": "http-proxy-middleware-1.0.4.tgz: 16 vulnerabilities (highest severity is: 8.0) [alpha] (reachable)",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>http-proxy-middleware-1.0.4.tgz</strong></summary>\n\nThe one-liner node.js proxy middleware for connect, express and browser-sync\n\n\n\n**Path to dependency file:** /package.json\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2022-0155 ](https://www.mend.io/vulnerability-database/CVE-2022-0155) | 🔴 High | 8.0 | Not Defined | 1.3000001% | follow-redirects-1.7.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-21536 ](https://www.mend.io/vulnerability-database/CVE-2024-21536) | 🔴 High | 7.5 | Proof of concept | < 1% | http-proxy-middleware-1.0.4.tgz | Direct | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-4068 ](https://www.mend.io/vulnerability-database/CVE-2024-4068) | 🔴 High | 7.5 | Not Defined | < 1% | braces-3.0.2.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2026-33671 ](https://www.mend.io/vulnerability-database/CVE-2026-33671) | 🔴 High | 7.5 | Not Defined | < 1% | picomatch-2.2.2.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2020-8203 ](https://www.mend.io/vulnerability-database/CVE-2020-8203) | 🔴 High | 7.4 | Not Defined | 3.6% | lodash-4.17.15.tgz | Direct | lodash - 4.17.19 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2023-26159 ](https://www.mend.io/vulnerability-database/CVE-2023-26159) | 🔴 High | 7.3 | Proof of concept | < 1% | follow-redirects-1.7.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2021-23337 ](https://www.mend.io/vulnerability-database/CVE-2021-23337) | 🔴 High | 7.2 | Proof of concept | < 1% | lodash-4.17.15.tgz | Direct | lodash - 4.17.21, lodash-es - 4.17.21 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2025-13465 ](https://www.mend.io/vulnerability-database/CVE-2025-13465) | 🔴 High | 7.2 | Not Defined | < 1% | lodash-4.17.15.tgz | Direct | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-28849 ](https://www.mend.io/vulnerability-database/CVE-2024-28849) | 🟠 Medium | 6.5 | Not Defined | < 1% | follow-redirects-1.7.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2017-16137",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/amaybaum-prod/spectrum/issues/153",
+    "created_at": "2026-03-28T05:30:25.957011",
+    "status": "claimed"
+  },
+  {
+    "key": "amaybaum-prod/spectrum#125",
+    "owner": "amaybaum-prod",
+    "repo": "spectrum",
+    "number": 125,
+    "title": "apollo-server-express-2.5.0-alpha.0.tgz: 21 vulnerabilities (highest severity is: 8.8) [alpha] (unreachable)",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>apollo-server-express-2.5.0-alpha.0.tgz</strong></summary>\n\nProduction-ready Node.js GraphQL server for Express and Connect\n\n\n\n**Path to dependency file:** /api/package.json\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2022-0235 ](https://www.mend.io/vulnerability-database/CVE-2022-0235) | 🔴 High | 8.8 | Not Defined | < 1% | node-fetch-2.6.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2025-9288 ](https://www.mend.io/vulnerability-database/CVE-2025-9288) | 🔴 High | 8.7 | Not Defined | < 1% | sha.js-2.4.11.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-25878 ](https://www.mend.io/vulnerability-database/CVE-2022-25878) | 🔴 High | 8.2 | Proof of concept | < 1% | protobufjs-6.8.8.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2020-15256 ](https://www.mend.io/vulnerability-database/CVE-2020-15256) | 🔴 High | 7.7 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2021-3805 ](https://www.mend.io/vulnerability-database/CVE-2021-3805) | 🔴 High | 7.5 | Not Defined | < 1% | object-path-0.11.4.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-24434 ](https://www.mend.io/vulnerability-database/CVE-2022-24434) | 🔴 High | 7.5 | Functional | 2.0% | dicer-0.3.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2022-24999 ](https://www.mend.io/vulnerability-database/CVE-2022-24999) | 🔴 High | 7.5 | Not Defined | 1.1% | qs-6.7.0.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-37890 ](https://www.mend.io/vulnerability-database/CVE-2024-37890) | 🔴 High | 7.5 | Not Defined | < 1% | ws-6.2.1.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-37890 ](https://www.mend.io/vulnerability-database/CVE-2024-37890) | 🔴 High | 7.5 | Not Defined | < 1% | ws-5.2.2.tgz | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2024-45590 ](https://www.mend.io/vulnerability-database/CVE-2024-45590) | 🔴",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/amaybaum-prod/spectrum/issues/125",
+    "created_at": "2026-03-28T05:30:27.608631",
+    "status": "claimed"
+  },
+  {
+    "key": "Nobayprotocol/Nobay-Protocol#2",
+    "owner": "Nobayprotocol",
+    "repo": "Nobay-Protocol",
+    "number": 2,
+    "title": "Build Listing Discovery Engine (PWA or React UI)",
+    "body": "Create a simple web interface that pulls verified listings from ListingRegistry events.\n\nFeatures:\n- Connect via wallet (MetaMask, WalletConnect)\n- Read ListingVerified events and metadata\n- Show seller trust tier from StakingModule\n- Filter by keyword, trust tier, or timestamp\n\nType: Frontend / UI  \nLabels: help wanted, frontend, bounty",
+    "score": 40,
+    "labels": [
+      "good first issue",
+      "help wanted",
+      "Bounty",
+      "Front end"
+    ],
+    "html_url": "https://github.com/Nobayprotocol/Nobay-Protocol/issues/2",
+    "created_at": "2026-03-28T05:30:29.005394",
+    "status": "claimed"
+  },
+  {
+    "key": "stellar/go-stellar-sdk#5925",
+    "owner": "stellar",
+    "repo": "go-stellar-sdk",
+    "number": 5925,
+    "title": "Which security disclosure program should I use for this repo?",
+    "body": "Hello, I was curious if this SDK is supposed to be enrolled in one of your security disclosure programs. \n\nOn ImmuneFi, the Rust SDK is covered, but the Go one appears to not be included, probably because it was just released last year: https://immunefi.com/bug-bounty/stellar/scope/#top\n\nCheers",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/stellar/go-stellar-sdk/issues/5925",
+    "created_at": "2026-03-28T05:30:30.066921",
+    "status": "claimed"
+  },
+  {
+    "key": "Emmanuel-Evenzur/damn-vulnerable-llm-agent#29",
+    "owner": "Emmanuel-Evenzur",
+    "repo": "damn-vulnerable-llm-agent",
+    "number": 29,
+    "title": "langchain-0.2.5-py3-none-any.whl: 11 vulnerabilities (highest severity is: 9.3) [main] (reachable)",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>langchain-0.2.5-py3-none-any.whl</strong></summary>\n\nBuilding applications with LLMs through composability\n\n\n\n**Path to dependency file:** /requirements.txt\n\n**Path to vulnerable library:** /tmp/ws-ua_20260327214819_DGCROH/python_HAFPWT/202603272148211/env/lib/python3.9/site-packages/langchain-0.2.5.dist-info\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2025-68664 ](https://www.mend.io/vulnerability-database/CVE-2025-68664) | 🟣 Critical | 9.3 | Not Defined | < 1% | langchain_core-0.2.43-py3-none-any.whl | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2025-65106 ](https://www.mend.io/vulnerability-database/CVE-2025-65106) | 🔴 High | 8.2 | Not Defined | < 1% | langchain_core-0.2.43-py3-none-any.whl | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-5998 ](https://www.mend.io/vulnerability-database/CVE-2024-5998) | 🔴 High | 7.8 | Not Defined | < 1% | langchain-0.2.5-py3-none-any.whl | Direct | langchain - 0.2.9 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-58340 ](https://www.mend.io/vulnerability-database/CVE-2024-58340) | 🔴 High | 7.5 | Not Defined | < 1% | langchain-0.2.5-py3-none-any.whl | Direct | https://github.com/langchain-ai/langchain.git - langchain-classic==1.0.2,langchain-classic - 1.0.2 | ✅ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2025-67221 ](https://www.mend.io/vulnerability-database/CVE-2025-67221) | 🔴 High | 7.5 | Not Defined | < 1% | orjson-3.11.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2025-6985 ](https://www.mend.io/vulnerability-database/CVE-2025-6985) | 🔴 High | 7.5 | Not Defined | < 1% | langchain_text_splitters-0.2.4-py3-none-any.whl | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaGreen.png' width=20 height=22> Unreachable |\n| [ CVE-2026-34070 ](https://www.mend.io/vulnerability-database/CVE-2026-34070) | 🔴 High | 7.5 | N/A | N/A | langchain_core-0.2.43-py3-none-any.whl | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesoftware.com/viaRed.png' width=20 height=22> Reachable |\n| [ CVE-2024-10940 ](https://www.mend.io/vulnerability-database/CVE-2024-10940) | 🟠 Medium | 5.3 | Not Defined | < 1% | langchain_core-0.2.43-py3-none-any.whl | Transitive | N/A | ❌ |<img src='https://whitesource-resources.whitesourcesof",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/Emmanuel-Evenzur/damn-vulnerable-llm-agent/issues/29",
+    "created_at": "2026-03-28T06:03:48.335558",
+    "status": "claimed"
+  },
+  {
+    "key": "Stream-Scholar/Stream-Scholar-contracts#101",
+    "owner": "Stream-Scholar",
+    "repo": "Stream-Scholar-contracts",
+    "number": 101,
+    "title": "73. Implement Gas_Refund_Incentive_for_Account_Cleanup",
+    "body": "\n\nDescription: After a student graduates and the stream hits 100% completion, we should recover the \"State Rent\" XLM. This issue involves a logic where a tiny portion of the \"Platform Fee\" is returned to whoever calls the finalize_and_close function on a dead contract. This \"Social Cleanup\" bounty ensures the Stellar ledger remains clean and efficient, preventing \"Zombie Contracts\" from accumulating over years of protocol usage and reducing the \"Ledger Bloat\" for all network participants.\n\nLabels: optimization, economics, logic",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/Stream-Scholar/Stream-Scholar-contracts/issues/101",
+    "created_at": "2026-03-28T06:03:49.320018",
+    "status": "claimed"
+  },
+  {
+    "key": "SPLURT-Station/S.P.L.U.R.T-tg#907",
+    "owner": "SPLURT-Station",
+    "repo": "S.P.L.U.R.T-tg",
+    "number": 907,
+    "title": "[BOUNTY] Suggestion #543",
+    "body": "### About the Bounty\n\n## Original issue text:\n\n**Suggestion:**\nAllow cursekin (werewolf species) to wear clothes in their beast form. There is no reason why they should unable to wear *anything*. Not even a bag, an ID, their radio, harness, nothing. This is a repeat of an earlier suggestion from last year that has 15 upvotes and 1 downvote that has NEVER been looked at. If approved I will personally go in and remedy this myself.\n\n**Reason:**\n[BOUNTY] Partial payer bounty: $10 + $10 | Sure.\n\n**Results:**\n15x <:In_help:1056296636348899408>\n1x <:In_harm:1056296637909192794>\n\n### Details\n\nThis is now a full rework posed for lycans/cursekins. Bounty to be fulfilled by Hookie.\n\n### Suggestion Reference\n\n**Suggested by:** gobgobber\nhttps://discord.com/channels/908082639704064051/1404686278351655055/1486299073014140961\n\n### Contact Information\n\nContact `mos_ley` and `willcario` and `gobgobber` in discord for payment information.\n\nContact `gobgobber` in discord for information about the requirements.\n\n### Payment Details\n\nPayment methods:\n- PayPal (Willcario - $10) PAID\n- PayPal (gobgobber - $10)\n- PayPal (Mosley)\n- Cryptocurrency (Mosley)\n",
+    "score": 85,
+    "labels": [
+      "bounty",
+      "Player Bounty"
+    ],
+    "html_url": "https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/907",
+    "created_at": "2026-03-28T07:30:51.987876",
+    "status": "claimed"
+  },
+  {
+    "key": "Galxe/galxe-contracts#3",
+    "owner": "Galxe",
+    "repo": "galxe-contracts",
+    "number": 3,
+    "title": "bounty: Project Galaxy Core Contract Gas Optimizations",
+    "body": "## Background\r\n\r\nAt Project Galaxy, we are building the infrastructure to power an open and collaborative credential data network. We help Web3 developers leverage credential data to build better products and communities. At the same time, data curators contribute to our credential data network while earning income once the data is utilized. You can learn more about Project Galaxy at our [website](http://galaxy.eco) and this [deep dive](https://blog.galaxy.eco/deep-dive-into-project-galaxy-abd33eceb19b) article.\r\n\r\n## Contract Address:\r\n\r\n| Chain | SpaceStation | StarNFT |\r\n| --- | --- | --- |\r\n| Ethereum | 0xaae9f9d4fb8748feba405cE25856DC57C91BbB92 | 0x0BE85A36ec9C8FAaf21daab71b70Fb3859BF0f8B |\r\n| Polygon | 0x6cad6e1abc83068ea98924aef37e996ed02abf1c | 0x1871464F087dB27823Cff66Aa88599AA4815aE95 |\r\n| BNB Chain | 0x760B8237e457e6A2b5b196ae073EF0301b8316a2 | 0x9F471abCddc810E561873b35b8aad7d78e21a48e |\r\n\r\nSample transaction:\r\n\r\n[https://etherscan.io/tx/0xac053601cffb0411a7095bc4e811492ab1ebc1e47fc17b622d898bf5b2da15ae](https://etherscan.io/tx/0xac053601cffb0411a7095bc4e811492ab1ebc1e47fc17b622d898bf5b2da15ae)\r\n\r\n[https://polygonscan.com/tx/0x74aed47b6cb146d643ac07722029dbd228c995aa6dab69a19d2f22fccaf40b47](https://polygonscan.com/tx/0x74aed47b6cb146d643ac07722029dbd228c995aa6dab69a19d2f22fccaf40b47)\r\n\r\n[https://bscscan.com/tx/0x29c88c719d1a16db784aca9b0ef33970239aba0d4dec03bbb7b126afa8a55f7d](https://bscscan.com/tx/0x29c88c719d1a16db784aca9b0ef33970239aba0d4dec03bbb7b126afa8a55f7d)\r\n\r\n## Task\r\n\r\nWe are looking for experienced developers to improve our core smart contracts and help us reduce the gas used when the contracts are invoked.\r\n\r\nContract repo: [https://github.com/ProjectGalaxyHQ/galaxy-contracts](https://github.com/ProjectGalaxyHQ/galaxy-contracts)\r\n\r\nContract technical specifications: [https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/SPECIFICATION.md](https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/SPECIFICATION.md)\r\n\r\nFeel free to ask any questions on our [Discord](https://discord.io/ProjectGalaxyHQ) #developer channel.\r\n\r\n## Scope\r\n\r\n- SpaceStationV2: [https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/SpaceStation/SpaceStationV2.sol](https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/SpaceStation/SpaceStationV2.sol)\r\n- StarNFTV3: [https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/StarNFT/StarNFTV3.sol](https://github.com/ProjectGalaxyHQ/galaxy-contracts/blob/main/contracts/StarNFT/StarNFTV3.sol)\r\n\r\n## Rules\r\n\r\nPlease submit a PR including stats on gas before and after modifications in various invoke path. Please make a good faith effort to avoid privacy violations, destruction of data, and interruption or degradation of our service. Bounty can be marked as complete once the PR is approved and merged.\r\n\r\n- NFT must follow [EIP712](https://eips.ethereum.org/EIPS/eip-712) standard\r\n- NFT must implement [IStarNFT](https://github.com/ProjectGalaxyHQ/ga",
+    "score": 75,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/Galxe/galxe-contracts/issues/3",
+    "created_at": "2026-03-28T07:30:52.994625",
+    "status": "claimed"
+  },
+  {
+    "key": "Opty-Fi/defi-adapters#7",
+    "owner": "Opty-Fi",
+    "repo": "defi-adapters",
+    "number": 7,
+    "title": "Sample Template for Bounty",
+    "body": "## Integrating Convex Finance using OptyFi's DeFi Adapter Interface\r\n\r\n### Prize Bounty\r\n5000 USDC\r\n\r\n### Description\r\nThe bounty is to build an integration with Convex Finance’s liquidity pools using OptyFi's DeFi Adapter interface and [defi-legos](https://github.com/Opty-Fi/defi-legos) library. With this integration, OptyFi users should be able to deposit CRV, CVX and Curve LP tokens into OptyFi vaults which will in turn deploy them into Convex to earn yield boosted by CRV and CVX rewards. The OptyFi Protocol should also be able to deposit CRV and Curve LP tokens acquired from other strategies involving our direct Curve integration.\r\n\r\nThe overall goal is to maximize the liquidity, utility and profitability of CRV and other Curve assets in DeFi.\r\n\r\n### Resources\r\nhttps://github.com/Opty-Fi/defi-legos - This should help in implementing adapter contracts and data for unit tests \r\nhttps://opty.fi/ - This should help to give you a good high-level understanding of OptyFi and what we’re building. https://docs.opty.fi/ - Here you can find more information on the OptyFi Protocol including tokens, pools, vaults, strategies, risk framework, DeFi Adapters and optimization engine. https://github.com/Opty-Fi/defi-adapter-kit - Please refer to Readme.md, contracts/ and test/ for in-depth technical knowledge. https://www.convexfinance.com/\r\n\r\nFeel free to join the Builders/Technical channel on our Discord server if you have any questions or need some support.\r\n\r\n### Submission\r\n* Follow project [contribution guide](CONTRIBUTING.md)\r\n* The adapter must implement the opty.fi's adapter interfaces\r\n* The adapter contract must be unit tested with minimum 100% test coverage\r\n\r\n\r\n",
+    "score": 75,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/Opty-Fi/defi-adapters/issues/7",
+    "created_at": "2026-03-28T07:30:54.087871",
+    "status": "claimed"
+  },
+  {
+    "key": "WattCoin-Org/wattcoin#17",
+    "owner": "WattCoin-Org",
+    "repo": "wattcoin",
+    "number": 17,
+    "title": "[BOUNTY: 15,000 WATT] Raspberry Pi IoT bridge",
+    "body": "## Description\nBuild a Pi application that bridges smart home devices to the WattCoin network, enabling device data to be monetized or verified.\n\n## Requirements\n- Connects to local IoT devices via:\n  - MQTT broker\n  - Zigbee (via zigbee2mqtt)\n  - Or direct API (Kasa, Hue, etc.)\n- Relays device states to configurable WattCoin API endpoint\n- Allows remote commands (paid in WATT)\n- Local config UI for device mapping\n- Mock mode for testing without hardware\n\n## Acceptance Criteria\n- [ ] At least 2 device protocols supported (real or mock)\n- [ ] State reporting to API\n- [ ] Command relay functional\n- [ ] Config UI working\n- [ ] Tests included and passing\n\n## Bounty\n15,000 WATT\n\n## Notes\n- The backend API endpoints may not be built yet — your code should work against any configurable URL and gracefully handle connection errors.\n- Include your personal Solana wallet in the PR body (not the project wallet). Format: `**Payout Wallet**: <your_address>`\n",
+    "score": 75,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/WattCoin-Org/wattcoin/issues/17",
+    "created_at": "2026-03-28T07:30:55.055358",
+    "status": "claimed"
+  },
+  {
+    "key": "Nobayprotocol/Nobay-Protocol#1",
+    "owner": "Nobayprotocol",
+    "repo": "Nobay-Protocol",
+    "number": 1,
+    "title": "Implement DAO-compatible Slashing Module",
+    "body": "We need a smart contract module that allows $NOBAY stakers to be slashed for fraud or dispute resolution.\n\nFeatures:\n- Slash by DAO vote or dispute outcome\n- Integrates with StakingModule\n- Emits Slashed(address, amount, reason)\n\nBonus: Add trust decay function over time\n\nType: Smart contract / DAO extension\nLabels: enhancement, bounty, Solidity",
+    "score": 65,
+    "labels": [
+      "enhancement",
+      "help wanted",
+      "Solidity",
+      "Bounty"
+    ],
+    "html_url": "https://github.com/Nobayprotocol/Nobay-Protocol/issues/1",
+    "created_at": "2026-03-28T07:30:56.406546",
+    "status": "claimed"
   }
 ]
