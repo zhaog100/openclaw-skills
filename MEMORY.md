@@ -109,6 +109,13 @@ _精心维护的记忆，提炼后的精华_
 - **Gateway必须重启** — 配置后必须重启Gateway才能生效
 - **会话锁定机制** — 当前会话无法切换模型，需创建新会话
 - **API测试先行** — 用curl测试API连接，避免配置错误
+
+### Gmail 邮件检查教训（2026-03-27 新增）⭐⭐⭐
+
+- **性能瓶颈** — 大量邮件（1485封）导致查询慢
+- **优化方向** — 限制搜索范围（SINCE date）、使用缓存、异步处理
+- **Python库** — imaplib + email，搜索语法：`FROM "github.com" SINCE {date}`
+- **关键词过滤** — payment|paid|bounty|reward|payout|algora
 - **Git push 前先 pull** — 避免 rebase 冲突，`git pull --rebase` + `GIT_EDITOR=true`
 
 ### 2026-03-23 新进展
