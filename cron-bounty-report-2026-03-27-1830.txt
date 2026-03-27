@@ -1,0 +1,26 @@
+Bounty扫描报告 - 2026-03-27 18:30
+===========================================
+
+扫描结果：成功
+新任务认领数量：5个
+当前队列任务总数：145个
+
+新认领的任务详情：
+1. **ghc-cloneRepoStaging-scaAndRenovate3/12344_Lisa-Moran_0327_092513_ghc_gw2_failed#6** (评分:40)
+   - CVE-2022-0155 (High) - follow-redirects-1.5.10.tgz
+
+2. **ghc-cloneRepoStaging-scaAndRenovate3/12344_Lisa-Moran_0327_092513_ghc_gw2_failed#5** (评分:40)  
+   - CVE-2021-3749 (High) - axios-0.19.2.tgz [main]
+
+3. **RPiList/specials#2387** (评分:35)
+   - Spam-Domänen
+
+4. **GalactiGuild/Stellar-Guilds#180** (评分:35)
+   - Bounty Submission DTOs & Validation
+
+5. **GalactiGuild/Stellar-Guilds#181** (评分:30)
+   - Bounty Submission POST Endpoint
+
+队列文件：/root/.openclaw/workspace/data/bounty-queue/queue.json
+扫描器执行日志已保存
+===========================================

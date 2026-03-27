@@ -2131,5 +2131,172 @@
     "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/1778",
     "created_at": "2026-03-27T16:30:16.532597",
     "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2016",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2016,
+    "title": "ability icons snap if skipping during upgrade [bounty: 7 XTR]",
+    "body": "The smooth transition animation of ability icon gets disabled somehow when skipping turn during the ability upgrade animation (upgrade icon over the ability icon), causing the icon to snap in and out instantly next times depending if the ability is usable.",
+    "score": 40,
+    "labels": [
+      "coding",
+      "visuals",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2016",
+    "created_at": "2026-03-27T17:30:06.003129",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#7",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 7,
+    "title": "Persist board filters in URL query params",
+    "body": "Users should be able to share filtered bounty views with others. Should sync board filters into the URL.\n\nImplementation:\n\nStore search, status, and sort values in query params  \nRestore filters from URL on page load  \nUpdate the URL when filters change  \nAvoid full page reloads\n\nAcceptance Criteria:\n\nFilter state is reflected in the URL  \nRefreshing the page preserves filters  \nShared URLs open with the same filter state  \nNo regression in existing board behavior",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/7",
+    "created_at": "2026-03-27T17:30:08.133533",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#182",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 182,
+    "title": "Bounty Submission Approval/Reject Logic",
+    "body": "\n**Description:** Admin endpoints to approve or reject submitted bounty work.\n**Requirements and context:**\n- On reject, status goes back to `IN_PROGRESS` and requires rejection feedback.\n- On approve, status goes to `COMPLETED_PENDING_CLAIM`.\n**Suggested execution:**\n1. `git checkout -b feature/api-bounty-review`\n2. Build state machine logic in `BountyService`.\n**Test and commit:**\n- Test state transitions thoroughly.\n- `feat: add logic for approving and rejecting bounty work`\n**Guidelines:** Closes #[issue_id].",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/182",
+    "created_at": "2026-03-27T18:30:08.698617",
+    "status": "claimed"
+  },
+  {
+    "key": "ghc-cloneRepoStaging-scaAndRenovate3/12344_Robert-Gilbert_0327_094246_ghc_gw2_failed#7",
+    "owner": "ghc-cloneRepoStaging-scaAndRenovate3",
+    "repo": "12344_Robert-Gilbert_0327_094246_ghc_gw2_failed",
+    "number": 7,
+    "title": "CVE-2022-0155 (High) detected in follow-redirects-1.5.10.tgz [main]",
+    "body": "## [ CVE-2022-0155 ](https://huntr.dev/bounties/fc524e4b-ebb6-427d-ab67-a64181020406/) - High Severity Vulnerability\n\n<details>\n  <summary>📂 Vulnerable Library - <strong>follow-redirects-1.5.10.tgz</strong></summary>\n\nHTTP and HTTPS modules that follow redirects.\n\n**Library home page:** [ https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz ](https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz)\n\n**Path to dependency file:** /package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- axios-0.19.2.tgz (Root Library)\n    - ❌  **follow-redirects-1.5.10.tgz** (Vulnerable Library)\n\n\n\n\n</details>\n\n\n\n<details>\n  <summary>\n    🔴 Vulnerability Details\n  </summary>\n\nfollow-redirects is vulnerable to Exposure of Private Personal Information to an Unauthorized Actor\n\n**Publish Date:** Jan 10, 2022 07:30 PM\n\n**URL:** [ CVE-2022-0155 ](https://www.mend.io/vulnerability-database/CVE-2022-0155)\n\n**Score:** 8.0\n\n</details>\n\n\n<details>\n  <summary>☑️ Suggested Fix</summary>\n\n**Type:** Upgrade version\n\n**Origin:** https://huntr.dev/bounties/fc524e4b-ebb6-427d-ab67-a64181020406/\n\n**Release Date:** Jan 10, 2022 07:30 PM\n\n**Fix Resolution :** follow-redirects - v1.14.7\n\n\n</details>\n\n\n[comment]: <> (<MEND_ISSUE_METADATA>{\"identifier\":\"CVE-2022-0155_follow-redirects-1.5.10.tgz\",\"repoName\":\"12344_Robert-Gilbert_0327_094246_ghc_gw2\",\"branchName\":\"main\",\"type\":\"SCA_VUL\",\"secondaryBranches\":[]}</MEND_ISSUE_METADATA>)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/ghc-cloneRepoStaging-scaAndRenovate3/12344_Robert-Gilbert_0327_094246_ghc_gw2_failed/issues/7",
+    "created_at": "2026-03-27T18:30:09.713504",
+    "status": "claimed"
+  },
+  {
+    "key": "ghc-cloneRepoStaging-scaAndRenovate3/12344_Robert-Gilbert_0327_094246_ghc_gw2_failed#6",
+    "owner": "ghc-cloneRepoStaging-scaAndRenovate3",
+    "repo": "12344_Robert-Gilbert_0327_094246_ghc_gw2_failed",
+    "number": 6,
+    "title": "CVE-2021-3749 (High) detected in axios-0.19.2.tgz [main]",
+    "body": "## [ CVE-2021-3749 ](https://huntr.dev/bounties/1e8f07fc-c384-4ff9-8498-0690de2e8c31/) - High Severity Vulnerability\n\n<details>\n  <summary>📂 Vulnerable Library - <strong>axios-0.19.2.tgz</strong></summary>\n\nPromise based HTTP client for the browser and node.js\n\n**Library home page:** [ https://registry.npmjs.org/axios/-/axios-0.19.2.tgz ](https://registry.npmjs.org/axios/-/axios-0.19.2.tgz)\n\n**Path to dependency file:** /package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- ❌  **axios-0.19.2.tgz** (Vulnerable Library)\n\n\n\n\n</details>\n\n\n\n<details>\n  <summary>\n    🔴 Vulnerability Details\n  </summary>\n\naxios is vulnerable to Inefficient Regular Expression Complexity\n\n**Publish Date:** Aug 31, 2021 10:36 AM\n\n**URL:** [ CVE-2021-3749 ](https://www.mend.io/vulnerability-database/CVE-2021-3749)\n\n**Score:** 7.5\n\n</details>\n\n\n<details>\n  <summary>☑️ Suggested Fix</summary>\n\n**Type:** Upgrade version\n\n**Origin:** https://huntr.dev/bounties/1e8f07fc-c384-4ff9-8498-0690de2e8c31/\n\n**Release Date:** Aug 31, 2021 10:36 AM\n\n**Fix Resolution :** axios - 0.21.2\n\n\n</details>\n\n\n[comment]: <> (<MEND_ISSUE_METADATA>{\"identifier\":\"CVE-2021-3749_axios-0.19.2.tgz\",\"repoName\":\"12344_Robert-Gilbert_0327_094246_ghc_gw2\",\"branchName\":\"main\",\"type\":\"SCA_VUL\",\"secondaryBranches\":[]}</MEND_ISSUE_METADATA>)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/ghc-cloneRepoStaging-scaAndRenovate3/12344_Robert-Gilbert_0327_094246_ghc_gw2_failed/issues/6",
+    "created_at": "2026-03-27T18:30:10.751936",
+    "status": "claimed"
+  },
+  {
+    "key": "ghc-cloneRepoStaging-scaAndRenovate3/12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed#6",
+    "owner": "ghc-cloneRepoStaging-scaAndRenovate3",
+    "repo": "12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed",
+    "number": 6,
+    "title": "CVE-2022-0155 (High) detected in follow-redirects-1.5.10.tgz [main]",
+    "body": "## [ CVE-2022-0155 ](https://huntr.dev/bounties/fc524e4b-ebb6-427d-ab67-a64181020406/) - High Severity Vulnerability\n\n<details>\n  <summary>📂 Vulnerable Library - <strong>follow-redirects-1.5.10.tgz</strong></summary>\n\nHTTP and HTTPS modules that follow redirects.\n\n**Library home page:** [ https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz ](https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz)\n\n**Path to dependency file:** /package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- axios-0.19.2.tgz (Root Library)\n    - ❌  **follow-redirects-1.5.10.tgz** (Vulnerable Library)\n\n\n\n\n</details>\n\n\n\n<details>\n  <summary>\n    🔴 Vulnerability Details\n  </summary>\n\nfollow-redirects is vulnerable to Exposure of Private Personal Information to an Unauthorized Actor\n\n**Publish Date:** Jan 10, 2022 07:30 PM\n\n**URL:** [ CVE-2022-0155 ](https://www.mend.io/vulnerability-database/CVE-2022-0155)\n\n**Score:** 8.0\n\n</details>\n\n\n<details>\n  <summary>☑️ Suggested Fix</summary>\n\n**Type:** Upgrade version\n\n**Origin:** https://huntr.dev/bounties/fc524e4b-ebb6-427d-ab67-a64181020406/\n\n**Release Date:** Jan 10, 2022 07:30 PM\n\n**Fix Resolution :** follow-redirects - v1.14.7\n\n\n</details>\n\n\n[comment]: <> (<MEND_ISSUE_METADATA>{\"identifier\":\"CVE-2022-0155_follow-redirects-1.5.10.tgz\",\"repoName\":\"12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed\",\"branchName\":\"main\",\"type\":\"SCA_VUL\",\"secondaryBranches\":[]}</MEND_ISSUE_METADATA>)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/ghc-cloneRepoStaging-scaAndRenovate3/12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed/issues/6",
+    "created_at": "2026-03-27T18:30:11.846515",
+    "status": "claimed"
+  },
+  {
+    "key": "ghc-cloneRepoStaging-scaAndRenovate3/12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed#5",
+    "owner": "ghc-cloneRepoStaging-scaAndRenovate3",
+    "repo": "12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed",
+    "number": 5,
+    "title": "CVE-2021-3749 (High) detected in axios-0.19.2.tgz [main]",
+    "body": "## [ CVE-2021-3749 ](https://huntr.dev/bounties/1e8f07fc-c384-4ff9-8498-0690de2e8c31/) - High Severity Vulnerability\n\n<details>\n  <summary>📂 Vulnerable Library - <strong>axios-0.19.2.tgz</strong></summary>\n\nPromise based HTTP client for the browser and node.js\n\n**Library home page:** [ https://registry.npmjs.org/axios/-/axios-0.19.2.tgz ](https://registry.npmjs.org/axios/-/axios-0.19.2.tgz)\n\n**Path to dependency file:** /package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- ❌  **axios-0.19.2.tgz** (Vulnerable Library)\n\n\n\n\n</details>\n\n\n\n<details>\n  <summary>\n    🔴 Vulnerability Details\n  </summary>\n\naxios is vulnerable to Inefficient Regular Expression Complexity\n\n**Publish Date:** Aug 31, 2021 10:36 AM\n\n**URL:** [ CVE-2021-3749 ](https://www.mend.io/vulnerability-database/CVE-2021-3749)\n\n**Score:** 7.5\n\n</details>\n\n\n<details>\n  <summary>☑️ Suggested Fix</summary>\n\n**Type:** Upgrade version\n\n**Origin:** https://huntr.dev/bounties/1e8f07fc-c384-4ff9-8498-0690de2e8c31/\n\n**Release Date:** Aug 31, 2021 10:36 AM\n\n**Fix Resolution :** axios - 0.21.2\n\n\n</details>\n\n\n[comment]: <> (<MEND_ISSUE_METADATA>{\"identifier\":\"CVE-2021-3749_axios-0.19.2.tgz\",\"repoName\":\"12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed\",\"branchName\":\"main\",\"type\":\"SCA_VUL\",\"secondaryBranches\":[]}</MEND_ISSUE_METADATA>)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/ghc-cloneRepoStaging-scaAndRenovate3/12344_Audrey-Maldonado_0327_093415_ghc_gw2_failed/issues/5",
+    "created_at": "2026-03-27T18:30:12.890437",
+    "status": "claimed"
+  },
+  {
+    "key": "ghc-cloneRepoStaging-scaAndRenovate3/12344_Lisa-Moran_0327_092513_ghc_gw2_failed#6",
+    "owner": "ghc-cloneRepoStaging-scaAndRenovate3",
+    "repo": "12344_Lisa-Moran_0327_092513_ghc_gw2_failed",
+    "number": 6,
+    "title": "CVE-2022-0155 (High) detected in follow-redirects-1.5.10.tgz [main]",
+    "body": "## [ CVE-2022-0155 ](https://huntr.dev/bounties/fc524e4b-ebb6-427d-ab67-a64181020406/) - High Severity Vulnerability\n\n<details>\n  <summary>📂 Vulnerable Library - <strong>follow-redirects-1.5.10.tgz</strong></summary>\n\nHTTP and HTTPS modules that follow redirects.\n\n**Library home page:** [ https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz ](https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz)\n\n**Path to dependency file:** /package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- axios-0.19.2.tgz (Root Library)\n    - ❌  **follow-redirects-1.5.10.tgz** (Vulnerable Library)\n\n\n\n\n</details>\n\n\n\n<details>\n  <summary>\n    🔴 Vulnerability Details\n  </summary>\n\nfollow-redirects is vulnerable to Exposure of Private Personal Information to an Unauthorized Actor\n\n**Publish Date:** Jan 10, 2022 07:30 PM\n\n**URL:** [ CVE-2022-0155 ](https://www.mend.io/vulnerability-database/CVE-2022-0155)\n\n**Score:** 8.0\n\n</details>\n\n\n<details>\n  <summary>☑️ Suggested Fix</summary>\n\n**Type:** Upgrade version\n\n**Origin:** https://huntr.dev/bounties/fc524e4b-ebb6-427d-ab67-a64181020406/\n\n**Release Date:** Jan 10, 2022 07:30 PM\n\n**Fix Resolution :** follow-redirects - v1.14.7\n\n\n</details>\n\n\n[comment]: <> (<MEND_ISSUE_METADATA>{\"identifier\":\"CVE-2022-0155_follow-redirects-1.5.10.tgz\",\"repoName\":\"12344_Lisa-Moran_0327_092513_ghc_gw2_failed\",\"branchName\":\"main\",\"type\":\"SCA_VUL\",\"secondaryBranches\":[]}</MEND_ISSUE_METADATA>)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/ghc-cloneRepoStaging-scaAndRenovate3/12344_Lisa-Moran_0327_092513_ghc_gw2_failed/issues/6",
+    "created_at": "2026-03-27T18:30:17.244075",
+    "status": "claimed"
+  },
+  {
+    "key": "ghc-cloneRepoStaging-scaAndRenovate3/12344_Lisa-Moran_0327_092513_ghc_gw2_failed#5",
+    "owner": "ghc-cloneRepoStaging-scaAndRenovate3",
+    "repo": "12344_Lisa-Moran_0327_092513_ghc_gw2_failed",
+    "number": 5,
+    "title": "CVE-2021-3749 (High) detected in axios-0.19.2.tgz [main]",
+    "body": "## [ CVE-2021-3749 ](https://huntr.dev/bounties/1e8f07fc-c384-4ff9-8498-0690de2e8c31/) - High Severity Vulnerability\n\n<details>\n  <summary>📂 Vulnerable Library - <strong>axios-0.19.2.tgz</strong></summary>\n\nPromise based HTTP client for the browser and node.js\n\n**Library home page:** [ https://registry.npmjs.org/axios/-/axios-0.19.2.tgz ](https://registry.npmjs.org/axios/-/axios-0.19.2.tgz)\n\n**Path to dependency file:** /package.json\n\n\n\n\n\n**Dependency Hierarchy:**\n\n\n- ❌  **axios-0.19.2.tgz** (Vulnerable Library)\n\n\n\n\n</details>\n\n\n\n<details>\n  <summary>\n    🔴 Vulnerability Details\n  </summary>\n\naxios is vulnerable to Inefficient Regular Expression Complexity\n\n**Publish Date:** Aug 31, 2021 10:36 AM\n\n**URL:** [ CVE-2021-3749 ](https://www.mend.io/vulnerability-database/CVE-2021-3749)\n\n**Score:** 7.5\n\n</details>\n\n\n<details>\n  <summary>☑️ Suggested Fix</summary>\n\n**Type:** Upgrade version\n\n**Origin:** https://huntr.dev/bounties/1e8f07fc-c384-4ff9-8498-0690de2e8c31/\n\n**Release Date:** Aug 31, 2021 10:36 AM\n\n**Fix Resolution :** axios - 0.21.2\n\n\n</details>\n\n\n[comment]: <> (<MEND_ISSUE_METADATA>{\"identifier\":\"CVE-2021-3749_axios-0.19.2.tgz\",\"repoName\":\"12344_Lisa-Moran_0327_092513_ghc_gw2_failed\",\"branchName\":\"main\",\"type\":\"SCA_VUL\",\"secondaryBranches\":[]}</MEND_ISSUE_METADATA>)",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/ghc-cloneRepoStaging-scaAndRenovate3/12344_Lisa-Moran_0327_092513_ghc_gw2_failed/issues/5",
+    "created_at": "2026-03-27T18:30:18.728678",
+    "status": "claimed"
+  },
+  {
+    "key": "RPiList/specials#2387",
+    "owner": "RPiList",
+    "repo": "specials",
+    "number": 2387,
+    "title": "Spam-Domänen",
+    "body": "Hallo,\n\nhier wieder eine Sammlung an Spam-Domänen\n\nredvine673443.uaon.digital\nuaon.digital\nsmp-auth.de\ntahrkontroll.se\njapaneseknivesguide.com\ndfkajfakf.joeyandalygetmarried.com\njoeyandalygetmarried.com\nrexen.top\njn74.golfykeep.com\nmadamevally.com\nyh213.droptis-s.com\najg505zec681fq4xdbwk.pinsterra-pin.com\npinsterra-pin.com\npeppermint.yxzenomem.digital\nyxzenomem.digital\npudding.eohnessbrasb.digital\neohnessbrasb.digital\nwww.sometime.fit\nsometime.fit\ntropica.nhvanizeprecol.digital\nnhvanizeprecol.digital\ngoodnplenty1392996.oaoishebdomary.digital\noaoishebdomary.digital\nmartime.top\nilpipo.com\ndfkajfakf.joeyandalygetmarried.com\njoeyandalygetmarried.com\nlowen-aktion.de\nmghu3lffdn.bylinker.com\nofficiisckipg.frondell.info\nfrondell.info\nqyb8nnjaal545sz.pinvanta-pin.com\npinvanta-pin.com\napplepie602419.paoraxispharmacogenetic.digital\npaoraxispharmacogenetic.digital\nanariel.click\nprayst.com\ntrx08.getlove.it.com\ngetlove.it.com\nit.com\njames1992page.blogspot.com\nrecinot.org\nsamanek.eu\nmoscato.nhtershipchorol.digital\nnhtershipchorol.digital\nvishenka.yhanaspim.digital\nyhanaspim.digital\nsunsetclear.watch\nrohlife.com\nredvelvet.oihdunfa.digital\npij371.hoopsdominance.com\noihdunfa.digital\nbounty.eexzusnesssuisb.digital\neexzusnesssuisb.digital\neclass.tpompspc.edu.hk\ntpompspc.edu.hk\nwww.whatthen.ink\nwhatthen.ink\nhatchling.paohppedbenz.digital\npaohppedbenz.digital\nviiss.top\ntopmea.com\naktionkindergarten.de\njib-leipzig.de\nftgrabski.pl\nperimeter-schutz.de\ngmsgroup-wesel.de\ndaystom.com\nspk-sid.app\nlasmb.de\nmccup.de\nmmdsl.de\nsabyo.de\nrioxx.de\nlmcco.de\nmeine-sid.app\numfli.de\nbkcmy.de\nmpclo.de\nobaso.de\ndrcut.de\nklumo.de\nsparkasse.lol\nanacaprifoods.com\nbkzsmyq.sparkasse.lol\nefwrbpszrayr.sparkasse.lol\nggmpsdlv.sparkasse.lol\ngicrpp.sparkasse.lol\nhbnnouozprhn.sparkasse.lol\nidwinlr.sparkasse.lol\nijbi.org.in\ningyhtfl.sparkasse.lol\nkyyhm.sparkasse.lol\nlampes-et-tubes.info\nodqnworh.sparkasse.lol\npetite-boston-investor-hundred.trycloudflare.com\nqszjdcvi.sparkasse.lol\nrjnnwwetdfwf.sparkasse.lol\nstknpngorm.sparkasse.lol\nthemotorvenue.com\ntlvnkpjusz.sparkasse.lol\nwihyjtjp.sparkasse.lol\nwnruplbrtrg.sparkasse.lol\nwww.apartments-michalis.gr\napartments-michalis.gr\nwww.azenhas.com\nazenhas.com\nwww.brac.com\nbrac.com\nwww.caudlefamily.com\ncaudlefamily.com\nwww.hakgojae.com\nhakgojae.com\nwww.harukim.net\nharukim.net\nwww.ksvhessen.de\nksvhessen.de\nwww.pows-of-japan.net\npows-of-japan.net\nwww.snard.com\nsnard.com\nzbadzm.sparkasse.lol\nkiu.kr\nwww.jianghukj.com\njianghukj.com\n4az5kibwzmxr.austinindiancatering.com\naustinindiancatering.com\nkyleighhottc.ru.com\nkylieozmeet.ru.com\ntopkerl.top\nrecinot.org\nsugarrush.bexzdunexb.digital\nbexzdunexb.digital\nfbq502.roing-tab.com\neumpgbbo.frondell.info\noreo.eexznspb.digital\neexznspb.digital\nian2004story.blogspot.com\nbambina.kiuliineinappetent.digital\nkiuliineinappetent.digital\ncfigroup.com.my\nuqmniw1xyth.manokwari.net\nmanokwari.net\nallpeny.click\nallviy.vip\nkh95.spellbowl.com\ndandelion.fyxzqvm.digital\nfyxzqvm.digital\nbabyface.rabalnizancemonoxex.digital\nrabalnizancemonoxex.di",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/RPiList/specials/issues/2387",
+    "created_at": "2026-03-27T18:30:20.584428",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#180",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 180,
+    "title": "Bounty Submission DTOs & Validation",
+    "body": "\n\n**Description:** Create DTOs for a user submitting completed work for a Bounty (e.g., `SubmitBountyWorkDto`).\n**Requirements and context:**\n- Require a PR link, description, and optional attachment URLs.\n**Suggested execution:**\n1. `git checkout -b feature/dto-bounty-submission`\n2. Validate URLs and string lengths strictly.\n**Test and commit:**\n- Unit test invalid URL payloads.\n- `feat: create validation schemas for bounty submissions`\n**Guidelines:** Closes #[issue_id].",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/180",
+    "created_at": "2026-03-27T18:30:22.048650",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#181",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 181,
+    "title": "Bounty Submission POST Endpoint",
+    "body": "\n\n**Description:** Implement the endpoint where a User can submit work for an active, assigned Bounty.\n**Requirements and context:**\n- Ensure the user is the assigned worker.\n- Change bounty status to `IN_REVIEW`.\n**Suggested execution:**\n1. `git checkout -b feature/api-bounty-submit`\n2. Update `BountyController` and `BountyService`.\n**Test and commit:**\n- Ensure an unauthorized user gets a 403 Forbidden.\n- `feat: implement bounty work submission workflow`\n**Guidelines:** Needs transactional safety. Closes #[issue_id].",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/181",
+    "created_at": "2026-03-27T18:30:23.061947",
+    "status": "claimed"
   }
 ]
