@@ -89,12 +89,12 @@
 
 ## 📝 运营教训
 
-### 2026-03-27 19:00 Gateway 排查 ⭐⭐⭐
-- **问题**: 尝试切换到 `zai/glm-4.7-flashx` 失败，报错 "Model not allowed"
-- **原因**: 小米椒专用 Gateway (18790) 没有启动，只有主 Gateway (18789) 在运行
-- **解决方案**: 需要创建独立的 systemd 服务 `openclaw-gateway-xiaomijiao`
-- **文档**: 已生成问题说明文档给小米辣处理
-- **知识库整理**: 更新 intel/索引.md → v1.4，修正文件列表
+### 2026-03-27 19:30 微信插件问题澄清 ⭐⭐⭐
+- **问题根因**: 微信插件 TypeScript 编译失败，缺少 `openclaw/plugin-sdk/channel-config-schema` 模块
+- **插件版本**: `@tencent-weixin/openclaw-weixin@2.0.1`
+- **处理**: 配置移除是正确的，因为插件源码损坏无法加载
+- **待解决**: 需要等插件作者修复后才能重新启用
+- **来源**: 小米辣排查结果
 
 ### 2026-03-27 18:00 模型切换与飞书移除 ⭐⭐⭐⭐⭐
 - **模型配置**: 切换到 `zai/glm-5`（原 `bailian/qwen3.5-plus`），在 agents.list 中添加 model.primary

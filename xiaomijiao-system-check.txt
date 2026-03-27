@@ -1,0 +1,124 @@
+# 小米椒系统检查报告
+生成时间: 2026-03-27 19:28
+检查人: 小米椒 🌶️‍🔥
+
+---
+
+## ✅ 正常运行项目
+
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| Gateway 服务 | ✅ | 运行中 (pid 7643, 端口 18789) |
+| QQ Bot | ✅ | 2 个账号独立路由 |
+| 小米椒工作区 | ✅ | ~/.openclaw-xiaomijiao/workspace/ |
+| QMD 知识库 | ✅ | xiaomijiao collection (27 个文档) |
+| 模型配置 | ✅ | zai/glm-5 |
+| 文件结构 | ✅ | 整洁 (12 个正式文件) |
+| 飞书 Bot | ✅ | 已移除 |
+| Git 仓库 | ✅ | 独立 remote (xiaomijiao-skills.git) |
+
+---
+
+## ⚠️ 发现问题
+
+### 问题 1: Gateway Cron 任务缺失 (严重)
+- **现状**: openclaw.json 中 cron 数组为空
+- **影响**: 无定时任务运行，无每日复盘
+- **解决方案**: 在 openclaw.json 中添加:
+
+```json
+{
+  "cron": [
+    {
+      "name": "daily-review:midday",
+      "schedule": "0 12 * * * *",
+      "agentId": "xiaomijiao",
+      "command": "daily-review --period midday"
+    },
+    {
+      "name": "daily-review:night",
+      "schedule": "50 23 * * * *",
+      "agentId": "xiaomijiao",
+      "command": "daily-review --period night"
+    }
+  ]
+}
+```
+
+### 问题 2: Git remote 配置混淆 (中等)
+- **现状**: 
+  - 小米椒: origin → openclaw-skills.git, xiaomijiao → xiaomijiao-skills.git
+  - 小米辣: origin → openclaw-skills.git, xiaomijiao → xiaomijiao-skills.git
+- **问题**: 两者 origin 相同，可能推送冲突
+- **建议**: 
+  - 小米辣 origin 改为只读 (fetch only)
+  - 或统一推送规则
+
+### 问题 3: 心跳检查禁用 (低)
+- **现状**: xiaomijiao 心跳已禁用
+- **建议**: 根据需要启用
+- **配置**: openclaw.json → agents.list → xiaomijiao → heartbeat: "30m"
+
+### 问题 4: Perplexity API key 失效 (低)
+- **现状**: 401 错误，无法搜索热点
+- **需要**: 官家提供新 API key
+
+### 问题 5: 1688 供应商未确认 (低)
+- **现状**: 等官家确认
+- **影响**: 首篇笔记无法发布
+
+---
+
+## 🔧 需要小米辣处理的事项
+
+1. **添加 Gateway Cron 任务** (高优先级)
+   - 修改 ~/.openclaw/openclaw.json
+   - 添加 daily-review:midday 和 daily-review:night
+   - 重启 Gateway: openclaw gateway restart
+
+2. **Git remote 配置优化** (中优先级)
+   - 建议小米辣的 origin 改为只读
+   - 或创建独立的 xiaomila remote
+
+3. **旧目录清理** (低优先级)
+   - ~/.openclaw/agents/xiaomila-media/ (可删除)
+   - ~/.openclaw/agents/main/ (可归档)
+
+---
+
+## 📁 配置路径汇总
+
+| 项目 | 路径 |
+|------|------|
+| openclaw.json | ~/.openclaw/openclaw.json |
+| 小米椒工作区 | ~/.openclaw-xiaomijiao/workspace/ |
+| 小米辣工作区 | ~/.openclaw-xiaomila/workspace/ |
+| QMD 数据库 | ~/.config/qmd/qmd.db |
+| Gateway 日志 | journalctl -u openclaw-gateway |
+
+---
+
+## 📊 QMD 知识库状态
+
+| Collection | 路径 | 文档数 |
+|------------|------|--------|
+| knowledge | ~/.openclaw/workspace/knowledge | 109 |
+| xiaomijiao | ~/.openclaw-xiaomijiao/workspace | 27 |
+| xiaomila | ~/.openclaw-xiaomila/workspace | 22982 ⚠️ |
+
+**注意**: xiaomila collection 有 22982 个文档，可能有异常
+
+---
+
+## ✅ 小米椒配置确认
+
+- Agent ID: xiaomijiao
+- 工作区: ~/.openclaw-xiaomijiao/workspace
+- 模型: zai/glm-5
+- QQ Bot: xiaomijiao 账号 (appId: 1903665913)
+- QMD: xiaomijiao collection
+- Git: xiaomijiao-skills.git
+
+---
+
+*生成于 2026-03-27 19:28 by 小米椒 🌶️‍🔥*
