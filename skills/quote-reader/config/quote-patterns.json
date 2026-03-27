@@ -27,6 +27,14 @@
       "message_id_prefix": "",
       "description": "Telegram引用格式"
     },
+    "weixin": {
+      "patterns": [
+        "\\[引用:\\s*(.+?)\\]\\n(.+)"
+      ],
+      "embedded_quote_start": "\\[引用:",
+      "embedded_quote_end": "\\]",
+      "description": "微信引用格式（由 openclaw-weixin 插件生成）"
+    },
     "wechat": {
       "patterns": [
         "引用消息[：:]\\s*\\{.*?\\}",

@@ -136,10 +136,25 @@ EOF
     return 1
 }
 
-# 检索企业微信消息（待实现）
-retrieve_wechat_message() {
-    local message_id="$1"
-    echo "{\"error\": \"企业微信平台暂未实现\", \"message_id\": \"$message_id\"}"
+# 检索微信消息（openclaw-weixin 插件已将引用内容嵌入消息体）
+retrieve_weixin_message() {
+    local quoted_text="$1"
+
+    if [ -n "$quoted_text" ] && [ "$quoted_text" != "null" ]; then
+        cat <<EOF
+{
+  "id": "embedded",
+  "content": "$quoted_text",
+  "timestamp": "$(date -Iseconds)",
+  "role": "weixin_user",
+  "source": "weixin_embedded"
+}
+EOF
+        return 0
+    fi
+
+    echo '{"error": "微信引用内容为空"}'
+    return 1
 }
 
 # 根据平台检索消息
@@ -150,7 +165,7 @@ retrieve_message() {
     case "$platform" in
         "feishu") retrieve_feishu_message "$message_id" ;;
         "qq")     retrieve_qq_message "$message_id" ;;
-        "wechat") retrieve_wechat_message "$message_id" ;;
+        "weixin") retrieve_weixin_message "$QUOTED_TEXT" ;;
         *)        echo "{\"error\": \"未知平台: $platform\"}" ;;
     esac
 }
@@ -191,6 +206,18 @@ main() {
   "timestamp": "$(date -Iseconds)",
   "role": "qq_user",
   "source": "qq_embedded"
+}
+EOF
+)
+    elif [ "$PLATFORM" = "weixin" ] && [ -n "$QUOTED_TEXT" ] && [ "$QUOTED_TEXT" != "null" ]; then
+        # 微信平台：直接使用嵌入的引用文本
+        quoted_message=$(cat <<EOF
+{
+  "id": "embedded",
+  "content": "$QUOTED_TEXT",
+  "timestamp": "$(date -Iseconds)",
+  "role": "weixin_user",
+  "source": "weixin_embedded"
 }
 EOF
 )
