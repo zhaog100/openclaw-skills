@@ -91,6 +91,8 @@ _精心维护的记忆，提炼后的精华_
 ### Git & ClawHub
 
 - **推送规则** — 个人→xiaomili，公共→origin
+- **Origin限制** — origin只推送技能相关内容（ClawHub技能、工具、框架代码）
+- **Xiaomili全量** — xiaomili推送所有内容（包括个人记录、MEMORY.md、实验代码）
 - **ClawHub slug** — 被占用时用 sjykj-前缀
 - **ClawHub 限流** — 每小时 5 个新 slug
 
