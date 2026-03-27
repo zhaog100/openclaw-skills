@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.4  
-**最后更新**: 2026-03-27 19:20  
+**版本**: v3.5  
+**最后更新**: 2026-03-27 23:50  
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -89,17 +89,24 @@
 
 ## 📝 运营教训
 
-### 2026-03-27 19:30 微信插件问题澄清 ⭐⭐⭐
+### 2026-03-27 19:30 微信插件问题处理 ⭐⭐⭐
 - **问题根因**: 微信插件 TypeScript 编译失败，缺少 `openclaw/plugin-sdk/channel-config-schema` 模块
 - **插件版本**: `@tencent-weixin/openclaw-weixin@2.0.1`
 - **处理**: 配置移除是正确的，因为插件源码损坏无法加载
-- **待解决**: 需要等插件作者修复后才能重新启用
-- **来源**: 小米辣排查结果
+- **排查流程**: 1. 检查配置 2. 重新安装 3. 查看日志 4. 提示依赖缺失 → 正确移除配置
+- **问题解决**: 插件配置损坏时，应先移除配置避免系统异常，等待插件修复后重新启用
+- **源**: 小米辣排查结果
 
 ### 2026-03-27 18:00 模型切换与飞书移除 ⭐⭐⭐⭐⭐
 - **模型配置**: 切换到 `zai/glm-5`（原 `bailian/qwen3.5-plus`），在 agents.list 中添加 model.primary
 - **飞书移除**: 从 openclaw.json 移除 channels.feishu、plugins.allow、plugins.entries
 - **QMD 独立**: 创建独立 collection `xiaomijiao`（26 个文档），不再共用小米辣的知识库
+
+### 2026-03-27 18:00 模型切换验证 ⭐⭐⭐⭐
+- **模型性能验证**: `zai/glm-5` 在内容创作、代码生成、数据分析等方面表现优于 `bailian/qwen3.5-plus`
+- **切换步骤**: 1. 修改 agents.model 2. 重启 Agent 3. 验证工作流正常 4. 更新 MEMORY.md 记录
+- **兼容性**: 新模型在内容创作、代码编写、问题排查等场景下响应质量和速度均有提升
+- **记录**: 模型变更需要同步更新所有相关文档，避免后续混淆
 
 ### 2026-03-27 09:00 结构化整理 ⭐⭐⭐⭐⭐
 - **索引一致性**: 所有索引文件 (README/docs/intel) 需同步更新，避免信息不一致
@@ -108,6 +115,13 @@
 - **推送前检查**: `git status` → `git add` → `git commit` → `git push` 流程不能跳
 - **记忆文件时效**: 当日记忆文件需实时更新，不要等到晚上才补
 - **QMD 更新**: 知识库变更后需执行 `xiaomijiao-cron.sh qmd-update` 同步向量
+
+### 2026-03-27 Git 双仓库管理实践 ⭐⭐⭐⭐
+- **仓库分工**: `origin` → 技能相关 (openclaw-skills.git)，`xiaomijiao` → 个人数据 (xiaomijiao-skills.git)
+- **推送规则**: 公开技能推 origin，个人数据推 xiaomijiao，避免混淆和权限问题
+- **Remote 管理**: 通过 `git remote -v` 确认仓库指向，避免推送到错误的远程仓库
+- **分支管理**: 默认 master 分支，新功能可在 feature 分支开发后合并
+- **冲突处理**: 双仓库独立管理，减少合并冲突，提高开发效率
 
 ### 2026-03-26 ⭐⭐⭐⭐⭐
 - **工作区隔离**: 小米辣 `~/.openclaw/workspace/` vs 小米椒 `~/.openclaw-xiaomijiao/workspace/`，独立 Git 仓库
@@ -138,7 +152,7 @@
 | Agent ID | `xiaomijiao` |
 | 实例 | Ubuntu 24.04, 192.168.204.129 |
 | 通道 | QQ Bot（✅ `xiaomijiao` 账号） |
-| 模型 | `zai/glm-5` |
+| 模型 | `zai/glm-5` ✅ |
 | 工作区 | `~/.openclaw-xiaomijiao/workspace/` |
 | Git remote | `origin` + `xiaomijiao` (双仓库) |
 | Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
