@@ -37,6 +37,12 @@ clawhub install miliger-context-manager
 tail -50 ~/.openclaw/workspace/logs/seamless-switch.log
 ```
 
+### 多通道兼容性
+- ✅ **QQ 通道**：完全支持
+- ✅ **微信通道**：完全支持（openclaw-weixin 插件）
+- ✅ **飞书通道**：完全支持
+- 本技能为通道无关设计，所有通道共用同一套会话管理逻辑
+
 ## 🔧 阈值配置
 
 ```bash

@@ -15,3 +15,4 @@
 | Cap-go/capgo | [Cap-go/capgo#1667](https://github.com/Cap-go/capgo/issues/1667) | security issues retribution | Algora |
 | JuliaEarth/GeoIO.jl | [JuliaEarth/GeoIO.jl#167](https://github.com/JuliaEarth/GeoIO.jl/issues/167) | Native support for GeoPackage file format | Algora |
 | PX4/PX4-Autopilot | [PX4/PX4-Autopilot#22464](https://github.com/PX4/PX4-Autopilot/issues/22464) | Fix and rewrite collision prevention | Algora |
+| go-gitea/gitea | [go-gitea/gitea#24635](https://github.com/go-gitea/gitea/issues/24635) | [Proposal] Support configuring permissions of automatic tokens of Actions jobs | Algora |
