@@ -95,6 +95,7 @@ _精心维护的记忆，提炼后的精华_
 - **Xiaomili全量** — xiaomili推送所有内容（包括个人记录、MEMORY.md、实验代码）
 - **ClawHub slug** — 被占用时用 sjykj-前缀
 - **ClawHub 限流** — 每小时 5 个新 slug
+- **推送验证** — 推送前检查是否包含MEMORY.md/memory/等个人内容，如有则只推送到xiaomili
 
 ### 系统运维教训（2026-03-24 新增）⭐⭐⭐⭐
 
