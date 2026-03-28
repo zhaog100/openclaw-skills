@@ -14,11 +14,13 @@ _精心维护的记忆,提炼后的精华_
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
-| Kozea/pygal #579 | ⏳ 等待审核 | OHLC K线图,OPEN,无assignee,3天未审核 |
-| vllm-omni #2080 | 🔍 审核中 | CI Benchmark,OPEN,REVIEW_REQUIRED |
-| GeneralsGameCode #2485 | ❌ 已关闭 | GLA Cash Bounty修复,被拒("Ai slop") |
-| illbnm/homelab-stack #364 | ⚠️ 黑名单 | 刷bounty仓库,建议跳过 |
-| **有效待审核 PR** | **2 个** | **~$300-500** |
+| **BasedHardware/omi #6093** | ✅ PR已提交 | One-click deployment, $300 |
+| **BasedHardware/omi #6094** | ✅ PR已提交 | Button customization, $500 |
+| **Kozea/pygal #579** | ⏳ 等待审核 | OHLC K线图，代码已优化 |
+| **vllm-omni #2080** | 🔍 审核中 | CI Benchmark，代码已优化 |
+| **GeneralsGameCode #2485** | ❌ 已关闭 | "Ai slop"，$300损失 |
+| **illbnm/homelab-stack #364** | ⚠️ 黑名单 | 刷bounty仓库，建议跳过 |
+| **总计待审核 PR** | **4 个** | **~$800-1,000** |
 | **MiniMax模型** | ✅ 已配置 | M2.7 + M2.7-highspeed |
 | ClawHub 发布 | 25+ 个 | 技能 |
 | Git 仓库 | origin + xiaomili | 双仓库 |
@@ -272,10 +274,10 @@ FileCopyrightText
   - 根因: 过度注释、docstring过长、 缺乏项目风格
   - 解决方案: 建立代码质量检查清单
 - **待审核PR**:
-  - vllm-omni #2080: OPEN, REVIEW_REQUIRED（已修复）
-  - pygal #579: OPEN, 等待审核（已修复）
-  - GeneralsGameCode #2485: CLOSED（失败）
-  - illbnm #364: 可合并，但在黑名单### Bounty 认领记录 (2026-03-28 07:31)
+  - vllm-omni #2080: OPEN, REVIEW_REQUIRED(已修复)
+  - pygal #579: OPEN, 等待审核(已修复)
+  - GeneralsGameCode #2485: CLOSED(失败)
+  - illbnm #364: 可合并,但在黑名单### Bounty 认领记录 (2026-03-28 07:31)
 - **时间**: 21:30 + 23:30 两次扫描
 - **认领数量**: 6个任务(实际5个新任务+1个之前)
 - **任务列表**:
@@ -363,4 +365,44 @@ FileCopyrightText
 **切换方式**:无感自动切换
 
 ---
+
+
+---
+
+## 📊 信誉重建进度追踪
+
+**开始时间**: 2026-03-28 08:40
+**官家指令**: "信誉丢了，很难找回来"
+
+### 当前状态（2026-03-28 08:40）
+
+**待审核PR**（展示质量）:
+- ⏳ omi #6093 ($300) - 等待审核
+- ⏳ omi #6094 ($500) - 等待审核
+- ⏳ pygal #579 ($300-500) - 等待审核
+- ⏳ vllm-omni #2080 - 等待审核
+
+**失败案例**（教训）:
+- ❌ GeneralsGameCode #2485 ($300) - "Ai slop"标签
+
+### 本周目标（2026-03-28 ~ 2026-04-03）
+
+- [ ] 至少2个PR合并
+- [ ] 至少3次维护者正面反馈
+- [ ] 0次被标记"AI生成"
+
+### 本月目标（2026-03-28 ~ 2026-04-27）
+
+- [ ] 至少5个高质量PR
+- [ ] 至少10次维护者正面反馈
+- [ ] 被其他项目邀请参与
+
+### 行动承诺
+
+1. **持续监控**: 每4小时检查PR状态
+2. **快速响应**: 维护者评论后30分钟内响应
+3. **透明化**: 公开质量检查过程
+4. **用数据说话**: 每周更新信誉指标
+
+**核心**: 不说空话，用PR质量证明一切
 
