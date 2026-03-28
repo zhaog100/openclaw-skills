@@ -16,10 +16,10 @@ _精心维护的记忆,提炼后的精华_
 |------|------|------|
 | **BasedHardware/omi #6093** | ✅ PR已提交 | One-click deployment, $300 |
 | **BasedHardware/omi #6094** | ✅ PR已提交 | Button customization, $500 |
-| **Kozea/pygal #579** | ⏳ 等待审核 | OHLC K线图，代码已优化 |
-| **vllm-omni #2080** | 🔍 审核中 | CI Benchmark，代码已优化 |
-| **GeneralsGameCode #2485** | ❌ 已关闭 | "Ai slop"，$300损失 |
-| **illbnm/homelab-stack #364** | ⚠️ 黑名单 | 刷bounty仓库，建议跳过 |
+| **Kozea/pygal #579** | ⏳ 等待审核 | OHLC K线图,代码已优化 |
+| **vllm-omni #2080** | 🔍 审核中 | CI Benchmark,代码已优化 |
+| **GeneralsGameCode #2485** | ❌ 已关闭 | "Ai slop",$300损失 |
+| **illbnm/homelab-stack #364** | ⚠️ 黑名单 | 刷bounty仓库,建议跳过 |
 | **总计待审核 PR** | **4 个** | **~$800-1,000** |
 | **MiniMax模型** | ✅ 已配置 | M2.7 + M2.7-highspeed |
 | ClawHub 发布 | 25+ 个 | 技能 |
@@ -277,9 +277,20 @@ FileCopyrightText
   - vllm-omni #2080: OPEN, REVIEW_REQUIRED(已修复)
   - pygal #579: OPEN, 等待审核(已修复)
   - GeneralsGameCode #2485: CLOSED(失败)
-  - illbnm #364: 可合并,但在黑名单### Bounty 认领记录 (2026-03-28 07:31)
+  - illbnm #364: 可合并,但在黑名单### Crontab 任务丢失事件 (2026-03-28 08:49) ⚠️
+- **发现**: 心跳检查时发现crontab只剩1个任务（pr_monitor.py）
+- **丢失任务**: seamless-switch、bounty_scanner、github-bounty-hunter、monitor.py、qmd update、daily-review等
+- **根因**: 待调查（可能是系统重启或crontab误操作）
+- **修复**: 已从MEMORY.md定时任务表恢复所有37行crontab
+- **验证**: 8个核心任务已恢复运行
+- **预防**:
+  1. 每日备份crontab到/tmp/crontab_backup.txt
+  2. 心跳检查增加crontab完整性验证
+  3. 考虑使用/etc/cron.d/替代用户crontab
+
+### Bounty 认领记录 (2026-03-28 07:31)
 - **时间**: 21:30 + 23:30 两次扫描
-- **认领数量**: 6个任务(实际5个新任务+1个之前)
+- **认领数量**: 6个任务（实际5个新任务+1个之前）
 - **任务列表**:
   1. Grant-Stream/Grant-Stream-Contracts#220 ($Gas Refund)
   2. dotnet/sdk#52732 (OCI Metadata Labels)
@@ -372,26 +383,26 @@ FileCopyrightText
 ## 📊 信誉重建进度追踪
 
 **开始时间**: 2026-03-28 08:40
-**官家指令**: "信誉丢了，很难找回来"
+**官家指令**: "信誉丢了,很难找回来"
 
-### 当前状态（2026-03-28 08:40）
+### 当前状态(2026-03-28 08:40)
 
-**待审核PR**（展示质量）:
+**待审核PR**(展示质量):
 - ⏳ omi #6093 ($300) - 等待审核
 - ⏳ omi #6094 ($500) - 等待审核
 - ⏳ pygal #579 ($300-500) - 等待审核
 - ⏳ vllm-omni #2080 - 等待审核
 
-**失败案例**（教训）:
+**失败案例**(教训):
 - ❌ GeneralsGameCode #2485 ($300) - "Ai slop"标签
 
-### 本周目标（2026-03-28 ~ 2026-04-03）
+### 本周目标(2026-03-28 ~ 2026-04-03)
 
 - [ ] 至少2个PR合并
 - [ ] 至少3次维护者正面反馈
 - [ ] 0次被标记"AI生成"
 
-### 本月目标（2026-03-28 ~ 2026-04-27）
+### 本月目标(2026-03-28 ~ 2026-04-27)
 
 - [ ] 至少5个高质量PR
 - [ ] 至少10次维护者正面反馈
@@ -404,5 +415,5 @@ FileCopyrightText
 3. **透明化**: 公开质量检查过程
 4. **用数据说话**: 每周更新信誉指标
 
-**核心**: 不说空话，用PR质量证明一切
+**核心**: 不说空话,用PR质量证明一切
 
