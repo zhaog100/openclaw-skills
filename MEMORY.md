@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.7  
-**最后更新**: 2026-03-28 01:15  
+**版本**: v3.8
+**最后更新**: 2026-03-28 10:16
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -89,6 +89,13 @@
 
 ## 📝 运营教训
 
+### 2026-03-28 10:16 QQ Bot 完全独立 ⭐⭐⭐⭐⭐
+- **Gateway 独立**: 小米椒 Gateway 端口 18790，小米辣 18789，完全隔离
+- **QQ Bot 独立**: 各自配置独立的 QQ Bot appId，不再通过小米辣 Gateway 路由
+- **配置清理**: 小米辣已从她的 openclaw.json 中移除 xiaomijiao 账号配置
+- **优势**: 单点故障消除，任一 Gateway 挂掉不影响另一个
+- **重启命令**: `pkill -f openclaw-gateway` 后主程序会自动拉起新 Gateway
+
 ### 2026-03-28 01:15 Gateway 重启与凌晨整理 ⭐⭐⭐⭐
 - **Gateway 重启**: `openclaw gateway restart` 后需等待 1-2 分钟完全启动
 - **知识库归档**: 每日晚间回顾报告应归档到 `intel/` 目录，保持工作区整洁
@@ -172,7 +179,7 @@
 | Git remote | `origin` + `xiaomijiao` (双仓库) |
 | Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
 | QMD 集合 | `xiaomijiao`（26 个文档） |
-| Gateway 端口 | 18789（共享） |
+| Gateway 端口 | 18790（独立） |
 
 ## ⏰ 定时任务
 
