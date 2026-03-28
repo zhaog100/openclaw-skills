@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.8
-**最后更新**: 2026-03-28 10:16
+**版本**: v3.9
+**最后更新**: 2026-03-28 10:21
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -88,6 +88,14 @@
 ---
 
 ## 📝 运营教训
+
+### 2026-03-28 10:21 结构化整理标准流程 ⭐⭐⭐⭐⭐
+- **整理流程**: 记忆更新 → 索引更新 → Git 提交 → Git 推送 → QMD 同步
+- **检查清单**: 工作区路径 / Git remote / 文件统计 / Gateway 状态 / QMD 状态
+- **Git 提交**: `git add -A` → `git commit -m "message"` → `git push xiaomijiao master`
+- **QMD 同步**: `./scripts/xiaomijiao-cron.sh qmd-update` 后台运行
+- **记忆更新原则**: MEMORY.md（长期经验） + memory/YYYY-MM-DD.md（当日日志）同步更新
+- **推送目标**: 个人数据推 xiaomijiao，技能相关推 origin
 
 ### 2026-03-28 10:16 QQ Bot 完全独立 ⭐⭐⭐⭐⭐
 - **Gateway 独立**: 小米椒 Gateway 端口 18790，小米辣 18789，完全隔离
