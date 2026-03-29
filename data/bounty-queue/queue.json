@@ -3232,5 +3232,100 @@
     "html_url": "https://github.com/Nobayprotocol/Nobay-Protocol/issues/1",
     "created_at": "2026-03-28T07:30:56.406546",
     "status": "claimed"
+  },
+  {
+    "key": "mantiqjs/mantiq#208",
+    "owner": "mantiqjs",
+    "repo": "mantiq",
+    "number": 208,
+    "title": "security: remember cookie sent unencrypted when encrypter unavailable — no warning logged",
+    "body": "## Summary\n\n\\`AuthManager\\` silently falls back to unencrypted remember cookies when the Encrypter service is not bound in the container. The remember cookie contains user ID, remember token, and password hash — all sent in plaintext.\n\n## Location\n\n\\`packages/auth/src/AuthManager.ts:202-210\\`\n\n## Root Cause\n\n\\`\\`\\`typescript\nlet encrypter: any = undefined\ntry {\n  encrypter = this.container.make(ENCRYPTER)\n} catch {\n  // Encrypter not available — remember cookies won't be encrypted\n}\nreturn new SessionGuard(name, provider, encrypter)\n\\`\\`\\`\n\nNo warning is logged. The developer has no indication that sensitive data is being sent unencrypted.\n\n## Impact\n\nUser IDs, remember tokens, and password hashes transmitted in plaintext cookies if encryption is not configured. HttpOnly and SameSite flags mitigate XSS but not network interception.\n\n## Suggested Fix\n\nLog a warning when the encrypter is unavailable:\n\\`\\`\\`typescript\n} catch {\n  console.warn('[Mantiq] Encrypter not configured — remember cookies will NOT be encrypted. Set APP_KEY to enable encryption.')\n}\n\\`\\`\\`\n\nConsider refusing to set remember cookies without encryption, or at minimum exclude the password hash.\n\n## Severity\n\n**Medium** — sensitive data exposure in cookies",
+    "score": 40,
+    "labels": [
+      "security"
+    ],
+    "html_url": "https://github.com/mantiqjs/mantiq/issues/208",
+    "created_at": "2026-03-29T05:58:45.016168",
+    "status": "claimed"
+  },
+  {
+    "key": "mantiqjs/mantiq#206",
+    "owner": "mantiqjs",
+    "repo": "mantiq",
+    "number": 206,
+    "title": "security: TokenGuard performs DB lookup before checking expiration — DoS amplification",
+    "body": "## Summary\n\n\\`TokenGuard.resolveToken()\\` performs a database query to fetch the token record before checking if it's expired. Attackers can send expired tokens to force unnecessary database load.\n\n## Location\n\n\\`packages/auth/src/guards/TokenGuard.ts\\` (around lines 39-40, 88-107)\n\n## Root Cause\n\nThe flow is: parse token → DB lookup → check expiration. The expiration check should happen as early as possible, ideally as part of the DB query itself.\n\n## Suggested Fix\n\nInclude expiration in the database query:\n\\`\\`\\`typescript\nconst token = await PersonalAccessToken.query()\n  .where('id', id)\n  .where(q => q.whereNull('expires_at').orWhere('expires_at', '>', new Date()))\n  .first()\n\\`\\`\\`\n\n## Severity\n\n**Medium** — database DoS via expired token flooding",
+    "score": 40,
+    "labels": [
+      "security"
+    ],
+    "html_url": "https://github.com/mantiqjs/mantiq/issues/206",
+    "created_at": "2026-03-29T05:58:56.706234",
+    "status": "claimed"
+  },
+  {
+    "key": "mantiqjs/mantiq#201",
+    "owner": "mantiqjs",
+    "repo": "mantiq",
+    "number": 201,
+    "title": "security: no validation of token plaintext format before SHA-256 hashing",
+    "body": "## Summary\n\n\\`TokenGuard.resolveToken()\\` does not validate the format of the token plaintext before hashing it. Malformed tokens still trigger database lookups and hash computations.\n\n## Location\n\n\\`packages/auth/src/guards/TokenGuard.ts\\` (around line 88-107)\n\n## Root Cause\n\n\\`\\`\\`typescript\nconst [id, plaintext] = parts\nconst hash = await sha256(plaintext!)  // No validation of plaintext format\n\\`\\`\\`\n\nThe token is generated as 64 hex characters (32 bytes), but this format is never validated on input. This means:\n- Any string is accepted and hashed, wasting CPU\n- Non-hex characters are processed without rejection\n- Empty or very long strings are not rejected early\n\n## Suggested Fix\n\nValidate that the plaintext portion matches the expected format before hashing:\n\\`\\`\\`typescript\nif (!/^[0-9a-f]{64}$/.test(plaintext)) return null\n\\`\\`\\`\n\n## Severity\n\n**Medium** — wasted computation and potential DoS vector",
+    "score": 40,
+    "labels": [
+      "bug",
+      "security"
+    ],
+    "html_url": "https://github.com/mantiqjs/mantiq/issues/201",
+    "created_at": "2026-03-29T05:58:59.878666",
+    "status": "claimed"
+  },
+  {
+    "key": "mantiqjs/mantiq#200",
+    "owner": "mantiqjs",
+    "repo": "mantiq",
+    "number": 200,
+    "title": "security: TokenGuard hash comparison uses === instead of constant-time comparison",
+    "body": "## Summary\n\n\\`TokenGuard.resolveToken()\\` compares token hashes using strict equality (\\`===\\`) which is not guaranteed to be constant-time, potentially enabling timing attacks to determine valid token hashes.\n\n## Location\n\n\\`packages/auth/src/guards/TokenGuard.ts\\` (around line 88-106)\n\n## Root Cause\n\n\\`\\`\\`typescript\nconst hash = await sha256(plaintext!)\nconst storedHash = token.getAttribute('token') as string\nif (hash !== storedHash) return null  // Direct string comparison\n\\`\\`\\`\n\nWhile SHA-256 produces fixed-length output (reducing timing variation), JavaScript string comparison is not guaranteed to be constant-time and implementations may short-circuit on first differing byte.\n\n## Suggested Fix\n\nUse \\`crypto.timingSafeEqual()\\` with Buffer/Uint8Array conversion:\n\\`\\`\\`typescript\nimport { timingSafeEqual } from 'crypto'\nconst match = timingSafeEqual(Buffer.from(hash), Buffer.from(storedHash))\n\\`\\`\\`\n\n## Severity\n\n**Medium** — timing side-channel on API token validation",
+    "score": 40,
+    "labels": [
+      "bug",
+      "security"
+    ],
+    "html_url": "https://github.com/mantiqjs/mantiq/issues/200",
+    "created_at": "2026-03-29T05:59:13.798746",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#1",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 1,
+    "title": "[BOUNTY $50] SKILL: Generate a structured CHANGELOG from git history",
+    "body": "## 💰 Bounty: $50 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate a Claude Code skill (`SKILL.md`) or a bash script that automatically generates\na structured `CHANGELOG.md` from a project's git history.\n\n## Acceptance Criteria\n- [ ] Works via `/generate-changelog` command or `bash changelog.sh`\n- [ ] Fetches commits since the last git tag\n- [ ] Auto-categorizes into: `Added` / `Fixed` / `Changed` / `Removed`\n- [ ] Outputs a properly formatted `CHANGELOG.md`\n- [ ] Tested on a real GitHub repo (include a sample output in the PR)\n- [ ] README with setup instructions in 3 steps or fewer\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with your solution\n3. Payment is released automatically on merge ✅\n\n## Accepted Stack\nBash, Python, or native Claude Code `SKILL.md`.",
+    "score": 80,
+    "labels": [
+      "bounty",
+      "skill",
+      "good first issue"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/1",
+    "created_at": "2026-03-29T06:01:18.040522",
+    "status": "claimed"
+  },
+  {
+    "key": "claude-builders-bounty/claude-builders-bounty#2",
+    "owner": "claude-builders-bounty",
+    "repo": "claude-builders-bounty",
+    "number": 2,
+    "title": "[BOUNTY $75] TEMPLATE: CLAUDE.md for a Next.js + SQLite SaaS project",
+    "body": "## 💰 Bounty: $75 — powered by [Opire](https://opire.dev)\n\n## Description\nCreate an opinionated, production-ready `CLAUDE.md` for a typical SaaS project\nbuilt with Next.js 15 App Router and SQLite (better-sqlite3 or Turso).\n\n## Acceptance Criteria\n- [ ] Covers: project structure, naming conventions, DB migration rules\n- [ ] Includes: dev commands, patterns to follow, anti-patterns to avoid\n- [ ] Opinionated — not generic. Every rule has a reason.\n- [ ] Usable without modification on a greenfield Next.js + SQLite project\n- [ ] Tested: create a new project, paste the CLAUDE.md, confirm Claude Code\n      understands the context without asking clarifying questions\n\n## How to Claim\n1. Comment `/opire try` in this issue\n2. Submit a PR with your CLAUDE.md\n3. Payment is released automatically on merge ✅\n\n## Expected Sections\n- Stack & versions\n- Folder structure\n- SQL / migration conventions\n- Component patterns\n- What we don't do (and why)",
+    "score": 75,
+    "labels": [
+      "bounty",
+      "template"
+    ],
+    "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/2",
+    "created_at": "2026-03-29T06:01:56.083240",
+    "status": "claimed"
   }
 ]
