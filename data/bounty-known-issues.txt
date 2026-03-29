@@ -4,6 +4,7 @@ Inferara/soroban-security-portal##111
 OWASP-BLT/BLT-Lettuce##84
 OWASP-BLT/BLT-Sammich##64
 PX4/PX4-Autopilot#22464
+SPLURT-Station/S.P.L.U.R.T-tg#891
 Smartdevs17/stellarlend##54
 Stellar-Trust-Escrow/stellar-trust-escrow##526
 StellarState/SS-contracts##37
@@ -16,6 +17,11 @@ archestra-ai/archestra#3378
 brave/brave-browser##7200
 calcom/cal.com##5756
 chatmcp/mcpso##1
+claude-builders-bounty/claude-builders-bounty#1
+claude-builders-bounty/claude-builders-bounty#2
+claude-builders-bounty/claude-builders-bounty#3
+claude-builders-bounty/claude-builders-bounty#4
+claude-builders-bounty/claude-builders-bounty#5
 deepseek-ai/DeepSeek-V3##1059
 deskflow/deskflow#8031
 deskflow/deskflow#8032
@@ -29,6 +35,10 @@ golemcloud/golem-cli#275
 imjuya/juya-ai-daily##40
 keephq/keep##2112
 kellymusk/Aframp-backend##211
+mantiqjs/mantiq#200
+mantiqjs/mantiq#201
+mantiqjs/mantiq#206
+mantiqjs/mantiq#208
 milah-247/Nova-Rewards##283
 projectdiscovery/nuclei#5567
 projectdiscovery/nuclei#5838
