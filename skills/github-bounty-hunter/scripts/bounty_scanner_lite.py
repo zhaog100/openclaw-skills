@@ -77,8 +77,8 @@ def load_tasks_from_files():
     # 加载最新的任务文件
     task_files = sorted(tasks_dir.glob('bounty-tasks-*.json'), reverse=True)
     if not task_files:
-        log("⚠️ 未找到bounty-tasks文件，回退到GitHub搜索")
-        return search_bounties_api()
+        log("⚠️ 未找到bounty-tasks文件，使用GitHub API搜索")
+        return search_bounties_github_api()
     
     import json
     # 只读最新文件
@@ -91,6 +91,50 @@ def load_tasks_from_files():
             all_tasks.append(item)
     
     log(f"✅ 从 {task_files[0].name} 加载 {len(all_tasks)} 个任务")
+    return all_tasks
+
+def search_bounties_github_api():
+    """使用GitHub API搜索bounty issues（当没有本地文件时的回退方案）"""
+    queries = [
+        'is:issue is:open label:bounty',
+        'is:issue is:open label:"bug bounty"',
+        'is:issue is:open label:security',
+    ]
+    
+    all_tasks = []
+    seen_urls = set()
+    
+    for query in queries:
+        try:
+            url = f'https://api.github.com/search/issues?q={query}&sort=updated&per_page=30'
+            resp = requests.get(url, headers=HEADERS, timeout=15)
+            if resp.status_code != 200:
+                log(f"⚠️ GitHub API请求失败: {resp.status_code}")
+                continue
+            
+            items = resp.json().get('items', [])
+            for item in items:
+                html_url = item.get('html_url', '')
+                if html_url in seen_urls:
+                    continue
+                seen_urls.add(html_url)
+                
+                # 过滤黑名单
+                repo_url = item.get('repository_url', '')
+                owner = repo_url.split('/')[-2] if '/' in repo_url else ''
+                if owner in BLACKLIST:
+                    continue
+                
+                all_tasks.append(item)
+            
+            log(f"✅ 查询 '{query[:30]}...' 找到 {len(items)} 个结果")
+            time.sleep(2)  # API限速
+            
+        except Exception as e:
+            log(f"❌ API查询失败: {e}")
+            continue
+    
+    log(f"✅ GitHub API搜索完成：{len(all_tasks)} 个去重任务")
     return all_tasks
 
 def search_bounties():
