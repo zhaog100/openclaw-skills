@@ -1,0 +1,28 @@
+{
+  "name": "autoflow",
+  "version": "1.0.2",
+  "description": "AI自动化服务平台 — 智能客服+知识库+报表+采集+审批+CRM+内容分发",
+  "license": "MIT",
+  "author": "思捷娅科技 (SJYKJ)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaog100/autoflow"
+  },
+  "keywords": ["automation", "ai", "customer-service", "knowledge-base", "reports", "crm", "fastapi"],
+  "openclaw": {
+    "requires": {
+      "bins": ["python3"],
+      "env": ["AF_JWT_SECRET"]
+    },
+    "optionalEnv": [
+      "AF_DB_URL",
+      "AF_OPENAI_API_KEY",
+      "AF_DEEPSEEK_API_KEY",
+      "AF_LLM_API_URL",
+      "AF_WECOM_WEBHOOK",
+      "AF_DINGTALK_WEBHOOK",
+      "AF_FEISHU_WEBHOOK",
+      "AF_DEBUG"
+    ]
+  }
+}

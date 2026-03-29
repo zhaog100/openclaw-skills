@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "[cron:8320d849-b48a-4e71-88e0-ce03456d6bd6 京东京豆每日收益提醒] 你是一个暖心的提醒助手。请用温暖、有趣的方式提醒用户查看昨天的京东京豆收益。要求：(1) 不要回复HEARTBEAT_OK (2) 不要解释你是谁 (3) 直接输出一条暖心的提醒消息 (4) 提醒查看青龙面板的京豆变化通知日志 (5) 可以加一句简短的鸡汤或关怀的话 (6) 控制在2-3句话以内 (7) 用emoji点缀\nCurrent time: Saturday, March 7th, 2026 — 12:00 AM (UTC)\n\nReturn your summary as plain text; it will be delivered automatically. If the task explicitly calls for messaging a specific external recipient, note who/where it should go instead of sending it yourself.",
+      "timestamp": "2026-03-07T00:00:00.189Z"
+    },
+    {
+      "role": "assistant",
+      "content": "官家，新的一天开始啦！🌾 别忘了查看青龙面板里的京豆变化通知日志，看看昨天又攒了多少小豆豆～ 每天一点小积累，都是对自己认真生活的犒赏 ✨",
+      "timestamp": "2026-03-07T00:00:06.055Z"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "github-bounty-hunter",
+  "version": "2.1.0",
+  "description": "GitHub 赏金猎人。自动监控 GitHub 上的 grant/bounty 项目，自动接任务、开发、提交 PR，让 OpenClaw 自己赚钱！",
+  "author": "思捷娅科技 (SJYKJ)",
+  "license": "MIT",
+  "copyright": "© 2026 思捷娅科技 (SJYKJ). All rights reserved.",
+  "keywords": [
+    "github",
+    "bounty",
+    "money",
+    "automation",
+    "openclaw",
+    "skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaog100/openclaw-skills"
+  },
+  "homepage": "https://clawhub.ai/skill/github-bounty-hunter",
+  "bugs": {
+    "url": "https://github.com/zhaog100/openclaw-skills/issues"
+  },
+  "commercialUse": {
+    "personal": "free",
+    "business": "paid",
+    "contact": "miliger@example.com"
+  },
+  "clawhub": {
+    "recommendations": [
+      "session-memory-enhanced",
+      "context-manager-v2",
+      "multi-platform-notifier"
+    ]
+  }
+}

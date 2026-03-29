@@ -1,0 +1,22 @@
+{
+  "name": "traveler-test-suite",
+  "version": "1.0.0",
+  "description": "旅行客公共服务平台自动化测试套件",
+  "main": "dashboard-suite.js",
+  "scripts": {
+    "test": "node dashboard-suite.js",
+    "test:smoke": "node tests/smoke-test.js",
+    "test:regression": "node tests/regression-test.js"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "traveler-platform"
+  ],
+  "author": "米粒儿",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}
