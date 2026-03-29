@@ -4,6 +4,7 @@ Inferara/soroban-security-portal##111
 OWASP-BLT/BLT-Lettuce##84
 OWASP-BLT/BLT-Sammich##64
 PX4/PX4-Autopilot#22464
+QuantumSavory/QuantumSavory.jl#129
 SPLURT-Station/S.P.L.U.R.T-tg#891
 Smartdevs17/stellarlend##54
 Stellar-Trust-Escrow/stellar-trust-escrow##526
@@ -14,6 +15,7 @@ Tyaoo/picker##1326
 ace-step/ACE-Step-1.5##168
 anthropics/claude-code##2142
 archestra-ai/archestra#3378
+bartervg/barter.vg#299
 brave/brave-browser##7200
 calcom/cal.com##5756
 chatmcp/mcpso##1
@@ -29,6 +31,8 @@ dotnet/sdk##52732
 dotnet/sdk##53563
 dotnet/sdk##53606
 duanyytop/agents-radar##286
+etherisc/depeg-contracts#31
+etherisc/registry-contracts#2
 filecoin-project/devgrants##2067
 go-gitea/gitea#24635
 golemcloud/golem-cli#275
@@ -45,6 +49,7 @@ projectdiscovery/nuclei#5838
 projectdiscovery/nuclei#6398
 projectdiscovery/nuclei#6403
 qdrant/qdrant#3322
+qojulia/QuantumOptics.jl#407
 zed-industries/zed#4440
 zio/izumi-reflect#481
 zio/zio#9356
