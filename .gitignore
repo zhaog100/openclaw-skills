@@ -1,0 +1,38 @@
+# OpenClaw 工作区 .gitignore
+
+# 敏感信息
+*.key
+*.pem
+.env
+.env.*
+secrets/
+credentials/
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+
+# 日志
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# 依赖
+node_modules/
+__pycache__/
+
+# 构建产物
+dist/
+build/
+*.pyc
+
+# 系统文件
+Thumbs.db
+.Spotlight-V100
