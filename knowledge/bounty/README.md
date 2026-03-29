@@ -17,9 +17,12 @@ knowledge/bounty/
 │   ├── github-search.md   # GitHub 搜索技巧
 │   ├── filters.md         # 过滤规则
 │   └── scoring.md         # 价值评估
-└── history/               # 历史记录
-    ├── completed.md       # 已完成 bounty
-    └── lessons.md         # 经验教训
+├── history/               # 历史记录
+│   ├── completed.md       # 已完成 bounty
+│   └── lessons.md         # 经验教训
+└── references/            # 参考文档
+    ├── github-bounty-hunter-implementation.md  # 系统实现文档
+    └── tscircuit-ecosystem-lessons.md          # 特定生态经验
 ```
 
 ---

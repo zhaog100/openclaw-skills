@@ -19,8 +19,15 @@ _持续更新，记录重要信息_
 **目的**: 自动扫描 GitHub issues，寻找有价值的 bounty 机会（特别是安全相关）
 
 **关键文件**:
+- `data/bounty-master-list.md` - 56个任务总清单 ⭐
+- `data/bounty-pr-tracker.json` - PR状态跟踪系统 ⭐
+- `data/bounty-known-issues.txt` - 已处理issues黑名单
 - `data/bounty-scan-results.md` - 扫描结果汇总
-- `data/bounty-known-issues.txt` - 已处理 issues 黑名单
+
+**知识库**:
+- `knowledge/bounty/` - Bounty知识库（模板+策略）
+- `knowledge/github-bounty/` - 实现文档+经验教训
+- `skills/github-bounty-hunter/` - 自动化扫描技能
 
 **工作流**:
 1. 扫描 GitHub issues（标签：bounty, security, bug-bounty等）
@@ -84,12 +91,36 @@ _每次工作后更新_
 
 ## 📈 工作统计
 
-### 本周数据（2026-03-29）
-- 扫描 issues: 50+
-- 识别高价值: 22
-- 提交 PR: 1
-- 成功率: 待统计
-- 总耗时: ~2 小时
+### 累计数据（截至2026-03-29）
+- **任务总数**: 56个（来自bounty-master-list.md）
+- **已提交PR**: 20个（等待审核）
+- **预估总金额**: $5,280
+- **今日创造**: $1,670
+
+### PR状态分布
+- 🟢 等待审核: 29个
+- ❌ 已关闭: 26个
+- 🚫 已屏蔽: 1个
+
+### 本周工作（2026-03-29）
+- 扫描 issues: 56+
+- 提交新PR: 多个（需从bounty-pr-tracker.json确认）
+- 跟进审核: 持续中
+
+---
+
+## 🛠️ 技能系统
+
+**已开发技能**: 60个（见skills/目录）
+
+**核心技能**:
+- `github-bounty-hunter` - 自动化bounty扫描
+- `agent-collab-platform` - 多智能体协作
+- `autoflow` - 工作流自动化
+- `daily-review-assistant` - 每日回顾
+- `context-manager-v2` - 上下文管理
+
+**完整列表**: 见 [skills/README.md](skills/README.md)
 
 ---
 
