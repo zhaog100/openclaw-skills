@@ -32,14 +32,27 @@ _快速导航 - 最后更新: 2026-03-29_
 ### Bounty 扫描系统
 **目的**: 自动扫描 GitHub issues，寻找开源 bounty 机会
 
+**规模**:
+- 📋 **任务总数**: 56个
+- ✅ **已提交PR**: 20个
+- 💰 **预估总金额**: $5,280
+
 **关键文件**:
-- 📊 [data/bounty-scan-results.md](data/bounty-scan-results.md) - 扫描结果汇总
-- 🚫 [data/bounty-known-issues.txt](data/bounty-known-issues.txt) - 已处理黑名单
-- 📚 [knowledge/bounty/](knowledge/bounty/) - 知识库
+- 📊 [bounty-master-list.md](data/bounty-master-list.md) - 任务总清单 ⭐
+- 📈 [bounty-pr-tracker.json](data/bounty-pr-tracker.json) - PR跟踪系统 ⭐
+- 🚫 [bounty-known-issues.txt](data/bounty-known-issues.txt) - 已处理黑名单
+- 📊 [bounty-scan-results.md](data/bounty-scan-results.md) - 扫描结果汇总
+
+**知识库**:
+- 📚 [knowledge/bounty/](knowledge/bounty/) - Bounty知识库
+- 📚 [knowledge/github-bounty/](knowledge/github-bounty/) - 实现文档
+
+**自动化工具**:
+- 🤖 [skills/github-bounty-hunter/](skills/github-bounty-hunter/) - 自动扫描技能
 
 **进度**:
-- ✅ PR #198: The-Pantseller/StarEscrow - 等待审核
-- 🔄 持续扫描新机会
+- 🟢 29个PR等待审核
+- 📊 持续扫描新机会
 
 ---
 
@@ -61,6 +74,35 @@ knowledge/bounty/
 - [Bounty 知识库总览](knowledge/bounty/README.md)
 - [SECURITY.md 标准模板](knowledge/bounty/security-templates/standard.md)
 - [GitHub 搜索策略](knowledge/bounty/strategies/github-search.md)
+
+---
+
+## 🛠️ 技能系统
+
+**总数**: 60个已开发技能
+
+### 核心技能
+| 技能 | 用途 | 状态 |
+|------|------|------|
+| [github-bounty-hunter](skills/github-bounty-hunter/) | 自动化bounty扫描 | ✅ 生产 |
+| [agent-collab-platform](skills/agent-collab-platform/) | 多智能体协作 | ✅ 生产 |
+| [autoflow](skills/autoflow/) | 工作流自动化 | ✅ 生产 |
+| [daily-review-assistant](skills/daily-review-assistant/) | 每日回顾 | ✅ 生产 |
+| [context-manager-v2](skills/context-manager-v2/) | 上下文管理 | ✅ 生产 |
+| [session-memory-enhanced](skills/session-memory-enhanced/) | 会话记忆 | ✅ 生产 |
+
+### 工具类
+- [smart-model-switch](skills/smart-model-switch/) - 模型切换
+- [multi-platform-notifier](skills/multi-platform-notifier/) - 多平台通知
+- [playwright](skills/playwright/) - 网页自动化
+- [terminal-ocr](skills/terminal-ocr/) - 终端OCR
+
+### 内容创作
+- [obsidian](skills/obsidian/) - Obsidian集成
+- [notion](skills/notion/) - Notion集成
+- [devto-surfer](skills/devto-surfer/) - Dev.to内容
+
+**完整列表**: [skills/README.md](skills/README.md)
 
 ---
 
