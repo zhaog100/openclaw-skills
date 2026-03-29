@@ -1,0 +1,51 @@
+# HomeLab Stack Integration Tests
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+
+name: Integration Tests
+
+on:
+  push:
+    paths: ['stacks/**', 'scripts/**', 'tests/**']
+  pull_request:
+    paths: ['stacks/**', 'tests/**']
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup environment
+        run: |
+          cp .env.example .env 2>/dev/null || true
+          ./scripts/generate-secrets.sh 2>/dev/null || true
+      
+      - name: Start base stack
+        run: |
+          docker compose -f stacks/base/docker-compose.yml up -d
+          docker compose -f tests/ci/docker-compose.test.yml up -d
+      
+      - name: Wait for healthy
+        run: |
+          echo "Waiting for services to be healthy..."
+          sleep 60
+      
+      - name: Run integration tests
+        run: |
+          chmod +x tests/run-tests.sh
+          ./tests/run-tests.sh --stack base --json
+      
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-report
+          path: tests/results/
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          docker compose -f stacks/base/docker-compose.yml down
+          docker compose -f tests/ci/docker-compose.test.yml down

@@ -1,0 +1,97 @@
+{
+  "repositories": {
+    "public": {
+      "name": "origin",
+      "url": "git@github.com:zhaog100/openclaw-skills.git",
+      "description": "公共仓库 - 所有智能体遵守的规则",
+      "push_content": [
+        "核心规则系统",
+        "架构文档",
+        "安装指南",
+        "Issue通知",
+        "技术文档"
+      ],
+      "exclude": [
+        "个人日志（memory/YYYY-MM-DD.md）",
+        "私有配置（个人API keys等）",
+        "测试数据（logs文件）"
+      ]
+    },
+    "personal_xiaomili": {
+      "name": "xiaomili",
+      "url": "https://github.com/zhaog100/xiaomili-skills.git",
+      "agent": "小米粒（Dev代理）",
+      "description": "小米粒个人仓库",
+      "push_content": [
+        "个人工作日志",
+        "私有配置",
+        "测试数据",
+        "个人备忘"
+      ],
+      "exclude": [
+        "核心规则系统（应推送到origin）",
+        "公共文档（应推送到origin）"
+      ]
+    },
+    "personal_xiaomila": {
+      "name": "xiaomila",
+      "url": "https://github.com/zhaog100/xiaomila-skills.git",
+      "agent": "小米辣（PM代理）",
+      "description": "小米辣个人仓库",
+      "push_content": [
+        "个人工作日志",
+        "私有配置",
+        "测试数据",
+        "个人备忘"
+      ],
+      "exclude": [
+        "核心规则系统（应推送到origin）",
+        "公共文档（应推送到origin）"
+      ]
+    }
+  },
+  "push_flow": {
+    "description": "Git推送流程（强制）",
+    "steps": [
+      {
+        "step": 1,
+        "action": "推送个人信息到个人仓库",
+        "command": "git push {personal_repo} master",
+        "example": "git push xiaomili master"
+      },
+      {
+        "step": 2,
+        "action": "拉取公共仓库更新",
+        "command": "git pull {public_repo} master --rebase",
+        "example": "git pull origin master --rebase"
+      },
+      {
+        "step": 3,
+        "action": "推送公共信息到公共仓库",
+        "command": "git push {public_repo} master",
+        "example": "git push origin master"
+      },
+      {
+        "step": 4,
+        "action": "验证推送成功",
+        "commands": [
+          "git log {personal_repo}/master --oneline -5",
+          "git log {public_repo}/master --oneline -5"
+        ]
+      }
+    ]
+  },
+  "checklist": [
+    "步骤1：已确认推送内容类型（公共/个人）",
+    "步骤2：已推送到个人仓库（个人信息）",
+    "步骤3：已拉取公共仓库更新（公共信息）",
+    "步骤4：已推送到公共仓库（公共信息）",
+    "步骤5：已验证推送成功（查看远程日志）"
+  ],
+  "customization": {
+    "enabled": true,
+    "description": "允许自定义仓库配置",
+    "how_to": "修改此文件中的repositories配置即可",
+    "note": "修改后需要通知所有智能体更新配置"
+  }
+}

@@ -1,0 +1,78 @@
+@startuml
+title OpenClaw系统架构图
+
+package "前端" {
+  [Web界面]
+  [移动端]
+  [QQ Bot]
+}
+
+package "核心服务" {
+  [Gateway]
+  [Agent Runtime]
+  [Cron Scheduler]
+}
+
+package "AI模型" {
+  [百炼模型]
+  [AIHubMix]
+  [GLM系列]
+}
+
+package "数据存储" {
+  database "知识库(QMD)"
+  database "记忆系统"
+  database "配置文件"]
+}
+
+package "扩展能力" {
+  [Skills]
+  [Playwright]
+  [TTS语音]
+  [语音识别]
+}
+
+[Web界面] --> [Gateway] : WebSocket
+[移动端] --> [Gateway] : WebSocket
+[QQ Bot] --> [Gateway] : HTTP
+
+[Gateway] --> [Agent Runtime]
+[Gateway] --> [Cron Scheduler]
+
+[Agent Runtime] --> [百炼模型]
+[Agent Runtime] --> [AIHubMix]
+[Agent Runtime] --> [GLM系列]
+
+[Agent Runtime] --> [知识库(QMD)]
+[Agent Runtime] --> [记忆系统]
+[Agent Runtime] --> [配置文件]
+
+[Agent Runtime] --> [Skills]
+[Agent Runtime] --> [Playwright]
+[Agent Runtime] --> [TTS语音]
+[Agent Runtime] --> [语音识别]
+
+note right of [Gateway]
+  端口：18789
+  状态：运行中
+end note
+
+note right of [知识库(QMD)]
+  文件数：110
+  状态：已索引
+  向量：待生成
+end note
+
+note right of [Skills]
+  已安装：8个
+  - qqbot-cron
+  - qqbot-media
+  - clawhub
+  - healthcheck
+  - skill-creator
+  - weather
+  - playwright-scraper
+  - speech-recognition
+end note
+
+@enduml

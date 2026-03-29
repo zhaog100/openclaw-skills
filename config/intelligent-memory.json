@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "layers": {
+    "top": {
+      "name": "context-manager",
+      "monitor": {
+        "adaptive": true,
+        "intervals": {
+          "high": 120,
+          "medium": 300,
+          "low": 600
+        }
+      },
+      "thresholds": {
+        "light": 0.7,
+        "heavy": 0.8,
+        "severe": 0.9
+      },
+      "token_budget": {
+        "hourly": 5000,
+        "warning": 0.8,
+        "limit": 1.0
+      }
+    },
+    "middle": {
+      "name": "smart-memory-sync",
+      "sync": {
+        "interval": 300,
+        "thresholds": {
+          "remind": 0.5,
+          "sync": 0.75,
+          "switch": 0.85
+        }
+      },
+      "repos": {
+        "memory": "MEMORY.md",
+        "qmd": "knowledge/",
+        "git": ".git/"
+      }
+    },
+    "bottom": {
+      "name": "session-memory-enhanced",
+      "storage": {
+        "strategy": "immutable-shard",
+        "compression": true,
+        "token_saving": 0.9
+      },
+      "extraction": {
+        "enabled": true,
+        "llm_model": "zai/glm-5"
+      },
+      "retrieval": {
+        "vector_search": true,
+        "bm25_fallback": true
+      }
+    }
+  }
+}

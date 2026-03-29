@@ -1,0 +1,37 @@
+{
+  "thresholds": {
+    "dialog": 60,
+    "startup_warning": 30,
+    "error_per_hour": 5
+  },
+  "monitor": {
+    "check_interval_minutes": 5,
+    "active_session_window_minutes": 120,
+    "max_retries": 3,
+    "retry_delay_seconds": 5,
+    "api_timeout_seconds": 30
+  },
+  "notifications": {
+    "cooldown_seconds": 3600,
+    "feishu_channel": "feishu",
+    "feishu_account": "main",
+    "feishu_target": "user:YOUR_FEISHU_USER_ID",
+    "qq_channel": "qqbot",
+    "qq_target": "YOUR_QQ_TARGET_ID"
+  },
+  "paths": {
+    "log_dir": "logs",
+    "error_log": "logs/context-errors.log",
+    "monitor_log": "logs/context-monitor.log",
+    "switch_log": "logs/seamless-switch.log",
+    "error_stats": "logs/context-error-stats.txt",
+    "memory_file": "MEMORY.md",
+    "memory_lite_file": "MEMORY-LITE.md",
+    "daily_log_dir": "memory",
+    "utils_error_handler": "../utils/error-handler.sh"
+  },
+  "tmp": {
+    "cooldown_file": "/tmp/context-notification-cooldown",
+    "error_count_prefix": "/tmp/context-error-count_"
+  }
+}

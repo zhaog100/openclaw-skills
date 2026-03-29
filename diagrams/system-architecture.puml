@@ -1,0 +1,113 @@
+@startuml OpenClaw 系统架构图
+title OpenClaw 系统架构 - 米粒儿配置版
+footer 2026-03-10 绘制
+
+skinparam backgroundColor #EEEBDC
+skinparam componentStyle uml2
+
+package "用户层" {
+  [官家] as User
+  [QQ Bot] as QQ
+  [飞书 Bot] as Feishu
+}
+
+package "OpenClaw Gateway" {
+  
+  component "会话管理" as Session {
+    [主会话 main] as MainSession
+    [工作会话 work] as WorkSession
+  }
+  
+  component "智能模型切换" as ModelSwitch {
+    [复杂度分析] as Complexity
+    [上下文监控] as ContextMonitor
+  }
+  
+  component "工具系统" as Tools {
+    [read/write/edit] as FileTools
+    [exec/process] as ShellTools
+    [web_search/web_fetch] as WebTools
+    [browser] as Browser
+  }
+  
+  component "Context Manager v2.2" as ContextMgr {
+    [上下文监控 60%] as UsageMonitor
+    [会话自动切换] as AutoSwitch
+  }
+}
+
+package "技能系统 (21 个)" {
+  
+  component "session-memory-enhanced" as SMS
+  component "smart-memory-sync" as SMMS
+  component "smart-model-switch" as SMSW
+  component "image-content-extractor" as ICE
+  component "quote-reader" as QR
+  component "speech-recognition" as SR
+  component "playwright-scraper" as PS
+  component "automation-workflows" as AW
+  component "qmd" as QMD
+  component "notion" as Notion
+  component "obsidian" as Obsidian
+}
+
+package "记忆系统" {
+  
+  database "MEMORY.md" as LongTerm
+  database "memory/*.md" as Daily
+  database "QMD 知识库" as QMDB
+  database "Git 仓库" as Git
+}
+
+package "自动化系统" {
+  
+  component "定时任务 (9 个)" as Cron
+  component "HEARTBEAT.md" as Heartbeat
+}
+
+' 用户交互
+User --> QQ
+User --> Feishu
+QQ --> Session
+Feishu --> Session
+
+' 会话处理
+Session --> ModelSwitch
+ModelSwitch --> Tools
+Session --> SMS
+Session --> SMMS
+
+' 记忆系统
+Session --> ContextMgr
+ContextMgr --> LongTerm
+ContextMgr --> Daily
+SMMS --> QMDB
+SMMS --> Git
+
+' 自动化
+Cron --> SMS
+Cron --> ContextMgr
+Cron --> SMMS
+Heartbeat --> Cron
+
+note right of ModelSwitch
+  智能模型切换
+  - 复杂度分析
+  - 上下文监控
+  - 6 种模型支持
+end note
+
+note left of SMMS
+  Smart Memory Sync
+  - 三库同步
+  - 50/75/85% 阈值
+end note
+
+note bottom of ContextMgr
+  Context Manager v2.2
+  - 60% 阈值监控
+  - 每 5 分钟检查
+  - 无感会话切换
+end note
+
+@enduml

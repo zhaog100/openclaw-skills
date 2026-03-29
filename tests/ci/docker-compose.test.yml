@@ -1,0 +1,42 @@
+# CI 专用 Docker Compose 配置
+# 用于 GitHub Actions 测试，无需真实域名
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+
+version: '3.8'
+
+services:
+  # Traefik 反向代理
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Portainer
+  portainer:
+    image: portainer/portainer-ce:2.19.4
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.localhost`)"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:9000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  portainer_data:
