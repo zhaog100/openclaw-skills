@@ -1,7 +1,79 @@
-# HEARTBEAT.md Template
+# HEARTBEAT 定时检查
 
-```markdown
-# Keep this file empty (or with only comments) to skip heartbeat API calls.
+_利用 OpenClaw 的 heartbeat 机制实现每日回顾_
 
-# Add tasks below when you want the agent to check something periodically.
+---
+
+## 📋 检查任务
+
+### 每次心跳执行
+- [ ] 检查是否到了回顾时间
+- [ ] 检查系统运行状态
+
+### 午间回顾 (12:00-13:00)
+如果当前时间在 12:00-13:00 之间：
+- [ ] 读取 memory/YYYY-MM-DD.md（今日日志）
+- [ ] 回顾上午完成的任务
+- [ ] 检查 MEMORY.md 中的待办事项
+- [ ] 查看当前 PR 状态：`gh pr list --author zhaog100 --state open`
+- [ ] 更新 memory/YYYY-MM-DD.md
+- [ ] 简要总结上午进展，规划下午重点
+
+### 晚间回顾 (23:00-24:00)
+如果当前时间在 23:00-24:00 之间：
+- [ ] 全面回顾今天的工作
+- [ ] 总结今天学到的知识和教训
+- [ ] 查漏补缺：检查遗漏的任务、未完成的承诺
+- [ ] 提炼有价值的经验到 MEMORY.md
+- [ ] 检查 MEMORY.md 是否需要精简或更新
+- [ ] 补充 memory/YYYY-MM-DD.md 的遗漏内容
+- [ ] Git 提交所有变更：`git add -A && git commit -m "📝 每日回顾" && git push`
+- [ ] 输出今日总结
+
+---
+
+## 📊 系统状态检查
+
+### 监控进程
+检查以下进程是否运行：
+- [ ] 功耗监控 (PID 1219)
+- [ ] 防睡眠 (PID 1121)
+- [ ] 系统健康监控
+
+### 数据采集
+- [ ] 功耗数据是否正常采集
+- [ ] 健康数据是否正常采集
+
+---
+
+## 🔄 执行逻辑
+
+```bash
+# 获取当前小时
+HOUR=$(date +%H)
+
+# 午间回顾
+if [ $HOUR -ge 12 ] && [ $HOUR -lt 13 ]; then
+    # 执行午间回顾任务
+    echo "☀️ 午间回顾时间"
+fi
+
+# 晚间回顾
+if [ $HOUR -ge 23 ] && [ $HOUR -lt 24 ]; then
+    # 执行晚间回顾任务
+    echo "🌙 晚间回顾时间"
+fi
 ```
+
+---
+
+## 📌 注意事项
+
+1. **不要重复执行**：同一时段只执行一次
+2. **保持简洁**：输出要精简，不要太长
+3. **重要才通知**：只在有重要发现时才主动汇报
+4. **自动记录**：所有回顾内容自动记录到 memory/YYYY-MM-DD.md
+
+---
+
+_配置完成时间: 2026-03-29 09:05 PDT_
