@@ -3327,5 +3327,72 @@
     "html_url": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/2",
     "created_at": "2026-03-29T06:01:56.083240",
     "status": "claimed"
+  },
+  {
+    "key": "etherisc/depeg-contracts#31",
+    "owner": "etherisc",
+    "repo": "depeg-contracts",
+    "number": 31,
+    "title": "[Bug]: It is possible to accumulate DIP rewards after the risk bundle was closed, USDT unstaked/bundle burned",
+    "body": "### What happened?\n\n1. Create risk bundle.\r\nhttps://mumbai.polygonscan.com/tx/0x57f5644041c729d1e4f6545ef35f70caa0af4a8c899b7917475dfa7495f3994f\r\n2. Stake USDT.\r\nhttps://mumbai.polygonscan.com/tx/0x3f28af18f6c36c7bb49071e0752bb408bfc300b010cfa0cd07895db64c3a4b0a\r\n3. Stake DIP.\r\nhttps://mumbai.polygonscan.com/tx/0xe347e7df1b74cd56b16e630f46354fd7c07289e1bb9f72f48ea325490fe27068\r\n4. Close risk bundle.\r\nhttps://mumbai.polygonscan.com/tx/0xe036accb534950b2fd4d604a74e11c58fe59d24575356e9425e50f74aead4cd6\r\nSee \"Accumulated Rewards\" continue to increase\r\n5. Burn risk bundle\r\nhttps://mumbai.polygonscan.com/tx/0x6ea593abfaa8f34aacd7d9f851a0c9bc21d3a9efd86d5751c24e85db30bcd4c4\r\nSee \"Accumulated Rewards\" continue to increase\r\n6. Unstake DIP & claim rewards\r\nhttps://mumbai.polygonscan.com/tx/0x776c248b194b5fe286b22ddd706441431d353b70552297f362758cd6cca7c073\r\n\r\nRisk bundle created at 03:38:47 PM\r\nRisk bundle closed at 03:51:37 PM,  ~770 sec passed since creation -> ~2.75 DIP as rewards\r\nRisk bundle burned at 03:52:59 PM, ~ 852 sec passed since creation -> ~3.04 DIP as rewards\r\nDIP rewards claimed at 04:59:31 PM, ~4844 sec passed since creation -> ~17.28 DIP as rewards\r\n~15.86 DIP as rewards obtained\r\n\n\n### What operating system are you seeing the problem on?\n\nMac OS\n\n### What browsers are you seeing the problem on?\n\nSafari\n\n### What wallet extension are you using?\n\nMetamask\n\n### Rules\n\n- [X] I agree to follow this project's rules",
+    "score": 50,
+    "labels": [
+      "bug",
+      "bug bounty",
+      "low"
+    ],
+    "html_url": "https://github.com/etherisc/depeg-contracts/issues/31",
+    "created_at": "2026-03-29T06:24:21.914484",
+    "status": "claimed"
+  },
+  {
+    "key": "etherisc/registry-contracts#2",
+    "owner": "etherisc",
+    "repo": "registry-contracts",
+    "number": 2,
+    "title": "[Bug]: claimRewards() is always sending 0 DIP rewards and resets user's rewardsBalance when called before unstake()",
+    "body": "### What happened?\n\nSteps to reproduce:\r\n\r\n1. Create fresh  risk bundle and stake some USDT.\r\nhttps://mumbai.polygonscan.com/tx/0xe0535fb6ec7782dceb8a488675425b40a97901a5bbd7eeed23eb5f4c5b2f48c0\r\n1. Stake some DIP into this bundle.\r\nhttps://mumbai.polygonscan.com/tx/0x036d950af16481c409ba7a3b168df5a3623d66ee072df4b9c7e9fd89dac721af\r\n3. Wait while some DIP rewards are accumulated.\r\n4. Claim rewards \r\n  **Expected behaviour:** DIP transferred >= \"Accumulated Rewards\" value in staking UI \r\n  **Actual behaviour:** DIP transferred = 0, \"Accumulated Rewards\" resets to 0.\r\nFirst claim:\r\n<img width=\"1056\" alt=\"Screenshot 2023-04-01 at 9 53 58\" src=\"https://user-images.githubusercontent.com/41779817/229295728-a169d960-8154-425e-a36b-9d47343b8b24.png\">\r\n\r\nhttps://mumbai.polygonscan.com/tx/0x3626d3b0f1c9aeba6f724259a9fbd9a8d69cfc9d91f869957f9164e86e765af3\r\n\r\nSecond claim:\r\n<img width=\"1056\" alt=\"Screenshot 2023-04-01 at 10 05 36\" src=\"https://user-images.githubusercontent.com/41779817/229295769-d77971e1-c06b-4130-aed8-4f2c52381fd9.png\">\r\n\r\nhttps://mumbai.polygonscan.com/tx/0xff684a1b10c60e4e3ec3a9335598314b4e50cd186cc47973fb46b92e29f88402\r\n\r\n5. Close risk bundle\r\nhttps://mumbai.polygonscan.com/tx/0x2160d9fc129a9f40f0b9ab94bd33e02c889873a440d8227c6cbdb2b4172f5d05\r\n\r\n6. Unstake DIP without claiming rewards.\r\nhttps://mumbai.polygonscan.com/tx/0xd6633cce0acf2c401ea9fd14db999750dd307de9453c7575c69e313481ae4be6\r\n\r\n7. Claim rewards. This time DIP transferred > 0 but value is smaller than first and second claims combined. \r\nhttps://mumbai.polygonscan.com/tx/0x0763820d43e80609555ea51643a5e1b5a80b7f5c235d8f1485e652a55651da67\r\n\n\n### What operating system are you seeing the problem on?\n\nMac OS\n\n### What browsers are you seeing the problem on?\n\nSafari\n\n### What wallet extension are you using?\n\nMetamask\n\n### Rules\n\n- [X] I agree to follow this project's rules",
+    "score": 50,
+    "labels": [
+      "bug",
+      "bug bounty accepted",
+      "bug bounty",
+      "low"
+    ],
+    "html_url": "https://github.com/etherisc/registry-contracts/issues/2",
+    "created_at": "2026-03-29T06:24:28.049633",
+    "status": "claimed"
+  },
+  {
+    "key": "bartervg/barter.vg#299",
+    "owner": "bartervg",
+    "repo": "barter.vg",
+    "number": 299,
+    "title": "Counter offer could hide other offer",
+    "body": "# Describe the bug\r\nManipulating a new offer can hide another offer on /o/ page, even if failed and disputed. \r\n\r\nWhen proposing an offer, the variable `counter_id` refers to the countered offer's ID. The offer page uses this variable to consolidate all counter offers into a single offer. However, this variable is a user input and can be set to an arbitrary value. Before saving this value, there is validation that the counter ID refers to an offer that was sent to the countering user, but there is no validation of the offer's status. By setting the counter ID to any other offer ID, the sender can effectively hide an accepted, completed, or failed offer from the /o/ section. \r\n\r\nThe \"hidden\" offer is still accessible via its URL, in the counter offer, and in the feed activity, but it will no longer appear in /o/. \r\n\r\n## Steps to reproduce the bug\r\n1. Create a new offer\r\n2. Manipulate the counter ID to refer to another offer, even if that offer has failed\r\n3. The target offer is no longer visible in /o/\r\n\r\n## Expected behavior\r\nThe target offer should remain visible. Users should not be able to counter offers that are no longer proposed/pending. While disputes are displayed in multiple places, this bug could allow users to manipulate the visibility and status of offers that they should not affect. \r\n\r\n### Additional context, device information (OS & Browser) if applicable \r\nReported and demonstrated by @Revadike for a bug bounty on 2022-11-12. ",
+    "score": 50,
+    "labels": [
+      "bug",
+      "bug bounty"
+    ],
+    "html_url": "https://github.com/bartervg/barter.vg/issues/299",
+    "created_at": "2026-03-29T06:24:40.039956",
+    "status": "claimed"
+  },
+  {
+    "key": "qojulia/QuantumOptics.jl#407",
+    "owner": "qojulia",
+    "repo": "QuantumOptics.jl",
+    "number": 407,
+    "title": "Update the benchmark suite and bring it into the CI runner [$400]",
+    "body": "<details>\r\n<summary><strong>Bug bounty logistic details</strong> (click to expand)</summary>\r\n\r\nTo claim exclusive time to work on this bounty either post a comment here or message [skrastanov@umass.edu](mailto:skrastanov@umass.edu) with:\r\n\r\n- your name\r\n- github username\r\n- **(optional)** a brief list of previous pertinent projects you have engaged in\r\n\r\nCurrently the project is claimed by `no one` until `...`.\r\n\r\nIf you want to, you can work on this project without making a claim, however claims are encouraged to give you and other contributors peace of mind. Whoever has made a claim takes precedence when solutions are considered.\r\n\r\nYou can always propose your own funded project, if you would like to contribute something of value that is not yet covered by an official bounty.\r\n</details>\r\n\r\n# Update the benchmark suite and bring it into the CI runner [$400]\r\n\r\nQuantumOptics.jl has an in-depth benchmarking suite that has bitrotted in the last few years. To claim this bounty:\r\n\r\n- Set up a benchmark-on-CI infrastructure (e.g. similar to the one in QuantumClifford.jl) that runs QuantumOptics-specific benchmarks on each pull request\r\n- Include all old benchmarks in that infrastructure (reusing the existing benchmark suite as much as possible) and make it easy to add new micro-benchmarks as new features get developed.\r\n\r\nThe above are for the sake of the developers of this package. However, this bounty also requires the following to be done for the sake of users:\r\n\r\n- Fix up the capability to run benchmarks in comparison to popular python packages (qutip) and add comparative Julia packages (QuantumToolbox.jl)\r\n- Create a makefile that let's a developer to easily update the webpage presenting these comparative benchmarks to the user.\r\n\r\n**Required skills**: Understanding of Julia's and Python's benchmarking infrastructure.\r\n\r\n**Reviewer**: Stefan Krastanov and/or @david-pl \r\n\r\n**Duration**: 2 months\r\n\r\n#### Payout procedure:\r\n\r\nThe Funding for these bounties comes from the National Science Foundation and from the NSF Center for Quantum Networks. The payouts are managed by the NumFOCUS foundation and processed in bulk once every two months. If you live in a country in which NumFOCUS can make payments, you can participate in this bounty program.\r\n\r\n[Click here for more details about the bug bounty program.](https://github.com/QuantumSavory/.github/blob/main/BUG_BOUNTIES.md)",
+    "score": 45,
+    "labels": [
+      "bug bounty",
+      "bounty:400"
+    ],
+    "html_url": "https://github.com/qojulia/QuantumOptics.jl/issues/407",
+    "created_at": "2026-03-29T06:24:45.585674",
+    "status": "claimed"
   }
 ]
