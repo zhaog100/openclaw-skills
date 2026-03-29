@@ -1,0 +1,15 @@
+{
+  "last_check": "2026-03-23T10:57:42+08:00",
+  "changes": [
+    "[TheSuperHackers/GeneralsGameCode #2434] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[Kozea/pygal #426] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[StelTade/SwapTrade-Backend #201] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[StelTade/SwapTrade-Backend #200] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[StelTade/SwapTrade-Backend #187] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[StelTade/SwapTrade-Backend #202] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[StelTade/SwapTrade-Backend #198] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[vllm-project/vllm-omni #2015] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[Chevalier12/InkkSlinger #3] ⚠️ API错误: accepts 1 arg(s), received 2",
+    "[illbnm/homelab-stack #1] ⚠️ API错误: accepts 1 arg(s), received 2"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "device_type": "mock",
+  "device_ip": "",
+  "api_endpoint": "http://localhost:8000/api/v1/energy/report",
+  "polling_interval": 60,
+  "wallet_address": "YourSolanaWalletAddress",
+  "mock_mode": true
+}

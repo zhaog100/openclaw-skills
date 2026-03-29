@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# cligen - CLI Tool Generator
+# Usage: cligen <command> [options]
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SRC_DIR="${SCRIPT_DIR}/src"
+
+source "${SRC_DIR}/preflight.sh"
+source "${SRC_DIR}/generator.sh"
+source "${SRC_DIR}/validator.sh"
+
+# Colors
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
+
+usage() {
+    cat <<'EOF'
+cligen - CLI Tool Generator v1.0.0
+
+Usage: cligen <command> [options]
+
+Commands:
+  create       Generate a new CLI tool scaffold
+  validate     Validate an existing CLI tool
+  completions  Generate shell completion scripts
+  doctor       Check development environment
+
+Options:
+  create:
+    --name NAME         Tool name (required)
+    --desc DESCRIPTION  Tool description
+    --lang LANG         Language: bash|python (default: bash)
+    --commands CMDs     Comma-separated command list (default: help,version)
+    --output DIR        Output directory (default: ./<name>)
+    --non-interactive   Skip interactive prompts
+
+  validate:
+    <path>              Path to CLI tool directory (required)
+
+  completions:
+    --shell SHELL       Shell: bash|zsh (default: bash)
+    --commands CMDs     Comma-separated commands for completion
+    --output FILE       Output file path
+
+  doctor:
+    (no options)
+
+Examples:
+  cligen create --name mytool --lang bash --commands "status,config,deploy"
+  cligen validate ./mytool/
+  cligen completions --shell zsh --commands "build,test,deploy"
+  cligen doctor
+EOF
+}
+
+cmd_doctor() {
+    echo -e "${BLUE}🏥 cligen doctor - Environment Check${NC}"
+    echo ""
+    run_preflight
+}
+
+cmd_create() {
+    local name="" desc="" lang="bash" commands="help,version" output="" non_interactive=false
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --name) name="$2"; shift 2 ;;
+            --desc) desc="$2"; shift 2 ;;
+            --lang) lang="$2"; shift 2 ;;
+            --commands) commands="$2"; shift 2 ;;
+            --output) output="$2"; shift 2 ;;
+            --non-interactive) non_interactive=true; shift ;;
+            *) echo -e "${RED}Unknown option: $1${NC}"; exit 1 ;;
+        esac
+    done
+
+    if [[ -z "$name" ]]; then
+        echo -e "${RED}Error: --name is required${NC}"
+        exit 1
+    fi
+
+    output="${output:-./$name}"
+
+    # Interactive mode prompts
+    if [[ "$non_interactive" == "false" ]] && [[ -t 0 ]]; then
+        if [[ -z "$desc" ]]; then
+            echo -e "${BLUE}📝 Enter description for ${name} (Enter to skip):${NC}"
+            read -r desc
+        fi
+        echo -e "${YELLOW}Generating CLI tool: ${name}${NC}"
+    fi
+
+    generate_tool "$name" "$desc" "$lang" "$commands" "$output"
+}
+
+cmd_validate() {
+    local path="${1:-}"
+    if [[ -z "$path" ]]; then
+        echo -e "${RED}Error: path is required${NC}"
+        echo "Usage: cligen validate <path>"
+        exit 1
+    fi
+    validate_tool "$path"
+}
+
+cmd_completions() {
+    local shell="bash" commands="" output=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --shell) shell="$2"; shift 2 ;;
+            --commands) commands="$2"; shift 2 ;;
+            --output) output="$2"; shift 2 ;;
+            *) echo -e "${RED}Unknown option: $1${NC}"; exit 1 ;;
+        esac
+    done
+
+    if [[ -z "$commands" ]]; then
+        echo -e "${RED}Error: --commands is required${NC}"
+        exit 1
+    fi
+
+    output="${output:-/dev/stdout}"
+    generate_completions "$shell" "$commands" "$output"
+}
+
+# Main
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 0
+fi
+
+case "$1" in
+    create)   shift; cmd_create "$@" ;;
+    validate) shift; cmd_validate "$@" ;;
+    completions) shift; cmd_completions "$@" ;;
+    doctor)   cmd_doctor ;;
+    -h|--help|help) usage ;;
+    *) echo -e "${RED}Unknown command: $1${NC}"; usage; exit 1 ;;
+esac

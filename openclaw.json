@@ -1,0 +1,21 @@
+{
+  "skills": {
+    "enabled": true,
+    "paths": [
+      "./skills"
+    ],
+    "autoLoad": true
+  },
+  "mcp": {
+    "enabled": true,
+    "servers": {
+      "qmd": {
+        "command": "qmd",
+        "args": [
+          "mcp"
+        ]
+      }
+    }
+  },
+  "defaultModel": "zai/glm-5"
+}

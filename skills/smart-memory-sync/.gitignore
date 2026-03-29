@@ -1,0 +1,9 @@
+# 配置文件（包含本地个性化设置）
+config.json
+
+# 日志
+logs/
+
+# Python
+__pycache__/
+*.pyc

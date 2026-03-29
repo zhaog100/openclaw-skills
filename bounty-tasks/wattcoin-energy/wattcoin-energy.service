@@ -1,0 +1,14 @@
+[Unit]
+Description=WattCoin Energy Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/wattcoin-energy
+ExecStart=/usr/bin/python3 /home/pi/wattcoin-energy/main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

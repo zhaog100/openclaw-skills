@@ -1,0 +1,208 @@
+{
+  "version": "1.0",
+  "updated": "2026-03-24T14:42:00+08:00",
+  "prs": [
+    {
+      "id": "PR-20260323-001",
+      "repo": "TheSuperHackers/GeneralsGameCode",
+      "issue": 2434,
+      "pr": 2485,
+      "url": "https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485",
+      "title": "Fix GLA Cash Bounty incorrect value for China Red Guard",
+      "amount": 300,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-23",
+      "payment_platform": "direct",
+      "maintainer_active": true,
+      "repo_push": "2026-03-21",
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-24T14:42:00+08:00",
+          "target": "maintainer",
+          "comment_url": "https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485#issuecomment-4115814395"
+        }
+      ],
+      "note": "REVIEW_REQUIRED, Greptile bot 已审，已 ping 催审 (2026-03-24 14:42)"
+    },
+    {
+      "id": "PR-20260323-002",
+      "repo": "Kozea/pygal",
+      "issue": 426,
+      "pr": 579,
+      "url": "https://github.com/Kozea/pygal/pull/579",
+      "title": "Add OHLC Candlestick Chart support",
+      "amount": 300,
+      "max_amount": 500,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-23",
+      "payment_platform": "direct",
+      "maintainer_active": false,
+      "repo_push": "2025-12-09",
+      "maintainer_inactive_days": 107,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": "@glepretre"
+        }
+      ],
+      "note": "维护者 3 个月不活跃，已 ping 等 48h"
+    },
+    {
+      "id": "PR-20260322-001",
+      "repo": "StelTade/SwapTrade-Backend",
+      "issue": 201,
+      "pr": 209,
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/209",
+      "title": "Admin API for Waitlist and Referral",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "repo_push": "2026-02-26",
+      "maintainer_inactive_days": 182,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": "@OthmanImam @StelTade"
+        }
+      ],
+      "note": "维护者半年不活跃，2star, 已 ping 等 48h"
+    },
+    {
+      "id": "PR-20260322-002",
+      "repo": "StelTade/SwapTrade-Backend",
+      "issue": 200,
+      "pr": 210,
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/210",
+      "title": "Waitlist Email Notification Backend",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
+    },
+    {
+      "id": "PR-20260322-003",
+      "repo": "StelTade/SwapTrade-Backend",
+      "issue": 187,
+      "pr": 211,
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/211",
+      "title": "Reward Distribution System",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
+    },
+    {
+      "id": "PR-20260322-004",
+      "repo": "StelTade/SwapTrade-Backend",
+      "issue": 202,
+      "pr": 212,
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/212",
+      "title": "Referral and Waitlist Fraud Protection",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
+    },
+    {
+      "id": "PR-20260322-005",
+      "repo": "StelTade/SwapTrade-Backend",
+      "issue": 198,
+      "pr": 213,
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/213",
+      "title": "Referral Tracking Backend Logic",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": ""
+        }
+      ],
+      "note": "同上"
+    },
+    {
+      "id": "PR-20260322-006",
+      "repo": "vllm-project/vllm-omni",
+      "issue": 2015,
+      "pr": 2080,
+      "url": "https://github.com/vllm-project/vllm-omni/pull/2080",
+      "title": "CI Benchmark and Performance Tracking",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": true,
+      "repo_push": "2026-03-23",
+      "note": "仓库今天还有 push! REVIEW_REQUIRED, 最有希望"
+    },
+    {
+      "id": "PR-20260322-007",
+      "repo": "Chevalier12/InkkSlinger",
+      "issue": 3,
+      "pr": 12,
+      "url": "https://github.com/Chevalier12/InkkSlinger/pull/12",
+      "title": "Implement InkCanvas and InkPresenter",
+      "amount": 0,
+      "currency": "USD",
+      "status": "open",
+      "submitted": "2026-03-22",
+      "payment_platform": "unknown",
+      "maintainer_active": false,
+      "repo_push": "2026-03-22",
+      "maintainer_inactive_days": 285,
+      "ping_sent": true,
+      "ping_history": [
+        {
+          "at": "2026-03-23T11:28:22+08:00",
+          "target": "@Chevalier12"
+        }
+      ],
+      "note": "维护者 9 个月不活跃，3star, 已 ping 等 48h"
+    }
+  ],
+  "archived_count": 27
+}

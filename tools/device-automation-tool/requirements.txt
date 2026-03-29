@@ -1,0 +1,4 @@
+# Python依赖列表
+
+uiautomator2>=2.16.0
+requests>=2.28.0
