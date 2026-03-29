@@ -1,177 +1,171 @@
-# 知识库索引
+# 📚 知识库索引
 
-> 快速检索指南 - 最后更新：2026-03-14 23:32
-
----
-
-## 📚 主要分类
-
-### 软件测试（258KB）⭐⭐⭐⭐⭐
-- **路径**：`software-testing/`
-- **内容**：测试工具、自动化测试、移动测试、桌面测试
-- **项目**：旅行客平台测试项目
-- **检索**：`qmd search "测试" -c knowledge -n 5`
-
-### 项目管理（72KB）
-- **路径**：`project-management/`
-- **内容**：PMP认证、项目管理方法论、敏捷实践
-- **检索**：`qmd search "项目管理" -c knowledge -n 5`
-
-### 外包管理（88KB）
-- **路径**：`outsourcing-management/`
-- **内容**：外包项目模板、项目案例、管理流程
-- **检索**：`qmd search "外包" -c knowledge -n 5`
-
-### AI系统设计（82KB）⭐
-- **路径**：`ai-system-design/`
-- **内容**：AI系统架构、模型设计、优化策略、系统化思维
-- **检索**：`qmd search "AI" -c knowledge -n 5`
-
-### 旅行客平台（152KB）⭐
-- **路径**：`旅行客平台/`
-- **内容**：测试环境、测试用例、需求文档、学习笔记
-- **检索**：`qmd search "旅行客" -c knowledge -n 5`
-
-### 内容创作（40KB）
-- **路径**：`content-creation/`
-- **内容**：内容策略、视频创作、公众号运营
-- **检索**：`qmd search "内容创作" -c knowledge -n 5`
-
-### 工具使用（16KB）
-- **路径**：`tools/`
-- **内容**：OpenClaw使用、QMD配置、技能开发
-- **检索**：`qmd search "工具" -c knowledge -n 5`
-
-### 每日知识（按日期）
-- **2026-03-14**：飞书Bot机制限制、技能包管理、Git仓库配置 ⭐⭐⭐⭐⭐
-  - 路径：`knowledge/2026-03-14/2026-03-14-lessons-learned.md`
-  - 内容：今日关键学习总结
-- **2026-03-13**：双米粒协作系统PRD
-- **2026-03-12**：双米粒协作优化
-
-### 飞书集成
-- **路径**：`knowledge/feishu/`
-- **内容**：Bot机制、权限配置
-- **检索**：`qmd search "飞书" -c knowledge -n 5`
-
-### 多智能体协作
-- **路径**：`knowledge/multi-agent-collaboration/`
-- **内容**：A2A协议、协作最佳实践
-- **检索**：`qmd search "多智能体" -c knowledge -n 5`
+_最后更新: 2026-03-29_
 
 ---
 
-## 🔍 快速检索
-
-### 按主题检索
-
-**测试相关**：
-```bash
-qmd search "测试" -c knowledge -n 5
-qmd search "自动化测试" -c knowledge -n 3
-```
-
-**AI相关**：
-```bash
-qmd search "AI系统" -c knowledge -n 5
-qmd search "模型设计" -c knowledge -n 3
-```
-
-**项目管理**：
-```bash
-qmd search "项目管理" -c knowledge -n 5
-qmd search "PMP" -c knowledge -n 3
-```
-
-**飞书相关**：
-```bash
-qmd search "飞书" -c knowledge -n 5
-qmd search "Bot机制" -c knowledge -n 3
-```
-
-### 按日期检索
-
-**今日学习**：
-```bash
-qmd search "2026-03-14" -c knowledge -n 5
-```
-
-**本周学习**：
-```bash
-qmd search "2026-03" -c knowledge -n 10
-```
-
----
-
-## 📊 知识库统计
-
-**总文件数**：19+个（knowledge-base collection）
-**最后更新**：2026-03-14 23:32
-**索引状态**：✅ 已索引
-
-### 最新添加
-
-1. **2026-03-14**：今日关键学习总结 ⭐⭐⭐⭐⭐
-   - 飞书Bot机制限制
-   - 技能包管理最佳实践
-   - Git仓库配置管理
-   - 职责边界确认
-   - 验证可行性的重要性
-
-2. **2026-03-13**：双OpenClaw协作系统PRD（MemOS方案）
-
-3. **2026-03-12**：双米粒协作系统优化方案（v2.0）
-
----
-
-## 🎯 使用建议
-
-### 快速查找
-
-1. **使用QMD搜索**：`qmd search "关键词" -c knowledge -n 5`
-2. **按分类浏览**：查看对应分类目录
-3. **按日期查找**：查看对应日期目录
-
-### 添加新知识
-
-1. 创建知识文档（Markdown格式）
-2. 放入对应分类目录
-3. 更新本索引文件
-4. 推送到Git仓库
-
----
-
-## 📂 目录结构
+## 🗂️ 知识库结构
 
 ```
 knowledge/
-├── 2026-03-14/          # 今日学习
-│   └── 2026-03-14-lessons-learned.md
-├── 2026-03-13/          # 昨日学习
-├── 2026-03-12/          # 前日学习
-├── ai-system-design/    # AI系统设计
-├── content-creation/    # 内容创作
-├── feishu/              # 飞书集成
-├── multi-agent-collaboration/  # 多智能体协作
-├── outsourcing-management/     # 外包管理
-├── project-management/  # 项目管理
-├── software-testing/    # 软件测试
-├── tools/               # 工具使用
-├── 旅行客平台/           # 项目文档
-├── KNOWLEDGE-INDEX.md   # 本文件
-└── README.md            # 知识库说明
+├── bounty/                    # Bounty系统知识
+│   ├── strategies/            # 策略文档
+│   │   ├── auto-workflow.md   # ⭐ 自动工作流程
+│   │   ├── filters.md         # 过滤策略
+│   │   └── scoring.md         # 评分算法
+│   └── templates/             # 标准模板
+│       └── SECURITY.md        # 安全文档模板
+│
+├── github-bounty/             # GitHub Bounty实现
+│   ├── implementation.md      # 实现细节
+│   ├── lessons-learned.md     # 经验教训
+│   └── best-practices.md      # 最佳实践
+│
+├── multi-agent-collaboration/ # 多智能体协作
+│   ├── MULTI_AGENT_BEST_PRACTICES.md
+│   └── patterns.md            # 协作模式
+│
+├── software-testing/          # 软件测试
+│   ├── testing-projects/      # 测试项目
+│   └── test-management/       # 测试管理
+│
+└── tools/                     # 工具指南
+    ├── plantuml-guide.md      # PlantUML使用
+    └── openclaw-sessions-api.md # OpenClaw API
 ```
 
 ---
 
-## 💡 维护建议
+## 📌 核心知识点
 
-1. **定期更新**：每日工作结束后更新
-2. **保持索引**：添加新知识时更新本索引
-3. **定期归档**：每月归档旧知识
-4. **定期清理**：删除过时或重复的内容
+### 1. Bounty 系统
+
+#### 🎯 自动工作流 (⭐ 重要)
+- **位置**: `bounty/strategies/auto-workflow.md`
+- **用途**: 定义自动完成策略
+- **关键点**:
+  - 无需询问用户
+  - 按优先级顺序执行
+  - 质量优先于数量
+
+#### 📊 评分策略
+- **位置**: `bounty/strategies/scoring.md`
+- **算法**: 活跃度(30%) + 价值(40%) + 工作量(20%) + 学习(10%)
+
+#### 🔍 过滤策略
+- **位置**: `bounty/strategies/filters.md`
+- **关键词**: bounty, security, bug-bounty, responsible disclosure
+
+#### 📝 模板
+- **SECURITY.md**: 标准安全文档模板
+- **PR模板**: Pull Request 标准格式
+
+### 2. GitHub Bounty 实现
+
+#### 💡 经验教训
+- **urllib3降级**: v2 → v1.26.20 (LibreSSL兼容)
+- **SSH→HTTPS**: 解决推送问题
+- **黑名单维护**: 避免重复工作
+
+#### ✅ 最佳实践
+- 项目选择: 中小型活跃项目
+- 模板复用: 提升80%效率
+- 持续跟进: 定期检查PR状态
+
+### 3. 多智能体协作
+
+#### 🤝 协作模式
+- **位置**: `multi-agent-collaboration/`
+- **模式**:
+  - 主从模式
+  - 对等模式
+  - 层级模式
+
+#### 📋 最佳实践
+- 明确分工
+- 通信协议
+- 错误处理
+- 结果聚合
+
+### 4. 软件测试
+
+#### 🧪 测试项目
+- **traveler-platform**: 旅行平台测试
+- **测试用例**: 三端测试方案
+- **测试报告**: 第一轮测试报告
+
+#### 📚 测试管理
+- 测试计划模板
+- 测试用例设计
+- 测试报告格式
+
+### 5. 工具使用
+
+#### 🎨 PlantUML
+- **位置**: `tools/plantuml-guide.md`
+- **用途**: UML图表生成
+- **示例**: 序列图、类图、流程图
+
+#### 🔌 OpenClaw Sessions API
+- **位置**: `tools/openclaw-sessions-api.md`
+- **功能**: Session管理
+- **用途**: 多会话协作
 
 ---
 
-*最后更新：2026-03-14 23:32*
-*维护者：小米粒（Dev）*
+## 🔍 快速查找
+
+### 按场景查找
+
+| 场景 | 查找位置 |
+|------|---------|
+| **开始新任务** | `bounty/strategies/auto-workflow.md` |
+| **评估任务价值** | `bounty/strategies/scoring.md` |
+| **过滤重复任务** | `bounty/strategies/filters.md` |
+| **使用模板** | `bounty/templates/` |
+| **学习经验** | `github-bounty/lessons-learned.md` |
+| **多智能体协作** | `multi-agent-collaboration/` |
+| **测试方法** | `software-testing/` |
+| **工具使用** | `tools/` |
+
+### 按关键词查找
+
+```
+bounty → knowledge/bounty/
+github → knowledge/github-bounty/
+协作 → knowledge/multi-agent-collaboration/
+测试 → knowledge/software-testing/
+工具 → knowledge/tools/
+```
+
+---
+
+## 📈 知识库统计
+
+- **总文档数**: 50+
+- **核心策略**: 5
+- **模板**: 3
+- **测试项目**: 1
+- **工具指南**: 2
+
+---
+
+## 🔄 最近更新
+
+- **2026-03-29**: 添加 auto-workflow 策略
+- **2026-03-28**: 更新测试报告
+- **2026-03-27**: 添加 SECURITY.md 模板
+
+---
+
+## 🎯 待添加的知识
+
+- [ ] GitHub API 高级用法
+- [ ] 网络韧性策略
+- [ ] 功耗优化知识
+- [ ] Python 最佳实践
+
+---
+
+_本索引由 OpenClaw Agent 维护_
+_建议定期更新_
