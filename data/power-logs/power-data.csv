@@ -1,2 +1,4 @@
 timestamp,power_source,cpu_percent,battery_percent,temperature,wifi_active,caffeinate_running
 2026-03-29 07:58:23,adapter,56.0,98,N/A,0,1
+2026-03-29 08:03:23,adapter,43.1,99,N/A,0,1
+2026-03-29 08:08:23,adapter,33.4,100,N/A,0,1
