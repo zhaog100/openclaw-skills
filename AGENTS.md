@@ -52,6 +52,28 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.
 
+## 🔒 敏感信息处理
+
+**绝对不在消息中显示**：
+- 密码（应用密码、API密钥、Token）
+- 完整邮箱地址（显示为 `z***@gmail.com`）
+- 完整密钥（显示为 `ghp_***...`）
+- SSH密钥、证书等
+
+**正确做法**：
+- ✅ "配置已保存到 .env"
+- ✅ "Token 格式正确（ghp_...）"
+- ❌ "Token: ghp_***...****P0B"
+
+**如果必须验证**：
+- 只显示最后 4 位：`****bwyn`
+- 使用掩码：`z***@gmail.com`
+
+**已存储的敏感信息位置**：
+- `~/.openclaw/workspace/.env` - 主要配置（已在 .gitignore）
+- `~/.git-credentials` - Git 凭证
+- `~/.ssh/` - SSH 密钥
+
 ## External vs Internal
 
 **Safe to do freely:**
