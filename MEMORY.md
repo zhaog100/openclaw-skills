@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.18
-**最后更新**: 2026-03-30 13:45
+**版本**: v3.19
+**最后更新**: 2026-03-30 19:57
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -14,7 +14,7 @@
 | 平台 | 小红书（主力） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
-| 进度 | P0 文案 v2 完成、P1 框架完成，系统结构化 v3.0 完成，待首篇发布 |
+| 进度 | P0 文案 v2 完成、P1 框架完成，系统结构化 v3.0 完成，京东任务系统已部署 |
 | 卡点 | 等官家确认 1688 供应商 + 产品图素材 + Perplexity API key |
 
 ---
@@ -96,6 +96,16 @@
 - **Collection**: `qmd collection add . --name xiaomijiao --mask "**/*.md"`（33 文件已索引）
 - **Embedding**: `qmd embed --collection xiaomijiao` 后台运行，下载 ~328MB 模型
 - **注意**: GitHub 源 (`https://github.com/tobi/qmd`) 无 dist 目录，应用 npm 官方版本
+
+### 2026-03-30 19:55 京东任务系统部署 ⭐⭐⭐⭐⭐
+- **Docker 部署**: Ubuntu 24.04 安装 docker.io，青龙面板容器 `qinglong` 运行在 5700 端口
+- **脚本库**: faker2 仓库（359个脚本）clone 到 `/ql/data/repo/faker2`
+- **依赖安装**: `npm install axios dotenv crypto-js tslib moment tough-cookie json5 got@11`
+- **Cookie 配置**: 双账号 `zhaog100` (Plus会员，728京豆)
+- **定时任务**: 7个核心任务（京豆变动、签到、农场、摇钱树、种豆、领现金、宠汪汪）
+- **脚本适配**: faker2 脚本名与预期不同，如 `jd_fruit.js` → `jd_fruit_new.js`，需检查实际文件名
+- **任务状态**: 大部分任务正常运行，签到类接口403风控（正常现象）
+- **教训**: 定时任务脚本路径需与实际文件名匹配，API PUT 更新 cron 需包含 schedule 参数
 
 ### 2026-03-30 13:26 午间回顾 + 临时文件归档 ⭐⭐⭐⭐
 - **执行时间**: 13:26，午间回顾 + 查漏补缺
@@ -280,11 +290,13 @@
 | 实例 | Ubuntu 24.04, 192.168.204.129 |
 | 通道 | QQ Bot（✅ `xiaomijiao` 账号） |
 | 模型 | `zai/glm-5` ✅ |
-| 工作区 | `~/.openclaw-xiaomijiao/workspace/` |
+| 工作区 | `~/.openclaw/workspace/` |
 | Git remote | `origin` + `xiaomijiao` (双仓库) |
 | Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
 | QMD 集合 | `xiaomijiao`（26 个文档） |
 | Gateway 端口 | 18790（独立） |
+| 青龙面板 | Docker qinglong:5700（京东任务自动化） |
+| 京东账号 | zhaog100（Plus会员，728京豆） |
 
 ## ⏰ 定时任务
 
