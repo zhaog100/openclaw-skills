@@ -54,6 +54,21 @@ _持续更新，记录重要信息_
 - 活跃维护（近期提交）
 - 明确的奖励机制
 
+### 系统优化知识
+- **macOS 性能调优** - `knowledge/system-optimization/macos-performance-tuning.md`
+  - 小部件管理（防止自动重启）
+  - 媒体分析服务（临时停止）
+  - 缓存清理（安全方法）
+  - 进程管理（识别和关闭）
+  - 系统监控（实时命令）
+
+### 敏感信息处理
+- **脱敏规则** - `AGENTS.md`
+  - 密码只显示最后4位：`****bwyn`
+  - 邮箱掩码处理：`z***@gmail.com`
+  - Token 掩码：`ghp_***...P0B`
+- **安全存储** - `~/.openclaw/workspace/.env`（已在 .gitignore）
+
 ---
 
 ## 📌 待办事项
