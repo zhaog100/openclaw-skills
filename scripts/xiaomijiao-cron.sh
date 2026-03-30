@@ -15,6 +15,10 @@
 
 set -euo pipefail
 
+# Bun/QMD PATH
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 WORKSPACE="/home/zhaog/.openclaw/workspace"
 MEDIA_DIR="$WORKSPACE/agents/xiaomijiao"
 MEMORY_DIR="$MEDIA_DIR/memory"

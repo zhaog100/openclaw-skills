@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.17
-**最后更新**: 2026-03-30 13:26
+**版本**: v3.18
+**最后更新**: 2026-03-30 13:45
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -88,6 +88,14 @@
 ---
 
 ## 📝 运营教训
+
+### 2026-03-30 13:45 QMD 安装与配置 ⭐⭐⭐⭐
+- **Bun 安装**: `curl -fsSL https://bun.sh/install | bash`，装到 `~/.bun/bin/`
+- **QMD 安装**: `bun add -g @tobilu/qmd@2.0.1 --registry https://registry.npmjs.org`（腾讯镜像 404，换官方源）
+- **PATH 配置**: `~/.bashrc` 已有 `export PATH="$BUN_INSTALL/bin:$PATH"`，cron 脚本需手动加 `export BUN_INSTALL="$HOME/.bun"`
+- **Collection**: `qmd collection add . --name xiaomijiao --mask "**/*.md"`（33 文件已索引）
+- **Embedding**: `qmd embed --collection xiaomijiao` 后台运行，下载 ~328MB 模型
+- **注意**: GitHub 源 (`https://github.com/tobi/qmd`) 无 dist 目录，应用 npm 官方版本
 
 ### 2026-03-30 13:26 午间回顾 + 临时文件归档 ⭐⭐⭐⭐
 - **执行时间**: 13:26，午间回顾 + 查漏补缺
