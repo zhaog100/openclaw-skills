@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.20
-**最后更新**: 2026-03-30 20:02
+**版本**: v3.21
+**最后更新**: 2026-03-30 20:22
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -96,6 +96,14 @@
 - **Collection**: `qmd collection add . --name xiaomijiao --mask "**/*.md"`（33 文件已索引）
 - **Embedding**: `qmd embed --collection xiaomijiao` 后台运行，下载 ~328MB 模型
 - **注意**: GitHub 源 (`https://github.com/tobi/qmd`) 无 dist 目录，应用 npm 官方版本
+
+### 2026-03-30 20:21 Linux 内存优化 ⭐⭐⭐⭐
+- **Swappiness 调整**: 默认60，调整到10减少swap使用
+- **调整命令**: `echo 10 > /proc/sys/vm/swappiness`
+- **持久化**: `echo "vm.swappiness = 10" >> /etc/sysctl.conf`
+- **清理缓存**: `sync && echo 1 > /proc/sys/vm/drop_caches`
+- **效果**: 释放 ~500MB 内存（空闲 215MB → 724MB）
+- **长期方案**: 2GB内存运行Gateway+青龙+Docker偏紧张，建议升级到4GB
 
 ### 2026-03-30 19:55 京东任务系统部署 ⭐⭐⭐⭐⭐
 - **Docker 部署**: Ubuntu 24.04 安装 docker.io，青龙面板容器 `qinglong` 运行在 5700 端口
