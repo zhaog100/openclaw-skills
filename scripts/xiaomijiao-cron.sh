@@ -4,6 +4,7 @@
 # =============================================================================
 # 用法: xiaomila-cron.sh <command>
 # 命令:
+#   hotspot-collect - 采集百度热搜并更新热点选题（09:00）
 #   qmd-update     - 更新 QMD 知识库索引
 #   morning-review - 午间回顾（12:10）：查漏补缺+更新记忆+Git+QMD
 #   daily-review   - 每日回顾（23:30）：查漏补缺+更新记忆+Git+QMD
@@ -19,7 +20,7 @@ set -euo pipefail
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/root/.openclaw/workspace"
 MEDIA_DIR="$WORKSPACE/agents/xiaomijiao"
 MEMORY_DIR="$MEDIA_DIR/memory"
 INTEL_DIR="$MEDIA_DIR/intel"
@@ -240,6 +241,20 @@ cmd_cleanup() {
     log "✅ 清理完成"
 }
 
+# ============ 热点采集 ============
+cmd_hotspot_collect() {
+    log "===== 开始采集百度热搜 ====="
+    
+    # 执行热点采集脚本
+    if [ -x "$WORKSPACE/scripts/hotspot-collector.sh" ]; then
+        "$WORKSPACE/scripts/hotspot-collector.sh" >> "$LOG_DIR/hotspot.log" 2>&1
+        log "✅ 热点采集完成"
+    else
+        log "❌ 热点采集脚本不存在或无执行权限"
+        return 1
+    fi
+}
+
 # ============ 帮助 ============
 cmd_help() {
     cat << 'EOF'
@@ -248,6 +263,7 @@ cmd_help() {
 用法: xiaomila-cron.sh <command>
 
 命令:
+  hotspot-collect 采集百度热搜并更新热点选题
   qmd-update      更新 QMD 知识库索引
   morning-review  午间回顾（查漏补缺+记忆+Git+QMD）
   daily-review    每日回顾（查漏补缺+记忆+Git+QMD）
@@ -260,6 +276,7 @@ EOF
 
 # ============ 路由 ============
 case "$COMMAND" in
+    hotspot-collect) cmd_hotspot_collect ;;
     qmd-update)      cmd_qmd_update ;;
     morning-review)  cmd_morning_review ;;
     daily-review)    cmd_daily_review ;;
