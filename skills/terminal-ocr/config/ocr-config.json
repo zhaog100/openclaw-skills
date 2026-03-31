@@ -1,0 +1,42 @@
+{
+  "preprocessing": {
+    "block_height": 2000,
+    "contrast_enhancement": 1.5,
+    "binary_threshold": 150,
+    "max_width": 2000,
+    "max_height": 50000,
+    "overlap_height": 100,
+    "min_block_height": 500
+  },
+  "ocr_engines": {
+    "tesseract": {
+      "enabled": true,
+      "languages": ["chi_sim", "eng"],
+      "config": "--psm 6 --oem 3",
+      "timeout": 30
+    },
+    "ai_vision": {
+      "enabled": true,
+      "fallback": true,
+      "model": "default"
+    }
+  },
+  "output": {
+    "format": "markdown",
+    "preserve_formatting": true,
+    "merge_blocks": true,
+    "add_structure": true
+  },
+  "content_analysis": {
+    "detect_headers": true,
+    "detect_lists": true,
+    "detect_tables": true,
+    "detect_code_blocks": true
+  },
+  "performance": {
+    "parallel_processing": true,
+    "max_workers": 4,
+    "cache_enabled": true,
+    "cache_ttl": 3600
+  }
+}
