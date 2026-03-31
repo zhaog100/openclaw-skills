@@ -74,6 +74,9 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
   - GMAIL_APP_PASSWORD
   - GMAIL_ADDRESS
   - GEMINI_API_KEY
+  - BAILIAN_BEIJING_URL
+  - BAILIAN_SINGAPORE_URL
+  - BAILIAN_US_URL
   - GITHUB_TOKEN
 - `~/.git-credentials` - Git 凭证
 - `~/.ssh/` - SSH 密钥
