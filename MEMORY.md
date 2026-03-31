@@ -358,6 +358,7 @@
 | Git Token | 已配置（repo+workflow+delete_repo） |
 | QMD 集合 | `xiaomijiao`（801 个文档） |
 | Gateway 端口 | 18790（独立） |
+| 飞书 Bot | ✅ `cli_a92cdc08bff8dcd3`（WebSocket 模式，权限已修复） |
 | 青龙面板 | Docker qinglong:5700（京东任务自动化） |
 | 京东账号 | zhaog100 + jd_5722c14df4b06 (双账号，2348京豆) |
 
