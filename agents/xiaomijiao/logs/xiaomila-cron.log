@@ -1,2 +1,8 @@
 [2026-03-31 15:08:48] [qmd-update] 更新 QMD 向量索引...
 [2026-03-31 15:08:53] [qmd-update] ✅ QMD 更新完成
+[2026-03-31 23:30:01] [daily-review] ===== 每日运营回顾开始（23:30）=====
+[2026-03-31 23:30:01] [daily-review] 创建今日记忆文件模板...
+[2026-03-31 23:30:01] [daily-review] ✅ 记忆模板已创建
+[2026-03-31 23:30:01] [daily-review] 变更统计: intel/0 memory/0 config/0
+[2026-03-31 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-03-31 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
