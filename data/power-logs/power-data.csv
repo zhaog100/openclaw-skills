@@ -283,3 +283,6 @@ timestamp,power_source,cpu_percent,battery_percent,temperature,wifi_active,caffe
 2026-03-30 23:10:10,adapter,74.6,100,N/A,0,1
 2026-03-30 23:15:10,adapter,0.0,100,N/A,0,1
 2026-03-30 23:20:11,adapter,0.0,100,N/A,0,1
+2026-03-30 23:25:11,adapter,1.4,100,N/A,0,1
+2026-03-30 23:30:11,adapter,0.0,100,N/A,0,1
+2026-03-30 23:35:11,adapter,1.4,100,N/A,0,1

@@ -354,7 +354,8 @@
     "labels": [],
     "html_url": "https://github.com/gitcoinco/gitcoin_co_30/issues/297",
     "created_at": "2026-03-25T10:00:23.688791",
-    "status": "claimed"
+    "status": "developed",
+    "developed_at": "2026-03-30T23:30:16.146514"
   },
   {
     "key": "cashubtc/nutshell#927",
@@ -421,7 +422,8 @@
     ],
     "html_url": "https://github.com/Tyaoo/picker/issues/1324",
     "created_at": "2026-03-25T11:30:14.394842",
-    "status": "claimed"
+    "status": "developed",
+    "developed_at": "2026-03-30T23:34:41.717352"
   },
   {
     "key": "cashubtc/nutshell#929",
