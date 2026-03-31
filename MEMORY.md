@@ -205,4 +205,29 @@ _每次工作后更新_
 
 ---
 
-_最后更新: 2026-03-30_
+_最后更新: 2026-03-31_
+
+---
+
+## 📊 索引
+
+### 重要文件快速访问
+
+#### 📁 配置文件
+- `.env` - 环境变量（API Keys, Token 等）
+- `data/payment-config.json` - 付款钱包配置
+
+#### 📊 数据文件
+- `data/bounty-pr-tracker.json` - PR 状态跟踪
+- `data/bounty-queue/queue.json` - Bounty 任务队列
+- `data/INDEX.md` - 数据文件索引
+
+#### 📝 记忆文件
+- `memory/2026-03-31.md` - 今日工作日志
+
+#### 📋 报告文件
+- `data/reports/` - API 和系统报告
+- `data/payment/` - 付款相关报告
+
+#### 📚 知识库
+- `knowledge/` - Bounty 知识库
