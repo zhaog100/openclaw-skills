@@ -71,6 +71,10 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 
 **已存储的敏感信息位置**：
 - `~/.openclaw/workspace/.env` - 主要配置（已在 .gitignore）
+  - GMAIL_APP_PASSWORD
+  - GMAIL_ADDRESS
+  - GEMINI_API_KEY
+  - GITHUB_TOKEN
 - `~/.git-credentials` - Git 凭证
 - `~/.ssh/` - SSH 密钥
 
