@@ -343,7 +343,7 @@
 | 模型 | `zai/glm-5` ✅ |
 | 工作区 | `~/.openclaw/workspace/` |
 | Git remote | `origin` + `xiaomijiao` (双仓库) |
-| Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
+| Git Token | 已配置（repo+workflow+delete_repo） |
 | QMD 集合 | `xiaomijiao`（26 个文档） |
 | Gateway 端口 | 18790（独立） |
 | 青龙面板 | Docker qinglong:5700（京东任务自动化） |
