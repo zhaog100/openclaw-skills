@@ -69,10 +69,21 @@ _持续更新，记录重要信息_
   - Token 掩码：`ghp_***...P0B`
 - **安全存储** - `~/.openclaw/workspace/.env`（已在 .gitignore）
 
+### API 配置
+- **阿里云百炼**
+  - OpenAI 兼容: `https://coding.dashscope.aliyuncs.com/v1`
+  - Anthropic 兼容: `https://coding.dashscope.aliyuncs.com/apps/anthropic`
+  - 状态: ⚠️ **配额已用完**（HTTP 429）
+  - 错误: "month allocated quota exceeded"
+  - 解决: 充值或等待配额重置
+  - 配置文件: `~/.openclaw/workspace/.env`
+
 ---
 
 ## 📌 待办事项
 
+- [ ] 获取有效的百炼 API Key
+- [ ] 测试百炼 API 连接
 - [ ] 确认用户称呼和偏好
 - [ ] 完善身份设定（IDENTITY.md）
 - [ ] 自动化 bounty 扫描流程

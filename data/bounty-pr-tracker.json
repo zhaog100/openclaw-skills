@@ -1,7 +1,31 @@
 {
   "version": "1.0",
-  "updated": "2026-03-24T14:42:00+08:00",
+  "updated": "2026-03-31T02:25:00-07:00",
   "prs": [
+    {
+      "id": "PR-20260317-001",
+      "repo": "Scottcjn/rustchain-bounties",
+      "issue": 1589,
+      "pr": 2205,
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2205",
+      "title": "Add unit tests for star_tracker.py",
+      "amount": 2,
+      "currency": "RTC",
+      "status": "merged",
+      "submitted": "2026-03-17",
+      "merged_at": "2026-03-17T10:35:36Z",
+      "payment_platform": "RustChain",
+      "payment_address": "USDT (TRC20): TGu4W5T6q4KvLAbmXmZSRpUBNRCxr2aFTP",
+      "payment_status": "overdue",
+      "expected_payment_date": "2026-03-19 ~ 2026-03-22",
+      "days_overdue": 9,
+      "payment_issue": "Address type mismatch (provided USDT, reward is RTC)",
+      "rtc_wallet": "RTCb72a1accd46b9ba9f22dbd4b5c6aad5a5831572b",
+      "claim_issue": 2755,
+      "claim_url": "https://github.com/Scottcjn/rustchain-bounties/issues/2755",
+      "claim_created": "2026-03-31T02:30:00-07:00",
+      "note": "✅ 已创建 Claim Issue #2755，等待维护者付款"
+    },
     {
       "id": "PR-20260323-001",
       "repo": "TheSuperHackers/GeneralsGameCode",
@@ -11,20 +35,11 @@
       "title": "Fix GLA Cash Bounty incorrect value for China Red Guard",
       "amount": 300,
       "currency": "USD",
-      "status": "open",
+      "status": "closed",
       "submitted": "2026-03-23",
+      "closed_at": "2026-03-26T11:12:14Z",
       "payment_platform": "direct",
-      "maintainer_active": true,
-      "repo_push": "2026-03-21",
-      "ping_sent": true,
-      "ping_history": [
-        {
-          "at": "2026-03-24T14:42:00+08:00",
-          "target": "maintainer",
-          "comment_url": "https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485#issuecomment-4115814395"
-        }
-      ],
-      "note": "REVIEW_REQUIRED, Greptile bot 已审，已 ping 催审 (2026-03-24 14:42)"
+      "note": "❌ 已关闭（未合并），无需付款"
     },
     {
       "id": "PR-20260323-002",
