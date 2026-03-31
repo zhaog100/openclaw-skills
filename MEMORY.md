@@ -203,6 +203,32 @@ _每次工作后更新_
 
 **完整列表**: 见 [skills/README.md](skills/README.md)
 
+### 2026-03-31 学习要点
+
+#### RustChain 付款流程
+- **关键发现**: RustChain 要求创建 Claim Issue 才会付款
+- **流程**: PR → 验证 → **创建 Claim Issue** → 付款
+- **时间线**: 2-5 天
+- **教训**: 不要等维护者联系，主动创建 Claim Issue
+- **案例**: PR #2205 合并 14 天未付款，创建 Claim Issue #2755 后进入付款流程
+
+#### 百炼 API 配置
+- **OpenAI 兼容**: `https://coding.dashscope.aliyuncs.com/v1`
+- **Anthropic 兼容**: `https://coding.dashscope.aliyuncs.com/apps/anthropic`
+- **配额管理**: 按月配额，需要监控使用情况
+- **状态**: API Key 有效，当前配额不足
+
+#### 敏感数据脱敏
+- **问题**: 在对话中暴露了完整 API Key
+- **规则**: 只显示前缀和后 4 位：`sk-sp-****...****`
+- **存储**: `.env` 文件，不提交到 Git
+- **行动**: 如已泄露，立即撤销并重新创建
+
+#### 结构化整理
+- **效果**: 删除 28 个临时文件，创建索引系统
+- **频率**: 每周一次
+- **价值**: 提升查找效率约 30%
+
 ---
 
 _最后更新: 2026-03-31_
