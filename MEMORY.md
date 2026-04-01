@@ -477,3 +477,13 @@
 - **操作流程**: 切换到main → 合并master → 推送到远程 → 删除远程master
 - **配置更新**: 设置main为默认推送分支，与GitHub标准对齐
 - **远程仓库**: https://github.com/zhaog100/xiaomijiao-skills (main分支)
+
+### 2026-04-01 15:43 百炼API配置完成 ⭐⭐⭐⭐
+- **API Key**: 已配置到环境变量 `DASHSCOPE_API_KEY`
+- **接口地址**: `https://coding.dashscope.aliyuncs.com/apps/anthropic`
+- **主力模型**: 保持 `zai/glm-5`（智谱GLM-5）
+- **百炼模型**: qwen-turbo/qwen-plus/qwen-max（备用）
+- **配额状态**: 本月已用完（insufficient_quota），下月刷新
+- **配置位置**: `~/.bashrc` + `~/.openclaw/openclaw.json`
+- **优先级**: GLM-5为主，百炼为备用
+- **教训**: 配额用完时会报insufficient_quota错误，需要等待下月刷新或充值
