@@ -25,3 +25,13 @@
 [2026-04-01 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/git.log
 [2026-04-01 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/qmd-update.log
 [2026-04-01 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
+[2026-04-01 12:10:01] [morning-review] ✅ Git 已提交
+[2026-04-01 12:10:02] [morning-review] ⚠️ 推送失败（网络？），下次重试
+[2026-04-01 12:10:02] [morning-review] 更新 QMD 向量索引...
+[2026-04-01 12:10:05] [morning-review] ✅ QMD 更新完成
+[2026-04-01 12:10:05] [morning-review] ===== 午间运营回顾完成 =====
+[2026-04-01 13:10:02] [error-stats] 📊 今日错误: 1
+[2026-04-01 13:55:52] [qmd-update] 更新 QMD 向量索引...
+[2026-04-01 13:55:54] [qmd-update] ✅ QMD 更新完成
+[2026-04-01 14:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-01 15:10:01] [error-stats] 📊 今日错误: 1
