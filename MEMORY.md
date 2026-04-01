@@ -401,6 +401,16 @@
 
 ---
 
+### 2026-04-01 15:45 阿里云百炼API配置实践 ⭐⭐⭐⭐
+- **接口地址**: OpenAI兼容 `https://coding.dashscope.aliyuncs.com/v1`，Anthropic兼容 `https://coding.dashscope.aliyuncs.com/apps/anthropic`
+- **环境变量**: `DASHSCOPE_API_KEY` 需要设置到 `~/.bashrc`
+- **配额管理**: 本月配额用完会报 `insufficient_quota`，需要等待下月刷新
+- **主力保持**: 继续使用 `zai/glm-5`（智谱GLM-5），百炼作为备用
+- **备用方案**: 百炼qwen系列、GLM-4.7、GLM-5-turbo作为降级备选
+- **切换原则**: 主力模型稳定运行时不随意切换，避免影响工作流
+- **成本控制**: 百炼配额用完时自动降级，不影响主力模型使用
+- **配置位置**: `~/.openclaw/openclaw.json` 中的 `agents.defaults.model`
+
 ### 2026-04-01 15:15 Git分支管理优化 ⭐⭐⭐⭐
 - **分支统一**: 删除远程master分支，统一使用main分支
 - **操作流程**: 切换到main → 合并master → 推送到远程 → 删除远程master
