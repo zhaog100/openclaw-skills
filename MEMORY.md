@@ -452,3 +452,9 @@
 ---
 
 *持续进化 · 定期清理 · 保留精华*
+
+### 2026-04-01 15:15 Git分支管理优化 ⭐⭐⭐⭐
+- **分支统一**: 删除远程master分支，统一使用main分支
+- **操作流程**: 切换到main → 合并master → 推送到远程 → 删除远程master
+- **配置更新**: 设置main为默认推送分支，与GitHub标准对齐
+- **远程仓库**: https://github.com/zhaog100/xiaomijiao-skills (main分支)
