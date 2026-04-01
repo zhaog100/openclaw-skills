@@ -1,1 +1,5 @@
 xiaomijiao-gateway-issue.txt
+
+# Secrets
+secrets/
+*.env
