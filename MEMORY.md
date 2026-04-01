@@ -231,7 +231,7 @@ _每次工作后更新_
 
 ---
 
-_最后更新: 2026-03-31_
+_最后更新: 2026-04-01 14:35_
 
 ---
 
@@ -257,3 +257,84 @@ _最后更新: 2026-03-31_
 
 #### 📚 知识库
 - `knowledge/` - Bounty 知识库
+
+### 2026-04-01 安全审计与配置更新
+
+#### 🔒 安全审计
+- **配置权限**: openclaw.json 从 664 修复为 600
+- **审计结果**: 2 个 CRITICAL + 6 个 WARNING
+- **关键问题**: 
+  - allowInsecureAuth: true（TUI 访问需要）
+  - QQ Bot allowFrom: "*"（待评估）
+
+#### 🔑 API Key 轮换（4/6）
+- ✅ GitHub Token: `ghp_dS3ZlA***` (OpenClaw_xiaomila)
+- ✅ 百炼: `sk-sp-fb6c***`
+- ✅ AIHubMix: `sk-5hJTv3***`
+- ✅ OpenAI: `sk-proj-lsdo***`
+- ⏸️ 智谱 API（主力，暂不更新）
+- ⏸️ MiniMax（暂不更新）
+
+#### 🤖 QQ Bot 配置
+**小米辣：**
+- AppID: `102911630`
+- Token: `RyV3cBl***3tj`
+- 状态: ✅ Connected (13:14)
+
+**小米糕：**
+- AppID: `1903665913`
+- Token: `br8Phz***hDj`
+- 状态: ✅ Connected (10:44)
+
+#### 🎮 Vulkan GPU 支持
+- **安装**: libvulkan-dev + vulkan-tools + glslc
+- **结果**: ⚠️ VM 无真 GPU，使用 llvmpipe 软件渲染
+- **QMD**: 0.3-0.5 秒搜索速度（CPU 模式）
+
+#### 📦 Git 仓库整理
+- **分支统一**: 合并 xiaomila/main + xiaomila/master
+- **删除**: 远程 master 分支
+- **推送**: 577 files, +17,626 / -61,187
+- **远程**: 
+  - origin: openclaw-skills.git
+  - xiaomila: xiaomila-skills.git
+
+#### 🐳 Docker 同步（小米糕）
+- **配置**: models.json + auth-profiles.json + openai.env
+- **重启**: ✅ Gateway + QQ Bot 正常
+- **专用**: GitHub Token `ghp_1iGTbA***`
+
+#### 📚 今日学习
+
+**1. Git 分支合并**
+- 无共同历史的分支需要 `--allow-unrelated-histories`
+- 冲突解决优先保留本地权威版本
+- 大文件推送需要增加 buffer: `http.postBuffer 524288000`
+
+**2. 安全管理**
+- API Key 定期轮换是必要的
+- 配置文件权限必须严格（600）
+- 敏感信息脱敏规则：前缀 + *** + 后4位
+
+**3. SSH vs HTTPS**
+- SSH 需要配置公钥到 GitHub
+- HTTPS 在大文件推送时可能超时
+- 网络问题可能导致推送失败，需要重试
+
+**4. Docker 配置同步**
+- 使用 `docker cp` 复制文件
+- 配置更新后需要重启容器
+- QQ Bot token 更新需重启才能生效
+
+#### ⚠️ 待解决
+- [ ] SSH 连接问题（Connection closed by port 22）
+- [ ] Git 大文件推送优化
+- [ ] Bounty PR 监控（3 个 OPEN）
+
+#### 📊 工作统计
+- 配置文件修改: 6 个
+- Token 更新: 4 个
+- Git 提交: 3 次
+- Docker 重启: 2 次
+- 总耗时: ~4 小时
+

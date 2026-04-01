@@ -1,6 +1,6 @@
 # 📚 知识库索引
 
-_最后更新: 2026-03-29_
+_最后更新: 2026-04-01_
 
 ---
 
@@ -169,3 +169,28 @@ github → knowledge/github-bounty/
 
 _本索引由 OpenClaw Agent 维护_
 _建议定期更新_
+
+---
+
+### 2026-04-01 新增知识
+
+#### 🔒 Git 安全审计
+- **位置**: `git-security/2026-04-01-security-audit-and-config-management.md`
+- **用途**: 安全审计、API Key 轮换、配置管理
+- **关键点**:
+  - 配置文件权限管理
+  - API Key 轮换流程
+  - Git 分支合并策略
+  - Docker 配置同步
+  - Vulkan GPU 支持
+
+#### 📝 今日工作记录
+- **位置**: `memory/2026-04-01.md`
+- **用途**: 日常工作和学习记录
+- **关键点**:
+  - 安全审计完成
+  - API Key 轮换（4/6）
+  - QQ Bot 配置更新
+  - Git 仓库整理
+  - Docker 同步
+
