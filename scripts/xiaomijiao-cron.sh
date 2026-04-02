@@ -255,6 +255,48 @@ cmd_hotspot_collect() {
     fi
 }
 
+# ============ 每晚学习总结（21:00）============
+# AI自主学习：搜集+总结今日学到的新知识
+cmd_ai_summary() {
+    log "===== 每晚AI学习总结开始（$NOW）====="
+    
+    SUMMARY_FILE="$MEMORY_DIR/ai学习-$TODAY.md"
+    
+    cat > "$SUMMARY_FILE" << 'EOF'
+# 🤖 AI每日学习总结
+**日期**: TODAYS_DATE
+**时间**: 21:00
+
+## 📚 今日学到的新知识
+_待填充_
+
+## 🔧 今日技能/工具更新
+_待填充_
+
+## 💡 今日优化/改进
+_待填充_
+
+## 📝 明日待实践
+_待填充_
+
+---
+*自动生成 by xiaomila-cron.sh*
+EOF
+    
+    # 替换日期
+    sed -i "s/TODAYS_DATE/$TODAY/g" "$SUMMARY_FILE"
+    
+    log "✅ 学习总结模板已创建: $SUMMARY_FILE"
+    
+    # Git提交
+    cd "$WORKSPACE"
+    git add "$SUMMARY_FILE" >> "$LOG_DIR/git.log" 2>&1 || true
+    git commit -m "docs: AI学习总结 - $TODAY" >> "$LOG_DIR/git.log" 2>&1 || true
+    log "✅ 学习总结已提交"
+    
+    log "===== 每晚AI学习总结完成 ====="
+}
+
 # ============ 帮助 ============
 cmd_help() {
     cat << 'EOF'
@@ -264,6 +306,7 @@ cmd_help() {
 
 命令:
   hotspot-collect 采集百度热搜并更新热点选题
+  ai-summary      每晚AI学习总结（21:00）
   qmd-update      更新 QMD 知识库索引
   morning-review  午间回顾（查漏补缺+记忆+Git+QMD）
   daily-review    每日回顾（查漏补缺+记忆+Git+QMD）
@@ -277,6 +320,7 @@ EOF
 # ============ 路由 ============
 case "$COMMAND" in
     hotspot-collect) cmd_hotspot_collect ;;
+    ai-summary)      cmd_ai_summary ;;
     qmd-update)      cmd_qmd_update ;;
     morning-review)  cmd_morning_review ;;
     daily-review)    cmd_daily_review ;;
