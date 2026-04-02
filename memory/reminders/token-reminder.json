@@ -1,0 +1,23 @@
+{
+  "id": "token-reminder-2026-04-02",
+  "type": "one-time",
+  "created": 1775046949368,
+  "triggerAt": 1775091600000,
+  "triggerTime": "2026-04-02 09:00:00 CST",
+  "status": "sent",
+  "channel": "qqbot",
+  "to": "8C21AFD77B89CA793A2AAC9A3ABEEA25",
+  "message": "🔐 官家！记得更新 GitHub Token！",
+  "details": [
+    "按照昨天讨论的步骤配置完整权限",
+    "特别注意 write:org 权限（创建跨仓库 PR 必需）",
+    "步骤：GitHub Settings → Tokens → Generate new token → 勾选所有权限"
+  ],
+  "priority": "high",
+  "tags": [
+    "github",
+    "token",
+    "security",
+    "bounty"
+  ]
+}

@@ -1,6 +1,8 @@
 # 📚 知识库索引
 
-_最后更新: 2026-04-01_
+_最后更新: 2026-04-01 18:30_
+_总文件数: 128 个_
+_今日新增: 55 个_
 
 ---
 
@@ -193,4 +195,18 @@ _建议定期更新_
   - QQ Bot 配置更新
   - Git 仓库整理
   - Docker 同步
+
+
+### 🤖 AI 模型配置
+
+#### Qwen3.6 Plus 免费访问 (⭐ 新增)
+- **位置**: `ai-models/qwen3.6-plus-free-access.md`
+- **用途**: Qwen3.6 Plus 四种免费使用方式
+- **关键点**:
+  - OpenCode（开箱即用）
+  - OpenRouter（API 可集成）
+  - CodingPlan Test（批量测试）
+  - JCode（Claude Code 启动器）
+  - 100万上下文，完全免费
+- **配置**: 已配置到 OpenClaw（主力智谱，备用）
 

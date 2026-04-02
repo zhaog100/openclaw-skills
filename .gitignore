@@ -36,3 +36,9 @@ build/
 # 系统文件
 Thumbs.db
 .Spotlight-V100
+
+# 嵌套 Git 仓库
+xiaomila-skills/
+qmd/
+backups/
+

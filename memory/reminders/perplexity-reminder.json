@@ -1,0 +1,24 @@
+{
+  "id": "perplexity-reminder-2026-04-02",
+  "type": "one-time",
+  "created": 1775055744000,
+  "triggerAt": 1775091900000,
+  "triggerTime": "2026-04-02 09:05:00 CST",
+  "status": "sent",
+  "channel": "qqbot",
+  "to": "qqbot:c2c:8C21AFD77B89CA793A2AAC9A3ABEEA25",
+  "message": "🔑 官家！配置 Perplexity API Key！",
+  "details": [
+    "访问 https://www.perplexity.ai/settings/api",
+    "获取 API Key",
+    "配置到 ~/.openclaw/workspace/.env",
+    "变量名: PERPLEXITY_API_KEY"
+  ],
+  "priority": "high",
+  "tags": [
+    "perplexity",
+    "api",
+    "search",
+    "configuration"
+  ]
+}

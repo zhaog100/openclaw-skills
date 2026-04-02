@@ -1,0 +1,123 @@
+{
+  "updated": "2026-04-01T19:24:00+08:00",
+  "repositories": [
+    {
+      "name": "nodejs/node",
+      "priority": "high",
+      "labels": ["security", "bug", "vulnerability"],
+      "min_bounty": 500,
+      "notes": "Node.js 官方，安全赏金计划"
+    },
+    {
+      "name": "facebook/react",
+      "priority": "high",
+      "labels": ["bug", "security", "good first issue"],
+      "min_bounty": 300,
+      "notes": "Facebook React，有赏金计划"
+    },
+    {
+      "name": "vercel/next.js",
+      "priority": "high",
+      "labels": ["bug", "good first issue", "help wanted"],
+      "min_bounty": 200,
+      "notes": "Next.js，Vercel 赏金计划"
+    },
+    {
+      "name": "ethereum/go-ethereum",
+      "priority": "critical",
+      "labels": ["bug", "security", "bounty"],
+      "min_bounty": 5000,
+      "notes": "以太坊核心，Web3 最高价值"
+    },
+    {
+      "name": "solana-labs/solana",
+      "priority": "critical",
+      "labels": ["bug", "security", "bounty"],
+      "min_bounty": 5000,
+      "notes": "Solana 区块链，高额赏金"
+    },
+    {
+      "name": "Uniswap/v3-core",
+      "priority": "critical",
+      "labels": ["bug", "security"],
+      "min_bounty": 10000,
+      "notes": "DeFi 协议，智能合约赏金"
+    },
+    {
+      "name": "OpenZeppelin/openzeppelin-contracts",
+      "priority": "high",
+      "labels": ["bug", "security"],
+      "min_bounty": 2000,
+      "notes": "智能合约库，安全重点"
+    },
+    {
+      "name": "microsoft/TypeScript",
+      "priority": "medium",
+      "labels": ["bug", "good first issue", "help wanted"],
+      "min_bounty": 200,
+      "notes": "微软 TypeScript，有赏金"
+    },
+    {
+      "name": "openssl/openssl",
+      "priority": "critical",
+      "labels": ["bug", "security", "vulnerability"],
+      "min_bounty": 5000,
+      "notes": "OpenSSL，关键安全库"
+    },
+    {
+      "name": "curl/curl",
+      "priority": "high",
+      "labels": ["bug", "security"],
+      "min_bounty": 1000,
+      "notes": "curl 库，安全漏洞高价值"
+    },
+    {
+      "name": "projectdiscovery/nuclei",
+      "priority": "medium",
+      "labels": ["bug", "good first issue", "help wanted"],
+      "min_bounty": 100,
+      "notes": "漏洞扫描器，安全工具"
+    },
+    {
+      "name": "trufflesecurity/trufflehog",
+      "priority": "medium",
+      "labels": ["bug", "good first issue"],
+      "min_bounty": 100,
+      "notes": "密钥扫描工具"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Algora",
+      "url": "https://algora.io",
+      "notes": "主要 bounty 平台，已集成"
+    },
+    {
+      "name": "HackerOne",
+      "url": "https://hackerone.com/directory/programs",
+      "notes": "企业级赏金平台"
+    },
+    {
+      "name": "Bugcrowd",
+      "url": "https://bugcrowd.com/programs",
+      "notes": "众包安全测试"
+    },
+    {
+      "name": "Immunefi",
+      "url": "https://immunefi.com",
+      "notes": "Web3 最大赏金平台"
+    },
+    {
+      "name": "GitHub Security Lab",
+      "url": "https://securitylab.github.com",
+      "notes": "GitHub 官方安全实验室"
+    }
+  ],
+  "scan_config": {
+    "interval_minutes": 30,
+    "max_issues_per_repo": 10,
+    "min_score": 7,
+    "auto_submit": true,
+    "keywords": ["bounty", "security", "bug-bounty", "reward", "payment"]
+  }
+}

@@ -7,6 +7,33 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - Username: zhaog100
 - Token 已存储在 ~/.git-credentials
 
+## 🎯 模型使用策略
+
+### 优先级（重要！）
+
+1. **主力**：智谱 `zai/glm-5` ⭐
+   - 日常任务首选
+   - 稳定性高，响应快
+
+2. **备用**：
+   - 百炼 `bailian/*`
+   - OpenRouter `qwen/qwen3.6-plus-preview:free` (100万上下文)
+   - AIHubMix `aihubmix/*`
+   - MiniMax `MiniMax-M2.7`
+
+### 切换命令
+
+```bash
+# 默认使用智谱（无需切换）
+/model zai/glm-5
+
+# 超长上下文任务
+/model qwen/qwen3.6-plus-preview:free
+
+# 推理密集型
+/model MiniMax-M2.7
+```
+
 ## What Goes Here
 
 Things like:
