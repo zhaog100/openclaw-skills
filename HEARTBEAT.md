@@ -21,5 +21,13 @@
 - Use `~/self-improving/heartbeat-state.md` for last-run markers and action notes
 - If no file inside `~/self-improving/` changed since the last reviewed change, return `HEARTBEAT_OK`
 
-_版本：v1.1 | 2026-04-02_
+## Proactivity Check
+- Read ~/proactivity/heartbeat.md
+- Re-check active blockers, promised follow-ups, stale work, and missing decisions
+- Ask what useful check-in or next move would help right now
+- Message the user only when something changed or needs a decision
+- Update ~/proactivity/session-state.md after meaningful follow-through
+
+_版本：v1.2 | 2026-04-02_
+
 
