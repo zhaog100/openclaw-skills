@@ -152,3 +152,9 @@
 [2026-04-02 21:00:02] [ai-summary] ===== 每晚AI学习总结完成 =====
 [2026-04-02 21:10:01] [error-stats] 📊 今日错误: 1
 [2026-04-02 22:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-02 23:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-02 23:30:01] [daily-review] ===== 每日运营回顾开始（23:30）=====
+[2026-04-02 23:30:01] [daily-review] 今日记忆文件: 19行
+[2026-04-02 23:30:02] [daily-review] 变更统计: intel/0 memory/0 config/0
+[2026-04-02 23:30:02] [daily-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-02 23:30:02] [daily-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
