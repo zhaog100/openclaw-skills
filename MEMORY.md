@@ -515,6 +515,13 @@
 
 ---
 
+### 2026-04-02 OpenClaw v2026.4.1 升级 ⭐⭐⭐⭐
+- **升级时间**: 11:41
+- **原版本**: v2026.3.28 (f9b1079)
+- **新版本**: v2026.4.1 (da64a97)
+- **Gateway**: 已重启运行
+- **npm升级**: `npm install -g openclaw@latest`
+
 ### 2026-04-02 深度安全加固与自主进化部署 ⭐⭐⭐⭐⭐
 - **allowInsecureAuth**: 已从true改为false（关闭）
 - **tools权限**: permissionPolicy不是有效配置项，已回退（应在openclaw.json外配置）
