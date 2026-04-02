@@ -24,7 +24,7 @@ IMAP_PORT = 993
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 USERNAME = "zhaog100@gmail.com"
-APP_PASSWORD = "ltcnlgijscosbxwv"  # 应用专用密码
+APP_PASSWORD = "frbmfuadrhginwls"  # 应用专用密码
 
 # 邮件监控配置
 CHECK_INTERVAL_MINUTES = 30  # 每 30 分钟检查一次
