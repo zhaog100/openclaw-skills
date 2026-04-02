@@ -120,3 +120,5 @@
 [2026-04-02 09:00:02] [hotspot-collect] ✅ 热点采集完成
 /root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
 0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
