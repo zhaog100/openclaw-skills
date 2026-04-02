@@ -411,6 +411,16 @@
 - **成本控制**: 百炼配额用完时自动降级，不影响主力模型使用
 - **配置位置**: `~/.openclaw/openclaw.json` 中的 `agents.defaults.model`
 
+### 2026-04-02 Qwen3.6 Plus 四种免费使用方式 ⭐⭐⭐⭐
+- **模型特点**: 100万上下文、更强推理能力、更可靠Agent行为、自主编码/前端开发表现出色
+- **四种方式**:
+  1. **OpenCode**: 开源编程智能体，桌面/终端版，https://opencode.ai/zh
+  2. **OpenRouter**: 在线对话+API，已在系统配置 `openrouter/qwen3.6-plus-preview:free`
+  3. **CodingPlan Test**: 批量测试平台，支持模型对比/群聊/对战
+  4. **JCode**: Claude Code启动器，支持OpenRouter一键注入
+- **已在系统配置**: OpenRouter API Key已配置，备用模型
+- **性能特点**: 简单问题思考时间减少，复杂问题思考时间增加（调度改进方向正确）
+
 ### 2026-04-01 15:15 Git分支管理优化 ⭐⭐⭐⭐
 - **分支统一**: 删除远程master分支，统一使用main分支
 - **操作流程**: 切换到main → 合并master → 推送到远程 → 删除远程master
