@@ -515,4 +515,31 @@
 
 ---
 
-*持续进化 · 定期清理 · 保留精华 | v3.29 | 2026-04-02*
+### 2026-04-02 深度安全加固与自主进化部署 ⭐⭐⭐⭐⭐
+- **allowInsecureAuth**: 已从true改为false（关闭）
+- **tools权限**: permissionPolicy不是有效配置项，已回退（应在openclaw.json外配置）
+- **凭证安全**: 添加OPENROUTER_API_KEY到bashrc环境变量，models.json使用SecretRef
+- **凭证审计**: `openclaw secrets audit`发现8处明文，已部分修复
+
+### 2026-04-02 自主进化体系完善 ⭐⭐⭐⭐⭐
+- **Self-Improving**: v1.2.16已安装，三层记忆体系HOT/WARM/COLD
+- **Proactivity**: v1.0.1已安装，主动跟随机制
+- **ai-summary**: 新增21:00每日AI学习总结定时任务
+- **crontab更新**: 0 21 * * * ai-summary
+- **find-skills**: ClawHub 404不可用
+- **Agent Team**: ClawHub限速，暂未安装
+
+### 2026-04-02 问题修复 ⭐⭐⭐⭐⭐
+- **Gateway Cron QQ投递**: sessionTarget从isolated改为current，消息可正常发送
+- **JD Cookie禁用**: 数据库直接修改status=1，重启青龙容器生效
+- **GitHub限流**: 59/60限额，12:08恢复，已设12:10定时推送测试
+
+### 2026-04-02 配置优化 ⭐⭐⭐⭐
+- **AGENTS.md**: v3.3，新增任务接受流程+数据监控+爆款记录
+- **HEARTBEAT.md**: v1.3，AI打卡上班模式（早班/午间/晚班）
+- **TOOLS.md**: v1.2，权限分级+敏感操作规范
+
+---
+
+*持续进化 · 定期清理 · 保留精华 | v3.30 | 2026-04-02*
+
