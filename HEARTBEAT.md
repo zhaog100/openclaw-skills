@@ -16,4 +16,10 @@
 - 23:00-08:00 安静，除非有紧急热点
 - 内容数据异常 → 主动通知官家
 
-_版本：v1.0 | 2026-03-24_
+## Self-Improving Check
+- Read `./skills/self-improving/heartbeat-rules.md`
+- Use `~/self-improving/heartbeat-state.md` for last-run markers and action notes
+- If no file inside `~/self-improving/` changed since the last reviewed change, return `HEARTBEAT_OK`
+
+_版本：v1.1 | 2026-04-02_
+

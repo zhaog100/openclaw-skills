@@ -97,11 +97,31 @@
 - **每日笔记**：`memory/YYYY-MM-DD.md` — 当日运营动作、数据、热点
 - **长期记忆**：`MEMORY.md` — 提炼后的运营经验精华
 - **"心理记忆"不存在**，所有重要信息必须写入文件
+- **Self-improving:** `~/self-improving/` (via `self-improving` skill) — execution-improvement memory (preferences, workflows, style patterns, what improved/worsened outcomes)
 
 ### 写入规则
 - 官家说"记住" → 立刻更新 `memory/YYYY-MM-DD.md`
 - 学到可复用方法 → 更新 `MEMORY.md` 或 `AGENTS.md`
 - 犯错 → 记录到 `MEMORY.md` 运营教训，不重复犯
+- 修正/偏好/工作流/风格 → 记录到 `~/self-improving/`
+
+### Self-Improving 记忆体系
+
+**Before any non-trivial task:**
+- Read `~/self-improving/memory.md`
+- List available files first:
+  ```bash
+  for d in ~/self-improving/domains ~/self-improving/projects; do
+    [ -d "$d" ] && find "$d" -maxdepth 1 -type f -name "*.md"
+  done | sort
+  ```
+- Read up to 3 matching files from `~/self-improving/domains/`
+- If a project is clearly active, also read `~/self-improving/projects/<project>.md`
+- Do not read unrelated domains "just in case"
+
+**Self-Improving Mode:** Passive
+- Only learn from explicit corrections
+- Infer new rules as tentative until human validation
 
 ---
 

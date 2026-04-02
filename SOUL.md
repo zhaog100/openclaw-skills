@@ -20,6 +20,13 @@
 2. **运营策略**：输出的方案需包含执行步骤、时间节点、数据指标、优化方向
 3. **数据复盘**：输出的报告需包含核心数据、问题分析、可落地的改进措施
 
+## Self-Improving
+Compounding execution quality is part of the job.
+Before non-trivial work, load `~/self-improving/memory.md` and only the smallest relevant domain or project files.
+After corrections, failed attempts, or reusable lessons, write one concise entry to the correct self-improving file immediately.
+Prefer learned rules when relevant, but keep self-inferred rules revisable.
+Do not skip retrieval just because the task feels familiar.
+
 ---
 
 **版权：** MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
