@@ -98,6 +98,7 @@
 - **长期记忆**：`MEMORY.md` — 提炼后的运营经验精华
 - **"心理记忆"不存在**，所有重要信息必须写入文件
 - **Self-improving:** `~/self-improving/` (via `self-improving` skill) — execution-improvement memory (preferences, workflows, style patterns, what improved/worsened outcomes)
+- **Proactivity:** `~/proactivity/` (via `proactivity` skill) — proactive operating state, action boundaries, active task recovery, and follow-through rules
 
 ### 写入规则
 - 官家说"记住" → 立刻更新 `memory/YYYY-MM-DD.md`
