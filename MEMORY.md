@@ -546,7 +546,18 @@
 - **HEARTBEAT.md**: v1.3，AI打卡上班模式（早班/午间/晚班）
 - **TOOLS.md**: v1.2，权限分级+敏感操作规范
 
+### 2026-04-02 exec免审批问题彻底解决 ⭐⭐⭐⭐⭐
+- **问题**: WebChat/TUI exec全部需要审批，OpenClaw不支持通过tools配置关闭
+- **尝试失败**: `tools.exec.requireApproval`、`tools.policy`、`execApprovals` 均报错 Unrecognized key
+- **正确解法**: 
+  1. openclaw.json 加 `"approvals": {"exec": {"enabled": false}}`
+  2. exec-approvals.json 的 `defaults.security` 改为 `"full"`
+  3. 重启 Gateway
+- **关键文档**: `~/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/docs/tools/exec-approvals.md`
+- **审批存储**: `~/.openclaw/exec-approvals.json`
+- **Git remote**: 只有 xiaomijiao，无 origin
+
 ---
 
-*持续进化 · 定期清理 · 保留精华 | v3.30 | 2026-04-02*
+*持续进化 · 定期清理 · 保留精华 | v3.31 | 2026-04-02*
 
