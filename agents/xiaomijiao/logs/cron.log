@@ -234,3 +234,5 @@
 [2026-04-03 23:30:02] [daily-review] 更新 QMD 向量索引...
 [2026-04-03 23:30:04] [daily-review] ✅ QMD 更新完成
 [2026-04-03 23:30:04] [daily-review] ===== 每日运营回顾���成 =====
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
