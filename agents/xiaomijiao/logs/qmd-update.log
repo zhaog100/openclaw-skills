@@ -286,3 +286,14 @@ Indexed: 0 new, 0 updated, 852 unchanged, 0 removed
 ✓ All collections updated.
 
 Run 'qmd embed' to update embeddings (135 unique hashes need vectors)
+Updating 1 collection(s)...
+
+[1/1] xiaomijiao (**/*.md)
+Collection: /root/.openclaw/workspace (**/*.md)
+
+Indexed: 2 new, 1 updated, 851 unchanged, 0 removed
+Cleaned up 1 orphaned content hash(es)
+
+✓ All collections updated.
+
+Run 'qmd embed' to update embeddings (137 unique hashes need vectors)
