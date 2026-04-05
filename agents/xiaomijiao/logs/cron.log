@@ -368,3 +368,8 @@
 [2026-04-05 23:30:01] [daily-review] 变更统计: intel/0 memory/0 config/0
 [2026-04-05 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/cron.log
 [2026-04-05 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
+[2026-04-05 23:30:01] [daily-review] ✅ Git 已提交
+[2026-04-05 23:30:01] [daily-review] ⚠️ 推送失败（网络？），下次重试
+[2026-04-05 23:30:01] [daily-review] 更新 QMD 向量索引...
+[2026-04-05 23:30:04] [daily-review] ✅ QMD 更新完成
+[2026-04-05 23:30:04] [daily-review] ===== 每日运营回顾���成 =====
