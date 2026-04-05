@@ -315,3 +315,21 @@
 0: integer expression expected
 [2026-04-05 02:10:01] [cleanup] 清理旧日志...
 [2026-04-05 02:10:01] [cleanup] ✅ 清理完成
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+[2026-04-05 09:00:01] [hotspot-collect] ===== 开始采集百度热搜 =====
+[2026-04-05 09:00:01] [hotspot-collect] ✅ 热点采集完成
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 234: [: 0
+0: integer expression expected
