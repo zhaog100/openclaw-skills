@@ -9,6 +9,16 @@ WATCHLIST="$WORKSPACE/data/bounty-watchlist.json"
 KNOWN_ISSUES="$WORKSPACE/data/bounty-known-issues.txt"
 LOW_QUALITY_LIST="$WORKSPACE/data/bounty-low-quality.txt"
 
+# 设置 GitHub Token（从文件读取）
+if [ -f "$WORKSPACE/.env" ]; then
+    export GITHUB_TOKEN=$(grep GITHUB_TOKEN "$WORKSPACE/.env" | cut -d'=' -f2- | tr -d '"' | tr -d "'")
+fi
+
+# 如果 .env 中没有，使用硬编码的 token
+if [ -z "$GITHUB_TOKEN" ]; then
+    export GITHUB_TOKEN="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"
+fi
+
 # 创建日志目录
 mkdir -p "$(dirname "$LOG_FILE")"
 mkdir -p "$(dirname "$LOW_QUALITY_LIST")"
