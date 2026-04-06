@@ -14,3 +14,9 @@ https://github.com/Conxian/conxius-platform/issues/102
 https://github.com/Conxian/conxius-platform/issues/101
 https://github.com/claude-builders-bounty/claude-builders-bounty/issues/5
 https://github.com/claude-builders-bounty/claude-builders-bounty/issues/4
+https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/931
+https://github.com/kcolbchain/muzix/issues/6
+https://github.com/kcolbchain/muzix/issues/3
+https://github.com/kcolbchain/muzix/issues/2
+https://github.com/SolFoundry/solfoundry/issues/865
+https://github.com/SolFoundry/solfoundry/issues/864
