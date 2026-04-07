@@ -494,3 +494,18 @@
 [2026-04-07 16:10:01] [error-stats] 📊 今日错误: 1
 [2026-04-07 17:10:01] [error-stats] 📊 今日错误: 1
 [2026-04-07 18:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-07 19:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-07 20:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-07 21:00:01] [ai-summary] ===== 每晚AI学习总结开始（21:00）=====
+[2026-04-07 21:00:01] [ai-summary] ✅ 学习总结模板已创建: /root/.openclaw/workspace/agents/xiaomijiao/memory/ai学习-2026-04-07.md
+[2026-04-07 21:00:01] [ai-summary] ✅ 学习总结已提交
+[2026-04-07 21:00:01] [ai-summary] ===== 每晚AI学习总结完成 =====
+[2026-04-07 21:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-07 22:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-07 23:10:01] [error-stats] 📊 今日错误: 1
+[2026-04-07 23:30:01] [daily-review] ===== 每日运营回顾开始（23:30）=====
+[2026-04-07 23:30:01] [daily-review] 今日记忆文件: 19行
+[2026-04-07 23:30:01] [daily-review] 变更统计: intel/0 memory/0 config/0
+[2026-04-07 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-07 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/git.log
+[2026-04-07 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
