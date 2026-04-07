@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-07T12:24:37.097Z",
+  "updatedAt": "2026-04-07T13:55:06.073Z",
   "entries": {
     "memory:memory/2026-03-22.md:1:49": {
       "key": "memory:memory/2026-03-22.md:1:49",
@@ -9,19 +9,20 @@
       "endLine": 49,
       "source": "memory",
       "snippet": "# 📅 2026-03-22 每日日志 <<<<<<< HEAD **日期**: 2026-03-22 (周日) **记录者**: 小米辣 (PM + Dev) 🌶️ **版本**: v1.0 --- ## 📊 今日统计 | 指标 | 数值 | 备注 | |------|------|------| | 工作时间 | 03:30 - 19:58 | 深夜 + 白天 | | 完成任务 | 19+ 个 | homelab 14 + 其他 5+ | | PR 提交 | 14+ 个 | homelab-stack | | 代码行数 | ~2000 行 | 新增 + 修改 | | Bounty 收益 | $2,795+ USDT | 待审核 | --- ## ✅ 完成任务 ### 🏠 homelab-stack (14/14 = 100%) | # | 任务 | 奖金 | PR | 状态 | |---|------|------|-----|------| | 1 | Base Infrastructure | $180 | #178 | ⏳ 待 review | | 2 | Media Stack | $160 | #180 | ⏳ 待 review | | 3 | Storage Stack | $150 | #181 | ⏳ 待 review | | 4 | Network Stack | $140 | #184 | ⏳ 待 review | | 5 | Productivity Stack | $170 | #185 | ⏳ 待 review |",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
-      "totalScore": 4.913185249940289,
+      "totalScore": 5.7003045129603205,
       "maxScore": 0.8449948787670716,
       "firstRecalledAt": "2026-04-06T08:38:36.412Z",
-      "lastRecalledAt": "2026-04-07T12:24:37.097Z",
+      "lastRecalledAt": "2026-04-07T13:55:06.073Z",
       "queryHashes": [
         "c06974a59bde",
         "350d5d1acf0e",
         "8ebc27d47f2a",
         "06be829a977e",
         "b559e25c52ce",
-        "b7c660fda685"
+        "b7c660fda685",
+        "d46074d1f0f0"
       ],
       "recallDays": [
         "2026-04-06",
@@ -145,17 +146,19 @@
       "endLine": 252,
       "source": "memory",
       "snippet": "| 7 | WattCoin Local Agent | 15,000 WATT | 394 行 | ✅ 已提交 | | 8 | HomeLab SSO Authentik | $300 | 282 行 | ✅ 已提交 | **总计**: ~$2,000+ + 465k 代币 ### 📈 产出统计 - **代码量**: 5000+ 行 - **Git 提交**: 22 个 - **测试用例**: 16+ 个 - **文档**: 10+ 个 ### 🔧 系统优化 1. ✅ 定时回顾路径修复（/root/ → /home/zhaog/） 2. ✅ 敏感文件删除（config/openai.env） 3. ✅ .env 文件迁移到~/.openclaw/secrets/ 4. ✅ QMD 索引更新（100 文档） 5. ✅ Git 历史清理 ### 📚 技术栈精进 1. FastAPI 高级路由和 API 设计 2. Celery 异步任务配置 3. PostgreSQL 数据库设计 4. Authentik SSO/OIDC 集成 5. Docker Compose 多服务编排 6. Flask Web 仪表盘开发 7. GitHub API 批量操作 8. 敏感信息安全管理 ### 🔑 核心教训 1. **效率突破**: 7 天计划可压缩到 5.5 小时完成（10 倍效率） 2. **批量开发**: 同类型任务批量处理效率更高 3. **质量第一**: 所有任务都符合验收标准（0 返工） 4. **安全意识**: 敏感信息必须存储在~/.openclaw",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.8183965444446086,
+      "totalScore": 1.6164470005740474,
       "maxScore": 0.8183965444446086,
       "firstRecalledAt": "2026-04-06T08:38:44.097Z",
-      "lastRecalledAt": "2026-04-06T08:38:44.097Z",
+      "lastRecalledAt": "2026-04-07T13:55:06.073Z",
       "queryHashes": [
-        "350d5d1acf0e"
+        "350d5d1acf0e",
+        "d46074d1f0f0"
       ],
       "recallDays": [
-        "2026-04-06"
+        "2026-04-06",
+        "2026-04-07"
       ],
       "conceptTags": [
         "openai",
@@ -175,17 +178,19 @@
       "endLine": 176,
       "source": "memory",
       "snippet": "|------|------|------|--------|------| | 09:45 | homelab 测试框架 | $280 | 1310 行 | ✅ | | 09:48 | Price Intelligence API | $50 | 400 行 | ✅ | | 09:51 | Submolts Challenge | 80 RTC | 文档 | ✅ | | 10:00 | Revenue Sharing Pilot | 150 RTC | 文档 | ✅ | | 10:06 | WattCoin Energy Monitor | 10,000 WATT | 475 行 | ✅ | | 12:11 | SolFoundry Sync | 450k $FNDRY | 1700 行 | ⏳ | | 12:29 | WattCoin Local Agent | 15,000 WATT | 394 行 | ✅ | | 12:30 | HomeLab SSO Authentik | $300 | 282 行 | ✅ | **总计**: ~$2,000+ + 465k $FNDRY/WATT ### 📚 今日学习内容 1. ✅ FastAPI 高级路由和 API 设计 2. ✅ Celery 异步任务配置 3. ✅ PostgreSQL 数据库设计 4. ✅ Authentik SSO/OIDC 集成 5. ✅ Docker Compose 多服务编排 6. ✅ Flask Web 仪表盘开发 7. ✅ GitHub API 批量操作 8. ✅ 敏感信息安全管理 ##",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.8147027759636526,
+      "totalScore": 1.6088763303462785,
       "maxScore": 0.8147027759636526,
       "firstRecalledAt": "2026-04-06T08:38:44.097Z",
-      "lastRecalledAt": "2026-04-06T08:38:44.097Z",
+      "lastRecalledAt": "2026-04-07T13:55:06.073Z",
       "queryHashes": [
-        "350d5d1acf0e"
+        "350d5d1acf0e",
+        "d46074d1f0f0"
       ],
       "recallDays": [
-        "2026-04-06"
+        "2026-04-06",
+        "2026-04-07"
       ],
       "conceptTags": [
         "fndry/watt",
@@ -690,15 +695,16 @@
       "endLine": 316,
       "source": "memory",
       "snippet": "* `stacks/observability/docker-compose.test.yml` - Test script - **Project structure**: Files are well-organized following the project's existing structure and placed in `/stacks/observability/` directory, aligning with the project's overall architecture and By doing so, the implementation is more professional and needed if it were manually. - However, the current implementation is in `/config/observability/` is largely a placeholder, and not fully aligned with the actual requirements. So I will need to move or reorganize it to the correct location. Additionally, the current implementation doesn't follow the project's stack pattern, other stacks use specific service directories in the",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
-      "totalScore": 1.627459002721468,
+      "totalScore": 2.4024655132171846,
       "maxScore": 0.8146095535155252,
       "firstRecalledAt": "2026-04-07T06:35:09.462Z",
-      "lastRecalledAt": "2026-04-07T08:48:24.494Z",
+      "lastRecalledAt": "2026-04-07T13:55:06.073Z",
       "queryHashes": [
         "43b60da7d4c6",
-        "cbf2b868c6b2"
+        "cbf2b868c6b2",
+        "d46074d1f0f0"
       ],
       "recallDays": [
         "2026-04-07"
