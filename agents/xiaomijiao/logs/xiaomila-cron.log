@@ -299,3 +299,19 @@
 [2026-04-06 23:30:02] [daily-review] 更新 QMD 向量索引...
 [2026-04-06 23:30:03] [daily-review] ✅ QMD 更新完成
 [2026-04-06 23:30:03] [daily-review] ===== 每日运营回顾���成 =====
+[2026-04-06 23:50:59] [qmd-update] 更新 QMD 向量索引...
+[2026-04-06 23:50:59] [qmd-update] ✅ QMD 更新完成
+[2026-04-07 02:00:01] [qmd-update] 更新 QMD 向量索引...
+[2026-04-07 02:00:01] [qmd-update] ✅ QMD 更新完成
+[2026-04-07 02:10:01] [cleanup] 清理旧日志...
+[2026-04-07 02:10:01] [cleanup] ✅ 清理完成
+[2026-04-07 09:00:01] [hotspot-collect] ===== 开始采集百度热搜 =====
+[2026-04-07 09:00:01] [hotspot-collect] ✅ 热点采集完成
+[2026-04-07 12:10:01] [morning-review] ===== 午间运营回顾开始（12:10）=====
+[2026-04-07 12:10:01] [morning-review] 创建今日记忆文件模板...
+[2026-04-07 12:10:01] [morning-review] ✅ 记忆模板已创建
+[2026-04-07 12:10:01] [morning-review] 变更统计: intel/0 memory/0 config/0
+[2026-04-07 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-07 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/hotspot.log
+[2026-04-07 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/qmd-update.log
+[2026-04-07 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
