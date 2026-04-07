@@ -646,4 +646,20 @@
 - **Git配置**: 远程仓库连接，分支管理
 - **工作区**: 基础目录结构建立
 
-*持续进化 · 定期清理 · 保留精华 | v3.32 | 2026-04-05*
+### 2026-04-07 京东任务配置 + 百炼 API 配置 ⭐⭐⭐⭐⭐
+- **京东任务系统**: Cookie 重新配置完成（2 个账号）
+  - 账号 1: zhaog100（Plus 会员，762 京豆，9.53 元余额）
+  - 账号 2: jd_5722c14df4b06（银牌会员，5 京豆）
+  - 配置方式：写入 config.sh + 重启容器
+  - 备份文件：config.sh.bak.20260407_1222
+  - 7 个定时任务正常运行（京豆变动、签到、农场等）
+- **百炼 API 配置**: Coding Plan 套餐配置完成
+  - Base URL: https://coding.dashscope.aliyuncs.com/v1（OpenAI 兼容）
+  - API Key: sk-sp-879b***78ad5（脱敏存储）
+  - 模型列表：8 个（qwen3.5-plus、glm-5、kimi-k2.5、MiniMax-M2.5 等）
+  - 模型切换：成功切换到 bailian/qwen3.5-plus
+  - Gateway 重启：✅ 成功
+- **配置备份**: openclaw.json.bak.20260407_1703
+- **Git 推送规则**: 个人数据推 xiaomijiao remote（main 分支）
+
+*持续进化 · 定期清理 · 保留精华 | v3.32 | 2026-04-07*
