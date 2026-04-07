@@ -1,0 +1,250 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-07T14:10:00+08:00",
+  "status": "active",
+  "total_value": 2490,
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "repo": "illbnm/homelab-stack",
+      "issue": 1,
+      "title": "Base Infrastructure — Traefik + Portainer + Watchtower",
+      "amount": 180,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 1,
+      "status": "pr_submitted",
+      "pr_number": 429,
+      "pr_url": "https://github.com/illbnm/homelab-stack/pull/429",
+      "note": "✅ PR 已提交，等待审核"
+    },
+    {
+      "id": "TASK-008a",
+      "repo": "illbnm/homelab-stack",
+      "issue": 8,
+      "title": "Robustness — 国内网络适配 + 环境鲁棒性",
+      "amount": 250,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 9,
+      "status": "pr_submitted",
+      "pr_number": 430,
+      "pr_url": "https://github.com/illbnm/homelab-stack/pull/430",
+      "note": "✅ PR 已提交（与 SSO + Observability 合并），等待审核"
+    },
+    {
+      "id": "TASK-009a",
+      "repo": "illbnm/homelab-stack",
+      "issue": 9,
+      "title": "SSO — Authentik 统一身份认证",
+      "amount": 300,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 2,
+      "status": "pr_submitted",
+      "pr_number": 430,
+      "pr_url": "https://github.com/illbnm/homelab-stack/pull/430",
+      "note": "✅ PR 已提交（与 Robustness + Observability 合并），等待审核"
+    },
+    {
+      "id": "TASK-010a",
+      "repo": "illbnm/homelab-stack",
+      "issue": 10,
+      "title": "Observability — Prometheus + Grafana + Loki + Alerting",
+      "amount": 280,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 10,
+      "status": "pr_submitted",
+      "pr_number": 430,
+      "pr_url": "https://github.com/illbnm/homelab-stack/pull/430",
+      "note": "✅ PR 已提交（与 SSO + Robustness 合并），等待审核"
+    },
+    {
+      "id": "TASK-002",
+      "repo": "illbnm/homelab-stack",
+      "issue": 2,
+      "title": "Media Stack — Jellyfin + Sonarr + Radarr + qBittorrent",
+      "amount": 160,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 3,
+      "status": "available",
+      "note": "中等难度，媒体服务栈"
+    },
+    {
+      "id": "TASK-003",
+      "repo": "illbnm/homelab-stack",
+      "issue": 3,
+      "title": "Storage Stack — Nextcloud + MinIO + FileBrowser",
+      "amount": 150,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 4,
+      "status": "available",
+      "note": "中等难度，存储服务栈"
+    },
+    {
+      "id": "TASK-004",
+      "repo": "illbnm/homelab-stack",
+      "issue": 4,
+      "title": "Network Stack — AdGuard Home + WireGuard + Nginx Proxy Manager",
+      "amount": 140,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 6,
+      "status": "available",
+      "note": "中等难度，网络服务栈"
+    },
+    {
+      "id": "TASK-005",
+      "repo": "illbnm/homelab-stack",
+      "issue": 5,
+      "title": "Productivity Stack — Gitea + Vaultwarden + Outline + BookStack",
+      "amount": 170,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 5,
+      "status": "available",
+      "note": "中等难度，生产力工具栈"
+    },
+    {
+      "id": "TASK-006",
+      "repo": "illbnm/homelab-stack",
+      "issue": 6,
+      "title": "AI Stack — Ollama + Open WebUI + Stable Diffusion",
+      "amount": 220,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 8,
+      "status": "available",
+      "note": "高难度，AI 服务栈"
+    },
+    {
+      "id": "TASK-007",
+      "repo": "illbnm/homelab-stack",
+      "issue": 7,
+      "title": "Home Automation — Home Assistant + Node-RED + Zigbee2MQTT",
+      "amount": 130,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 7,
+      "status": "available",
+      "note": "中等难度，家庭自动化栈"
+    },
+    {
+      "id": "TASK-008",
+      "repo": "illbnm/homelab-stack",
+      "issue": 8,
+      "title": "Robustness — 国内网络适配 + 环境鲁棒性",
+      "amount": 250,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 9,
+      "status": "available",
+      "note": "高难度，环境鲁棒性与国内网络适配"
+    },
+    {
+      "id": "TASK-009",
+      "repo": "illbnm/homelab-stack",
+      "issue": 9,
+      "title": "SSO — Authentik 统一身份认证",
+      "amount": 300,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 2,
+      "status": "available",
+      "note": "⭐ 高优先级（基础设施依赖），统一身份认证"
+    },
+    {
+      "id": "TASK-010",
+      "repo": "illbnm/homelab-stack",
+      "issue": 10,
+      "title": "Observability — Prometheus + Grafana + Loki + Alerting",
+      "amount": 280,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 10,
+      "status": "available",
+      "note": "高难度，完整可观测性栈"
+    },
+    {
+      "id": "TASK-011",
+      "repo": "illbnm/homelab-stack",
+      "issue": 11,
+      "title": "Database Layer — PostgreSQL + Redis + MariaDB 共享实例",
+      "amount": 130,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 2,
+      "status": "available",
+      "note": "⭐ 高优先级（基础设施依赖），共享数据库栈"
+    },
+    {
+      "id": "TASK-012",
+      "repo": "illbnm/homelab-stack",
+      "issue": 12,
+      "title": "Backup & DR — 自动备份 + 灾难恢复",
+      "amount": 150,
+      "currency": "USDT",
+      "difficulty": "medium",
+      "priority": 11,
+      "status": "available",
+      "note": "中等难度，3-2-1 备份策略"
+    },
+    {
+      "id": "TASK-013",
+      "repo": "illbnm/homelab-stack",
+      "issue": 13,
+      "title": "Notifications — 统一通知中心 (Gotify + Apprise)",
+      "amount": 80,
+      "currency": "USDT",
+      "difficulty": "easy",
+      "priority": 12,
+      "status": "available",
+      "note": "⭐ 最简单，适合快速交付"
+    },
+    {
+      "id": "TASK-014",
+      "repo": "illbnm/homelab-stack",
+      "issue": 14,
+      "title": "Testing — 自动化测试套件",
+      "amount": 200,
+      "currency": "USDT",
+      "difficulty": "hard",
+      "priority": 13,
+      "status": "available",
+      "note": "高难度，完整测试套件"
+    }
+  ],
+  "completed": [],
+  "pending_payment": [
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2205,
+      "amount": 2,
+      "currency": "RTC",
+      "status": "overdue",
+      "days_overdue": 9,
+      "claim_issue": 2755
+    }
+  ],
+  "open_prs": [
+    {
+      "repo": "Kozea/pygal",
+      "pr": 579,
+      "amount": 300,
+      "currency": "USD",
+      "status": "open",
+      "maintainer_inactive": true
+    }
+  ],
+  "statistics": {
+    "total_tasks": 14,
+    "available_tasks": 12,
+    "pr_submitted": 2,
+    "total_value_available": 1480,
+    "total_value_pending": 1010,
+    "avg_task_value": 177.86
+  }
+}
