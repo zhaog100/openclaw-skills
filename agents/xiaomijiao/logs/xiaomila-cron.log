@@ -343,3 +343,8 @@
 [2026-04-07 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/cron.log
 [2026-04-07 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/git.log
 [2026-04-07 23:30:01] [daily-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
+[2026-04-07 23:30:01] [daily-review] ✅ Git 已提交
+[2026-04-07 23:30:02] [daily-review] ⚠️ 推送失败（网络？），下次重试
+[2026-04-07 23:30:02] [daily-review] 更新 QMD 向量索引...
+[2026-04-07 23:30:03] [daily-review] ✅ QMD 更新完成
+[2026-04-07 23:30:03] [daily-review] ===== 每日运营回顾���成 =====
