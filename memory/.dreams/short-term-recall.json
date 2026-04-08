@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-08T06:54:20.588Z",
+  "updatedAt": "2026-04-08T10:55:35.837Z",
   "entries": {
     "memory:memory/2026-03-22.md:1:49": {
       "key": "memory:memory/2026-03-22.md:1:49",
@@ -158,16 +158,17 @@
       "endLine": 252,
       "source": "memory",
       "snippet": "| 7 | WattCoin Local Agent | 15,000 WATT | 394 行 | ✅ 已提交 | | 8 | HomeLab SSO Authentik | $300 | 282 行 | ✅ 已提交 | **总计**: ~$2,000+ + 465k 代币 ### 📈 产出统计 - **代码量**: 5000+ 行 - **Git 提交**: 22 个 - **测试用例**: 16+ 个 - **文档**: 10+ 个 ### 🔧 系统优化 1. ✅ 定时回顾路径修复（/root/ → /home/zhaog/） 2. ✅ 敏感文件删除（config/openai.env） 3. ✅ .env 文件迁移到~/.openclaw/secrets/ 4. ✅ QMD 索引更新（100 文档） 5. ✅ Git 历史清理 ### 📚 技术栈精进 1. FastAPI 高级路由和 API 设计 2. Celery 异步任务配置 3. PostgreSQL 数据库设计 4. Authentik SSO/OIDC 集成 5. Docker Compose 多服务编排 6. Flask Web 仪表盘开发 7. GitHub API 批量操作 8. 敏感信息安全管理 ### 🔑 核心教训 1. **效率突破**: 7 天计划可压缩到 5.5 小时完成（10 倍效率） 2. **批量开发**: 同类型任务批量处理效率更高 3. **质量第一**: 所有任务都符合验收标准（0 返工） 4. **安全意识**: 敏感信息必须存储在~/.openclaw",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
-      "totalScore": 2.436215792482578,
+      "totalScore": 3.2477423635935168,
       "maxScore": 0.8197687919085308,
       "firstRecalledAt": "2026-04-06T08:38:44.097Z",
-      "lastRecalledAt": "2026-04-07T23:25:04.180Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
       "queryHashes": [
         "350d5d1acf0e",
         "d46074d1f0f0",
-        "85e2464933b8"
+        "85e2464933b8",
+        "bbea1cd24739"
       ],
       "recallDays": [
         "2026-04-06",
@@ -192,16 +193,17 @@
       "endLine": 176,
       "source": "memory",
       "snippet": "|------|------|------|--------|------| | 09:45 | homelab 测试框架 | $280 | 1310 行 | ✅ | | 09:48 | Price Intelligence API | $50 | 400 行 | ✅ | | 09:51 | Submolts Challenge | 80 RTC | 文档 | ✅ | | 10:00 | Revenue Sharing Pilot | 150 RTC | 文档 | ✅ | | 10:06 | WattCoin Energy Monitor | 10,000 WATT | 475 行 | ✅ | | 12:11 | SolFoundry Sync | 450k $FNDRY | 1700 行 | ⏳ | | 12:29 | WattCoin Local Agent | 15,000 WATT | 394 行 | ✅ | | 12:30 | HomeLab SSO Authentik | $300 | 282 行 | ✅ | **总计**: ~$2,000+ + 465k $FNDRY/WATT ### 📚 今日学习内容 1. ✅ FastAPI 高级路由和 API 设计 2. ✅ Celery 异步任务配置 3. ✅ PostgreSQL 数据库设计 4. ✅ Authentik SSO/OIDC 集成 5. ✅ Docker Compose 多服务编排 6. ✅ Flask Web 仪表盘开发 7. ✅ GitHub API 批量操作 8. ✅ 敏感信息安全管理 ##",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
-      "totalScore": 2.424971084315291,
+      "totalScore": 3.2327047801719213,
       "maxScore": 0.8160947539690124,
       "firstRecalledAt": "2026-04-06T08:38:44.097Z",
-      "lastRecalledAt": "2026-04-07T23:25:04.180Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
       "queryHashes": [
         "350d5d1acf0e",
         "d46074d1f0f0",
-        "85e2464933b8"
+        "85e2464933b8",
+        "bbea1cd24739"
       ],
       "recallDays": [
         "2026-04-06",
@@ -226,15 +228,16 @@
       "endLine": 246,
       "source": "memory",
       "snippet": "1. **Cookie格式**：使用`export JD_COOKIE=\"...\"`格式 2. **多账号**：用`&`符号分隔，每个账号的`pt_pin`和`pt_key`用`;`分隔 3. **依赖管理**：全局安装`npm install -g <package>` 4. **got版本**：必须使用v11，v13不兼容 5. **定期维护**：Cookie 1-3个月过期，需定期更新 --- **更新时间**: 2026-03-27 18:47 **状态**: ✅ 所有京东任务正常 --- ## 🔄 自动会话切换（2026-03-27 18:50:27） **触发原因**：上下文超过60% **切换方式**：无感自动切换（agentTurn） **新会话**：自动加载记忆继续工作 --- ### 7. Observability Stack部署经验（2026-03-27 新增）⭐⭐⭐⭐ - **Docker Compose配置**： - 使用`<<`锚点和`*`引用避免重复配置 - Traefik标签格式：`traefik.http.routers.<name>.rule=Host(...)` - 健康检查：`test: [\"CMD\", \"wget\", \"-q\", \"--spider\", \"...\"]` - **数据持久化**： - 使用命名卷（named volumes）而非绑定挂载 - 配置文件用`:ro`只读挂载 - 日志用独立卷避免容器膨胀 - **网络配置**： - 外部网络（proxy）用于Traefik通",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
-      "totalScore": 1.613988122034126,
-      "maxScore": 0.8096647027953192,
+      "totalScore": 2.4325806381864465,
+      "maxScore": 0.8185925161523205,
       "firstRecalledAt": "2026-04-06T08:38:44.097Z",
-      "lastRecalledAt": "2026-04-08T06:54:20.588Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
       "queryHashes": [
         "350d5d1acf0e",
-        "1262b7295025"
+        "1262b7295025",
+        "bbea1cd24739"
       ],
       "recallDays": [
         "2026-04-06",
@@ -851,17 +854,19 @@
       "endLine": 415,
       "source": "memory",
       "snippet": "- ✅ 小米糕配置已保留 - ✅ Docker 鹜像:: `xiaomigao:latest` - ✅ 启动命令: ```bash docker run -d \\ --name xiaomigao \\ --restart unless-stopped \\ -p 18790:18790 \\ -v $HOME/.openclaw_xiaomigao:/app/data \\ openclaw/openclaw:2026.4.1 \\ ``` - 食用更新命令 ```bash docker exec xiaomigao openclaw --version ``` # 显示版本信息 docker exec -it xiaomigao cat /root/.openclaw/versions.json ``` # 备份检查 if [ -f \"$BACK_dir\" ]; echo \"创建新备份\" fi # 启动新容器 echo \"启动新容器...\" docker start xiaomigao sleep 10 docker exec xiaomigao openclaw --version ``` - 使用新镜像重新启动容器... `openclaw/open",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.8858641358366358,
+      "totalScore": 1.6803068902593108,
       "maxScore": 0.8858641358366358,
       "firstRecalledAt": "2026-04-07T10:23:22.527Z",
-      "lastRecalledAt": "2026-04-07T10:23:22.527Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
       "queryHashes": [
-        "5051bae0bc3f"
+        "5051bae0bc3f",
+        "bbea1cd24739"
       ],
       "recallDays": [
-        "2026-04-07"
+        "2026-04-07",
+        "2026-04-08"
       ],
       "conceptTags": [
         "备份",
@@ -881,17 +886,19 @@
       "endLine": 375,
       "source": "memory",
       "snippet": "- Perplexity: ad979bbcf01d4b67814b3ef9f6f51520.fRYKrH3bXsBJGn8v - Gateway: 00517767668657be8421f42efe6fcbccc6c018f774c3bd46 - GitHub: ghp_1iGTbA*** (Openclaw_xiaomila) - GitHub Token: ghp_bCve*** (小米糕专用) - OpenRouter: sk-or-v1-***00ae (Qwen3.6 Plus) - 其他: 待补充 2. **小米辣安全加固** - ✅ 环境变量文件创建 - ✅ 文件权限加固（600/700) - ✅ QQ Bot 访问控制 - ✅ 跻加到 .gitignore - ✅ 裸在 Docker 容器内（小米糕） - ✅ 文档更新(README.md) - ✅ 系统信息记录 3. **小米糕（Docker 容器)** - 镜像: `openclaw/openclaw:2026.4.1` - 状态: 运行中 ✅ - Gateway: 正常 ✅ - 小米糕 Gateway: http://localhost:18790 (通过 tailscale) - QQ Bot: 正常连接 - 环境: 和 HTTPd 服务正常 - 配置文件备份已完成 4. **OpenClaw 更新** - ✅ 从 2026.3.28 更新到 2026.4.1 -",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.8668836616915475,
+      "totalScore": 1.6378033996738255,
       "maxScore": 0.8668836616915475,
       "firstRecalledAt": "2026-04-07T10:23:22.527Z",
-      "lastRecalledAt": "2026-04-07T10:23:22.527Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
       "queryHashes": [
-        "5051bae0bc3f"
+        "5051bae0bc3f",
+        "bbea1cd24739"
       ],
       "recallDays": [
-        "2026-04-07"
+        "2026-04-07",
+        "2026-04-08"
       ],
       "conceptTags": [
         "gateway",
@@ -1636,6 +1643,66 @@
         "auto-push.sh",
         "工作",
         "记录"
+      ]
+    },
+    "memory:memory/2026-04-08.md:240:290": {
+      "key": "memory:memory/2026-04-08.md:240:290",
+      "path": "memory/2026-04-08.md",
+      "startLine": 240,
+      "endLine": 290,
+      "source": "memory",
+      "snippet": "- **技能仓库** vs **个人信息仓库** 分离管理 - **暂停同步** 只影响 xiaomila，其他仓库正常 - **合并冲突** 使用 ours 策略保留本地修改 ### 2. Git 安全 - **GitHub Push Protection** 自动检测 token 泄露 - **历史提交中的 token 也需要清理** - **脱敏规则**: 密码只显示后4位 ### 3. Bounty 任务评估 - **高价值任务**: $1,000+ 需要评估时间成本 - **API 调用需求**: 大量 LLM 调用需要稳定网络 - **优先级**: 快速小任务 > 大型复杂任务 --- _最后更新: 2026-04-08 13:58 CST_ --- ## 🌆 下午工作 (13:59) ### ✅ SSO Bounty 任务完成 (#9 - $300) **时间**: 13:59 (2分31秒运行时间) #### 实现内容 **1. 核心基础设施** (已提交) - ✅ Docker Compose 配置 - Authentik Server (v2024.8.3) - Authentik Worker - PostgreSQL 16 - Redis 7 - 健康检查 + CN 镜像支持 **2. Traefik 集成** (已提交) - ✅ ForwardAuth 中间件 (`config/traefik/dynamic/authentik.yml`) - 完整 SSO 保护 - 基础认证模式 - 认证响应头",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.8575148470707549,
+      "maxScore": 0.8575148470707549,
+      "firstRecalledAt": "2026-04-08T10:55:35.837Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
+      "queryHashes": [
+        "bbea1cd24739"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "网络",
+        "v2024.8.3",
+        "技能",
+        "仓库",
+        "个人",
+        "信息",
+        "分离",
+        "管理"
+      ]
+    },
+    "memory:memory/2026-04-08.md:279:328": {
+      "key": "memory:memory/2026-04-08.md:279:328",
+      "path": "memory/2026-04-08.md",
+      "startLine": 279,
+      "endLine": 328,
+      "source": "memory",
+      "snippet": "- 基础认证模式 - 认证响应头 **3. 文档** (已提交) - ✅ 综合性 README (`stacks/sso/README.md`) - 架构图 - 快速开始指南 - 故障排除 **4. 自动化脚本** (新提交 - 2745af8) - ✅ `scripts/authentik-setup.sh` (259 行) - 自动创建 OIDC 提供者 - 支持服务: Grafana, Gitea, Nextcloud, Outline, Open WebUI, Portainer - 创建用户组 - Dry-run 模式 **5. 配置更新** (新提交) - ✅ `.env.example` - 新增 OAuth 变量 - ✅ `middlewares.yml` - 增强的中间件配置 #### PR 提交 - **PR #451**: https://github.com/illbnm/homelab-stack/pull/451 - **分支**: `feat/sso-enhancements-9` - **状态**: ✅ Open #### 技术细节 - **提交**: `2745af8` (feat(sso): add automated OIDC setup script and enhanced middleware) - **文件变更**: 3 个文件, +336/-99 行 - `scripts/authentik-setup.sh` (新建) - `.env.example` (修改) - `c",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.801941215286896,
+      "maxScore": 0.801941215286896,
+      "firstRecalledAt": "2026-04-08T10:55:35.837Z",
+      "lastRecalledAt": "2026-04-08T10:55:35.837Z",
+      "queryHashes": [
+        "bbea1cd24739"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "stacks/sso/readme.md",
+        "scripts/authentik-setup.sh",
+        "dry-run",
+        "env.example",
+        "middlewares.yml",
+        "feat/sso-enhancements-9",
+        "基础",
+        "认证"
       ]
     }
   }
