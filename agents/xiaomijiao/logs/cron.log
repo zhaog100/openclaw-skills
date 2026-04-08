@@ -554,3 +554,10 @@
 [2026-04-08 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/hotspot.log
 [2026-04-08 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/qmd-update.log
 [2026-04-08 12:10:01] [morning-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
+[2026-04-08 12:10:01] [morning-review] ✅ Git 已提交（本地）
+[2026-04-08 12:10:01] [morning-review] ℹ️ 远程推送已暂停
+[2026-04-08 12:10:01] [morning-review] 更新 QMD 向量索引...
+[2026-04-08 12:10:03] [morning-review] ✅ QMD 更新完成
+[2026-04-08 12:10:03] [morning-review] ===== 午间运营回顾完成 =====
+/root/.openclaw/workspace/scripts/xiaomijiao-cron.sh: line 228: [: 0
+0: integer expression expected
