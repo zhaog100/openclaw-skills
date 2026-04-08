@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-08T10:55:35.837Z",
+  "updatedAt": "2026-04-08T13:54:34.774Z",
   "entries": {
     "memory:memory/2026-03-22.md:1:49": {
       "key": "memory:memory/2026-03-22.md:1:49",
@@ -9,12 +9,12 @@
       "endLine": 49,
       "source": "memory",
       "snippet": "# 📅 2026-03-22 每日日志 <<<<<<< HEAD **日期**: 2026-03-22 (周日) **记录者**: 小米辣 (PM + Dev) 🌶️ **版本**: v1.0 --- ## 📊 今日统计 | 指标 | 数值 | 备注 | |------|------|------| | 工作时间 | 03:30 - 19:58 | 深夜 + 白天 | | 完成任务 | 19+ 个 | homelab 14 + 其他 5+ | | PR 提交 | 14+ 个 | homelab-stack | | 代码行数 | ~2000 行 | 新增 + 修改 | | Bounty 收益 | $2,795+ USDT | 待审核 | --- ## ✅ 完成任务 ### 🏠 homelab-stack (14/14 = 100%) | # | 任务 | 奖金 | PR | 状态 | |---|------|------|-----|------| | 1 | Base Infrastructure | $180 | #178 | ⏳ 待 review | | 2 | Media Stack | $160 | #180 | ⏳ 待 review | | 3 | Storage Stack | $150 | #181 | ⏳ 待 review | | 4 | Network Stack | $140 | #184 | ⏳ 待 review | | 5 | Productivity Stack | $170 | #185 | ⏳ 待 review |",
-      "recallCount": 9,
+      "recallCount": 10,
       "dailyCount": 0,
-      "totalScore": 7.320209246968052,
+      "totalScore": 8.117430923040338,
       "maxScore": 0.8449948787670716,
       "firstRecalledAt": "2026-04-06T08:38:36.412Z",
-      "lastRecalledAt": "2026-04-08T00:54:15.858Z",
+      "lastRecalledAt": "2026-04-08T13:24:29.392Z",
       "queryHashes": [
         "c06974a59bde",
         "350d5d1acf0e",
@@ -24,7 +24,8 @@
         "b7c660fda685",
         "d46074d1f0f0",
         "3cde8b98cdbd",
-        "eba97e9a99fc"
+        "eba97e9a99fc",
+        "7d3f06a39ba5"
       ],
       "recallDays": [
         "2026-04-06",
@@ -49,12 +50,12 @@
       "endLine": 140,
       "source": "memory",
       "snippet": "- 账号创建时间极短（<1周） - 粉丝数极少（<10） - Stars数极少（<5） - 仓库数极少（<5） - 无历史付款记录 - **典型案例**： - claude-builders-bounty：2026-03-27创建，0粉丝，0 stars，1仓库 - 高金额任务（$50-$200）+ 极新账号 = 高概率骗局 - **防御策略**： - 优先选择Algora标签确认的项目 - 查看账号历史（创建时间、活跃度、付款记录） - 避免新账号高金额诱惑 - 质量优先于数量 ## ⏳ 待办 - 等待 illbnm/homelab-stack #10 PR审核 - 验证付款可靠性后再决定是否继续其他Bounty - 磁盘空间清理（防止达到70%告警线） - 优化邮件检查脚本性能 - 考虑认领其他Bounty任务（$220 AI Stack） ## 🔍 遗漏/待改进 ### 技术层面 - MiniMax M2.7模型在当前会话中无法直接切换（会话锁定机制） - 邮件检查脚本运行时间长（1485封邮件），需要优化 - QMD embed处理慢（102个文件，CPU模式） - 磁盘空间使用率66%，接近70%告警线 ### 业务层面 - Bounty市场整体偏干，高质量任务少 - illbnm/homelab-stack无历史付款记录，需验证付款可靠性 - 其他潜在Bounty任务待评估（$220 AI Stack + $100 Hook） ### 流程层面 - 需要建立Bounty付款可靠性数据库 - 需要自动化邮件检查",
-      "recallCount": 8,
+      "recallCount": 12,
       "dailyCount": 0,
-      "totalScore": 6.506856528154831,
+      "totalScore": 9.772088620073294,
       "maxScore": 0.835699447355768,
       "firstRecalledAt": "2026-04-06T08:38:36.412Z",
-      "lastRecalledAt": "2026-04-08T00:54:15.858Z",
+      "lastRecalledAt": "2026-04-08T13:54:34.774Z",
       "queryHashes": [
         "c06974a59bde",
         "350d5d1acf0e",
@@ -63,7 +64,9 @@
         "b559e25c52ce",
         "3cde8b98cdbd",
         "85e2464933b8",
-        "eba97e9a99fc"
+        "eba97e9a99fc",
+        "7d3f06a39ba5",
+        "9c289c57e706"
       ],
       "recallDays": [
         "2026-04-06",
@@ -88,18 +91,20 @@
       "endLine": 178,
       "source": "memory",
       "snippet": "- Bounty市场整体偏干，高质量任务少 - illbnm/homelab-stack无历史付款记录，需验证付款可靠性 - 其他潜在Bounty任务待评估（$220 AI Stack + $100 Hook） ### 流程层面 - 需要建立Bounty付款可靠性数据库 - 需要自动化邮件检查和筛选流程 - 需要优化QMD嵌入性能 ## 📊 今日数据统计 | 项目 | 数量 | 详情 | |------|------|------| | **Bounty邮件** | 46封 | 高价值3个（$280+$220+$100） | | **PR提交** | 1个 | illbnm/homelab-stack #364 | | **代码行数** | +2000行 | Observability Stack完整实现 | | **QMD文件** | 205个 | knowledge: 110, memory: 95 | | **Git提交** | 17个文件 | +2241行 | | **开发时间** | ~2小时 | Bounty任务完成 | --- **MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)** --- ## 🔄 自动会话切换（2026-03-27 18:45:30） **触发原因**：上下文超过60% **切换方式**：无感自动切换（agentTurn） **新会话**：自动加载记忆继续工作 --- ## 📅 京东任务修复（18:40-18:45） ### 问题诊断 - **根本原因**：Cookie",
-      "recallCount": 5,
+      "recallCount": 8,
       "dailyCount": 0,
-      "totalScore": 4.0603532612766715,
+      "totalScore": 6.487176401023813,
       "maxScore": 0.8288834017820623,
       "firstRecalledAt": "2026-04-06T08:38:36.412Z",
-      "lastRecalledAt": "2026-04-08T00:54:15.858Z",
+      "lastRecalledAt": "2026-04-08T13:54:34.774Z",
       "queryHashes": [
         "c06974a59bde",
         "cbf2b868c6b2",
         "b559e25c52ce",
         "85e2464933b8",
-        "eba97e9a99fc"
+        "eba97e9a99fc",
+        "7d3f06a39ba5",
+        "9c289c57e706"
       ],
       "recallDays": [
         "2026-04-06",
@@ -124,16 +129,18 @@
       "endLine": 30,
       "source": "memory",
       "snippet": "# 2026-03-27 工作记录 ## ✅ 完成任务 ### MiniMax 模型接入 | 时间 | 任务 | 详情 | |------|------|------| | 下午 | API密钥配置 | 添加到 ~/.openclaw/agents/main/agent/models.json | | 下午 | 模型白名单 | 添加 MiniMax-M2.7 到 openclaw.json | | 下午 | Gateway重启 | 配置生效，API测试成功 | | 下午 | 子代理测试 | 创建新会话验证MiniMax可用 | | 下午 | Gmail邮件检查 | 发现46封Bounty相关邮件 | ### Bounty 开发 | 时间 | 任务 | 详情 | |------|------|------| | 下午 | 邮件筛选 | 识别高价值目标：$280 + $220 + $100 | | 下午 | illbnm/homelab-stack #10 认领 | $280 Observability Stack | | 下午 | 付款可靠性评估 | 老用户(2016)，52仓库，无Algora标签，无历史付款 | | 下午 | 完整实现 | Docker Compose + 告警规则 + Dashboard + OIDC集成 | | 下午 | PR提交 | https://github.com/illbnm/homelab-stack/pull/364 | ### 系统运维 | 时间 | 任务 | 详情 | |------|------|------| | 下午 | 定",
-      "recallCount": 3,
+      "recallCount": 6,
       "dailyCount": 0,
-      "totalScore": 2.4194887242287364,
+      "totalScore": 4.822344044261223,
       "maxScore": 0.8230316703948312,
       "firstRecalledAt": "2026-04-06T08:38:36.412Z",
-      "lastRecalledAt": "2026-04-08T00:54:15.858Z",
+      "lastRecalledAt": "2026-04-08T13:54:34.774Z",
       "queryHashes": [
         "c06974a59bde",
         "b559e25c52ce",
-        "eba97e9a99fc"
+        "eba97e9a99fc",
+        "7d3f06a39ba5",
+        "9c289c57e706"
       ],
       "recallDays": [
         "2026-04-06",
@@ -414,18 +421,20 @@
       "endLine": 140,
       "source": "memory",
       "snippet": "9. #11 Database - $130 (medium) 10. #13 Notifications - $80 (medium) --- ## 11:15 - 网络问题导致任务中断 ### ⚠️ 网络状态 - **GitHub API**: 不稳定（EOF 错误） - **Git Clone**: 失败 - HTTPS: TLS 握手失败 - SSH: Connection closed by port 22 - Tarball: 非 gzip 格式 - **Ping**: ✅ 正常（1.04ms） - **GitHub API (curl)**: ✅ 部分可用 ### 🔍 问题分析 1. **可能原因**: - 网络防火墙/代理干扰 - GitHub 临时故障 - TLS 证书问题 - SSH 端口被阻止 2. **影响**: - 无法克隆大型仓库 - GitHub CLI 不稳定 - API 调用偶发失败 ### 🎯 解决方案 1. **等待网络恢复** - 最简单 2. **使用 API 逐个获取文件** - 慢但可靠 3. **手动下载仓库** - 用户操作 4. **稍后重试** - 自动化 ### 📋 当前状态 - **RustChain 付款提醒**: ✅ 已发送 - **Gmail 检查**: ✅ 完成 - **任务扫描**: ✅ 完成 - **任务执行**: ⏸️ 暂停（网络问题） --- ## 11:09 - 定时任务已创建 ### ✅ 自动重试配置 - **任务 ID*",
-      "recallCount": 5,
+      "recallCount": 9,
       "dailyCount": 0,
-      "totalScore": 4.07294098926238,
-      "maxScore": 0.8155910253752365,
+      "totalScore": 7.336363127646402,
+      "maxScore": 0.8158555345960057,
       "firstRecalledAt": "2026-04-07T02:52:15.670Z",
-      "lastRecalledAt": "2026-04-08T06:54:20.588Z",
+      "lastRecalledAt": "2026-04-08T13:54:34.774Z",
       "queryHashes": [
         "f2c9edf30566",
         "06be829a977e",
         "3cde8b98cdbd",
         "eba97e9a99fc",
-        "1262b7295025"
+        "1262b7295025",
+        "7d3f06a39ba5",
+        "9c289c57e706"
       ],
       "recallDays": [
         "2026-04-07",
@@ -479,17 +488,19 @@
       "endLine": 183,
       "source": "memory",
       "snippet": "- **触发时间**: 2026-04-06 11:39 CST（30 分钟后） - **执行内容**: 1. 克隆 illbnm/homelab-stack 仓库 2. 认领 #9 SSO 任务（$300） 3. 按顺序完成剩余任务 ### 📋 任务详情 ```json { \"id\": \"df36a501-67ba-46db-b2f4-e71908c541e1\", \"name\": \"Bounty Task Execution - Auto Retry\", \"at\": \"2026-04-06T03:39:35Z\", \"sessionTarget\": \"isolated\", \"delivery\": { \"mode\": \"announce\", \"channel\": \"qqbot\", \"to\": \"8c21afd77b89ca793a2aac9a3abeea25\" } } ``` ### 🎯 预期结果 - 11:39 CST 自动触发 - 网络恢复后自动开始执行 - 如果仍有问题，再次延迟 30 分钟 --- ## 12:23 - 午间回顾 + OpenClaw 更新 ### ✅ OpenClaw 更新成功 1. **版本升级** - 旧版本: 2026.4.1 (da64a97) - 新版本: 2026.4.5 (3e72c03) - 更新了 4 个版本（4月1日 → 4月5日） 2. **网络状态** - GitHub API: ⚠️ 仍不稳定 - gh auth: ⚠️ 需",
-      "recallCount": 4,
+      "recallCount": 8,
       "dailyCount": 0,
-      "totalScore": 3.257085063003711,
-      "maxScore": 0.8151048136221726,
+      "totalScore": 6.518565239387304,
+      "maxScore": 0.8153700440958983,
       "firstRecalledAt": "2026-04-07T02:52:19.055Z",
-      "lastRecalledAt": "2026-04-08T06:54:20.588Z",
+      "lastRecalledAt": "2026-04-08T13:54:34.774Z",
       "queryHashes": [
         "06be829a977e",
         "3cde8b98cdbd",
         "eba97e9a99fc",
-        "1262b7295025"
+        "1262b7295025",
+        "7d3f06a39ba5",
+        "9c289c57e706"
       ],
       "recallDays": [
         "2026-04-07",
