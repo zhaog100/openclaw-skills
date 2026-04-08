@@ -1,212 +1,111 @@
-# 📚 知识库索引
+# 知识库索引
 
-_最后更新: 2026-04-01 18:30_
-_总文件数: 128 个_
-_今日新增: 55 个_
+_自动生成 - 2026-04-08 17:08 CST_
 
 ---
 
-## 🗂️ 知识库结构
+## 📊 统计
 
-```
-knowledge/
-├── bounty/                    # Bounty系统知识
-│   ├── strategies/            # 策略文档
-│   │   ├── auto-workflow.md   # ⭐ 自动工作流程
-│   │   ├── filters.md         # 过滤策略
-│   │   └── scoring.md         # 评分算法
-│   └── templates/             # 标准模板
-│       └── SECURITY.md        # 安全文档模板
-│
-├── github-bounty/             # GitHub Bounty实现
-│   ├── implementation.md      # 实现细节
-│   ├── lessons-learned.md     # 经验教训
-│   └── best-practices.md      # 最佳实践
-│
-├── multi-agent-collaboration/ # 多智能体协作
-│   ├── MULTI_AGENT_BEST_PRACTICES.md
-│   └── patterns.md            # 协作模式
-│
-├── software-testing/          # 软件测试
-│   ├── testing-projects/      # 测试项目
-│   └── test-management/       # 测试管理
-│
-└── tools/                     # 工具指南
-    ├── plantuml-guide.md      # PlantUML使用
-    └── openclaw-sessions-api.md # OpenClaw API
-```
+**总文件数**: 132 个
+**今日更新**: 15 个
+**知识分类**: 15+
 
 ---
 
-## 📌 核心知识点
+## 📁 主要分类
 
-### 1. Bounty 系统
+### 🔒 Bounty 相关 (bounty/)
+- `bounty-workflow-best-practices.md` - Bounty 工作流最佳实践
+- `bounty-scanning-optimization.md` - 扫描优化策略
+- `bounty-task-evaluation.md` - 任务评估标准
 
-#### 🎯 自动工作流 (⭐ 重要)
-- **位置**: `bounty/strategies/auto-workflow.md`
-- **用途**: 定义自动完成策略
-- **关键点**:
-  - 无需询问用户
-  - 按优先级顺序执行
-  - 质量优先于数量
+### 🔐 Git 安全 (git-security/)
+- `2026-04-01-security-audit-and-config-management.md` - 安全审计
+- `token-management.md` - Token 管理策略
 
-#### 📊 评分策略
-- **位置**: `bounty/strategies/scoring.md`
-- **算法**: 活跃度(30%) + 价值(40%) + 工作量(20%) + 学习(10%)
+### 🔄 Git 工作流 (git-workflow/)
+- `remote-repository-management.md` - 远程仓库管理
+- `branch-management.md` - 分支管理策略
 
-#### 🔍 过滤策略
-- **位置**: `bounty/strategies/filters.md`
-- **关键词**: bounty, security, bug-bounty, responsible disclosure
+### 🤖 AI 系统
+- `ai-models/` - AI 模型研究
+- `ai-skills/` - AI 技能系统
+- `ai-system-design/` - AI 系统设计
 
-#### 📝 模板
-- **SECURITY.md**: 标准安全文档模板
-- **PR模板**: Pull Request 标准格式
+### 🌐 API 和服务
+- `api/` - API 文档
+- `multi-agent-collaboration/` - 多智能体协作
 
-### 2. GitHub Bounty 实现
-
-#### 💡 经验教训
-- **urllib3降级**: v2 → v1.26.20 (LibreSSL兼容)
-- **SSH→HTTPS**: 解决推送问题
-- **黑名单维护**: 避免重复工作
-
-#### ✅ 最佳实践
-- 项目选择: 中小型活跃项目
-- 模板复用: 提升80%效率
-- 持续跟进: 定期检查PR状态
-
-### 3. 多智能体协作
-
-#### 🤝 协作模式
-- **位置**: `multi-agent-collaboration/`
-- **模式**:
-  - 主从模式
-  - 对等模式
-  - 层级模式
-
-#### 📋 最佳实践
-- 明确分工
-- 通信协议
-- 错误处理
-- 结果聚合
-
-### 4. 软件测试
-
-#### 🧪 测试项目
-- **traveler-platform**: 旅行平台测试
-- **测试用例**: 三端测试方案
-- **测试报告**: 第一轮测试报告
-
-#### 📚 测试管理
-- 测试计划模板
-- 测试用例设计
-- 测试报告格式
-
-### 5. 工具使用
-
-#### 🎨 PlantUML
-- **位置**: `tools/plantuml-guide.md`
-- **用途**: UML图表生成
-- **示例**: 序列图、类图、流程图
-
-#### 🔌 OpenClaw Sessions API
-- **位置**: `tools/openclaw-sessions-api.md`
-- **功能**: Session管理
-- **用途**: 多会话协作
+### 📚 其他
+- `archives/` - 历史归档
+- `articles/` - 文章集合
+- `content-creation/` - 内容创作
+- `financial-ai-testing/` - 金融 AI 测试
 
 ---
 
-## 🔍 快速查找
+## 🆕 今日更新 (2026-04-08)
 
-### 按场景查找
+1. `bounty/bounty-workflow-best-practices.md` - 新增
+2. `git-workflow/remote-repository-management.md` - 新增
+3. `bounty/bounty-scanning-optimization.md` - 更新
+4. 其他 12 个文件 - 小幅更新
 
-| 场景 | 查找位置 |
-|------|---------|
-| **开始新任务** | `bounty/strategies/auto-workflow.md` |
-| **评估任务价值** | `bounty/strategies/scoring.md` |
-| **过滤重复任务** | `bounty/strategies/filters.md` |
-| **使用模板** | `bounty/templates/` |
-| **学习经验** | `github-bounty/lessons-learned.md` |
-| **多智能体协作** | `multi-agent-collaboration/` |
-| **测试方法** | `software-testing/` |
-| **工具使用** | `tools/` |
+---
 
-### 按关键词查找
+## 📝 使用方法
 
+### 搜索知识
+```bash
+# 搜索特定主题
+grep -r "关键词" knowledge/
+
+# 查看分类
+ls -la knowledge/
+
+# 查看最新更新
+find knowledge -name "*.md" -mtime -1
 ```
-bounty → knowledge/bounty/
-github → knowledge/github-bounty/
-协作 → knowledge/multi-agent-collaboration/
-测试 → knowledge/software-testing/
-工具 → knowledge/tools/
+
+### 添加新知识
+```bash
+# 创建新文档
+vim knowledge/分类/新文档.md
+
+# 更新索引
+./scripts/update-knowledge-index.sh
 ```
 
 ---
 
-## 📈 知识库统计
+## 🔍 快速访问
 
-- **总文档数**: 50+
-- **核心策略**: 5
-- **模板**: 3
-- **测试项目**: 1
-- **工具指南**: 2
-
----
-
-## 🔄 最近更新
-
-- **2026-03-29**: 添加 auto-workflow 策略
-- **2026-03-28**: 更新测试报告
-- **2026-03-27**: 添加 SECURITY.md 模板
+### 常用文档
+- Bounty 最佳实践: `bounty/bounty-workflow-best-practices.md`
+- Git 安全: `git-security/2026-04-01-security-audit-and-config-management.md`
+- 远程仓库管理: `git-workflow/remote-repository-management.md`
 
 ---
 
-## 🎯 待添加的知识
+## 📊 文件类型分布
 
-- [ ] GitHub API 高级用法
-- [ ] 网络韧性策略
-- [ ] 功耗优化知识
-- [ ] Python 最佳实践
-
----
-
-_本索引由 OpenClaw Agent 维护_
-_建议定期更新_
+| 类型 | 数量 | 占比 |
+|------|------|------|
+| Bounty 相关 | 15+ | 11% |
+| Git 相关 | 10+ | 8% |
+| AI 相关 | 30+ | 23% |
+| API 相关 | 20+ | 15% |
+| 其他 | 57+ | 43% |
 
 ---
 
-### 2026-04-01 新增知识
+## ⚠️ 注意事项
 
-#### 🔒 Git 安全审计
-- **位置**: `git-security/2026-04-01-security-audit-and-config-management.md`
-- **用途**: 安全审计、API Key 轮换、配置管理
-- **关键点**:
-  - 配置文件权限管理
-  - API Key 轮换流程
-  - Git 分支合并策略
-  - Docker 配置同步
-  - Vulkan GPU 支持
+1. **定期更新**: 每周更新一次索引
+2. **分类清晰**: 保持分类结构清晰
+3. **命名规范**: 使用小写字母和连字符
+4. **内容精简**: 避免冗余内容
 
-#### 📝 今日工作记录
-- **位置**: `memory/2026-04-01.md`
-- **用途**: 日常工作和学习记录
-- **关键点**:
-  - 安全审计完成
-  - API Key 轮换（4/6）
-  - QQ Bot 配置更新
-  - Git 仓库整理
-  - Docker 同步
+---
 
-
-### 🤖 AI 模型配置
-
-#### Qwen3.6 Plus 免费访问 (⭐ 新增)
-- **位置**: `ai-models/qwen3.6-plus-free-access.md`
-- **用途**: Qwen3.6 Plus 四种免费使用方式
-- **关键点**:
-  - OpenCode（开箱即用）
-  - OpenRouter（API 可集成）
-  - CodingPlan Test（批量测试）
-  - JCode（Claude Code 启动器）
-  - 100万上下文，完全免费
-- **配置**: 已配置到 OpenClaw（主力智谱，备用）
-
+_最后更新: 2026-04-08 17:08 CST_
