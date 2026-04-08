@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-08T01:41:04.487Z",
+  "updatedAt": "2026-04-08T02:51:32.674Z",
   "entries": {
     "memory:memory/2026-03-22.md:1:49": {
       "key": "memory:memory/2026-03-22.md:1:49",
@@ -506,17 +506,19 @@
       "endLine": 442,
       "source": "memory",
       "snippet": "- **小米辣**: - Gateway: 运行中 (127.0.0.1:18789) - 小米糕 Gateway: 运行中 (0.0.0.0:18790) - Docker: 运行中 - QQ Bot: 连接正常 - **小米糕**: - Gateway: 运行中 (0.0.0.0:18790) - Docker: 运行中 - QQ Bot: 正常连接 - 版本信息: ✅ 2026.4.1 - 配置文件: 无差异,配置已保留 - 备份目录: `~/.openclaw.backup.20260402-113024` (已存在) - Docker 镜像版本: `openclaw/openclaw:2026.4.1` - 容器启动时使用新镜像 - 配置文件已迁移到新容器 - **结论**: ✅ 更新成功 - ✅ 两个实例都已更新到最新版本 2026.4.1 - ✅ 核心安全问题解决(标准审计 0 CRITICAL) - ✅ 深度审计发现插件代码风险(2 个 CRITICAL) - QQ Bot 插件（环境变量收集 + Shell 执行) - Context Manager skill (环境变量收集 + Shell 执行) - **决策**: 可接受风险 - **QQ Bot 插件**: 官方维护,风险可控 - **Context manager skill**: 本地开发,需要审查代码 - **建议**: - 定期审查已安装的插件",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.7403728861714649,
+      "totalScore": 1.4727763111909313,
       "maxScore": 0.7403728861714649,
       "firstRecalledAt": "2026-04-07T03:15:02.714Z",
-      "lastRecalledAt": "2026-04-07T03:15:02.714Z",
+      "lastRecalledAt": "2026-04-08T02:04:25.249Z",
       "queryHashes": [
-        "20ce54c37577"
+        "20ce54c37577",
+        "4aee30f7590a"
       ],
       "recallDays": [
-        "2026-04-07"
+        "2026-04-07",
+        "2026-04-08"
       ],
       "conceptTags": [
         "backup",
@@ -536,17 +538,19 @@
       "endLine": 612,
       "source": "memory",
       "snippet": "4. 创建 `bot/pdf_parser.py` (90 行) 5. 集成到 `bot.py` 6. 创建知识库文档 7. 提交 PR **发现问题**: - Issue #2 的 RAG 功能已在 MVP 中实现 - 维护者可能忘记关闭 Issue **行动**: 1. 创建 Issue 评论询问状态 2. 创建增强型 PR #4（PDF 支持） - **链接**: https://github.com/versila22/hotline-darons/pull/4 - **评论**: https://github.com/versila22/hotline-darons/issues/2#issuecomment-4174236826 - **状态**: 等待审核 - **预期奖励**: 增强功能奖励 - **学习要点**: - 先检查已有实现 - 提供增值而非重复工作 - Issue 评论策略明智 - **时间**: 09:30-10:36 (26 分钟) - **代码量**: +377 行 - **文档**: 2 个（pdf_parser.py + README) --- ### 4. 安全审计与加固 (10:22-11:45) **触发**: 收到 OpenClaw 3.22 安全文章 **工作流程**: 1. 创建环境变量文件 `~/.openclaw/.env` 2. 迁移 8 个凭证到环境变量 3. 加固文件权限 (600/700) 4. 修改 QQ Bot 访问控制 5. 运行虚拟机安全检查 6. 标记小米糕风险为\"",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.733364835711486,
+      "totalScore": 1.4586076006813458,
       "maxScore": 0.733364835711486,
       "firstRecalledAt": "2026-04-07T03:15:02.714Z",
-      "lastRecalledAt": "2026-04-07T03:15:02.714Z",
+      "lastRecalledAt": "2026-04-08T02:04:25.249Z",
       "queryHashes": [
-        "20ce54c37577"
+        "20ce54c37577",
+        "4aee30f7590a"
       ],
       "recallDays": [
-        "2026-04-07"
+        "2026-04-07",
+        "2026-04-08"
       ],
       "conceptTags": [
         "bot/pdf-parser.py",
@@ -626,17 +630,19 @@
       "endLine": 898,
       "source": "memory",
       "snippet": "- **PR 监控**: 8 个 PR - **QQ Bot Token 更新**: 2 个实例 ✅ --- ## 🔐 QQ Bot Token 更新 (14:56) ### 小米辣 ✅ - **AppID**: 102911630 - **Token**: ePBxkX***7778 - **状态**: ✅ 配置已更新 ### 小米糕 ✅ - **AppID**: 1903665913 - **Token**: i9b3Wz***N4lT - **状态**: ✅ 已重启，连接成功 - **日志**: Gateway ready, WebSocket connected ### 验证结果 ``` ✅ Access token obtained successfully ✅ WebSocket connected ✅ Gateway ready ✅ Message processor started ``` ### 📊 更新统计 - **时间**: 14:56 CST - **实例**: 2 个（小米辣 + 小米糕） - **状态**: 全部成功 ✅ --- _最后更新: 2026-04-02 14:49 CST_ --- ## 📋 三项任务完成 (14:46) ### 1️⃣ Git 提交 ✅ - **提交**: `8aac8d1c` - **文件**: 1 个（HEARTBEAT.md） - **内容**: 更新心跳状态和任务列表 ### 2️⃣ 防火墙配置 ✅ - **SMTP 25**: 限制为仅本地访问 - **CUPS 631**: 限制",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.832390953613963,
+      "totalScore": 1.5640087744152225,
       "maxScore": 0.832390953613963,
       "firstRecalledAt": "2026-04-07T03:15:08.309Z",
-      "lastRecalledAt": "2026-04-07T03:15:08.309Z",
+      "lastRecalledAt": "2026-04-08T02:04:25.249Z",
       "queryHashes": [
-        "490f8462e22b"
+        "490f8462e22b",
+        "4aee30f7590a"
       ],
       "recallDays": [
-        "2026-04-07"
+        "2026-04-07",
+        "2026-04-08"
       ],
       "conceptTags": [
         "gateway",
@@ -1132,6 +1138,96 @@
         "发现",
         "缺少",
         "实现"
+      ]
+    },
+    "memory:memory/2026-03-24.md:198:259": {
+      "key": "memory:memory/2026-03-24.md:198:259",
+      "path": "memory/2026-03-24.md",
+      "startLine": 198,
+      "endLine": 259,
+      "source": "memory",
+      "snippet": "3. **质量与速度平衡** - 宁可慢也要保证质量，一次做对比返工快 10 倍 --- ## 📊 数据统计 | 类别 | 数量 | 今日变更 | |------|------|----------| | 记忆文件 | 8 个 | +1 (今日笔记) | | 知识文档 | 108 个 | +1 (索引) | | Git 提交 | 3 个 | +3 | | Bounty PR | 9 个 | +1 (ping) | | 索引文件 | 5 个 | +5 (新建) | | 评估报告 | 1 个 | +1 (grainlify #801) | --- **明日计划**： 1. ⏰ 10:00 前检查 7 个 ping 回复状态 2. 📝 跟进 grainlify #801 申请结果（如批准再评估） 3. 📚 开始 PortSwigger 学习路径 4. 🔄 考虑替换旧 KNOWLEDGE-INDEX.md 5. 💰 优先处理现有 PR 审核（$800-1,000） --- **版本**: v1.0 **创建**: 2026-03-24 15:12 **维护**: 小米辣 (PM + Dev) 🌶️ --- **MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)** --- ## 🔒 系统健康检查（21:00 定时） **时间**: 2026-03-24 21:00 **任务**: healthcheck:update-check ### 更新状态 | 项目 | 状态 | |------|---",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.8240515694339732,
+      "maxScore": 0.8240515694339732,
+      "firstRecalledAt": "2026-04-08T02:51:32.674Z",
+      "lastRecalledAt": "2026-04-08T02:51:32.674Z",
+      "queryHashes": [
+        "d1b05e6cb500"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "knowledge-index.md",
+        "800-1",
+        "v1.0",
+        "update-check",
+        "质量",
+        "速度",
+        "平衡",
+        "宁可"
+      ]
+    },
+    "memory:memory/2026-03-29.md:1092:1142": {
+      "key": "memory:memory/2026-03-29.md:1092:1142",
+      "path": "memory/2026-03-29.md",
+      "startLine": 1092,
+      "endLine": 1142,
+      "source": "memory",
+      "snippet": "- 60个已开发技能未在INDEX.md中体现 ### ✅ 已执行整合 #### 1. 更新MEMORY.md - ✅ 修正工作统计（56个任务，20个PR，$5,280预估） - ✅ 添加技能系统索引（60个技能） - ✅ 更新数据系统引用（bounty-master-list.md等） #### 2. 整合知识库 ```bash # 合并重复目录 knowledge/github-bounty/ → knowledge/bounty/references/ ``` - ✅ 移动实现文档到统一位置 - ✅ 保持目录结构清晰 - ✅ 更新README.md目录树 #### 3. 更新INDEX.md - ✅ 修正项目规模数据 - ✅ 添加技能系统部分（60个技能） - ✅ 添加数据系统引用（master-list, pr-tracker） - ✅ 更新知识库路径 ### 📊 整合后状态 **记忆系统**： - ✅ 数据准确（与远程一致） - ✅ 引用完整 - ✅ 结构清晰 **知识库**： - ✅ 无重复 - ✅ 单一入口（knowledge/bounty/） - ✅ 完整覆盖（模板+策略+实现+经验） **索引系统**： - ✅ 技能系统完整索引 - ✅ 数据系统完整引用 - ✅ 快速导航路径 ### 💡 经验教训 1. **定期同步** - 本地记忆与远程实际数据需要定期核对 2. **单一数据源** - 避免多个目录存储同类信息 3. **索引优先** - 大规模系统必须有完整索引 4. **数据验证** - 关键数字需从源头文件验证 ---",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.821837057557233,
+      "maxScore": 0.821837057557233,
+      "firstRecalledAt": "2026-04-08T02:51:32.674Z",
+      "lastRecalledAt": "2026-04-08T02:51:32.674Z",
+      "queryHashes": [
+        "d1b05e6cb500"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "60个已开发技能未在index.md中体现",
+        "更新memory.md",
+        "bounty-master-list.md等",
+        "knowledge/github-bounty",
+        "knowledge/bounty/references",
+        "更新readme.md目录树",
+        "更新index.md",
+        "master-list"
+      ]
+    },
+    "memory:memory/2026-03-20.md:60:100": {
+      "key": "memory:memory/2026-03-20.md:60:100",
+      "path": "memory/2026-03-20.md",
+      "startLine": 60,
+      "endLine": 100,
+      "source": "memory",
+      "snippet": "### FinMind（rohitdash08/FinMind）新目标 - TypeScript前端 + Python Flask后端 + PostgreSQL - fork: zhaog100/FinMind，本地: /tmp/FinMind - PR #499: Multi-account Dashboard #132 → $200 - PR #524: Savings Goals + Milestones #133 → $250 - 已认领 #130 Background Job Retry $250（未开发） ### 当前Bounty总览 | 项目 | PR数 | 金额 | 状态 | |------|------|------|------| | APort | 11 | $550 | 待review | | FinMind | 2 | $450 | 待review | | **总计** | **13** | **$1,000** | | ### 教训 - 子代理经常commit到错误分支或忘记commit，需手动检查`git log`和`git status` - SPIFFE Bridge子代理commit到了main而非新分支，需手动重建 - FinMind Savings Goals子代理超时未产出任何commit，主代理手动完成 - Flask项目（非FastAPI），需先读代码确认框架 - DB schema用TEXT列存JSON时，route层需json.loads/json.dumps转换 - 子代理并行修改同一仓库时分支切换会冲突，需要git st",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.8202953886277253,
+      "maxScore": 0.8202953886277253,
+      "firstRecalledAt": "2026-04-08T02:51:32.674Z",
+      "lastRecalledAt": "2026-04-08T02:51:32.674Z",
+      "queryHashes": [
+        "d1b05e6cb500"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "rohitdash08/finmind",
+        "zhaog100/finmind",
+        "tmp/finmind",
+        "multi-account",
+        "route层需json.loads/json.dumps转换",
+        "finmind",
+        "rohitdash08",
+        "目标"
       ]
     }
   }
