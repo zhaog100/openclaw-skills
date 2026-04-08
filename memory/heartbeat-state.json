@@ -1,27 +1,25 @@
 {
   "lastChecks": {
-    "system": "2026-03-30T23:46:00-07:00",
-    "bounty_tasks": "2026-03-30T23:46:00-07:00",
-    "git_status": "2026-03-30T23:46:00-07:00"
-  },
-  "todayStats": {
-    "bounty_completed": 7,
-    "git_commits": 17,
-    "code_lines": 5000,
-    "high_value_remaining": 44
+    "system": "2026-04-08T17:02:00+08:00",
+    "github": "2026-04-08T17:02:00+08:00",
+    "pr_status": "2026-04-08T17:02:00+08:00"
   },
   "systemHealth": {
-    "load": 0.61,
-    "memory": "94%",
+    "load": 0.20,
+    "uptime": "1:18",
+    "gateway_processes": 3,
+    "xiaomigao_container": "Up About an hour",
     "status": "excellent"
-  }
-}
-{
-  "lastChecks": {
-    "system": "2026-04-01T18:24:00+08:00",
-    "gateway": "2026-04-01T18:24:00+08:00",
-    "work": "2026-04-01T18:24:00+08:00"
   },
-  "status": "OK",
-  "notes": "系统正常运行，今天工作已全部完成"
+  "github": {
+    "auth": "✅ Fixed at 17:02",
+    "user": "zhaog100",
+    "open_prs": 15,
+    "pending_review": 15
+  },
+  "bounty": {
+    "open_prs_total": "$1,810 USDT",
+    "waiting_for_review": true,
+    "last_submission": "2026-04-08 06:04 CST"
+  }
 }
