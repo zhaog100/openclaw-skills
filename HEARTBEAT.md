@@ -262,7 +262,7 @@ _配置完成时间: 2026-03-29 09:05 PDT_
 5. ✅ 系统全面更新(22 apt + 3 npm)
 6. ✅ 磁盘清理(释放 4.2G)
 7. ✅ Git LFS 配置并推送成功(497MB)
-8. ✅ GitHub Token 更新(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)
+8. ✅ GitHub Token 更新(ghp_4jIL***uVkZ)
 
 ### ⏸️ 待执行
 - **小米糕容器**: ⚠️ 构建失败(网络不稳定,TLS超时)
@@ -575,7 +575,7 @@ docker buildx build --cache-from myimage:cache -t myimage:latest .
 ### ✅ 已完成任务(2026-04-06 至今)
 1. ✅ Chrome 书签整理(三省六部制分类)
 2. ✅ OpenClaw 更新至 2026.4.5(本机)
-3. ✅ GitHub Token 更新(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)
+3. ✅ GitHub Token 更新(ghp_4jIL***uVkZ)
 4. ✅ **小米糕容器升级至 2026.4.5** ⭐(刚刚完成)
 5. ✅ 系统全面更新(22 apt + 3 npm)
 6. ✅ 磁盘清理(释放 4.2G)
