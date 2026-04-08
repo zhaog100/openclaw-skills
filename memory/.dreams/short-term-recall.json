@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-08T02:51:32.674Z",
+  "updatedAt": "2026-04-08T04:38:59.953Z",
   "entries": {
     "memory:memory/2026-03-22.md:1:49": {
       "key": "memory:memory/2026-03-22.md:1:49",
@@ -1147,14 +1147,15 @@
       "endLine": 259,
       "source": "memory",
       "snippet": "3. **质量与速度平衡** - 宁可慢也要保证质量，一次做对比返工快 10 倍 --- ## 📊 数据统计 | 类别 | 数量 | 今日变更 | |------|------|----------| | 记忆文件 | 8 个 | +1 (今日笔记) | | 知识文档 | 108 个 | +1 (索引) | | Git 提交 | 3 个 | +3 | | Bounty PR | 9 个 | +1 (ping) | | 索引文件 | 5 个 | +5 (新建) | | 评估报告 | 1 个 | +1 (grainlify #801) | --- **明日计划**： 1. ⏰ 10:00 前检查 7 个 ping 回复状态 2. 📝 跟进 grainlify #801 申请结果（如批准再评估） 3. 📚 开始 PortSwigger 学习路径 4. 🔄 考虑替换旧 KNOWLEDGE-INDEX.md 5. 💰 优先处理现有 PR 审核（$800-1,000） --- **版本**: v1.0 **创建**: 2026-03-24 15:12 **维护**: 小米辣 (PM + Dev) 🌶️ --- **MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)** --- ## 🔒 系统健康检查（21:00 定时） **时间**: 2026-03-24 21:00 **任务**: healthcheck:update-check ### 更新状态 | 项目 | 状态 | |------|---",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
-      "totalScore": 0.8240515694339732,
+      "totalScore": 1.6040399917537451,
       "maxScore": 0.8240515694339732,
       "firstRecalledAt": "2026-04-08T02:51:32.674Z",
-      "lastRecalledAt": "2026-04-08T02:51:32.674Z",
+      "lastRecalledAt": "2026-04-08T04:26:07.339Z",
       "queryHashes": [
-        "d1b05e6cb500"
+        "d1b05e6cb500",
+        "0864165f7f0c"
       ],
       "recallDays": [
         "2026-04-08"
@@ -1228,6 +1229,319 @@
         "finmind",
         "rohitdash08",
         "目标"
+      ]
+    },
+    "memory:memory/2026-03-20.md:472:538": {
+      "key": "memory:memory/2026-03-20.md:472:538",
+      "path": "memory/2026-03-20.md",
+      "startLine": 472,
+      "endLine": 538,
+      "source": "memory",
+      "snippet": "4. ⏳ Gmail 付款通知检查 --- *由小米辣 (PM + Dev) 记录 🌶️ | 版权：思捷娅科技 (SJYKJ)* --- ## 18:15 - FinMind #115 开发完成 ⭐⭐⭐⭐⭐ ### 任务：Bulk import validation & preview improvements **验收标准**： - ✅ Production ready implementation - ✅ Includes tests - ✅ Documentation updated **实现内容**： 1. 验证器（expense_import.py）- 100 行 2. API 路由（expenses.py）- 150 行 3. 测试用例（test_expenses.py）- 100 行 **代码变更**： - 验证日期/金额/必填字段 - 支持 CSV 和 Excel 文件 - 重复检测 - 警告和错误分类 **PR 状态**：已提交评论，等待 PR 创建 **预计收入**：$200-400（取决于 bounty 金额） --- --- ## 18:20 - 今日最终总结 ⭐⭐⭐⭐⭐ ### 完成的任务 1. **ClawHub 技能发布** ✅ - session-memory-enhanced v4.2.1 已发布 - 本批次 6 个技能全部完成 2. **FinMind #115** ✅ - PR #564 已提交 - 批量导入验证和预览功能 - 预计收入：$200-400 3. **SolFo",
+      "recallCount": 5,
+      "dailyCount": 0,
+      "totalScore": 4.054130018987187,
+      "maxScore": 0.8108260037974373,
+      "firstRecalledAt": "2026-04-08T04:22:15.088Z",
+      "lastRecalledAt": "2026-04-08T04:35:26.118Z",
+      "queryHashes": [
+        "5d65019e8e11",
+        "d792f5b8529e",
+        "c88549787316",
+        "0864165f7f0c",
+        "d38e5eb337f4"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "expense-import.py",
+        "expenses.py",
+        "test-expenses.py",
+        "验证日期/金额/必填字段",
+        "200-400",
+        "session-memory-enhanced",
+        "v4.2.1",
+        "gmail"
+      ]
+    },
+    "memory:memory/2026-03-20.md:527:594": {
+      "key": "memory:memory/2026-03-20.md:527:594",
+      "path": "memory/2026-03-20.md",
+      "startLine": 527,
+      "endLine": 594,
+      "source": "memory",
+      "snippet": "- 5 个 submolts 内容已准备 - 20 个帖子大纲已完成 - 等待手动发布 ### 今日统计 - **工作时长**: 11.5 小时 - **Git 提交**: 25+ 个 - **ClawHub 技能**: 6 个 - **PR 提交**: 2 个 (FinMind + SolFoundry) - **预计收入**: ~$2,400-3,500 ### 待办事项 1. ⏳ Submolts 手动创建和发帖 2. ⏳ FinMind PR review 3. ⏳ SolFoundry PR review 4. ⏳ Revenue Sharing 持续内容创作 --- >>>>>>> ce5e781 (chore: 清理未提交变更) --- ## 18:25 - Submolts 内容准备完成 ⭐⭐⭐⭐ ### 准备内容 **Submolts 创建指南**： - 5 个 submolts 信息 - 创建步骤 - 预计时间：10-15 分钟 **帖子内容**： - 20 个完整帖子 - 每个 submolt 4 个帖子 - 内容已优化（标题 + 内容） **文件保存**： - `data/bounty-tasks/submolts-creation-guide.md` - `data/bounty-tasks/submolts-posts-content.md` ### 执行步骤 1. 访问 https://moltbook.com/create 2. 创建 5 个 submolts（m/llm, m/claude, m/ch",
+      "recallCount": 5,
+      "dailyCount": 0,
+      "totalScore": 4.054130018987187,
+      "maxScore": 0.8108260037974373,
+      "firstRecalledAt": "2026-04-08T04:22:15.088Z",
+      "lastRecalledAt": "2026-04-08T04:35:26.118Z",
+      "queryHashes": [
+        "5d65019e8e11",
+        "d792f5b8529e",
+        "c88549787316",
+        "0864165f7f0c",
+        "d38e5eb337f4"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "11.5",
+        "400-3",
+        "10-15",
+        "moltbook.com/create",
+        "m/llm",
+        "m/claude",
+        "m/ch",
+        "submolts"
+      ]
+    },
+    "memory:memory/2026-03-24.md:283:343": {
+      "key": "memory:memory/2026-03-24.md:283:343",
+      "path": "memory/2026-03-24.md",
+      "startLine": 283,
+      "endLine": 343,
+      "source": "memory",
+      "snippet": "| 16:19 | 恢复提交推错 | 个人文件回 origin | 再次删除 | **根因**： 1. 没有提交前分类，习惯性 `git add .` 2. 习惯性 `git push origin && git push xiaomila` 3. 没有真正理解\"禁止同一个 commit 推两个仓库\" **正确做法**： ```bash # ✅ 公共内容 git add STRUCTURE-INDEX.md data/bounty-*.txt git commit -m \"chore: 公共数据更新\" git push origin master # ✅ 个人内容 git add memory/2026-*.md docs/*-assessment.md git commit -m \"docs: 今日笔记\" git push xiaomila master # ❌ 禁止 git add . git commit -m \"更新\" git push origin master git push xiaomila master # 绝对禁止！ ``` **固化到 MEMORY.md**： - 推送规则详情（origin vs xiaomila） - 三次教训记录 - 禁止同一个 commit 推两个仓库 **最终状态**： - ✅ origin 无个人笔记 - ✅ xiaomila 个人笔记完整 - ✅ 本地文件安全 --- ### 结构化整理报告 v2.0 **创建文件**：`docs/structure-report-2026-03-24.md` **内容*",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.6069330343929473,
+      "maxScore": 0.8034665171964737,
+      "firstRecalledAt": "2026-04-08T04:22:15.088Z",
+      "lastRecalledAt": "2026-04-08T04:25:17.235Z",
+      "queryHashes": [
+        "5d65019e8e11",
+        "d792f5b8529e"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "structure-index.md",
+        "data/bounty",
+        "memory/2026",
+        "assessment.md",
+        "memory.md",
+        "v2.0",
+        "恢复",
+        "提交"
+      ]
+    },
+    "memory:memory/2026-03-25.md:62:83": {
+      "key": "memory:memory/2026-03-25.md:62:83",
+      "path": "memory/2026-03-25.md",
+      "startLine": 62,
+      "endLine": 83,
+      "source": "memory",
+      "snippet": "7. **ubiquity-os 生态** — 必须核心团队成员才能认领任务，普通贡献者被拒 8. **toku.agency** — AI agent 服务市场，USD 结算，85% 分成，API: ~/.openclaw/secrets/toku.env 9. **OpenClaw QQBot 引用格式** — `[引用消息开始]...[引用消息结束]`，由插件自动嵌入消息体 10. **Git 历史恢复** — `git show <commit>~1:<path>` 可恢复已删除文件 11. **bash `local result=$(...)`** — 会覆盖 `$?`，需用 `local rc=$?` 立即保存 12. **Tesseract OCR** — v5.3.4，中英文需 tesseract-ocr-chi-sim，pytesseract Python 库 ## ⏳ 待办 - tscircuit/core #2074 — 等 review - tscircuit/matchpack #49 — 等 review（上游 convertCircuitJsonToSchematicSimulationSvg 依赖问题） - AncientBeast #1469 — 已认领，暂不处理（代币价值不明） ## 🔍 遗漏/待改进 - 子代理类型错误频发，需要加强 PR 前本地类型检查 - Bounty 扫描效率可优化，考虑脚本化筛选冷门 org --- **MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)**",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.5583932365025528,
+      "maxScore": 0.7791966182512764,
+      "firstRecalledAt": "2026-04-08T04:22:15.088Z",
+      "lastRecalledAt": "2026-04-08T04:26:07.339Z",
+      "queryHashes": [
+        "5d65019e8e11",
+        "0864165f7f0c"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "ubiquity-os",
+        "toku.agency",
+        "openclaw/secrets/toku.env",
+        "v5.3.4",
+        "tesseract-ocr-chi-sim",
+        "tscircuit/core",
+        "tscircuit/matchpack",
+        "遗漏/待改进"
+      ]
+    },
+    "memory:memory/2026-04-02.md:884:923": {
+      "key": "memory:memory/2026-04-02.md:884:923",
+      "path": "memory/2026-04-02.md",
+      "startLine": 884,
+      "endLine": 923,
+      "source": "memory",
+      "snippet": "- vllm-omni #2080: OPEN（高优先级） - pygal #579: OPEN ($300) - InkkSlinger #12: OPEN **低优先级** (维护者不活跃): - SwapTrade-Backend: 5 个 PR ### 📊 工作统计 - **时间**: 14:43-14:46（3分钟） - **任务**: 3/3 完成 ✅ - **提交**: 1 个 - **防火墙**: 6 条规则更新 --- ## 📊 结构化整理完成 (15:21) ### 执行内容 - ✅ 记忆系统整理（33 个文件，340 KB） - ✅ 知识库整理（117 个文件，1.2 MB） - ✅ Git 状态检查（45 次提交） - ✅ 索引系统检查（100% 覆盖） - ✅ 本地 Git 提交（未推送） ### 发现的问题 - ⚠️ 备份文件较多（33 个） - ⚠️ Submodule 未更新（3 个） ### 整体评分 - **记忆系统**: 9/10 - **知识库**: 9/10 - **Git 库**: 8/10 - **索引系统**: 10/10 **总体**: 🟢 优秀（9/10） --- _更新时间: 2026-04-02 15:24 CST_",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.5583932365025528,
+      "maxScore": 0.7791966182512764,
+      "firstRecalledAt": "2026-04-08T04:22:15.088Z",
+      "lastRecalledAt": "2026-04-08T04:26:07.339Z",
+      "queryHashes": [
+        "5d65019e8e11",
+        "0864165f7f0c"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "备份",
+        "vllm-omni",
+        "swaptrade-backend",
+        "43-14",
+        "3/3",
+        "1.2",
+        "9/10",
+        "8/10"
+      ]
+    },
+    "memory:memory/2026-03-24.md:369:392": {
+      "key": "memory:memory/2026-03-24.md:369:392",
+      "path": "memory/2026-03-24.md",
+      "startLine": 369,
+      "endLine": 392,
+      "source": "memory",
+      "snippet": "- 名字: 小米椒 🌶️‍🔥（16 岁双胞胎精灵少女，新媒体运营专家） - agentDir: ~/.openclaw/agents/xiaomila-media/agent/ - workspace: ~/.openclaw/workspace/agents/xiaomila-media/ **第二个 Gateway 配置**： - 端口: 18790 - HOME: ~/.openclaw-media/ - systemd 服务: openclaw-media.service - QQ Bot: appId 1903665913 **技能共享**： - 11 个通用技能通过符号链接共享到 ~/.openclaw/skills/ - 共享技能: chart-generator, tavily-search, playwright, summarize, weather 等 ### 8️⃣ 小红书种草方案 ⭐⭐⭐⭐ **时间**: 21:42 **创建文件**: knowledge/trade/xiaohongshu-strategy.md **核心路径**: 1688 选品 → 小红书种草 → 闲鱼成交 **30天计划**: 起号期→测试期→放量期 **预期收益**: 1-2月 ¥0-2K → 5-6月 ¥10K-30K",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.775951602049435,
+      "maxScore": 0.775951602049435,
+      "firstRecalledAt": "2026-04-08T04:22:15.088Z",
+      "lastRecalledAt": "2026-04-08T04:22:15.088Z",
+      "queryHashes": [
+        "5d65019e8e11"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "gateway",
+        "openclaw-media",
+        "openclaw-media.service",
+        "openclaw/skills",
+        "chart-generator",
+        "tavily-search",
+        "1-2月",
+        "0-2k"
+      ]
+    },
+    "memory:memory/2026-03-30.md:164:217": {
+      "key": "memory:memory/2026-03-30.md:164:217",
+      "path": "memory/2026-03-30.md",
+      "startLine": 164,
+      "endLine": 217,
+      "source": "memory",
+      "snippet": "**有效措施**: - ✅ 停止 mediaanalysisd（释放 CPU + 内存） - ✅ 清理缓存（释放磁盘） - ✅ 关闭不必要进程（释放内存） **效果显著**: 负载降低 85% --- ## 📌 待办事项 - [x] 完成结构化整理（08:45） - [x] 更新 MEMORY.md（添加今日工作） - [x] 推送 Git 提交到远程仓库 - [x] 创建系统优化知识文档 - [ ] 触发 QMD 向量更新 - [ ] 开始 bounty 工作（如果时间允许） --- ## 🎯 今日目标 ### 优先级 1 - 系统健康 - ✅ 系统优化完成（负载 0.67） - ✅ 安全配置完成（Gmail + 脱敏规则） - ✅ 结构化整理完成 - ✅ 知识库扩展（系统优化文档） ### 优先级 2 - Bounty 工作 - ⏸️ 待所有系统更新完成后开始 - 📋 队列：216 个任务 - 🎯 目标：继续自动执行模式 ### 优先级 3 - 长期维护 - ✅ 功耗监控（7天数据采集中 - 108个样本） - ⏳ 每日回顾机制（12:00 + 23:00） - ⏳ QMD 向量更新（新知识需要索引） --- ## 📚 知识产出 ### 新增知识文档 **1. macOS 性能调优指南** - 路径: `knowledge/system-optimization/macos-performance-tuning.md` - 大小: 4,650 字节 - 内容: - 内存优化（小部件/媒体分析） - 缓存清理（安全清理方法） -",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.6453868872276844,
+      "maxScore": 0.8226934436138422,
+      "firstRecalledAt": "2026-04-08T04:25:17.235Z",
+      "lastRecalledAt": "2026-04-08T04:38:59.953Z",
+      "queryHashes": [
+        "d792f5b8529e",
+        "3bc7ae25b649"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "qmd",
+        "memory.md",
+        "0.67",
+        "小部件/媒体分析",
+        "有效",
+        "措施",
+        "停止",
+        "mediaanalysisd"
+      ]
+    },
+    "memory:memory/2026-04-08.md:1:20": {
+      "key": "memory:memory/2026-04-08.md:1:20",
+      "path": "memory/2026-04-08.md",
+      "startLine": 1,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "# 2026-04-08 工作记录 _小米辣_ **时间**: 09:40 CST **状态**: 正常工作 **工作**:** 1. 完成 RustChain 第3次付款提醒（Issue #2755) 2. 完成 homelab-stack Bounty #11、 #6 任务 3. 同步更新定时任务时间戳，移除过期任务 4. 清理重复 PR，减少噪音 --- _最后更新: 2026-04-08 10:35 CST_",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.634555828117881,
+      "maxScore": 0.8172779140589405,
+      "firstRecalledAt": "2026-04-08T04:25:17.235Z",
+      "lastRecalledAt": "2026-04-08T04:38:59.953Z",
+      "queryHashes": [
+        "d792f5b8529e",
+        "3bc7ae25b649"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "homelab-stack",
+        "工作",
+        "记录",
+        "小米",
+        "时间",
+        "cst",
+        "状态",
+        "正常"
+      ]
+    },
+    "memory:memory/2026-04-01.md:1:42": {
+      "key": "memory:memory/2026-04-01.md:1:42",
+      "path": "memory/2026-04-01.md",
+      "startLine": 1,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "# 2026-04-01 工作日志 acquisition time: 2026-04-01 19:25 CST end time: 2026-04-01 20:35 CST duration: 1h 10m --- ## Bounty 任务处理 ### ✅ 已完成任务 #### #10 - E2E Test Coverage - **状态**: 开发完成 ✅ - **仓库**: runveil-io/core - **评分**: 7.5/10 - **耗时**: ~10 分钟 - **代码量**: 257 行 - **测试**: 53/53 通过 ✅ - **分支**: zhaog100:issue-10-e2e-tests - **链接**: - 代码: https://github.com/zhaog100/core/tree/issue-10-o2e-tests - PR: 需要手动创建 #### 新增测试 1. **Auth failure**: Bad signing key rejected by relay ✅ 2. **Encryption verification**: Relay never sees plaintext ✅ 3. **Streaming**: SSE chunks flow end-to-end ✅ 4. **Performance**: Total e2e time < 10s ✅ 5. **Port assignment**: Random ports in valid range ✅ ### ⚠️ 遇到的问",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.7951689063756205,
+      "maxScore": 0.7951689063756205,
+      "firstRecalledAt": "2026-04-08T04:26:07.339Z",
+      "lastRecalledAt": "2026-04-08T04:26:07.339Z",
+      "queryHashes": [
+        "0864165f7f0c"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "runveil-io/core",
+        "7.5/10",
+        "53/53",
+        "issue-10-e2e-tests",
+        "end-to-end",
+        "工作",
+        "日志",
+        "acquisition"
+      ]
+    },
+    "memory:memory/2026-03-29.md:576:628": {
+      "key": "memory:memory/2026-03-29.md:576:628",
+      "path": "memory/2026-03-29.md",
+      "startLine": 576,
+      "endLine": 628,
+      "source": "memory",
+      "snippet": "## 🔄 Git 远程仓库配置进展 (05:06 PDT) ### 已识别的远程仓库 1. **公开仓库**: `git@github.com:zhaog100/openclaw-skills.git` - 用途: 技能相关内容（公开可见） 2. **私有仓库**: `git@github.com:zhaog100/xiaomili-skills.git` - 用途: 个人数据（私有访问） ### 当前状态 - ✅ Git fetch 已完成（remote: nimble-c） - ⏳ 本地有 4 个新提交待推送 - ⏳ 远程有大量历史提交待合并 - 🔜 需要执行历史合并操作 ### 下一步行动 ```bash # 合并历史（保留双方提交） git pull origin main --allow-unrelated-histories --no-edit # 推送到远程 git push origin main ``` ### 注意事项 - 使用 `--allow-unrelated-histories` 参数允许合并不相关的历史 - `--no-edit` 自动接受合并提交消息 - 合并后可能需要解决冲突（如果有） - 确保推送前检查合并结果 ### 预期结果 - ✅ 本地 4 个新提交与远程历史共存 - ✅ 工作区内容完整同步到 GitHub - ✅ 建立持续同步的远程仓库连接 --- _更新时间: 2026-03-29 05:06 PDT_ --- ## 🔄 数据整合与修正 (05:20 PDT) ### ⚠️ 发现的问题",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.7783729778409217,
+      "maxScore": 0.7783729778409217,
+      "firstRecalledAt": "2026-04-08T04:26:07.339Z",
+      "lastRecalledAt": "2026-04-08T04:26:07.339Z",
+      "queryHashes": [
+        "0864165f7f0c"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "github.com",
+        "zhaog100/openclaw-skills.git",
+        "zhaog100/xiaomili-skills.git",
+        "nimble-c",
+        "allow-unrelated-histories",
+        "no-edit",
+        "git",
+        "远程"
       ]
     }
   }
