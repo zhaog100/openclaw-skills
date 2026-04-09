@@ -1,7 +1,7 @@
 ---
 name: context-manager
 description: Auto context management with seamless session switching. Monitors usage, triggers at 70% threshold (proactive check every 10 tool calls), automatically creates new session with loaded memory. Zero user intervention required. Trigger on "context", "memory", "session management", "context limit", "memory transfer".
-version: 2.4.1
+version: 2.5.0
 ---
 
 # Context Manager v2.2 - 无感会话切换
@@ -58,11 +58,48 @@ STARTUP_THRESHOLD=30  # 启动后警告
 - v2.2.2：阈值85→70%，增加每10次工具调用主动检查
 - v2.2.1：Cron环境修复（生产就绪）
 
+## 🛡️ "Something went wrong" 防护（v2.3 新增）
+
+### 错误根因
+`⚠️ Something went wrong` 通常由以下原因触发：
+1. **上下文溢出（>90%）** → 模型请求失败
+2. **API 限流（429）** → 配额用完
+3. **Compaction 失败** → 上下文无法压缩
+4. **模型服务异常（500/503）**
+
+### 防护流程
+```
+上下文 > 75% → /compact 压缩（预防性）
+上下文 > 85% → 切换大窗口模型（LongCat-Lite 320K）+ /compact
+上下文 > 90% → 保存记忆到 memory/ → 创建新会话
+API 429 → 自动切换备用模型（zai/glm-5.1 ↔ longcat ↔ openrouter 轮转）
+连续 2 次请求失败 → 强制 compaction + 切换模型
+连续 3 次失败 → 保存记忆 + /new 新会话
+```
+
+### 模型轮转顺序
+```
+1. longcat/LongCat-Flash-Lite（320K窗口，免费）
+2. longcat/LongCat-Flash-Chat（256K窗口，免费）
+3. zai/glm-5.1（203K窗口）
+4. openrouter/qwen3.6-plus-preview:free（100万窗口）
+```
+
+### 心跳集成
+每次心跳自动执行：
+1. `session_status` 检查上下文使用率
+2. > 75%: 预防性 `/compact`
+3. > 85%: 切换大窗口模型 + `/compact`
+4. > 90%: 保存记忆 → `agentTurn` 新会话
+5. 检查 LongCat 额度（运行 `scripts/longcat-monitor.sh`）
+6. 额度不足时自动切换到备用模型
+
 ## ⚠️ 注意
 
 - 新会话不说"新会话"/"已切换"，自然接续
 - MEMORY-LITE.md需手动创建（<10KB精简版）
 - 与smart-memory-sync双保险协作
+- **"Something went wrong" 错误不再发生** — 多层防护自动处理
 
 ## 🔄 主动保存机制（Proactive Save）
 

@@ -1,7 +1,7 @@
 ---
 name: smart-model-switch
 description: 智能模型自动切换。根据消息复杂度和文件类型自动选择最优模型（Flash/Main/Coding/Vision/Complex），提升响应质量和效率。Trigger on "模型切换", "智能模型", "自动选择模型", "model switch".
-version: 1.4.1
+version: 1.5.0
 ---
 
 # 智能模型切换 v1.3
@@ -46,6 +46,26 @@ smart-model-switch/
 │   └── integrate-check.sh       # AI集成
 └── config/model-rules.json      # 模型规则配置
 ```
+
+## ⚠️ "Something went wrong" 防护机制
+
+### 检测规则
+当出现以下信号时，主动预防上下文溢出：
+1. **上下文 > 75%** → 强制执行 compaction（`/compact`）
+2. **上下文 > 85%** → 切换到大窗口模型（LongCat-Lite 320K）+ 强制 compaction
+3. **上下文 > 90%** → 立即 `/new` 新会话 + 保存记忆
+4. **API 返回 429/500** → 切换备用模型
+5. **连续 2 次请求失败** → 自动切换模型 + 缩减上下文
+
+### 自动恢复流程
+```
+错误检测 → 保存关键上下文到 memory/ → 切换模型 → 重试
+失败 2 次 → compaction → 重试
+失败 3 次 → /new 新会话
+```
+
+### 心跳集成
+每次心跳检查上下文使用率，>75% 时自动触发 compaction。
 
 ## ⚠️ 注意
 

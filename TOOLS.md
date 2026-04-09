@@ -7,32 +7,32 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - Username: zhaog100
 - Token 已存储在 ~/.git-credentials
 
-## 🎯 模型使用策略
+## 🎯 模型使用策略（2026-04-09 更新）
 
-### 优先级（重要！）
+### 默认模型（省钱优先）
+**LongCat-Flash-Lite** — 每天5500万免费token，日常任务首选 ⭐⭐⭐
 
-1. **主力**：智谱 `zai/glm-5` ⭐
-   - 日常任务首选
-   - 稳定性高，响应快
-
-2. **备用**：
-   - 百炼 `bailian/*`
-   - OpenRouter `qwen/qwen3.6-plus-preview:free` (100万上下文)
-   - AIHubMix `aihubmix/*`
-   - MiniMax `MiniMax-M2.7`
+### 分级策略
+| 层级 | 模型 | 用途 | 成本 |
+|------|------|------|------|
+| 🟢 轻量 | longcat/LongCat-Flash-Lite | 心跳、搜索、简单问答 | 免费 |
+| 🟡 标准 | longcat/LongCat-Flash-Chat | 写作、分析、内容创作 | 免费 |
+| 🟠 推理 | longcat/LongCat-Flash-Thinking-2601 | 复杂推理 | 免费 |
+| 🔴 高级 | zai/glm-5 | 代码、bounty开发 | 免费 |
+| 🔵 超长 | openrouter/qwen3.6-plus-preview:free | 超长上下文(100万) | 免费 |
 
 ### 切换命令
-
 ```bash
-# 默认使用智谱（无需切换）
-/model zai/glm-5
-
-# 超长上下文任务
-/model qwen/qwen3.6-plus-preview:free
-
-# 推理密集型
-/model MiniMax-M2.7
+/model longcat/LongCat-Flash-Lite    # 默认（省钱）
+/model longcat/LongCat-Flash-Chat    # 中等任务
+/model longcat/LongCat-Flash-Thinking-2601  # 深度推理
+/model zai/glm-5                      # 代码/复杂任务
 ```
+
+### 额度监控
+- 脚本: `scripts/longcat-monitor.sh`
+- 日志: `data/longcat-usage.log`
+- Base URL: `https://api.longcat.chat/openai`
 
 ## What Goes Here
 
