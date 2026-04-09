@@ -1,0 +1,15 @@
+{
+  "name": "github-prospector",
+  "version": "1.0.0",
+  "description": "GitHub-based marketing prospector for finding bounty projects and developers",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "ts-node": "^10.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

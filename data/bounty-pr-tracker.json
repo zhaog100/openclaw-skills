@@ -1,138 +1,356 @@
-[
-  {
-    "id": "PR-20260322-001",
-    "repo": "StelTade/SwapTrade-Backend",
-    "issue": 201,
-    "pr": 209,
-    "url": "https://github.com/StelTade/SwapTrade-Backend/pull/209",
-    "title": "Admin API for Waitlist and Referral",
-    "amount": 0,
-    "currency": "USD",
-    "status": "closed_inactive_maintainer",
-    "submitted": "2026-03-22",
-    "payment_platform": "unknown",
-    "maintainer_active": false,
-    "repo_push": "2026-02-26",
-    "maintainer_inactive_days": 182,
-    "ping_sent": true,
-    "ping_history": [
-      {
-        "at": "2026-03-23T11:28:22+08:00",
-        "target": "@OthmanImam @StelTade"
-      }
-    ],
-    "note": "维护者半年不活跃，2star, 已 ping 等 48h"
-  },
-  {
-    "id": "PR-20260322-002",
-    "repo": "StelTade/SwapTrade-Backend",
-    "issue": 200,
-    "pr": 210,
-    "url": "https://github.com/StelTade/SwapTrade-Backend/pull/210",
-    "title": "Waitlist Email Notification Backend",
-    "amount": 0,
-    "currency": "USD",
-    "status": "closed_inactive_maintainer",
-    "submitted": "2026-03-22",
-    "payment_platform": "unknown",
-    "maintainer_active": false,
-    "ping_sent": true,
-    "ping_history": [
-      {
-        "at": "2026-03-23T11:28:22+08:00",
-        "target": ""
-      }
-    ],
-    "note": "同上"
-  },
-  {
-    "id": "PR-20260322-003",
-    "repo": "StelTade/SwapTrade-Backend",
-    "issue": 187,
-    "pr": 211,
-    "url": "https://github.com/StelTade/SwapTrade-Backend/pull/211",
-    "title": "Reward Distribution System",
-    "amount": 0,
-    "currency": "USD",
-    "status": "closed_inactive_maintainer",
-    "submitted": "2026-03-22",
-    "payment_platform": "unknown",
-    "maintainer_active": false,
-    "ping_sent": true,
-    "ping_history": [
-      {
-        "at": "2026-03-23T11:28:22+08:00",
-        "target": ""
-      }
-    ],
-    "note": "同上"
-  },
-  {
-    "id": "PR-20260322-004",
-    "repo": "StelTade/SwapTrade-Backend",
-    "issue": 202,
-    "pr": 212,
-    "url": "https://github.com/StelTade/SwapTrade-Backend/pull/212",
-    "title": "Referral and Waitlist Fraud Protection",
-    "amount": 0,
-    "currency": "USD",
-    "status": "closed_inactive_maintainer",
-    "submitted": "2026-03-22",
-    "payment_platform": "unknown",
-    "maintainer_active": false,
-    "ping_sent": true,
-    "ping_history": [
-      {
-        "at": "2026-03-23T11:28:22+08:00",
-        "target": ""
-      }
-    ],
-    "note": "同上"
-  },
-  {
-    "id": "PR-20260322-005",
-    "repo": "StelTade/SwapTrade-Backend",
-    "issue": 198,
-    "pr": 213,
-    "url": "https://github.com/StelTade/SwapTrade-Backend/pull/213",
-    "title": "Referral Tracking Backend Logic",
-    "amount": 0,
-    "currency": "USD",
-    "status": "closed_inactive_maintainer",
-    "submitted": "2026-03-22",
-    "payment_platform": "unknown",
-    "maintainer_active": false,
-    "ping_sent": true,
-    "ping_history": [
-      {
-        "at": "2026-03-23T11:28:22+08:00",
-        "target": ""
-      }
-    ],
-    "note": "同上"
-  },
-  {
-    "id": "PR-20260322-007",
-    "repo": "Chevalier12/InkkSlinger",
-    "issue": 3,
-    "pr": 12,
-    "url": "https://github.com/Chevalier12/InkkSlinger/pull/12",
-    "title": "Implement InkCanvas and InkPresenter",
-    "amount": 0,
-    "currency": "USD",
-    "status": "closed_inactive_maintainer",
-    "submitted": "2026-03-22",
-    "payment_platform": "unknown",
-    "maintainer_active": false,
-    "repo_push": "2026-03-22",
-    "maintainer_inactive_days": 285,
-    "ping_sent": true,
-    "ping_history": [
-      {
-        "at": "2026-03-23T11:28:22+08:00",
-        "target": "@Chevalier12"
-      }
-    ],
-    "note": "维护者 9 个月不活跃，3star, 已 ping 等 48h"
-  }
-]
+{
+  "lastUpdated": "2026-04-09T11:11:00+08:00",
+  "totalPRs": 50,
+  "prs": [
+    {
+      "repo": "ubiquity-os/.github",
+      "pr": 30,
+      "title": "Plugin Health Monitor",
+      "reward": "$450",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/plugin-template",
+      "pr": 66,
+      "title": "Reusable Knip/Jest",
+      "reward": "$1,200",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 83,
+      "title": "Config Protection",
+      "reward": "$75",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 84,
+      "title": "Deadlines Incentive",
+      "reward": "-",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 85,
+      "title": "command-plan",
+      "reward": "$600",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 86,
+      "title": "Webhook Rewards",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/ubiquity-os-kernel",
+      "pr": 340,
+      "title": "Callbacks API",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/ubiquity-os-plugin-installer",
+      "pr": 51,
+      "title": "Premade Configs",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/command-demo",
+      "pr": 28,
+      "title": "DEMO Currency",
+      "reward": "$150",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/permit-generation",
+      "pr": 124,
+      "title": "CF Worker",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os/permit-generation",
+      "pr": 125,
+      "title": "Auto Transfer",
+      "reward": "$600",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os-marketplace/daemon-pricing",
+      "pr": 169,
+      "title": "Issue Scraper",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 508,
+      "title": "Regex Improvements",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 509,
+      "title": "Validate Rewards",
+      "reward": "$150",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 510,
+      "title": "Differential Rewards",
+      "reward": "$600",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity/uusd.ubq.fi",
+      "pr": 48,
+      "title": "CoWSwap Improvements",
+      "reward": "$75",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity/arbitrage-bot",
+      "pr": 9,
+      "title": "Arbitrage Bot",
+      "reward": "$600",
+      "status": "open"
+    },
+    {
+      "repo": "devpool-directory/devpool-directory-tasks",
+      "pr": 66,
+      "title": "Matchmaking UI",
+      "reward": "$900",
+      "status": "open"
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 504,
+      "title": "CHANGELOG",
+      "reward": "$50",
+      "status": "open"
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 505,
+      "title": "CLAUDE.md",
+      "reward": "$75",
+      "status": "open"
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 506,
+      "title": "PR Review Agent",
+      "reward": "$150",
+      "status": "open"
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 507,
+      "title": "Safety Hook",
+      "reward": "$100",
+      "status": "open"
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 508,
+      "title": "n8n Workflow",
+      "reward": "$200",
+      "status": "open"
+    },
+    {
+      "repo": "thesysdev/openui-creator-program",
+      "pr": 18,
+      "title": "3 Articles",
+      "reward": "$150-300",
+      "status": "open"
+    },
+    {
+      "repo": "kcolbchain/research",
+      "pr": 7,
+      "title": "MEV + Depeg Research",
+      "reward": "TBD",
+      "status": "open"
+    },
+    {
+      "repo": "langerma/dumpstore",
+      "pr": 68,
+      "title": "argon2id migration",
+      "reward": "-",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 981,
+      "title": "TypeScript SDK",
+      "reward": "900K FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 982,
+      "title": "VS Code Extension",
+      "reward": "600K FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 983,
+      "title": "Telegram Bot",
+      "reward": "500K FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 984,
+      "title": "Marketplace",
+      "reward": "1M FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 985,
+      "title": "AI Enhancer",
+      "reward": "450K FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 986,
+      "title": "GitHub Action",
+      "reward": "500K FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 991,
+      "title": "Search Bar",
+      "reward": "100K FNDRY",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 430,
+      "title": "CN Robustness",
+      "reward": "$250",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 432,
+      "title": "Monitoring",
+      "reward": "$280",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 441,
+      "title": "Robustness",
+      "reward": "$250",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 442,
+      "title": "Database",
+      "reward": "$130",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 443,
+      "title": "AI Stack",
+      "reward": "$220",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 445,
+      "title": "Productivity",
+      "reward": "$170",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 446,
+      "title": "Media",
+      "reward": "$160",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 447,
+      "title": "Notifications",
+      "reward": "$80",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 448,
+      "title": "Network",
+      "reward": "$140",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 449,
+      "title": "Home Automation",
+      "reward": "$130",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 450,
+      "title": "Storage",
+      "reward": "$150",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 451,
+      "title": "SSO Enhancement",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 453,
+      "title": "Testing",
+      "reward": "$280",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 454,
+      "title": "6 Stack Combo",
+      "reward": "$880",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 455,
+      "title": "SSO Stack",
+      "reward": "$300",
+      "status": "open"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 456,
+      "title": "Observability",
+      "reward": "$280",
+      "status": "open"
+    },
+    {
+      "repo": "ubiquity/arbitrage-bot",
+      "pr": 10,
+      "title": "Multi Chain Arb",
+      "reward": "$400",
+      "status": "closed"
+    }
+  ]
+}
