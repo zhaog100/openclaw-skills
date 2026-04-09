@@ -1,117 +1,69 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-# GitHub: https://github.com/zhaog100/openclaw-skills
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-# GitHub: https://github.com/zhaog100/openclaw-skills
 #!/bin/bash
-# bounty_preflight.sh - Issue预检脚本
+# bounty_preflight.sh v2.0 — 认领前预检（防止白做）
 # 用法: bash bounty_preflight.sh <owner/repo> <issue_number>
-# 预检: issue状态、是否已有PR、是否已关闭、竞争情况
+# 返回: 0=可认领 1=跳过
+# 版权：MIT | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
-TOKEN="${GITHUB_TOKEN:-}"
-if [ -z "$TOKEN" ]; then
-    echo "ERROR: GITHUB_TOKEN not set"
+set -euo pipefail
+
+REPO="${1:?Usage: bounty_preflight.sh <owner/repo> <issue>}"
+ISSUE="${2:?issue number required}"
+
+TOKEN="${GITHUB_TOKEN:-$(cat ~/.git-credentials 2>/dev/null | grep github | head -1 | sed 's/.*:\/\/[^:]*:\([^@]*\).*/\1/')}"
+
+echo "🔍 Pre-flight check: $REPO #$ISSUE"
+
+# 1. Check if repo is archived
+ARCHIVED=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/$REPO" 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin).get('archived',False))" 2>/dev/null || echo "true")
+if [ "$ARCHIVED" = "True" ]; then
+    echo "❌ SKIP: Repository is archived"
     exit 1
 fi
 
-REPO="$1"
-ISSUE="$2"
-
-if [ -z "$REPO" ] || [ -z "$ISSUE" ]; then
-    echo "Usage: bash bounty_preflight.sh <owner/repo> <issue_number>"
+# 2. Check if issue has assignee
+ASSIGNEE=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/$REPO/issues/$ISSUE" 2>/dev/null | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('assignee') is not None)" 2>/dev/null || echo "true")
+if [ "$ASSIGNEE" = "True" ]; then
+    echo "❌ SKIP: Issue already assigned"
     exit 1
 fi
 
-echo "=== Preflight: $REPO #$ISSUE ==="
+# 3. Check if we already have a PR for this issue
+HAS_PR=$(gh api "search/issues?q=repo:$REPO+type:pr+author:zhaog100+$ISSUE" --jq '.total_count' 2>/dev/null || echo "0")
+if [ "$HAS_PR" != "0" ]; then
+    echo "❌ SKIP: Already have PR for this issue"
+    exit 1
+fi
 
-# 1. 检查issue是否存在和状态
-ISSUE_DATA=$(curl -s "https://api.github.com/repos/$REPO/issues/$ISSUE" \
-    -H "Authorization: token $TOKEN" 2>/dev/null)
-
-STATE=$(echo "$ISSUE_DATA" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('state','?'))" 2>/dev/null)
-TITLE=$(echo "$ISSUE_DATA" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('title','')[:80])" 2>/dev/null)
-ASSIGNEE=$(echo "$ISSUE_DATA" | python3 -c "import json,sys;d=json.load(sys.stdin);a=d.get('assignee');print(a['login'] if a else 'None')" 2>/dev/null)
-COMMENTS=$(echo "$ISSUE_DATA" | python3 -c "import json,sys;print(json.load(sys.stdin).get('comments',0))" 2>/dev/null)
-ATTEMPTS=$(echo "$ISSUE_DATA" | python3 -c "
+# 4. Check maintainer activity (last push > 14 days = warning)
+LAST_PUSH=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/$REPO" 2>/dev/null | python3 -c "
 import json,sys
+from datetime import datetime, timezone
 d=json.load(sys.stdin)
-print(d.get('body','')[:2000])
-" 2>/dev/null | grep -c "/attempt" || echo 0)
+pushed=d.get('pushed_at','')
+if pushed:
+    dt=datetime.fromisoformat(pushed.replace('Z','+00:00'))
+    days=(datetime.now(timezone.utc)-dt).days
+    print(days)
+else: print(999)
+" 2>/dev/null || echo "999")
 
-if [ "$STATE" = "?" ]; then
-    echo "❌ Issue #$ISSUE does not exist in $REPO"
-    exit 2
+if [ "$LAST_PUSH" -gt 14 ]; then
+    echo "⚠️ WARNING: Last push was $LAST_PUSH days ago (maintainer may be inactive)"
+    if [ "$LAST_PUSH" -gt 30 ]; then
+        echo "❌ SKIP: Maintainer >30 days inactive"
+        exit 1
+    fi
 fi
 
-echo "📋 Title: $TITLE"
-echo "📊 State: $STATE"
-echo "👤 Assignee: $ASSIGNEE"
-echo "💬 Comments: $COMMENTS"
-echo "⚡ /attempts: $ATTEMPTS"
-
-# 2. 检查是否已关闭
-if [ "$STATE" = "closed" ]; then
-    echo "❌ Issue already CLOSED"
-    exit 2
+# 5. Check how many of our PRs are pending in this repo
+OUR_PRS=$(gh api "search/issues?q=repo:$REPO+type:pr+author:zhaog100+state:open" --jq '.total_count' 2>/dev/null || echo "0")
+if [ "$OUR_PRS" -gt 5 ]; then
+    echo "⚠️ WARNING: Already have $OUR_PRS open PRs in this repo (>5 risk of spam)"
+    if [ "$OUR_PRS" -gt 10 ]; then
+        echo "❌ SKIP: Too many open PRs ($OUR_PRS)"
+        exit 1
+    fi
 fi
 
-# 3. 检查是否已有人认领
-if [ "$ASSIGNEE" != "None" ]; then
-    echo "⚠️ Already assigned to $ASSIGNEE"
-fi
-
-# 4. 检查是否已有PR关联
-echo "--- Existing PRs ---"
-PR_DATA=$(curl -s "https://api.github.com/repos/$REPO/pulls?state=open&per_page=30" \
-    -H "Authorization: token $TOKEN" 2>/dev/null)
-echo "$PR_DATA" | python3 -c "
-import json,sys
-prs = json.load(sys.stdin)
-related = [p for p in prs if '#$ISSUE' in p.get('title','') + p.get('body','')]
-if related:
-    for p in related:
-        print(f'  PR #{p[\"number\"]} by @{p[\"user\"][\"login\"]}: {p[\"title\"][:60]}')
-else:
-    print('  No related PRs found')
-" 2>/dev/null
-
-# 5. 检查是否已被别人修复
-echo "--- Recent merged PRs ---"
-MERGED=$(curl -s "https://api.github.com/repos/$REPO/pulls?state=closed&per_page=10&sort=updated&direction=desc" \
-    -H "Authorization: token $TOKEN" 2>/dev/null)
-echo "$MERGED" | python3 -c "
-import json,sys
-prs = json.load(sys.stdin)
-related = [p for p in prs if p.get('merged') and ('#$ISSUE' in p.get('title','') + p.get('body',''))]
-if related:
-    for p in related:
-        print(f'  ✅ Already merged: PR #{p[\"number\"]} by @{p[\"user\"][\"login\"]}')
-else:
-    print('  No merged PRs found')
-" 2>/dev/null
-
-# 6. 检查仓库是否可以fork
-FORK_CHECK=$(curl -s -o /dev/null -w "%{http_code}" \
-    "https://api.github.com/repos/$REPO" \
-    -H "Authorization: token $TOKEN" 2>/dev/null)
-if [ "$FORK_CHECK" = "404" ]; then
-    echo "❌ Repository $REPO does not exist"
-    exit 2
-fi
-
-# 7. 检查默认分支
-DEFAULT_BRANCH=$(echo "$ISSUE_DATA" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('base',{}).get('ref','main'))" 2>/dev/null)
-# Fallback: get from repo
-if [ -z "$DEFAULT_BRANCH" ] || [ "$DEFAULT_BRANCH" = "None" ]; then
-    DEFAULT_BRANCH=$(curl -s "https://api.github.com/repos/$REPO" \
-        -H "Authorization: token $TOKEN" | python3 -c "import json,sys;print(json.load(sys.stdin).get('default_branch','main'))" 2>/dev/null)
-fi
-echo "🌿 Default branch: $DEFAULT_BRANCH"
-
-# 总结
-echo ""
-echo "=== VERDICT ==="
-if [ "$STATE" = "open" ] && [ "$ASSIGNEE" = "None" ]; then
-    echo "✅ SAFE TO PROCEED"
-else
-    echo "⚠️ PROCEED WITH CAUTION (assigned=$ASSIGNEE, state=$STATE)"
-fi
+echo "✅ PASS: All checks passed - safe to claim"
+exit 0
