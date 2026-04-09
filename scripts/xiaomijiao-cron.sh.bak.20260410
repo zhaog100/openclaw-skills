@@ -62,16 +62,10 @@ do_git_push() {
         log "ℹ️ 无新变更需提交"
     else
         git commit -m "$MSG" >> "$LOG_DIR/git.log" 2>&1
-        log "✅ Git 已提交"
+        log "✅ Git 已提交（本地）"
     fi
-
-    # 推送到远程 main
-    CURRENT_BRANCH=$(git branch --show-current 2>/dev/null || echo "bounty-1501")
-    if GIT_LFS_SKIP_PUSH=1 git -c http.version=HTTP/1.1 push "$REMOTE_URL" "$CURRENT_BRANCH:main" >> "$LOG_DIR/git.log" 2>&1; then
-        log "✅ 已推送到 xiaomila-skills.git main"
-    else
-        log "⚠️ 推送失败（网络？），下次重试"
-    fi
+    # ⚠️ 远程推送已暂停（2026-04-08 官家指令）
+    log "ℹ️ 远程推送已暂停"
 }
 
 # ============ 公共：统计待办进度 ============
