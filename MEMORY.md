@@ -647,24 +647,50 @@ _最后更新: 2026-04-02 15:20 CST_
 - **金额**: $280
 - **时间**: ~10 分钟
 
-### 📧 饭件检查
-- **付款邮件**: 221 封（历史）
-- **需要**: 进一步筛选
+---
 
-- **Gmail**: ✅ 配置已更新
+### 2026-04-09 LongCat 模型 + RustChain Bounty + 技能发布 ⭐⭐⭐
 
-### 📊 系统状态
-- **推送**: ✅ xioomila 完成
-- **负载**: 🟢 正常
-- **Cron**: ✅ 自动推送正常
+#### LongCat API 配置
+- **Provider**: longcat（美团龙猫）
+- **API Key**: ak_2Sk***0P09X
+- **Base URL**: https://api.longcat.chat/openai
+- **Models**: Lite(320K)/Chat(256K)/Thinking-2601(256K)/Omni-2603(8K)/Chat-2602-Exp(256K)
+- **免费额度**: Lite 5000万/天，其他 50-500万/天
+- **配置要点**: models.json + auth-profiles.json 必须同时更新
 
-### 🎯 下一步
-1. 等待 PR #1 审核
-2. 合并后继续下一个任务
-3. 扫描新的 bounty 机会
+#### 模型分级策略
+| 层级 | 模型 | 用途 | 成本 |
+|------|------|------|------|
+| 🟢 轻量 | longcat/LongCat-Flash-Lite | 心跳、搜索 | 免费 |
+| 🟡 标准 | longcat/LongCat-Flash-Chat | 写作、分析 | 免费 |
+| 🟠 推理 | longcat/LongCat-Flash-Thinking-2601 | 复杂推理 | 免费 |
+| 🔴 高级 | zai/glm-5.1 | 代码、bounty | 免费 |
+| 🔵 超长 | openrouter/qwen3.6-plus-preview:free | 100万上下文 | 免费 |
 
-4. 处理 Gmail 付款邮件
+#### 今日 PR 统计（2026-04-09）
+- **总新增**: 19 个 PR
+- **ubiquity**: 5 PR ($1,437.5)
+- **RustChain**: 7 PR (250 RTC)
+- **其他**: skills 发布、Chrome 书签整理
+- **总 OPEN PR**: 181 个
+
+#### 技能发布
+- context-manager-v2 v2.5.0 → ClawHub + GitHub
+  - 新增: "Something went wrong" 防护、模型轮转、LongCat 配额监控
+- smart-model-switch v1.5.0 → ClawHub + GitHub
+  - 新增: LongCat 模型支持、API 配额监控、上下文溢出防护
+- **ClawHub CLI**: 已安装登录 @zhaog100
+- **ClawHub Token**: clh_S_DW***nx7Q
+
+#### 经验教训（今日）
+1. **新 provider 配置** — models.json + auth-profiles.json 必须同时更新
+2. **git branch 顺序** — 先建分支再 commit，否则推不上去
+3. **RustChain 结构** — 矿工代码在 rustchain-miner/src/（Rust），没有 node/ 目录
+4. **Subagent 超时率** — 约 30% 需手动补救
+5. **配额监控重要** — 接近上限自动切换模型
+6. **不乱推远程** — 用户明确要求
 
 ---
 
-_更新时间: 2026-04-02 17:17 CST_
+_更新时间: 2026-04-09 21:30 CST_
