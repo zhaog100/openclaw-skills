@@ -232,101 +232,19 @@ EOF
 }
 
 # ============ 从所有会话提取当日聊天记录 ============
+# ============ 从所有会话提取当日聊天记录（使用 multi-channel-memory 技能）============
 do_extract_chats() {
-    local SESSIONS_DIR="/root/.openclaw/agents/main/sessions"
-    local SESSIONS_INDEX="$SESSIONS_DIR/sessions.json"
-    local CHAT_FILE="$MEMORY_DIR/chat-$TODAY.md"
-    
-    [ ! -f "$SESSIONS_INDEX" ] && return 0
-    
-    python3 << 'PYEOF' 2>/dev/null
-import json, re, os, glob
-from datetime import datetime, timezone
-
-today = datetime.now().strftime('%Y-%m-%d')
-sessions_dir = "/root/.openclaw/agents/main/sessions"
-chat_file = f"{os.environ.get('MEMORY_DIR', '/root/.openclaw/workspace/agents/xiaomijiao/memory')}/chat-{today}.md"
-
-with open(f"{sessions_dir}/sessions.json") as f:
-    sessions = json.load(f)
-
-all_messages = []
-for key, val in sessions.items():
-    sid = val.get('sessionId', '')
-    channel = val.get('lastChannel', 'unknown')
-    jsonl = f"{sessions_dir}/{sid}.jsonl"
-    if not os.path.exists(jsonl):
-        continue
-    with open(jsonl) as f:
-        for line in f:
-            try:
-                obj = json.loads(line.strip())
-                if obj.get('type') != 'message':
-                    continue
-                raw_ts = obj.get('timestamp', '')
-                # Convert UTC to local (Asia/Shanghai +8)
-                try:
-                    from datetime import datetime, timezone, timedelta
-                    utc_dt = datetime.fromisoformat(raw_ts.replace('Z', '+00:00'))
-                    local_dt = utc_dt.astimezone(timezone(timedelta(hours=8)))
-                    ts = local_dt.strftime('%Y-%m-%d')
-                    time_str = local_dt.strftime('%H:%M')
-                except:
-                    ts = raw_ts[:10]
-                    time_str = raw_ts[11:16]
-                if ts != today:
-                    continue
-                msg = obj.get('message', {})
-                role = msg.get('role', '')
-                if role not in ('user', 'assistant'):
-                    continue
-                content = msg.get('content', '')
-                if isinstance(content, list):
-                    parts = []
-                    for c in content:
-                        if c.get('type') == 'text':
-                            t = c['text']
-                            t = re.sub(r'Conversation info\s*\(untrusted metadata\).*?```\n', '', t, flags=re.DOTALL)
-                            t = re.sub(r'Sender\s*\(untrusted metadata\).*?```\n', '', t, flags=re.DOTALL)
-                            t = re.sub(r'\[message_id:\s*[^\]]*\]\n?', '', t)
-                            t = re.sub(r'System\s*\(untrusted\).*?\n', '', t)
-                            t = re.sub(r'Inbound Context.*?OpenClaw treats.*?discard it\.', '', t, flags=re.DOTALL)
-                            t = re.sub(r'^```json[\\s\\S]*?```', '', t, flags=re.DOTALL)
-                            t = re.sub(r'^```[\\s\\S]*?```', '', t, flags=re.DOTALL)
-                            t = t.strip()
-                            if t and len(t) > 5 and not t.startswith('{') and not t.startswith('Read HEARTBEAT') and 'message_id' not in t:
-                                parts.append(t[:300])
-                    content = ' '.join(parts)
-                elif isinstance(content, str):
-                    content = re.sub(r'Conversation info.*?\n', '', content, count=1)
-                    content = re.sub(r'\[message_id:\s*[^\]]*\]', '', content)
-                    content = content.strip()[:300]
-                if content.strip():
-                    date_prefix = local_dt.strftime('%Y-%m-%d') if 'local_dt' in dir() else ts
-                    all_messages.append({
-                        'time': f"{date_prefix} {time_str}",
-                        'role': role,
-                        'channel': channel,
-                        'text': content[:300]
-                    })
-            except:
-                pass
-
-if not all_messages:
-    exit(0)
-
-all_messages.sort(key=lambda x: x['time'])
-with open(chat_file, 'w') as f:
-    f.write(f"# 💬 聊天记录 - {today}\n\n")
-    f.write(f"共 {len(all_messages)} 条消息（跨 {len(set(m['channel'] for m in all_messages))} 个通道）\n\n")
-    for m in all_messages:
-        ch_label = {'feishu': '飞书', 'qqbot': 'QQ', 'webchat': 'Web', 'cron': '定时任务'}.get(m['channel'], m['channel'])
-        role_label = {'user': '👤 官家', 'assistant': '🌶️‍🔥 小米椒'}.get(m['role'], m['role'])
-        f.write(f"### [{m['time']}] [{ch_label}] {role_label}\n\n{m['text']}\n\n---\n\n")
-
-print(f"✅ 提取 {len(all_messages)} 条聊天记录")
-PYEOF
+    local SKILL_SCRIPT="$WORKSPACE/skills/multi-channel-memory/scripts/extract-chats.sh"
+    if [ -x "$SKILL_SCRIPT" ]; then
+        log "提取多通道聊天记录（$TODAY）..."
+        bash "$SKILL_SCRIPT" "$TODAY" 2>&1 | grep -E "SUCCESS|ERROR|消息数" | while read line; do
+            log "$line"
+        done
+    else
+        log "⚠️ multi-channel-memory 技能未安装，跳过聊天记录提取"
+    fi
 }
+
 
 # ============ 错误统计 ============
 cmd_error_stats() {
