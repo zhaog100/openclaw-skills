@@ -28,8 +28,8 @@ LOG_DIR="$MEDIA_DIR/logs"
 TODAY=$(date +%Y-%m-%d)
 NOW=$(date '+%H:%M')
 COMMAND="${1:-help}"
-GITHUB_TOKEN="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"
-REMOTE_URL="https://zhaog100:${GITHUB_TOKEN}@github.com/zhaog100/xiaomila-skills.git"
+GITHUB_TOKEN="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"
+REMOTE_URL="https://zhaog100:${GITHUB_TOKEN}@github.com/zhaog100/xiaomijiao-skills.git"
 
 # PATH 确保能找到 qmd
 export PATH="/home/zhaog/.local/bin:/home/zhaog/.npm-global/bin:$PATH"
