@@ -263,7 +263,17 @@ for key, val in sessions.items():
                 obj = json.loads(line.strip())
                 if obj.get('type') != 'message':
                     continue
-                ts = obj.get('timestamp', '')[:10]
+                raw_ts = obj.get('timestamp', '')
+                # Convert UTC to local (Asia/Shanghai +8)
+                try:
+                    from datetime import datetime, timezone, timedelta
+                    utc_dt = datetime.fromisoformat(raw_ts.replace('Z', '+00:00'))
+                    local_dt = utc_dt.astimezone(timezone(timedelta(hours=8)))
+                    ts = local_dt.strftime('%Y-%m-%d')
+                    time_str = local_dt.strftime('%H:%M')
+                except:
+                    ts = raw_ts[:10]
+                    time_str = raw_ts[11:16]
                 if ts != today:
                     continue
                 msg = obj.get('message', {})
@@ -292,9 +302,9 @@ for key, val in sessions.items():
                     content = re.sub(r'\[message_id:\s*[^\]]*\]', '', content)
                     content = content.strip()[:300]
                 if content.strip():
-                    time_str = obj.get('timestamp', '')[:19].replace('T', ' ')
+                    date_prefix = local_dt.strftime('%Y-%m-%d') if 'local_dt' in dir() else ts
                     all_messages.append({
-                        'time': time_str,
+                        'time': f"{date_prefix} {time_str}",
                         'role': role,
                         'channel': channel,
                         'text': content[:300]
