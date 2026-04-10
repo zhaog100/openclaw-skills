@@ -143,7 +143,10 @@ cmd_morning_review() {
     # 1. 确保记忆文件存在
     do_ensure_memory
     
-    # 2. 统计上午工作变更
+    # 2. 提取当日聊天记录
+    do_extract_chats
+    
+    # 3. 统计上午工作变更
     do_check_changes
     
     # 3. 检查待办完成度
@@ -166,7 +169,10 @@ cmd_daily_review() {
     # 1. 确保记忆文件存在
     do_ensure_memory
     
-    # 2. 统计全天工作变更
+    # 2. 提取当日聊天记录
+    do_extract_chats
+    
+    # 3. 统计全天工作变更
     do_check_changes
     
     # 3. 检查待办完成度（全天总结）
@@ -225,13 +231,100 @@ EOF
     log "===== 每周运营总结完成 ====="
 }
 
+# ============ 从所有会话提取当日聊天记录 ============
+do_extract_chats() {
+    local SESSIONS_DIR="/root/.openclaw/agents/main/sessions"
+    local SESSIONS_INDEX="$SESSIONS_DIR/sessions.json"
+    local CHAT_FILE="$MEMORY_DIR/chat-$TODAY.md"
+    
+    [ ! -f "$SESSIONS_INDEX" ] && return 0
+    
+    python3 << 'PYEOF' 2>/dev/null
+import json, re, os, glob
+from datetime import datetime, timezone
+
+today = datetime.now().strftime('%Y-%m-%d')
+sessions_dir = "/root/.openclaw/agents/main/sessions"
+chat_file = f"{os.environ.get('MEMORY_DIR', '/root/.openclaw/workspace/agents/xiaomijiao/memory')}/chat-{today}.md"
+
+with open(f"{sessions_dir}/sessions.json") as f:
+    sessions = json.load(f)
+
+all_messages = []
+for key, val in sessions.items():
+    sid = val.get('sessionId', '')
+    channel = val.get('lastChannel', 'unknown')
+    jsonl = f"{sessions_dir}/{sid}.jsonl"
+    if not os.path.exists(jsonl):
+        continue
+    with open(jsonl) as f:
+        for line in f:
+            try:
+                obj = json.loads(line.strip())
+                if obj.get('type') != 'message':
+                    continue
+                ts = obj.get('timestamp', '')[:10]
+                if ts != today:
+                    continue
+                msg = obj.get('message', {})
+                role = msg.get('role', '')
+                if role not in ('user', 'assistant'):
+                    continue
+                content = msg.get('content', '')
+                if isinstance(content, list):
+                    parts = []
+                    for c in content:
+                        if c.get('type') == 'text':
+                            t = c['text']
+                            t = re.sub(r'Conversation info\s*\(untrusted metadata\).*?```\n', '', t, flags=re.DOTALL)
+                            t = re.sub(r'Sender\s*\(untrusted metadata\).*?```\n', '', t, flags=re.DOTALL)
+                            t = re.sub(r'\[message_id:\s*[^\]]*\]\n?', '', t)
+                            t = re.sub(r'System\s*\(untrusted\).*?\n', '', t)
+                            t = re.sub(r'Inbound Context.*?OpenClaw treats.*?discard it\.', '', t, flags=re.DOTALL)
+                            t = re.sub(r'^```json[\\s\\S]*?```', '', t, flags=re.DOTALL)
+                            t = re.sub(r'^```[\\s\\S]*?```', '', t, flags=re.DOTALL)
+                            t = t.strip()
+                            if t and len(t) > 5 and not t.startswith('{') and not t.startswith('Read HEARTBEAT') and 'message_id' not in t:
+                                parts.append(t[:300])
+                    content = ' '.join(parts)
+                elif isinstance(content, str):
+                    content = re.sub(r'Conversation info.*?\n', '', content, count=1)
+                    content = re.sub(r'\[message_id:\s*[^\]]*\]', '', content)
+                    content = content.strip()[:300]
+                if content.strip():
+                    time_str = obj.get('timestamp', '')[:19].replace('T', ' ')
+                    all_messages.append({
+                        'time': time_str,
+                        'role': role,
+                        'channel': channel,
+                        'text': content[:300]
+                    })
+            except:
+                pass
+
+if not all_messages:
+    exit(0)
+
+all_messages.sort(key=lambda x: x['time'])
+with open(chat_file, 'w') as f:
+    f.write(f"# 💬 聊天记录 - {today}\n\n")
+    f.write(f"共 {len(all_messages)} 条消息（跨 {len(set(m['channel'] for m in all_messages))} 个通道）\n\n")
+    for m in all_messages:
+        ch_label = {'feishu': '飞书', 'qqbot': 'QQ', 'webchat': 'Web', 'cron': '定时任务'}.get(m['channel'], m['channel'])
+        role_label = {'user': '👤 官家', 'assistant': '🌶️‍🔥 小米椒'}.get(m['role'], m['role'])
+        f.write(f"### [{m['time']}] [{ch_label}] {role_label}\n\n{m['text']}\n\n---\n\n")
+
+print(f"✅ 提取 {len(all_messages)} 条聊天记录")
+PYEOF
+}
+
 # ============ 错误统计 ============
 cmd_error_stats() {
     ERROR_LOG="$LOG_DIR/xiaomila-cron.log"
     [ ! -f "$ERROR_LOG" ] && return 0
     
-    TODAY_ERRORS=$(grep "$TODAY" "$ERROR_LOG" 2>/dev/null | grep -c "⚠️\|❌\|ERROR\|失败" 2>/dev/null || echo "0")
-    [ "$TODAY_ERRORS" -gt 0 ] && log "📊 今日错误: $TODAY_ERRORS"
+    TODAY_ERRORS=$(grep "$TODAY" "$ERROR_LOG" 2>/dev/null | grep -c "⚠️\|❌\|ERROR\|失败" || true)
+    [ "${TODAY_ERRORS:-0}" -gt 0 ] && log "📊 今日错误: $TODAY_ERRORS"
 }
 
 # ============ 日志清理 ============
