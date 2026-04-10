@@ -706,3 +706,11 @@
 [2026-04-10 09:10:01] [error-stats] 📊 今日错误: 2
 [2026-04-10 10:10:01] [error-stats] 📊 今日错误: 2
 [2026-04-10 11:10:01] [error-stats] 📊 今日错误: 2
+[2026-04-10 12:10:01] [morning-review] ===== 午间运营回顾开始（12:10）=====
+[2026-04-10 12:10:01] [error-stats] 📊 今日错误: 2
+[2026-04-10 12:10:01] [morning-review] 今日记忆文件: 19行
+✅ 提取 85 条聊天记录
+[2026-04-10 12:10:02] [morning-review] 变更统计: intel/0 memory/1 config/1
+[2026-04-10 12:10:02] [morning-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-10 12:10:02] [morning-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
+[2026-04-10 12:10:02] [morning-review]   📄 agents/xiaomijiao/memory/chat-2026-04-10.md
