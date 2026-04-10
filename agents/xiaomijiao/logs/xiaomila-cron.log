@@ -433,3 +433,9 @@
 [2026-04-10 02:00:04] [qmd-update] ✅ QMD 更新完成
 [2026-04-10 02:10:01] [cleanup] 清理旧日志...
 [2026-04-10 02:10:01] [cleanup] ✅ 清理完成
+[2026-04-10 08:29:57] [morning-review] ===== 午间运营回顾开始（08:29）=====
+[2026-04-10 08:29:57] [morning-review] 创建今日记忆文件模板...
+[2026-04-10 08:29:57] [morning-review] ✅ 记忆模板已创建
+[2026-04-10 08:29:58] [morning-review] 变更统计: intel/0 memory/0 config/0
+[2026-04-10 08:29:58] [morning-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-10 08:29:58] [morning-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
