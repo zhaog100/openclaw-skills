@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.35
-**最后更新**: 2026-04-10 16:23
+**版本**: v3.36
+**最后更新**: 2026-04-10 23:14
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -670,19 +670,21 @@
 - **严重错误反思**: 擅自建议数码/科技方向，未认真检查历史记忆，官家明确要求继续商贸
 - **教训**: ①不要擅自决定重要方向 ②不要过度推测用户意图 ③认真检查历史记忆 ④记住官家明确指示
 
-### 2026-04-10 多通道记忆整合 + cron 脚本修复 ⭐⭐⭐⭐⭐
-- **问题**: QQ Bot 聊天记录未进入每日回顾，只记录飞书通道
+### 2026-04-10 多通道记忆整合 + cron 脚本修复 + 百炼Key更新 ⭐⭐⭐⭐⭐
+- **核心工作**: 多通道记忆整合（飞书+QQ+Web 全覆盖）
+- **问题**: QQ Bot 聊天记录未进入每日回顾
 - **根因**: cron 脚本只读 memory/ + git status，不读 session jsonl；session 时间戳存 UTC
-- **方案1**: 新增 do_extract_chats() 内嵌函数（95行Python）
-- **方案2**: 安装 multi-channel-memory v1.0.0 技能替换内嵌脚本
-- **时区修复**: UTC→北京时间 +8h，解决跨天消息丢失问题
-- **技能调整**: 输出目录从 workspace/memory/ → agents/xiaomijiao/memory/
-- **验证结果**: 142条消息（飞书59+QQ20+Web63），3通道全覆盖
+- **技能安装**: multi-channel-memory v1.0.0 替换内嵌脚本
+- **时区修复**: UTC→北京时间 +8h，解决跨天消息丢失
+- **技能调整**: 输出目录 workspace/memory/ → agents/xiaomijiao/memory/
+- **验证结果**: 190条消息（飞书81+QQ20+Web89），3通道全覆盖
 - **line 228 bug**: grep -c 结果含换行导致 integer expression expected
 - **远程仓库**: 脚本写 xiaomila-skills.git（错）→ xiaomijiao-skills.git（对）
-- **Git 推送恢复**: 官家允许，已恢复推送
-- **飞书云文档**: 缺 docx:document:create 权限，需手动开通
-- **备份**: scripts/xiaomijiao-cron.sh.bak.20260410
+- **百炼Key更新**: sk-sp-879b***8ad5 → sk-sp-f7e6***8160，需重启 Gateway
+- **Gateway重启**: pkill -f openclaw-gateway，主程序自动拉起新进程
+- **Git 推送**: 官家允许更新远程个人仓库
+- **飞书云文档**: 缺 docx:document:create 权限
+- **备份**: openclaw.json.bak.20260410_1813 + scripts/xiaomijiao-cron.sh.bak.20260410
 
 ### 2026-04-08 Git 推送暂停机制 + 晚间回顾完成 ⭐⭐⭐⭐⭐
 - **官家指令**: 暂停每天同步信息到远程仓库，仅暂停信息同步，其他任务不变
