@@ -605,3 +605,36 @@ Cleaned up 5 orphaned content hash(es)
 ✓ All collections updated.
 
 Run 'qmd embed' to update embeddings (10 unique hashes need vectors)
+Updating 1 collection(s)...
+
+[1/1] xiaomijiao (**/*.md)
+Collection: /root/.openclaw/workspace (**/*.md)
+
+Indexed: 23 new, 4 updated, 907 unchanged, 0 removed
+Cleaned up 4 orphaned content hash(es)
+
+✓ All collections updated.
+
+Run 'qmd embed' to update embeddings (33 unique hashes need vectors)
+Updating 1 collection(s)...
+
+[1/1] xiaomijiao (**/*.md)
+Collection: /root/.openclaw/workspace (**/*.md)
+
+Indexed: 1 new, 2 updated, 932 unchanged, 0 removed
+Cleaned up 2 orphaned content hash(es)
+
+✓ All collections updated.
+
+Run 'qmd embed' to update embeddings (34 unique hashes need vectors)
+Updating 1 collection(s)...
+
+[1/1] xiaomijiao (**/*.md)
+Collection: /root/.openclaw/workspace (**/*.md)
+
+Indexed: 1 new, 3 updated, 932 unchanged, 0 removed
+Cleaned up 3 orphaned content hash(es)
+
+✓ All collections updated.
+
+Run 'qmd embed' to update embeddings (29 unique hashes need vectors)
