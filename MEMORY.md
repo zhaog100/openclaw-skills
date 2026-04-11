@@ -18,7 +18,7 @@
 | 卡点 | 1688供应商确认、产品图素材、闲鱼上架 |
 | Git | main分支，推送已恢复 |
 | Skills | 6个（+xiaohongshu-ops） |
-| OpenClaw | v2026.4.9 |
+| OpenClaw | v2026.4.10 |
 | 默认模型 | longcat/LongCat-Flash-Lite（优先消耗，4.6%已用） |
 | 主力模型 | zai/glm-5-turbo（智谱） |
 | 备用模型 | bailian/qwen3.5-plus（百炼） |
