@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.38
-**最后更新**: 2026-04-11 14:05
+**版本**: v3.39
+**最后更新**: 2026-04-11 14:10
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -650,6 +650,19 @@
 - **Git配置**: 远程仓库连接，分支管理
 - **工作区**: 基础目录结构建立
 
+
+### 2026-04-11 Public-APIs-Poof API调研与素材优化启动 ⭐⭐⭐⭐
+- **Poof API调研**（背景移除）:
+  - API: https://poof.bg/，文档: https://docs.poof.bg/，Dashboard: https://dash.poof.bg
+  - 核心: AI驱动背景移除，支持PNG/JPEG/WebP，像素级精准度
+  - 集成: REST API + Python SDK + TypeScript SDK
+  - 端点: https://api.poof.bg/v1/remove（x-api-key认证）
+  - 参数: format/channels/bg_color/size/crop（preview更快更少积分）
+  - 账户: 计划 + maxCredits + usedCredits（/v1/me查询）
+  - 场景: 1688产品图去背景、小红书图片优化、批量处理
+  - 报告: intel/Public-APIs-Poof-背景移除API调研.md（4.4KB）
+- **阶段1集成**: 素材优化（Poof + ShotOG + Compressor）
+- **下一步**: 需官家注册Poof账号获取API Key（以poof_开头）
 
 ### 2026-04-11 Public-APIs项目发现与整理 ⭐⭐⭐⭐
 - **项目信息**: GitHub 41万Star，1400+免费API，45+类别
