@@ -3,3 +3,4 @@ xiaomijiao-gateway-issue.txt
 # Secrets
 secrets/
 *.env
+api-keys.json
