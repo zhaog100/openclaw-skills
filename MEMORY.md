@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.42
-**最后更新**: 2026-04-11 14:55
+**版本**: v3.43
+**最后更新**: 2026-04-11 15:30
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -679,6 +679,26 @@
   - 场景: 闲鱼商品分享（product）、小红书笔记封面（blog，9:16竖版）、产品公告（announcement）、批量生成
   - 报告: intel/Public-APIs-ShotOG-封面生成API调研.md（6.2KB）
 - **阶段1进度**: 调研完成（Poof + ShotOG），准备编写测试脚本
+
+### 2026-04-11 APITube News API集成完成 - 5个API全调研（阶段1素材优化+阶段2热点扩展）⭐⭐⭐⭐
+- **集成工作**:
+  - ✅ Poof API调研：背景移除（pk_开头格式）
+  - ✅ ShotOG API调研：封面生成（8个模板，批量生成）
+  - ✅ Image Compressor API调研：图片压缩转换（AI自适应调优）
+  - ✅ APITube News API调研：热点采集扩展（500,000+源，60语言，NLP情感分析）
+  - ✅ 工具与技能清单整理：当前可用工具（5个脚本+7个技能+8个Public APIs）
+  - ✅ Public APIs资源文档更新：添加4个新API（APITube+Image Compressor），优先级排序更新
+  - ✅ 集成状态更新： ShotOG✅测试，Poof✅调研，Image Compressor✅集成，APITube News✅调研
+  - **Git提交推送**: 5个文件，3个提交记录（64233ae→0158173→2b0b6d2→03abd13→148b793→c4f20ec）
+  - **阶段规划**: 
+    - 阶段1（素材优化）：Poof✅ + ShotOG✅ + Image Compressor✅
+    - 阶段2（热点扩展）：APITube News✅ + Meteoblue⏳
+    - 阶段3（内容增强）：AI Text Sentiment⏳ + Analyse Keywords⏳
+  - **知识库更新**: intel/索引.md v4.7（42文件）
+  - **文件统计**: MEMORY.md v3.43，intel/（3个新文件），docs/完整索引清单.md
+  - **下一步**: 
+    - 立即可做：注册APITube账户获取API Key
+    - 后续集成：扩展热点采集脚本，集成到数据复盘流程
 
 ### 2026-04-11 Public APIs集成完成 - 4个API全调研+工具清单整理 ⭐⭐⭐⭐⭐
 - **集成工作**:
