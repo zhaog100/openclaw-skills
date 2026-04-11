@@ -1,6 +1,6 @@
 # Poof API 调研报告 - 背景移除
 
-**调研时间**: 2026-04-11 14:05
+**调研时间**: 2026-04-11 14:05 → 14:23（更新）
 **API名称**: Poof - Background Removal API
 **官网**: https://poof.bg/
 **文档**: https://docs.poof.bg/
@@ -18,6 +18,7 @@
 | 支持格式 | PNG（透明）、JPEG、WebP |
 | 集成方式 | REST API + Python SDK + TypeScript SDK |
 | 认证方式 | API Key（Header: x-api-key） |
+| API Key格式 | `pk_xxxxxxxx`（官家确认） |
 | API端点 | `https://api.poof.bg/v1/remove` |
 | 账户查询 | `https://api.poof.bg/v1/me` |
 
@@ -51,7 +52,7 @@
 ### cURL
 ```bash
 curl -X POST https://api.poof.bg/v1/remove \
-  -H "x-api-key: YOUR_API_KEY" \
+  -H "x-api-key: pk_YOUR_API_KEY" \
   -F "image_file=@photo.jpg" \
   -o result.png
 ```
@@ -64,7 +65,7 @@ pip install poofbg
 # 使用
 from poofbg import Poof
 
-client = Poof(api_key="poof_your_api_key")
+client = Poof(api_key="pk_YOUR_API_KEY")
 
 # 从文件
 result = client.remove("input.jpg")
@@ -84,13 +85,7 @@ npm install @poof-bg/js
 # 使用
 import { Poof } from '@poof-bg/js';
 
-const poof = new Poof({ apiKey: 'poof_your_api_key' });
-
-// 从文件
-import fs from 'fs/promises';
-const image = await fs.readFile('input.jpg');
-const result = await poof.remove(image);
-await fs.writeFile('output.png', result);
+const poof = new Poof({ apiKey: 'pk_YOUR_API_KEY' });
 ```
 
 ---
@@ -101,7 +96,7 @@ await fs.writeFile('output.png', result);
 | 参数 | 类型 | 说明 |
 |------|------|------|
 | image_file | file | 图片文件（必需） |
-| x-api-key | header | API密钥（必需） |
+| x-api-key | header | API密钥（必需，格式：pk_xxxxxxxx） |
 
 ### 可选参数
 | 参数 | 类型 | 说明 |
@@ -116,7 +111,7 @@ await fs.writeFile('output.png', result);
 ```bash
 # JPEG白色背景
 curl -X POST https://api.poof.bg/v1/remove \
-  -H "x-api-key: YOUR_API_KEY" \
+  -H "x-api-key: pk_YOUR_API_KEY" \
   -F "image_file=@photo.jpg" \
   -F "format=jpg" \
   -F "channels=rgb" \
@@ -125,14 +120,14 @@ curl -X POST https://api.poof.bg/v1/remove \
 
 # 预览尺寸（更快，更少积分）
 curl -X POST https://api.poof.bg/v1/remove \
-  -H "x-api-key: YOUR_API_KEY" \
+  -H "x-api-key: pk_YOUR_API_KEY" \
   -F "image_file=@photo.jpg" \
   -F "size=preview" \
   -o preview.png
 
 # 裁剪到主体边界
 curl -X POST https://api.poof.bg/v1/remove \
-  -H "x-api-key: YOUR_API_KEY" \
+  -H "x-api-key: pk_YOUR_API_KEY" \
   -F "image_file=@photo.jpg" \
   -F "crop=true" \
   -o cropped.png
@@ -145,7 +140,7 @@ curl -X POST https://api.poof.bg/v1/remove \
 ### 查询账户余额
 ```bash
 curl https://api.poof.bg/v1/me \
-  -H "x-api-key: YOUR_API_KEY"
+  -H "x-api-key: pk_YOUR_API_KEY"
 ```
 
 ### 响应字段
@@ -156,33 +151,6 @@ curl https://api.poof.bg/v1/me \
 | maxCredits | integer | 当前计费周期总积分 |
 | usedCredits | integer | 当前计费周期已用积分 |
 | autoRechargeThreshold | integer | 自动充值阈值（null表示禁用） |
-
-### 响应示例
-```json
-{
-  "organizationId": "org_abc123xyz",
-  "plan": "Pro",
-  "maxCredits": 5000,
-  "usedCredits": 1234,
-  "autoRechargeThreshold": 100
-}
-```
-
----
-
-## 💰 定价模式
-
-### 计划类型
-| 计划 | 说明 |
-|------|------|
-| Free | 免费计划（具体额度待注册后确认） |
-| Pro | 专业计划 |
-| Enterprise | 企业计划 |
-
-### 积分制
-- 使用积分计费
-- 不同图片尺寸消耗不同积分
-- 预览尺寸消耗更少积分
 
 ---
 
@@ -221,7 +189,7 @@ curl https://api.poof.bg/v1/me \
 import os
 from poofbg import Poof
 
-client = Poof(api_key="poof_YOUR_API_KEY")
+client = Poof(api_key="pk_YOUR_API_KEY")
 
 input_dir = "products/raw"
 output_dir = "products/processed"
@@ -239,26 +207,20 @@ for filename in os.listdir(input_dir):
 
 ---
 
-## ⚠️ 注意事项
+## ✅ 已确认
 
-1. **免费额度**: 需注册后确认具体数额
-2. **积分消耗**: 不同图片尺寸消耗不同积分
-3. **频率限制**: 需注意API调用频率
-4. **图片大小**: 注意单张图片大小限制
+- [x] API文档调研
+- [x] 使用方法整理
+- [x] 集成场景设计
+- [x] API Key格式确认（pk_开头）
+- [x] 官家提供API Key
 
 ---
 
-## 📋 下一步行动
+## ⏳ 待完成
 
-### 待官家确认
-- [ ] 注册Poof账号（https://dash.poof.bg）
-- [ ] 获取API Key（以`poof_`开头）
-- [ ] 确认免费额度
-
-### 准备工作
-- [x] API文档调研
-- [x] 使用方法整理
-- [ ] 编写测试脚本
+- [ ] 编写测试脚本（使用官家提供的API Key）
+- [ ] 执行测试验证
 - [ ] 集成到工作流程
 
 ---

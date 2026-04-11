@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.39
-**最后更新**: 2026-04-11 14:10
+**版本**: v3.40
+**最后更新**: 2026-04-11 14:30
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -650,6 +650,23 @@
 - **Git配置**: 远程仓库连接，分支管理
 - **工作区**: 基础目录结构建立
 
+
+### 2026-04-11 Public-APIs阶段1素材优化 - Poof+ShotOG调研完成 ⭐⭐⭐⭐⭐
+- **Poof API**（背景移除）:
+  - API Key格式: pk_xxxxxxxx（官家确认）
+  - 端点: https://api.poof.bg/v1/remove
+  - SDK: pip install poofbg / npm install @poof-bg/js
+  - 场景: 1688产品图去背景、小红书图片优化（preview+crop）、批量处理
+  - 报告: intel/Public-APIs-Poof-背景移除API调研.md（3.9KB，已更新pk_格式）
+- **ShotOG API**（封面生成）:
+  - API: https://shotog.2214962083.workers.dev/（Cloudflare Workers边缘）
+  - 模板: 8个（basic/blog/product/social/event/changelog/testimonial/announcement）
+  - 批量: 最多20张/请求，并行渲染（Promise.allSettled）
+  - 定价: Free（10/天或500/月，10/分钟）/ Starter（$9/月，5000/月，120/分钟）/ Pro（$29/月，25000/月，300/分钟）
+  - SDK: npm install shotog（JavaScript/TypeScript）
+  - 场景: 闲鱼商品分享（product）、小红书笔记封面（blog，9:16竖版）、产品公告（announcement）、批量生成
+  - 报告: intel/Public-APIs-ShotOG-封面生成API调研.md（6.2KB）
+- **阶段1进度**: 调研完成（Poof + ShotOG），准备编写测试脚本
 
 ### 2026-04-11 Public-APIs-Poof API调研与素材优化启动 ⭐⭐⭐⭐
 - **Poof API调研**（背景移除）:
