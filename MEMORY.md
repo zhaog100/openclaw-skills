@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.49
-**最后更新**: 2026-04-11 17:00
+**版本**: v3.50
+**最后更新**: 2026-04-11 22:30
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -10,7 +10,7 @@
 
 | 项目 | 状态 |
 |------|------|
-| 阶段 | 执行期（Day 18） |
+| 阶段 | 执行期（Day 19） |
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
@@ -19,9 +19,9 @@
 | Git | main分支，推送已恢复 |
 | Skills | 6个（+xiaohongshu-ops） |
 | OpenClaw | v2026.4.10 |
-| 默认模型 | longcat/LongCat-Flash-Lite（优先消耗，4.6%已用） |
-| 主力模型 | zai/glm-5-turbo（智谱） |
-| 备用模型 | bailian/qwen3.5-plus（百炼） |
+| 默认模型 | longcat/LongCat-Flash-Lite（优先消耗） |
+| 主力模型 | zai/glm-5.1（智谱） |
+| 备用模型 | bailian/qwen3.5-plus（百炼）、minimax/MiniMax-M2.5 |
 
 ---
 
@@ -838,3 +838,14 @@
   - Poof: pk_b0e81ff***58eb4141 ✅
 - **Git 推送**：9 次提交，推送到 xiaomijiao-skills.git (main 分支)
 - **身份认知**：我是小米椒🌶️‍🔥，远程仓库 xiaomijiao-skills.git，main 分支
+
+### 2026-04-11 系统配置优化 ⭐⭐⭐⭐⭐
+- **模型策略**：优先 LongCat（免费）→ 智谱 GLM-5.1 → 百炼 Qwen3.5-Plus → MiniMax-M2.5
+- **Active Memory 插件**：已启用（v2026.4.10 新功能），自动检索相关记忆
+- **Exec Policy**：系统内置安全策略管理，配置文件 ~/.openclaw/exec-approvals.json
+- **Gateway 端口**：当前 18789（小米椒独立 Gateway）
+- **身份认知**：本服务器只有小米椒🌶️‍🔥一个智能体，无其他智能体
+- **会话模型锁定**：持久会话创建时锁定模型，改配置只影响新会话
+- **环境迁移清单**：docs/环境迁移部署清单.md（11.2KB，614行）
+- **OpenClaw 版本**：v2026.4.10（从 v2026.4.9 升级）
+- **Git 提交**：累计 11 次提交到 xiaomijiao-skills.git (main 分支)
