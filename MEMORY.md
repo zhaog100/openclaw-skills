@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.36
-**最后更新**: 2026-04-10 23:14
+**版本**: v3.37
+**最后更新**: 2026-04-11 10:30
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -19,7 +19,9 @@
 | Git | main分支，推送已恢复 |
 | Skills | 6个（+xiaohongshu-ops） |
 | OpenClaw | v2026.4.9 |
-| 默认模型 | longcat/LongCat-Flash-Lite |
+| 默认模型 | longcat/LongCat-Flash-Lite（优先消耗，4.6%已用） |
+| 主力模型 | zai/glm-5-turbo（智谱） |
+| 备用模型 | bailian/qwen3.5-plus（百炼） |
 
 ---
 
@@ -648,6 +650,15 @@
 - **Git配置**: 远程仓库连接，分支管理
 - **工作区**: 基础目录结构建立
 
+
+### 2026-04-11 模型策略明确 + LongCat优先消耗 ⭐⭐⭐⭐
+- **官家指令**: LongCat系列优先跑，主力智谱，备用百炼
+- **LongCat额度**: Lite独享50M（已用2.3M，4.6%），Chat/Thinking/Omni共享5M（已用0）
+- **策略明确**: 优先消耗LongCat → 主力智谱GLM-5-Turbo → 备用百炼Qwen3.5-Plus
+- **模型切换**: session_status model=longcat/LongCat-Flash-Lite
+- **MEMORY.md更新**: 模型使用优先级记录到v3.37
+- **多通道整合**: 55条消息（飞书+QQ+Web），技能chat_extractor.py正常工作
+- **热点采集**: 19条百度热搜，09:00完成
 
 ### 2026-04-10 结构化整理 + 推送恢复 ⭐⭐⭐⭐
 - **官家指令**: 结构化整理记忆/知识库/Git/索引/QMD，可推送远程仓库
