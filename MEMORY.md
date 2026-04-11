@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.37
-**最后更新**: 2026-04-11 10:30
+**版本**: v3.38
+**最后更新**: 2026-04-11 14:05
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -650,6 +650,25 @@
 - **Git配置**: 远程仓库连接，分支管理
 - **工作区**: 基础目录结构建立
 
+
+### 2026-04-11 Public-APIs项目发现与整理 ⭐⭐⭐⭐
+- **项目信息**: GitHub 41万Star，1400+免费API，45+类别
+- **核心优势**: 无需注册/部分OAuth、CORS支持、免费使用
+- **官网**: https://publicapis.dev/，GitHub: https://github.com/public-apis/public-apis
+- **适合新媒体运营的API**（6大类）:
+  - 新闻类（热点采集扩展）: APITube News API（500,000+源，60语言）, NewsMesh, RiskSentinel, World News
+  - 天气类（节气选题）: Meteoblue（100+变量，14天预测）, Air Quality Index
+  - 艺术设计类（配图资源）: Art Search（语义搜索）, ShotOG（8模板）, Poof（背景移除）
+  - 图像处理类（素材优化）: Remove Background API, Change Image Background API, Image Compressor, Video Thumbnail API, GIF from Video API
+  - 内容创作工具: Text-to-Speech, Speech-to-Text, AI Text Sentiment, Analyse Keywords, Detect Language
+  - 其他: World Fun Facts, Multilingual AI Zodiac
+- **集成建议**（3阶段）:
+  - 阶段1（Day 20-22）: 素材优化（Poof去背景 + ShotOG封面 + Image Compressor压缩）
+  - 阶段2（Day 23-25）: 热点扩展（APITube News + Meteoblue天气）
+  - 阶段3（Day 26-30）: 内容增强（AI Sentiment分析 + Keywords挖掘）
+- **注意事项**: 频率限制（60次/分钟、1000次/天）+ 稳定性不一 + 数据质量需人工审核
+- **知识库记录**: intel/Public-APIs-新媒体运营资源.md（6.2KB，39文件）
+- **索引更新**: intel/索引.md v4.3→v4.4
 
 ### 2026-04-11 模型策略明确 + LongCat优先消耗 ⭐⭐⭐⭐
 - **官家指令**: LongCat系列优先跑，主力智谱，备用百炼
