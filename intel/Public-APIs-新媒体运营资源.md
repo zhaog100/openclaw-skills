@@ -2,7 +2,7 @@
 
 **来源**: https://github.com/public-apis/public-apis (41万Star)
 **官网**: https://publicapis.dev/
-**更新时间**: 2026-04-11 14:55
+**更新时间**: 2026-04-11 15:15
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -19,370 +19,85 @@
 
 ---
 
-## 🎯 适合新媒体运营的API推荐
+## 🎯 适合新媒体运营的API推荐（按集成状态）
 
-### 1. 📰 新闻类（热点采集）
+### ✅ 已集成（立即可用）
 
-#### APITube News API ⭐⭐⭐⭐⭐
-- **描述**: 实时监控全球新闻源
-- **数据量**: 500,000+ 新闻源
-- **语言**: 60种语言
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://apitube.io/
-- **调研报告**: intel/Public-APIs-APITubeNews-热点采集API调研.md
-- **应用场景**:
-  - 热点话题追踪
-  - 行业新闻聚合
-  - 跨平台热点对比
-  - 舆情监控
-  - 情感分析
-  - 话题聚类
+| API | 用途 | 优先级 | 集成状态 | 说明 |
+|------|--------|--------|--------|--------|
+| **ShotOG** | 封面生成 | ⭐⭐⭐⭐⭐ | ✅ 已测试 | 8个模板，批量生成（20张/请求） |
+| **Poof** | 背景移除 | ⭐⭐⭐⭐⭐ | ✅ API Key已确认 | AI驱动背景移除，支持PNG/JPEG/WebP |
 
-#### NewsMesh ⭐⭐⭐⭐
-- **描述**: 访问可信来源的新闻文章
-- **特性**: 实时更新 + 强大搜索能力
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://newsmesh.ai/
-- **应用场景**:
-  - 可信新闻源筛选
-  - 实时热点推送
-  - 新闻话题聚类
+### 🔄 集成中（待测试）
 
-#### RiskSentinel ⭐⭐⭐⭐
-- **描述**: AI驱动的新闻情报API
-- **特性**: 结构化事件、风险评估、情感分析、地理标记、AI总结
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: 待确认
-- **应用场景**:
-  - 舆情风险预警
-  - 情感分析
-  - 事件追踪
+| API | 用途 | 优先级 | 集成状态 | 说明 |
+|------|--------|--------|--------|--------|
+| **Image Compressor** | 图片压缩转换 | ⭐⭐⭐⭐ | 🔄 集成完成 | 智能压缩、转换、AI自适应调优 |
 
-#### World News API
-- **描述**: 通过语义标签搜索全球新闻
-- **特性**: 语义搜索、全球覆盖
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://worldnewsapi.com/
-- **应用场景**:
-  - 语义化热点检索
-  - 多语言新闻聚合
+### 📋 待调研（优先级较低）
+
+| API | 用途 | 优先级 | 调研状态 | 说明 |
+|------|--------|--------|--------|--------|
+| **APITube News** | 新闻热点采集 | ⭐⭐⭐⭐ | ✅ 已调研 | 500,000+源，60语言，NLP情感分析 |
+| **Meteoblue** | 天气/节气选题 | ⭐⭐⭐ | 📋 待调研 | 100+变量，14天预测，4天历史 |
+| **AI Text Sentiment** | 评论区情感分析 | ⭐⭐ | 📋 待调研 | 情感、毒性检测、情感分析 |
+| **Analyse Keywords** | 竞品关键词挖掘 | ⭐⭐ | 📋 待调研 | 高频关键词、关键短语、语义关键词 |
 
 ---
 
-### 2. 🌤 天气类（节气/环境选题）
+## 🔧 已创建的工具
 
-#### Meteoblue ⭐⭐⭐⭐⭐
-- **描述**: 全球天气数据
-- **变量**: 100+ 天气变量
-- **预报**: 提前14天预测
-- **历史**: 4天历史数据
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://www.meteoblue.com/
-- **调研报告**: 待创建
-- **应用场景**:
-  - 节气相关选题（如"下雨天必备好物"）
-  - 天气变化引发的产品需求（雨伞、防晒等）
-  - 环境类产品推广
-  - 天气变化趋势分析
-
-#### Air Quality Index ⭐⭐⭐⭐
-- **描述**: 全球空气质量数据
-- **数据**: AQI指数 + 污染物浓度
-- **覆盖**: 全球
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/air-quality-index/
-- **应用场景**:
-  - 空气净化器选题
-  - 口罩/防护类产品
-  - 健康养生内容
+| 工具 | 状态 | 路径 | 说明 |
+|------|--------|--------|--------|
+| test-public-apis-stage1.py | ✅ 完成 | scripts/ | Poof + ShotOG测试脚本 |
+| test-image-compressor.py | ✅ 完成 | scripts/ | Image Compressor测试脚本 |
 
 ---
 
-### 3. 🎨 艺术设计类（配图资源）
+## 📚 集成文档
 
-#### Art Search ⭐⭐⭐⭐
-- **描述**: 用AI语义搜索发现艺术
-- **特性**: 语义搜索
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/art-search/
-- **应用场景**:
-  - 小红书配图灵感
-  - 色彩搭配参考
-  - 设计风格调研
-
-#### ShotOG ⭐⭐⭐⭐⭐
-- **描述**: 开源OG图像生成
-- **特性**: 8个模板、自定义字体、批量生成
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://shotog.2214962083.workers.dev/docs/
-- **调研报告**: intel/Public-APIs-ShotOG-封面生成API调研.md
-- **测试状态**: ✅ 已测试
-- **应用场景**:
-  - 闲鱼商品分享卡片生成
-  - 小红书笔记封面（blog模板，9:16竖版）
-  - 产品发布公告（announcement模板）
-  - 批量生成封面（最多20张/请求）
-
-#### Poof ⭐⭐⭐⭐⭐
-- **描述**: 图像和视频背景移除
-- **特性**: AI驱动背景移除、像素级精准度
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://poof.bg/
-- **调研报告**: intel/Public-APIs-Poof-背景移除API调研.md
-- **应用场景**:
-  - 1688供应商产品图去背景
-  - 小红书图片优化（preview尺寸+crop裁剪）
-  - 闲鱼商品图优化
-  - 批量处理脚本
-
-#### Smart Adaptive Ultra-Fast Image Compressor & Converter ⭐⭐⭐⭐
-- **描述**: 智能压缩、转换、优化图片
-- **特性**: AI自适应调优
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/smart-adaptive-ultra-fast-image-compressor-and-converter/
-- **调研报告**: intel/Public-APIs-ImageCompressor-图片压缩API调研.md
-- **应用场景**:
-  - 小红书图片压缩（9:16竖版，AI自适应）
-  - 闲鱼商品图优化
-  - 批量处理素材
-  - 多格式转换
+| 文档 | 路径 | 说明 |
+|------|--------|--------|
+| Public-APIs-ShotOG-封面生成API调研.md | intel/ | ShotOG完整调研（6.2KB） |
+| Public-APIs-Poof-背景移除API调研.md | intel/ | Poof完整调研（3.9KB） |
+| Public-APIs-APITubeNews-热点采集API调研.md | intel/ | APITube News完整调研（4.9KB） |
+| Public-APIs-ImageCompressor-图片压缩API调研.md | intel/ | Image Compressor完整调研（6.9KB） |
+| Public-APIs-ImageCompressor集成说明.md | intel/ | Image Compressor集成文档（3.4KB） |
 
 ---
 
-### 4. 🖼️ 图像处理类（素材处理）
+## 🚀 集成优先级
 
-#### Remove Background from Images API ⭐⭐⭐⭐⭐
-- **描述**: 移除图片背景
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/remove-background-from-images-api/
-- **应用场景**:
-  - 产品白底图制作
-  - 小红书图片去背景
-  - 闲鱼商品图优化
+### 阶段1：素材优化（Day 20-22）⭐⭐⭐⭐⭐
+- [x] **ShotOG** - 封面生成（已测试）
+- [x] **Poof** - 背景移除（API Key已确认）
+- [x] **Image Compressor** - 图片压缩转换（已集成）
 
-#### Change Image Background API ⭐⭐⭐⭐⭐
-- **描述**: 改变图片背景
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/change-image-background-api/
-- **应用场景**:
-  - 商品图背景替换
-  - 社交媒体封面制作
-  - 场景化产品展示
+### 阶段2：热点扩展（Day 23-25）⭐⭐⭐⭐
+- [x] **APITube News** - 新闻热点（已调研）
+- [ ] **Meteoblue** - 天气/节气选题（待调研）
 
-#### Smart Adaptive Ultra-Fast Image Compressor & Converter ⭐⭐⭐⭐⭐
-- **描述**: 压缩、转换、优化图片（AI自适应）
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/smart-adaptive-ultra-fast-image-compressor-and-converter/
-- **调研报告**: intel/Public-APIs-ImageCompressor-图片压缩API调研.md
-- **应用场景**:
-  - 小红书图片压缩（9:16竖版）
-  - 闲鱼商品图优化
-  - 批量处理素材
-  - 多格式转换
-
-#### Video Thumbnail API ⭐⭐⭐⭐
-- **描述**: 从视频创建缩略图
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/video-thumbnail-api/
-- **应用场景**:
-  - 小红书视频封面制作
-  - 视频内容预览
-  - 批量生成封面
-
-#### GIF from Video API ⭐⭐⭐⭐
-- **描述**: 从视频生成GIF
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/gif-from-video-api/
-- **应用场景**:
-  - 产品动效展示
-  - 小红书动图制作
-  - 互动性内容
+### 阶段3：内容增强（Day 26-30）⭐⭐⭐⭐
+- [ ] **AI Text Sentiment** - 评论区情感分析（待调研）
+- [ ] **Analyse Keywords** - 竞品关键词挖掘（待调研）
 
 ---
 
-### 5. ✍️ 内容创作工具
+## 💡 使用指南
 
-#### Convert Text to Speech API ⭐⭐⭐⭐
-- **描述**: 文本转语音
-- **特性**: 多语言支持
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/convert-text-to-speech-api/
-- **应用场景**:
-  - 小红书视频配音
-  - 产品介绍音频
-  - 无障碍内容
+### 立即可用的API
+1. **ShotOG** - 批量生成封面
+   - 脚本：`scripts/test-public-apis-stage1.py`
+   - 调研：`intel/Public-APIs-ShotOG-封面生成API调研.md`
 
-#### Convert Speech to Text API ⭐⭐⭐⭐
-- **描述**: 语音转文本
-- **特性**: 多语言和方言
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/convert-speech-to-text-api/
-- **应用场景**:
-  - 视频字幕生成
-  - 用户反馈整理
-  - 音频内容索引
+2. **Poof** - 产品图去背景
+   - API Key：`pk_b0e81ff5f19266dab29abd9c58eb4141`
+   - 调研：`intel/Public-APIs-Poof-背景移除API调研.md`
 
-#### AI Text Moderation, Toxicity & Sentiment Analyzer ⭐⭐⭐⭐⭐
-- **描述**: AI文本情感分析和毒性检测
-- **特性**: 情感检测、毒性检测、情感分析
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/ai-text-moderation-toxicity-and-sentiment-analyzer/
-- **调研报告**: 待创建
-- **应用场景**:
-  - 评论区情感分析
-  - 用户反馈舆情
-  - 内容合规性检查
-
-#### Analyse Keywords API ⭐⭐⭐⭐⭐
-- **描述**: 从URL提取关键词和语义关键词
-- **特性**: 高频关键词、关键短语、潜在语义关键词
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/analyse-keywords-api/
-- **调研报告**: 待创建
-- **应用场景**:
-  - 竞品文案分析
-  - 热点关键词提取
-  - SEO关键词挖掘
-
-#### Detect Language API ⭐⭐⭐
-- **描述**: 检测文本语言
-- **特性**: 支持50+语言
-- **认证**: API Key
-- **HTTPS**: ✅
-- **CORS**: ✅
-- **官网**: https://publicapis.dev/resource/detect-language-api/
-- **应用场景**:
-  - 多语言内容管理
-  - 国际化内容分发
-
----
-
-### 6. 🎮 其他潜在价值API
-
-#### World Fun Facts ⭐⭐⭐
-- **描述**: 有趣事实，多语言支持
-- **认证**: API Key (RapidAPI)
-- **应用场景**:
-  - 冷知识科普内容
-  - 增强笔记趣味性
-
-#### Multilingual AI Zodiac ⭐⭐⭐
-- **描述**: 多语言星座运势和洞察
-- **认证**: API Key
-- **支持语言**: 100+
-- **应用场景**:
-  - 星座相关选题
-  - 个性化内容推荐
-
----
-
-## 🔧 集成建议
-
-### 优先级排序
-
-| 优先级 | API | 用途 | 状态 |
-|--------|------|------|------|
-| ⭐⭐⭐⭐⭐ | Poof (背景移除) | 产品图优化必需 | ⭐ 已调研 |
-| ⭐⭐⭐⭐ | ShotOG (OG图生成) | 批量生成封面 | ⭐ 已调研，✅ 已测试 |
-| ⭐⭐⭐⭐ | Image Compressor (压缩) | 小红书图片优化 | ⭐ 已调研 |
-| ⭐⭐⭐⭐ | APITube News (新闻) | 热点采集扩展 | ⭐ 已调研 |
-| ⭐⭐⭐⭐ | Meteoblue (天气) | 节气/环境选题 | ✅ 待调研 |
-| ⭐⭐⭐ | AI Text Sentiment (情感) | 用户反馈分析 | ⭐ 待调研 |
-| ⭐⭐⭐ | Analyse Keywords (关键词) | 竞品文案分析 | ⭐ 待调研 |
-| ⭐⭐ | Convert Text to Speech (TTS) | 视频配音 | ⭐ 待调研 |
-| ⭐⭐ | Convert Speech to Text (STT) | 视频字幕 | ⭐ 待调研 |
-| ⭐⭐ | AI Text Moderation (审核) | 内容合规性 | ⭐ 待调研 |
-| ⭐⭐ | Detect Language (语言) | 多语言管理 | ⭐ 待调研 |
-| ⭐⭐ | Video Thumbnail (缩略图) | 视频封面 | ⭐ 待调研 |
-| ⭐⭐ | GIF from Video (动图) | 动效展示 | ⭐ 待调研 |
-
-### 实施计划
-
-**阶段1：素材优化（Day 20-22）** ⭐⭐⭐⭐⭐
-1. Poof API → 1688供应商产品图去背景
-2. ShotOG API → 闲鱼商品分享卡片生成
-3. Image Compressor → 小红书图片批量压缩
-
-**阶段2：热点扩展（Day 23-25）** ⭐⭐⭐⭐⭐
-1. APITube News API → 多源热点采集
-2. Meteoblue API → 天气/节气选题库
-3. 集成到 `scripts/hotspot-collector.sh`
-
-**阶段3：内容增强（Day 26-30）** ⭐⭐⭐⭐⭐
-1. AI Text Sentiment → 评论区情感分析
-2. Analyse Keywords → 竞品关键词挖掘
-3. 集成到 `intel/数据复盘.md`
-
----
-
-## ⚠️ 注意事项
-
-### 频率限制
-- 大部分免费API有调用次数限制
-- 示例：每分钟60次、每天1000次
-- 建议：批量调用 + 缓存机制
-
-### 稳定性
-- 免费API维护情况不一
-- 建议：先用后测，准备备用方案
-- 建议：监控API可用性
-
-### 数据质量
-- 免费API不能保证100%精准
-- 建议：练手/原型OK，关键业务谨慎
-- 建议：人工审核重要内容
-
-### CORS支持
-- 大部分支持CORS ✅
-- 部分不支持CORS（需注意）
-- 建议：前端直接调用时确认CORS支持
-
----
-
-## 📚 相关资源
-
-- **GitHub**: https://github.com/public-apis/public-apis
-- **官网**: https://publicapis.dev/
-- **Contributing**: https://github.com/public-apis/public-apis/blob/master/CONTRIBUTING.md
-- **License**: MIT License
+3. **Image Compressor** - 图片压缩转换
+   - 脚本：`scripts/test-image-compressor.py`
+   - 调研：`intel/Public-APIs-ImageCompressor-图片压缩API调研.md`
+   - 集成：`intel/Public-APIs-ImageCompressor集成说明.md`
 
 ---
 
