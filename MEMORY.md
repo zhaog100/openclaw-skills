@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.40
-**最后更新**: 2026-04-11 14:30
+**版本**: v3.41
+**最后更新**: 2026-04-11 14:45
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -650,6 +650,18 @@
 - **Git配置**: 远程仓库连接，分支管理
 - **工作区**: 基础目录结构建立
 
+
+### 2026-04-11 Public-APIs阶段1测试完成 - ShotOG成功+Poof查询成功 ⭐⭐⭐⭐⭐
+- **测试结果**:
+  - ShotOG API: ✅ 成功生成3个封面图（product/blog/announcement模板，14-23KB）
+  - Poof API: ✅ 账户查询成功（Free计划，0积分）
+  - SDK安装: ✅ pip install --break-system-packages poofbg
+  - 测试脚本: scripts/test-public-apis-stage1.py
+- **输出文件**: test_output/shotog_1/2/3.png
+- **Poof SDK方法**:
+  - 背景移除: client.remove(image_path)
+  - 账户查询: client.me() → 返回dict（非Poof对象）
+- **下一步**: 准备测试图片后测试Poof背景移除功能
 
 ### 2026-04-11 Public-APIs阶段1素材优化 - Poof+ShotOG调研完成 ⭐⭐⭐⭐⭐
 - **Poof API**（背景移除）:
