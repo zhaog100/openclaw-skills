@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-11T15:51:20.319Z",
+  "entries": {
+    "memory:memory/2026-04-02.md:130:186": {
+      "key": "memory:memory/2026-04-02.md:130:186",
+      "path": "memory/2026-04-02.md",
+      "startLine": 130,
+      "endLine": 186,
+      "source": "memory",
+      "snippet": "| 京东任务 | 7个 | 全部启用 | | JD Cookie | 2个 | 全部启用 | | **exec审批** | ⏳ 待官家重启Gateway | --- ## ⏰ 定时任务状态 ### Shell Crontab (9个) | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ✅ | | 21:00 | ai-summary | ✅ | | 12:10 | morning-review | ✅ | | 23:30 | daily-review | ✅ | | 02:00 | qmd-update | ✅ | | 02:10 | cleanup | ✅ | | 每小时:10 | error-stats | ✅ | | 周五18:10 | weekly-report | ✅ | | 周日23:00 | security-audit | ✅ | ### Gateway Cron (2个) | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ✅ | | 23:50 | daily-review:night | ✅ | --- ## ⚠️ 待处理事项 | 项目 | 状态 | |------|------| | Gateway exec免审批配置 | ⏳ 待官家重启Gateway | | QMD向量更新 | ⏳ 待Gateway重启后 | | Git提交+推送 | ⏳ 待Gateway重启后",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8173513811186259,
+      "maxScore": 0.8173513811186259,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "hotspot-collect",
+        "ai-summary",
+        "morning-review",
+        "daily-review",
+        "qmd-update",
+        "error-stats"
+      ]
+    },
+    "memory:memory/2026-04-03.md:120:166": {
+      "key": "memory:memory/2026-04-03.md:120:166",
+      "path": "memory/2026-04-03.md",
+      "startLine": 120,
+      "endLine": 166,
+      "source": "memory",
+      "snippet": "| Git推送 | ✅ 已推送到xiaomijiao remote | | QMD向量库 | ✅ 801个文档，已更新 | ### ⏰ 定时任务执行情况 ### Shell Crontab | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ✅ | | 21:00 | ai-summary | ⏳ 待执行 | | 每小时:10 | error-stats | ✅ | | 周五18:10 | weekly-report | ⏳ | ### Gateway Cron | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ✅ | | 23:50 | daily-review:night | ✅ 执行中 | ### 📈 数据复盘 **系统稳定性**：全天零故障，所有核心服务正常运行 **热点匹配度**：连续两日热点贴合度偏低，产品定位需要更精准 **运营策略**：坚持内容创作为主，热点为辅的策略 ### 🔄 记忆更新 - ✅ memory/2026-04-03.md 更新完成 - ✅ MEMORY.md 长期记忆保持v3.31 - ✅ 每日双时间点回顾机制运行正常 ### 📤 Git提交推送 - ✅ 提交信息：\"Day 11: 晚间回顾完成 - 热点采集、内容创作等待、系统正常运行\" - ✅ 推送到xiaomijiao remote成功 - ✅ 4个日志文件更新完成 ### 📚 QMD向",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8095640433855713,
+      "maxScore": 0.8095640433855713,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "hotspot-collect",
+        "ai-summary",
+        "error-stats",
+        "weekly-report",
+        "daily-review",
+        "memory/2026-04-03.md"
+      ]
+    },
+    "memory:memory/2026-04-04.md:48:96": {
+      "key": "memory:memory/2026-04-04.md:48:96",
+      "path": "memory/2026-04-04.md",
+      "startLine": 48,
+      "endLine": 96,
+      "source": "memory",
+      "snippet": "| 21:00 | ai-summary | ⏳ | | 周五18:10 | weekly-report | ❌ 未执行，需补做 | ### Gateway Cron | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ⏳ | | 23:50 | daily-review:night | ⏳ | --- --- ## 📝 早间确认（08:16 周六） - 今日为周六，09:00热点采集待执行 - 周报补做：今日需完成（建议20:30前） - 内容创作：继续等官家指示 - 所有系统正常运行 *08:16 早间检查完成* ## 📝 午间回顾（12:03 Day 12） ### ✅ 完成事项检查 | 项目 | 状态 | |------|------| | 记忆文件 | ✅ 2026-04-04.md正常 | | 知识库索引 | ✅ 运营待办.md已更新 | | Git状态 | ✅ 工作区有6个文件待提交 | | QMD向量库 | ✅ 801个文档，更新成功 | | 系统健康度 | ✅ 所有核心服务正常运行 | ### 🔍 检查详情 1. **记忆文件**：今日记忆文件存在且结构完整 2. **知识库**：运营待办.md包含完整进度跟踪 3. **Git工作区**：有6个文件需要提交（日志、热点选题等） 4. **QMD向量库**：成功更新，801个文档索引正常 5. **待办更新**：已标记午间回顾完成项 ### 📈 当前状态 - 系统稳定性：✅ 全天零故障 - 热点",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8080008517948205,
+      "maxScore": 0.8080008517948205,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "ai-summary",
+        "weekly-report",
+        "daily-review",
+        "运营待办.md已更新",
+        "运营待办.md包含完整进度跟踪",
+        "summary"
+      ]
+    },
+    "memory:memory/2026-04-03.md:50:101": {
+      "key": "memory:memory/2026-04-03.md:50:101",
+      "path": "memory/2026-04-03.md",
+      "startLine": 50,
+      "endLine": 101,
+      "source": "memory",
+      "snippet": "|------|------|------| | 12:00 | daily-review:midday | ⏳ | | 23:50 | daily-review:night | ⏳ | --- *最后更新: 2026-04-03 08:16 | Day 11 启动* --- ## 📝 早间热点确认（09:16） - 热点采集 ✅ 09:00 百度热搜Top20已采集 - 今日日期：2026-04-03（周五） - 定时任务均正常运行 *09:16 早间检查完成* --- ## 📝 午间回顾（12:46 Day 11） ### 热点采集 - ✅ 09:00 百度热搜Top20采集完成（intel/热点选题.md） - 今日热点：四预警齐发（雷暴大风）、汽车销冠、伊朗局势、孙颖莎 - 贴合度评估：整体偏低，无>60%热点与蒸汽眼罩强关联 - 结论：继续\"打工人午睡神器\"方向 ### 系统状态 - GitHub限流测试推送：✅ 12:10成功 - Git工作区：051a724 午间日志提交 - 热点采集：✅ 09:00完成 ### 待处理 - 内容初稿：等官家指示方向 - 1688供应商：等官家确认 *12:46 午间回顾完成* --- ## 📝 晚间回顾（23:50 Day 11） *执行晚间回顾任务：全天工作总结、数据复盘、记忆更新、Git提交推送、QMD更新。输出回顾报告。* ### 🎯 今日完成事项 | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | 热点采集 | ✅ 百度热搜Top2",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8041191567207324,
+      "maxScore": 0.8041191567207324,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "qmd",
+        "daily-review",
+        "intel/热点选题.md",
+        "review:midday",
+        "review:night",
+        "最后",
+        "更新",
+        "day"
+      ]
+    },
+    "memory:memory/2026-04-04.md:1:62": {
+      "key": "memory:memory/2026-04-04.md:1:62",
+      "path": "memory/2026-04-04.md",
+      "startLine": 1,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "# 📅 2026-04-04 运营日志 | Day 12 **日期**: 2026-04-04（周六） **时间**: 00:46 **维护**: 小米椒 🌶️‍🔥 --- ## 🎯 今日目标 | 时间 | 任务 | 状态 | |------|------|------| | 09:00前 | 热点采集 | ⏳ 待执行（09:00自动） | | 12:00 | 午间回顾 | ✅ 已完成（12:03） | | 20:30前 | 数据复盘 | ⏳ 待执行 | | 21:00 | AI学习总结 | ⏳ 定时任务 | --- ## 📊 昨日回顾（Day 11） ### 重大里程碑 - 热点采集正常运行（每日09:00） - exec免审配置持续稳定 - 每日定时任务机制完善 ### 关键结论 - 热点贴合度整体偏低，暂不追热点 - 内容创作等官家方向指示 - \"打工人午睡神器\"选题方向确认 ### 未完成项 - 周报（周五18:10定时）⚠️ 未执行，建议周六补做 ### 今日卡点 - 1688供应商：等官家确认 - 内容创作：等官家指示 - 产品图素材：等供应商确认后获取 --- ## ⏰ 定时任务 ### Shell Crontab | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ⏳ | | 21:00 | ai-summary | ⏳ | | 周五18:10 | weekly-report | ❌ 未执行，需补做 | ### Gateway Cron |",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8029619104311484,
+      "maxScore": 0.8029619104311484,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "hotspot-collect",
+        "ai-summary",
+        "weekly-report",
+        "运营",
+        "日志",
+        "day",
+        "日期"
+      ]
+    },
+    "memory:memory/2026-04-03.md:1:65": {
+      "key": "memory:memory/2026-04-03.md:1:65",
+      "path": "memory/2026-04-03.md",
+      "startLine": 1,
+      "endLine": 65,
+      "source": "memory",
+      "snippet": "# 📅 2026-04-03 运营日志 | Day 11 **日期**: 2026-04-03（周五） **时间**: 08:16 **维护**: 小米椒 🌶️‍🔥 --- ## 🎯 今日目标 | 时间 | 任务 | 状态 | |------|------|------| | 09:00前 | 热点采集 | ⏳ 待执行（09:00自动） | | 12:00前 | 内容初稿 | ⏳ 等官家指示 | | 20:30前 | 数据复盘 | ⏳ 待执行 | | 21:00 | AI学习总结 | ⏳ 定时任务 | --- ## 📊 昨日回顾（Day 10） ### 重大里程碑 - exec免审批问题**彻底解决** ⭐⭐⭐⭐⭐ - OpenClaw升级到v2026.4.1 - 记忆+知识库+Git+QMD全面整理 ### 关键结论 - 热点贴合度整体偏低（无>60%），暂不追热点 - 内容创作等官家指示方向 - \"打工人午睡神器\"选题方向确认 ### 今日卡点 - 1688供应商：等官家确认 - 内容创作：等官家指示 - 产品图素材：等供应商确认后获取 --- ## ⏰ 定时任务 ### Shell Crontab | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ⏳ | | 21:00 | ai-summary | ⏳ | | 周五18:10 | weekly-report | ⏳ | ### Gateway Cron | 时间 | 任务 | 状态 | |------",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7987470221195823,
+      "maxScore": 0.7987470221195823,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "openclaw升级到v2026.4.1",
+        "hotspot-collect",
+        "ai-summary",
+        "weekly-report",
+        "运营",
+        "日志"
+      ]
+    },
+    "memory:memory/2026-03-30.md:331:361": {
+      "key": "memory:memory/2026-03-30.md:331:361",
+      "path": "memory/2026-03-30.md",
+      "startLine": 331,
+      "endLine": 361,
+      "source": "memory",
+      "snippet": "### 每日晚间回顾执行 - **23:50** - 启动晚间回顾流程（ cron: daily-review:night-weixin ） - **23:51** - 全天数据汇总与分析 - **23:52** - Git 状态检查 + MEMORY.md 内容更新 - **23:52** - Git 提交晚间回顾成果 - **23:53** - Git 推送 xiaomijiao remote ✅ - **23:54** - QMD 向量库同步确认 ✅ ### 📊 全天运营总结 | 项目 | 统计 | 状态 | |------|------|------| | Git 提交 | 4次（结构化整理+索引更新+晚间回顾） | ✅ | | 文件更新 | 35个核心文件保持同步 | ✅ | | 系统维护 | Gateway + QMD + Git 全部正常 | ✅ | | 运营内容 | 今日无新内容发布，专注系统维护 | ℹ️ | --- ## 🔥 今日学习精华提炼 ### 4. 双时间点回顾机制 ⭐⭐⭐⭐⭐ - **午间回顾（12:00）**: 上午工作总结 + 查漏补缺 + 系统维护 - **晚间回顾（23:50）**: 全天数据分析 + 经验提炼 + Git推送到线上 - **优势**: 双重检查机制，避免遗漏重要事项 ### 5. 文件统计自动化 ⭐⭐⭐⭐ - **索引文件维护**: docs/完整索引清单.md、docs/文件索引清单.md、intel/索引.md - **一致性保证**: 三个索引文件必须同步更新，确保统计数字准确 - **变更追踪**:",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7606015069711077,
+      "maxScore": 0.7606015069711077,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "daily-review",
+        "night-weixin",
+        "memory.md",
+        "docs/完整索引清单.md",
+        "docs/文件索引清单.md",
+        "intel/索引.md"
+      ]
+    },
+    "memory:memory/2026-04-11.md:75:115": {
+      "key": "memory:memory/2026-04-11.md:75:115",
+      "path": "memory/2026-04-11.md",
+      "startLine": 75,
+      "endLine": 115,
+      "source": "memory",
+      "snippet": "| 36 | Image Compressor Key | 16:19 | ✅ RapidAPI Key 已配置 | | 37 | APITube News Key | 16:27 | ✅ API Key 已配置 | | 38 | Meteoblue Key | 16:33 | ✅ API Key 已配置 | | 39 | Poof Key 确认 | 16:35 | ✅ 已有 Key 可用 | ### 深度结构化整理（5 项）⭐⭐⭐⭐⭐ | # | 任务 | 时间 | 状态 | |---|------|------|------| | 40 | 记忆文件读取 | 16:42 | ✅ 读取今日日志 | | 41 | 知识库索引检查 | 16:42 | ✅ intel/ 59 个文件 | | 42 | Git 状态检查 | 16:42 | ✅ main 分支干净 | | 43 | 深度回顾总结 | 16:43 | ✅ 查漏补缺完成 | | 44 | MEMORY.md 更新 | 16:43 | ✅ 更新长期记忆 | ### 环境迁移部署清单（1 项）⭐⭐⭐⭐⭐ | # | 任务 | 时间 | 状态 | |---|------|------|------| | 45 | 环境迁移部署清单 | 16:54 | ✅ docs/环境迁移部署清单.md | ### 系统配置优化（5 项）⭐⭐⭐⭐⭐ | # | 任务 | 时间 | 状态 | |---|------|------|------| | 46 | LongCat 默认模型配置 | 20:14 | ✅ primary=Lo",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7406643352653273,
+      "maxScore": 0.7406643352653273,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "memory.md",
+        "docs/环境迁移部署清单.md",
+        "image",
+        "compressor",
+        "key",
+        "rapidapi",
+        "配置",
+        "apitube"
+      ]
+    },
+    "memory:memory/2026-04-11.md:1:41": {
+      "key": "memory:memory/2026-04-11.md:1:41",
+      "path": "memory/2026-04-11.md",
+      "startLine": 1,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "# 📝 2026-04-11 运营日志 **日期**: 2026-04-11（周六） **维护**: 小米椒 🌶️‍🔥 **阶段**: Day 19 --- ## ✅ 今日完成（总计 44 项工作） ### 热点监控（1 项） | # | 任务 | 时间 | 状态 | |---|------|------|------| | 1 | 热点采集（19 条） | 09:00 | ✅ 百度热搜 | ### 模型策略调整（4 项）⭐⭐⭐⭐ | # | 任务 | 时间 | 状态 | |---|------|------|------| | 2 | LongCat 额度分享 | 09:25 | ✅ 4.6% 使用率 | | 3 | 模型策略明确 | 09:26 | ✅ 优先/主力/备用 | | 4 | MEMORY.md 更新 | 09:27 | ✅ 版本未变 | | 5 | 切换到 LongCat | 09:28 | ✅ Flash-Lite | ### 结构化整理（1 项） | # | 任务 | 时间 | 状态 | |---|------|------|------| | 6 | 多通道记忆整合 | 10:17 | ✅ 55 条消息 | ### Public APIs 全集成（24 项）⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ | # | 任务 | 时间 | 状态 | |---|------|------|------| | 7 | Public-APIs 项目调研 | 14:05 | ✅ 1400+API，6 大类整理 | | 8 | 知识库资源记录 | 14:",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7384768041714336,
+      "maxScore": 0.7384768041714336,
+      "firstRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "queryHashes": [
+        "31b4deb62dd6"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "4.6",
+        "优先/主力/备用",
+        "memory.md",
+        "flash-lite",
+        "public-apis",
+        "运营",
+        "日志",
+        "日期"
+      ]
+    },
+    "memory:memory/2026-04-02.md:1:51": {
+      "key": "memory:memory/2026-04-02.md:1:51",
+      "path": "memory/2026-04-02.md",
+      "startLine": 1,
+      "endLine": 51,
+      "source": "memory",
+      "snippet": "# 📅 2026-04-02 运营日志 | Day 10 **日期**: 2026-04-02（周四） **时间**: 18:50 晚间整理完成 **维护**: 小米椒 🌶️‍🔥 --- ## 🎯 今日目标回顾 | 时间 | 任务 | 状态 | |------|------|------| | 09:00前 | 热点采集 | ✅ 08:25完成 | | 12:00前 | 内容初稿 | ⏳ 待官家指示 | | 20:30前 | 数据复盘 | ⏳ 待执行 | --- ## ✅ 今日完成事项（18:50最终） ### 📚 文档学习（5篇） | 时间 | 文档 | 状态 | |------|------|------| | 09:14 | OpenClaw 3.22安全加固 | ✅ | | 09:14 | Qwen3.6 Plus四种方式 | ✅ | | 09:31 | OpenClaw自主进化指南 | ✅ | | 10:50 | AGENTS.md SOP优化 | ✅ | | 11:02 | 自主进化深度学习 | ✅ | ### 🔐 安全加固 | 时间 | 任务 | 状态 | |------|------|------| | 09:14 | allowInsecureAuth关闭 | ✅ | | 09:14 | 安全审计执行 | ✅ (7 warn, 1 info) | | 10:51 | 凭证安全优化 | ✅ (环境变量+SecretRef) | | 10:55 | Gateway重启 | ✅ | | 11:41 | **OpenClaw升级v2026.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7909844976015683,
+      "maxScore": 0.7909844976015683,
+      "firstRecalledAt": "2026-04-11T15:51:20.319Z",
+      "lastRecalledAt": "2026-04-11T15:51:20.319Z",
+      "queryHashes": [
+        "a9dc270115d9"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "3.22安全加固",
+        "qwen3.6",
+        "agents.md",
+        "运营",
+        "日志",
+        "day",
+        "日期"
+      ]
+    }
+  }
+}
