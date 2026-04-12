@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.51
-**最后更新**: 2026-04-12 14:15
+**版本**: v3.52
+**最后更新**: 2026-04-12 22:10
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -15,9 +15,9 @@
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
 | 进度 | 商贸方向已确认，首篇笔记/闲鱼清单已备，待官家执行上架 |
-| 卡点 | 1688供应商确认、产品图素材、闲鱼上架 |
+| 卡点 | 1688供应商确认、产品图素材、闲鱼上架、yfinance限速 |
 | Git | main分支，推送已恢复 |
-| Skills | 6个（+xiaohongshu-ops） |
+| Skills | 8个（+xiaohongshu-ops, oil-gold-correlation） |
 | OpenClaw | v2026.4.10 |
 | 默认模型 | longcat/LongCat-Flash-Lite（优先消耗） |
 | 主力模型 | zai/glm-5.1（智谱） |
@@ -822,18 +822,35 @@
 - **配置备份**: openclaw.json.bak.20260407_1703
 - **Git 推送规则**: 个人数据推 xiaomijiao remote（main 分支）
 
-*持续进化 · 定期清理 · 保留精华 | v3.50 | 2026-04-11*
+*持续进化 · 定期清理 · 保留精华 | v3.52 | 2026-04-12*
 
-### 2026-04-12 石油黄金相关性分析 + QQ Bot 双通道配置 ⭐⭐⭐⭐
-- **技能方案**: 石油黄金实时相关性分析技能开发方案，供小米辣开发
-- **数据源**: yfinance（主力，免费无需Key）+ Alpha Vantage（备用，有MCP Server）
-- **方案文档**: intel/石油黄金相关性分析技能方案.md（完整代码+架构+算法）
-- **飞书限制**: 飞书Bot不支持发文件，代码块复制不了，推GitHub解决
-- **QQ Bot双账号**: appId 102845238 + 1903724446，数组格式支持多Bot
-- **配置备份**: openclaw.json.bak.20260412_1251
-- **Gateway端口**: 当前18789（小米椒独立Gateway）
-- **Git推送**: 提交4b290f5，推送到xiaomijiao-skills.git main分支
-- **身份确认**: 小米椒🌶️‍🔥，远程仓库xiaomijiao-skills.git
+### 2026-04-12 石油黄金技能安装 + 系统维护 + akshare替代 ⭐⭐⭐⭐⭐
+- **技能安装**: oil-gold-correlation v1.0.0（小米粒🌾开发）从GitHub sparse clone
+- **脚本修复**: 6个.py头部docstring缺失，已统一修复
+- **依赖安装**: yfinance/scipy/statsmodels + requirements.txt
+- **完整诊断**: 6模块逐一运行，输出 oil-gold-skill-diagnosis.txt
+- **yfinance限速**: 腾讯云IP被持续封禁超2小时，重试15次全失败
+- **akshare替代**: 国内免费无翻墙，黄金/SC原油/布伦特数据成功获取
+  - 黄金期货 ¥1,048.36/克（+0.68%）
+  - SC原油 ¥637.30/桶（-0.42%）
+  - 黄金-原油强负相关（r=-0.93）
+- **磁盘清理**: pip缓存2.7G+npm缓存1.1G+journal 463M+apt 280M = 释放4G
+- **磁盘**: 23G/50G(49%) → 19G/50G(40%)
+- **QQ Bot双账号**: appId 102845238 + 1903724446，数组格式
+- **Gateway端口**: 当前18789
+- **身份确认**: 小米椒🌶️‍🔥，远程仓库xiaomijiao-skills.git，main分支
+
+### 2026-04-12 磁盘清理经验 ⭐⭐⭐⭐
+- pip缓存(/root/.cache/pip/)和npm缓存(/root/.npm/)是最大空间占用
+- journal日志可用 --vacuum-size=100M 限制
+- 定期清理: pip cache purge + npm cache clean --force + apt clean
+- 2G内存VPS建议磁盘<50%
+
+### 2026-04-12 yfinance限速问题 ⭐⭐⭐⭐
+- 腾讯云/阿里云IP段容易被yfinance封禁
+- 封禁可持续数小时甚至更久，周末更严
+- akshare是国内替代方案，免费无翻墙
+- 建议: oil-gold技能增加akshare作为备用数据源
 
 ### 2026-04-11 Public APIs 全集成 + 本地工具安装 ⭐⭐⭐⭐⭐
 - **7 阶段 19 个工具调研完成**：素材优化 (3)+热点扩展 (2)+内容增强 (2)+数据分析 (2)+基础工具库 (3)+多媒体工具 (4)+运营工具 (3)

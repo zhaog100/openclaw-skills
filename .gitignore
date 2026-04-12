@@ -4,3 +4,4 @@ xiaomijiao-gateway-issue.txt
 secrets/
 *.env
 api-keys.json
+__pycache__
