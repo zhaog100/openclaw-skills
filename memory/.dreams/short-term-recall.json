@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-11T15:51:20.319Z",
+  "updatedAt": "2026-04-12T03:15:47.219Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -310,6 +310,99 @@
         "日志",
         "day",
         "日期"
+      ]
+    },
+    "memory:memory/2026-03-30.md:585:622": {
+      "key": "memory:memory/2026-03-30.md:585:622",
+      "path": "memory/2026-03-30.md",
+      "startLine": 585,
+      "endLine": 622,
+      "source": "memory",
+      "snippet": "- **依赖安装**: `npm install axios dotenv crypto-js tslib moment tough-cookie json5 got@11` - **Cookie 配置**: 通过 API `POST /api/envs` 添加 JD_COOKIE - **定时任务**: 通过 API `POST /api/crons` 添加任务 ### 11. 青龙 API 使用经验 ⭐⭐⭐⭐ - **登录**: `POST /api/user/login` → 获取 token - **添加环境变量**: `POST /api/envs` body: `{\"name\":\"JD_COOKIE\",\"value\":\"...\",\"remarks\":\"...\"}` - **添加定时任务**: `POST /api/crons` body: `{\"name\":\"任务名\",\"command\":\"task /path/to/script.js\",\"schedule\":\"cron表达式\"}` - **运行任务**: `PUT /api/crons/run` body: `[taskId1, taskId2, ...]` - **查看日志**: `GET /api/crons/{id}/log` ### 12. 脚本路径检查 ⭐⭐⭐⭐ - **教训**: faker2 仓库的脚本名可能与预期不同 - **检查方法**: `docker exec qinglong ls /ql/data/repo/faker2/ | grep jd_` - **常见差异**: `jd_be",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.599642179452333,
+      "maxScore": 0.599642179452333,
+      "firstRecalledAt": "2026-04-12T03:15:47.219Z",
+      "lastRecalledAt": "2026-04-12T03:15:47.219Z",
+      "queryHashes": [
+        "428de7aec822"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "crypto-js",
+        "tough-cookie",
+        "api/envs",
+        "jd-cookie",
+        "api/crons",
+        "api/user/login",
+        "path/to/script.js",
+        "api/crons/run"
+      ]
+    },
+    "memory:memory/2026-04-11.md:38:54": {
+      "key": "memory:memory/2026-04-11.md:38:54",
+      "path": "memory/2026-04-11.md",
+      "startLine": 38,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "| 9 | Poof API 调研 | 14:10 | ✅ 背景移除 API，完整调研报告 | | 10 | ShotOG API 调研 | 14:30 | ✅ 8 个模板，批量生成，MIT 开源 | | 11 | 工具与技能清单整理 | 14:45 | ✅ 5 个脚本 +7 个技能 +8 个 Public APIs 工具库 | | 12 | Image Compressor API 调研 | 14:50 | ✅ 智能压缩转换，AI 自适应调优 | | 13 | Image Compressor 测试脚本 | 15:10 | ✅ 3 个测试场景（基础压缩、固定宽度） | | 14 | Image Compressor 集成说明 | 15:15 | ✅ 使用指南 + 批量处理脚本 | | 15 | APITube News API 调研 | 15:25 | ✅ 500,000+ 源，60 语言，NLP 情感分析 | | 16 | Meteoblue API 调研 | 15:30 | ✅ 100+ 变量，14 天预测，天气选题 | | 17 | VADER API 调研 | 15:35 | ✅ 社交媒体情感分析，MIT 开源 | | 18 | RAKE API 调研 | 15:40 | ✅ 关键词提取，MIT 开源 | | 19 | Plotly 数据可视化调研 | 15:50 | ✅ 交互式图表，40+ 类型 | | 20 | Pandas 数据分析调研 | 15:55 | ✅ DataFrame 处理，统计分析 | | 21 | NumPy 数值计算调研 | 15:58 | ✅",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5947232002178664,
+      "maxScore": 0.5947232002178664,
+      "firstRecalledAt": "2026-04-12T03:15:47.219Z",
+      "lastRecalledAt": "2026-04-12T03:15:47.219Z",
+      "queryHashes": [
+        "428de7aec822"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "poof",
+        "api",
+        "背景",
+        "移除",
+        "完整",
+        "报告",
+        "shotog",
+        "模板"
+      ]
+    },
+    "memory:memory/2026-04-11.md:154:206": {
+      "key": "memory:memory/2026-04-11.md:154:206",
+      "path": "memory/2026-04-11.md",
+      "startLine": 154,
+      "endLine": 206,
+      "source": "memory",
+      "snippet": "### 资源清单（2 个） 20. Public-APIs-新媒体运营资源-v2.0.md（5.6KB，16 个工具） 21. Public-APIs-新媒体运营资源 - 最终版.md（5.4KB，19 个工具） ### 统一 API Key 管理（3 个） 22. secrets/api-keys-README.md（3.3KB） 23. secrets/api-keys.json（3.2KB）- **4 个 API Key 已配置** 24. secrets/api_keys_loader.py（4.2KB） ### 测试脚本（3 个） 25. scripts/test-public-apis-stage1.py 26. scripts/test-image-compressor.py 27. scripts/test-all-apis.py（综合测试，16:35 创建） ### 测试图片（1 个） 28. products/raw/xiaohongshu_test.jpg（1080x1920） ### 本地工具安装（14 个 Python 库 + 1 个系统工具）⭐⭐⭐⭐⭐ - vaderSentiment ✅ - rake-nltk ✅ - plotly ✅ - pandas ✅ - numpy ✅ - requests ✅ - beautifulsoup4 ✅ - lxml ✅ - openai-whisper ✅ - gTTS ✅ - moviepy ✅ - sumy ✅ - qrcode ✅ - nltk ✅ - **FFmpeg** v6.1.1 ✅",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5932671525628527,
+      "maxScore": 0.5932671525628527,
+      "firstRecalledAt": "2026-04-12T03:15:47.219Z",
+      "lastRecalledAt": "2026-04-12T03:15:47.219Z",
+      "queryHashes": [
+        "428de7aec822"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "openai",
+        "public-apis-新媒体运营资源-v2.0.md",
+        "5.6kb",
+        "public-apis-新媒体运营资源",
+        "最终版.md",
+        "5.4kb",
+        "secrets/api-keys-readme.md",
+        "3.3kb"
       ]
     }
   }
