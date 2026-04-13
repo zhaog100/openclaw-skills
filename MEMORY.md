@@ -877,3 +877,23 @@
 - **环境迁移清单**：docs/环境迁移部署清单.md（11.2KB，614行）
 - **OpenClaw 版本**：v2026.4.10（从 v2026.4.9 升级）
 - **Git 提交**：累计 11 次提交到 xiaomijiao-skills.git (main 分支)
+
+### 2026-04-13 QQ Bot多账号openid不同 ⭐⭐⭐⭐⭐
+- **问题**: bot2的cron推送显示delivered但官家没收到
+- **根因**: 不同QQ Bot（不同appId）看到同一用户的openid不同
+  - default (102845238): C099848DC9A60BF60A7BE31626822790
+  - bot2 (1903724446): E7331F9772A02575890BBE94E788248A
+- **解决**: cron的--to参数必须用对应Bot账号看到的openid
+- **教训**: 所有bot2的cron统一用 E7331F9772A02575890BBE94E788248A
+
+### 2026-04-13 oil-gold-correlation技能多次迭代 ⭐⭐⭐⭐
+- **数据源**: yfinance在腾讯云IP被持续限速，akshare是稳定备用
+- **央视新闻**: news_economic_baidu失效（cookie+API参数变更），改用news_cctv
+- **关键词分级**: geopolitics风险评分从+95降到+50（更合理）
+- **新增**: FRED宏观数据(12项指标)+投资决策仪表盘+最终购买建议
+- **GitHub分支**: feat/github-marketing，小米粒🌾持续迭代中
+
+### 2026-04-13 淘宝桌面客户端API ⭐⭐⭐
+- **taobao-native**: v1.0.43，只支持Windows/macOS
+- **Linux服务器**: 不支持，需官家本地电脑安装
+- **优先级**: 低，继续聚焦现有商贸模式

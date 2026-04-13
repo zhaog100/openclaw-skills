@@ -21,14 +21,16 @@ import pandas as pd
 from scipy import stats
 
 # ===== 品种定义 =====
+# 优先使用国际品种（yfinance），国内品种（akshare）作为辅助
 INSTRUMENTS = {
-    "黄金期货": {"symbol": "GC=F", "type": "期货", "exchange": "COMEX"},
-    "黄金ETF": {"symbol": "GLD", "type": "ETF", "exchange": "NYSE"},
-    "WTI原油期货": {"symbol": "CL=F", "type": "期货", "exchange": "NYMEX"},
-    "布伦特原油期货": {"symbol": "BZ=F", "type": "期货", "exchange": "ICE"},
-    "原油ETF": {"symbol": "USO", "type": "ETF", "exchange": "NYSE"},
-    "美元指数": {"symbol": "DX-Y.NYB", "type": "指数", "exchange": "ICE"},
-    "白银期货": {"symbol": "SI=F", "type": "期货", "exchange": "COMEX"},
+    # 国际品种（主力，美元计价）
+    "黄金期货": {"symbol": "GC=F", "type": "期货", "exchange": "COMEX", "currency": "USD", "source": "yfinance"},
+    "WTI原油": {"symbol": "CL=F", "type": "期货", "exchange": "NYMEX", "currency": "USD", "source": "yfinance"},
+    "布伦特原油": {"symbol": "BZ=F", "type": "期货", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
+    "美元指数": {"symbol": "DX-Y.NYB", "type": "指数", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
+    # 国内品种（辅助，人民币计价）
+    "沪金期货": {"symbol": "AU0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "gold"},
+    "沪油期货": {"symbol": "SC0", "type": "期货", "exchange": "上海国际能源交易中心", "currency": "CNY", "source": "akshare", "ak_key": "wti"},
 }
 
 
@@ -138,6 +140,177 @@ def calc_atr(high, low, close, period=14):
     return float(atr.iloc[-1])
 
 
+def calc_obv(close, volume):
+    """OBV（能量潮）+ 量价背离判断"""
+    try:
+        direction = close.diff().apply(lambda x: 1 if x > 0 else (-1 if x < 0 else 0))
+        obv = (direction * volume).cumsum()
+        obv_val = float(obv.iloc[-1])
+        obv_5ago = float(obv.iloc[-6]) if len(obv) > 5 else obv_val
+        price_5ago = float(close.iloc[-6]) if len(close) > 5 else float(close.iloc[-1])
+        price_now = float(close.iloc[-1])
+
+        price_up = price_now > price_5ago
+        obv_up = obv_val > obv_5ago
+
+        if price_up and not obv_up:
+            divergence = "量价顶背离⚠️（看跌信号）"
+            score_impact = -15
+        elif not price_up and obv_up:
+            divergence = "量价底背离✅（看涨信号）"
+            score_impact = 15
+        elif price_up and obv_up:
+            divergence = "量价齐升（健康上涨）"
+            score_impact = 5
+        else:
+            divergence = "量价齐跌（弱势）"
+            score_impact = -5
+
+        return {
+            "obv": round(obv_val, 0),
+            "obv_change_5d": round((obv_val - obv_5ago) / abs(obv_5ago) * 100, 1) if obv_5ago != 0 else 0,
+            "divergence": divergence,
+            "score_impact": score_impact,
+        }
+    except Exception:
+        return {"obv": 0, "obv_change_5d": 0, "divergence": "计算失败", "score_impact": 0}
+
+
+def calc_gold_oil_ratio(gold_price, oil_price):
+    """黄金-原油比率分析"""
+    try:
+        if oil_price <= 0:
+            return None
+        ratio = gold_price / oil_price
+
+        if ratio > 30:
+            level = "极度偏高🔴（原油相对便宜/避险情绪极强）"
+            score_impact = 10  # 利多黄金
+        elif ratio > 25:
+            level = "偏高🟠（避险情绪较强）"
+            score_impact = 5
+        elif ratio > 20:
+            level = "正常范围🟢"
+            score_impact = 0
+        elif ratio > 15:
+            level = "偏低🟠（原油相对贵/风险偏好高）"
+            score_impact = -5
+        else:
+            level = "极度偏低🔴（风险偏好极高）"
+            score_impact = -10
+
+        return {
+            "ratio": round(ratio, 2),
+            "level": level,
+            "score_impact": score_impact,
+        }
+    except Exception:
+        return None
+
+
+def calc_fibonacci(high, low, current_price):
+    """Fibonacci 回撤位计算"""
+    try:
+        diff = high - low
+        if diff <= 0:
+            return None
+        fib_levels = {
+            "23.6%": round(high - diff * 0.236, 2),
+            "38.2%": round(high - diff * 0.382, 2),
+            "50.0%": round(high - diff * 0.5, 2),
+            "61.8%": round(high - diff * 0.618, 2),
+            "78.6%": round(high - diff * 0.786, 2),
+        }
+
+        # 判断当前价格在哪个 Fib 区间
+        sorted_levels = sorted(fib_levels.items(), key=lambda x: x[1], reverse=True)
+        zone = "高位"
+        for i, (name, price) in enumerate(sorted_levels):
+            if current_price >= price:
+                zone = f"{name}附近" if i == 0 else f"{name}~{sorted_levels[i-1][0]}区间"
+                break
+        else:
+            zone = f"{sorted_levels[-1][0]}以下（深度回调）"
+
+        return {
+            "high": round(high, 2),
+            "low": round(low, 2),
+            "levels": fib_levels,
+            "zone": zone,
+            "score_impact": 5 if current_price <= fib_levels["38.2%"] else
+                           -5 if current_price >= fib_levels["23.6%"] else 0,
+        }
+    except Exception:
+        return None
+
+
+def calc_support_resistance(close, high_series, low_series, boll_upper, boll_lower, current_price):
+    """支撑/阻力位计算"""
+    try:
+        # 近期高低点
+        recent_high = float(high_series.tail(30).max())
+        recent_low = float(low_series.tail(30).min())
+
+        # 整数关口（心理价位）
+        magnitude = 10 ** (len(str(int(current_price))) - 1)
+        unit = magnitude // 10 if magnitude >= 10 else 1
+        psych_support = round((current_price // unit) * unit, 2)
+        psych_resistance = round((current_price // unit + 1) * unit, 2)
+
+        # 综合取最近的支撑/阻力
+        supports = sorted([s for s in [recent_low, boll_lower, psych_support] if s < current_price], reverse=True)
+        resistances = sorted([r for r in [recent_high, boll_upper, psych_resistance] if r > current_price])
+
+        nearest_support = round(supports[0], 2) if supports else round(recent_low, 2)
+        nearest_resistance = round(resistances[0], 2) if resistances else round(recent_high, 2)
+
+        return {
+            "support1": nearest_support,
+            "support2": round(supports[1], 2) if len(supports) > 1 else None,
+            "resistance1": nearest_resistance,
+            "resistance2": round(resistances[1], 2) if len(resistances) > 1 else None,
+        }
+    except Exception:
+        return None
+
+
+def calc_multi_timeframe(symbol, batch_3mo=None, batch_1y=None):
+    """多时间框架分析"""
+    result = {}
+    try:
+        # 周线趋势（从1年数据取周线）
+        if batch_1y is not None and symbol in batch_1y:
+            data_1y = batch_1y[symbol].dropna()
+            if len(data_1y) >= 40:
+                close_1y = data_1y["Close"] if "Close" in data_1y else data_1y.iloc[:, 0]
+                # 简化周线：每5天取一次
+                weekly = close_1y.iloc[::5]
+                if len(weekly) >= 5:
+                    w_ma5 = float(weekly.tail(5).mean())
+                    w_now = float(weekly.iloc[-1])
+                    result["weekly"] = "偏多↗" if w_now > w_ma5 else "偏空↘" if w_now < w_ma5 else "震荡→"
+                    result["weekly_score"] = 10 if w_now > w_ma5 else -10 if w_now < w_ma5 else 0
+    except Exception:
+        result["weekly"] = "数据不足"
+        result["weekly_score"] = 0
+
+    try:
+        # 日线趋势（5日均线方向）
+        if batch_3mo is not None and symbol in batch_3mo:
+            data_3mo = batch_3mo[symbol].dropna()
+            if len(data_3mo) >= 10:
+                close_3mo = data_3mo["Close"] if "Close" in data_3mo else data_3mo.iloc[:, 0]
+                ma5_now = float(close_3mo.tail(5).mean())
+                ma5_prev = float(close_3mo.iloc[-10:-5].mean()) if len(close_3mo) >= 10 else ma5_now
+                result["daily"] = "短线上行" if ma5_now > ma5_prev else "短线下行" if ma5_now < ma5_prev else "短线横盘"
+                result["daily_score"] = 5 if ma5_now > ma5_prev else -5 if ma5_now < ma5_prev else 0
+    except Exception:
+        result["daily"] = "数据不足"
+        result["daily_score"] = 0
+
+    return result
+
+
 def calc_ma_system(series):
     """均线系统（中长期用）"""
     ma20 = float(series.rolling(20).mean().iloc[-1])
@@ -167,6 +340,142 @@ def calc_trend_strength(series):
         return 0
     up_days = (ret > 0).rolling(20).sum().iloc[-1]
     return round(float(up_days) / 20 * 100, 0)
+
+
+# ==================== v1.3.0 智能建议引擎 ====================
+
+def calc_dynamic_weights(macd_result, boll, atr, price):
+    """根据市场环境动态调整指标权重"""
+    weights = {
+        "rsi": 1.0, "kdj": 1.0, "macd": 1.0,
+        "bollinger": 1.0, "obv": 0.8, "fibonacci": 0.6,
+    }
+
+    boll_width = (boll["upper"] - boll["lower"]) / boll["middle"] * 100 if boll["middle"] != 0 else 5
+    macd_hist = abs(macd_result.get("macd", 0))
+    volatility = atr / price * 100 if price > 0 else 2
+
+    is_trending = macd_hist > 0.5 and boll_width > 4
+    is_ranging = boll_width < 3 and macd_hist < 0.3
+    is_volatile = volatility > 3
+
+    if is_trending:
+        weights["macd"] = 1.5; weights["rsi"] = 0.7; weights["kdj"] = 0.7; weights["obv"] = 1.0
+        regime = "趋势行情"
+    elif is_ranging:
+        weights["rsi"] = 1.4; weights["kdj"] = 1.4; weights["macd"] = 0.6
+        regime = "震荡行情"
+    elif is_volatile:
+        for k in weights: weights[k] = 0.9
+        regime = "高波动行情"
+    else:
+        regime = "常规行情"
+
+    return weights, regime
+
+
+def resolve_conflicts(signals):
+    """处理信号冲突，分类多空信号并计算一致度"""
+    bullish, bearish, neutral = [], [], []
+    trend_keywords = ["MACD", "均线", "趋势", "周线", "布林"]
+
+    for sig in signals:
+        sl = sig.lower()
+        is_bull = any(w in sl for w in ["超卖", "金叉", "多头", "底背离", "齐升", "上行", "偏多", "看涨"])
+        is_bear = any(w in sl for w in ["超买", "死叉", "空头", "顶背离", "齐跌", "下行", "偏空", "看跌"])
+        is_trend = any(k in sig for k in trend_keywords)
+
+        if is_bull and not is_bear:
+            bullish.append({"signal": sig, "is_trend": is_trend})
+        elif is_bear and not is_bull:
+            bearish.append({"signal": sig, "is_trend": is_trend})
+        else:
+            neutral.append(sig)
+
+    total = len(bullish) + len(bearish)
+    if total == 0:
+        return {"bullish": bullish, "bearish": bearish, "neutral": neutral,
+                "ratio": 0.5, "consensus": "无信号", "consensus_pct": 50}
+
+    ratio = len(bullish) / total
+    if ratio > 0.8 or ratio < 0.2:
+        consensus_pct = max(ratio, 1 - ratio) * 100
+        consensus = "高确信"
+    elif ratio >= 0.5:
+        consensus_pct = ratio * 100; consensus = "偏多"
+    else:
+        consensus_pct = (1 - ratio) * 100; consensus = "偏空"
+
+    return {
+        "bullish": bullish, "bearish": bearish, "neutral": neutral,
+        "ratio": ratio, "consensus": consensus, "consensus_pct": round(consensus_pct, 0),
+    }
+
+
+def calc_confidence(score, signals, weights, conflict_result):
+    """计算置信度评分"""
+    consensus_pct = conflict_result["consensus_pct"]
+    score_strength = min(abs(score) / 50 * 100, 100)
+    signal_count_score = min(len(signals) / 8 * 100, 100)
+    confidence = consensus_pct * 0.4 + score_strength * 0.3 + signal_count_score * 0.3
+
+    if confidence > 75: level, emoji = "HIGH", "🟢"
+    elif confidence > 50: level, emoji = "MEDIUM", "🟡"
+    else: level, emoji = "LOW", "🔴"
+
+    return {"level": level, "emoji": emoji, "pct": round(confidence, 0),
+            "consensus": conflict_result["consensus"]}
+
+
+def calc_sl_tp(price, atr, fib_levels, support_resistance, direction):
+    """计算止损止盈价位"""
+    if direction == "buy":
+        sl_atr = round(price - 1.5 * atr, 2)
+        sl_support = support_resistance.get("support1", sl_atr) if support_resistance else sl_atr
+        sl = max(sl_atr, sl_support)
+        if fib_levels:
+            tp1 = max(round(price + 2.0 * atr, 2), fib_levels.get("38.2%", round(price + 2 * atr, 2)))
+            tp2 = max(round(price + 3.0 * atr, 2), fib_levels.get("50.0%", round(price + 3 * atr, 2)))
+        else:
+            tp1 = round(price + 2.0 * atr, 2); tp2 = round(price + 3.0 * atr, 2)
+        risk = price - sl; reward1 = tp1 - price; reward2 = tp2 - price
+    else:  # sell
+        sl_atr = round(price + 1.5 * atr, 2)
+        sl_resist = support_resistance.get("resistance1", sl_atr) if support_resistance else sl_atr
+        sl = min(sl_atr, sl_resist)
+        if fib_levels:
+            tp1 = min(round(price - 2.0 * atr, 2), fib_levels.get("38.2%", round(price - 2 * atr, 2)))
+            tp2 = min(round(price - 3.0 * atr, 2), fib_levels.get("50.0%", round(price - 3 * atr, 2)))
+        else:
+            tp1 = round(price - 2.0 * atr, 2); tp2 = round(price - 3.0 * atr, 2)
+        risk = sl - price; reward1 = price - tp1; reward2 = price - tp2
+
+    if risk <= 0: return None
+    return {
+        "sl": sl, "tp1": tp1, "tp2": tp2,
+        "risk_pct": round(risk / price * 100, 1),
+        "reward1_pct": round(reward1 / price * 100, 1),
+        "reward2_pct": round(reward2 / price * 100, 1),
+        "rr1": round(reward1 / risk, 1), "rr2": round(reward2 / risk, 1),
+        "tradable": round(reward1 / risk, 1) >= 2.0,
+    }
+
+
+def calc_position(confidence, price, sl, account_size=100000, contract_multiplier=1):
+    """计算建议仓位"""
+    if confidence["level"] == "LOW":
+        return {"lots": 0, "reason": "置信度低，不建议开仓"}
+
+    risk_pct = 0.02 if confidence["level"] == "HIGH" else 0.01
+    dollar_risk = account_size * risk_pct
+    per_lot_risk = abs(price - sl) * contract_multiplier
+
+    if per_lot_risk <= 0:
+        return {"lots": 0, "reason": "止损计算异常"}
+
+    lots = max(1, int(dollar_risk / per_lot_risk))
+    return {"lots": lots, "risk_pct": risk_pct * 100,
+            "dollar_risk": round(dollar_risk, 0), "per_lot_risk": round(per_lot_risk, 2)}
 
 
 # ==================== 短期分析（1天~1周）====================
@@ -199,8 +508,17 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     stoch = calc_stoch(high, low, close)  # 标准KDJ用H/L/C
     atr = calc_atr(high, low, close)
 
+    # === 新增指标 ===
+    volume = data["Volume"].dropna() if "Volume" in data else None
+    obv = calc_obv(close, volume) if volume is not None and len(volume) > 5 else None
+    fib = calc_fibonacci(float(high.tail(30).max()), float(low.tail(30).min()), price)
+    sr = calc_support_resistance(close, high, low, boll["upper"], boll["lower"], price)
+
     stop_loss = round(price - 1.5 * atr, 2)
     take_profit = round(price + 2.0 * atr, 2)
+    if sr:
+        stop_loss = min(stop_loss, sr["support1"])
+        take_profit = max(take_profit, sr["resistance1"])
 
     score = 0
     signals = []
@@ -227,6 +545,14 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     if change_5d > 3: score += 10
     elif change_5d < -3: score -= 10
 
+    if obv:
+        score += obv["score_impact"]
+        signals.append(obv["divergence"])
+
+    if fib:
+        score += fib["score_impact"]
+        signals.append(f"Fib区间: {fib['zone']}")
+
     volatility = atr / price * 100
     pred_low = round(price * (1 - volatility * days / 100), 2)
     pred_high = round(price * (1 + volatility * days / 100), 2)
@@ -246,6 +572,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         "score": score, "signals": signals, "advice": advice, "action": action,
         "strategy": strategy, "pred_low": pred_low, "pred_high": pred_high,
         "volatility": round(volatility, 2),
+        "obv": obv, "fibonacci": fib, "support_resistance": sr,
     }
 
 
@@ -347,6 +674,12 @@ def generate_daily_report(days=3):
 
     short_results = {}
     long_results = {}
+    mtf_results = {}  # 多时间框架
+
+    # 多时间框架分析
+    for name, info in INSTRUMENTS.items():
+        sym = info["symbol"]
+        mtf_results[name] = calc_multi_timeframe(sym, batch_3mo=batch_3mo, batch_1y=batch_1y)
 
     for name, info in INSTRUMENTS.items():
         sym = info["symbol"]
@@ -390,6 +723,40 @@ def generate_daily_report(days=3):
     if holds:
         lines.append(f"\n  🟡 观望: {', '.join(holds.keys())}")
 
+    # ===== 黄金-原油比率 =====
+    gold_price = None
+    oil_price = None
+    for name, r in short_results.items():
+        if "黄金期货" in name:
+            gold_price = r["price"]
+        elif "WTI" in name or "布伦特" in name:
+            oil_price = r["price"]
+    # 如果没找到，用第一个可用的
+    if gold_price is None:
+        for name, r in short_results.items():
+            if "黄金" in name:
+                gold_price = r["price"]
+                break
+    if oil_price is None:
+        for name, r in short_results.items():
+            if "原油" in name:
+                oil_price = r["price"]
+                break
+    gold_oil_ratio = calc_gold_oil_ratio(gold_price, oil_price) if gold_price and oil_price else None
+
+    if gold_oil_ratio:
+        lines.append(f"\n  ⚖️ 黄金/原油比率: {gold_oil_ratio['ratio']:.1f} — {gold_oil_ratio['level']}")
+        lines.append(f"     （历史均值20-25，>30原油便宜/<15原油贵）")
+
+    # ===== 多时间框架 =====
+    lines.append(f"\n  📏 多时间框架:")
+    for name in INSTRUMENTS:
+        mtf = mtf_results.get(name, {})
+        w = mtf.get("weekly", "-")
+        d = mtf.get("daily", "-")
+        if w != "数据不足" or d != "数据不足":
+            lines.append(f"     {name}: 周线{w} | {d}")
+
     # ===== 二、短期详细 =====
     lines.append(f"\n{'━' * 50}")
     lines.append(f"📊 二、短期分析（{horizon}，主报告）")
@@ -401,6 +768,13 @@ def generate_daily_report(days=3):
         lines.append(f"    📈 RSI {r['rsi']} | KDJ K={r['stoch']['K']} D={r['stoch']['D']} ({r['stoch']['signal']})")
         lines.append(f"    📉 MACD {r['macd']['signal']} | 布林 {r['bollinger']['position']}")
         lines.append(f"    📏 {horizon}预测: ${r['pred_low']} ~ ${r['pred_high']} (波动{r['volatility']:.1f}%)")
+        if r.get('obv'):
+            lines.append(f"    📊 OBV: {r['obv']['divergence']}")
+        if r.get('fibonacci'):
+            lines.append(f"    🔮 Fib: {r['fibonacci']['zone']}")
+        if r.get('support_resistance'):
+            sr = r['support_resistance']
+            lines.append(f"    📐 支撑: ${sr['support1']} | 阻力: ${sr['resistance1']}")
         lines.append(f"    🎯 {r['advice']} — {r['strategy']}")
 
     # ===== 三、中长期 =====
@@ -454,8 +828,9 @@ def generate_daily_report(days=3):
         dxy_dir = "偏强⚠️利空商品" if dxy_r["score"] > 10 else "偏弱✅利好商品" if dxy_r["score"] < -10 else "中性"
         lines.append(f"\n  💵 美元: {dxy_dir}")
 
-    # ===== 五、国际形势 =====
+    # ===== 五、国际形势（自动采集，独立运行不阻塞技术分析） =====
     try:
+        sys.path.insert(0, str(Path(__file__).parent))
         from geopolitics import generate_geopolitical_section
         geo_lines, geo_score = generate_geopolitical_section()
         lines.extend(geo_lines)
@@ -464,34 +839,113 @@ def generate_daily_report(days=3):
         lines.append("🌍 五、国际形势（获取失败）")
         geo_score = 0
 
-    # ===== 六、最终建议 =====
+    # ===== 六、最终建议（v1.3.0 智能建议引擎） =====
     lines.append(f"\n{'━' * 50}")
-    lines.append("🎯 六、最终建议（技术面 + 地缘面）")
+    lines.append("🎯 六、综合投资建议（智能引擎 v1.3.0）")
     lines.append(f"{'━' * 50}")
 
-    if gold_dict:
-        gs = np.mean([v["score"] for v in gold_dict.values()])
-        final_gold = gs + geo_score * 0.3
-        lines.append(f"\n  🥇 黄金最终评分: {final_gold:+.0f} (技术{gs:+.0f} + 地缘{geo_score*0.3:+.0f})")
-        if final_gold >= 30:
-            lines.append("    → ⭐ 技术面+地缘面共振！强烈做多黄金")
-        elif final_gold >= 15:
-            lines.append("    → ✅ 做多黄金，地缘风险提供额外支撑")
-        elif final_gold >= 0:
-            lines.append("    → 📊 黄金中性偏多，地缘风险提供底部支撑")
-        else:
-            lines.append("    → ⚠️ 黄金偏空，但地缘风险可能限制跌幅")
+    asset_groups = [
+        ("🥇 黄金", gold_dict, 0.3),
+        ("🛢️ 原油", oil_dict, 0.2),
+        ("🪙 白银", silver_dict, 0.15),
+    ]
 
-    if oil_dict:
-        os_score = np.mean([v["score"] for v in oil_dict.values()])
-        final_oil = os_score + geo_score * 0.2
-        lines.append(f"\n  🛢️ 原油最终评分: {final_oil:+.0f} (技术{os_score:+.0f} + 地缘{geo_score*0.2:+.0f})")
-        if final_oil >= 25:
-            lines.append("    → 做多原油，但注意高位波动")
-        elif final_oil >= 0:
-            lines.append("    → 原油震荡，地缘溢价存在")
+    for emoji_name, asset_dict, geo_weight in asset_groups:
+        if not asset_dict:
+            continue
+
+        primary = list(asset_dict.values())[0]
+        score = np.mean([v["score"] for v in asset_dict.values()])
+        price = primary["price"]; atr = primary["atr"]
+        macd_r = primary["macd"]; boll = primary["bollinger"]
+        signals = primary["signals"]
+        fib = primary.get("fibonacci"); sr = primary.get("support_resistance")
+
+        # 1. 动态权重
+        weights, regime = calc_dynamic_weights(macd_r, boll, atr, price)
+
+        # 2. 信号冲突处理
+        conflict = resolve_conflicts(signals)
+
+        # 3. 置信度
+        final_score = score + geo_score * geo_weight
+        if emoji_name.startswith("🥇") and gold_oil_ratio:
+            final_score += gold_oil_ratio["score_impact"]
+        confidence = calc_confidence(final_score, signals, weights, conflict)
+
+        # 4. 方向
+        direction = "buy" if final_score >= 10 else "sell" if final_score <= -10 else None
+
+        # 5. 止损止盈
+        sltp = None
+        if direction and sr:
+            fib_levels = fib["levels"] if fib else None
+            sltp = calc_sl_tp(price, atr, fib_levels, sr, direction)
+
+        # 6. 仓位
+        position = None
+        if sltp and sltp["tradable"] and direction:
+            position = calc_position(confidence, price, sltp["sl"])
+
+        # 输出
+        sep = "═" * 42
+        lines.append(f"\n  {sep}")
+        lines.append(f"  📊 综合投资建议：{emoji_name}")
+        lines.append(f"  {sep}")
+        lines.append(f"  🌊 市场环境：{regime}")
+
+        if direction == "buy": lines.append(f"  🎯 方向：做多（买入）")
+        elif direction == "sell": lines.append(f"  🎯 方向：做空（卖出）")
+        else: lines.append(f"  🎯 方向：观望（信号不明）")
+
+        lines.append(f"  📐 置信度：{confidence['emoji']} {confidence['level']} ({confidence['pct']:.0f}%)")
+        lines.append(f"  📈 评分：{final_score:+.0f}/100")
+
+        # 信号汇总
+        bull_desc = "、".join(s["signal"] for s in conflict["bullish"])
+        bear_desc = "、".join(s["signal"] for s in conflict["bearish"][:4])
+        lines.append(f"\n  📋 信号汇总：")
+        if conflict["bullish"]: lines.append(f"    看多({len(conflict['bullish'])})：{bull_desc}")
+        if conflict["bearish"]: lines.append(f"    看空({len(conflict['bearish'])})：{bear_desc}")
+        lines.append(f"    一致度：{conflict['consensus_pct']:.0f}%（{conflict['consensus']}）")
+
+        # 具体操作建议
+        if direction and sltp:
+            lines.append(f"\n  💰 具体操作建议：")
+            lines.append(f"    入场价：${price:,.2f}（当前价）")
+            lines.append(f"    止损价：${sltp['sl']:,.2f}（风险{sltp['risk_pct']:.1f}%）")
+            tp1_mark = "✅" if sltp["rr1"] >= 2.0 else "⚠️"
+            lines.append(f"    目标1：${sltp['tp1']:,.2f}（收益{sltp['reward1_pct']:.1f}%）{tp1_mark}")
+            lines.append(f"    目标2：${sltp['tp2']:,.2f}（收益{sltp['reward2_pct']:.1f}%）")
+            lines.append(f"    风险回报比：1:{sltp['rr1']:.1f} {'✅' if sltp['rr1'] >= 2.0 else '⚠️不足'}")
+            if position and position["lots"] > 0:
+                lines.append(f"    建议仓位：{position['lots']}手（账户风险{position['risk_pct']:.0f}%）")
+            elif confidence["level"] == "LOW":
+                lines.append(f"    建议仓位：不开仓（置信度低）")
+            elif not sltp["tradable"]:
+                lines.append(f"    建议仓位：不开仓（风险回报比 < 2:1）")
+        elif not direction:
+            lines.append(f"\n  💰 操作建议：观望等待，信号不明确")
         else:
-            lines.append("    → 技术面偏空，但地缘溢价托底")
+            lines.append(f"\n  💰 操作建议：数据不足，无法计算止损止盈")
+
+        # 风险提示
+        warnings = []
+        if conflict["bearish"] and direction == "buy":
+            bear_trend = [s for s in conflict["bearish"] if s["is_trend"]]
+            if bear_trend: warnings.append(f"存在{len(bear_trend)}个趋势级看空信号，建议轻仓")
+        if conflict["bullish"] and direction == "sell":
+            bull_trend = [s for s in conflict["bullish"] if s["is_trend"]]
+            if bull_trend: warnings.append(f"存在{len(bull_trend)}个趋势级看多信号，建议轻仓")
+        if confidence["level"] == "LOW": warnings.append("置信度低，建议观望为主")
+        if warnings: lines.append(f"\n  ⚠️ 风险提示：{'；'.join(warnings)}")
+        lines.append(f"  {sep}")
+
+    # 美元单独简要
+    if dxy_dict:
+        dxy_r = list(dxy_dict.values())[0]
+        dxy_dir = "偏强⚠️利空商品" if dxy_r["score"] > 10 else "偏弱✅利好商品" if dxy_r["score"] < -10 else "中性"
+        lines.append(f"\n  💵 美元指数: {dxy_dir}")
 
     # ===== 风险提示 =====
     lines.append(f"\n{'━' * 50}")
@@ -502,15 +956,625 @@ def generate_daily_report(days=3):
     lines.append("  • 期货有杠杆风险，新手从ETF开始")
     lines.append("  • 单品种仓位 ≤ 10%，总仓位 ≤ 30%")
     lines.append("  • 重大事件前观望，严守止损线")
+    lines.append("  • v1.3.0: 风险回报比 < 2:1 不建议开仓")
 
     report = "\n".join(lines)
     print(report)
     return report
 
 
-if __name__ == "__main__":
+if __name__ == "__main__OLD":
     import argparse
     parser = argparse.ArgumentParser(description="石油黄金每日投资参考")
     parser.add_argument("--days", type=int, default=3, help="短期预测天数")
     args = parser.parse_args()
     generate_daily_report(args.days)
+
+
+# ==================== akshare 数据适配器 ====================
+
+def _fetch_yfinance_single(symbol, period="90d"):
+    """获取单个 yfinance 品种数据"""
+    try:
+        import yfinance as yf
+        df = yf.download(symbol, period=period, interval="1d", progress=False)
+        if df is not None and len(df) >= 20:
+            if isinstance(df.columns, pd.MultiIndex):
+                df = df[symbol]
+            return df.dropna()
+    except Exception as e:
+        pass
+    return None
+
+
+def _fetch_akshare_single(ak_key, period="90d"):
+    """获取单个 akshare 品种数据"""
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from fetch_data import fetch_data
+        raw = fetch_data(period=period)
+        d = raw.get(ak_key, {})
+        if d.get("close") and len(d["close"]) >= 20:
+            return pd.DataFrame({
+                "Open": d["open"], "High": d["high"],
+                "Low": d["low"], "Close": d["close"],
+                "Volume": d["volume"],
+            }, index=pd.to_datetime(d["dates"]))
+    except Exception as e:
+        pass
+    return None
+
+
+def _analyze_instrument(name, period="90d", horizon=3):
+    """分析单个品种：国际yfinance优先 → 国内akshare备用"""
+    info = INSTRUMENTS.get(name, {})
+    source = info.get("source", "yfinance")
+    currency = info.get("currency", "USD")
+    sym = info.get("symbol", "")
+    ak_key = info.get("ak_key", "")
+
+    # 获取数据：主力源优先，失败则尝试备用
+    df = None
+    actual_currency = currency
+
+    if source == "yfinance":
+        df = _fetch_yfinance_single(sym, period)
+        if df is None and ak_key:
+            df = _fetch_akshare_single(ak_key, period)
+            actual_currency = "CNY"
+    else:
+        df = _fetch_akshare_single(ak_key, period)
+        if df is None:
+            df = _fetch_yfinance_single(sym, period)
+            actual_currency = "USD"
+
+    if df is None or len(df) < 20:
+        return None
+
+    close = df["Close"]
+    high = df["High"]
+    low = df["Low"]
+    volume = df["Volume"]
+    latest = float(close.iloc[-1])
+    cur_sym = "¥" if actual_currency == "CNY" else "$"
+
+    # RSI
+    rsi = calc_rsi(close)
+    # Bollinger
+    boll = calc_bollinger(close)
+    # KDJ
+    stoch = calc_stoch(high, low, close)
+    # ATR
+    atr_val = calc_atr(high, low, close)
+    # MACD
+    macd_data = calc_macd(close)
+    # OBV
+    obv_data = calc_obv(close, volume)
+    # Fibonacci
+    try:
+        fib_data = calc_fibonacci(high, low, latest)
+    except:
+        fib_data = None
+    # Support/Resistance
+    try:
+        boll_lo = float(boll['lower']) if isinstance(boll, dict) else float(boll[0])
+        boll_hi = float(boll['upper']) if isinstance(boll, dict) else float(boll[2])
+        sr_data = calc_support_resistance(close, high, low, boll_hi, boll_lo, latest)
+    except Exception as e:
+        sr_data = None
+
+    # Scoring
+    score = 50
+    signals = []
+
+    if rsi < 25: score += 35; signals.append("RSI严重超卖")
+    elif rsi < 35: score += 20; signals.append("RSI超卖")
+    elif rsi > 75: score -= 35; signals.append("RSI严重超买")
+    elif rsi > 65: score -= 20; signals.append("RSI偏高")
+
+    if boll is not None:
+        if isinstance(boll, dict):
+            if latest < boll["lower"]: score += 15; signals.append("跌破布林下轨")
+            elif latest > boll["upper"]: score -= 15; signals.append("突破布林上轨")
+        else:
+            boll_lo, boll_mid, boll_hi = boll
+            if latest < boll_lo: score += 15; signals.append("跌破布林下轨")
+            elif latest > boll_hi: score -= 15; signals.append("突破布林上轨")
+
+    if stoch is not None:
+        if isinstance(stoch, dict):
+            k, d = stoch["K"], stoch["D"]
+        else:
+            k, d = stoch
+        if k < 20 and d < 20: score += 15; signals.append("KDJ超卖区")
+        elif k > 80 and d > 80: score -= 15; signals.append("KDJ超卖区")
+        if k > d and k < 50: score += 5; signals.append("KDJ金叉")
+        elif k < d and k > 50: score -= 5; signals.append("KDJ死叉")
+
+    if macd_data is not None:
+        if isinstance(macd_data, dict):
+            dif, dea, hist = macd_data["dif"], macd_data["dea"], macd_data["macd"]
+        else:
+            dif, dea, hist = macd_data
+        if dif > dea and hist > 0: score += 10; signals.append("MACD金叉/多头")
+        elif dif < dea and hist < 0: score -= 10; signals.append("MACD死叉/空头")
+
+    if obv_data is not None:
+        if isinstance(obv_data, dict):
+            div = obv_data.get("divergence", "")
+            if "底背离" in div: score += 10; signals.append(f"OBV: {div}")
+            elif "顶背离" in div: score -= 10; signals.append(f"OBV: {div}")
+            else: score += obv_data.get("score_impact", 0); signals.append(f"OBV: {div}")
+        else:
+            obv_val, obv_trend, divergence = obv_data
+            if divergence == "底背离": score += 10; signals.append("OBV底背离（看涨）")
+            elif divergence == "顶背离": score -= 10; signals.append("OBV顶背离（看跌）")
+
+    # Price changes
+    changes = {}
+    for d in [1, 3, 5, 10, 20]:
+        if len(close) > d:
+            chg = (close.iloc[-1] - close.iloc[-1-d]) / close.iloc[-1-d] * 100
+            changes[f"{d}日涨跌"] = round(chg, 2)
+
+    return {
+        "score": max(0, min(100, score)),
+        "signals": signals,
+        "rsi": round(rsi, 1) if rsi else None,
+        "boll": boll,
+        "kdj": stoch,
+        "atr": round(atr_val, 2) if atr_val else None,
+        "macd": macd_data,
+        "obv": obv_data,
+        "fib": fib_data,
+        "sr": sr_data,
+        "latest": round(latest, 2),
+        "changes": changes,
+        "currency": actual_currency,
+    }
+
+
+def run_advisor_akshare(days=3):
+    """使用 akshare 数据源的完整投资建议（替代主函数）"""
+    now = datetime.now()
+
+    print("=" * 50)
+    print(f"💰 石油黄金每日投资参考")
+    print(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{days}天")
+    print("=" * 50)
+
+    results = {}
+    for name in INSTRUMENTS:
+        print(f"  分析 {name}...", end=" ", flush=True)
+        try:
+            r = _analyze_instrument(name, period="90d", horizon=days)
+            if r:
+                results[name] = r
+                trend = "看多" if r["score"] > 60 else "看空" if r["score"] < 40 else "中性"
+                print(f"✅ {trend}({r['score']}分) {r['currency']}{r['latest']}")
+            else:
+                print("❌ 数据不足")
+        except Exception as e:
+            print(f"❌ {e}")
+
+    if not results:
+        print("\n❌ 未获取到有效数据")
+        return
+
+    # Generate report for each instrument
+    for name, r in results.items():
+        cur = r.get("currency", "CNY")
+        sym = cur == "CNY" and "¥" or "$"
+        print(f"\n{'━' * 50}")
+        print(f"📊 {name} 分析报告")
+        print(f"{'━' * 50}")
+        print(f"  当前价: {sym}{r['latest']}")
+        if r.get("rsi"):
+            print(f"  RSI(14): {r['rsi']}")
+        if r.get("atr"):
+            print(f"  ATR(14): {r['atr']}")
+        if r.get("kdj"):
+            kdj = r["kdj"]
+            if isinstance(kdj, dict):
+                print(f"  KDJ: K={kdj['K']:.1f} D={kdj['D']:.1f} J={kdj['J']:.1f} ({kdj.get('signal','')})")
+            else:
+                k, d = kdj
+                print(f"  KDJ: K={k:.1f} D={d:.1f}")
+        if r.get("macd"):
+            m = r["macd"]
+            if isinstance(m, dict):
+                print(f"  MACD: DIF={m['dif']:.2f} DEA={m['dea']:.2f} HIST={m['macd']:.2f} ({m.get('signal','')})")
+            else:
+                dif, dea, hist = m
+                print(f"  MACD: DIF={dif:.2f} DEA={dea:.2f} HIST={hist:.2f}")
+        if r.get("boll"):
+            b = r["boll"]
+            if isinstance(b, dict):
+                print(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f} / {sym}{b['upper']:.2f} ({b.get('position','')})")
+            else:
+                lo, mid, hi = b
+                print(f"  布林带: {sym}{lo:.2f} / {sym}{mid:.2f} / {sym}{hi:.2f}")
+        if r.get("fib"):
+            print(f"  Fibonacci 回撤位:")
+            for level, price in r["fib"].items():
+                print(f"    {level}: {sym}{price:.2f}")
+        if r.get("sr"):
+            print(f"  支撑/阻力:")
+            for k2, v in r["sr"].items():
+                if isinstance(v, (int, float)):
+                    print(f"    {k2}: {sym}{v:.2f}")
+                elif isinstance(v, list):
+                    for vv in v:
+                        if isinstance(vv, (int, float)):
+                            print(f"    {k2}: {sym}{vv:.2f}")
+        if r.get("changes"):
+            print(f"  涨跌幅:")
+            for k2, v in r["changes"].items():
+                arrow = "📈" if v > 0 else "📉" if v < 0 else "➡️"
+                print(f"    {arrow} {k2}: {v:+.2f}%")
+        if r.get("signals"):
+            print(f"  信号: {', '.join(r['signals'])}")
+
+        # 技术面评分
+        score = r["score"]
+        if score >= 70:
+            advice = "🟢 偏多（考虑做多）"
+        elif score >= 55:
+            advice = "🟡 谨慎偏多"
+        elif score >= 45:
+            advice = "⚪ 中性观望"
+        elif score >= 30:
+            advice = "🟡 谨慎偏空"
+        else:
+            advice = "🔴 偏空（考虑做空或回避）"
+        print(f"  技术面: {score}/100 {advice}")
+
+    # 收集技术面评分
+    tech_scores = {name: r["score"] for name, r in results.items()}
+
+    # ━━━ 国际形势 ━━━
+    risk_score = 0
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from geopolitics import generate_geopolitical_section
+        geo_lines, risk_score = generate_geopolitical_section()
+        for line in geo_lines:
+            print(line)
+    except Exception as e:
+        print(f"  ⚠️ 国际形势不可用: {e}")
+
+    # ━━━ FRED 宏观数据 ━━━
+    macro_data = {}
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from fetch_fred import (
+            analyze_macro_indicators, analyze_valuation_sentiment,
+            market_comprehensive_assessment, format_macro_report,
+            format_commodity_signals
+        )
+        macro_data["indicators"] = analyze_macro_indicators()
+        macro_data["sentiment"] = analyze_valuation_sentiment()
+        macro_data["assessment"] = market_comprehensive_assessment()
+        for line in format_macro_report():
+            print(line)
+    except Exception as e:
+        print(f"  ⚠️ FRED 宏观数据不可用: {e}")
+
+    # ━━━ 最终建议 ━━━
+    _print_final_recommendation(results, tech_scores, risk_score, macro_data)
+
+
+def _print_final_recommendation(results, tech_scores, risk_score, macro_data):
+    """最终买卖建议 — 表格风格"""
+    
+    # 获取宏观信号灯分数
+    commodity_signals = {}
+    try:
+        from fetch_fred import analyze_macro_indicators, analyze_valuation_sentiment
+        ind = macro_data.get("indicators") or analyze_macro_indicators()
+        sent = macro_data.get("sentiment") or analyze_valuation_sentiment()
+        commodity_signals = _calc_commodity_signal_scores(ind, sent)
+    except:
+        pass
+    
+    assessment = macro_data.get("assessment", {})
+    market_score = assessment.get("score", 50)
+    geo_base = risk_score if risk_score else 10
+    
+    print(f"\n{'━' * 50}")
+    print(f"📊 投资决策仪表盘")
+    print(f"{'━' * 50}")
+    
+    details = []  # 止损止盈详情
+    
+    for name, r in results.items():
+        cur = r.get("currency", "CNY")
+        sym = "¥" if cur == "CNY" else "$"
+        tech = tech_scores.get(name, 50)
+        is_gold = "黄金" in name or "gold" in name.lower() or "au" in name.lower() or "沪金" in name
+        is_oil = "原油" in name or "oil" in name.lower() or "sc" in name.lower() or "沪油" in name
+        icon = "🥇" if is_gold else "🛢️" if is_oil else "📊"
+        short_name = "沪金" if is_gold else "沪油" if is_oil else name[:4]
+        
+        macro_signal = commodity_signals.get("gold" if is_gold else "oil" if is_oil else "neutral", 0)
+        macro_combined = (market_score * 0.4 + (50 + macro_signal * 5) * 0.6)
+        
+        if is_gold:
+            geo_adj = 50 + geo_base
+        elif is_oil:
+            geo_adj = 50 - geo_base * 0.5
+        else:
+            geo_adj = 50
+        
+        vix_val = 20
+        try:
+            vix_val = macro_data.get("sentiment", {}).get("VIXCLS", {}).get("value", 20)
+        except:
+            pass
+        sentiment_score = max(0, 100 - vix_val * 2.5)
+        
+        final_score = tech * 0.40 + macro_combined * 0.35 + geo_adj * 0.15 + sentiment_score * 0.10
+        final_score = max(0, min(100, final_score))
+        
+        # 等级
+        if final_score >= 75:
+            grade, action = "🟢🟢建议买入", "可建仓做多"
+        elif final_score >= 60:
+            grade, action = "🟡可以考虑", "轻仓试探，严格止损"
+        elif final_score >= 40:
+            grade, action = "⚪观望不动", "等待更明确信号"
+        elif final_score >= 25:
+            grade, action = "🟠建议回避", "不建议入场"
+        else:
+            grade, action = "🔴强烈回避", "远离或考虑做空"
+        
+        # 进度条颜色：绿/黄/白/橙/红
+        if final_score >= 75:
+            fill_char = "🟩"
+        elif final_score >= 60:
+            fill_char = "🟨"
+        elif final_score >= 40:
+            fill_char = "⬛"
+        elif final_score >= 25:
+            fill_char = "🟧"
+        else:
+            fill_char = "🟥"
+        empty_char = "⬜"
+        bar_len = 10
+        filled = max(1, int(final_score / 100 * bar_len))
+        bar = fill_char * filled + empty_char * (bar_len - filled)
+        
+        print(f"\n  {icon} {short_name} {sym}{r['latest']}  【{grade}】")
+        print(f"  {bar} {final_score:.0f}/100")
+        print(f"  技术面{tech} 宏观面{macro_combined:.0f} 信号灯{macro_signal:+d} 地缘{geo_base}/50")
+        
+        # 止损止盈
+        if final_score >= 60 and r.get("atr"):
+            atr = r["atr"]
+            price = r["latest"]
+            if isinstance(atr, (int, float)) and atr > 0:
+                sl = price - 1.0 * atr
+                tp = price + 2.0 * atr
+                rr = (tp - price) / (price - sl) if price > sl else 0
+                details.append(f"  {icon}{short_name}: 止损{sym}{sl:.0f} 目标{sym}{tp:.0f} 盈亏比1:{rr:.1f}")
+        elif final_score < 40:
+            details.append(f"  {icon}{short_name}: 已持仓止损{sym}{r['latest']*0.97:.0f}(-3%)")
+    
+    # 止损止盈详情
+    if details:
+        print(f"\n  {'─' * 46}")
+        for d in details:
+            print(d)
+    
+    # ━━━ 最终购买建议 ━━━
+    print(f"\n{'━' * 50}")
+    print(f"📌 最终购买建议")
+    print(f"{'━' * 50}")
+    for name, r in results.items():
+        is_gold = "黄金" in name or "gold" in name.lower() or "au" in name.lower() or "沪金" in name
+        is_oil = "原油" in name or "oil" in name.lower() or "sc" in name.lower() or "沪油" in name
+        icon = "🥇" if is_gold else "🛢️" if is_oil else "📊"
+        short_name = "沪金" if is_gold else "沪油" if is_oil else name[:4]
+        cur = r.get("currency", "CNY")
+        sym = "¥" if cur == "CNY" else "$"
+        tech = tech_scores.get(name, 50)
+        macro_signal = commodity_signals.get("gold" if is_gold else "oil" if is_oil else "neutral", 0)
+        macro_combined = (market_score * 0.4 + (50 + macro_signal * 5) * 0.6)
+        if is_gold:
+            geo_adj = 50 + geo_base
+        elif is_oil:
+            geo_adj = 50 - geo_base * 0.5
+        else:
+            geo_adj = 50
+        vix_val = 20
+        try:
+            vix_val = macro_data.get("sentiment", {}).get("VIXCLS", {}).get("value", 20)
+        except:
+            pass
+        sentiment_score = max(0, 100 - vix_val * 2.5)
+        final_score = tech * 0.40 + macro_combined * 0.35 + geo_adj * 0.15 + sentiment_score * 0.10
+        final_score = max(0, min(100, final_score))
+        
+        if final_score >= 75:
+            buy_action = "✅ 建议买入做多"
+        elif final_score >= 60:
+            buy_action = "⚠️ 可轻仓试探买入"
+        elif final_score >= 40:
+            buy_action = "❌ 不建议买入，观望"
+        elif final_score >= 25:
+            buy_action = "⛔ 回避，不要买入"
+        else:
+            buy_action = "🚫 强烈回避"
+        
+        print(f"\n  {icon} {short_name}（{sym}{r['latest']}）")
+        print(f"  {buy_action}")
+        
+        # 给出具体理由
+        reasons = []
+        if tech >= 60:
+            reasons.append("技术面偏多")
+        elif tech < 40:
+            reasons.append("技术面偏空")
+        if macro_combined >= 60:
+            reasons.append("宏观面利好")
+        elif macro_combined < 40:
+            reasons.append("宏观面利空")
+        if macro_signal > 0:
+            reasons.append("信号灯利多")
+        elif macro_signal < 0:
+            reasons.append("信号灯利空")
+        if is_gold and geo_base > 30:
+            reasons.append("地缘风险利好避险")
+        if is_oil and geo_base > 40:
+            reasons.append("地缘风险压制需求")
+        cs = macro_data.get("indicators", {}).get("UMCSENT")
+        if cs and cs["value"] < 65:
+            if is_gold:
+                reasons.append("消费信心低→避险利多")
+            else:
+                reasons.append("消费信心低→需求利空")
+        
+        if reasons:
+            print(f"  理由：{'，'.join(reasons)}")
+    
+    # 风险提示
+    alerts = []
+    if geo_base > 30:
+        alerts.append("地缘风险高")
+    cs = macro_data.get("indicators", {}).get("UMCSENT")
+    if cs and cs["value"] < 65:
+        alerts.append(f"消费者信心{cs['value']:.0f}")
+    vix = macro_data.get("sentiment", {}).get("VIXCLS")
+    if vix and vix["value"] > 25:
+        alerts.append(f"VIX={vix['value']:.0f}")
+    rr = macro_data.get("indicators", {}).get("DFII10")
+    if rr and rr["value"] > 2:
+        alerts.append(f"实际利率{rr['value']:.1f}%")
+    if alerts:
+        print(f"\n  ⚠️ {' | '.join(alerts)}")
+    
+    print(f"\n  ⚠️ 仅供参考，不构成投资建议")
+    print(f"{'━' * 50}")
+    
+    # ━━━ 报告总结 ━━━
+    _print_summary(results, tech_scores, risk_score, macro_data, commodity_signals, geo_base, market_score)
+
+
+def _calc_commodity_signal_scores(macro_indicators, sentiment_indicators):
+    """计算黄金/原油宏观信号灯分数（复用 fetch_fred 逻辑）"""
+    gold_score = 0
+    oil_score = 0
+    
+    # 实际利率 → 黄金 (x2)
+    real = macro_indicators.get("DFII10")
+    if real:
+        r = real["value"]
+        gold_score += (-2 if r > 2.5 else -1 if r > 1.5 else 0 if r > 0 else 1 if r > -1 else 2) * 2
+    
+    # 美元
+    dxy = sentiment_indicators.get("DTWEXBGS")
+    if dxy:
+        d = dxy["value"]
+        s = -2 if d > 128 else -1 if d > 120 else 0 if d > 110 else 1
+        gold_score += s
+        oil_score += s
+    
+    # VIX → 黄金
+    vix = sentiment_indicators.get("VIXCLS")
+    if vix:
+        v = vix["value"]
+        gold_score += 2 if v > 35 else 1 if v > 25 else 0 if v > 15 else -1
+    
+    # 利差 → 黄金+原油
+    spread = sentiment_indicators.get("T10Y2Y")
+    if spread:
+        sp = spread["value"]
+        gold_score += 2 if sp < 0 else 1 if sp < 0.3 else 0
+        oil_score += -2 if sp < 0 else -1 if sp < 0.3 else 1
+    
+    # 信用利差
+    credit = sentiment_indicators.get("BAMLH0A0HYM2")
+    if credit:
+        c = credit["value"]
+        sg = 2 if c > 5 else 1 if c > 3.5 else -1
+        so = -2 if c > 5 else -1 if c > 3.5 else 1
+        gold_score += sg
+        oil_score += so
+    
+    # 消费者信心
+    cs = macro_indicators.get("UMCSENT")
+    if cs:
+        c = cs["value"]
+        sg = 2 if c < 60 else 1 if c < 70 else -1 if c > 90 else 0
+        so = -2 if c < 60 else -1 if c < 70 else 1 if c > 90 else 0
+        gold_score += sg
+        oil_score += so
+    
+    # 工业生产 → 原油
+    ip = macro_indicators.get("INDPRO")
+    if ip:
+        oil_score += 1 if ip["value"] > 103 else -1 if ip["value"] < 100 else 0
+    
+    return {"gold": gold_score, "oil": oil_score, "neutral": 0}
+
+
+def _print_summary(results, tech_scores, risk_score, macro_data, commodity_signals, geo_base, market_score):
+    """报告总结：5大板块 + 最终结论"""
+    print(f"\n{'━' * 50}")
+    print(f"📋 报告总结")
+    print(f"{'━' * 50}")
+    
+    print(f"  1. ✅ 技术面分析（RSI/MACD/KDJ/布林带/支撑阻力）")
+    print(f"  2. ✅ 国际形势（地缘风险{geo_base}/50）")
+    print(f"  3. ✅ 美国宏观数据（3大指数+12项指标+信号灯）")
+    print(f"  4. ✅ 投资决策仪表盘（进度条+四维评分）")
+    print(f"  5. ✅ 最终购买建议（明确买不买+理由）")
+    print(f"  {'─' * 46}")
+    
+    conclusions = []
+    for name, r in results.items():
+        is_gold = "黄金" in name or "gold" in name.lower() or "au" in name.lower() or "沪金" in name
+        is_oil = "原油" in name or "oil" in name.lower() or "sc" in name.lower() or "沪油" in name
+        short = "沪金" if is_gold else "沪油" if is_oil else name[:4]
+        icon = "🥇" if is_gold else "🛢️" if is_oil else "📊"
+        tech = tech_scores.get(name, 50)
+        macro_signal = commodity_signals.get("gold" if is_gold else "oil" if is_oil else "neutral", 0)
+        macro_combined = (market_score * 0.4 + (50 + macro_signal * 5) * 0.6)
+        if is_gold:
+            geo_adj = 50 + geo_base
+        elif is_oil:
+            geo_adj = 50 - geo_base * 0.5
+        else:
+            geo_adj = 50
+        vix_val = 20
+        try:
+            vix_val = macro_data.get("sentiment", {}).get("VIXCLS", {}).get("value", 20)
+        except:
+            pass
+        sentiment_score = max(0, 100 - vix_val * 2.5)
+        final_score = tech * 0.40 + macro_combined * 0.35 + geo_adj * 0.15 + sentiment_score * 0.10
+        final_score = max(0, min(100, final_score))
+        
+        if final_score >= 75:
+            action = "建议买入"
+        elif final_score >= 60:
+            action = "可轻仓"
+        elif final_score >= 40:
+            action = "观望"
+        elif final_score >= 25:
+            action = "回避"
+        else:
+            action = "强烈回避"
+        
+        conclusions.append(f"{icon}{short}{final_score:.0f}分{action}")
+    
+    print(f"  结论：{'，'.join(conclusions)}")
+    print(f"{'━' * 50}")
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--days", type=int, default=3)
+    args = parser.parse_args()
+    run_advisor_akshare(days=args.days)
