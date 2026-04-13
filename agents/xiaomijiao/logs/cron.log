@@ -876,3 +876,15 @@
 [2026-04-13 21:00:01] [ai-summary] ✅ 学习总结模板已创建: /root/.openclaw/workspace/agents/xiaomijiao/memory/ai学习-2026-04-13.md
 [2026-04-13 21:00:01] [ai-summary] ✅ 学习总结已提交
 [2026-04-13 21:00:01] [ai-summary] ===== 每晚AI学习总结完成 =====
+[2026-04-13 23:30:01] [daily-review] ===== 每日运营回顾开始（23:30）=====
+[2026-04-13 23:30:01] [daily-review] 今日记忆文件: 19行
+[2026-04-13 23:30:01] [daily-review] 提取多通道聊天记录（2026-04-13）...
+[2026-04-13 23:30:01] [daily-review] - 消息数：527
+[2026-04-13 23:30:01] [daily-review] [0;32m[SUCCESS][0m 对话记录已保存：/root/.openclaw/workspace/agents/xiaomijiao/memory/chat-2026-04-13.md
+[2026-04-13 23:30:01] [daily-review] 消息数： 605
+[2026-04-13 23:30:01] [daily-review] [0;32m[SUCCESS][0m 多通道对话提取完成！🎉
+[2026-04-13 23:30:02] [daily-review] 变更统计: intel/0 memory/1 config/1
+[2026-04-13 23:30:02] [daily-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-13 23:30:02] [daily-review]   📄 agents/xiaomijiao/logs/qmd-update.log
+[2026-04-13 23:30:02] [daily-review]   📄 agents/xiaomijiao/logs/xiaomila-cron.log
+[2026-04-13 23:30:02] [daily-review]   📄 agents/xiaomijiao/memory/chat-2026-04-13.md
