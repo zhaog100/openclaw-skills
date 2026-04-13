@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-13T12:31:12.339Z",
+  "updatedAt": "2026-04-13T15:50:29.402Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -9,18 +9,20 @@
       "endLine": 186,
       "source": "memory",
       "snippet": "| 京东任务 | 7个 | 全部启用 | | JD Cookie | 2个 | 全部启用 | | **exec审批** | ⏳ 待官家重启Gateway | --- ## ⏰ 定时任务状态 ### Shell Crontab (9个) | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ✅ | | 21:00 | ai-summary | ✅ | | 12:10 | morning-review | ✅ | | 23:30 | daily-review | ✅ | | 02:00 | qmd-update | ✅ | | 02:10 | cleanup | ✅ | | 每小时:10 | error-stats | ✅ | | 周五18:10 | weekly-report | ✅ | | 周日23:00 | security-audit | ✅ | ### Gateway Cron (2个) | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ✅ | | 23:50 | daily-review:night | ✅ | --- ## ⚠️ 待处理事项 | 项目 | 状态 | |------|------| | Gateway exec免审批配置 | ⏳ 待官家重启Gateway | | QMD向量更新 | ⏳ 待Gateway重启后 | | Git提交+推送 | ⏳ 待Gateway重启后",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8173513811186259,
-      "maxScore": 0.8173513811186259,
+      "totalScore": 1.6607977571354144,
+      "maxScore": 0.8434463760167885,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
       "queryHashes": [
-        "31b4deb62dd6"
+        "31b4deb62dd6",
+        "c1f8ef7f8e7f"
       ],
       "recallDays": [
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "gateway",
@@ -40,18 +42,20 @@
       "endLine": 166,
       "source": "memory",
       "snippet": "| Git推送 | ✅ 已推送到xiaomijiao remote | | QMD向量库 | ✅ 801个文档，已更新 | ### ⏰ 定时任务执行情况 ### Shell Crontab | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ✅ | | 21:00 | ai-summary | ⏳ 待执行 | | 每小时:10 | error-stats | ✅ | | 周五18:10 | weekly-report | ⏳ | ### Gateway Cron | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ✅ | | 23:50 | daily-review:night | ✅ 执行中 | ### 📈 数据复盘 **系统稳定性**：全天零故障，所有核心服务正常运行 **热点匹配度**：连续两日热点贴合度偏低，产品定位需要更精准 **运营策略**：坚持内容创作为主，热点为辅的策略 ### 🔄 记忆更新 - ✅ memory/2026-04-03.md 更新完成 - ✅ MEMORY.md 长期记忆保持v3.31 - ✅ 每日双时间点回顾机制运行正常 ### 📤 Git提交推送 - ✅ 提交信息：\"Day 11: 晚间回顾完成 - 热点采集、内容创作等待、系统正常运行\" - ✅ 推送到xiaomijiao remote成功 - ✅ 4个日志文件更新完成 ### 📚 QMD向",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8095640433855713,
-      "maxScore": 0.8095640433855713,
+      "totalScore": 1.635721678219977,
+      "maxScore": 0.8261576348344057,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
       "queryHashes": [
-        "31b4deb62dd6"
+        "31b4deb62dd6",
+        "c1f8ef7f8e7f"
       ],
       "recallDays": [
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "gateway",
@@ -71,18 +75,20 @@
       "endLine": 96,
       "source": "memory",
       "snippet": "| 21:00 | ai-summary | ⏳ | | 周五18:10 | weekly-report | ❌ 未执行，需补做 | ### Gateway Cron | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ⏳ | | 23:50 | daily-review:night | ⏳ | --- --- ## 📝 早间确认（08:16 周六） - 今日为周六，09:00热点采集待执行 - 周报补做：今日需完成（建议20:30前） - 内容创作：继续等官家指示 - 所有系统正常运行 *08:16 早间检查完成* ## 📝 午间回顾（12:03 Day 12） ### ✅ 完成事项检查 | 项目 | 状态 | |------|------| | 记忆文件 | ✅ 2026-04-04.md正常 | | 知识库索引 | ✅ 运营待办.md已更新 | | Git状态 | ✅ 工作区有6个文件待提交 | | QMD向量库 | ✅ 801个文档，更新成功 | | 系统健康度 | ✅ 所有核心服务正常运行 | ### 🔍 检查详情 1. **记忆文件**：今日记忆文件存在且结构完整 2. **知识库**：运营待办.md包含完整进度跟踪 3. **Git工作区**：有6个文件需要提交（日志、热点选题等） 4. **QMD向量库**：成功更新，801个文档索引正常 5. **待办更新**：已标记午间回顾完成项 ### 📈 当前状态 - 系统稳定性：✅ 全天零故障 - 热点",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8080008517948205,
-      "maxScore": 0.8080008517948205,
+      "totalScore": 1.6328074749825192,
+      "maxScore": 0.8248066231876988,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
       "queryHashes": [
-        "31b4deb62dd6"
+        "31b4deb62dd6",
+        "c1f8ef7f8e7f"
       ],
       "recallDays": [
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "gateway",
@@ -785,6 +791,37 @@
         "晚间",
         "首篇",
         "笔记"
+      ]
+    },
+    "memory:memory/2026-04-13.md:244:258": {
+      "key": "memory:memory/2026-04-13.md:244:258",
+      "path": "memory/2026-04-13.md",
+      "startLine": 244,
+      "endLine": 258,
+      "source": "memory",
+      "snippet": "- **教训**: ⚠️ QQ Bot多账号时，每个账号看到的用户openid不同！ ### Cron定时任务最终状态 | 任务 | 时间 | 账号 | openid | 状态 | |------|------|------|--------|------| | oil-gold-daily | 09:05 | default | C099848... | ✅ ok | | oil-gold-daily-bot2 | 09:05 | bot2 | E7331F... | ✅ ok | | xhs-topic-ideation | 09:00 | bot2 | E7331F... | ✅ idle | | xhs-commerce-analytics | 20:30 | bot2 | E7331F... | ✅ idle | | jd-daily-report | 09:10 | default | C099848... | ✅ idle | --- *更新时间: 22:19 | Day 21*",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8279293736142436,
+      "maxScore": 0.8279293736142436,
+      "firstRecalledAt": "2026-04-13T15:50:29.402Z",
+      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
+      "queryHashes": [
+        "c1f8ef7f8e7f"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "oil-gold-daily",
+        "oil-gold-daily-bot2",
+        "xhs-topic-ideation",
+        "xhs-commerce-analytics",
+        "jd-daily-report",
+        "教训",
+        "bot",
+        "看到"
       ]
     }
   }
