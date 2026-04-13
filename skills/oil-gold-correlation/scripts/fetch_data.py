@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 石油黄金数据获取模块
-使用 yfinance 获取历史价格数据，支持缓存和自动重试
+优先使用 akshare 获取国内期货数据，yfinance 作为海外备用数据源
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
@@ -13,15 +13,21 @@ import json
 import os
 import sys
 import time
+from datetime import datetime, timedelta
 from pathlib import Path
-
-import yfinance as yf
 
 # 缓存设置
 CACHE_DIR = Path("/tmp/oil-gold-cache")
 CACHE_TTL = 300  # 5 分钟缓存
 
-SYMBOLS = {
+# ===== akshare 品种定义（主数据源，人民币计价） =====
+AKSHARE_SYMBOLS = {
+    "gold": {"symbol": "AU0", "name": "黄金期货", "exchange": "上海期货交易所", "currency": "CNY"},
+    "wti": {"symbol": "SC0", "name": "原油期货", "exchange": "上海国际能源交易中心", "currency": "CNY"},
+}
+
+# ===== yfinance 品种定义（备用数据源，美元计价） =====
+YFINANCE_SYMBOLS = {
     "gold": "GC=F",        # 黄金期货
     "wti": "CL=F",         # WTI 原油期货
     "brent": "BZ=F",       # 布伦特原油期货
@@ -50,28 +56,105 @@ def write_cache(period: str, interval: str, data: dict):
         json.dump(data, f)
 
 
-def fetch_data(period="1y", interval="1d"):
-    """获取黄金和原油历史数据，支持自动重试"""
-    cached = read_cache(period, interval)
-    if cached:
-        print(f"[缓存] 使用缓存数据（{period}，{interval}）")
-        return cached
+def _period_to_dates(period: str):
+    """将 period 字符串转换为 start_date/end_date"""
+    now = datetime.now()
+    period_map = {
+        "7d": 7, "5d": 5,
+        "30d": 30, "1mo": 30,
+        "90d": 90, "3mo": 90,
+        "1y": 365, "2y": 730, "5y": 1825,
+    }
+    days = period_map.get(period, 365)
+    end_date = now.strftime("%Y%m%d")
+    start_date = (now - timedelta(days=days)).strftime("%Y%m%d")
+    return start_date, end_date
 
-    print(f"[下载] 获取数据（{period}，{interval}）...")
-    tickers = list(SYMBOLS.values())
 
-    max_retries = 3
-    for attempt in range(max_retries):
+def fetch_akshare(period="1y", interval="1d"):
+    """使用 akshare 获取国内期货数据（人民币计价）"""
+    import akshare as ak
+
+    start_date, end_date = _period_to_dates(period)
+    result = {}
+
+    for name, info in AKSHARE_SYMBOLS.items():
+        try:
+            df = ak.futures_main_sina(symbol=info["symbol"], start_date=start_date, end_date=end_date)
+            if df is None or df.empty:
+                print(f"  ⚠️ {info['name']}({info['symbol']}) 数据为空")
+                continue
+
+            # akshare 列名：日期/开盘价/最高价/最低价/收盘价/成交量/持仓量
+            # 标准化列名
+            col_map = {}
+            for col in df.columns:
+                col_lower = str(col).strip()
+                if "日期" in col_lower or "date" in col_lower:
+                    col_map[col] = "date"
+                elif "开盘" in col_lower or "open" in col_lower:
+                    col_map[col] = "open"
+                elif "最高" in col_lower or "high" in col_lower:
+                    col_map[col] = "high"
+                elif "最低" in col_lower or "low" in col_lower:
+                    col_map[col] = "low"
+                elif "收盘" in col_lower or "close" in col_lower:
+                    col_map[col] = "close"
+                elif "成交" in col_lower or "volume" in col_lower:
+                    col_map[col] = "volume"
+                elif "持仓" in col_lower or "hold" in col_lower.lower():
+                    col_map[col] = "open_interest"
+
+            df = df.rename(columns=col_map)
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.sort_values("date").reset_index(drop=True)
+
+            dates = [str(d.date()) for d in df["date"]]
+            closes = [round(float(v), 2) for v in df["close"].values]
+            opens = [round(float(v), 2) for v in df["open"].values]
+            highs = [round(float(v), 2) for v in df["high"].values]
+            lows = [round(float(v), 2) for v in df["low"].values]
+            volumes = [int(v) for v in df["volume"].values]
+
+            result[name] = {
+                "symbol": info["symbol"],
+                "name": info["name"],
+                "exchange": info["exchange"],
+                "currency": info["currency"],
+                "dates": dates,
+                "close": closes,
+                "open": opens,
+                "high": highs,
+                "low": lows,
+                "volume": volumes,
+            }
+
+        except Exception as e:
+            print(f"  ⚠️ akshare {info['name']}({info['symbol']}) 获取失败: {e}")
+
+    return result
+
+
+def fetch_yfinance(period="1y", interval="1d"):
+    """使用 yfinance 获取海外数据（美元计价，备用）"""
+    import yfinance as yf
+
+    result = {}
+    tickers = list(YFINANCE_SYMBOLS.values())
+
+    for attempt in range(3):
         try:
             data = yf.download(tickers, period=period, interval=interval,
                                group_by="ticker", progress=False)
 
-            result = {}
-            for name, symbol in SYMBOLS.items():
+            for name, symbol in YFINANCE_SYMBOLS.items():
                 if symbol in data:
                     ticker_data = data[symbol].dropna()
                     result[name] = {
                         "symbol": symbol,
+                        "name": symbol,
+                        "exchange": "海外",
+                        "currency": "USD",
                         "dates": [str(d.date()) if hasattr(d, "date") else str(d) for d in ticker_data.index],
                         "close": [round(float(v), 2) for v in ticker_data["Close"].values],
                         "open": [round(float(v), 2) for v in ticker_data["Open"].values],
@@ -79,35 +162,69 @@ def fetch_data(period="1y", interval="1d"):
                         "low": [round(float(v), 2) for v in ticker_data["Low"].values],
                         "volume": [int(v) for v in ticker_data["Volume"].values],
                     }
+            return result
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(5 * (attempt + 1))
+            else:
+                print(f"  ❌ yfinance 获取失败: {e}")
+    return {}
 
-            # 校验数据非空才写入缓存
-            has_data = any(d.get("close") for d in result.values())
+
+def fetch_data(period="1y", interval="1d"):
+    """获取黄金和原油历史数据，优先 akshare → 失败则 fallback yfinance → 缓存"""
+    cached = read_cache(period, interval)
+    if cached:
+        print(f"[缓存] 使用缓存数据（{period}，{interval}）")
+        return cached
+
+    # 尝试 akshare
+    print(f"[akshare] 获取数据（{period}，{interval}）...")
+    try:
+        result = fetch_akshare(period, interval)
+        has_data = any(d.get("close") for d in result.values())
+        if has_data:
+            # 补充 brent 如果需要（akshare 没有 brent 对应的国内品种）
             if has_data:
                 write_cache(period, interval, result)
-            else:
-                print("⚠️ 数据为空，不写入缓存")
-
-            # 输出摘要
             for name, d in result.items():
                 if d["close"]:
                     latest = d["close"][-1]
                     prev = d["close"][-2] if len(d["close"]) > 1 else latest
                     change = ((latest - prev) / prev) * 100 if prev else 0
-                    print(f"  {name.upper():>6} ({d['symbol']}): ${latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录")
-
+                    print(f"  {name.upper():>6} ({d['symbol']}): ¥{latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录 [{d.get('currency', 'CNY')}]")
             return result
+        else:
+            print("  ⚠️ akshare 数据为空，尝试 yfinance...")
+    except ImportError:
+        print("  ⚠️ akshare 未安装，尝试 yfinance...")
+    except Exception as e:
+        print(f"  ⚠️ akshare 失败: {e}，尝试 yfinance...")
 
-        except Exception as e:
-            if attempt < max_retries - 1:
-                wait = 5 * (attempt + 1)
-                print(f"[重试] 第{attempt+1}次失败，{wait}秒后重试... ({e})")
-                time.sleep(wait)
-            else:
-                print(f"❌ 数据获取失败（已重试{max_retries}次）: {e}")
-                # 返回空结构而非崩溃
-                return {name: {"symbol": sym, "dates": [], "close": [], "open": [],
-                               "high": [], "low": [], "volume": []}
-                        for name, sym in SYMBOLS.items()}
+    # 降级到 yfinance
+    print(f"[yfinance] 获取数据（{period}，{interval}）...")
+    result = fetch_yfinance(period, interval)
+    has_data = any(d.get("close") for d in result.values())
+    if has_data:
+        write_cache(period, interval, result)
+        for name, d in result.items():
+            if d["close"]:
+                latest = d["close"][-1]
+                prev = d["close"][-2] if len(d["close"]) > 1 else latest
+                change = ((latest - prev) / prev) * 100 if prev else 0
+                print(f"  {name.upper():>6} ({d['symbol']}): ${latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录 [USD]")
+        return result
+
+    # 全部失败，返回空结构
+    print("❌ 所有数据源均失败")
+    all_symbols = {**AKSHARE_SYMBOLS, **{"brent": {"symbol": "BZ=F"}}}
+    return {name: {"symbol": info.get("symbol", ""), "dates": [], "close": [], "open": [],
+                   "high": [], "low": [], "volume": [], "currency": "N/A"}
+            for name, info in all_symbols.items()}
+
+
+# 需要导入 pandas（akshare 列名处理用）
+import pandas as pd
 
 
 if __name__ == "__main__":
