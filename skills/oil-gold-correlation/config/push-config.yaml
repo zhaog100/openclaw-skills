@@ -1,0 +1,60 @@
+# 石油黄金投资参考 — 定时推送配置
+# 修改此文件自定义推送目标和时间，无需改动代码
+
+push:
+  enabled: true
+
+  # 推送目标列表（可添加任意多个）
+  channels:
+    - name: default
+      type: qqbot            # qqbot | telegram | discord | webhook
+      target: c2c            # c2c(私聊) | group:群号 | channel:频道号
+      account: default       # OpenClaw 账号ID
+
+    # 取消注释启用更多推送目标：
+    # - name: bot2
+    #   type: qqbot
+    #   target: c2c
+    #   account: bot2
+    #
+    # - name: telegram-alerts
+    #   type: telegram
+    #   target: chat:123456
+    #   account: default
+    #
+    # - name: discord-group
+    #   type: discord
+    #   target: channel:123456
+    #   account: default
+
+# 推送时段配置
+schedule:
+  - id: morning
+    time: "10:00"
+    timezone: Asia/Shanghai
+    timeout: 300
+    data_baseline: T-1
+    enabled: true
+
+  - id: evening
+    time: "21:00"
+    timezone: Asia/Shanghai
+    timeout: 300
+    data_baseline: T-0
+    enabled: true
+
+  - id: us-market
+    time: "22:00"              # Cron 固定触发时间
+    timezone: Asia/Shanghai
+    timeout: 600
+    dst_aware: true
+    summer_shift: "22:00"
+    winter_shift: "23:00"
+    data_baseline: US-open
+    enabled: true
+
+# Cron 运行时配置
+cron:
+  sessionTarget: isolated
+  lightContext: true
+  model: zai/glm-5

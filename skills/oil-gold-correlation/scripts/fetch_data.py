@@ -5,7 +5,7 @@
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-Author: 小米粒 (Xiaomili) — AI Agent
+Author: 小米粒 (Xiaomili) - AI Agent
 """
 
 import argparse
@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # 缓存设置
-CACHE_DIR = Path("/tmp/oil-gold-cache")
+from config import CACHE_DIR
 CACHE_TTL = 300  # 5 分钟缓存
 
 # ===== akshare 品种定义（主数据源，人民币计价） =====
@@ -135,40 +135,71 @@ def fetch_akshare(period="1y", interval="1d"):
     return result
 
 
+def _parse_ticker_data(symbol, df):
+    """将 DataFrame 转换为标准数据字典"""
+    df = df.dropna()
+    if df.empty:
+        return None
+    return {
+        "symbol": symbol,
+        "name": symbol,
+        "exchange": "海外",
+        "currency": "USD",
+        "dates": [str(d.date()) if hasattr(d, "date") else str(d) for d in df.index],
+        "close": [round(float(v), 2) for v in df["Close"].values],
+        "open": [round(float(v), 2) for v in df["Open"].values],
+        "high": [round(float(v), 2) for v in df["High"].values],
+        "low": [round(float(v), 2) for v in df["Low"].values],
+        "volume": [int(v) for v in df["Volume"].values],
+    }
+
+
 def fetch_yfinance(period="1y", interval="1d"):
-    """使用 yfinance 获取海外数据（美元计价，备用）"""
+    """使用 yfinance 获取海外数据（美元计价，备用）
+
+    策略：逐个 Ticker.history() 获取（兼容性最佳），
+    失败时 fallback 到 yf.download() 批量获取。
+    """
     import yfinance as yf
 
     result = {}
-    tickers = list(YFINANCE_SYMBOLS.values())
 
-    for attempt in range(3):
+    # 方法 1: 逐个 Ticker.history()（最稳定）
+    for name, symbol in YFINANCE_SYMBOLS.items():
+        for attempt in range(2):
+            try:
+                t = yf.Ticker(symbol)
+                df = t.history(period=period, interval=interval)
+                parsed = _parse_ticker_data(symbol, df)
+                if parsed and parsed["close"]:
+                    result[name] = parsed
+                    break
+            except Exception as e:
+                if attempt == 0:
+                    time.sleep(2)
+                else:
+                    print(f"  ⚠️ {symbol} Ticker.history() 失败: {e}")
+
+    if result and len(result) == len(YFINANCE_SYMBOLS):
+        return result
+
+    # 方法 2: fallback - yf.download() 批量（补充方法1没拿到的）
+    missing = {k: v for k, v in YFINANCE_SYMBOLS.items() if k not in result}
+    if missing:
         try:
-            data = yf.download(tickers, period=period, interval=interval,
-                               group_by="ticker", progress=False)
-
-            for name, symbol in YFINANCE_SYMBOLS.items():
-                if symbol in data:
-                    ticker_data = data[symbol].dropna()
-                    result[name] = {
-                        "symbol": symbol,
-                        "name": symbol,
-                        "exchange": "海外",
-                        "currency": "USD",
-                        "dates": [str(d.date()) if hasattr(d, "date") else str(d) for d in ticker_data.index],
-                        "close": [round(float(v), 2) for v in ticker_data["Close"].values],
-                        "open": [round(float(v), 2) for v in ticker_data["Open"].values],
-                        "high": [round(float(v), 2) for v in ticker_data["High"].values],
-                        "low": [round(float(v), 2) for v in ticker_data["Low"].values],
-                        "volume": [int(v) for v in ticker_data["Volume"].values],
-                    }
-            return result
+            data = yf.download(
+                list(missing.values()), period=period, interval=interval,
+                group_by="ticker", progress=False,
+            )
+            for name, symbol in missing.items():
+                if symbol in data and not data[symbol].empty:
+                    parsed = _parse_ticker_data(symbol, data[symbol])
+                    if parsed and parsed["close"]:
+                        result[name] = parsed
         except Exception as e:
-            if attempt < 2:
-                time.sleep(5 * (attempt + 1))
-            else:
-                print(f"  ❌ yfinance 获取失败: {e}")
-    return {}
+            print(f"  ⚠️ yf.download() fallback 失败: {e}")
+
+    return result
 
 
 def fetch_data(period="1y", interval="1d"):

@@ -26,7 +26,7 @@ from pathlib import Path
 import pandas as pd
 
 # 缓存
-CACHE_DIR = Path("/tmp/oil-gold-cache")
+from config import CACHE_DIR
 CACHE_TTL = 3600  # 1小时
 
 
@@ -387,21 +387,21 @@ def format_macro_report():
     for sid in ["CPIAUCSL", "CPILFESL", "PPIACO"]:
         if sid in macro:
             d = macro[sid]
-            lines.append(f"    {d['name']}: {d['value']} ({d['pct']:+.2f}%) — {d['impact']}")
+            lines.append(f"    {d['name']}: {d['value']} ({d['pct']:+.2f}%) - {d['impact']}")
     
     # 就业组
     lines.append("  📌 劳动力市场:")
     for sid in ["UNRATE", "PAYEMS"]:
         if sid in macro:
             d = macro[sid]
-            lines.append(f"    {d['name']}: {d['value']}{d['unit']} ({d['pct']:+.2f}%) — {d['impact']}")
+            lines.append(f"    {d['name']}: {d['value']}{d['unit']} ({d['pct']:+.2f}%) - {d['impact']}")
     
     # 产出/信心
     lines.append("  📌 产出与信心:")
     for sid in ["INDPRO", "RSAFS", "UMCSENT"]:
         if sid in macro:
             d = macro[sid]
-            lines.append(f"    {d['name']}: {d['value']} ({d['pct']:+.2f}%) — {d['impact']}")
+            lines.append(f"    {d['name']}: {d['value']} ({d['pct']:+.2f}%) - {d['impact']}")
     
     # ── 三、估值与情绪 ──
     lines.append("")

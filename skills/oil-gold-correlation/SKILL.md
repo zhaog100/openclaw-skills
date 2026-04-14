@@ -1,8 +1,14 @@
 ---
 name: oil-gold-correlation
 石油黄金实时相关性分析。获取大宗商品价格数据，计算多种相关性指标（Pearson/Spearman/Kendall），支持 DCC-GARCH 动态相关、Granger 因果检验、协整分析，输出可视化图表和自然语言结论。
-version: 1.3.0
+version: 1.6.0
 author: 小米粒 🌾
+recommendModel: zai/glm-5
+altModels:
+  - zai/glm-5
+  - qwen3-max
+  - qwen3.5-plus
+  - kimi-k2.5
 ---
 
 # 石油黄金相关性分析
@@ -121,12 +127,88 @@ python3 scripts/advisor.py [--days 3]
 
 ## 定时推送
 
-每天早上 **9:00 CST（北京时间）** 自动推送投资建议到 QQ。
+### 配置方式
 
-已配置 cron job: `石油黄金每日投资参考`
-- 时间: 每天 09:00 Asia/Shanghai
-- 推送到: QQBot 私聊
-- 内容: 短期分析(主) + 中长期趋势(辅) + 综合建议
+推送目标通过配置文件灵活管理，不写死 Bot/账号：
+
+```yaml
+# config/push-config.yaml（如不存在则自动创建默认配置）
+push:
+  enabled: true
+  channels:
+    - name: default          # 推送目标名称（自定义）
+      type: qqbot            # qqbot | telegram | discord | webhook
+      target: c2c            # c2c(私聊) | group:群号 | channel:频道号
+      account: default       # OpenClaw 账号ID
+    # 添加更多目标，按需配置：
+    # - name: bot2
+    #   type: qqbot
+    #   target: c2c
+    #   account: bot2
+    # - name: telegram-alerts
+    #   type: telegram
+    #   target: chat:123456
+
+schedule:
+  - id: morning             # 早盘（大陆期货日盘）
+    time: "10:00"            # CST 固定
+    timezone: Asia/Shanghai
+    timeout: 300
+    data_baseline: T-1       # 上一交易日收盘价
+
+  - id: evening             # 晚盘（大陆期货夜盘）
+    time: "21:00"            # CST 固定
+    timezone: Asia/Shanghai
+    timeout: 300
+    data_baseline: T-0       # 当日最新收盘价
+
+  - id: us-market           # 美盘（美股开盘后）
+    time: "22:00"            # Cron 固定触发时间
+    timezone: Asia/Shanghai
+    timeout: 600
+    dst_aware: true          # 夏/冬令时自适应
+    summer_shift: "22:00"    # 夏令时执行时间
+    winter_shift: "23:00"    # 冬令时执行时间（自动 sleep 30min）
+    data_baseline: US-open   # 美股开盘半小时后
+
+cron:
+  sessionTarget: isolated
+  lightContext: true
+  model: zai/glm-5
+```
+
+**使用方式**：
+- 配置文件路径：`skills/oil-gold-correlation/config/push-config.yaml`
+- 首次运行自动生成默认配置
+- 用户可自由添加/删除推送目标
+- 支持多渠道混合推送（QQ + Telegram + Discord 同时推送）
+
+### 推送时间表
+
+| 时段 | Cron触发时间 | 实际推送时间 | 数据基准 | 说明 |
+|------|-------------|-------------|----------|------|
+| 早盘 | 10:00 CST | 10:00 CST | T-1 收盘价 | 沪金AU0、SC原油SC0、FRED宏观 |
+| 晚盘 | 21:00 CST | 21:00 CST | T-0 最新价 | 同上 |
+| 美盘 | 22:00 CST | 22:00/23:00 自适应 | 美股开盘后 | 夏/冬令时自动切换 |
+
+**美盘夏/冬令时自动切换**：
+- 夏令时（3月第2周日~11月第1周日）：直接执行 → 22:00 CST
+- 冬令时（11月第1周日~次年3月第2周日）：sleep 30 分钟后执行 → 23:00 CST
+
+### 数据源与时效性
+
+| 数据类型 | 数据源 | 实时性 | 说明 |
+|----------|--------|--------|------|
+| 黄金/原油行情 | akshare futures_main_sina | T-1 收盘 | 上一交易日收盘价 |
+| 国际品种 | yfinance | ⚠️ 腾讯云IP被限速 | 备用 |
+| 央视新闻 | akshare news_cctv | 昨+今 | 每日采集 |
+| 东方财富 | stock_info_global_em | ✅ 实时 | 全球财经200条 |
+| 上期所 | futures_news_shmet | ✅ 实时 | 期货专业新闻 |
+| CNBC国际 | RSS | ✅ 实时 | 国际财经 |
+| FRED宏观 | fred.stlouisfed.org | ⚠️ 延迟1天 | 无需API Key |
+| 美股指数 | FRED (SP500等) | ⚠️ 延迟1天 | FRED非实时 |
+
+**缓存策略**：行情数据 5 分钟 TTL，FRED 数据 1 小时 TTL
 
 手动触发: `openclaw cron run <job-id>`
 
@@ -137,6 +219,11 @@ python3 scripts/advisor.py [--days 3]
 3. **缓存**：数据缓存 5 分钟，避免 yfinance 限速
 4. **相关性 ≠ 因果性**：报告时注意措辞，Granger 因果仅表示时序领先性
 5. **regime switching**：不同市场状态（牛市/熊市/震荡）下相关性可能完全不同
+6. **行情数据为 T-1 收盘价**，非盘中实时
+7. **美盘时间由 oil-gold-us-adapter.sh 自动切换**，无需手动调整
+8. **yfinance 在腾讯云 IP 被限速**，akshare 是唯一可用数据源
+9. **FRED 宏观数据本身有 1-3 天发布延迟**（非实时）
+10. **周末/节假日无期货交易数据**
 
 ## 依赖
 
