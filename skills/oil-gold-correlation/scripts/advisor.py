@@ -1557,21 +1557,25 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data):
         else:
             grade, action = "🔴强烈回避", "远离或考虑做空"
         
-        # 进度条颜色：绿/黄/白/橙/红
-        if final_score >= 75:
-            fill_char = "🟩"
-        elif final_score >= 60:
-            fill_char = "🟨"
-        elif final_score >= 40:
-            fill_char = "⬛"
-        elif final_score >= 25:
-            fill_char = "🟧"
-        else:
-            fill_char = "🟥"
-        empty_char = "⬜"
+        # 进度条：分段彩色（每格根据所在区间着色）
         bar_len = 10
         filled = max(1, int(final_score / 100 * bar_len))
-        bar = fill_char * filled + empty_char * (bar_len - filled)
+        bar = ""
+        for i in range(bar_len):
+            pos_pct = (i + 0.5) / bar_len * 100  # 该格代表的百分比位置
+            if i < filled:
+                if pos_pct >= 75:
+                    bar += "🟩"
+                elif pos_pct >= 60:
+                    bar += "🟨"
+                elif pos_pct >= 40:
+                    bar += "🟦"
+                elif pos_pct >= 25:
+                    bar += "🟧"
+                else:
+                    bar += "🟥"
+            else:
+                bar += "⬜"
         
         print(f"\n  {icon} {short_name} {sym}{r['latest']}  【{grade}】")
         print(f"  {bar} {final_score:.0f}/100")
