@@ -1,7 +1,7 @@
 ---
 name: oil-gold-correlation
 石油黄金实时相关性分析。获取大宗商品价格数据，计算多种相关性指标（Pearson/Spearman/Kendall），支持 DCC-GARCH 动态相关、Granger 因果检验、协整分析，输出可视化图表和自然语言结论。
-version: 1.6.0
+version: 1.6.1
 author: 小米粒 🌾
 recommendModel: zai/glm-5
 altModels:
