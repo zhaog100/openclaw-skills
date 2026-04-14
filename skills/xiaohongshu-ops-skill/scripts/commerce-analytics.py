@@ -7,11 +7,12 @@
 
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 # 技能目录
 SKILL_DIR = Path(__file__).parent.parent
-INTEL_DIR = SKILL_DIR.parent / "intel"
+INTEL_DIR = Path("/root/.openclaw/workspace/intel")
 
 def generate_data_report(xhs_data, xianyu_data):
     """生成数据复盘报告"""
@@ -173,7 +174,7 @@ def main():
     print(report)
     
     # 保存到intel目录
-    report_file = INTEL_DIR / "商贸数据复盘.md"
+    report_file = INTEL_DIR / f"商贸数据复盘_{datetime.now().strftime('%Y%m%d')}.md"
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(f"# 小红书商贸数据复盘\n\n{report}")
     
