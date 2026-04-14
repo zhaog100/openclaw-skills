@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # 缓存设置
-from config import CACHE_DIR
+CACHE_DIR = Path("/tmp/oil-gold-cache")
 CACHE_TTL = 300  # 5 分钟缓存
 
 # ===== akshare 品种定义（主数据源，人民币计价） =====

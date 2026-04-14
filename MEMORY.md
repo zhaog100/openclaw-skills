@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.52
-**最后更新**: 2026-04-12 22:10
+**版本**: v3.54
+**最后更新**: 2026-04-14 12:20
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -10,14 +10,15 @@
 
 | 项目 | 状态 |
 |------|------|
-| 阶段 | 执行期（Day 20） |
+| 阶段 | 执行期（Day 21） |
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
 | 进度 | 商贸方向已确认，首篇笔记/闲鱼清单已备，待官家执行上架 |
-| 卡点 | 1688供应商确认、产品图素材、闲鱼上架、yfinance限速 |
+| 卡点 | 1688供应商确认、产品图素材、闲鱼上架 |
 | Git | main分支，推送已恢复 |
-| Skills | 8个（+xiaohongshu-ops, oil-gold-correlation） |
+| Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
+| Cron任务 | 13个（oil-gold 6 + xhs 4 + 回顾京东 3） |
 | OpenClaw | v2026.4.10 |
 | 默认模型 | longcat/LongCat-Flash-Lite（优先消耗） |
 | 主力模型 | zai/glm-5.1（智谱） |
@@ -822,7 +823,19 @@
 - **配置备份**: openclaw.json.bak.20260407_1703
 - **Git 推送规则**: 个人数据推 xiaomijiao remote（main 分支）
 
-*持续进化 · 定期清理 · 保留精华 | v3.52 | 2026-04-12*
+### 2026-04-14 oil-gold纯文本推送方案 + 双Bot全覆盖 ⭐⭐⭐⭐⭐
+- **图片方案废弃**: matplotlib间距/字体/兼容性问题多，官家决定改纯文本
+- **纯文本方案**: report_text.py + emoji进度条（🟥🟧🟦🟨🟩⬜）
+- **推送时间按市场**: 10:00(日盘开盘) / 15:30(日盘收盘) / 23:00(美股开盘后)
+- **冬令时**: oil-gold-us-adapter.sh自动延迟60min
+- **MiniMax配置**: baseUrl必须是api.minimax.chat（不是api.minimax.io）
+- **QQ Bot发图片**: PNG RGBA会报格式不支持，必须转JPEG
+- **matplotlib字体**: ttc需fonttools提取为ttf才能被matplotlib识别
+- **cron sessionTarget**: 必须用isolated，不能用session:agent:main:main
+- **双Bot覆盖**: oil-gold 6个 + xhs 4个 + 回顾京东 3个 = 13个任务
+- **GitHub部署**: feat/github-marketing分支，新增config.py/multi_source.py/opportunity_scanner.py
+
+*持续进化 · 定期清理 · 保留精华 | v3.54 | 2026-04-14*
 
 ### 2026-04-12 石油黄金技能安装 + 系统维护 + akshare替代 ⭐⭐⭐⭐⭐
 - **技能安装**: oil-gold-correlation v1.0.0（小米粒🌾开发）从GitHub sparse clone

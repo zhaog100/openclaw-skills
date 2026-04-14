@@ -26,7 +26,7 @@ from pathlib import Path
 import pandas as pd
 
 # 缓存
-from config import CACHE_DIR
+CACHE_DIR = Path("/tmp/oil-gold-cache")
 CACHE_TTL = 3600  # 1小时
 
 
