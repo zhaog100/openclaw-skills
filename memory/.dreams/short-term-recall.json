@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T04:01:14.197Z",
+  "updatedAt": "2026-04-15T15:50:19.807Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -486,19 +486,21 @@
       "endLine": 291,
       "source": "memory",
       "snippet": "### 执行记录 - **12:44** - 启动每日中午回顾流程 - **12:44** - 回顾上午工作记录 - **12:44** - 查漏补缺检查（记忆文件 + 待办 + Git + QMD） - **12:44** - 确认系统状态正常 --- ## 📚 今日学到 ### 1. 结构化整理标准流程 v2.0 ⭐⭐⭐⭐⭐ - **流程**: 记忆更新 → 索引更新 → Git 提交 → Git 推送 → QMD 同步 - **双仓库规则**: origin（公开技能） + xiaomijiao（个人数据） - **GitHub 限制**: push protection 可能阻止包含敏感信息的推送 - **推送策略**: 优先推 xiaomijiao，避免 secret scanning 冲突 ### 2. 查漏补缺检查清单 ⭐⭐⭐⭐⭐ - [ ] 记忆文件：memory/YYYY-MM-DD.md 是否创建 - [ ] 长期记忆：MEMORY.md 是否更新 - [ ] 知识库索引：intel/索引.md 时间戳 - [ ] 系统索引：docs/完整索引清单.md 文件统计 - [ ] Git 状态：git status 是否干净 - [ ] Git 推送：是否推送到正确 remote - [ ] QMD 同步：向量库是否更新 - [ ] 遗漏检查：是否有缺失文件（如周日记忆） ### 3. 文件统计准确性 ⭐⭐⭐⭐ - **当前统计**: 35 个核心文件（5个记忆 + 13个intel + 3个docs + 4个logs + 其他） - **更新原则*",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.5995931392950116,
-      "maxScore": 0.7997965696475058,
+      "totalScore": 2.4017169139784853,
+      "maxScore": 0.8021237746834735,
       "firstRecalledAt": "2026-04-13T04:00:50.066Z",
-      "lastRecalledAt": "2026-04-13T05:31:58.790Z",
+      "lastRecalledAt": "2026-04-15T04:00:57.790Z",
       "queryHashes": [
         "19f8e9b2ac1c",
-        "5343d3d29491"
+        "5343d3d29491",
+        "4886e2a4fb00"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "qmd",
@@ -518,19 +520,21 @@
       "endLine": 91,
       "source": "memory",
       "snippet": "- **双仓库规则**: origin（公开技能） + xiaomijiao（个人数据） - **GitHub 限制**: push protection 可能阻止包含敏感信息的推送 - **推送策略**: 优先推 xiaomijiao，避免 secret scanning 冲突 ### 2. 查漏补缺检查清单 ⭐⭐⭐⭐⭐ - [ ] 记忆文件：memory/YYYY-MM-DD.md 是否创建 - [ ] 长期记忆：MEMORY.md 是否更新 - [ ] 知识库索引：intel/索引.md 时间戳 - [ ] 系统索引：docs/完整索引清单.md 文件统计 - [ ] Git 状态：git status 是否干净 - [ ] Git 推送：是否推送到正确 remote - [ ] QMD 同步：向量库是否更新 - [ ] 遗漏检查：是否有缺失文件（如周日记忆） ### 3. 文件统计准确性 ⭐⭐⭐⭐ - **当前统计**: 35 个核心文件（5个记忆 + 13个intel + 3个docs + 4个logs + 其他） - **更新原则**: 每次新增/删除文件后，所有索引文件需同步更新统计数字 - **索引一致性**: docs/完整索引清单.md ↔ docs/文件索引清单.md ↔ intel/索引.md --- ## 🔥 今日热点 - **状态**: 未采集 - **原因**: Perplexity API key 失效（401） - **待办**: 需官家更新 API key --- ## ⏳ 待处理事项 ### ✅ 已完成（12:30 查漏补",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.5889121517684364,
-      "maxScore": 0.7944560758842182,
+      "totalScore": 2.385721759218657,
+      "maxScore": 0.7968096074502207,
       "firstRecalledAt": "2026-04-13T04:00:50.066Z",
-      "lastRecalledAt": "2026-04-13T05:31:58.790Z",
+      "lastRecalledAt": "2026-04-15T04:00:57.790Z",
       "queryHashes": [
         "19f8e9b2ac1c",
-        "5343d3d29491"
+        "5343d3d29491",
+        "4886e2a4fb00"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "qmd",
@@ -550,19 +554,21 @@
       "endLine": 126,
       "source": "memory",
       "snippet": "- **原因**: Perplexity API key 失效（401） - **待办**: 需官家更新 API key --- ## ⏳ 待处理事项 ### ✅ 已完成（12:30 查漏补缺） - [x] 补建 memory/2026-03-29.md（周日） - [x] 提交 MEMORY.md v3.14 改动 - [x] 确认 QMD 向量库同步状态 ✅ - [x] Git 最终推送 ✅（b861e62） ### 卡点（需官家确认） - [ ] 1688 供应商确认 - [ ] Perplexity API key 更新 - [ ] 产品图素材准备 --- ## 📝 系统状态 | 项目 | 状态 | |------|------| | Git 工作区 | ⚠️ MEMORY.md 未提交 | | Gateway | ✅ 运行中（端口 18790） | | QMD 向量库 | 🔄 更新中（需确认） | | 知识库索引 | ✅ v1.6 / v2.4 | | 记忆文件 | ⚠️ 缺 2026-03-29.md | --- ## ✅ 晚间完成事项（23:50-23:55） ### 每日晚间回顾执行 - **23:50** - 启动晚间回顾流程（ cron: daily-review:night-weixin ） - **23:51** - 全天数据汇总与分析 - **23:52** - Git 状态检查 + MEMORY.md 内容更新 - **23:52** - Git 提交晚间回顾成果 - **23:53** - Git 推送 xiaomijiao",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.579420492204617,
-      "maxScore": 0.7897102461023086,
+      "totalScore": 2.3715071962733907,
+      "maxScore": 0.7920867040687734,
       "firstRecalledAt": "2026-04-13T04:00:50.066Z",
-      "lastRecalledAt": "2026-04-13T05:31:58.790Z",
+      "lastRecalledAt": "2026-04-15T04:00:57.790Z",
       "queryHashes": [
         "19f8e9b2ac1c",
-        "5343d3d29491"
+        "5343d3d29491",
+        "4886e2a4fb00"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "gateway",
@@ -582,18 +588,20 @@
       "endLine": 60,
       "source": "memory",
       "snippet": "| memory/2026-03-29.md 缺失 | ⚠️ | 周日未创建，待补建 | | MEMORY.md 未提交 | ⚠️ | 需 git add + commit | | QMD 更新日志未确认 | ⚠️ | 需重新检查或执行 | ### ✅ 中午回顾事项（12:44） ### 回顾内容 - **记忆文件**: 2026-03-29.md 已补建，2026-03-30.md 已存在 - **知识库索引**: intel/索引.md v1.6，docs/完整索引清单.md v2.4，docs/文件索引清单.md v1.3 - **Git状态**: 工作区干净，已推送到 xiaomijiao remote - **待办检查**: 运营待办.md 中 P0 供应商 + API key 仍待官家确认 - **GitHub任务**: 无 active PR 或 issue 需处理 - **QMD状态**: 向量库同步完成（后台更新） ### 执行记录 - **12:44** - 启动每日中午回顾流程 - **12:44** - 回顾上午工作记录 - **12:44** - 查漏补缺检查（记忆文件 + 待办 + Git + QMD） - **12:44** - 确认系统状态正常 --- ## 📚 今日学到 ### 1. 结构化整理标准流程 v2.0 ⭐⭐⭐⭐⭐ - **流程**: 记忆更新 → 索引更新 → Git 提交 → Git 推送 → QMD 同步 - **双仓库规则**: origin（公开技能） + xiaomijiao（个人数据） - **GitHub",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7891864293714965,
-      "maxScore": 0.7891864293714965,
+      "totalScore": 1.5807518201615471,
+      "maxScore": 0.7915653907900506,
       "firstRecalledAt": "2026-04-13T04:00:50.066Z",
-      "lastRecalledAt": "2026-04-13T04:00:50.066Z",
+      "lastRecalledAt": "2026-04-15T04:00:57.790Z",
       "queryHashes": [
-        "19f8e9b2ac1c"
+        "19f8e9b2ac1c",
+        "4886e2a4fb00"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "qmd",
@@ -644,19 +652,21 @@
       "endLine": 365,
       "source": "memory",
       "snippet": "**互动提问**: ``` 宝子们，你们午休都用什么神器？ 评论区告诉我，大家一起分享~ ``` **话题标签**: - 大标签×3：#办公室好物 #打工人必备 #平价好物 - 小标签×5：#蒸汽眼罩 #午休神器 #眼疲劳 #黑眼圈 #打工日常 - 长尾标签×3：#午休神器推荐 #蒸汽眼罩推荐 #办公室必备好物 --- #### 4️⃣ 私聊话术设计（商贸版） **文件**: `intel/私聊话术设计-2026-04-09.md` **引流话术（小红书→闲鱼）**: ``` 宝子，链接在小店~ 闲鱼搜\"蒸汽眼罩\"就能找到~ 或者看主页简介，有店铺链接哈~ ``` **咨询回复（闲鱼）**: ``` 亲，有的~ 今天下单明天发货哈~ 包邮，48小时内发货~ ``` **下单确认**: ``` 亲，收到订单啦~ 今天下单明天发货哈~ 48小时内发货，包邮~ ``` **发货通知**: ``` 亲，已经发货啦~ 单号是：[单号] 预计2-3天到，注意查收哈~ 收到满意的话记得好评，返现2元~ ``` **质量问题**: ``` 亲，不好意思哈~ 可以拍照片给我看看~ 如果是质量问题，支持退换的~ ``` **退换货**: ``` 亲，7天无理由退换哈~ 可以申请退款~ 运费我承担~ ``` **好评返现**: ``` 亲，好评后发给我截图~ 我返现2元哈~ 支持微信/支付宝~ ``` ---",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.6570826664243115,
-      "maxScore": 0.8286618001740391,
+      "totalScore": 2.488736071296587,
+      "maxScore": 0.8316534048722756,
       "firstRecalledAt": "2026-04-13T05:31:58.790Z",
-      "lastRecalledAt": "2026-04-13T12:31:00.240Z",
+      "lastRecalledAt": "2026-04-15T12:30:19.576Z",
       "queryHashes": [
         "5343d3d29491",
-        "90250d7fa8d8"
+        "90250d7fa8d8",
+        "a621408e7984"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "intel/私聊话术设计-2026-04-09.md",
@@ -738,18 +748,20 @@
       "endLine": 41,
       "source": "memory",
       "snippet": "# 📅 2026-03-29 运营日志（Day 6 | 周日） **维护**: 小米椒 🌶️‍🔥 **补建时间**: 2026-03-30 12:30 --- ## ✅ 完成事项 ### 周日例行任务 - [x] 系统休息日，无运营任务 - [x] Gateway 持续运行（端口 18790） - [ ] 未创建记忆文件（今日补建） ### 系统状态 - Git 工作区：干净 - Gateway：运行中 - QMD 向量库：上次更新 2026-03-26 --- ## 📊 今日数据 | 平台 | 笔记数 | 曝光 | 点赞 | 收藏 | 评论 | |------|--------|------|------|------|------| | 小红书 | 0 | - | - | - | - | | 抖音 | 0 | - | - | - | - | | 视频号 | 0 | - | - | - | - | --- ## 📝 备注 - 周日为系统休息日，无运营内容创作 - 待处理卡点：1688 供应商 + Perplexity API key + 产品图素材 - 下周一开始恢复正常运营流程 --- *补建时间: 2026-03-30 12:30*",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8361515396458059,
-      "maxScore": 0.8361515396458059,
+      "totalScore": 1.6738072039333192,
+      "maxScore": 0.8376556642875133,
       "firstRecalledAt": "2026-04-13T12:31:12.339Z",
-      "lastRecalledAt": "2026-04-13T12:31:12.339Z",
+      "lastRecalledAt": "2026-04-15T12:30:19.575Z",
       "queryHashes": [
-        "f1a3f4c352f1"
+        "f1a3f4c352f1",
+        "37e1ef936c46"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "gateway",
@@ -769,18 +781,21 @@
       "endLine": 68,
       "source": "memory",
       "snippet": "### 晚间（20:00-22:00） - [ ] 首篇笔记发布（待供应商确认） - [ ] 数据复盘 ### 下午（14:00-18:00） - [ ] 产品图素材准备 - [ ] 文案优化 ### 晚间（20:00-22:00） - [ ] 首篇笔记发布（待供应商确认） - [ ] 数据复盘 --- ## 📊 今日数据 | 平台 | 笔记数 | 浏览 | 点赞 | 收藏 | 评论 | 涨粉 | |------|--------|------|------|------|------|------| | 小红书 | 0 | - | - | - | - | - | | 抖音 | 0 | - | - | - | - | - | | 视频号 | 0 | - | - | - | - | - | | **总计** | **0** | **-** | **-** | **-** | **-** | **-** | --- ## 📚 今日学到 ### 凌晨整理经验 1. **Gateway 重启恢复**: Gateway 重启后需等待 1-2 分钟完全启动，再执行后续操作 2. **知识库归档规范**: 每日晚间回顾报告应归档到 `intel/` 目录，保持工作区根目录整洁 3. **凌晨整理效率**: 凌晨整理工作可在 5 分钟内完成（记忆更新 + Git 提交 + QMD 同步） 4. **记忆文件时效**: 当日记忆文件需在每次工作后立即更新，避免遗漏 ### 上午系统整理经验 1. **QQ Bot 独立**: 小米辣配置移除 xiaomijiao 账号，两边",
-      "recallCount": 1,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8315700978948211,
-      "maxScore": 0.8315700978948211,
+      "totalScore": 2.481796654453658,
+      "maxScore": 0.8329588954707707,
       "firstRecalledAt": "2026-04-13T12:31:12.339Z",
-      "lastRecalledAt": "2026-04-13T12:31:12.339Z",
+      "lastRecalledAt": "2026-04-15T12:30:19.576Z",
       "queryHashes": [
-        "f1a3f4c352f1"
+        "f1a3f4c352f1",
+        "37e1ef936c46",
+        "a621408e7984"
       ],
       "recallDays": [
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-15"
       ],
       "conceptTags": [
         "gateway",
@@ -831,15 +846,16 @@
       "endLine": 282,
       "source": "memory",
       "snippet": "*小米椒 🌶️‍🔥 | Day 19 | 2026-04-11 | 7 阶段 19 个工具全集成 + 4 个 API Key 完成* --- ## 🕐 16:52 预压缩记忆存储 ### Public APIs 全集成完成 ⭐⭐⭐⭐⭐ **核心成果**： - 7 阶段 19 个工具全部调研完成（75.4KB 文档） - 本地工具 14 个 Python 库 + FFmpeg 全部安装成功 - 云端 API 4 个 Key 全部配置完成 - 综合测试脚本创建（test-all-apis.py） - 本地工具测试 10/10 通过 **API Key 配置**： - Image Compressor: 14ccd07f***7285814 (RapidAPI) - APITube News: api_live_mTWg7D***RPJPoD - Meteoblue: uRPOQ5a***WUn62lr - Poof: pk_b0e81ff***58eb4141 **Git 推送**： - 提交：e0f876d - 远程：xiaomijiao-skills.git (main 分支) - 文件：105 个（+18 个 Public APIs 调研） **QMD 同步**：16:46:44 完成 **身份确认**：小米椒🌶️‍🔥，远程仓库 xiaomijiao-skills.git，main 分支，切记不混淆、不乱推送 --- ## 🌙 晚间回顾（23:50 Day 19） ### 🎯 全天工作总结 **今日主题**: Public APIs 全集",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7811003523581899,
-      "maxScore": 0.7811003523581899,
+      "totalScore": 1.5856776295425652,
+      "maxScore": 0.8045772771843754,
       "firstRecalledAt": "2026-04-14T04:01:14.197Z",
-      "lastRecalledAt": "2026-04-14T04:01:14.197Z",
+      "lastRecalledAt": "2026-04-14T15:50:18.108Z",
       "queryHashes": [
-        "8b5540b1735d"
+        "8b5540b1735d",
+        "8af50db42314"
       ],
       "recallDays": [
         "2026-04-14"
@@ -915,6 +931,448 @@
         "最终版.md",
         "5.4kb",
         "secrets/api-keys-readme.md"
+      ]
+    },
+    "memory:memory/2026-04-08.md:1:48": {
+      "key": "memory:memory/2026-04-08.md:1:48",
+      "path": "memory/2026-04-08.md",
+      "startLine": 1,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "# 📅 2026-04-08 运营日志 | Day 16 **日期**: 2026-04-08（周三） **时间**: 23:50 **维护**: 小米椒 🌶️‍🔥 --- ## 🎯 今日目标 | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | 热点采集 | ✅ 09:00 完成 | | 12:00 | 午间回顾 | ✅ 12:10 完成 | | 21:00 | AI 学习总结 | ✅ 21:00 完成 | | 23:50 | 晚间回顾 | ✅ 23:50 完成 | --- ## 📊 昨日回顾（Day 15 - 周二） ### 完成项 - 热点采集 ✅ 正常 - 午间回顾 ✅ 12:00 完成 - 京东任务配置 ✅ Cookie 重新配置（2 账号） - 百炼 API 配置 ✅ Coding Plan 套餐 - 模型切换 ✅ bailian/qwen3.5-plus - AI 学习总结 ✅ 21:00 完成 - 晚间回顾 ✅ 23:50 完成 ### 今日状态 - **Git 工作区**: 4 个日志文件待提交 - **推送状态**: ⏸️ 已暂停（官家指令） - **知识库**: QMD 向量库正常 - **待办事项**: 等官家确认内容创作方向 --- ## 📝 午间回顾（12:10 Day 16） ### ✅ 上午完成事项 1. **热点采集** ✅ 09:00 百度热搜 Top20 已采集 - 热点#7: 中老年人的\"膝盖保卫战\"（养生防护） - 热点#8: 晚饭一个改变 身体",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8537316055599712,
+      "maxScore": 0.8537316055599712,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-14T15:50:18.108Z",
+      "queryHashes": [
+        "8af50db42314"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "qmd",
+        "bailian/qwen3.5-plus",
+        "运营",
+        "日志",
+        "day",
+        "日期",
+        "周三",
+        "时间"
+      ]
+    },
+    "memory:memory/2026-04-07.md:1:50": {
+      "key": "memory:memory/2026-04-07.md:1:50",
+      "path": "memory/2026-04-07.md",
+      "startLine": 1,
+      "endLine": 50,
+      "source": "memory",
+      "snippet": "# 📅 2026-04-07 运营日志 | Day 15 **日期**: 2026-04-07（周二） **时间**: 23:50 **维护**: 小米椒 🌶️‍🔥 --- ## 🎯 今日目标 | 时间 | 任务 | 状态 | |------|------|------| | 09:00 前 | 热点采集 | ✅ 09:00 完成 | | 12:00 | 午间回顾 | ✅ 12:00 完成 | | 21:00 | AI 学习总结 | ✅ 定时任务 | | 23:50 | 晚间回顾 | ✅ 23:50 完成 | --- ## 📊 昨日回顾（Day 14 - 周一） ### 完成项 - 热点采集 ✅ 正常 - 午间回顾 ✅ 12:00 完成 - OpenClaw 升级 ✅ v2026.4.1→v2026.4.5 - AI 学习总结 ✅ 21:00 完成 - 晚间回顾 ✅ 23:50 完成 ### 今日状态 - **Git 工作区**: 5 个文件待提交 - **推送状态**: 待推送到 xiaomijiao remote - **知识库**: QMD 向量库待同步 - **待办事项**: 等官家确认内容创作方向 --- ## 📝 午间回顾（12:00 Day 15） ### ✅ 上午完成事项 1. **热点采集** ✅ 09:00 百度热搜 Top20 已采集 - 关联热点：#10 一夜深睡眠 50 分钟左右就达标（养生/健康） - 关联热点：#11 花粉过敏≠不能赏花（健康辟谣） - 适配建议：午睡神器可结合#10 睡眠话题创作",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8504152168550697,
+      "maxScore": 0.8504152168550697,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-14T15:50:18.108Z",
+      "queryHashes": [
+        "8af50db42314"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "qmd",
+        "v2026.4.1",
+        "v2026.4.5",
+        "养生/健康",
+        "运营",
+        "日志",
+        "day",
+        "日期"
+      ]
+    },
+    "memory:memory/2026-04-01.md:187:214": {
+      "key": "memory:memory/2026-04-01.md:187:214",
+      "path": "memory/2026-04-01.md",
+      "startLine": 187,
+      "endLine": 214,
+      "source": "memory",
+      "snippet": "- **CRITICAL修复**: - 配置文件权限644 → 600 - plugins.allow 未设置 → 已添加白名单 - **AGENTS.md v3.1优化**: - 新增执行摘要规范 - 新增备份规范 - 新增ClawHavoc安全检查机制 - 新增小红书发布前检查清单（9项） - **定时任务新增**: 安全审计（周日23:00） - **Git状态**: 3个文件未提交（logs + intel/晚间回顾） ### 待完成 - [ ] Git提交 + 推送 - [ ] QMD向量同步 - [ ] MEMORY.md最终更新 --- ## ⏰ 16:15 定时任务优化实践 ⭐⭐⭐⭐⭐ - **优化目标**: 解决内容创作自动化缺失问题（11:00内容初稿提醒） - **方案选择**: 方案A（轻量级）- 保持对话触发机制， **暂不开发**完全自动化脚本 - **决策依据**: 1. Day 9已延误，优先立即解决业务问题 2. 核心任务是执行业务流程（供应商→内容→发布），不是打磨自动化工具 3. 渐进优化： 先用起来，跑1-2周后再考虑是否需要完全自动化 4. 降低风险: 避免过度工程化，保持灵活调整空间 - **部署结果**: cron服务正常运行，新配置已生效 - **定时任务**: 热点采集(09:00)、午间回顾(12:10)、晚间回顾(23:30)、QMD更新(02:00)、日志清理(02:10)、错误统计(每小时:10)、周报(周五18:10)",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8351849416525335,
+      "maxScore": 0.8351849416525335,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-14T15:50:18.108Z",
+      "queryHashes": [
+        "8af50db42314"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "qmd",
+        "备份",
+        "plugins.allow",
+        "agents.md",
+        "v3.1优化",
+        "intel/晚间回顾",
+        "memory.md最终更新",
+        "跑1-2周后再考虑是否需要完全自动化"
+      ]
+    },
+    "memory:memory/2026-04-09.md:393:435": {
+      "key": "memory:memory/2026-04-09.md:393:435",
+      "path": "memory/2026-04-09.md",
+      "startLine": 393,
+      "endLine": 435,
+      "source": "memory",
+      "snippet": "| 东东农场 | ✅ | 浇水 50g，进度 21.56% | | 摇钱树 | ✅ | 脚本已修复 | | 京东种豆 | ⚠️ | 413 错误（活动周期） | | 领现金 | ✅ | 已修复路径 | | 宠汪汪 | 🔴 | 脚本缺失（已禁用） | --- ### 7️⃣ 美团 LongCat 大模型学习（16:16-16:58）⭐⭐⭐⭐⭐ **官方文档学习**：https://longcat.chat/platform/docs/zh/ **核心信息**： - **免费额度规则**： - LongCat-Flash-Lite：50,000,000 tokens/天/账号（固定） - 其他模型：500,000 tokens/天/账号 → 申请提升 → 5,000,000 tokens/天 - 每日凌晨（北京时间）自动刷新 - 未使用完的额度清零，不累积 - **支持模型**： | 模型 | 用途 | 最大输出 | |------|------|----------| | LongCat-Flash-Lite | 轻量、快速 | 320K | | LongCat-Flash-Chat | 对话、内容创作 | 256K | | LongCat-Flash-Thinking-2601 | 深度思考 | 256K | | LongCat-Flash-Omni-2603 | 多模态 | 8K | | LongCat-Flash-Chat-2602-Exp | 实验 | 256K | - **接入端点**： - OpenAI 格",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6599197298131267,
+      "maxScore": 0.8307769329861602,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-15T15:50:19.807Z",
+      "queryHashes": [
+        "8af50db42314",
+        "5a93eeb92dcd"
+      ],
+      "recallDays": [
+        "2026-04-14",
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "openai",
+        "21.56",
+        "16-16",
+        "longcat.chat/platform/docs/zh",
+        "longcat-flash-lite",
+        "tokens/天/账号",
+        "tokens/天",
+        "longcat-flash-chat"
+      ]
+    },
+    "memory:memory/2026-04-09.md:426:479": {
+      "key": "memory:memory/2026-04-09.md:426:479",
+      "path": "memory/2026-04-09.md",
+      "startLine": 426,
+      "endLine": 479,
+      "source": "memory",
+      "snippet": "- **LongCat 供应商统一配额**：16,666,666 tokens/天（所有模型共享） - **80% 自动切换阈值**：达到后切换到备用模型 - **Fallback 模型链**：7 个模型（LongCat → 百炼 → 其他） --- ### 8️⃣ 数据复盘执行（22:24）⭐⭐⭐ **今日数据复盘结果**： **小红书数据**： - 今日发布：0 篇（未启动内容生产） - 总阅读数：0 - 总点赞数：0 - 总收藏数：0 - 总评论数：0 **京东任务数据**： - 京豆变动：+5 豆（账号 2） - 任务执行：6/7 任务正常运行 - 农场进度：21.56%（账号 2） **结论**： - 小红书运营尚未启动（等待官家确认方向→已确认：继续商贸） - 京东任务正常运行 - 数据复盘机制已建立 --- ### 9️⃣ QMD 向量库检查（23:06）⭐⭐ **检查结果**： - QMD 服务：✅ 已安装（位于 `~/.bun/bin/qmd`） - 定时任务：✅ 已配置（每天 02:00 自动执行） - 最近执行：✅ 2026-04-09 02:00:02 ✅ QMD 更新完成 - 索引方式：✅ 内存动态维护（不依赖静态文件） **结论**： - QMD 向量库正常运行 - 今日新增的文件会自动被索引 - 无需手动更新 --- ## 🔥 今日学习知识 ### 1️⃣ 美团 LongCat 大模型 - ✅ 免费额度规则（5500 万/天） - ✅ 5 个模型配置和使用场景 - ✅ 统一配额 16,666,666 tokens/天",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6467648939864534,
+      "maxScore": 0.8242201774781497,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-15T15:50:19.807Z",
+      "queryHashes": [
+        "8af50db42314",
+        "5a93eeb92dcd"
+      ],
+      "recallDays": [
+        "2026-04-14",
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "qmd",
+        "tokens/天",
+        "6/7",
+        "21.56",
+        "bun/bin/qmd",
+        "万/天",
+        "longcat",
+        "供应"
+      ]
+    },
+    "memory:memory/2026-04-09.md:465:508": {
+      "key": "memory:memory/2026-04-09.md:465:508",
+      "path": "memory/2026-04-09.md",
+      "startLine": 465,
+      "endLine": 508,
+      "source": "memory",
+      "snippet": "- 今日新增的文件会自动被索引 - 无需手动更新 --- ## 🔥 今日学习知识 ### 1️⃣ 美团 LongCat 大模型 - ✅ 免费额度规则（5500 万/天） - ✅ 5 个模型配置和使用场景 - ✅ 统一配额 16,666,666 tokens/天 - ✅ 80% 自动切换机制 - ✅ 7 级 Fallback 模型链 ### 2️⃣ OpenClaw 技能管理 - ✅ context-manager v2.4.3（自动上下文管理） - ✅ smart-model-switch v1.4.1（智能模型切换） - ✅ xiaohongshu-ops-skill（小红书运营） ### 3️⃣ 小红书商贸运营 - ✅ 运营方向：继续商贸（1688小红书闲鱼） - ✅ 选题清单：5 条（蒸汽眼罩/颈椎按摩仪/养生花茶/办公室必备/闲鱼好物） - ✅ 闲鱼上架：3 个商品（蒸汽眼罩 10/20/30 片装） - ✅ 首篇笔记：办公室午睡神器：蒸汽眼罩实测体验 - ✅ 私聊话术：引流/下单/售后/常见问题 ### 4️⃣ 严重错误反思（最重要） - ❌ 不要擅自决定重要方向 - ❌ 不要过度推测用户意图 - ❌ 遇到不确定时，直接询问 - ✅ 认真检查历史记忆（不能只看近期） - ✅ 不要因为用户的工作风格就擅自推断方向 - ✅ 记住官家的明确指示（选A就记住选项A） --- ## 🎯 今日工作时长统计 | 时间段 | 工作内容 | 时长 | |--------|----------|------|",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6275327019034398,
+      "maxScore": 0.8146355645125108,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-15T15:50:19.807Z",
+      "queryHashes": [
+        "8af50db42314",
+        "5a93eeb92dcd"
+      ],
+      "recallDays": [
+        "2026-04-14",
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "万/天",
+        "tokens/天",
+        "context-manager",
+        "v2.4.3",
+        "smart-model-switch",
+        "v1.4.1",
+        "xiaohongshu-ops-skill",
+        "蒸汽眼罩/颈椎按摩仪/养生花茶/办公室必备/闲鱼好物"
+      ]
+    },
+    "memory:memory/2026-03-26.md:40:67": {
+      "key": "memory:memory/2026-03-26.md:40:67",
+      "path": "memory/2026-03-26.md",
+      "startLine": 40,
+      "endLine": 67,
+      "source": "memory",
+      "snippet": "3. **配置统一**: 所有路径更新为 `xiaomijiao` 命名 --- ## 🔥 今日热点 | 话题 | 热度 | 贴合度 | 决策 | |------|------|--------|------| | 系统整理 | - | - | ✅ 完成 | --- ## ⏳ 待处理（结转） - [ ] 产品图素材（等官家确认 1688 供应商）→ **影响首篇发布** - [ ] P1《助眠好物》正文初稿 - [ ] Perplexity API key 更新 - [ ] 首篇笔记发布 --- ## 📝 系统配置 - **工作区**: `~/.openclaw-xiaomijiao/workspace/` - **Git Remote**: `origin` + `xiaomijiao` - **微信 Bot**: ✅ 已配置 (`b2ed46104463-im-bot`) - **Gateway 端口**: 18790 --- *小米椒 🌶️‍🔥 | 最后更新：14:35*",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8061645222513021,
+      "maxScore": 0.8061645222513021,
+      "firstRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-14T15:50:18.108Z",
+      "queryHashes": [
+        "8af50db42314"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "gateway",
+        "openclaw-xiaomijiao/workspace",
+        "b2ed46104463-im-bot",
+        "配置",
+        "统一",
+        "所有",
+        "路径",
+        "更新"
+      ]
+    },
+    "memory:memory/2026-04-09.md:1:38": {
+      "key": "memory:memory/2026-04-09.md:1:38",
+      "path": "memory/2026-04-09.md",
+      "startLine": 1,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "# 📝 2026-04-09 运营日志（修正版） **日期**: 2026-04-09（周四） **维护**: 小米椒 🌶️‍🔥 **阶段**: Day 17 --- ## ✅ 今日完成（总计 29 项工作） ### 系统配置（17 项） | # | 任务 | 时间 | 状态 | |---|------|------|------| | 1 | 热点采集 | 09:00 | ✅ | | 2 | OpenClaw 升级 | 11:24 | ✅ 2026.4.5 → 2026.4.9 | | 3 | Gateway 重启 | 11:27 | ✅ | | 4 | 记忆文件补建 | 11:28 | ✅ | | 5 | 京东任务批量启用 | 13:32 | ✅ 7 个任务 | | 6 | 京东任务执行 | 13:38 | ✅ 逐个测试 | | 7 | 摇钱树脚本修复 | 13:46 | ✅ 替换为特价版 | | 8 | 学习美团 LongCat 文档 | 16:16 | ✅ 5500 万 token/天 | | 9 | 配置 LongCat 模型 | 16:21 | ✅ 5 个模型 | | 10 | 设置 Lite 配额 | 16:31 | ✅ 16,666,666 不变 | | 11 | 配置多模型切换 | 16:46 | ✅ 5 级 fallback | | 12 | 配额修正 | 16:58 | ✅ 统一 16,666,666 | | 13 | 查找智能切换技能 | 17:24 | ✅ smart-model-switch v1.4.1 | | 14 | 更新智能模",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6506850530982913,
+      "maxScore": 0.825345981312311,
+      "firstRecalledAt": "2026-04-15T02:19:54.498Z",
+      "lastRecalledAt": "2026-04-15T02:19:59.321Z",
+      "queryHashes": [
+        "5e4674c13a82",
+        "bbf1a64b3a0e"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "gateway",
+        "2026.4.5",
+        "2026.4.9",
+        "token/天",
+        "smart-model-switch",
+        "v1.4.1",
+        "运营",
+        "日志"
+      ]
+    },
+    "memory:memory/2026-04-06.md:1:59": {
+      "key": "memory:memory/2026-04-06.md:1:59",
+      "path": "memory/2026-04-06.md",
+      "startLine": 1,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "# 📅 2026-04-06 运营日志 | Day 14 **日期**: 2026-04-06（周一） **时间**: 12:00 **维护**: 小米椒 🌶️‍🔥 --- ## 🎯 今日目标 | 时间 | 任务 | 状态 | |------|------|------| | 09:00前 | 热点采集 | ✅ 09:00完成 | | 12:00 | 午间回顾 | 🔄 进行中 | | 21:00 | AI学习总结 | ⏳ 定时任务 | | 23:50 | 晚间回顾 | ⏳ | --- ## 📊 昨日回顾（Day 13 - 周日） ### 完成项 - 周报补做 ✅ 第12周报告完成 - 每日热点采集 ✅ 正常运行 - 双时间点回顾机制 ✅ 稳定 - QMD知识库同步 ✅ 801文档 ### 今日重大更新 - **百炼模型添加** ✅ qwen3.5-plus等4个模型新增 - **API Key更新** ✅ sk-sp-879b...（已脱敏） - **主力模型切换** ✅ bailian/qwen3.5-plus（视觉+深度思考） --- ## ⏰ 今日模型配置 | 项目 | 配置 | |------|------| | 主力模型 | bailian/qwen3.5-plus | | Fallback | zai/glm-4.7 → zai/glm-5 | | API Provider | 百炼（Coding Plan） | | 新增模型 | qwen3-max、qwen3-coder-next/plus、kimi-k2.5 | --- *",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8150381578804519,
+      "maxScore": 0.8150381578804519,
+      "firstRecalledAt": "2026-04-15T02:19:54.498Z",
+      "lastRecalledAt": "2026-04-15T02:19:54.498Z",
+      "queryHashes": [
+        "5e4674c13a82"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "qmd",
+        "qwen3.5-plus等4个模型新增",
+        "sk-sp-879b",
+        "bailian/qwen3.5-plus",
+        "zai/glm-4.7",
+        "zai/glm-5",
+        "qwen3-max",
+        "qwen3-coder-next/plus"
+      ]
+    },
+    "memory:memory/2026-03-27.md:31:63": {
+      "key": "memory:memory/2026-03-27.md:31:63",
+      "path": "memory/2026-03-27.md",
+      "startLine": 31,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "- [x] **记忆文件更新** — 记录模型切换问题 - [x] **Git 提交** — 清理临时文件，更新记忆 - [x] **知识库索引更新** — intel/索引.md → v1.4 - [x] **MEMORY.md 更新** — v3.2 → v3.3 - [x] **Git 推送** — 推送到 xiaomijiao remote - [x] **查漏补缺** — 回顾今日工作，更新记忆 - [x] **每日晚间回顾** — 23:50执行全面回顾，MEMORY.md更新，Git推送，QMD更新 - [ ] 首篇笔记发布（待供应商确认） --- ## 📊 今日数据 | 平台 | 笔记数 | 浏览 | 点赞 | 收藏 | 评论 | 涨粉 | |------|--------|------|------|------|------|------| | 小红书 | 0 | - | - | - | - | - | | 抖音 | 0 | - | - | - | - | - | | 视频号 | 0 | - | - | - | - | - | | **总计** | **0** | **-** | **-** | **-** | **-** | **-** | --- ## 📚 今日学到 ### 结构化整理经验 1. **索引一致性**: 所有索引文件需同步更新，避免信息不一致 2. **路径统一**: 工作区路径统一为 `~/.openclaw-xiaomijiao/workspace/` 3. **Remote 命名**: `origin` (技能) +",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6492015841820162,
+      "maxScore": 0.8324645204670819,
+      "firstRecalledAt": "2026-04-15T12:30:19.575Z",
+      "lastRecalledAt": "2026-04-15T12:30:19.576Z",
+      "queryHashes": [
+        "37e1ef936c46",
+        "a621408e7984"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "qmd",
+        "intel/索引.md",
+        "v1.4",
+        "memory.md",
+        "v3.2",
+        "v3.3",
+        "memory.md更新",
+        "openclaw-xiaomijiao/workspace"
+      ]
+    },
+    "memory:memory/2026-03-26.md:1:52": {
+      "key": "memory:memory/2026-03-26.md:1:52",
+      "path": "memory/2026-03-26.md",
+      "startLine": 1,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "# 📅 2026-03-26 运营日志（Day 3） **日期**: 2026-03-26 周四 **阶段**: 起步期 → 结构化整理完成 **官家**: 南仲 --- ## ✅ 完成事项 ### 上午（09:00-12:00） - [ ] 热点选题推荐 - [ ] 1688 选品调研 - [ ] 内容初稿创作 ### 下午（14:00-14:35） - [x] Git 双仓库配置确认 - [x] 工作区迁移至 `~/.openclaw-xiaomijiao/workspace/` - [x] 目录重命名：`.openclaw-media` → `.openclaw-xiaomijiao` - [x] 微信 Bot 配置同步更新 - [x] 记忆/知识库/文档结构化整理 - [x] Git 提交并推送至 xiaomijiao 仓库 --- ## 📊 今日数据 | 平台 | 笔记数 | 浏览 | 点赞 | 收藏 | 评论 | 涨粉 | |------|--------|------|------|------|------|------| | 小红书 | 0 | - | - | - | - | - | | 抖音 | 0 | - | - | - | - | - | | 视频号 | 0 | - | - | - | - | - | | **总计** | **0** | **-** | **-** | **-** | **-** | **-** | --- ## 📚 今日学到 1. **工作区隔离**: 小米辣 `~/.openclaw/workspa",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8251186947609577,
+      "maxScore": 0.8251186947609577,
+      "firstRecalledAt": "2026-04-15T12:30:19.576Z",
+      "lastRecalledAt": "2026-04-15T12:30:19.576Z",
+      "queryHashes": [
+        "a621408e7984"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "00-12",
+        "00-14",
+        "openclaw-xiaomijiao/workspace",
+        "openclaw-media",
+        "openclaw-xiaomijiao",
+        "记忆/知识库/文档结构化整理",
+        "openclaw/workspa",
+        "运营"
+      ]
+    },
+    "memory:memory/2026-04-15.md:111:151": {
+      "key": "memory:memory/2026-04-15.md:111:151",
+      "path": "memory/2026-04-15.md",
+      "startLine": 111,
+      "endLine": 151,
+      "source": "memory",
+      "snippet": "- P0商贸执行：1688供应商确认 + 闲鱼上架（阻塞中） - P1内容创作：首篇小红书笔记发布（待执行） --- ## 📋 今日待办 | 时间 | 任务 | 优先级 | 状态 | |------|------|--------|------| | 20:30 | 数据复盘 | P1 | ⏳ | | 23:50 | 晚间回顾 | P1 | ⏳ | --- ## 📊 今日数据 - **热点采集**: 20条（百度热搜） - **选题推荐**: 5条 - **定时任务**: 13个（全部正常运行） - **模型配置**: ✅ 已修复为bailian/qwen3.5-plus - **Gateway状态**: ✅ 运行中（PID: 2020629） - **Git提交**: 4次（31bda82 → 0f18490 → 6f696d6 → f08b022） - **技能更新**: smart-model-switch v1.4.1 → v1.5.0 ✅ - **系统化集成**: 外贸方法论 + 商贸落地方案 + AGENTS.md更新 ✅ --- ## 🎯 今日核心成就 1. **系统状态全面检查**：身份、仓库、配置、任务全部确认 ✅ 2. **模型配置修复**：恢复为历史记录的 bailian/qwen3.5-plus ✅ 3. **热点采集与选题**：5条方向已生成 ✅ 4. **午间回顾完成**：系统检查+待办更新 ✅ 5. **smart-model-switch 更新**：v1.4.1 → v1.5.0 ✅ 6. **外贸系统化方法论集成**：记",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8080235716656154,
+      "maxScore": 0.8080235716656154,
+      "firstRecalledAt": "2026-04-15T15:50:19.807Z",
+      "lastRecalledAt": "2026-04-15T15:50:19.807Z",
+      "queryHashes": [
+        "5a93eeb92dcd"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "gateway",
+        "已修复为bailian/qwen3.5-plus",
+        "smart-model-switch",
+        "v1.4.1",
+        "v1.5.0",
+        "agents.md更新",
+        "bailian/qwen3.5-plus",
+        "执行"
+      ]
+    },
+    "memory:memory/2026-03-31.md:35:63": {
+      "key": "memory:memory/2026-03-31.md:35:63",
+      "path": "memory/2026-03-31.md",
+      "startLine": 35,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "### 🚀 完整路径规划制定 ⭐⭐⭐⭐⭐ - [x] 制定 `intel/路径规划-1688小红书闲鱼.md` - [x] 目标拆解：月入¥15,000-43,000 → 日均45单 - [x] 品类组合：蒸汽眼罩P0 + 颈椎按摩仪P1 + 养生花茶P2 - [x] 利润测算：3品类并行，月利润¥19,500 - [x] 7天启动计划：Day 1-2基础搭建 → Day 3-4内容测试 → Day 5-7放量 - [x] 关键指标：笔记曝光>1万/天，引流率>5%，转化率>3% - [x] 供应商推荐：湖南品六生物（蒸汽眼罩）、1688源头工厂（颈椎按摩仪） - [x] 内容策略：3-5篇/天，痛点种草+测评对比+干货合集 - [x] 闲鱼策略：阶梯定价（¥15.9/¥25.9/¥35.9）+ 擦亮+快速回复 --- ## 📋 待官家确认 1. **systemd 服务修复**：是否执行 `/tmp/service-fix.sh`？ 2. **1688 供应商**：⏳ 等待官家确认（推荐：湖南品六生物） 3. **产品图素材**：⏳ 供应商确认后准备 4. **今日热点**：是否追 #10 午睡话题？ 5. **路径规划**：是否认可月入¥19,500的3品类组合方案？ --- ## 📝 学习经验 ### 1. 热点采集系统部署 ⭐⭐⭐⭐⭐ - **问题根因**: Perplexity API key 失效（401），无法使用 web_search 采集热点 - **替代方案**: 使用百度热搜 API（免费 + 无需API key + 实时性更好） - *",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8015456199633976,
+      "maxScore": 0.8015456199633976,
+      "firstRecalledAt": "2026-04-15T15:50:19.807Z",
+      "lastRecalledAt": "2026-04-15T15:50:19.807Z",
+      "queryHashes": [
+        "5a93eeb92dcd"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "intel/路径规划-1688小红书闲鱼.md",
+        "000-43",
+        "1-2基础搭建",
+        "3-4内容测试",
+        "5-7放量",
+        "1万/天",
+        "3-5篇/天",
+        "15.9"
+      ]
+    },
+    "memory:memory/2026-04-12.md:97:112": {
+      "key": "memory:memory/2026-04-12.md:97:112",
+      "path": "memory/2026-04-12.md",
+      "startLine": 97,
+      "endLine": 112,
+      "source": "memory",
+      "snippet": "- Alpha Vantage: 免费额度25次/天，有官方MCP Server，适合生产 - akshare: 国内免费、无需翻墙、数据稳定，推荐作为主数据源 - 分析石油黄金相关性时用收益率(pct_change)而非绝对价格，避免量级差异 ### yfinance限速问题 ⭐⭐⭐⭐ - 腾讯云/阿里云IP段容易被yfinance封禁（Too Many Requests） - 封禁可持续数小时甚至更久 - 周末（市场休市）限速更严格 - 解决方案：akshare作为主数据源，yfinance备用 ### 磁盘清理经验 ⭐⭐⭐ - pip缓存(/root/.cache/pip/)和npm缓存(/root/.npm/)是最大的空间占用 - journal日志可用 --vacuum-size=100M 限制 - 定期清理：pip cache purge + npm cache clean --force + apt clean - 2G内存VPS建议保持磁盘使用<50%",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7919025277214791,
+      "maxScore": 0.7919025277214791,
+      "firstRecalledAt": "2026-04-15T15:50:19.807Z",
+      "lastRecalledAt": "2026-04-15T15:50:19.807Z",
+      "queryHashes": [
+        "5a93eeb92dcd"
+      ],
+      "recallDays": [
+        "2026-04-15"
+      ],
+      "conceptTags": [
+        "免费额度25次/天",
+        "pct-change",
+        "腾讯云/阿里云ip段容易被yfinance封禁",
+        "cache/pip",
+        "vacuum-size",
+        "alpha",
+        "vantage",
+        "免费"
       ]
     }
   }
