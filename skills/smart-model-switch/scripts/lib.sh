@@ -36,8 +36,8 @@ resolve_path() {
 }
 
 # 常用路径（带环境变量覆盖）
-DATA_DIR="${SMART_MODEL_SWITCH_DATA_DIR:-$(resolve_path "$(cfg '.paths.data_dir' 'SMART_MODEL_SWITCH_DATA_DIR')")}"
-LOG_DIR="${SMART_MODEL_SWITCH_LOG_DIR:-$(resolve_path "$(cfg '.paths.log_dir' 'SMART_MODEL_SWITCH_LOG_DIR')")}"
+DATA_DIR="${SMART_MODEL_SWITCH_DATA_DIR:-$SKILL_DIR/data}"
+LOG_DIR="${SMART_MODEL_SWITCH_LOG_DIR:-$SKILL_DIR/data/logs}"
 OPENCLAW_CONFIG_FILE="${OPENCLAW_CONFIG:-$(resolve_path "$(cfg '.paths.openclaw_config')")}"
 OPENCLAW_STATUS_FILE="${OPENCLAW_STATUS:-$(resolve_path "$(cfg '.paths.openclaw_status')")}"
 MODEL_SWITCH_REQ_DIR="${SMART_MODEL_SWITCH_REQ_DIR:-$(resolve_path "$(cfg '.paths.model_switch_requests')")}"
