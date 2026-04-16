@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.55
-**最后更新**: 2026-04-16 14:45
+**版本**: v3.56
+**最后更新**: 2026-04-16 16:40
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -20,9 +20,10 @@
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
 | Cron任务 | 13个（全部已改百炼模型） |
 | OpenClaw | v2026.4.10 |
-| 默认模型 | longcat/LongCat-Flash-Lite（优先消耗） |
-| 主力模型 | zai/glm-5.1（智谱） |
-| 备用模型 | bailian/qwen3.5-plus（百炼）、minimax/MiniMax-M2.5 |
+| 主力模型 | bailian/qwen3.5-plus（百炼 Coding Plan） |
+| 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用） |
+| 备用模型 | zai/glm-5.1（智谱）、minimax/MiniMax-M2.5 |
+| Fallback | 百炼5→智谱4→MiniMax1 = 10个模型 |
 
 ---
 
