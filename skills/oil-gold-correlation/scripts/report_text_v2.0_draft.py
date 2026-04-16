@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
-"""
-石油黄金投资参考 - 纯文本报告生成器 v2.0
-拆分为 PART 1（行情+仪表盘+技术）和 PART 2（宏观+操作建议）
-
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-License: MIT
-Author: 小米辣 (Xiaomila) - AI Agent
-"""
+"""石油黄金投资参考 - 纯文本报告生成器 v2.0
+拆分为 PART 1（行情+仪表盘+技术）和 PART 2（宏观+操作建议）"""
 
 import sys
 from pathlib import Path
