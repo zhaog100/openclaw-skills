@@ -103,6 +103,11 @@ OIL_KEYWORDS_BULLISH = ["减产", "OPEC减产", "供应中断", "霍尔木兹", 
 OIL_KEYWORDS_BEARISH = ["增产", "OPEC增产", "需求疲软", "库存增加", "经济放缓", "衰退",
                          "停火", "贸易战", "关税"]
 
+# v1.4.0: 关联词 — 用于二次过滤泛泛新闻
+RELEVANCE_WORDS = ["黄金", "原油", "金价", "油价", "商品", "期货", "大宗", "避险",
+                    "gold", "oil", "commodity", "crude", "OPEC", "通胀",
+                    "能源", "贵金属", "矿产", "铜", "铝", "铁矿"]
+
 
 def _match_keywords(text, keywords):
     """检查文本是否包含关键词列表中的词"""
@@ -148,14 +153,22 @@ def _match_factor(text, factor_info):
 
 
 def _judge_sentiment(title, content=""):
-    """判断单条新闻的情感倾向"""
+    """v1.4.0 判断单条新闻的情感倾向 — 核心因子5分/边缘因子1分 + 关联词二次过滤"""
     text = f"{title} {content}"
 
-    # 匹配风险因子
+    # 匹配风险因子（使用分级匹配）
     matched_factors = []
+    factor_scores = {}
     for factor_name, factor_info in GEOPOLITICAL_FACTORS.items():
-        if _match_keywords(text, factor_info["keywords"]):
+        matched, match_score = _match_factor(text, factor_info)
+        if matched:
+            # v1.4.0: 关联词二次过滤
+            relevance_required = factor_info.get("relevance_required", False)
+            if relevance_required:
+                if not _match_keywords(text, RELEVANCE_WORDS):
+                    continue  # 泛泛新闻，不包含商品关联词，跳过
             matched_factors.append(factor_name)
+            factor_scores[factor_name] = match_score
 
     # 判断黄金影响
     gold_bull = _match_keywords(text, GOLD_KEYWORDS_BULLISH)
@@ -181,13 +194,13 @@ def _judge_sentiment(title, content=""):
     else:
         oil_impact = "中性"
 
-    # 影响程度（基于关键词数量）
-    score = len(matched_factors) * 5
+    # v1.4.0 评分：核心因子5分 + 边缘因子1分
+    score = sum(factor_scores.values())
     if gold_bull:
-        score += 5
+        score += 3
     if gold_bear:
-        score -= 5
-    score = min(score, 20)  # 单条新闻最多20分
+        score -= 3
+    score = min(score, 25)  # 单条新闻最多25分
 
     return {
         "factors": matched_factors,
