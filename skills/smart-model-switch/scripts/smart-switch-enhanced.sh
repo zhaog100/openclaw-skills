@@ -54,8 +54,13 @@ elif [ -n "$MESSAGE_MODEL" ]; then
     echo "🎯 复杂度评分: $MESSAGE_SCORE"
     echo "🤖 推荐模型: $MESSAGE_MODEL"
 else
+<<<<<<< Updated upstream
     FINAL_MODEL=$(cfg '.models.main.id' 'zai/glm-5')
     echo "🤖 默认模型: $FINAL_MODEL"
+=======
+    FINAL_MODEL="zai/glm-5"
+    echo "🤖 默认模型: zai/glm-5"
+>>>>>>> Stashed changes
 fi
 
 echo ""
