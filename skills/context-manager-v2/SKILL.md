@@ -1,10 +1,10 @@
 ---
 name: context-manager
 description: Auto context management with seamless session switching. Monitors usage, triggers at 70% threshold (proactive check every 10 tool calls), automatically creates new session with loaded memory. Zero user intervention required. Trigger on "context", "memory", "session management", "context limit", "memory transfer".
-version: 2.6.0
+version: 2.7.0
 ---
 
-# Context Manager v2.2 - 无感会话切换
+# Context Manager v2.7 - 无感会话切换
 
 自动监控上下文使用率，达到阈值时自动保存记忆并创建新会话，用户完全无感知。
 
@@ -54,9 +54,9 @@ STARTUP_THRESHOLD=30  # 启动后警告
 
 - v2.0：无感自动切换（agentTurn）
 - v2.1：启动优化（分层读取，节省75%空间）
-- v2.2：真实API监控（70%阈值，5分钟间隔）
-- v2.2.2：阈值85→70%，增加每10次工具调用主动检查
-- v2.2.1：Cron环境修复（生产就绪）
+- v2.7：真实API监控（70%阈值，5分钟间隔）
+- v2.7.2：阈值85→70%，增加每10次工具调用主动检查
+- v2.7.1：Cron环境修复（生产就绪）
 
 ## 🛡️ "Something went wrong" 防护（v2.3 新增）
 

@@ -18,3 +18,26 @@
 [2026-04-16 21:05:01] Cleaned 8 override fields from sessions.json
 [2026-04-16 21:10:02] Cleaned 5 override fields from sessions.json
 [2026-04-16 21:25:01] Cleaned 3 override fields from sessions.json
+[2026-04-16 21:30:01] Cleaned 16 override fields from sessions.json
+[2026-04-16 21:35:02] Cleaned 16 override fields from sessions.json
+[2026-04-16 21:40:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 22:00:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 22:10:01] Cleaned 3 override fields from sessions.json
+[2026-04-16 22:15:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 22:20:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 22:23:48] ✅ sessions.json: 清理 8 个 override 字段
+[2026-04-16 22:23:48] ✅ auth-state.json: 清理 6 个错误记录
+[2026-04-16 22:23:48] 🔄 总计清理 14 个锁定字段（sessions: 8, auth: 6）
+[2026-04-16 22:25:01] Cleaned 5 override fields from sessions.json
+[2026-04-16 22:30:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 22:40:01] Cleaned 3 override fields from sessions.json
+[2026-04-16 22:45:01] Cleaned 16 override fields from sessions.json
+[2026-04-16 23:00:01] Cleaned 15 override fields from sessions.json
+[2026-04-16 23:05:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 23:35:01] Cleaned 11 override fields from sessions.json
+[2026-04-16 23:40:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 23:40:30] ✅ sessions.json: 清理 3 个 override 字段
+[2026-04-16 23:40:30] ✅ auth-state.json: 清理 5 个错误记录
+[2026-04-16 23:40:30] 🔄 总计清理 8 个锁定字段（sessions: 3, auth: 5）
+[2026-04-16 23:45:01] Cleaned 8 override fields from sessions.json
+[2026-04-16 23:50:01] Cleaned 15 override fields from sessions.json
