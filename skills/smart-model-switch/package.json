@@ -1,6 +1,6 @@
 {
   "name": "smart-model-switch",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "智能模型自动切换 v1.5 - 支持 LongCat 免费模型 + API 配额监控 + 上下文溢出防护 + 模型轮转",
   "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",

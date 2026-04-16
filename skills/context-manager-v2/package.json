@@ -1,6 +1,6 @@
 {
   "name": "miliger-context-manager",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Auto context management with seamless session switching and \"Something went wrong\" protection. Monitors usage, triggers at 70% threshold, auto-switches models on API errors, prevents context overflow. v2.5: Added multi-layer overflow protection, model rotation, LongCat quota monitoring.",
   "author": "思捷娅科技 (SJYKJ)",
   "license": "MIT",

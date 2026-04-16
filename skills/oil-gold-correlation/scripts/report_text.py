@@ -123,46 +123,54 @@ def get_tech_detail(result, df, instrument_key):
 def get_operation_advice(gold_score, oil_score):
     """生成操作建议文本"""
     lines = []
-    lines.append("💡 宏观信号灯 & 操作建议")
+    lines.append("💡 宏观信号灯")
     lines.append("")
     
     # 宏观信号灯（固定格式）
-    lines.append("宏观信号灯（固定格式，不改）：")
     lines.append("信心:57 悲极 | VIX:19.2 平静|利差:0.52 正常| 信用:2.94 宽松")
     lines.append("")
     
-    # 操作建议表格
-    lines.append("操作建议（根据评分动态生成）：")
-    lines.append("  品种       |        建议              |          理由")
+    # 操作建议（新样式）
+    lines.append("📝 操作建议")
+    lines.append("")
     
     # 黄金建议
     g_advice, g_emoji = score_verdict(gold_score)
     g_reason = "回调8%提供入场点，¥1,040-1,050区间可考虑，止损¥1,000" if gold_score >= 60 else "技术面偏空，等企稳信号再考虑"
-    lines.append(f"🥇 黄金     | {g_emoji} {g_advice:<8} | {g_reason}")
+    lines.append(f"🥇 黄金：{g_emoji} {g_advice}")
+    lines.append(f"  理由：{g_reason}")
+    lines.append("")
     
     # 原油建议
     o_advice, o_emoji = score_verdict(oil_score)
-    o_reason = "地缘风险支撑，但技术面弱，等¥600以下+均线金叉" if oil_score >= 60 else "技术面仅5分，等企稳再考虑"
-    lines.append(f"🛢️ 原油     | {o_emoji} {o_advice:<8} | {o_reason}")
+    o_reason = "地缘风险支撑，但技术面弱，等¥600以下+均线金叉" if oil_score >= 60 else "技术面仅5分，等¥600以下+均线金叉再考虑"
+    lines.append(f"🛢️ 原油：{o_emoji} {o_advice}")
+    lines.append(f"  理由：{o_reason}")
+    lines.append("")
     
     # 组合建议
     diff = gold_score - oil_score
     if diff > 20:
-        ratio = "7:3（黄金偏防守）"
+        ratio = "7:3（黄金偏防守，原油波动大）"
     elif diff < -20:
         ratio = "3:7（原油偏强）"
     else:
         ratio = "5:5（均衡配置）"
     lines.append(f"组合建议：黄金:原油 = {ratio}")
+    lines.append("")
+    
+    # 结论
+    lines.append("结论：消费信心57极低，避险利多黄金但技术面偏空，等信号灯转正。")
+    lines.append("")
+    lines.append("⚠️ 仅供参考，不构成投资建议")
     
     return "\n".join(lines)
 
 def generate_report_parts():
     """生成双消息报告，返回 (part1, part2)"""
     lines1 = []
-    lines2 = []
     
-    # 标题
+    # PART 1：行情 + 仪表盘 + 技术详解
     lines1.append(f'石油黄金投资参考 {datetime.now().strftime("%Y-%m-%d")}')
     lines1.append("")
     
@@ -178,11 +186,11 @@ def generate_report_parts():
     # 获取数据
     data_dict = {}
     instruments = [
-        ('🥇', '黄金', '沪金期货', 'gold'),
-        ('🛢️', '原油', '沪油期货', 'wti'),
+        ('🥇 黄金', 'gold'),
+        ('🛢️ 原油', 'wti'),
     ]
     
-    for emoji, label, name, key in instruments:
+    for label, key in instruments:
         try:
             # 获取1年数据
             df = fetch_data(key, period="365d")
@@ -195,7 +203,7 @@ def generate_report_parts():
                 low_30d = df['Close'].iloc[-30:].min()
                 high_30d = df['Close'].iloc[-30:].max()
                 
-                lines1.append(f'{emoji} {label} ¥{latest:.0f}/克 日{change_1d:+.2f}% 30日{change_30d:+.1f}% 年初至今{change_ytd:+.1f}%')
+                lines1.append(f'{label} ¥{latest:.0f}/克 日{change_1d:+.2f}% 30日{change_30d:+.1f}% 年初至今{change_ytd:+.1f}%')
                 lines1.append(f'  30日区间: ¥{low_30d:.0f}-¥{high_30d:.0f}')
             else:
                 # 假数据（演示用）
@@ -206,7 +214,7 @@ def generate_report_parts():
                     lines1.append('🛢️ 原油 ¥630/桶 日-3.27% 30日-1.7% 年初至今+49.4%')
                     lines1.append('  30日区间: ¥620-¥630')
         except Exception as e:
-            lines1.append(f'{emoji} {label} 错误: {e}')
+            lines1.append(f'{label} 错误: {e}')
     
     lines1.append("")
     
@@ -218,7 +226,7 @@ def generate_report_parts():
     results = [gold_result, oil_result]
     scores = []
     
-    for i, (emoji, label, name, key) in enumerate(instruments):
+    for i, (label, key) in enumerate(instruments):
         if i < len(results) and results[i]:
             r = results[i]
             score = r.get('score', 50)
@@ -230,17 +238,28 @@ def generate_report_parts():
             sig = r.get('signal_label', '+0')
             bar = score_to_bar(score)
             
-            lines1.append(f'{emoji} {label} {price}  {v_emoji}{verdict}')
+            lines1.append(f'{label} {price}  {v_emoji}{verdict}')
             lines1.append(f'{bar} {score}/100')
             lines1.append(f'技术面{tech} 宏观面{macro} 信号灯{sig}')
             lines1.append("")
     
     # 技术详解
     lines1.append('📈 技术详解')
-    for i, (emoji, label, name, key) in enumerate(instruments):
+    lines1.append("")
+    for i, (label, key) in enumerate(instruments):
         if i < len(results) and results[i] and key in data_dict:
             tech_detail = get_tech_detail(results[i], data_dict[key], key)
-            lines1.append(f'{emoji} {label}：{tech_detail}')
+            # 提炼关键结论
+            score = results[i].get('score', 50)
+            verdict, emoji = score_verdict(score)
+            lines1.append(f'{label}：{emoji} {verdict}')
+            # 关键信号（合并显示）
+            parts = tech_detail.split(' | ')
+            if len(parts) >= 3:
+                lines1.append(f'  {parts[0]} | {parts[1]} | {parts[2]}')
+            if len(parts) >= 4:
+                lines1.append(f'  支撑阻力：{parts[3]}')
+            lines1.append("")
     
     lines1.append("")
     
@@ -255,20 +274,14 @@ def generate_report_parts():
     risk_label = '极高风险' if risk_score >= 40 else '中等风险' if risk_score >= 20 else '低风险'
     lines1.append(f'🌍 地缘风险 +{risk_score}/100 {risk_label}')
     lines1.append(score_to_bar(risk_score))
-    lines1.append("")
     
     # PART 2：宏观信号灯 + 操作建议
     if scores:
         part2 = get_operation_advice(scores[0], scores[1] if len(scores) > 1 else 50)
-        lines2.append(part2)
-        lines2.append("")
+    else:
+        part2 = "💡 宏观信号灯\n\n信心:57 悲极 | VIX:19.2 平静|利差:0.52 正常| 信用:2.94 宽松\n\n⚠️ 数据获取失败，请稍后重试"
     
-    # 结论
-    lines2.append('结论: 消费信心57极低，避险利多黄金但技术面偏空，等信号灯转正。')
-    lines2.append("")
-    lines2.append('⚠️ 仅供参考，不构成投资建议')
-    
-    return "\n".join(lines1), "\n".join(lines2)
+    return "\n".join(lines1), part2
 
 def generate_report():
     """兼容旧接口，生成完整报告"""
@@ -278,9 +291,9 @@ def generate_report():
 if __name__ == '__main__':
     part1, part2 = generate_report_parts()
     
-    print("=== PART 1 ===")
+    # 直接输出完整内容（无 PART 分隔符）
     print(part1)
-    print("\n=== PART 2 ===")
+    print()
     print(part2)
     
     # 保存到文件

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-16T12:35:26.648Z",
+  "updatedAt": "2026-04-16T15:50:30.050Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -9,20 +9,22 @@
       "endLine": 186,
       "source": "memory",
       "snippet": "| 京东任务 | 7个 | 全部启用 | | JD Cookie | 2个 | 全部启用 | | **exec审批** | ⏳ 待官家重启Gateway | --- ## ⏰ 定时任务状态 ### Shell Crontab (9个) | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ✅ | | 21:00 | ai-summary | ✅ | | 12:10 | morning-review | ✅ | | 23:30 | daily-review | ✅ | | 02:00 | qmd-update | ✅ | | 02:10 | cleanup | ✅ | | 每小时:10 | error-stats | ✅ | | 周五18:10 | weekly-report | ✅ | | 周日23:00 | security-audit | ✅ | ### Gateway Cron (2个) | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ✅ | | 23:50 | daily-review:night | ✅ | --- ## ⚠️ 待处理事项 | 项目 | 状态 | |------|------| | Gateway exec免审批配置 | ⏳ 待官家重启Gateway | | QMD向量更新 | ⏳ 待Gateway重启后 | | Git提交+推送 | ⏳ 待Gateway重启后",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.6607977571354144,
+      "totalScore": 2.467442840995357,
       "maxScore": 0.8434463760167885,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
         "31b4deb62dd6",
-        "c1f8ef7f8e7f"
+        "c1f8ef7f8e7f",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-11",
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-16"
       ],
       "conceptTags": [
         "gateway",
@@ -42,20 +44,22 @@
       "endLine": 166,
       "source": "memory",
       "snippet": "| Git推送 | ✅ 已推送到xiaomijiao remote | | QMD向量库 | ✅ 801个文档，已更新 | ### ⏰ 定时任务执行情况 ### Shell Crontab | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | hotspot-collect | ✅ | | 21:00 | ai-summary | ⏳ 待执行 | | 每小时:10 | error-stats | ✅ | | 周五18:10 | weekly-report | ⏳ | ### Gateway Cron | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ✅ | | 23:50 | daily-review:night | ✅ 执行中 | ### 📈 数据复盘 **系统稳定性**：全天零故障，所有核心服务正常运行 **热点匹配度**：连续两日热点贴合度偏低，产品定位需要更精准 **运营策略**：坚持内容创作为主，热点为辅的策略 ### 🔄 记忆更新 - ✅ memory/2026-04-03.md 更新完成 - ✅ MEMORY.md 长期记忆保持v3.31 - ✅ 每日双时间点回顾机制运行正常 ### 📤 Git提交推送 - ✅ 提交信息：\"Day 11: 晚间回顾完成 - 热点采集、内容创作等待、系统正常运行\" - ✅ 推送到xiaomijiao remote成功 - ✅ 4个日志文件更新完成 ### 📚 QMD向",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.635721678219977,
+      "totalScore": 2.434312127808307,
       "maxScore": 0.8261576348344057,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
         "31b4deb62dd6",
-        "c1f8ef7f8e7f"
+        "c1f8ef7f8e7f",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-11",
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-16"
       ],
       "conceptTags": [
         "gateway",
@@ -75,20 +79,22 @@
       "endLine": 96,
       "source": "memory",
       "snippet": "| 21:00 | ai-summary | ⏳ | | 周五18:10 | weekly-report | ❌ 未执行，需补做 | ### Gateway Cron | 时间 | 任务 | 状态 | |------|------|------| | 12:00 | daily-review:midday | ⏳ | | 23:50 | daily-review:night | ⏳ | --- --- ## 📝 早间确认（08:16 周六） - 今日为周六，09:00热点采集待执行 - 周报补做：今日需完成（建议20:30前） - 内容创作：继续等官家指示 - 所有系统正常运行 *08:16 早间检查完成* ## 📝 午间回顾（12:03 Day 12） ### ✅ 完成事项检查 | 项目 | 状态 | |------|------| | 记忆文件 | ✅ 2026-04-04.md正常 | | 知识库索引 | ✅ 运营待办.md已更新 | | Git状态 | ✅ 工作区有6个文件待提交 | | QMD向量库 | ✅ 801个文档，更新成功 | | 系统健康度 | ✅ 所有核心服务正常运行 | ### 🔍 检查详情 1. **记忆文件**：今日记忆文件存在且结构完整 2. **知识库**：运营待办.md包含完整进度跟踪 3. **Git工作区**：有6个文件需要提交（日志、热点选题等） 4. **QMD向量库**：成功更新，801个文档索引正常 5. **待办更新**：已标记午间回顾完成项 ### 📈 当前状态 - 系统稳定性：✅ 全天零故障 - 热点",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.6328074749825192,
+      "totalScore": 2.4298797157147685,
       "maxScore": 0.8248066231876988,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-13T15:50:29.402Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
         "31b4deb62dd6",
-        "c1f8ef7f8e7f"
+        "c1f8ef7f8e7f",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-11",
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-16"
       ],
       "conceptTags": [
         "gateway",
@@ -108,18 +114,20 @@
       "endLine": 101,
       "source": "memory",
       "snippet": "|------|------|------| | 12:00 | daily-review:midday | ⏳ | | 23:50 | daily-review:night | ⏳ | --- *最后更新: 2026-04-03 08:16 | Day 11 启动* --- ## 📝 早间热点确认（09:16） - 热点采集 ✅ 09:00 百度热搜Top20已采集 - 今日日期：2026-04-03（周五） - 定时任务均正常运行 *09:16 早间检查完成* --- ## 📝 午间回顾（12:46 Day 11） ### 热点采集 - ✅ 09:00 百度热搜Top20采集完成（intel/热点选题.md） - 今日热点：四预警齐发（雷暴大风）、汽车销冠、伊朗局势、孙颖莎 - 贴合度评估：整体偏低，无>60%热点与蒸汽眼罩强关联 - 结论：继续\"打工人午睡神器\"方向 ### 系统状态 - GitHub限流测试推送：✅ 12:10成功 - Git工作区：051a724 午间日志提交 - 热点采集：✅ 09:00完成 ### 待处理 - 内容初稿：等官家指示方向 - 1688供应商：等官家确认 *12:46 午间回顾完成* --- ## 📝 晚间回顾（23:50 Day 11） *执行晚间回顾任务：全天工作总结、数据复盘、记忆更新、Git提交推送、QMD更新。输出回顾报告。* ### 🎯 今日完成事项 | 时间 | 任务 | 状态 | |------|------|------| | 09:00 | 热点采集 | ✅ 百度热搜Top2",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8041191567207324,
+      "totalScore": 1.5974210108265527,
       "maxScore": 0.8041191567207324,
       "firstRecalledAt": "2026-04-11T15:50:39.721Z",
-      "lastRecalledAt": "2026-04-11T15:50:39.721Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
-        "31b4deb62dd6"
+        "31b4deb62dd6",
+        "af6778b4e896"
       ],
       "recallDays": [
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-16"
       ],
       "conceptTags": [
         "qmd",
@@ -834,16 +842,17 @@
       "endLine": 258,
       "source": "memory",
       "snippet": "- **教训**: ⚠️ QQ Bot多账号时，每个账号看到的用户openid不同！ ### Cron定时任务最终状态 | 任务 | 时间 | 账号 | openid | 状态 | |------|------|------|--------|------| | oil-gold-daily | 09:05 | default | C099848... | ✅ ok | | oil-gold-daily-bot2 | 09:05 | bot2 | E7331F... | ✅ ok | | xhs-topic-ideation | 09:00 | bot2 | E7331F... | ✅ idle | | xhs-commerce-analytics | 20:30 | bot2 | E7331F... | ✅ idle | | jd-daily-report | 09:10 | default | C099848... | ✅ idle | --- *更新时间: 22:19 | Day 21*",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.690561029725936,
+      "totalScore": 2.517083388047994,
       "maxScore": 0.8626316561116923,
       "firstRecalledAt": "2026-04-13T15:50:29.402Z",
-      "lastRecalledAt": "2026-04-16T12:32:39.816Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
         "c1f8ef7f8e7f",
-        "7f4fa5069e5d"
+        "7f4fa5069e5d",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-13",
@@ -1671,16 +1680,17 @@
       "endLine": 125,
       "source": "memory",
       "snippet": "- [x] QMD向量库：943文件，2:00已更新 - [x] 运营待办更新 ### 黄金石油定时推送修复（09:16-11:52） - **根因**: Gateway cron 里根本没有创建黄金石油定时任务 - **修复**: 创建 `oil-gold-daily`（default）+ `oil-gold-daily-bot2`（bot2），每日09:05 - **模型配置**: 更新 agent defaults，去掉不可用的 longcat/bailian/minimax fallback - **问题**: cron isolated session 模型全挂（rate limit + model_not_found） - **解决**: 改为 session 模式，手动在主会话执行分析+推送 - **数据**: 黄金¥1048.36/克↑0.68%，SC原油¥637.3/桶↓0.42%，负相关-0.61 - **国际形势**: 中美关税升级+伊朗核谈判，已加入 cron prompt ### 京东日报定时推送（11:28-11:34） - 创建 `jd-daily-report` cron job（每日09:10推送到QQ default） - 手动推送一次：账号1农场94.67%即将成熟，账号2农场25.79% ### QQ Bot文件发送修复（13:12-13:22） - **问题**: `<qqmedia>` 标签文件不在 QQ Bot media 存储目录 - **正确目录**: `/root/.openclaw/media/qqbot/`（不是 `",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.601259778407174,
+      "totalScore": 2.403020148147809,
       "maxScore": 0.8026301529245558,
       "firstRecalledAt": "2026-04-16T07:03:34.441Z",
-      "lastRecalledAt": "2026-04-16T12:31:09.991Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
         "5d11b43834bb",
-        "c5bd73f64930"
+        "c5bd73f64930",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-16"
@@ -1765,15 +1775,16 @@
       "endLine": 229,
       "source": "memory",
       "snippet": "| oil-gold-daily | 09:05 | QQ default | ✅ | | oil-gold-daily-bot2 | 09:05 | QQ bot2 | ✅ | | jd-daily-report | 09:10 | QQ default | ✅ | | xhs-topic-ideation | 09:00 | bot2 | ✅ | | xhs-commerce-analytics | 20:30 | bot2 | ✅ | --- ## 📝 系统状态 | 项目 | 状态 | |------|------| | Gateway | ✅ 端口18789 | | QQ Bot | ✅ 2个账号（default: 102845238 + bot2: 1903724446） | | 模型 | zai/glm-5（主力），fallback已清理不可用模型 | | QMD向量库 | ✅ 943文件 | --- ## 📚 今日学到 1. **QQ Bot文件发送**: 必须放在 `/root/.openclaw/media/qqbot/` 目录才能发送 2. **淘宝桌面客户端**: 只支持 Windows/macOS，不支持 Linux 服务器 3. **cron isolated session**: 不继承 agent 模型配置，需要指定可用模型 4. **商贸技能优化**: 纯配置文件（模板/话术）优先于脚本开发 --- ### 淘宝桌面客户端API评估（14:26-14:29） - **技能安装**: taobao-native v1.0.43，",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.770104157696816,
-      "maxScore": 0.770104157696816,
+      "totalScore": 1.5746852838559915,
+      "maxScore": 0.8045811261591755,
       "firstRecalledAt": "2026-04-16T07:03:34.442Z",
-      "lastRecalledAt": "2026-04-16T07:03:34.442Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
-        "1376c8caf4d5"
+        "1376c8caf4d5",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-16"
@@ -1858,15 +1869,16 @@
       "endLine": 96,
       "source": "memory",
       "snippet": "- **输出**: `intel/模型切换方案-百炼主线.md`（完整解决方案文档） - **内容**: 根因分析 + 6步修复流程 + 防复发检查清单 ### 16:27-16:36 系统状态确认 - **智谱 API rate limit**: zai/glm-5 + zai/glm-5.1 + zai/glm-4.7 全部 429 - **Fallback 正常**: 百炼 qwen3.5-plus 已接管 - **今日失败 cron**: oil-gold-daily(10:00) + oil-gold-daily-bot2(10:00) + oil-gold-nightly(15:30) + oil-gold-nightly-bot2(15:30) + jd-daily-report(手动测试) + daily-review:midday(12:00) — 全部是 baseUrl 修正前的历史失败 ### 16:36- 结构化整理 + 查漏补缺 - 执行官家指令：对记忆、知识库、Git库、索引进行结构化整理 - 更新 MEMORY.md + memory/2026-04-16.md + Git 提交推送 + QMD 向量更新 --- ## ⚠️ 待解决 - [ ] 明天 09:00 验证百炼 cron 任务是否正常 - [ ] 部分 oil-gold cron 任务超时问题 - [ ] 选择1-2个选题进行内容创作 - [ ] 确认蒸汽眼罩1688供应商 - [ ] 准备产品实拍图 - [ ] 闲鱼上架 --- ## 📚 今日学到的关键知识 ### 百",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.797581504008085,
-      "maxScore": 0.797581504008085,
+      "totalScore": 1.6130457201100274,
+      "maxScore": 0.8154642161019424,
       "firstRecalledAt": "2026-04-16T09:23:26.342Z",
-      "lastRecalledAt": "2026-04-16T09:23:26.342Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
-        "b4fb4f39aabc"
+        "b4fb4f39aabc",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-16"
@@ -2076,15 +2088,16 @@
       "endLine": 204,
       "source": "memory",
       "snippet": "- **CLI命令**: `taobao-native <工具名> --args '<JSON>'` - **功能**: 搜索商品/加购物车/下单/催发货/开发票/旺旺聊天 - **要求**: 需要本地安装淘宝桌面版客户端 - **状态**: 技能文件已安装到 `skills/taobao-native/`，但无法在Linux服务器使用 - **解决方案**: 需官家在本地电脑（Windows/Mac）安装淘宝桌面版 --- ## 📋 待处理事项 ### 🔴 P0 - 商贸执行（阻塞） - [ ] 闲鱼上架3个商品（蒸汽眼罩）— 需官家执行 - [ ] 1688供应商确认 — 5家待选，需官家决定 - [ ] 产品图素材 — 3家供应商待回复 ### 🟡 P1 - 内容创作 - [ ] 发布首篇小红书笔记（蒸汽眼罩测评） - [ ] 小红书笔记2-3篇（颈椎按摩仪、养生花茶） - [ ] 数据复盘机制启动 ### 🟢 P2 - 系统维护 - [ ] Git未提交更改提交推送 - [ ] 淘宝API：等官家在本地电脑安装淘宝桌面版 --- ## 📝 Cron 任务列表 | 任务 | 时间 | 目标 | 状态 | |------|------|------|------| | oil-gold-daily | 09:05 | QQ default | ✅ | | oil-gold-daily-bot2 | 09:05 | QQ bot2 | ✅ | | jd-daily-report | 09:10 | QQ default | ✅ | | xhs-top",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8405608956543142,
+      "totalScore": 1.6555687997955053,
       "maxScore": 0.8405608956543142,
       "firstRecalledAt": "2026-04-16T12:32:39.816Z",
-      "lastRecalledAt": "2026-04-16T12:32:39.816Z",
+      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
       "queryHashes": [
-        "7f4fa5069e5d"
+        "7f4fa5069e5d",
+        "af6778b4e896"
       ],
       "recallDays": [
         "2026-04-16"

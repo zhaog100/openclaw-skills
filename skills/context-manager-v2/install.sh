@@ -21,7 +21,9 @@ chmod +x "$INSTALL_DIR/scripts/seamless-switch.sh"
 
 # 配置定时任务
 echo "⏰ 配置定时任务（每10分钟）..."
-(crontab -l 2>/dev/null | grep -v "seamless-switch.sh"; echo "*/10 * * * * $INSTALL_DIR/scripts/seamless-switch.sh >> $HOME/.openclaw/workspace/logs/seamless-switch-cron.log 2>&1") | crontab -
+LOG_DIR="$HOME/.openclaw/workspace/logs"
+mkdir -p "$LOG_DIR"
+(crontab -l 2>/dev/null | grep -v "seamless-switch.sh"; echo "*/10 * * * * $INSTALL_DIR/scripts/seamless-switch.sh >> $LOG_DIR/seamless-switch-cron.log 2>&1") | crontab -
 
 # 验证安装
 if [ -f "$INSTALL_DIR/scripts/seamless-switch.sh" ]; then

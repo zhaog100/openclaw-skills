@@ -82,6 +82,32 @@ else
 fi
 echo ""
 
+# 5.5. 配置 model-guard 定时守护
+echo "5.5️⃣ 配置 model-guard 定时守护..."
+read -p "是否配置 model-guard 守护（每5分钟清理模型锁定）？(y/n): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    GUARD_SCRIPT="$SKILL_DIR/scripts/model-guard.sh"
+    LOG_DIR="$HOME/.openclaw/workspace/logs"
+    GUARD_LOG="$LOG_DIR/model-guard.log"
+    CRON_GUARD="*/5 * * * * $GUARD_SCRIPT >> $GUARD_LOG 2>&1"
+    
+    # 检查是否已有旧的或新的 model-guard
+    if crontab -l 2>/dev/null | grep -q "model-guard.sh"; then
+        # 替换旧路径（如果存在）
+        crontab -l 2>/dev/null | grep -v "model-guard.sh" | crontab -
+        (crontab -l 2>/dev/null; echo "$CRON_GUARD") | crontab -
+        echo "✅ model-guard 已更新为技能内路径"
+    else
+        # 添加新任务
+        (crontab -l 2>/dev/null; echo "$CRON_GUARD") | crontab -
+        echo "✅ model-guard 守护已添加"
+    fi
+else
+    echo "ℹ️  跳过 model-guard 配置"
+fi
+echo ""
+
 # 6. 测试安装
 echo "6️⃣ 测试安装..."
 TEST_MESSAGE="分析一下旅行客平台的测试策略"
