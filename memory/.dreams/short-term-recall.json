@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-15T15:50:19.807Z",
+  "updatedAt": "2026-04-16T06:15:26.384Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -1373,6 +1373,68 @@
         "alpha",
         "vantage",
         "免费"
+      ]
+    },
+    "memory:memory/2026-04-15.md:1:40": {
+      "key": "memory:memory/2026-04-15.md:1:40",
+      "path": "memory/2026-04-15.md",
+      "startLine": 1,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "# 2026-04-15 运营日志 **日期**: 2026-04-15（周三） **时间**: 19:20 **维护**: 小米椒 🌶️‍🔥 **阶段**: Day 22 --- ## ✅ 今日完成 ### 系统状态确认 - **身份认知**: 小米椒 🌶️‍🔥，全域新媒体运营专家 - **远程仓库**: xiaomijiao-skills.git (main分支) - **Gateway端口**: 18789（小米椒独立Gateway） - **QQ Bot**: default(102845238) + bot2(1903724446) ### 模型配置修复 ⭐⭐⭐⭐⭐ - **修复时间**: 10:25-11:05 - **问题**: primary配置为bailian/glm-5，历史记录为bailian/qwen3.5-plus - **修复后配置**: - primary: bailian/qwen3.5-plus ✅ - fallbacks: bailian/kimi-k2.5 → bailian/MiniMax-M2.5 → zai/glm-4.7 → zai/glm-4.7-flash → bailian/glm-5 - **备份文件**: openclaw.json.bak.20260415_1025 - **Gateway状态**: ✅ 运行中（PID: 2020629, 端口: 18789） ### 定时任务状态 - **oil-gold任务**: 6个（双Bot全覆盖） - 10:00 早盘（default + bot",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8162229743932377,
+      "maxScore": 0.8162229743932377,
+      "firstRecalledAt": "2026-04-16T06:15:26.384Z",
+      "lastRecalledAt": "2026-04-16T06:15:26.384Z",
+      "queryHashes": [
+        "0f1f518f3d5a"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "gateway",
+        "备份",
+        "xiaomijiao-skills.git",
+        "25-11",
+        "primary配置为bailian/glm-5",
+        "历史记录为bailian/qwen3.5-plus",
+        "bailian/qwen3.5-plus",
+        "bailian/kimi-k2.5"
+      ]
+    },
+    "memory:memory/2026-04-07.md:98:129": {
+      "key": "memory:memory/2026-04-07.md:98:129",
+      "path": "memory/2026-04-07.md",
+      "startLine": 98,
+      "endLine": 129,
+      "source": "memory",
+      "snippet": "- **定时任务**: ✅ 7 个京东任务 + 热点采集 + AI 学习总结 - **QMD 知识库**: ⚠️ 待同步 - **记忆文件**: ✅ 已更新 ### 📈 今日核心数据 | 任务 | 状态 | 时间 | |------|------|------| | 热点采集 | ✅ | 09:00 | | 午间回顾 | ✅ | 12:00 | | 京东任务配置 | ✅ | 12:22 | | 百炼 API 配置 | ✅ | 17:24 | | 模型切换 | ✅ | 17:35 | | 晚间回顾 | ✅ | 23:50 | | 系统运行率 | 100% | - | ### 🎯 明日待办 1. 确认内容创作方向（蒸汽眼罩午睡神器） 2. 结合睡眠热点创作笔记（贴合度 70%） 3. 供应商确认产品图素材 4. Git 推送 + QMD 同步 5. 京东任务日常监控 ### 🔧 技术状态 - OpenClaw 版本：v2026.4.5 - 当前模型：bailian/qwen3.5-plus（百炼） - QMD 向量库：待同步 - Git 状态：5 个文件待提交 --- *12:00 午间回顾完成 | 23:50 晚间回顾完成*",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8118505962930539,
+      "maxScore": 0.8118505962930539,
+      "firstRecalledAt": "2026-04-16T06:15:26.384Z",
+      "lastRecalledAt": "2026-04-16T06:15:26.384Z",
+      "queryHashes": [
+        "0f1f518f3d5a"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "qmd",
+        "v2026.4.5",
+        "bailian/qwen3.5-plus",
+        "任务",
+        "热点",
+        "采集",
+        "学习",
+        "总结"
       ]
     }
   }

@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.54
-**最后更新**: 2026-04-14 12:20
+**版本**: v3.55
+**最后更新**: 2026-04-16 14:45
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -10,7 +10,7 @@
 
 | 项目 | 状态 |
 |------|------|
-| 阶段 | 执行期（Day 21） |
+| 阶段 | 执行期（Day 23） |
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
@@ -18,7 +18,7 @@
 | 卡点 | 1688供应商确认、产品图素材、闲鱼上架 |
 | Git | main分支，推送已恢复 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
-| Cron任务 | 13个（oil-gold 6 + xhs 4 + 回顾京东 3） |
+| Cron任务 | 13个（全部已改百炼模型） |
 | OpenClaw | v2026.4.10 |
 | 默认模型 | longcat/LongCat-Flash-Lite（优先消耗） |
 | 主力模型 | zai/glm-5.1（智谱） |
@@ -905,6 +905,20 @@
 - **关键词分级**: geopolitics风险评分从+95降到+50（更合理）
 - **新增**: FRED宏观数据(12项指标)+投资决策仪表盘+最终购买建议
 - **GitHub分支**: feat/github-marketing，小米粒🌾持续迭代中
+
+### 2026-04-16 模型反复切回智谱的根因 ⭐⭐⭐⭐⭐
+- **现象**: 配置文件 primary=bailian/qwen3.5-plus，但主会话和cron始终跑 zai/glm-5
+- **根因三层**: 
+  1. sessions.json 有 modelOverride=glm-5 + providerOverride=zai + liveModelSwitchPending=true
+  2. 会话 JSONL 历史里最后模型是 glm-5，Gateway 重启后从 JSONL 恢复
+  3. 全部13个 cron 任务 payload.model 硬编码 zai/glm-5，isolated session 里百炼 model_not_found
+- **修复**: 
+  - sessions.json 删除所有 override 字段
+  - openclaw.json auth.profiles 增加 bailian:default
+  - 13个 cron 任务 model 改为 bailian/qwen3.5-plus
+  - session_status 热切换
+- **残留风险**: Gateway 重启可能从 JSONL 恢复旧模型，需观察
+- **教训**: 模型切换不只是改配置文件，还要清理 session override + cron model + JSONL 历史
 
 ### 2026-04-13 淘宝桌面客户端API ⭐⭐⭐
 - **taobao-native**: v1.0.43，只支持Windows/macOS
