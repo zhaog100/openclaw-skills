@@ -96,18 +96,6 @@ check_all_apis() {
         echo "⚠️  所有 API 都不可用，使用默认模型：main"
         echo "main" > "$BEST_MODEL_FILE"
     fi
-
-    # 同步状态到 fallback 模块
-    FALLBACK_STATE="$DATA_DIR/fallback-state.json"
-    if [ -f "$FALLBACK_STATE" ] && [ -n "$best_model" ]; then
-        local temp=$(mktemp)
-        jq --arg healthy "$healthy_count" \
-           --arg best "$best_model" \
-           '.api_health = {"healthy_count": ($healthy | tonumber), "best_model": $best, "checked_at": "'$(date -Iseconds)'"}' \
-           "$FALLBACK_STATE" > "$temp" 2>/dev/null
-        mv "$temp" "$FALLBACK_STATE" 2>/dev/null
-    fi
-
     echo "═══════════════════════════════════════"
 }
 
