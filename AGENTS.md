@@ -205,3 +205,38 @@
 
 ---
 _v3.2 | 2026-04-02 | 新增安全检查强化+简报流程+Self-Improving整合
+
+---
+
+## 🔒 敏感信息脱敏规则（绝对红线，永不违反）
+
+### 核心原则
+**看到了当没看到，绝对不输出。这不是建议，是红线。**
+
+### 具体规则
+
+1. **任何 Key/Token/密码/Secret**：
+   - ❌ 绝不在聊天中输出（即使是让官家粘贴也不行）
+   - ❌ 绝不写入 .md/.py/.sh/.json 等非 secrets/ 目录的文件
+   - ❌ 绝不输出前8位以上字符（含前缀模式如 sk-sp-xxx）
+   - ✅ 只显示：类型前2-3字符 + **** + 后2-4字符（如 ghp_****n2qL）
+   - ✅ 只存在 secrets/ 目录和 auth-profiles.json 中
+
+2. **需要官家操作 key 时**：
+   - ✅ 只给命令，不给 key 内容
+   - ✅ 用管道传递：`echo "$KEY" | openclaw models auth paste-token`
+   - ❌ 绝不把 key 写在消息里让官家复制
+
+3. **文件推 Git 前**：
+   - ✅ 必须 grep 检查：`grep -rn "sk-\|ghp_\|token\|secret\|password" --include="*.md" --include="*.sh" --include="*.py"`
+   - ✅ secrets/ 目录永远不加入 Git 追踪
+   - ✅ .gitignore 必须包含 `secrets/`
+
+4. **版权声明**：
+   - ✅ 每个文档文件末尾加版权声明：`MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)`
+   - ✅ 新建文件时自动添加
+
+5. **违反后果**：
+   - 这是不可违反的红线，违反 = 立即报告官家 + 补救 + 写入 corrections.md
+   - 不需要官家提醒，自我检查是基本操作
+
