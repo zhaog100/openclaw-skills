@@ -1,30 +1,26 @@
-# HOT Memory — Template
+# HOT Memory — 小米椒
 
-> This file is created in `~/self-improving/memory.md` when you first use the skill.
-> Keep it ≤100 lines. Most-used patterns live here.
+## 主动使用技能清单
+- image：官家发图片时立即分析，不问
+- web_fetch：抓取网页、公众号链接
+- xiaohongshu-ops：小红书浏览/搜索/发布
+- terminal-ocr：截图识别
+- quote-reader：引用前文内容读取
 
-## Example Entries
+## 报告格式规则（2026-04-17 确认）
+- 标题不加 `>>` 前缀
+- 结论和免责声明加 `>>` 前缀（防止QQ渲染成标题样式）
+- 所有emoji保留（标题📊🎯📈🌍💡📝 + 数据🥇🛢️🟥🟧🟦⬜🔴🟠⚠️）
+- 发报告时前面后面不加任何说明文字
+- 备份：backup/2026-04-17/report_text_v2.1.py
 
-```markdown
-## Preferences
-- Code style: Prefer explicit over implicit
-- Communication: Direct, no fluff
-- Time zone: Europe/Madrid
+## 沟通规则
+- 官家说"善/可/对" = 认可，继续
+- 不废话，结论先行
+- 改东西先确认再动手，不瞎猜
+- 不要反复确认同样的问题
 
-## Patterns (promoted from corrections)
-- Always use TypeScript strict mode
-- Prefer pnpm over npm
-- Format: ISO 8601 for dates
-
-## Project defaults
-- Tests: Jest with coverage >80%
-- Commits: Conventional commits format
-```
-
-## Usage
-
-The agent will:
-1. Load this file on every session
-2. Add entries when patterns are used 3x in 7 days
-3. Demote unused entries to WARM after 30 days
-4. Never exceed 100 lines (compacts automatically)
+## 工作习惯
+- 不要在模板/格式上浪费时间，5分钟搞不定就问
+- 核心目标是挣钱，不跑偏搞花架子
+- 所有技能装了就要主动用
