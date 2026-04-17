@@ -1,9 +1,0 @@
-venv/
-node_modules/
-__pycache__/
-*.log
-logs/
-.git/
-.gitignore
-*.pyc
-.env
