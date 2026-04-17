@@ -12,10 +12,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import re
-import json
-import os
-from datetime import datetime, timedelta
-from pathlib import Path
+from datetime import datetime
 
 
 # ===== 地缘政治风险因子库 =====
@@ -110,46 +107,6 @@ OIL_KEYWORDS_BEARISH = ["增产", "OPEC增产", "需求疲软", "库存增加", 
 RELEVANCE_WORDS = ["黄金", "原油", "金价", "油价", "商品", "期货", "大宗", "避险",
                     "gold", "oil", "commodity", "crude", "OPEC", "通胀",
                     "能源", "贵金属", "矿产", "铜", "铝", "铁矿"]
-
-
-# ===== 缓存配置 =====
-CACHE_DIR = Path(__file__).parent.parent / "cache"
-CACHE_FILE = CACHE_DIR / "geopolitics_cache.json"
-CACHE_TTL = 30 * 60  # 30分钟（秒）
-
-
-def _load_cache():
-    """加载缓存"""
-    if not CACHE_FILE.exists():
-        return None
-    
-    try:
-        with open(CACHE_FILE, 'r', encoding='utf-8') as f:
-            cache = json.load(f)
-        
-        # 检查是否过期
-        timestamp = cache.get('timestamp', 0)
-        if datetime.now().timestamp() - timestamp > CACHE_TTL:
-            return None
-        
-        return cache
-    except Exception:
-        return None
-
-
-def _save_cache(lines, risk_score):
-    """保存缓存"""
-    try:
-        CACHE_DIR.mkdir(exist_ok=True)
-        cache = {
-            'timestamp': int(datetime.now().timestamp()),
-            'lines': lines,
-            'risk_score': risk_score
-        }
-        with open(CACHE_FILE, 'w', encoding='utf-8') as f:
-            json.dump(cache, f, ensure_ascii=False, indent=2)
-    except Exception:
-        pass  # 缓存失败不影响主流程
 
 
 def _match_keywords(text, keywords):
@@ -498,12 +455,6 @@ def assess_geopolitical_risk():
 
 def generate_geopolitical_section():
     """生成地缘政治分析部分（嵌入到每日报告中）"""
-    # 检查缓存
-    cache = _load_cache()
-    if cache:
-        return cache['lines'], cache['risk_score']
-    
-    # 缓存未命中，重新采集
     events, risk_score = assess_geopolitical_risk()
 
     lines = []
@@ -549,7 +500,4 @@ def generate_geopolitical_section():
     else:
         lines.append("    ✅ 地缘风险可控 → 回归技术面分析")
 
-    # 保存缓存
-    _save_cache(lines, risk_score)
-    
     return lines, risk_score

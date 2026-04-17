@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-16T15:50:30.050Z",
+  "updatedAt": "2026-04-17T01:06:34.366Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -660,13 +660,13 @@
       "endLine": 365,
       "source": "memory",
       "snippet": "**互动提问**: ``` 宝子们，你们午休都用什么神器？ 评论区告诉我，大家一起分享~ ``` **话题标签**: - 大标签×3：#办公室好物 #打工人必备 #平价好物 - 小标签×5：#蒸汽眼罩 #午休神器 #眼疲劳 #黑眼圈 #打工日常 - 长尾标签×3：#午休神器推荐 #蒸汽眼罩推荐 #办公室必备好物 --- #### 4️⃣ 私聊话术设计（商贸版） **文件**: `intel/私聊话术设计-2026-04-09.md` **引流话术（小红书→闲鱼）**: ``` 宝子，链接在小店~ 闲鱼搜\"蒸汽眼罩\"就能找到~ 或者看主页简介，有店铺链接哈~ ``` **咨询回复（闲鱼）**: ``` 亲，有的~ 今天下单明天发货哈~ 包邮，48小时内发货~ ``` **下单确认**: ``` 亲，收到订单啦~ 今天下单明天发货哈~ 48小时内发货，包邮~ ``` **发货通知**: ``` 亲，已经发货啦~ 单号是：[单号] 预计2-3天到，注意查收哈~ 收到满意的话记得好评，返现2元~ ``` **质量问题**: ``` 亲，不好意思哈~ 可以拍照片给我看看~ 如果是质量问题，支持退换的~ ``` **退换货**: ``` 亲，7天无理由退换哈~ 可以申请退款~ 运费我承担~ ``` **好评返现**: ``` 亲，好评后发给我截图~ 我返现2元哈~ 支持微信/支付宝~ ``` ---",
-      "recallCount": 7,
+      "recallCount": 8,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5.8220633472116115,
-      "maxScore": 0.833331818978756,
+      "totalScore": 6.656960441946968,
+      "maxScore": 0.8348970947353566,
       "firstRecalledAt": "2026-04-13T05:31:58.790Z",
-      "lastRecalledAt": "2026-04-16T12:35:19.957Z",
+      "lastRecalledAt": "2026-04-17T00:41:54.028Z",
       "queryHashes": [
         "5343d3d29491",
         "90250d7fa8d8",
@@ -674,12 +674,14 @@
         "b6ef335092b9",
         "32bb704261aa",
         "c5bd73f64930",
-        "a18f8dbd9ee3"
+        "a18f8dbd9ee3",
+        "fd01d8b66367"
       ],
       "recallDays": [
         "2026-04-13",
         "2026-04-15",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "intel/私聊话术设计-2026-04-09.md",
@@ -699,23 +701,25 @@
       "endLine": 126,
       "source": "memory",
       "snippet": "| 小红书方向 | ✅ 继续商贸（1688小红书闲鱼）| --- ## 📋 待办事项 ### 🟢 已确认（今日） - [x] **运营方向：继续商贸（1688小红书闲鱼）** - [x] **商贸规划：路径1688 → 小红书 → 闲鱼** - [x] **品类：蒸汽眼罩（P0）、颈椎按摩仪（P1）、养生花茶（P2）** - [x] **目标：月入¥15,000-43,000** - [x] **技能应用：xiaohongshu-ops-skill** - [x] **浏览器配置：全局使用OpenClaw内置浏览器** ### 🟡 待执行（明日） - [ ] 闲鱼上架3个商品（蒸汽眼罩10/20/30片装） - [ ] 发布首篇小红书笔记 - [ ] 每天运营（擦亮+回复咨询） - [ ] 建立数据复盘机制 --- ## 📝 重要记录 ### 1️⃣ 商贸规划历史（2026-03-25 到 2026-03-31） **制定时间**: 2026-03-31 15:05 **制定人**: 小米椒 **目标**: 月入 ¥15,000-43,000 **核心内容**： - ✅ 路径：1688 → 小红书 → 闲鱼 - ✅ 品类：蒸汽眼罩（P0）、颈椎按摩仪（P1）、养生花茶（P2） - ✅ 利润：单盒 ¥10-18，3个品类并行月利润 ¥19,500 - ✅ 7天启动计划（Day 1-30 规模化） - ✅ 供应商推荐：湖南品六生物、1688 源头工厂 - ✅ 闲鱼策略：阶梯定价（¥15.9/¥25.9/¥35.9）+ 擦亮 + 快速回复 **关键文件",
-      "recallCount": 5,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4.091925668578319,
-      "maxScore": 0.8194085779948128,
+      "totalScore": 4.912977149392241,
+      "maxScore": 0.8210514808139225,
       "firstRecalledAt": "2026-04-13T05:31:58.790Z",
-      "lastRecalledAt": "2026-04-16T12:35:19.957Z",
+      "lastRecalledAt": "2026-04-17T00:41:54.028Z",
       "queryHashes": [
         "5343d3d29491",
         "b6ef335092b9",
         "32bb704261aa",
         "c5bd73f64930",
-        "a18f8dbd9ee3"
+        "a18f8dbd9ee3",
+        "fd01d8b66367"
       ],
       "recallDays": [
         "2026-04-13",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "000-43",
@@ -770,23 +774,25 @@
       "endLine": 41,
       "source": "memory",
       "snippet": "# 📅 2026-03-29 运营日志（Day 6 | 周日） **维护**: 小米椒 🌶️‍🔥 **补建时间**: 2026-03-30 12:30 --- ## ✅ 完成事项 ### 周日例行任务 - [x] 系统休息日，无运营任务 - [x] Gateway 持续运行（端口 18790） - [ ] 未创建记忆文件（今日补建） ### 系统状态 - Git 工作区：干净 - Gateway：运行中 - QMD 向量库：上次更新 2026-03-26 --- ## 📊 今日数据 | 平台 | 笔记数 | 曝光 | 点赞 | 收藏 | 评论 | |------|--------|------|------|------|------| | 小红书 | 0 | - | - | - | - | | 抖音 | 0 | - | - | - | - | | 视频号 | 0 | - | - | - | - | --- ## 📝 备注 - 周日为系统休息日，无运营内容创作 - 待处理卡点：1688 供应商 + Perplexity API key + 产品图素材 - 下周一开始恢复正常运营流程 --- *补建时间: 2026-03-30 12:30*",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.3379527597288368,
+      "totalScore": 4.171246373094097,
       "maxScore": 0.8376556642875133,
       "firstRecalledAt": "2026-04-13T12:31:12.339Z",
-      "lastRecalledAt": "2026-04-16T12:35:26.648Z",
+      "lastRecalledAt": "2026-04-17T00:41:54.028Z",
       "queryHashes": [
         "f1a3f4c352f1",
         "37e1ef936c46",
         "32bb704261aa",
-        "4ee3e0287743"
+        "4ee3e0287743",
+        "fd01d8b66367"
       ],
       "recallDays": [
         "2026-04-13",
         "2026-04-15",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "gateway",
@@ -842,21 +848,23 @@
       "endLine": 258,
       "source": "memory",
       "snippet": "- **教训**: ⚠️ QQ Bot多账号时，每个账号看到的用户openid不同！ ### Cron定时任务最终状态 | 任务 | 时间 | 账号 | openid | 状态 | |------|------|------|--------|------| | oil-gold-daily | 09:05 | default | C099848... | ✅ ok | | oil-gold-daily-bot2 | 09:05 | bot2 | E7331F... | ✅ ok | | xhs-topic-ideation | 09:00 | bot2 | E7331F... | ✅ idle | | xhs-commerce-analytics | 20:30 | bot2 | E7331F... | ✅ idle | | jd-daily-report | 09:10 | default | C099848... | ✅ idle | --- *更新时间: 22:19 | Day 21*",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.517083388047994,
+      "totalScore": 3.3723395451865614,
       "maxScore": 0.8626316561116923,
       "firstRecalledAt": "2026-04-13T15:50:29.402Z",
-      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
+      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
       "queryHashes": [
         "c1f8ef7f8e7f",
         "7f4fa5069e5d",
-        "af6778b4e896"
+        "af6778b4e896",
+        "a14d75c97d90"
       ],
       "recallDays": [
         "2026-04-13",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "oil-gold-daily",
@@ -1038,18 +1046,20 @@
       "endLine": 214,
       "source": "memory",
       "snippet": "- **CRITICAL修复**: - 配置文件权限644 → 600 - plugins.allow 未设置 → 已添加白名单 - **AGENTS.md v3.1优化**: - 新增执行摘要规范 - 新增备份规范 - 新增ClawHavoc安全检查机制 - 新增小红书发布前检查清单（9项） - **定时任务新增**: 安全审计（周日23:00） - **Git状态**: 3个文件未提交（logs + intel/晚间回顾） ### 待完成 - [ ] Git提交 + 推送 - [ ] QMD向量同步 - [ ] MEMORY.md最终更新 --- ## ⏰ 16:15 定时任务优化实践 ⭐⭐⭐⭐⭐ - **优化目标**: 解决内容创作自动化缺失问题（11:00内容初稿提醒） - **方案选择**: 方案A（轻量级）- 保持对话触发机制， **暂不开发**完全自动化脚本 - **决策依据**: 1. Day 9已延误，优先立即解决业务问题 2. 核心任务是执行业务流程（供应商→内容→发布），不是打磨自动化工具 3. 渐进优化： 先用起来，跑1-2周后再考虑是否需要完全自动化 4. 降低风险: 避免过度工程化，保持灵活调整空间 - **部署结果**: cron服务正常运行，新配置已生效 - **定时任务**: 热点采集(09:00)、午间回顾(12:10)、晚间回顾(23:30)、QMD更新(02:00)、日志清理(02:10)、错误统计(每小时:10)、周报(周五18:10)",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8351849416525335,
-      "maxScore": 0.8351849416525335,
+      "totalScore": 1.673283468533245,
+      "maxScore": 0.8380985268807114,
       "firstRecalledAt": "2026-04-14T15:50:18.108Z",
-      "lastRecalledAt": "2026-04-14T15:50:18.108Z",
+      "lastRecalledAt": "2026-04-17T00:41:54.028Z",
       "queryHashes": [
-        "8af50db42314"
+        "8af50db42314",
+        "fd01d8b66367"
       ],
       "recallDays": [
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-17"
       ],
       "conceptTags": [
         "qmd",
@@ -1551,23 +1561,25 @@
       "endLine": 250,
       "source": "memory",
       "snippet": "- **状态**: 降为低优先级待办 - **文件**: `skills/taobao-native/` + `intel/淘宝API验证计划.md` ### 油黄金技能多次更新验证（18:21-22:10） - **4次从GitHub拉取更新**: feat/github-marketing分支 - **新增文件**: fetch_fred.py / fetch_alpha_vantage.py / fetch_twelve_data.py - **修复内容**: - geopolitics.py: 百度新闻→央视新闻（百度cookie限制） - advisor.py: yfinance→akshare自动回退 - advisor.py: 关键词分级评分（+95→+50，更合理） - advisor.py: 投资决策仪表盘（彩色进度条+最终购买建议） - **验证**: 5大板块全部通过（技术面/宏观面/信号灯/地缘/最终建议） - **数据**: 沪金¥1043.4 RSI70.4 观望54分 / 沪油¥658.0 RSI31.3 观望52分 ### QQ Bot推送修复（20:20-20:38）⭐⭐⭐⭐⭐ - **根因**: 不同QQ Bot看到同一用户的openid不同！ - default看到官家: C099848DC9A60BF60A7BE31626822790 - bot2看到官家: E7331F9772A02575890BBE94E788248A - **修复**: 所有bot2的cron任务openid已更新 - **验证**: 两",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4.91262116324194,
+      "totalScore": 5.729569485546419,
       "maxScore": 0.8346708097006563,
       "firstRecalledAt": "2026-04-16T07:03:25.300Z",
-      "lastRecalledAt": "2026-04-16T12:35:26.648Z",
+      "lastRecalledAt": "2026-04-17T00:41:54.028Z",
       "queryHashes": [
         "950a18518054",
         "b6ef335092b9",
         "c5bd73f64930",
         "7f4fa5069e5d",
         "a18f8dbd9ee3",
-        "4ee3e0287743"
+        "4ee3e0287743",
+        "fd01d8b66367"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "skills/taobao-native",
@@ -1744,18 +1756,20 @@
       "endLine": 99,
       "source": "memory",
       "snippet": "- **时区坑**：session 存 UTC 时间，北京时间 07:41 = UTC 前一天 23:41 - **方案**：新增 do_extract_chats() → 从 sessions.json 遍历所有 jsonl - **技能化**：multi-channel-memory v1.0.0 替换内嵌脚本，更完整（190条 vs 55条） - **输出**：agents/xiaomijiao/memory/chat-YYYY-MM-DD.md，标注通道来源 ### cron 脚本维护经验 ⭐⭐⭐⭐ - **line 228 bug**：grep -c 结果含换行，改为 `grep -c || true` - **远程仓库**：脚本里写 xiaomila-skills.git（错）→ xiaomijiao-skills.git（对） - **GitHub Token**：脚本里的 Token 与 git remote 需定期同步 ### 飞书云文档权限 ⭐⭐⭐ - docx:document:create 权限未开通，无法 API 创建云文档 - 需在飞书开放平台手动开通后发布新版本 ### 百炼 API Key 更新 ⭐⭐⭐ - 更新 openclaw.json 中的 apiKey 字段 - 需重启 Gateway 生效 - 重启方式：pkill -f openclaw-gateway，主程序自动拉起新进程 --- ## 📊 数据复盘 | 项目 | 状态 | |------|------| | 今日发布内容 | 无 | | 多通道消息提取 | ✅ 190",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7722911343179042,
-      "maxScore": 0.7722911343179042,
+      "totalScore": 1.579406557588535,
+      "maxScore": 0.8071154232706308,
       "firstRecalledAt": "2026-04-16T07:03:34.442Z",
-      "lastRecalledAt": "2026-04-16T07:03:34.442Z",
+      "lastRecalledAt": "2026-04-17T01:06:30.625Z",
       "queryHashes": [
-        "1376c8caf4d5"
+        "1376c8caf4d5",
+        "d80ff242d507"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "gateway",
@@ -1901,18 +1915,20 @@
       "endLine": 73,
       "source": "memory",
       "snippet": "- **Git状态**: 有未提交文件（intel/热点选题.md + knowledge-base/ 新文件 + self-improving/） --- ### 15:03-15:28 百炼 BaseUrl 根因修复 ⭐⭐⭐⭐⭐ - **官家反馈**: 模型又切回智谱（第N次） - **冲浪查文档**: 阅读 OpenClaw 官方 Model Failover 文档 + Models CLI 文档 - **真正根因发现**: 百炼 Coding Plan 套餐的 BaseUrl 不是默认的 `dashscope.aliyuncs.com`，而是 `coding.dashscope.aliyuncs.com/v1` - **之前误判**: 以为是 key 失效（其实 key 没问题，是地址不对导致 401） - **修复步骤**: 1. openclaw.json models.providers.bailian.baseUrl 改为 `https://coding.dashscope.aliyuncs.com/v1` 2. models.providers.bailian.models 补全 8 个模型数组（Coding Plan 套餐全量） 3. Fallback 链精简：百炼 5 个 + 智谱 4 个 + MiniMax 1 个 = 10 个 4. Session override 再次清理（33 个字段） 5. Auth-state cooldown 清理 6. Gateway 热加载生效 - **验证**: curl 直接测试百炼 AP",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.79114824459065,
-      "maxScore": 0.79114824459065,
+      "totalScore": 1.6234994339581539,
+      "maxScore": 0.8323511893675039,
       "firstRecalledAt": "2026-04-16T09:23:26.342Z",
-      "lastRecalledAt": "2026-04-16T09:23:26.342Z",
+      "lastRecalledAt": "2026-04-17T01:06:34.366Z",
       "queryHashes": [
-        "b4fb4f39aabc"
+        "b4fb4f39aabc",
+        "9306d074c718"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "failover",
@@ -1963,19 +1979,21 @@
       "endLine": 266,
       "source": "memory",
       "snippet": "- 分析近3篇笔记数据，提取高转化特征 - 测试评论区置顶引流方式 --- ✅ **执行摘要** - 任务目标：Day 22晚间回顾（工作总结、数据复盘、记忆更新、Git提交、QMD更新） - 完成情况：全部完成，系统运行正常 - 改动文件：memory/2026-04-15.md（新增晚间回顾部分） - Git提交：chore: Day 22晚间回顾+日志更新+记忆体系维护（已提交） - QMD更新：向量索引更新完成 - 下一步：等待官家确认方向（商贸 vs 科技测评），执行优化建议 --- *创建时间: 2026-04-15 10:25 | 更新: 2026-04-15 23:52*",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.754759365287696,
-      "maxScore": 0.877379682643848,
+      "totalScore": 2.6327216857197144,
+      "maxScore": 0.8779623204320184,
       "firstRecalledAt": "2026-04-16T12:30:33.964Z",
-      "lastRecalledAt": "2026-04-16T12:35:19.957Z",
+      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
       "queryHashes": [
         "b6ef335092b9",
-        "a18f8dbd9ee3"
+        "a18f8dbd9ee3",
+        "a14d75c97d90"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "qmd",
@@ -1995,18 +2013,20 @@
       "endLine": 148,
       "source": "memory",
       "snippet": "- **日志错误**: `Media path must be inside QQ Bot media storage` - **解决**: 复制文件到 `/root/.openclaw/media/qqbot/` 后发送成功 ### 小红书商贸技能优化（13:06-14:26） #### P0：纯配置文件优化（已完成） - ✅ 商贸内容模板 `examples/commerce/product-promo-template.md` - ✅ 跨平台协同话术 `examples/commerce/cross-platform-scripts.md` - ✅ 闲鱼上架文案 `examples/commerce/xianyu-listing-template.md` - ✅ SKILL.md 更新（新增商贸模式章节） - **触发词**: 1688选品/闲鱼上架/跨平台话术/商贸推广 #### P1：重要项（已完成） - ✅ AI封面图生成 `scripts/ai-cover-generator.py` - ✅ 定时选题灵感 cron `xhs-topic-ideation`（每日09:00） - ✅ 定时数据复盘 cron `xhs-commerce-analytics`（每日20:30） #### P2：优化项（已完成） - ✅ 1688选品脚本 `scripts/1688-selector.py`（已测试成功） - ✅ 产品素材管理 `scripts/asset-manager.py` - ✅ 数据复盘脚本 `scripts/commerce-analytics.py`",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8612013441968995,
-      "maxScore": 0.8612013441968995,
+      "totalScore": 1.7234067800221144,
+      "maxScore": 0.8622054358252149,
       "firstRecalledAt": "2026-04-16T12:32:39.816Z",
-      "lastRecalledAt": "2026-04-16T12:32:39.816Z",
+      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
       "queryHashes": [
-        "7f4fa5069e5d"
+        "7f4fa5069e5d",
+        "a14d75c97d90"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "openclaw/media/qqbot",
@@ -2026,18 +2046,20 @@
       "endLine": 80,
       "source": "memory",
       "snippet": "- 新增文件：config.py、multi_source.py、opportunity_scanner.py - 旧版备份：oil-gold-correlation.bak.20260414/ - 验证通过，report_text.py运行正常 ## 12:12-12:19 双Bot推送全覆盖 - oil-gold 6个任务已双Bot ✅ - xhs新增2个default版：xhs-topic-ideation-default + xhs-commerce-analytics-default - 最终13个定时任务： - oil-gold 6个（双Bot） - xhs 4个（双Bot） - 回顾+京东 3个（仅default） - 官家确认\"善\" ## 关键经验 - QQ Bot发图片用JPEG，不要用PNG RGBA - matplotlib ttc字体需提取为ttf - cron sessionTarget必须用isolated - cron prompt不要用cd &&复合命令 - MiniMax API endpoint是api.minimax.chat不是api.minimax.io - 图片方案调试成本高，纯文本更稳定高效 # 2026-04-14 运营日志 ## 07:02 oil-gold-correlation v1.5.5 安装 - 下载安装v1.5.5，发现fetch_data.py有语法bug（docstring重复导致SyntaxError） - 修复后运行成功，反馈给官家转给小米粒🌾 - v1.5.6发布后验证通过，bug已修复",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8468612615729753,
-      "maxScore": 0.8468612615729753,
+      "totalScore": 1.6947824917231729,
+      "maxScore": 0.8479212301501977,
       "firstRecalledAt": "2026-04-16T12:32:39.816Z",
-      "lastRecalledAt": "2026-04-16T12:32:39.816Z",
+      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
       "queryHashes": [
-        "7f4fa5069e5d"
+        "7f4fa5069e5d",
+        "a14d75c97d90"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "备份",
@@ -2057,18 +2079,20 @@
       "endLine": 131,
       "source": "memory",
       "snippet": "- qqmedia发图片问题：`sendMedia error: 富媒体文件格式不支持`（PNG RGBA→转JPEG解决） - **结论**：官家决定放弃图片，改纯文本+emoji进度条 ## 10:59-11:12 纯文本报告方案（最终版）⭐⭐⭐⭐⭐ - 新增 `scripts/report_text.py`（纯文本+emoji进度条） - 进度条颜色：🟥0-25→🟧25-40→🟦40-60→🟨60-75→🟩75-100 - 6个cron全部更新为新prompt - 手动测试成功，133秒完成，delivered确认 ## 11:22-11:26 推送时间按市场调整 - 10:00（日盘开盘1h）→ 15:30（日盘收盘后）→ 23:00（美股开盘30min后） - 冬令时适配脚本更新（sleep 60min，23:00→00:00） - 描述同步更新 ## 11:32-11:59 技能包GitHub部署 - 从GitHub feat/github-marketing分支下载新版 - 新增文件：config.py、multi_source.py、opportunity_scanner.py - 旧版备份：oil-gold-correlation.bak.20260414/ - 验证通过，report_text.py运行正常 ## 12:12-12:19 双Bot推送全覆盖 - oil-gold 6个任务已双Bot ✅ - xhs新增2个default版：xhs-topic-ideation-default + xhs-commerce-analytics-",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8468612615729753,
-      "maxScore": 0.8468612615729753,
+      "totalScore": 1.6947824917231729,
+      "maxScore": 0.8479212301501977,
       "firstRecalledAt": "2026-04-16T12:32:39.816Z",
-      "lastRecalledAt": "2026-04-16T12:32:39.816Z",
+      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
       "queryHashes": [
-        "7f4fa5069e5d"
+        "7f4fa5069e5d",
+        "a14d75c97d90"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "备份",
@@ -2088,19 +2112,21 @@
       "endLine": 204,
       "source": "memory",
       "snippet": "- **CLI命令**: `taobao-native <工具名> --args '<JSON>'` - **功能**: 搜索商品/加购物车/下单/催发货/开发票/旺旺聊天 - **要求**: 需要本地安装淘宝桌面版客户端 - **状态**: 技能文件已安装到 `skills/taobao-native/`，但无法在Linux服务器使用 - **解决方案**: 需官家在本地电脑（Windows/Mac）安装淘宝桌面版 --- ## 📋 待处理事项 ### 🔴 P0 - 商贸执行（阻塞） - [ ] 闲鱼上架3个商品（蒸汽眼罩）— 需官家执行 - [ ] 1688供应商确认 — 5家待选，需官家决定 - [ ] 产品图素材 — 3家供应商待回复 ### 🟡 P1 - 内容创作 - [ ] 发布首篇小红书笔记（蒸汽眼罩测评） - [ ] 小红书笔记2-3篇（颈椎按摩仪、养生花茶） - [ ] 数据复盘机制启动 ### 🟢 P2 - 系统维护 - [ ] Git未提交更改提交推送 - [ ] 淘宝API：等官家在本地电脑安装淘宝桌面版 --- ## 📝 Cron 任务列表 | 任务 | 时间 | 目标 | 状态 | |------|------|------|------| | oil-gold-daily | 09:05 | QQ default | ✅ | | oil-gold-daily-bot2 | 09:05 | QQ bot2 | ✅ | | jd-daily-report | 09:10 | QQ default | ✅ | | xhs-top",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.6555687997955053,
-      "maxScore": 0.8405608956543142,
+      "totalScore": 2.49722535299503,
+      "maxScore": 0.8416565531995247,
       "firstRecalledAt": "2026-04-16T12:32:39.816Z",
-      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
+      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
       "queryHashes": [
         "7f4fa5069e5d",
-        "af6778b4e896"
+        "af6778b4e896",
+        "a14d75c97d90"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "taobao-native",
@@ -2111,6 +2137,162 @@
         "oil-gold-daily",
         "oil-gold-daily-bot2",
         "jd-daily-report"
+      ]
+    },
+    "memory:memory/2026-04-01.md:212:238": {
+      "key": "memory:memory/2026-04-01.md:212:238",
+      "path": "memory/2026-04-01.md",
+      "startLine": 212,
+      "endLine": 238,
+      "source": "memory",
+      "snippet": "4. 降低风险: 避免过度工程化，保持灵活调整空间 - **部署结果**: cron服务正常运行，新配置已生效 - **定时任务**: 热点采集(09:00)、午间回顾(12:10)、晚间回顾(23:30)、QMD更新(02:00)、日志清理(02:10)、错误统计(每小时:10)、周报(周五18:10) - **关键原则**: 系统 crontab 只看不改，通过xiaomijiao-cron.sh脚本统一管理 - **教训**: 优化不是一蹴而就，先跑通业务流程再考虑自动化，避免过度工程化 --- ## ⏰ 17:05 OpenRouter 免费模型配置 ⭐⭐⭐⭐⭐ - **配置原因**: Qwen3.6-Plus Preview (100万上下文，完全免费) - **配置步骤**: 1. 注册 OpenRouter 账号 → 创建 API Key 2. 配置环境变量 + 更新 openclaw.json 3. 使用 jq 添加 apiKey 字段 - **模型信息**: - ID: qwen3.6-plus-preview:free - 名称: Qwen3.6-Plus-免费版 - 上下文: 100万 tokens - 费用: 当前完全免费 - 推理能力: 支持 - **使用方法**: 在 agents.defaults.model 中设置 `openrouter/qwen3.6-plus-preview:free` - **注意事项**: - 免费期可能随时结束, 关注 OpenRouter 官方通知 - 收集数据用于",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.6210597987685647,
+      "maxScore": 0.8105298993842823,
+      "firstRecalledAt": "2026-04-17T01:06:18.794Z",
+      "lastRecalledAt": "2026-04-17T01:06:30.625Z",
+      "queryHashes": [
+        "931a07800b23",
+        "d80ff242d507"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "qmd",
+        "router",
+        "通过xiaomijiao-cron.sh脚本统一管理",
+        "qwen3.6-plus",
+        "openclaw.json",
+        "qwen3.6-plus-preview",
+        "qwen3.6-plus-免费版",
+        "agents.defaults.model"
+      ]
+    },
+    "memory:memory/2026-04-16.md:260:281": {
+      "key": "memory:memory/2026-04-16.md:260:281",
+      "path": "memory/2026-04-16.md",
+      "startLine": 260,
+      "endLine": 281,
+      "source": "memory",
+      "snippet": "## 📚 今日学到的关键知识 ### 百炼 Coding Plan BaseUrl ⭐⭐⭐⭐⭐ - **教训**: 百炼 Coding Plan 套餐的 API 地址是 `coding.dashscope.aliyuncs.com/v1`，不是默认的 `dashscope.aliyuncs.com` - **影响**: 用错地址 → key 401 → 所有百炼模型 model_not_found → fallback 到智谱 - **方案**: openclaw.json 的 models.providers.bailian.baseUrl 必须设为 Coding Plan 专用地址 ### OpenClaw Model Failover 机制 ⭐⭐⭐⭐⭐ - **来源**: 官方文档 docs.openclaw.ai/concepts/model-failover - **流程**: primary 失败 → auth profile rotation → fallback 链逐个尝试 → 成功后写入 session override - **Session override**: fallback 成功后自动写入 modelOverride/providerOverride，锁定会话模型 - **改模型不只是改配置**: 要同时清理 session override + cron model + auth-state cooldown - **models.providers 配置**: 需要同时设 baseUrl 和 models 数组，否则 config inv",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8390529679546237,
+      "maxScore": 0.8390529679546237,
+      "firstRecalledAt": "2026-04-17T01:06:34.366Z",
+      "lastRecalledAt": "2026-04-17T01:06:34.366Z",
+      "queryHashes": [
+        "9306d074c718"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "failover",
+        "coding.dashscope.aliyuncs.com/v1",
+        "dashscope.aliyuncs.com",
+        "model-not-found",
+        "openclaw.json",
+        "models.providers.bailian.baseurl",
+        "modeloverride/provideroverride",
+        "auth-state"
+      ]
+    },
+    "memory:memory/2026-04-16.md:92:123": {
+      "key": "memory:memory/2026-04-16.md:92:123",
+      "path": "memory/2026-04-16.md",
+      "startLine": 92,
+      "endLine": 123,
+      "source": "memory",
+      "snippet": "## 📚 今日学到的关键知识 ### 百炼 Coding Plan BaseUrl ⭐⭐⭐⭐⭐ - **教训**: 百炼 Coding Plan 套餐的 API 地址是 `coding.dashscope.aliyuncs.com/v1`，不是默认的 `dashscope.aliyuncs.com` - **影响**: 用错地址 → key 401 → 所有百炼模型 model_not_found → fallback 到智谱 - **方案**: openclaw.json 的 models.providers.bailian.baseUrl 必须设为 Coding Plan 专用地址 ### OpenClaw Model Failover 机制 ⭐⭐⭐⭐⭐ - **来源**: 官方文档 docs.openclaw.ai/concepts/model-failover - **流程**: primary 失败 → auth profile rotation → fallback 链逐个尝试 → 成功后写入 session override - **Session override**: fallback 成功后自动写入 modelOverride/providerOverride，锁定会话模型 - **改模型不只是改配置**: 要同时清理 session override + cron model + auth-state cooldown - **models.providers 配置**: 需要同时设 baseUrl 和 models 数组，否则 config inv",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8365045065093367,
+      "maxScore": 0.8365045065093367,
+      "firstRecalledAt": "2026-04-17T01:06:34.366Z",
+      "lastRecalledAt": "2026-04-17T01:06:34.366Z",
+      "queryHashes": [
+        "9306d074c718"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "failover",
+        "coding.dashscope.aliyuncs.com/v1",
+        "dashscope.aliyuncs.com",
+        "model-not-found",
+        "openclaw.json",
+        "models.providers.bailian.baseurl",
+        "modeloverride/provideroverride",
+        "auth-state"
+      ]
+    },
+    "memory:memory/2026-04-16.md:156:181": {
+      "key": "memory:memory/2026-04-16.md:156:181",
+      "path": "memory/2026-04-16.md",
+      "startLine": 156,
+      "endLine": 181,
+      "source": "memory",
+      "snippet": "- **Git状态**: 有未提交文件（intel/热点选题.md + knowledge-base/ 新文件 + self-improving/） --- ### 15:03-15:28 百炼 BaseUrl 根因修复 ⭐⭐⭐⭐⭐ - **官家反馈**: 模型又切回智谱（第N次） - **冲浪查文档**: 阅读 OpenClaw 官方 Model Failover 文档 + Models CLI 文档 - **真正根因发现**: 百炼 Coding Plan 套餐的 BaseUrl 不是默认的 `dashscope.aliyuncs.com`，而是 `coding.dashscope.aliyuncs.com/v1` - **之前误判**: 以为是 key 失效（其实 key 没问题，是地址不对导致 401） - **修复步骤**: 1. openclaw.json models.providers.bailian.baseUrl 改为 `https://coding.dashscope.aliyuncs.com/v1` 2. models.providers.bailian.models 补全 8 个模型数组（Coding Plan 套餐全量） 3. Fallback 链精简：百炼 5 个 + 智谱 4 个 + MiniMax 1 个 = 10 个 4. Session override 再次清理（33 个字段） 5. Auth-state cooldown 清理 6. Gateway 热加载生效 - **验证**: curl 直接测试百炼 AP",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8323511893675039,
+      "maxScore": 0.8323511893675039,
+      "firstRecalledAt": "2026-04-17T01:06:34.366Z",
+      "lastRecalledAt": "2026-04-17T01:06:34.366Z",
+      "queryHashes": [
+        "9306d074c718"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "failover",
+        "gateway",
+        "intel/热点选题.md",
+        "knowledge-base",
+        "self-improving",
+        "03-15",
+        "dashscope.aliyuncs.com",
+        "coding.dashscope.aliyuncs.com/v1"
+      ]
+    },
+    "memory:memory/2026-04-16.md:234:264": {
+      "key": "memory:memory/2026-04-16.md:234:264",
+      "path": "memory/2026-04-16.md",
+      "startLine": 234,
+      "endLine": 264,
+      "source": "memory",
+      "snippet": "- **来源**: https://github.com/zhaog100/openclaw-skills/tree/feat/github-marketing/skills/oil-gold-correlation - **更新**: report_text.py v2.0（小米粒优化版，自动拆分双消息+分片文件输出） - **验证**: PART 1（497字符）+ PART 2（297字符）✅ - **备份**: backup/2026-04-16/oil-gold-correlation.bak ### 21:00 技能更新部署 ⭐⭐⭐⭐ - **智能模型切换 v1.6.0**: 从 GitHub feat/github-marketing 分支更新 - 新增 ai-proactive-check、load-balancer、context-switch-monitor 等脚本 - **长上下文管理 v2.6.0**: 从同一分支更新 - 70%阈值自动切换、分层读取优化 - **备份**: backup/2026-04-16/ 旧版已备份 - **已推送**: xiaomijiao main --- ## ⚠️ 待解决 - [ ] 明天 09:00 验证百炼 cron 任务是否正常 - [ ] 部分 oil-gold cron 任务超时问题 - [ ] 选择1-2个选题进行内容创作 - [ ] 确认蒸汽眼罩1688供应商 - [ ] 准备产品实拍图 - [ ] 闲鱼上架 - [ ] QQ Bot 文件发送功能不工作（发qqmedia标签官家收不到文件）",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8274799372534564,
+      "maxScore": 0.8274799372534564,
+      "firstRecalledAt": "2026-04-17T01:06:34.366Z",
+      "lastRecalledAt": "2026-04-17T01:06:34.366Z",
+      "queryHashes": [
+        "9306d074c718"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "report-text.py",
+        "v2.0",
+        "v1.6.0",
+        "feat/github-marketing",
+        "ai-proactive-check",
+        "load-balancer"
       ]
     }
   }
