@@ -907,22 +907,20 @@
 - **新增**: FRED宏观数据(12项指标)+投资决策仪表盘+最终购买建议
 - **GitHub分支**: feat/github-marketing，小米粒🌾持续迭代中
 
-### 2026-04-16 模型反复切回智谱的根因 ⭐⭐⭐⭐⭐
-- **现象**: 配置文件 primary=bailian/qwen3.5-plus，但主会话和cron始终跑 zai/glm-5
-- **根因（最终确认三层）**:
-  1. **百炼 BaseUrl 错误**: Coding Plan 套餐必须用 `coding.dashscope.aliyuncs.com/v1`，不是默认 `dashscope.aliyuncs.com` → 全部 401
-  2. **Fallback 链垃圾模型**: bailian 全挂 + longcat 无 auth，逐个失败滚到 zai/glm-5
-  3. **Session override 锁死**: Gateway fallback 成功后自动写入 modelOverride=zai/glm-5
-- **修复**（6步）:
-  1. models.providers.bailian.baseUrl 改为 Coding Plan 地址
-  2. models.providers.bailian.models 补全 8 个模型数组
-  3. Fallback 链精简为 10 个确认可用模型
-  4. sessions.json 清理 33 个 override 字段
-  5. auth-state.json 清理 cooldown
-  6. 13 个 cron 任务 model 统一为 bailian/qwen3.5-plus
-- **验证**: curl 测试百炼 API 成功，session_status 确认百炼接管
-- **文档**: intel/模型切换方案-百炼主线.md
-- **教训**: 百炼 Coding Plan 必须配专用 baseUrl；改模型要同步清理 override + cron + cooldown
+### 2026-04-17 百炼模型终极修复 ⭐⭐⭐⭐⭐
+- **现象**: 配置正确但 Gateway 始终 404，反复 fallback 到智谱
+- **真正根因（四层）**:
+  1. Provider 名 "bailian" 非内置名 → Gateway 不认识 → 404
+  2. 手动编辑 JSON 的 baseUrl 被 Gateway 用 .origin 丢掉 /v1 路径 → 404
+  3. Session override 锁死 fallback 模型
+  4. Auth profile cooldown 阻止重试
+- **最终修复**: `openclaw models auth add` → custom → modelstudio → default → 粘贴 key
+- **关键发现**:
+  - OpenClaw 内置百炼 provider 名 = "modelstudio"（不是 "bailian"）
+  - Gateway 内部映射: modelstudio → qwen（日志显示 provider=qwen）
+  - 手动编辑 JSON 的 baseUrl 会丢路径，必须用官方命令
+- **教训**: 改模型必须用 `openclaw models auth add`，不要手动编辑 JSON！
+- **文档**: intel/模型切换方案-百炼主线-v2.md
 
 ### 2026-04-13 淘宝桌面客户端API ⭐⭐⭐
 - **taobao-native**: v1.0.43，只支持Windows/macOS
