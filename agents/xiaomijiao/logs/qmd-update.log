@@ -962,3 +962,7 @@ Indexed: 0 new, 0 updated, 1014 unchanged, 0 removed
 ✓ All collections updated.
 
 Run 'qmd embed' to update embeddings (786 unique hashes need vectors)
+
+[2026-04-19 00:20:45] [evening-embed] 后台向量化任务完成 (运行 30 分钟，SIGTERM)
+[2026-04-19 00:20:45] [evening-embed] 状态：增量更新模式，剩余 786 hashes 待向量
+[2026-04-19 00:20:45] [evening-embed] 下次自动更新：02:00 AM
