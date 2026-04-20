@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-19T12:30:21.585Z",
+  "updatedAt": "2026-04-20T12:32:13.943Z",
   "entries": {
     "memory:memory/2026-04-02.md:130:186": {
       "key": "memory:memory/2026-04-02.md:130:186",
@@ -784,27 +784,29 @@
       "endLine": 41,
       "source": "memory",
       "snippet": "# 📅 2026-03-29 运营日志（Day 6 | 周日） **维护**: 小米椒 🌶️‍🔥 **补建时间**: 2026-03-30 12:30 --- ## ✅ 完成事项 ### 周日例行任务 - [x] 系统休息日，无运营任务 - [x] Gateway 持续运行（端口 18790） - [ ] 未创建记忆文件（今日补建） ### 系统状态 - Git 工作区：干净 - Gateway：运行中 - QMD 向量库：上次更新 2026-03-26 --- ## 📊 今日数据 | 平台 | 笔记数 | 曝光 | 点赞 | 收藏 | 评论 | |------|--------|------|------|------|------| | 小红书 | 0 | - | - | - | - | | 抖音 | 0 | - | - | - | - | | 视频号 | 0 | - | - | - | - | --- ## 📝 备注 - 周日为系统休息日，无运营内容创作 - 待处理卡点：1688 供应商 + Perplexity API key + 产品图素材 - 下周一开始恢复正常运营流程 --- *补建时间: 2026-03-30 12:30*",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5.171246373094097,
+      "totalScore": 6.171246373094097,
       "maxScore": 1,
       "firstRecalledAt": "2026-04-13T12:31:12.339Z",
-      "lastRecalledAt": "2026-04-19T12:30:21.581Z",
+      "lastRecalledAt": "2026-04-20T12:30:24.294Z",
       "queryHashes": [
         "f1a3f4c352f1",
         "37e1ef936c46",
         "32bb704261aa",
         "4ee3e0287743",
         "fd01d8b66367",
-        "c6f4c5d9c791"
+        "c6f4c5d9c791",
+        "ebcd5707fa80"
       ],
       "recallDays": [
         "2026-04-13",
         "2026-04-15",
         "2026-04-16",
         "2026-04-17",
-        "2026-04-19"
+        "2026-04-19",
+        "2026-04-20"
       ],
       "conceptTags": [
         "gateway",
@@ -862,23 +864,25 @@
       "endLine": 258,
       "source": "memory",
       "snippet": "- **教训**: ⚠️ QQ Bot多账号时，每个账号看到的用户openid不同！ ### Cron定时任务最终状态 | 任务 | 时间 | 账号 | openid | 状态 | |------|------|------|--------|------| | oil-gold-daily | 09:05 | default | C099848... | ✅ ok | | oil-gold-daily-bot2 | 09:05 | bot2 | E7331F... | ✅ ok | | xhs-topic-ideation | 09:00 | bot2 | E7331F... | ✅ idle | | xhs-commerce-analytics | 20:30 | bot2 | E7331F... | ✅ idle | | jd-daily-report | 09:10 | default | C099848... | ✅ idle | --- *更新时间: 22:19 | Day 21*",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.3723395451865614,
-      "maxScore": 0.8626316561116923,
+      "totalScore": 4.372339545186561,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-13T15:50:29.402Z",
-      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
+      "lastRecalledAt": "2026-04-20T12:32:13.943Z",
       "queryHashes": [
         "c1f8ef7f8e7f",
         "7f4fa5069e5d",
         "af6778b4e896",
-        "a14d75c97d90"
+        "a14d75c97d90",
+        "85ea08fe42a1"
       ],
       "recallDays": [
         "2026-04-13",
         "2026-04-16",
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-20"
       ],
       "conceptTags": [
         "oil-gold-daily",
@@ -1093,22 +1097,24 @@
       "endLine": 435,
       "source": "memory",
       "snippet": "| 东东农场 | ✅ | 浇水 50g，进度 21.56% | | 摇钱树 | ✅ | 脚本已修复 | | 京东种豆 | ⚠️ | 413 错误（活动周期） | | 领现金 | ✅ | 已修复路径 | | 宠汪汪 | 🔴 | 脚本缺失（已禁用） | --- ### 7️⃣ 美团 LongCat 大模型学习（16:16-16:58）⭐⭐⭐⭐⭐ **官方文档学习**：https://longcat.chat/platform/docs/zh/ **核心信息**： - **免费额度规则**： - LongCat-Flash-Lite：50,000,000 tokens/天/账号（固定） - 其他模型：500,000 tokens/天/账号 → 申请提升 → 5,000,000 tokens/天 - 每日凌晨（北京时间）自动刷新 - 未使用完的额度清零，不累积 - **支持模型**： | 模型 | 用途 | 最大输出 | |------|------|----------| | LongCat-Flash-Lite | 轻量、快速 | 320K | | LongCat-Flash-Chat | 对话、内容创作 | 256K | | LongCat-Flash-Thinking-2601 | 深度思考 | 256K | | LongCat-Flash-Omni-2603 | 多模态 | 8K | | LongCat-Flash-Chat-2602-Exp | 实验 | 256K | - **接入端点**： - OpenAI 格",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.4919453691848936,
-      "maxScore": 0.8320256393717667,
+      "totalScore": 3.4919453691848936,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-14T15:50:18.108Z",
-      "lastRecalledAt": "2026-04-16T09:23:46.871Z",
+      "lastRecalledAt": "2026-04-20T01:29:20.663Z",
       "queryHashes": [
         "8af50db42314",
         "5a93eeb92dcd",
-        "e914c769bdf2"
+        "e914c769bdf2",
+        "8032b0ae6a11"
       ],
       "recallDays": [
         "2026-04-14",
         "2026-04-15",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-20"
       ],
       "conceptTags": [
         "openai",
@@ -1454,18 +1460,20 @@
       "endLine": 40,
       "source": "memory",
       "snippet": "# 2026-04-15 运营日志 **日期**: 2026-04-15（周三） **时间**: 19:20 **维护**: 小米椒 🌶️‍🔥 **阶段**: Day 22 --- ## ✅ 今日完成 ### 系统状态确认 - **身份认知**: 小米椒 🌶️‍🔥，全域新媒体运营专家 - **远程仓库**: xiaomijiao-skills.git (main分支) - **Gateway端口**: 18789（小米椒独立Gateway） - **QQ Bot**: default(102845238) + bot2(1903724446) ### 模型配置修复 ⭐⭐⭐⭐⭐ - **修复时间**: 10:25-11:05 - **问题**: primary配置为bailian/glm-5，历史记录为bailian/qwen3.5-plus - **修复后配置**: - primary: bailian/qwen3.5-plus ✅ - fallbacks: bailian/kimi-k2.5 → bailian/MiniMax-M2.5 → zai/glm-4.7 → zai/glm-4.7-flash → bailian/glm-5 - **备份文件**: openclaw.json.bak.20260415_1025 - **Gateway状态**: ✅ 运行中（PID: 2020629, 端口: 18789） ### 定时任务状态 - **oil-gold任务**: 6个（双Bot全覆盖） - 10:00 早盘（default + bot",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8162229743932377,
-      "maxScore": 0.8162229743932377,
+      "totalScore": 1.8162229743932377,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-16T06:15:26.384Z",
-      "lastRecalledAt": "2026-04-16T06:15:26.384Z",
+      "lastRecalledAt": "2026-04-20T12:32:13.943Z",
       "queryHashes": [
-        "0f1f518f3d5a"
+        "0f1f518f3d5a",
+        "85ea08fe42a1"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-20"
       ],
       "conceptTags": [
         "gateway",
@@ -1579,13 +1587,13 @@
       "endLine": 250,
       "source": "memory",
       "snippet": "- **状态**: 降为低优先级待办 - **文件**: `skills/taobao-native/` + `intel/淘宝API验证计划.md` ### 油黄金技能多次更新验证（18:21-22:10） - **4次从GitHub拉取更新**: feat/github-marketing分支 - **新增文件**: fetch_fred.py / fetch_alpha_vantage.py / fetch_twelve_data.py - **修复内容**: - geopolitics.py: 百度新闻→央视新闻（百度cookie限制） - advisor.py: yfinance→akshare自动回退 - advisor.py: 关键词分级评分（+95→+50，更合理） - advisor.py: 投资决策仪表盘（彩色进度条+最终购买建议） - **验证**: 5大板块全部通过（技术面/宏观面/信号灯/地缘/最终建议） - **数据**: 沪金¥1043.4 RSI70.4 观望54分 / 沪油¥658.0 RSI31.3 观望52分 ### QQ Bot推送修复（20:20-20:38）⭐⭐⭐⭐⭐ - **根因**: 不同QQ Bot看到同一用户的openid不同！ - default看到官家: C099848DC9A60BF60A7BE31626822790 - bot2看到官家: E7331F9772A02575890BBE94E788248A - **修复**: 所有bot2的cron任务openid已更新 - **验证**: 两",
-      "recallCount": 7,
+      "recallCount": 8,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 5.729569485546419,
-      "maxScore": 0.8346708097006563,
+      "totalScore": 6.729569485546419,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-16T07:03:25.300Z",
-      "lastRecalledAt": "2026-04-17T00:41:54.028Z",
+      "lastRecalledAt": "2026-04-20T12:30:24.294Z",
       "queryHashes": [
         "950a18518054",
         "b6ef335092b9",
@@ -1593,11 +1601,13 @@
         "7f4fa5069e5d",
         "a18f8dbd9ee3",
         "4ee3e0287743",
-        "fd01d8b66367"
+        "fd01d8b66367",
+        "ebcd5707fa80"
       ],
       "recallDays": [
         "2026-04-16",
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-20"
       ],
       "conceptTags": [
         "skills/taobao-native",
@@ -1710,20 +1720,22 @@
       "endLine": 125,
       "source": "memory",
       "snippet": "- [x] QMD向量库：943文件，2:00已更新 - [x] 运营待办更新 ### 黄金石油定时推送修复（09:16-11:52） - **根因**: Gateway cron 里根本没有创建黄金石油定时任务 - **修复**: 创建 `oil-gold-daily`（default）+ `oil-gold-daily-bot2`（bot2），每日09:05 - **模型配置**: 更新 agent defaults，去掉不可用的 longcat/bailian/minimax fallback - **问题**: cron isolated session 模型全挂（rate limit + model_not_found） - **解决**: 改为 session 模式，手动在主会话执行分析+推送 - **数据**: 黄金¥1048.36/克↑0.68%，SC原油¥637.3/桶↓0.42%，负相关-0.61 - **国际形势**: 中美关税升级+伊朗核谈判，已加入 cron prompt ### 京东日报定时推送（11:28-11:34） - 创建 `jd-daily-report` cron job（每日09:10推送到QQ default） - 手动推送一次：账号1农场94.67%即将成熟，账号2农场25.79% ### QQ Bot文件发送修复（13:12-13:22） - **问题**: `<qqmedia>` 标签文件不在 QQ Bot media 存储目录 - **正确目录**: `/root/.openclaw/media/qqbot/`（不是 `",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.403020148147809,
-      "maxScore": 0.8026301529245558,
+      "totalScore": 3.403020148147809,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-16T07:03:34.441Z",
-      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
+      "lastRecalledAt": "2026-04-20T12:30:24.294Z",
       "queryHashes": [
         "5d11b43834bb",
         "c5bd73f64930",
-        "af6778b4e896"
+        "af6778b4e896",
+        "ebcd5707fa80"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-20"
       ],
       "conceptTags": [
         "gateway",
@@ -1807,19 +1819,21 @@
       "endLine": 229,
       "source": "memory",
       "snippet": "| oil-gold-daily | 09:05 | QQ default | ✅ | | oil-gold-daily-bot2 | 09:05 | QQ bot2 | ✅ | | jd-daily-report | 09:10 | QQ default | ✅ | | xhs-topic-ideation | 09:00 | bot2 | ✅ | | xhs-commerce-analytics | 20:30 | bot2 | ✅ | --- ## 📝 系统状态 | 项目 | 状态 | |------|------| | Gateway | ✅ 端口18789 | | QQ Bot | ✅ 2个账号（default: 102845238 + bot2: 1903724446） | | 模型 | zai/glm-5（主力），fallback已清理不可用模型 | | QMD向量库 | ✅ 943文件 | --- ## 📚 今日学到 1. **QQ Bot文件发送**: 必须放在 `/root/.openclaw/media/qqbot/` 目录才能发送 2. **淘宝桌面客户端**: 只支持 Windows/macOS，不支持 Linux 服务器 3. **cron isolated session**: 不继承 agent 模型配置，需要指定可用模型 4. **商贸技能优化**: 纯配置文件（模板/话术）优先于脚本开发 --- ### 淘宝桌面客户端API评估（14:26-14:29） - **技能安装**: taobao-native v1.0.43，",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.5746852838559915,
-      "maxScore": 0.8045811261591755,
+      "totalScore": 2.5746852838559917,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-16T07:03:34.442Z",
-      "lastRecalledAt": "2026-04-16T15:50:30.050Z",
+      "lastRecalledAt": "2026-04-20T12:32:13.943Z",
       "queryHashes": [
         "1376c8caf4d5",
-        "af6778b4e896"
+        "af6778b4e896",
+        "85ea08fe42a1"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-20"
       ],
       "conceptTags": [
         "gateway",
@@ -2134,21 +2148,23 @@
       "endLine": 204,
       "source": "memory",
       "snippet": "- **CLI命令**: `taobao-native <工具名> --args '<JSON>'` - **功能**: 搜索商品/加购物车/下单/催发货/开发票/旺旺聊天 - **要求**: 需要本地安装淘宝桌面版客户端 - **状态**: 技能文件已安装到 `skills/taobao-native/`，但无法在Linux服务器使用 - **解决方案**: 需官家在本地电脑（Windows/Mac）安装淘宝桌面版 --- ## 📋 待处理事项 ### 🔴 P0 - 商贸执行（阻塞） - [ ] 闲鱼上架3个商品（蒸汽眼罩）— 需官家执行 - [ ] 1688供应商确认 — 5家待选，需官家决定 - [ ] 产品图素材 — 3家供应商待回复 ### 🟡 P1 - 内容创作 - [ ] 发布首篇小红书笔记（蒸汽眼罩测评） - [ ] 小红书笔记2-3篇（颈椎按摩仪、养生花茶） - [ ] 数据复盘机制启动 ### 🟢 P2 - 系统维护 - [ ] Git未提交更改提交推送 - [ ] 淘宝API：等官家在本地电脑安装淘宝桌面版 --- ## 📝 Cron 任务列表 | 任务 | 时间 | 目标 | 状态 | |------|------|------|------| | oil-gold-daily | 09:05 | QQ default | ✅ | | oil-gold-daily-bot2 | 09:05 | QQ bot2 | ✅ | | jd-daily-report | 09:10 | QQ default | ✅ | | xhs-top",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.49722535299503,
-      "maxScore": 0.8416565531995247,
+      "totalScore": 3.49722535299503,
+      "maxScore": 1,
       "firstRecalledAt": "2026-04-16T12:32:39.816Z",
-      "lastRecalledAt": "2026-04-17T00:41:39.630Z",
+      "lastRecalledAt": "2026-04-20T12:32:13.943Z",
       "queryHashes": [
         "7f4fa5069e5d",
         "af6778b4e896",
-        "a14d75c97d90"
+        "a14d75c97d90",
+        "85ea08fe42a1"
       ],
       "recallDays": [
         "2026-04-16",
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-20"
       ],
       "conceptTags": [
         "taobao-native",
@@ -2355,18 +2371,20 @@
       "endLine": 103,
       "source": "memory",
       "snippet": "- **问题**: OpenClaw 服务无限重启（已重启 102 次） - **原因**: ExecStart 配置错误，缺少子命令 `gateway` - **修复**: 修改为 `ExecStart=/usr/bin/openclaw gateway` - **脚本**: `/tmp/service-fix.sh` 已准备好，等待执行 ### 4. GitHub Token 管理 ⭐⭐⭐ - **分类管理**: 不同用途使用不同 token - **存储位置**: `secrets/github-tokens.env` - **安全规则**: 不在记忆文件中记录完整 Token 值 ### 5. 完整路径规划制定 ⭐⭐⭐⭐⭐ - **目标拆解**: 月入¥15,000-43,000 → 日均45单 - **利润测算**: 3品类并行（蒸汽眼罩+颈椎按摩仪+养生花茶），月利润¥19,500 - **7天启动计划**: Day 1-2基础搭建 → Day 3-4内容测试 → Day 5-7放量验证 - **关键指标**: 曝光>1万/天，引流率>5%，转化率>3% - **输出文件**: `intel/路径规划-1688小红书闲鱼.md` ### 6. 飞书 Bot 权限修复 ⭐⭐⭐⭐ - **问题**: 飞书私聊配对失败（Error 99991672） - **原因**: 缺少 `contact:contact.base:readonly` 通讯录权限 - **解决**: 飞书开放平台 → 应用 → 权限管理 → 开通权限 → 发布新版本 - **结果**: 重启 G",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-04-19T12:30:21.581Z",
-      "lastRecalledAt": "2026-04-19T12:30:21.581Z",
+      "lastRecalledAt": "2026-04-20T12:30:24.294Z",
       "queryHashes": [
-        "c6f4c5d9c791"
+        "c6f4c5d9c791",
+        "ebcd5707fa80"
       ],
       "recallDays": [
-        "2026-04-19"
+        "2026-04-19",
+        "2026-04-20"
       ],
       "conceptTags": [
         "gateway",
@@ -2386,18 +2404,20 @@
       "endLine": 187,
       "source": "memory",
       "snippet": "4. **午间回顾完成**：系统检查+待办更新 ✅ 5. **smart-model-switch 更新**：v1.4.1 → v1.5.0 ✅ 6. **外贸系统化方法论集成**：记录+落地方案+AGENTS.md更新 ✅ 7. **记忆与Git整理**：4次提交，全部推送 ✅ --- ## 🌙 晚间回顾（23:50-23:52） ### 1️⃣ 全天工作总结 **核心任务完成**： - ✅ 系统状态全面检查（身份、仓库、Gateway、13个定时任务） - ✅ 模型配置修复为 bailian/qwen3.5-plus - ✅ 每日热点采集（百度热搜Top20）+ 选题推荐（5条） - ✅ smart-model-switch 更新 v1.4.1 → v1.5.0 - ✅ 外贸系统化方法论集成（知识库+AGENTS.md） - ✅ 商贸数据复盘完成（20:30） **知识库产出**： - 新增/更新知识库文件 5+ 篇（外贸方法论、客户开发、报价公式等） - 商贸数据复盘报告（knowledge-base/reviews/commerce-analytics-20260415.md） ### 2️⃣ 数据复盘核心结论 **小红书数据**（近7天）： - 曝光：2,650 | 点赞：105 | 收藏：90 | 评论：28 - 引流转化率：0.8%（↑0.1pp）| 互动率：8.3% **闲鱼成交**： - 浏览：198 | 咨询：31 | 成交：7 - 咨询→成交转化率：22.6%（↑0.9pp） - 成交额：¥171.3（↑44.6%）| 客单价：¥24.5",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-04-19T12:30:21.581Z",
-      "lastRecalledAt": "2026-04-19T12:30:21.581Z",
+      "lastRecalledAt": "2026-04-20T12:30:24.294Z",
       "queryHashes": [
-        "c6f4c5d9c791"
+        "c6f4c5d9c791",
+        "ebcd5707fa80"
       ],
       "recallDays": [
-        "2026-04-19"
+        "2026-04-19",
+        "2026-04-20"
       ],
       "conceptTags": [
         "gateway",
@@ -2470,6 +2490,161 @@
         "14-12",
         "25次/天",
         "goldapi.io"
+      ]
+    },
+    "memory:memory/2026-04-11.md:274:314": {
+      "key": "memory:memory/2026-04-11.md:274:314",
+      "path": "memory/2026-04-11.md",
+      "startLine": 274,
+      "endLine": 314,
+      "source": "memory",
+      "snippet": "**文件变更**: 43 个文件，+12,213 行 ### 📊 完成事项统计 | 类别 | 数量 | 亮点 | |------|------|------| | 热点监控 | 1 | 百度热搜19条采集 | | 模型策略 | 4 | 优先/主力/备用三层模型策略确立 | | 记忆整合 | 1 | 55条多通道消息整合 | | Public APIs 调研 | 24 | 7阶段19个工具全集成 ⭐ | | 本地工具安装 | 5 | 14个Python库+FFmpeg | | 云端API配置 | 4 | 4个API Key完成 | | 深度整理 | 5 | 知识库59个文件+索引更新 | | 部署清单 | 1 | 环境迁移部署清单v1.0 | | 系统配置 | 5 | 模型+Active Memory+版本更新 | | 晚间回顾 | 2 | 查漏补缺+本回顾 | ### 📈 关键指标 | 指标 | 数值 | 状态 | |------|------|------| | 系统运行时间 | 4h33m | ✅ 稳定 | | 磁盘使用 | 49%（23G/50G） | ✅ 正常 | | 内存使用 | 53%（1.0G/1.9G） | ✅ 正常 | | Docker容器 | qinglong (healthy) | ✅ 运行中 | | Gateway | 运行中 | ✅ | | QMD文档数 | 935 | ✅ 已同步 | | OpenClaw | v2026.4.10 | ✅ 最新 | | 默认模型 | LongCat-Flash-Lite | ✅ 优先消耗 | | 主力模型",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-20T01:29:20.663Z",
+      "lastRecalledAt": "2026-04-20T01:29:20.663Z",
+      "queryHashes": [
+        "8032b0ae6a11"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "优先/主力/备用三层模型策略确立",
+        "环境迁移部署清单v1.0",
+        "23g/50g",
+        "1.0g/1.9g",
+        "v2026.4.10",
+        "longcat-flash-lite"
+      ]
+    },
+    "memory:memory/2026-04-09.md:346:402": {
+      "key": "memory:memory/2026-04-09.md:346:402",
+      "path": "memory/2026-04-09.md",
+      "startLine": 346,
+      "endLine": 402,
+      "source": "memory",
+      "snippet": "可以拍照片给我看看~ 如果是质量问题，支持退换的~ ``` **退换货**: ``` 亲，7天无理由退换哈~ 可以申请退款~ 运费我承担~ ``` **好评返现**: ``` 亲，好评后发给我截图~ 我返现2元哈~ 支持微信/支付宝~ ``` --- ### 5️⃣ OpenClaw 升级（11:24） **升级前**: 2026.4.5 **升级后**: 2026.4.9 **备份文件**: `~/.openclaw/openclaw.json.bak.20260409_1124` **安全修复**: SSRF 绕过防护、.env 注入防护 **Gateway 状态**: 正常运行 --- ### 6️⃣ 京东任务脚本修复（13:46）⭐⭐⭐ **问题发现**: - 摇钱树任务报错：`jd_moneyTree.js` 不存在 - 宠汪汪任务报错：`jd_joy.js` 不存在 **修复方案**: | 任务 | 原脚本 | 替代脚本 | 处理 | |------|--------|----------|------| | 摇钱树 | `jd_moneyTree.js` ❌ | `jd_yqs.js` ✅ | 已替换 | | 宠汪汪 | `jd_joy.js` ❌ | 无替代 | 已禁用 | **执行结果**: | 任务 | 状态 | 结果 | |------|------|------| | 京豆变动通知 | ✅ | 账号 2 新增 5 京豆 | | 每日签到 | ⚠️ | 活动拥挤（可重试） | | 东东农场 | ✅ | 浇水 50g，进度 21.56%",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-20T01:29:20.663Z",
+      "lastRecalledAt": "2026-04-20T01:29:20.663Z",
+      "queryHashes": [
+        "8032b0ae6a11"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "gateway",
+        "备份",
+        "支持微信/支付宝",
+        "2026.4.5",
+        "2026.4.9",
+        "jd-moneytree.js",
+        "jd-joy.js",
+        "jd-yqs.js"
+      ]
+    },
+    "memory:memory/2026-04-19.md:87:101": {
+      "key": "memory:memory/2026-04-19.md:87:101",
+      "path": "memory/2026-04-19.md",
+      "startLine": 87,
+      "endLine": 101,
+      "source": "memory",
+      "snippet": "| 小红书曝光 | 4,480 | +2.7% | | 闲鱼成交 | 14 单 | +16.7% | | 成交额 | ¥343.0 | +16.7% | | 时薪 ROI | ¥52.77/h | +7.7% | | 整体转化率 | 0.31% | +10.7% | ### 🎯 明日优先级 1. P0: 发布 2 篇新笔记（晚 8-10 点） 2. P1: 强化引流路径（主页简介 + 评论区置顶） 3. P2: 拓展 SKU 上架测试 --- *晚间回顾完成 by daily-review:night cron task*",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-20T12:30:24.294Z",
+      "lastRecalledAt": "2026-04-20T12:30:24.294Z",
+      "queryHashes": [
+        "ebcd5707fa80"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "2.7",
+        "16.7",
+        "343.0",
+        "52.77/h",
+        "7.7",
+        "0.31",
+        "10.7",
+        "8-10"
+      ]
+    },
+    "memory:memory/2026-03-27.md:114:142": {
+      "key": "memory:memory/2026-03-27.md:114:142",
+      "path": "memory/2026-03-27.md",
+      "startLine": 114,
+      "endLine": 142,
+      "source": "memory",
+      "snippet": "4. 晚间：首篇笔记发布测试 --- ## 📝 系统配置 - **工作区**: `~/.openclaw-xiaomijiao/workspace/` - **模型**: `zai/glm-5` ✅ - **Git Remote**: `origin` + `xiaomijiao` - **QQ Bot**: ✅ `xiaomijiao` 账号独立 - **飞书 Bot**: ❌ 已移除 - **QMD 知识库**: ✅ 独立 collection（26 个文档） - **Gateway 端口**: 18789（共享） --- ## 🔧 今日技术问题 ### 19:00-19:30 微信 Bot 问题排查 - **初判**: 配置被移除，尝试恢复配置 - **澄清**: 小米辣确认是插件 TypeScript 编译失败，缺少 `openclaw/plugin-sdk/channel-config-schema` 模块 - **结论**: 配置移除是正确的，需要等插件作者修复 - **插件版本**: `@tencent-weixin/openclaw-weixin@2.0.1` ### 18:00-18:20 系统配置优化 - **模型切换成功**: `zai/glm-5` ✅ - **飞书 Bot 移除**: 从 openclaw.json 中移除 channels.feishu 和 plugins.feishu ✅ - **QMD 知识库独立**: 创建 `xiaomijiao` collection（26 个文档）✅ - **MEMORY.md 更新**: 移",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-20T12:32:02.665Z",
+      "lastRecalledAt": "2026-04-20T12:32:02.665Z",
+      "queryHashes": [
+        "a083b303542a"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "openclaw-xiaomijiao/workspace",
+        "zai/glm-5",
+        "00-19",
+        "tencent-weixin/openclaw-weixin",
+        "2.0.1",
+        "00-18"
+      ]
+    },
+    "memory:memory/2026-04-12.md:24:49": {
+      "key": "memory:memory/2026-04-12.md:24:49",
+      "path": "memory/2026-04-12.md",
+      "startLine": 24,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "- **交付问题**: 飞书不支持发文件附件，代码块复制不了 - **最终方案**: 推送到GitHub，官家从Raw链接下载 - **Git推送**: 提交 4b290f5，推送到 xiaomijiao main ### 2. QQ Bot 新增配置（12:49-12:56）⭐⭐⭐⭐ - **Bot 1**: appId 102845238（官家新提供） - **Bot 2**: appId 1903724446（官家追加） - **配置**: openclaw.json channels.qqbot 改为数组，支持多Bot - **备份**: openclaw.json.bak.20260412_1251 - **Gateway重启**: pkill 后自动拉起，PID 548656 - **注意**: QQ Bot 从单对象改为数组格式 ### 3. 系统环境检查 + 磁盘清理（14:02-14:10）⭐⭐⭐⭐ - 系统运行正常：内存可用1.0G、磁盘49%、Gateway正常、青龙healthy - 京东7个任务全部正常执行 - 磁盘清理：pip缓存2.7G + npm缓存1.1G + journal 463M + apt缓存280M - 清理后磁盘：23G(49%) → 19G(40%)，释放约4G ### 4. 石油黄金技能安装与诊断（14:15-15:24）⭐⭐⭐⭐⭐ - **安装**: 从 GitHub sparse clone oil-gold-correlation v1.0.0（小米粒🌾） - **修复**: 6个.py脚本头部docstring缺",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-20T12:32:02.665Z",
+      "lastRecalledAt": "2026-04-20T12:32:02.665Z",
+      "queryHashes": [
+        "a083b303542a"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "gateway",
+        "备份",
+        "49-12",
+        "openclaw.json",
+        "channels.qqbot",
+        "openclaw.json.bak.20260412-1251",
+        "02-14",
+        "内存可用1.0g"
       ]
     }
   }
