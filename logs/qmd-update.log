@@ -16,3 +16,14 @@
   新增: 0
   更新: 0
   未变化: 109
+Updating 1 collection(s)...
+
+[1/1] xiaomijiao (**/*.md)
+Collection: /root/.openclaw/workspace (**/*.md)
+
+Indexed: 8 new, 2 updated, 1054 unchanged, 0 removed
+Cleaned up 2 orphaned content hash(es)
+
+✓ All collections updated.
+
+Run 'qmd embed' to update embeddings (659 unique hashes need vectors)

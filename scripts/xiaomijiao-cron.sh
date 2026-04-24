@@ -65,7 +65,7 @@ do_git_push() {
 
     # 推送到 xiaomijiao remote（main 分支）
     CURRENT_BRANCH=$(git branch --show-current 2>/dev/null || echo "main")
-    if git push xiaomijiao "$CURRENT_BRANCH" >> "$LOG_DIR/git.log" 2>&1; then
+    if GIT_LFS_SKIP_PUSH=1 git -c http.version=HTTP/1.1 push xiaomijiao "$CURRENT_BRANCH" >> "$LOG_DIR/git.log" 2>&1; then
         log "✅ 已推送到 xiaomijiao remote main"
     else
         log "⚠️ 推送失败（网络？），下次重试"
