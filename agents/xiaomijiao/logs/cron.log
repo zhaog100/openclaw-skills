@@ -1178,3 +1178,16 @@
 [2026-04-24 18:10:01] [weekly-report] ===== 每周运营总结开始 =====
 [2026-04-24 18:10:01] [error-stats] 📊 今日错误: 1
 [2026-04-24 18:10:01] [weekly-report] ✅ 周报已生成: /root/.openclaw/workspace/agents/xiaomijiao/memory/weekly-2026-04-24.md
+[2026-04-24 18:10:01] [weekly-report] ✅ Git 已提交
+[2026-04-24 18:10:02] [weekly-report] ⚠️ 推送失败（网络？），下次重试
+[2026-04-24 18:10:02] [weekly-report] 更新 QMD 向量索引...
+[2026-04-24 18:10:05] [weekly-report] ✅ QMD 更新完成
+[2026-04-24 18:10:05] [weekly-report] ===== 每周运营总结完成 =====
+[2026-04-24 19:10:01] [error-stats] 📊 今日错误: 2
+[2026-04-24 20:10:01] [error-stats] 📊 今日错误: 2
+[2026-04-24 21:00:01] [ai-summary] ===== 每晚AI学习总结开始（21:00）=====
+[2026-04-24 21:00:01] [ai-summary] ✅ 学习总结模板已创建: /root/.openclaw/workspace/agents/xiaomijiao/memory/ai学习-2026-04-24.md
+[2026-04-24 21:00:01] [ai-summary] ✅ 学习总结已提交
+[2026-04-24 21:00:01] [ai-summary] ===== 每晚AI学习总结完成 =====
+[2026-04-24 21:10:01] [error-stats] 📊 今日错误: 2
+[2026-04-24 22:10:01] [error-stats] 📊 今日错误: 2

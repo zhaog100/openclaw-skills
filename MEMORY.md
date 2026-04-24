@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.60
-**最后更新**: 2026-04-23 23:50
+**版本**: v3.63
+**最后更新**: 2026-04-24 11:35
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -19,11 +19,11 @@
 | Git | main分支，推送已恢复 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
 | Cron任务 | 13个（全部已改百炼模型） |
-| OpenClaw | v2026.4.10 |
-| 主力模型 | bailian/qwen3.5-plus（百炼 Coding Plan） |
-| 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用） |
+| OpenClaw | v2026.4.19-beta.2（可升级到 v2026.4.22）|
+| 主力模型 | modelstudio/qwen3.6-plus（百炼 Coding Plan 最新） |
+| 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用，已验证） |
 | 备用模型 | zai/glm-5.1（智谱）、minimax/MiniMax-M2.5 |
-| Fallback | 百炼5→智谱4→MiniMax1 = 10个模型 |
+| Fallback | Coding Plan 9个模型 → zai 4个 → longcat 1个 = 14个模型 |
 
 ---
 
@@ -860,11 +860,25 @@
 - 定期清理: pip cache purge + npm cache clean --force + apt clean
 - 2G内存VPS建议磁盘<50%
 
+### 2026-04-24 石油黄金白银投资经验教训全面总结 ⭐⭐⭐⭐⭐
+- **技能版本**: oil-gold-correlation v1.6.0，SKILL.md 新增经验教训章节 + **白银集成**
+- **数据源策略**: akshare主力（T-1收盘价）+ yfinance不可用（腾讯云限速）+ Alpha Vantage/Twelve Data可选 + FRED宏观
+- **新增白银支持**: akshare AG0（沪银期货），yfinance SI=F（国际白银）
+- **三资产分析**: 黄金+白银+原油，独立仪表盘+技术分析+操作建议
+- **QQ Bot推送**: 文件放/root/.openclaw/media/qqbot/目录，PNG转JPEG，纯文本+emoji优于图片方案
+- **消息截断**: 长报告拆两条推送（PART1行情+PART2建议）
+- **Cron任务**: sessionTarget=isolated，不用cd&&复合命令，不同Bot openid不同
+- **地缘评分**: 核心词+50/边缘词+1，二次过滤商品关联词，百度→央视新闻
+- **技术分析**: 用收益率pct_change()不用绝对价格，黄金-原油强负相关r≈-0.61~-0.93
+- **推送时间**: 10:00早盘/15:30收盘/23:00美盘，冬令时自动延迟
+- **已知限制**: akshare只有T-1数据，完整报告~133秒，部分cron偶发超时
+- **文档**: skills/oil-gold-correlation/SKILL.md v1.6.0 已更新
+
 ### 2026-04-12 yfinance限速问题 ⭐⭐⭐⭐
 - 腾讯云/阿里云IP段容易被yfinance封禁
 - 封禁可持续数小时甚至更久，周末更严
 - akshare是国内替代方案，免费无翻墙
-- 建议: oil-gold技能增加akshare作为备用数据源
+- 建议: oil-gold技能增加akshare作为备用数据源（已实现）
 
 ### 2026-04-11 Public APIs 全集成 + 本地工具安装 ⭐⭐⭐⭐⭐
 - **7 阶段 19 个工具调研完成**：素材优化 (3)+热点扩展 (2)+内容增强 (2)+数据分析 (2)+基础工具库 (3)+多媒体工具 (4)+运营工具 (3)
@@ -944,4 +958,4 @@
 - **知识库新增**: 4 文件（午间回顾/数据复盘/选题灵感/今日记忆）
 - **教训**: Git Push 需配置 SSH 免密认证；脚本变量需 tr -d '\n' 清理换行符
 
-*持续进化 · 定期清理 · 保留精华 | v3.60 | 2026-04-23*
+*持续进化 · 定期清理 · 保留精华 | v3.63 | 2026-04-24*

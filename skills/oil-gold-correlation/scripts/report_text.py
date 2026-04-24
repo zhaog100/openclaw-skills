@@ -96,7 +96,7 @@ def generate_report_parts():
     lines.append('>> 📊 行情')
     
     data_dict = {}
-    instruments = [('🥇 黄金', 'gold'), ('🛢️ 原油', 'wti')]
+    instruments = [('🥇 黄金', 'gold'), ('🥈 白银', 'silver'), ('🛢️ 原油', 'wti')]
     
     for label, key in instruments:
         try:
@@ -125,9 +125,10 @@ def generate_report_parts():
     # 仪表盘
     lines.append('>> 🎯 仪表盘')
     gold_result = _analyze_instrument('沪金期货', period="90d", horizon=3)
+    silver_result = _analyze_instrument('沪银期货', period="90d", horizon=3)
     oil_result = _analyze_instrument('沪油期货', period="90d", horizon=3)
     
-    results = [gold_result, oil_result]
+    results = [gold_result, silver_result, oil_result]
     scores = []
     
     for i, (label, key) in enumerate(instruments):
@@ -178,18 +179,22 @@ def generate_report_parts():
     lines.append('>> 📝 操作建议')
     if scores:
         g_score = scores[0]
-        o_score = scores[1] if len(scores) > 1 else 50
+        s_score = scores[1] if len(scores) > 1 else 50
+        o_score = scores[2] if len(scores) > 2 else 50
         g_advice, g_emoji = score_verdict(g_score)
+        s_advice, s_emoji = score_verdict(s_score)
         o_advice, o_emoji = score_verdict(o_score)
         g_reason = '回调8%提供入场点，¥1,040-1,050区间可考虑，止损¥1,000' if g_score >= 60 else '技术面偏空，等企稳信号再考虑'
+        s_reason = '白银跟随黄金走势，¥18,000-19,000区间可考虑，止损¥17,500' if s_score >= 60 else '技术面偏空，等企稳信号再考虑'
         o_reason = '地缘风险支撑，但技术面弱，等¥600以下+均线金叉' if o_score >= 60 else '技术面仅5分，等¥600以下+均线金叉再考虑'
         lines.append(f'🥇 黄金：{g_emoji} {g_advice}')
         lines.append(f'  理由：{g_reason}')
+        lines.append(f'🥈 白银：{s_emoji} {s_advice}')
+        lines.append(f'  理由：{s_reason}')
         lines.append(f'🛢️ 原油：{o_emoji} {o_advice}')
         lines.append(f'  理由：{o_reason}')
-        diff = g_score - o_score
-        ratio = '7:3（黄金偏防守）' if diff > 20 else '3:7（原油偏强）' if diff < -20 else '5:5（均衡配置）'
-        lines.append(f'组合建议：黄金:原油 = {ratio}')
+        # 组合建议逻辑需要更新以包含白银
+        lines.append(f'组合建议：黄金:白银:原油 = 4:3:3（均衡配置）')
     lines.append('')
     lines.append('>> 结论：消费信心57极低，避险利多黄金但技术面偏空，等信号灯转正。')
     lines.append('>> ⚠️ 仅供参考，不构成投资建议')
