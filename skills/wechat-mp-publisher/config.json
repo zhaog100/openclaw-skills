@@ -1,0 +1,39 @@
+{
+  "name": "wechat-mp-publisher",
+  "version": "1.1.0",
+  "description": "微信公众号自动发布技能 - 心灵的寻光之旅",
+  "author": "小米椒 🌶️‍🔥",
+  "account": {
+    "name": "心灵的寻光之旅",
+    "loginEmail": "zhaog100@163.com",
+    "originalId": "gh_54579cc5e06f",
+    "appId": "wx259bbe441ad603a8",
+    "description": "光明瑜伽之旅，心灵的寻光之路：通过瑜伽实践，探索内心世界，提升心理健康，找到内心的平静与幸福。关注我们，开启您的光明心灵之旅！",
+    "category": "瑜伽/心理健康/灵性成长",
+    "targetAudience": "瑜伽爱好者、心理健康关注者、灵性成长追求者",
+    "tone": "温暖、治愈、专业、启发"
+  },
+  "browser": {
+    "profile": "openclaw",
+    "cdpPort": 18800,
+    "cdpUrl": "http://127.0.0.1:18800"
+  },
+  "wechat": {
+    "baseUrl": "https://mp.weixin.qq.com",
+    "loginUrl": "https://mp.weixin.qq.com",
+    "homeUrl": "https://mp.weixin.qq.com/cgi-bin/home",
+    "draftUrl": "https://mp.weixin.qq.com/cgi-bin/draft/list",
+    "publishUrl": "https://mp.weixin.qq.com/cgi-bin/freepublish/submit"
+  },
+  "article": {
+    "titleMax": 36,
+    "summaryMax": 120,
+    "coverSize": "900x383",
+    "contentFormat": "html"
+  },
+  "security": {
+    "credentialsPath": "secrets/",
+    "sessionRetention": true,
+    "autoRefresh": true
+  }
+}

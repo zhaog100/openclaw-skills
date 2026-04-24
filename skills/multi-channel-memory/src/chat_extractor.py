@@ -286,7 +286,7 @@ def main():
     chat_log = format_chat_log(messages, target_date)
     
     output_file = output_dir / f"chat-{target_date}.md"
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, 'w', encoding='utf-8', errors='replace') as f:
         f.write(chat_log)
     
     print(f"✅ 已保存到：{output_file}")

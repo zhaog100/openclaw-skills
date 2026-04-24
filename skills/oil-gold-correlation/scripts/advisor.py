@@ -25,11 +25,13 @@ from scipy import stats
 INSTRUMENTS = {
     # 国际品种（主力，美元计价）
     "黄金期货": {"symbol": "GC=F", "type": "期货", "exchange": "COMEX", "currency": "USD", "source": "yfinance"},
+    "白银期货": {"symbol": "SI=F", "type": "期货", "exchange": "COMEX", "currency": "USD", "source": "yfinance"},
     "WTI原油": {"symbol": "CL=F", "type": "期货", "exchange": "NYMEX", "currency": "USD", "source": "yfinance"},
     "布伦特原油": {"symbol": "BZ=F", "type": "期货", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
     "美元指数": {"symbol": "DX-Y.NYB", "type": "指数", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
     # 国内品种（辅助，人民币计价）
     "沪金期货": {"symbol": "AU0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "gold"},
+    "沪银期货": {"symbol": "AG0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "silver"},
     "沪油期货": {"symbol": "SC0", "type": "期货", "exchange": "上海国际能源交易中心", "currency": "CNY", "source": "akshare", "ak_key": "wti"},
 }
 
@@ -981,6 +983,7 @@ def generate_daily_report(days=3):
 
     # ━━━ 四、综合建议 ━━━
     gold_dict = {k: v for k, v in short_results.items() if "黄金" in k or "沪金" in k}
+    silver_dict = {k: v for k, v in short_results.items() if "白银" in k or "沪银" in k}
     oil_dict = {k: v for k, v in short_results.items() if "原油" in k or "WTI" in k or "布伦特" in k or "沪油" in k}
     dxy_dict = {k: v for k, v in short_results.items() if "美元" in k}
 
@@ -1015,7 +1018,7 @@ def generate_daily_report(days=3):
     lines.append("🎯 六、综合投资建议（智能引擎 v1.4.0）")
     lines.append(f"{'━' * 50}")
 
-    asset_groups = [("🥇 黄金", gold_dict, 0.3), ("🛢️ 原油", oil_dict, 0.2)]
+    asset_groups = [("🥇 黄金", gold_dict, 0.3), ("🥈 白银", silver_dict, 0.25), ("🛢️ 原油", oil_dict, 0.2)]
 
     for emoji_name, asset_dict, geo_weight in asset_groups:
         if not asset_dict:
