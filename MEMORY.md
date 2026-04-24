@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.63
-**最后更新**: 2026-04-24 11:35
+**版本**: v3.64
+**最后更新**: 2026-04-24 23:50
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -15,11 +15,11 @@
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
 | 进度 | 商贸运营中，4篇笔记持续引流，闲鱼累计124单/¥3,038，时薪ROI ¥69.42/h |
-| 卡点 | 小红书→闲鱼引流(6.45%)、产品线单一(仅蒸汽眼罩)、新笔记发布节奏 |
+| 卡点 | 小红书→闲鱼引流(6.45%)、产品线单一(仅蒸汽眼罩)、今日选题5条未发布、闲鱼0新增 |
 | Git | main分支，推送已恢复 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
-| Cron任务 | 13个（全部已改百炼模型） |
-| OpenClaw | v2026.4.19-beta.2（可升级到 v2026.4.22）|
+| Cron任务 | 13个（全部已改百炼模型） | 今日错误7次 |
+| OpenClaw | v2026.4.19-beta.2（可升级到 v2026.4.22）| Git推送偶发失败 |
 | 主力模型 | modelstudio/qwen3.6-plus（百炼 Coding Plan 最新） |
 | 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用，已验证） |
 | 备用模型 | zai/glm-5.1（智谱）、minimax/MiniMax-M2.5 |
