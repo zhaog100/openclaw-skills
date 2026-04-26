@@ -131,3 +131,45 @@ hooks.webhooks: disabled
 hooks.internal: enabled
 browser control: enabled
 trust model: personal assistant (one trusted operator boundary), not hostile multi-tenant on one shared gateway
+[qqbot-channel-api] Registered QQ channel API proxy tool
+[qqbot-remind] Registered QQBot remind tool
+OpenClaw security audit
+Summary: 0 critical · 6 warn · 1 info
+Run deeper: openclaw security audit --deep
+
+WARN
+gateway.trusted_proxies_missing Reverse proxy headers are not trusted
+  gateway.bind is loopback and gateway.trustedProxies is empty. If you expose the Control UI through a reverse proxy, configure trusted proxies so local-client checks cannot be spoofed.
+  Fix: Set gateway.trustedProxies to your proxy IPs or keep the Control UI local-only.
+gateway.control_ui.insecure_auth Control UI insecure auth toggle enabled
+  gateway.controlUi.allowInsecureAuth=true does not bypass secure context or device identity checks; only dangerouslyDisableDeviceAuth disables Control UI device identity checks.
+  Fix: Disable it or switch to HTTPS (Tailscale Serve) or localhost.
+config.insecure_or_dangerous_flags Insecure or dangerous config flags enabled
+  Detected 1 enabled flag(s): gateway.controlUi.allowInsecureAuth=true.
+  Fix: Disable these flags when not actively debugging, or keep deployment scoped to trusted/local-only networks.
+gateway.nodes.deny_commands_ineffective Some gateway.nodes.denyCommands entries are ineffective
+  gateway.nodes.denyCommands uses exact node command-name matching only (for example `system.run`), not shell-text filtering inside a command payload.
+- Unknown command names (not in defaults/allowCommands): camera.snap (did you mean: camera.list), camera.clip (did you mean: camera.list), screen.record, contacts.add, calendar.add, reminders.add (did you mean: reminders.list), sms.send, sms.search
+  Fix: Use exact command names (for example: canvas.present, canvas.hide, canvas.navigate, canvas.eval, canvas.snapshot, canvas.a2ui.push, canvas.a2ui.pushJSONL, canvas.a2ui.reset). If you need broader restrictions, remove risky command IDs from allowCommands/default workflows and tighten tools.exec policy.
+security.trust_model.multi_user_heuristic Potential multi-user setup detected (personal-assistant model warning)
+  Heuristic signals indicate this gateway may be reachable by multiple users:
+- channels.qqbot.accounts.default.allowFrom includes "*"
+- channels.qqbot.accounts.bot2.allowFrom includes "*"
+Runtime/process tools are exposed without full sandboxing in at least one context.
+Potential high-impact tool exposure contexts:
+- agents.defaults (sandbox=off; runtime=[exec, process]; fs=[read, write, edit, apply_patch]; fs.workspaceOnly=false)
+OpenClaw's default security model is personal-assistant (one trusted operator boundary), not hostile multi-tenant isolation on one shared gateway.
+  Fix: If users may be mutually untrusted, split trust boundaries (separate gateways + credentials, ideally separate OS users/hosts). If you intentionally run shared-user access, set agents.defaults.sandbox.mode="all", keep tools.fs.workspaceOnly=true, deny runtime/fs/web tools unless required, and keep personal/private identities + credentials off that runtime.
+plugins.allow_phantom_entries plugins.allow contains entries with no matching installed plugin
+  The following plugins.allow entries do not correspond to any installed plugin: qqbot, zai, active-memory, memory-core, minimax, qwen, browser.
+Phantom entries could be exploited by registering a new plugin with an allowlisted ID.
+  Fix: Remove unused entries from plugins.allow, or verify the expected plugins are installed.
+
+INFO
+summary.attack_surface Attack surface summary
+  groups: open=0, allowlist=1
+tools.elevated: enabled
+hooks.webhooks: disabled
+hooks.internal: disabled
+browser control: enabled
+trust model: personal assistant (one trusted operator boundary), not hostile multi-tenant on one shared gateway
