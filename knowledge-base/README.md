@@ -1,6 +1,6 @@
 # 知识库索引 (Knowledge Base Index)
 
-**最后更新**: 2026-04-26 23:50
+**最后更新**: 2026-04-27 12:00（午间回顾）
 
 ---
 
@@ -73,6 +73,7 @@ knowledge-base/
 | 04-15 | 小红书选题库 | [topics/2026-04-15-xhs-topics.md](topics/2026-04-15-xhs-topics.md) |
 | 04-16 | 小红书选题 | [topics/2026-04-16-xiaohongshu-选题.md](topics/2026-04-16-xiaohongshu-选题.md) |
 | 04-17 | 小红书选题库 | [topics/2026-04-17-xhs-topics.md](topics/2026-04-17-xhs-topics.md) |
+| 04-27 | 小红书选题库 | [topics/2026-04-27-xhs-topics.md](topics/2026-04-27-xhs-topics.md) |
 
 ---
 
