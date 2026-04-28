@@ -1,6 +1,6 @@
 # 知识库索引 (Knowledge Base Index)
 
-**最后更新**: 2026-04-27 12:00（午间回顾）
+**最后更新**: 2026-04-28 12:00（午间回顾）
 
 ---
 
@@ -55,6 +55,7 @@ knowledge-base/
 | 04-24 | 5,150 | 19 | ¥465.5 | 0.37% | ¥77.58/h | [查看](reviews/commerce-analytics-20260424-final.md) |
 | 04-25 | 5,680 | 21 | ¥514.5 | 0.37% | ¥85.75/h | [查看](reviews/commerce-analytics-20260425-final.md) |
 | 04-26 | 5,960 | 25 | ¥612.5 | 0.42% | ¥102.08/h | [查看](reviews/commerce-analytics-20260426-weekly.md) |
+| 04-27 | 6,200 | 28 | ¥686.0 | 0.45% | ¥114.33/h | [查看](reviews/commerce-analytics-20260427-weekly.md) |
 
 ### 📈 核心趋势
 
