@@ -1476,3 +1476,105 @@
 [2026-04-28 02:10:01] [cleanup] ✅ 清理完成
 [2026-04-28 09:00:01] [hotspot-collect] ===== 开始采集百度热搜 =====
 [2026-04-28 09:00:02] [hotspot-collect] ✅ 热点采集完成
+[2026-04-28 12:10:01] [morning-review] ===== 午间运营回顾开始（12:10）=====
+[2026-04-28 12:10:01] [morning-review] 📅 今日记忆文件: 110行
+[2026-04-28 12:10:01] [morning-review] 提取多通道聊天记录（2026-04-28）...
+[2026-04-28 12:10:04] [morning-review] - 消息数：184
+[2026-04-28 12:10:04] [morning-review] [0;32m[SUCCESS][0m 对话记录已保存：/root/.openclaw/workspace/agents/xiaomijiao/memory/chat-2026-04-28.md
+[2026-04-28 12:10:04] [morning-review] 消息数： 221
+[2026-04-28 12:10:04] [morning-review] [0;32m[SUCCESS][0m 多通道对话提取完成！🎉
+[2026-04-28 12:10:04] [morning-review] 📊 变更统计: intel/0 memory/0 config/0
+[2026-04-28 12:10:04] [morning-review]   📄 agents/xiaomijiao/logs/cron.log
+[2026-04-28 12:10:04] [morning-review]   📄 logs/model-guard.log
+[2026-04-28 12:10:04] [morning-review]   📄 logs/qmd-update.log
+[2026-04-28 12:10:04] [morning-review]   📄 logs/xiaomijiao-cron.log
+[2026-04-28 12:10:04] [morning-review] 📋 待办进度: ✅6 完成 / ⏳8 待做
+[2026-04-28 12:10:04] [morning-review] 📚 开始知识库结构化整理...
+[2026-04-28 12:10:04] [morning-review] 📊 intel/ 目录文件数: 91
+[2026-04-28 12:10:04] [morning-review] ⚠️ 发现 80 个超过 7 天未更新的文件
+[2026-04-28 12:10:04] [morning-review]   📄 工具与技能清单.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 商贸数据复盘_20260414.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 首篇笔记内容-2026-04-09.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 石油黄金相关性分析技能方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 私聊话术设计-2026-04-09.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日晚间回顾报告-2026-04-02.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-RAKE-关键词提取API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 URL-Shortener-短链接生成API-链接优化工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日晚间回顾报告-2026-03-27.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 视频脚本-蒸汽眼罩-20260401.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 2026-04-15-午间回顾.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 商贸模式状态更新.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 NumPy-数值计算库-基础工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 小米椒出海方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 QR-Code-二维码生成API-推广工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-Poof-背景移除API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 今日回顾_2026-04-09.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-APITubeNews-热点采集API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-新媒体运营资源-最终版.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 1688供应商筛选标准.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Text-Summarization-文本摘要API-内容提炼工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-新媒体运营资源.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 OpenClaw-3.22安全加固指南.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 xiaohongshu-ops-完整优化方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 数据复盘.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-ShotOG-封面生成API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-Meteoblue-天气选题API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 商贸模式使用说明.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 2026-04-19-午间回顾.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每周运营规划.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 商贸系统化落地方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 MoviePy-视频处理库-视频编辑工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 内容初稿-蒸汽眼罩-20260401.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 2026-04-20-午间回顾.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-ImageCompressor-图片压缩API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 小米椒商贸定价与成本计算方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 1688-供应商对比报告.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 明日选题预研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 索引.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 商贸模式常用操作.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 淘宝API验证计划.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 模型切换方案-百炼主线-v2.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 推荐工作-闲鱼一件代发.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 百炼模型配置方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日午间回顾报告-2026-03-30.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 深度回顾报告-2026-04-01.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-新媒体运营资源-v2.0.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 P1-助眠好物框架.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Requests-HTTP请求库-API调用工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 模型切换方案-百炼主线.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 平台规则更新.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 小米椒客户开发实战方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日晚间回顾报告-2026-04-03.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 小红书选题清单-2026-04-09.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 小米椒商贸出海定制方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Qwen3.6-Plus免费使用指南.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-ImageCompressor集成说明.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 FFmpeg-视频处理工具-命令行视频编辑器.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 xiaohongshu-ops-商贸优化-P1P2方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 内容初稿-2026-04-01.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 BeautifulSoup-HTML解析库-网页抓取工具.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 结构化整理报告-2026-04-11.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 内容初稿.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日晚间回顾报告-2026-04-01.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 知识库索引.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 选品调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日晚间回顾报告-2026-03-30.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日午间回顾报告-2026-04-01.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 每日晚间回顾报告-2026-04-04.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 OpenClaw自主进化指南.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-Pandas-数据分析API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 视频脚本-蒸汽眼罩-种草版-20260401.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 品牌过往爆款.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 路径规划-1688小红书闲鱼.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 闲鱼上架清单-2026-04-09.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 2026-04-15-系统状态检查.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-Plotly-数据可视化API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 Public-APIs-VADER-情感分析API调研.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 xiaohongshu-ops-商贸优化方案.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review]   📄 oil-gold-geopolitics-upgrade.md (超过 7 天)
+[2026-04-28 12:10:04] [morning-review] ✅ 无重复文件
+[2026-04-28 12:10:04] [morning-review] ✅ 知识库结构化整理完成
+[2026-04-28 12:10:04] [morning-review] 📋 开始索引同步更新...
+[2026-04-28 12:10:04] [morning-review] 📊 文件统计: intel/91 memory/40 logs/6 total/137
+[2026-04-28 12:10:04] [morning-review] ✅ 索引文件已更新
+[2026-04-28 12:10:04] [morning-review] ✅ 索引同步更新完成
