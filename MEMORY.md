@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.67
-**最后更新**: 2026-04-27 23:50
+**版本**: v3.68
+**最后更新**: 2026-04-28 11:15
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -10,7 +10,7 @@
 
 | 项目 | 状态 |
 |------|------|
-| 阶段 | 执行期（Day 35） |
+| 阶段 | 执行期（Day 36） |
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
@@ -19,11 +19,11 @@
 | Git | main分支，推送正常 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
 | Cron任务 | 13个（全部已改百炼模型） | 今日无错误 |
-| OpenClaw | v2026.4.19-beta.2（可升级到 v2026.4.22）| Git推送正常 |
+| OpenClaw | v2026.4.23-beta.4 | Git推送正常 |
 | 主力模型 | modelstudio/qwen3.6-plus（百炼 Coding Plan 最新） |
 | 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用，已验证） |
-| 备用模型 | zai/glm-5.1（智谱）、minimax/MiniMax-M2.5 |
-| Fallback | Coding Plan 9个模型 → zai 4个 → longcat 1个 = 14个模型 |
+| 备用模型 | 16个（百炼8 + 智谱4 + LongCat4） |
+| Fallback | 百炼8个 → zai 4个 → longcat 4个 = 16个模型 |
 
 ---
 
