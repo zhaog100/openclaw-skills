@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.70
-**最后更新**: 2026-04-29 09:20
+**版本**: v3.71
+**最后更新**: 2026-04-29 23:50
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -14,11 +14,11 @@
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
-| 进度 | 商贸运营中，4篇笔记持续引流，闲鱼累计316单/~¥7,846.5，时薪ROI ¥106.17/h🎉，Day36 |
-| 卡点 | 小红书→闲鱼引流(6.62%)、产品线单一(仅蒸汽眼罩)、5条选题未发布、小红书0发布 |
+| 进度 | 商贸运营中，4篇笔记持续引流，闲鱼周成交166单/¥4,067，累计316单/~¥7,846.5，时薪ROI ¥106.17/h🎉，Day36 |
+| 卡点 | 小红书→闲鱼引流(1.23%)、产品线单一(仅蒸汽眼罩)、5条选题未发布、小红书0发布 |
 | Git | main分支，推送正常 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
-| Cron任务 | 13个（全部已改百炼模型） | 今日1个持续错误 |
+| Cron任务 | 13个（全部已改百炼模型） | 运行正常 |
 | OpenClaw | v2026.4.23-beta.4 | Git推送正常 |
 | 主力模型 | modelstudio/qwen3.6-plus（百炼 Coding Plan 最新） |
 | 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用，已验证） |
@@ -217,11 +217,11 @@
 | 工作区 | `~/.openclaw/workspace/` |
 | Git remote | `origin` + `xiaomijiao` (双仓库) |
 | Git Token | 已配置（repo+workflow+delete_repo） |
-| QMD 集合 | `xiaomijiao`（801 个文档） |
+| QMD 集合 | `xiaomijiao`（830 个文档） |
 | Gateway 端口 | 18789（独立） |
 | 飞书 Bot | ✅ `cli_a92cdc08bff8dcd3`（WebSocket 模式，权限已修复） |
 | 青龙面板 | Docker qinglong:5700（京东任务自动化） |
-| 京东账号 | zhaog100 + jd_5722c14df4b06 (双账号，2348京豆) |
+| 京东账号 | zhaog100 + jd_5722c14df4b06 (双账号) |
 
 ## ⏰ 定时任务
 
