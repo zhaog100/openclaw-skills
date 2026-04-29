@@ -24,4 +24,19 @@ if [ "$is_dst" -eq 0 ]; then
     sleep 3600
 fi
 
-python3 /root/.openclaw/workspace/skills/oil-gold-correlation/scripts/report_text.py
+# 超时保护：防止python进程僵尸化占用swap
+# 设置180秒超时，超时自动终止
+python3 /root/.openclaw/workspace/skills/oil-gold-correlation/scripts/report_text.py &
+PYTHON_PID=$!
+TIMEOUT=180
+ELAPSED=0
+while kill -0 $PYTHON_PID 2>/dev/null; do
+    sleep 5
+    ELAPSED=$((ELAPSED + 5))
+    if [ $ELAPSED -ge $TIMEOUT ]; then
+        echo "[oil-gold-us] ⚠️ Python进程超时${TIMEOUT}秒，强制终止(PID:$PYTHON_PID)"
+        kill -9 $PYTHON_PID 2>/dev/null
+        break
+    fi
+done
+wait $PYTHON_PID 2>/dev/null || true

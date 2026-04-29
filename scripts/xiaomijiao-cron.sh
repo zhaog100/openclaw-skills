@@ -446,7 +446,9 @@ cmd_error_stats() {
     ERROR_LOG="$LOG_DIR/xiaomijiao-cron.log"
     [ ! -f "$ERROR_LOG" ] && return 0
     
-    TODAY_ERRORS=$(grep "$TODAY" "$ERROR_LOG" 2>/dev/null | grep -c "⚠️\|❌\|ERROR\|失败" || true)
+    # ⚠️=警告不计入错误, 只统计❌/ERROR/失败
+    # 排除oil-gold免责声明⚠️仅供参考
+    TODAY_ERRORS=$(grep "$TODAY" "$ERROR_LOG" 2>/dev/null | grep -v "仅供参考" | grep -c "❌\|ERROR\|失败" || true)
     [ "${TODAY_ERRORS:-0}" -gt 0 ] && log "📊 今日错误: $TODAY_ERRORS"
 }
 
