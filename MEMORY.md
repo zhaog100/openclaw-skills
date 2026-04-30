@@ -50,6 +50,114 @@
 - 维护者>7天不活跃=跑路，立即放弃
 - 同仓库最多评论2个issue，避免被屏蔽
 - 永远不要用 /attempt 命令（bot 行为信号）
+- LongCat 端点末尾不能加 /v1（已修复为 `/openai`）
+- Cron 频率过高需合并（16→6次/分钟，减少62.5%）
+- 空对象字段应删除
+- Git 历史清理用 git-filter-repo，比 filter-branch 更快更可靠
+- 脱敏必须覆盖工作区文件和 Git 历史
+- Docker 清理可释放大量空间（31GB+）
+- Session 目录需定期清理，避免过大
+- 避免重复工作 - 维护黑名单
+- 质量优先 - 高质量 PR 比数量重要
+- 安全第一 - 只做负责任披露
+- 项目选择 - 中小型活跃项目 > 大型项目
+- 持续跟进 - PR 提交后需定期检查
+
+## API 配置
+
+| 提供商 | 端点 | 状态 | 备注 |
+|--------|------|------|------|
+| 百炼/ bailian | coding.dashscope.aliyuncs.com/v1 | ✅ | 主力模型 |
+| LongCat | api.longcat.chat/openai | ✅ | 6个模型 |
+| OpenRouter | - | ⚠️ | 余额不足 |
+| Gemini | - | ✅ | Key 已更新 |
+| GitHub | ghp_****...****yH4 | ✅ | Token: OpenClaw_xiaomila |
+
+## RustChain PR 状态
+
+- #2207: merged ✅ → Claim #6931 (160 RTC)
+- #2165: merged ✅ → Claim #7234
+- #2205: merged ✅ → Claim #7235
+- #7326-7329: 提交中 (Self-Audit/Judge/Steelman/RedTeam UTXO)
+
+## 远程仓库
+
+| Remote | 仓库 | 用途 |
+|--------|------|------|
+| origin | openclaw-skills | 技能（skills/knowledge） |
+| xiaomila | xiaomila-skills | 个人信息（记忆/配置/bounty） |
+- LongCat 端点末尾不能加 /v1（已修复为 `/openai`）
+- Cron 频率过高需合并（16→6次/分钟，减少62.5%）
+- 空对象字段应删除
+- Git 历史清理用 git-filter-repo，比 filter-branch 更快更可靠
+- 脱敏必须覆盖工作区文件和 Git 历史
+- Docker 清理可释放大量空间（31GB+）
+- Session 目录需定期清理，避免过大
+- 避免重复工作 - 维护黑名单
+- 质量优先 - 高质量 PR 比数量重要
+- 安全第一 - 只做负责任披露
+- 项目选择 - 中小型活跃项目 > 大型项目
+- 持续跟进 - PR 提交后需定期检查
+
+## API 配置
+
+| 提供商 | 端点 | 状态 | 备注 |
+|--------|------|------|------|
+| 百炼/ bailian | coding.dashscope.aliyuncs.com/v1 | ✅ | 主力模型 |
+| LongCat | api.longcat.chat/openai | ✅ | 6个模型 |
+| OpenRouter | - | ⚠️ | 余额不足 |
+| Gemini | - | ✅ | Key 已更新 |
+| GitHub | ghp_****...****yH4 | ✅ | Token: OpenClaw_xiaomila |
+
+## RustChain PR 状态
+
+- #2207: merged ✅ → Claim #6931 (160 RTC)
+- #2165: merged ✅ → Claim #7234
+- #2205: merged ✅ → Claim #7235
+- #7326-7329: 提交中 (Self-Audit/Judge/Steelman/RedTeam UTXO)
+
+## 远程仓库
+
+| Remote | 仓库 | 用途 |
+|--------|------|------|
+| origin | openclaw-skills | 技能（skills/knowledge） |
+| xiaomila | xiaomila-skills | 个人信息（记忆/配置/bounty） |
+- LongCat 端点末尾不能加 /v1（已修复为 `/openai`）
+- Cron 频率过高需合并（16→6次/分钟，减少62.5%）
+- 空对象字段应删除
+- Git 历史清理用 git-filter-repo，比 filter-branch 更快更可靠
+- 脱敏必须覆盖工作区文件和 Git 历史
+- Docker 清理可释放大量空间（31GB+）
+- Session 目录需定期清理，避免过大
+- 避免重复工作 - 维护黑名单
+- 质量优先 - 高质量 PR 比数量重要
+- 安全第一 - 只做负责任披露
+- 项目选择 - 中小型活跃项目 > 大型项目
+- 持续跟进 - PR 提交后需定期检查
+
+## API 配置
+
+| 提供商 | 端点 | 状态 | 备注 |
+|--------|------|------|------|
+| 百炼/ bailian | coding.dashscope.aliyuncs.com/v1 | ✅ | 主力模型 |
+| LongCat | api.longcat.chat/openai | ✅ | 6个模型 |
+| OpenRouter | - | ⚠️ | 余额不足 |
+| Gemini | - | ✅ | Key 已更新 |
+| GitHub | ghp_****...****yH4 | ✅ | Token: OpenClaw_xiaomila |
+
+## RustChain PR 状态
+
+- #2207: merged ✅ → Claim #6931 (160 RTC)
+- #2165: merged ✅ → Claim #7234
+- #2205: merged ✅ → Claim #7235
+- #7326-7329: 提交中 (Self-Audit/Judge/Steelman/RedTeam UTXO)
+
+## 远程仓库
+
+| Remote | 仓库 | 用途 |
+|--------|------|------|
+| origin | openclaw-skills | 技能（skills/knowledge） |
+| xiaomila | xiaomila-skills | 个人信息（记忆/配置/bounty） |
 
 ## 版权
 
