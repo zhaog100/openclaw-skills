@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.71
-**最后更新**: 2026-04-29 23:50
+**版本**: v3.72
+**最后更新**: 2026-04-30 23:50
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -10,18 +10,18 @@
 
 | 项目 | 状态 |
 |------|------|
-| 阶段 | 执行期（Day 36） |
+| 阶段 | 执行期（Day 37） |
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
-| 进度 | 商贸运营中，4篇笔记持续引流，闲鱼周成交166单/¥4,067，累计316单/~¥7,846.5，时薪ROI ¥106.17/h🎉，Day36 |
-| 卡点 | 小红书→闲鱼引流(1.23%)、产品线单一(仅蒸汽眼罩)、5条选题未发布、小红书0发布 |
+| 进度 | 商贸运营中，4篇笔记持续引流，闲鱼累计316单/~¥7,846.5，时薪ROI ¥106.17/h🎉，Day37 |
+| 卡点 | 小红书0发布（5条选题积压）、产品线单一(仅蒸汽眼罩)、引流转化率低(1.23%) |
 | Git | main分支，推送正常 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
 | Cron任务 | 13个（全部已改百炼模型） | 运行正常 |
 | OpenClaw | v2026.4.23-beta.4 | Git推送正常 |
-| 主力模型 | modelstudio/qwen3.6-plus（百炼 Coding Plan 最新） |
-| 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（Coding Plan 专用，已验证） |
+| 主力模型 | longcat/LongCat-Flash-Chat |
+| 百炼 baseUrl | coding.dashscope.aliyuncs.com/v1（备用） |
 | 备用模型 | 16个（百炼8 + 智谱4 + LongCat4） |
 | Fallback | 百炼8个 → zai 4个 → longcat 4个 = 16个模型 |
 
@@ -151,7 +151,7 @@
 - **19个工具调研完成**：素材优化(3)+热点扩展(2)+内容增强(2)+数据分析(2)+基础工具(3)+多媒体(4)+运营(3)
 - **云端API Key**：Image Compressor/RapidAPI、APITube News、Meteoblue、Poof
 - **本地工具**：14个Python库+vader+pandas+plotly+FFmpeg v6.1.1
-- **模型策略**：LongCat优先→智谱GLM-5→百炼Qwen3.5-Plus
+- **模型策略**：长Cat优先→智谱GLM-5→百炼Qwen3.5-Plus（当前主力：长Cat）
 
 ### 2026-04-12 oil-gold技能+akshare替代 ⭐⭐⭐⭐⭐
 - **yfinance限速**：腾讯云IP被持续封禁 → akshare国内免费替代

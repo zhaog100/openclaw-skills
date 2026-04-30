@@ -9,3 +9,4 @@ __pycache__
 # OpenClaw 主配置（可能含敏感信息）
 ../openclaw.json
 ../agents/
+backup/
