@@ -1,0 +1,52 @@
+groups:
+  - name: tanda-validator-alerts
+    rules:
+      # Validator jailed alert
+      - alert: ValidatorJailed
+        expr: tendermint_validator_power{moniker=~".*"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Validator {{ $labels.moniker }} is jailed"
+          description: "Validator {{ $labels.moniker }} has 0 voting power - likely jailed"
+
+      # Missed blocks alert
+      - alert: HighMissedBlocks
+        expr: rate(tendermint_consensus_height{job="tanda-validator"}[5m]) < 0.5
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High missed blocks rate"
+          description: "Validator is missing more than 50% of blocks"
+
+      # Disk space alert
+      - alert: DiskSpaceLow
+        expr: node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} < 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Disk space low on {{ $labels.instance }}"
+          description: "Less than 10% disk space remaining"
+
+      # High memory usage
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "Memory usage above 90%"
+
+      # High CPU usage
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "CPU usage above 90% for 10 minutes"
