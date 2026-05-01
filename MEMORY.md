@@ -164,8 +164,8 @@ _持续更新，记录重要信息_
 
 | Remote | 仓库 | 用途 |
 |--------|------|------|
-| origin | openclaw-skills | 技能（skills/knowledge） |
-| xiaomila | xiaomila-skills | 个人信息（记忆/配置/bounty） |
+| origin | xiaomila-skills | 个人信息主仓库（记忆/配置/bounty） |
+| skills | openclaw-skills | 技能远程仓库（skills/knowledge） |
 
 ---
 
