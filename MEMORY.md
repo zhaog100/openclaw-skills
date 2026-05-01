@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v3.72
-**最后更新**: 2026-04-30 23:50
+**版本**: v3.73
+**最后更新**: 2026-05-01 15:40
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -14,8 +14,8 @@
 | 平台 | 小红书（主力）+ 闲鱼（成交） |
 | 路径 | 1688 一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
-| 进度 | 商贸运营中，4篇笔记持续引流，闲鱼累计316单/~¥7,846.5，时薪ROI ¥106.17/h🎉，Day37 |
-| 卡点 | 小红书0发布（5条选题积压）、产品线单一(仅蒸汽眼罩)、引流转化率低(1.23%) |
+| 进度 | 商贸运营中，五一劳动节，系统优化完成，模型切换LongCat-Flash-Chat |
+| 卡点 | 小红书0发布（选题积压）、产品线单一(仅蒸汽眼罩)、引流转化率低 |
 | Git | main分支，推送正常 |
 | Skills | 10个（+xiaohongshu-ops, oil-gold-correlation, multi-channel-memory, self-improving等） |
 | Cron任务 | 13个（全部已改百炼模型） | 运行正常 |
@@ -193,6 +193,15 @@
 - **数据源**：akshare主力(T-1)+yfinance不可用+Alpha Vantage/Twelve Data可选+FRED宏观
 - **三资产**：黄金+白银+原油，独立仪表盘+技术分析+操作建议
 - **已知限制**：akshare只有T-1数据，完整报告~133秒，部分cron偶发超时
+
+### 2026-05-01 模型切换+系统清理+配置核查 ⭐⭐⭐⭐⭐
+- **模型切换**：primary→longcat/LongCat-Flash-Chat，10个cron任务全部更新
+- **LongCat配额**：LongCat-2.0-Preview有16M日配额限制，改用Flash-Chat
+- **超时修复**：oil-gold-daily (300s→600s)，xhs-topic-ideation (180s→300s)
+- **系统清理**：npm缓存(2.3GB→248MB)、journal日志(806MB→92MB)、git gc(303MB→296MB)，释放~2.8GB
+- **配置核查**：openclaw.json、auth-profiles、MEMORY.md、smart-model-switch全部正常
+- **磁盘状态**：50GB总容量，26GB已用(54%)，22GB可用
+- **远程仓库**：git@github.com:zhaog100/xiaomijiao-skills.git (xiaomijiao remote)
 
 ### 2026-04-13 oil-gold技能多次迭代 ⭐⭐⭐⭐
 - **yfinance限速**：akshare是稳定备用
