@@ -6,8 +6,8 @@ _持续更新，记录重要信息_
 
 ## 👤 用户信息
 
-- **称呼**: 待确认
-- **时区**: America/Los_Angeles (PDT)
+- **称呼**: 官家
+- **时区**: Asia/Shanghai (CST, UTC+8)
 - **沟通渠道**: QQ机器人
 - **工作内容**: 开源项目 bounty 扫描、安全漏洞挖掘
 - **工作策略**: ⭐⭐⭐ **全自动执行模式（智能过滤）** - 只完成评分 > 50 的高价值任务，自动按顺序全部完成，无需询问用户确认
@@ -143,10 +143,15 @@ _持续更新，记录重要信息_
 | 索引重建 | memory/knowledge/data INDEX.md |
 | 磁盘使用 | 30% → 18% |
 
-### RustChain PR 状态
-- #2207: merged ✅ → Claim #6931 (160 RTC)
-- #2165: merged ✅ → Claim #7234
-- #2205: merged ✅ → Claim #7235
+### RustChain PR 状态 (2026-05-06)
+- #2207: merged ✅ → Claim #6931 (160 RTC, closed)
+- #2165: merged ✅ → Claim #7234 (closed)
+- #2205: merged ✅ → Claim #7235 (closed)
+- #7339/#7326-#7329/#7368-#7369: 待认领
+
+### Open PRs 统计 (2026-05-06)
+- **总计**: 145 个 (GitHub API 验证)
+- **高价值**: homelab-stack(9/$1,110+), ubiquity-os(9/$2,175+), claude-builders-bounty(10/$600+)
 
 ---
 
