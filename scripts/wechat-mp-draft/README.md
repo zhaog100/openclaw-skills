@@ -1,21 +1,23 @@
 # 微信公众号草稿创建工具
 
-**版本**：v1.3.0
+**版本**：v1.5.0
 **版权**：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ---
 
 ## 功能
 
-- 自动生成商贸主题封面图（Playwright）
+- 自动生成商贸主题封面图（Playwright，900×383像素）
 - 上传封面图到微信素材库
 - 创建公众号草稿
+- **微信API错误码详细提示**（40+常见错误）
 - **兼容 Node.js 14+**
+- **API调用超时保护**
 
 ## 安装依赖
 
 ```bash
-npm install playwright form-data node-fetch
+npm install
 ```
 
 ## 使用方式
@@ -51,6 +53,14 @@ CONTENT_TEMPLATE.article.content = '<p>文章HTML内容...</p>';
 
 publishBusinessDraft();
 ```
+
+## 超时设置
+
+| API | 超时 |
+|-----|------|
+| access_token | 10秒 |
+| 封面上传 | 30秒 |
+| 草稿创建 | 20秒 |
 
 ## 兼容性
 

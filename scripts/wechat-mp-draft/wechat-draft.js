@@ -3,10 +3,10 @@
  * 
  * 功能：创建商贸转型主题的公众号草稿
  * 作者：小米椒 🌶️‍🔥
- * 版本：v1.4.0 (微信API错误码处理 + FormData兼容性)
+ * 版本：v1.5.0 (封面图尺寸修复 + 超时优化)
  * 
  * 依赖：
- *   npm install playwright form-data node-fetch
+ *   npm install
  * 
  * 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
  */
@@ -20,7 +20,7 @@ const { chromium } = require('playwright');
 const nodeVersion = process.version.match(/^v(\d+)/)[1];
 const useNativeFetch = parseInt(nodeVersion) >= 18;
 
-// 微信API错误码映射（常见错误）
+// 微信API错误码映射
 const WECHAT_ERROR_CODES = {
   40001: 'AppSecret错误或AppSecret不属于这个公众号',
   40002: '不合法的凭证类型',
@@ -50,6 +50,13 @@ const WECHAT_ERROR_CODES = {
   50009: '系统内部异常'
 };
 
+// API超时设置（毫秒）
+const API_TIMEOUT = {
+  token: 10000,      // access_token 获取超时
+  upload: 30000,     // 封面上传超时
+  draft: 20000        // 草稿创建超时
+};
+
 /**
  * 处理微信API错误
  * @param {number} errcode - 错误码
@@ -65,16 +72,24 @@ function handleWechatError(errcode, errmsg) {
 }
 
 /**
- * HTTP请求封装（兼容Node.js 18+原生fetch和node-fetch）
+ * HTTP请求封装（兼容Node.js 18+原生fetch和node-fetch，带超时）
  */
 async function httpRequest(url, options = {}) {
-  if (useNativeFetch) {
-    const response = await fetch(url, options);
-    return response;
-  } else {
-    const nodeFetch = require('node-fetch');
-    const response = await nodeFetch(url, options);
-    return response;
+  const timeout = options.timeout || 30000;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  
+  try {
+    if (useNativeFetch) {
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      return response;
+    } else {
+      const nodeFetch = require('node-fetch');
+      const response = await nodeFetch(url, { ...options, signal: controller.signal });
+      return response;
+    }
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -132,10 +147,11 @@ async function publishBusinessDraft(options = {}) {
       timeout: 60000
     });
     
-    const context = await browser.newContext({ viewport: { width: 900, height: 500 } });
+    // 微信封面图要求：900×383像素
+    const context = await browser.newContext({ viewport: { width: 900, height: 383 } });
     const page = await context.newPage();
     
-    const coverHtml = \`
+    const coverHtml = `
       <!DOCTYPE html>
       <html>
       <head>
@@ -151,37 +167,37 @@ async function publishBusinessDraft(options = {}) {
       <body>
         <div class="container">
           <div class="emoji">📦</div>
-          <h1>\${CONTENT_TEMPLATE.cover.title}</h1>
-          <p>\${CONTENT_TEMPLATE.cover.subtitle}</p>
+          <h1>${CONTENT_TEMPLATE.cover.title}</h1>
+          <p>${CONTENT_TEMPLATE.cover.subtitle}</p>
         </div>
       </body>
       </html>
-    \`;
+    `;
     
     await page.setContent(coverHtml);
     const coverPath = path.join(outputDir, 'business-cover.png');
     await page.screenshot({ path: coverPath, fullPage: true });
-    console.log(\`🖼️ 商贸封面图已保存：\${coverPath}\`);
+    console.log(`🖼️ 商贸封面图已保存：${coverPath}`);
     
     await browser.close();
     console.log('🌐 浏览器已关闭');
     
     console.log('🔑 获取 access_token...');
-    const tokenUrl = \`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=\${appId}&secret=\${appSecret}\`;
+    const tokenUrl = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appId}&secret=${appSecret}`;
     
-    const tokenResponse = await httpRequest(tokenUrl);
+    const tokenResponse = await httpRequest(tokenUrl, { timeout: API_TIMEOUT.token });
     const tokenData = await tokenResponse.json();
     
     if (!tokenData.access_token) {
       const errorMsg = handleWechatError(tokenData.errcode, tokenData.errmsg);
-      throw new Error(\`获取 access_token 失败: \${errorMsg}\`);
+      throw new Error(`获取 access_token 失败: ${errorMsg}`);
     }
     
     const accessToken = tokenData.access_token;
     console.log('✅ access_token 获取成功');
     
     console.log('📤 上传商贸主题封面图...');
-    const uploadUrl = \`https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=\${accessToken}&type=image\`;
+    const uploadUrl = `https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=${accessToken}&type=image`;
     
     const form = new FormData();
     form.append('media', fs.createReadStream(coverPath), {
@@ -192,17 +208,18 @@ async function publishBusinessDraft(options = {}) {
     const uploadResponse = await httpRequest(uploadUrl, {
       method: 'POST',
       body: form,
-      headers: form.getHeaders()
+      headers: form.getHeaders(),
+      timeout: API_TIMEOUT.upload
     });
     
     const uploadData = await uploadResponse.json();
     
     if (uploadData.media_id) {
-      console.log(\`✅ 商贸封面图上传成功！\`);
-      console.log(\`📄 Media ID: \${uploadData.media_id.substring(0, 8)}****\`);
+      console.log(`✅ 商贸封面图上传成功！`);
+      console.log(`📄 Media ID: ${uploadData.media_id.substring(0, 8)}****`);
       
       console.log('📤 创建商贸主题草稿文章...');
-      const draftUrl = \`https://api.weixin.qq.com/cgi-bin/draft/add?access_token=\${accessToken}\`;
+      const draftUrl = `https://api.weixin.qq.com/cgi-bin/draft/add?access_token=${accessToken}`;
       
       const articleData = {
         articles: [{
@@ -220,35 +237,36 @@ async function publishBusinessDraft(options = {}) {
       const draftResponse = await httpRequest(draftUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(articleData)
+        body: JSON.stringify(articleData),
+        timeout: API_TIMEOUT.draft
       });
       
       const draftData = await draftResponse.json();
       
       if (draftData.media_id) {
-        console.log(\`✅ 商贸主题草稿创建成功！\`);
-        console.log(\`📄 Media ID: \${draftData.media_id.substring(0, 8)}****\`);
-        console.log(\`🔗 草稿链接: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&appmsgid=\${draftData.media_id}&token=&lang=zh_CN\`);
-        console.log(\`📝 请到公众号后台「草稿箱」查看并完善内容\`);
+        console.log(`✅ 商贸主题草稿创建成功！`);
+        console.log(`📄 Media ID: ${draftData.media_id.substring(0, 8)}****`);
+        console.log(`🔗 草稿链接: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&appmsgid=${draftData.media_id}&token=&lang=zh_CN`);
+        console.log(`📝 请到公众号后台「草稿箱」查看并完善内容`);
         
         return { 
           success: true, 
           message: '商贸主题草稿创建成功',
           mediaId: draftData.media_id,
-          draftUrl: \`https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&appmsgid=\${draftData.media_id}&token=&lang=zh_CN\`
+          draftUrl: `https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&appmsgid=${draftData.media_id}&token=&lang=zh_CN`
         };
       } else {
         const errorMsg = handleWechatError(draftData.errcode, draftData.errmsg);
-        console.error(\`❌ \${errorMsg}\`);
+        console.error(`❌ ${errorMsg}`);
         return { success: false, message: errorMsg };
       }
     } else {
       const errorMsg = handleWechatError(uploadData.errcode, uploadData.errmsg);
-      console.error(\`❌ \${errorMsg}\`);
+      console.error(`❌ ${errorMsg}`);
       return { success: false, message: errorMsg };
     }
   } catch (error) {
-    console.error(\`❌ 发布失败: \${error.message}\`);
+    console.error(`❌ 发布失败: ${error.message}`);
     return { success: false, message: error.message };
   } finally {
     if (browser) {
