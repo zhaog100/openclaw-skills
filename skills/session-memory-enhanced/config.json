@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "sync": true,
+  "threshold": 60,
+  "autoSwitch": true,
+  "memorySync": {
+    "enabled": true,
+    "interval": 300,
+    "autoCommit": true
+  },
+  "contextManagement": {
+    "enabled": true,
+    "threshold": 60,
+    "autoArchive": true
+  }
+}

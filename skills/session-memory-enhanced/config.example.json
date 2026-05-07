@@ -1,0 +1,39 @@
+{
+  "flushIdleSeconds": 1800,
+  "maxMessagesPerPart": 60,
+  "features": {
+    "structuredExtraction": true,
+    "vectorSearch": true,
+    "aiSummary": true,
+    "gitBackup": true,
+    "qmdUpdate": true
+  },
+  "env": {
+    "OPENAI_API_KEY": "your-openai-api-key-here"
+  },
+  "python": {
+    "enabled": true,
+    "autoInstall": true,
+    "requirements": "requirements.txt"
+  },
+  "search": {
+    "strategy": "hybrid",
+    "primaryEngine": "vector",
+    "fallbackEngine": "qmd",
+    "threshold": 0.7,
+    "topK": 5
+  },
+  "agents": {
+    "main": {
+      "flushIdleSeconds": 1800,
+      "maxMessagesPerPart": 60
+    }
+  },
+  "watcher": {
+    "debounceSeconds": 20,
+    "pollingIntervalSeconds": 300
+  },
+  "sanitizer": {
+    "maxContentLength": 1000
+  }
+}
