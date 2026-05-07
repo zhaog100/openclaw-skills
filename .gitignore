@@ -43,3 +43,4 @@ qmd/
 backups/
 
 backup-*.bundle
+tmp/
