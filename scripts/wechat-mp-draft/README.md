@@ -1,6 +1,6 @@
 # 微信公众号草稿创建工具
 
-**版本**：v1.5.0
+**版本**：v1.6.0
 **版权**：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ---
@@ -11,8 +11,9 @@
 - 上传封面图到微信素材库
 - 创建公众号草稿
 - **微信API错误码详细提示**（40+常见错误）
-- **兼容 Node.js 14+**
 - **API调用超时保护**
+- **自动重试机制**（网络错误自动重试3次）
+- **兼容 Node.js 14+**
 
 ## 安装依赖
 
@@ -53,6 +54,25 @@ CONTENT_TEMPLATE.article.content = '<p>文章HTML内容...</p>';
 
 publishBusinessDraft();
 ```
+
+## 配置参数化
+
+可通过 `CONFIG` 对象自定义：
+
+```javascript
+const { CONFIG } = require('./wechat-draft.js');
+
+CONFIG.coverSize = { width: 900, height: 400 };  // 自定义封面尺寸
+CONFIG.timeout.upload = 60000;                    // 上传超时60秒
+CONFIG.retries.maxAttempts = 5;                    // 最大重试5次
+```
+
+## 重试机制
+
+网络错误自动重试，默认3次，每次延迟递增：
+- 第1次失败：等1秒
+- 第2次失败：等2秒
+- 第3次失败：等3秒
 
 ## 超时设置
 

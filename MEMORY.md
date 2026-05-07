@@ -192,13 +192,25 @@ _持续更新，记录重要信息_
 
 ---
 
-_最后更新: 2026-05-07 20:25 CST_
+_最后更新: 2026-05-07 23:28 HKT_
 
 ---
 
-### 每日回顾 (2026-05-07 ✅)
-- 身份确认: 小米辣 🌶️ / zhaog100
-- 远程仓库: origin→xiaomila-skills / skills→openclaw-skills
-- 目录结构: memory/INDEX.md 新建 / knowledge/ / data/ 索引已更新
-- 待推送: data/pr-status-2026-05-06.md / data/INDEX.md / memory/INDEX.md / memory/2026-05-07.md
-- 遗留: Gmail阻断 / la-tanda-web PR待提交
+### la-tanda-web Bounty PRs (2026-05-07)
+| PR # | Issue | 分支 | 状态 |
+|------|-------|------|------|
+| #282 | #268 Notification Center内联操作 | feature/notification-center-improvements | OPEN |
+| #283 | #89 Chain Explorer搜索+详情 | feature/chain-explorer-enhancements | OPEN |
+| #284 | #85 Accessibility Audit修复 | feature/accessibility-audit | OPEN |
+
+### la-tanda-web 验证问题已回答
+- **#84** (Theme Toggle): --bg-primary=#0f172a, components-loader.js+design-tokens.css
+- **#86** (Performance Audit): cache version ?v=30.6, header/sidebar/hub模块
+- **#87** (Push Notification): 5偏好列=payment_reminders/group_updates/member_activity/marketing/email_enabled
+
+### RustChain PR 状态 (2026-05-07)
+- #2207: merged ✅ → Claim #6931 (160 RTC, closed)
+- #2165: merged ✅ → Claim #7234 (closed)
+- #2205: merged ✅ → Claim #7235 (closed)
+- #7339/#7326-#7329/#7368-#7369: 待认领
+- ⚠️ Claim Issue付款未到账

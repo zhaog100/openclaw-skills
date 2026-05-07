@@ -1,51 +1,59 @@
 # GitHub Bounty 扫描结果
 
-**扫描时间**: 2026-05-01 15:35 CST
-**扫描范围**: 2006+ bounty 任务
+**扫描时间**: 2026-05-07 18:01 CST
+**扫描范围**: 500+ bounty 任务
 **过滤规则**: 排除黑名单 (zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|coollabsio)
 
 ---
 
-## 💰 高价值未认领任务 (Top 10)
+## 💰 新发现未认领任务 (Top 5)
 
 | # | 项目 | 任务 | 价值 | 标签 |
 |---|------|------|------|------|
-| 1 | INDIGOAZUL/la-tanda-web #267 | Prometheus + Grafana monitoring stack | 1,000 LTD | bounty, high-priority, infrastructure, tier-2 |
-| 2 | INDIGOAZUL/la-tanda-web #269 | Cosmos Ecosystem Comms Sprint | 750 LTD | bounty, high-priority, marketing, tier-2 |
-| 3 | INDIGOAZUL/la-tanda-web #268 | Notification Center improvements | 750 LTD | bounty, high-priority, tier-2 |
-| 4 | INDIGOAZUL/la-tanda-web #88 | Onboarding Tour / First-Time User Flow | 300 LTD | enhancement, bounty, tier-2 |
-| 5 | INDIGOAZUL/la-tanda-web #87 | Mobile Push Notification UX | 250 LTD | enhancement, bounty, tier-2 |
-| 6 | INDIGOAZUL/la-tanda-web #89 | Chain Explorer Enhancements | 200 LTD | enhancement, bounty, tier-1 |
-| 7 | INDIGOAZUL/la-tanda-web #86 | Performance Audit + Lighthouse Optimization | 150 LTD | enhancement, bounty, tier-1 |
-| 8 | INDIGOAZUL/la-tanda-web #155 | Fix broken or placeholder links | 30 LTD | bounty, tier-0 |
-| 9 | Scottcjn/rustchain-bounties #6459 | Judge Packet — Rank 5 open claims | 3-30 RTC | bounty |
-| 10 | Scottcjn/rustchain-bounties #6194 | Mining Hardware Video — Production Brief | 15-25 RTC | bounty |
+| 1 | microg/GmsCore #2994 | RCS Support [14999$] | $14,999 USD | bounty, enhancement |
+| 2 | tinygrad/tinygrad #3039 | Bounty: Fast parallel scan (Mamba, etc) | $500 USD | bounty |
+| 3 | moorcheh-ai/memanto #37 | Best-in-Class Integration: CrewAI + Memanto Agentic Memory | $100 USD | bounty |
+| 4 | Alvasilev12/meeet-solana-state #9 | Bounty: Telegram Mini App | 1,000 MEEET | enhancement, help wanted |
+| 5 | Alvasilev12/meeet-solana-state #7 | Bounty: Build MEEET MCP Server | 500 MEEET | enhancement, help wanted |
 
 ---
 
 ## 📊 扫描统计
 
-- **总扫描任务**: 2006+
-- **高价值任务**: 10 个 (排除黑名单后)
-- **潜在总价值**: ~3,430 LTD + 48-55 RTC
-- **claude-builders-bounty**: 4 个任务 ($75-$200) - 已有 PR 提交
+- **总扫描任务**: 500+
+- **新发现任务**: 5 个
+- **高价值任务**: 2 个 ≥$100 USD
 
 ---
 
-## 🎯 建议行动
+## 🎯 优先行动建议
 
-1. **INDIGOAZUL/la-tanda-web #267**: 1,000 LTD - 高价值基础设施任务
-2. **INDIGOAZUL/la-tanda-web #269**: 750 LTD - 营销/内容任务
-3. **INDIGOAZUL/la-tanda-web #268**: 750 LTD - 前端开发任务
-4. **Scottcjn/rustchain-bounties #6459**: 3-30 RTC - Judge 任务，可快速完成
+1. **tinygrad/tinygrad#3039** ($500) - Fast parallel scan - 需要提交 draft PR 锁定 bounty
+2. **moorcheh-ai/memanto#37** ($100) - CrewAI + Memanto integration - 需 PR 到 examples/ 文件夹
+3. **microg/GmsCore#2994** ($14,999) - RCS Support - 复杂 Android 安全任务
 
 ---
 
-## 📧 邮件检查
+## ✅ 本次扫描新发现
 
-- **总邮件数**: 21,796 封
-- **最近邮件**: 主要是 GitHub bounty 通知
-- **付款邮件**: ❌ 未发现
+### tinygrad - $500 bounty
+- Repo: tinygrad/tinygrad#3039
+- Title: Bounty: Fast parallel scan (Mamba, etc)
+- Body: 通用并行前缀和操作，类似 JAX 的 associative_scan
+- Status: OPEN, no assignee
+- Action: 提交 draft PR 锁定 bounty
+
+### microg GmsCore - $14,999 bounty
+- Repo: microg/GmsCore#2994
+- Title: [BOUNTY] RCS Support [14999$]
+- Body: 启用 Google Messages 与 microG 的 RCS 功能
+- Status: OPEN, no assignee
+- Complexity: HIGH - 需要 Android 签名/ attestation 知识
+
+### MEEET Solana - Token bounties
+- Alvasilev12/meeet-solana-state#9: 1,000 MEEET (Telegram Mini App)
+- Alvasilev12/meeet-solana-state#7: 500 MEEET (MCP Server)
+- Token CA: EJgyptJK58M9AmJi1w8ivGBjeTm5JoTqFefoQ6JTpump
 
 ---
 
@@ -53,73 +61,4 @@ _下次扫描: 2 小时后 (bounty-scan-gh cron)_
 
 ---
 
-## ✅ 已认领任务
-
-| 任务 | 价值 | 认领时间 | 状态 |
-|------|------|----------|------|
-| Scottcjn/rustchain-bounties #6459 | 3-30 RTC | 2026-05-01 15:45 | ✅ 已提交 Judge Packet |
-| INDIGOAZUL/la-tanda-web #267 | 1,000 LTD | 2026-05-01 15:50 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #269 | 750 LTD | 2026-05-01 15:50 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #268 | 750 LTD | 2026-05-01 15:50 | ⏳ 等待审核 |
-
-**认领总价值**: 2,500 LTD + 3-30 RTC
-
----
-
-## 📋 待认领任务
-
-| 任务 | 价值 | 优先级 |
-|------|------|--------|
-| INDIGOAZUL/la-tanda-web #88 | 300 LTD | 高 |
-| INDIGOAZUL/la-tanda-web #87 | 250 LTD | 高 |
-| INDIGOAZUL/la-tanda-web #89 | 200 LTD | 中 |
-| INDIGOAZUL/la-tanda-web #86 | 150 LTD | 中 |
-| INDIGOAZUL/la-tanda-web #155 | 30 LTD | 低 |
-| Scottcjn/rustchain-bounties #6194 | 15-25 RTC | 中 |
-
----
-
-_更新时间: 2026-05-01 15:50 CST_
-
----
-
-## ✅ 新增认领任务
-
-| 任务 | 价值 | 认领时间 | 状态 |
-|------|------|----------|------|
-| INDIGOAZUL/la-tanda-web #88 | 300 LTD | 2026-05-01 15:55 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #87 | 250 LTD | 2026-05-01 15:55 | ⏳ 等待审核 |
-
-**新增认领价值**: 550 LTD
-**累计认领价值**: 3,050 LTD + 3-30 RTC
-
----
-
-_更新时间: 2026-05-01 15:55 CST_
-
----
-
-## ✅ 新增认领任务 (第二轮)
-
-| 任务 | 价值 | 认领时间 | 状态 |
-|------|------|----------|------|
-| INDIGOAZUL/la-tanda-web #89 | 200 LTD | 2026-05-01 16:00 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #86 | 150 LTD | 2026-05-01 16:00 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #155 | 30 LTD | 2026-05-01 16:00 | ⏳ 等待审核 |
-| Scottcjn/rustchain-bounties #6194 | 15-25 RTC | 2026-05-01 16:00 | ⏳ 等待审核 |
-
-**新增认领价值**: 395 LTD + 15-25 RTC
-**累计认领价值**: 3,445 LTD + 18-55 RTC
-
----
-
-## 📋 待认领任务
-
-| 任务 | 价值 | 优先级 |
-|------|------|--------|
-| INDIGOAZUL/la-tanda-web #88 | 300 LTD | 高 |
-| INDIGOAZUL/la-tanda-web #87 | 250 LTD | 高 |
-
----
-
-_更新时间: 2026-05-01 16:00 CST_
+_最后更新: 2026-05-07 18:01 CST_

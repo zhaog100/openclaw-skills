@@ -1,0 +1,48 @@
+# Bounty Known Issues — Deduplication List
+# Last Updated: 2026-05-07 04:01 PM
+# Format: repo#number
+
+# SolFoundry (FNDRY tokens) - claims tasks only, don't submit PRs directly
+# (all open bounties now have PRs in progress — no unclaimed remains)
+SolFoundry/solfoundry#826
+SolFoundry/solfoundry#823
+SolFoundry/solfoundry#838
+SolFoundry/solfoundry#842
+SolFoundry/solfoundry#848
+SolFoundry/solfoundry#851
+SolFoundry/solfoundry#847
+SolFoundry/solfoundry#853
+SolFoundry/solfoundry#840
+SolFoundry/solfoundry#854
+SolFoundry/solfoundry#859
+SolFoundry/solfoundry#861
+
+# Other platforms - duplicates or resolved
+boundlessfi/bounties#181
+langchain-ai/langchain#36952
+HHS/simpler-grants-gov#10079
+1Hive/honeyswap-interface#97
+HellWatcher/honksquad-ss14#131
+
+# Claimed/Completed - keep for reference
+# LT-50 (INDIGOAZUL/la-tanda-web#50) — PR #279 open, zhaog100
+INDIGOAZUL/la-tanda-web#50
+
+# RustChain - archived/no bounty payment
+Scottcjn/rustchain-bounties
+
+# Bot prevention
+aporthq
+rohitdash08
+Expensify
+ubiquibot
+bolivan
+illbnm
+conflux
+WattCoin
+coollabsio
+Scottcjn
+rustchain
+
+# Sub-threshold (≥10 LTD but <50 LTD typical tier-0 min)
+INDIGOAZUL/la-tanda-web#155
