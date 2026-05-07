@@ -1,6 +1,9 @@
 ---
 name: long-context
 description: Handle long conversations and large context windows efficiently. Use when conversation is getting long, context window is filling up, user asks to summarize/compact/continue, or when token usage is high. Supports memory search, context pruning, session compaction, and progressive loading strategies.
+
+version: 1.0.0
+
 ---
 
 # Long Context

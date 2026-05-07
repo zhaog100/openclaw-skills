@@ -1,125 +1,72 @@
 # GitHub Bounty 扫描结果
 
-**扫描时间**: 2026-05-01 15:35 CST
-**扫描范围**: 2006+ bounty 任务
+**扫描时间**: 2026-05-07 08:50 CST
+**扫描范围**: label:bounty + bounty in:title 搜索
 **过滤规则**: 排除黑名单 (zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|coollabsio)
+**API状态**: ⚠️ 间歇性EOF错误（限流/网络问题）
 
 ---
 
-## 💰 高价值未认领任务 (Top 10)
+## 🔴 新发现高价值任务 (本轮)
 
-| # | 项目 | 任务 | 价值 | 标签 |
-|---|------|------|------|------|
-| 1 | INDIGOAZUL/la-tanda-web #267 | Prometheus + Grafana monitoring stack | 1,000 LTD | bounty, high-priority, infrastructure, tier-2 |
-| 2 | INDIGOAZUL/la-tanda-web #269 | Cosmos Ecosystem Comms Sprint | 750 LTD | bounty, high-priority, marketing, tier-2 |
-| 3 | INDIGOAZUL/la-tanda-web #268 | Notification Center improvements | 750 LTD | bounty, high-priority, tier-2 |
-| 4 | INDIGOAZUL/la-tanda-web #88 | Onboarding Tour / First-Time User Flow | 300 LTD | enhancement, bounty, tier-2 |
-| 5 | INDIGOAZUL/la-tanda-web #87 | Mobile Push Notification UX | 250 LTD | enhancement, bounty, tier-2 |
-| 6 | INDIGOAZUL/la-tanda-web #89 | Chain Explorer Enhancements | 200 LTD | enhancement, bounty, tier-1 |
-| 7 | INDIGOAZUL/la-tanda-web #86 | Performance Audit + Lighthouse Optimization | 150 LTD | enhancement, bounty, tier-1 |
-| 8 | INDIGOAZUL/la-tanda-web #155 | Fix broken or placeholder links | 30 LTD | bounty, tier-0 |
-| 9 | Scottcjn/rustchain-bounties #6459 | Judge Packet — Rank 5 open claims | 3-30 RTC | bounty |
-| 10 | Scottcjn/rustchain-bounties #6194 | Mining Hardware Video — Production Brief | 15-25 RTC | bounty |
+| # | 项目 | 任务 | 价值 | 标签 | 备注 |
+|---|------|------|------|------|------|
+| 1 | tenstorrent/tt-metal #32186 | RVC (Retrieval-based Voice Conversion) bring up using TTNN APIs | $1,500 | bounty, bounty_difficulty/medium, model bringup | 🆕 本轮新发现 |
+| 2 | 1btc-news/news-client #33 | Major Bounty: Build & Run the Quantum Visualizer + Daily Quantum Beat | 250k sats (~<$300) | - | 🆕 本轮新发现 |
+| 3 | 1btc-news/news-client #39 | Bounty: Moltbook Inscription Daily | 待确认 | - | FCFS 🆕 |
+| 4 | hummingbot/hummingbot #8159 | Bounty - Add Lighter Spot and Perpetual Connectors | 待确认 | bounty | 🆕 本轮新发现 |
+| 5 | entrius/gittensor-ui #949 | Watchlist Page: Bounties tab has no filter sidebar | 待确认 | bug, enhancement | 🆕 本轮新发现 |
+| 6 | devpool-directory/devpool-directory #5924 | Launch Another DoraHacks Bounty Post | $9 | Priority: 1 | 低价快速 |
 
 ---
 
-## 📊 扫描统计
+## 📊 本轮扫描统计
 
-- **总扫描任务**: 2006+
-- **高价值任务**: 10 个 (排除黑名单后)
-- **潜在总价值**: ~3,430 LTD + 48-55 RTC
-- **claude-builders-bounty**: 4 个任务 ($75-$200) - 已有 PR 提交
-
----
-
-## 🎯 建议行动
-
-1. **INDIGOAZUL/la-tanda-web #267**: 1,000 LTD - 高价值基础设施任务
-2. **INDIGOAZUL/la-tanda-web #269**: 750 LTD - 营销/内容任务
-3. **INDIGOAZUL/la-tanda-web #268**: 750 LTD - 前端开发任务
-4. **Scottcjn/rustchain-bounties #6459**: 3-30 RTC - Judge 任务，可快速完成
+- **本轮扫描时间**: 2026-05-07 08:50 CST
+- **API可用性**: ⚠️ 严重限流（大部分请求返回EOF）
+- **新发现任务**: ~6 个
+- **新发现高价值 (≥$100)**: 2 个（tenstorrent $1,500，1btc-news 250k sats）
+- **排除原因**: illbnm/homelab-stack #504 ($300) → illbnm 在黑名单中
 
 ---
 
-## 📧 邮件检查
+## ⚠️ 已知问题：API限流严重
 
-- **总邮件数**: 21,796 封
-- **最近邮件**: 主要是 GitHub bounty 通知
-- **付款邮件**: ❌ 未发现
+本轮扫描遇到GitHub API严重限流（EOF错误），以下关键词搜索全部失败：
+- `bounty $50 state:open no:assignee`
+- `bounty $100 state:open no:assignee`
+- `bounty $200 state:open no:assignee`
+- `label:bounty state:open no:assignee`
+- `paid on merge state:open`
+
+**建议**: 等待15-30分钟后重试，或使用不同IP/代理
 
 ---
 
-_下次扫描: 2 小时后 (bounty-scan-gh cron)_
-
----
-
-## ✅ 已认领任务
+## ✅ 认领记录 (本轮)
 
 | 任务 | 价值 | 认领时间 | 状态 |
 |------|------|----------|------|
-| Scottcjn/rustchain-bounties #6459 | 3-30 RTC | 2026-05-01 15:45 | ✅ 已提交 Judge Packet |
-| INDIGOAZUL/la-tanda-web #267 | 1,000 LTD | 2026-05-01 15:50 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #269 | 750 LTD | 2026-05-01 15:50 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #268 | 750 LTD | 2026-05-01 15:50 | ⏳ 等待审核 |
+| - | - | - | 本轮无新认领（API不可用） |
 
-**认领总价值**: 2,500 LTD + 3-30 RTC
+**本轮认领价值**: $0
 
 ---
 
-## 📋 待认领任务
+## 📋 黑名单执行检查
 
-| 任务 | 价值 | 优先级 |
-|------|------|--------|
-| INDIGOAZUL/la-tanda-web #88 | 300 LTD | 高 |
-| INDIGOAZUL/la-tanda-web #87 | 250 LTD | 高 |
-| INDIGOAZUL/la-tanda-web #89 | 200 LTD | 中 |
-| INDIGOAZUL/la-tanda-web #86 | 150 LTD | 中 |
-| INDIGOAZUL/la-tanda-web #155 | 30 LTD | 低 |
-| Scottcjn/rustchain-bounties #6194 | 15-25 RTC | 中 |
-
----
-
-_更新时间: 2026-05-01 15:50 CST_
+| 用户/组织 | 状态 | 相关任务 |
+|-----------|------|----------|
+| zhaog100 | ✅ 未参与任何bounty | - |
+| Scottcjn | ✅ 已排除 | rustchain-bounties (大量) |
+| rustchain | ✅ 已排除 | 所有rustchain任务 |
+| solfoundry | ✅ 已排除 | solfoundry bounties |
+| Expensify | ✅ 已排除 | App bounties |
+| illbnm | ✅ 已排除 | homelab-stack #504 ($300) |
+| conflux | ✅ 已排除 | - |
+| coollabsio | ✅ 已排除 | - |
 
 ---
 
-## ✅ 新增认领任务
-
-| 任务 | 价值 | 认领时间 | 状态 |
-|------|------|----------|------|
-| INDIGOAZUL/la-tanda-web #88 | 300 LTD | 2026-05-01 15:55 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #87 | 250 LTD | 2026-05-01 15:55 | ⏳ 等待审核 |
-
-**新增认领价值**: 550 LTD
-**累计认领价值**: 3,050 LTD + 3-30 RTC
-
----
-
-_更新时间: 2026-05-01 15:55 CST_
-
----
-
-## ✅ 新增认领任务 (第二轮)
-
-| 任务 | 价值 | 认领时间 | 状态 |
-|------|------|----------|------|
-| INDIGOAZUL/la-tanda-web #89 | 200 LTD | 2026-05-01 16:00 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #86 | 150 LTD | 2026-05-01 16:00 | ⏳ 等待审核 |
-| INDIGOAZUL/la-tanda-web #155 | 30 LTD | 2026-05-01 16:00 | ⏳ 等待审核 |
-| Scottcjn/rustchain-bounties #6194 | 15-25 RTC | 2026-05-01 16:00 | ⏳ 等待审核 |
-
-**新增认领价值**: 395 LTD + 15-25 RTC
-**累计认领价值**: 3,445 LTD + 18-55 RTC
-
----
-
-## 📋 待认领任务
-
-| 任务 | 价值 | 优先级 |
-|------|------|--------|
-| INDIGOAZUL/la-tanda-web #88 | 300 LTD | 高 |
-| INDIGOAZUL/la-tanda-web #87 | 250 LTD | 高 |
-
----
-
-_更新时间: 2026-05-01 16:00 CST_
+_下次扫描: 2小时后 (bounty-scan-gh cron)_
+_更新时间: 2026-05-07 08:50 CST_

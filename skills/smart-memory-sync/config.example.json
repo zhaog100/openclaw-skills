@@ -1,0 +1,26 @@
+{
+  "thresholds": {
+    "remind": 50,
+    "auto_sync": 75,
+    "auto_switch": 85
+  },
+  "intervals": {
+    "check": 300,
+    "sync": 3600
+  },
+  "paths": {
+    "workspace": "",
+    "memory": "MEMORY.md",
+    "memory_lite": "MEMORY-LITE.md",
+    "daily_log": "memory/",
+    "knowledge": "knowledge/"
+  },
+  "integrations": {
+    "context_manager": { "enabled": true, "skill": "context-manager" },
+    "qmd": { "enabled": true, "collection": "knowledge" },
+    "git": { "enabled": true, "auto_push": false }
+  },
+  "notifications": {
+    "qqbot": { "enabled": true, "target": "" }
+  }
+}

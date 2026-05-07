@@ -1,0 +1,2 @@
+/home/zhaog/.openclaw/skills/zhaog100/smart-model-switch/SKILL.md
+/home/zhaog/.openclaw/skills/zhaog100/context-manager/SKILL.md

@@ -1,0 +1,13 @@
+services:
+  autoflow:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./config.json:/app/config.json:ro
+    environment:
+      - AF_JWT_SECRET=${AF_JWT_SECRET:-change-me-in-production}
+      - AF_DB_URL=${AF_DB_URL:-}
+      - AF_DEBUG=${AF_DEBUG:-false}
+    restart: unless-stopped

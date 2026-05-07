@@ -12,11 +12,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import re
+<<<<<<< HEAD
+from datetime import datetime
+=======
 import json
 import os
 from datetime import datetime, timedelta
 from pathlib import Path
-
+>>>>>>> feat/github-marketing
 
 
 # ===== 地缘政治风险因子库 =====
@@ -107,6 +110,8 @@ OIL_KEYWORDS_BULLISH = ["减产", "OPEC减产", "供应中断", "霍尔木兹", 
 OIL_KEYWORDS_BEARISH = ["增产", "OPEC增产", "需求疲软", "库存增加", "经济放缓", "衰退",
                          "停火", "贸易战", "关税"]
 
+<<<<<<< HEAD
+=======
 # v1.4.0: 关联词 — 用于二次过滤泛泛新闻
 RELEVANCE_WORDS = ["黄金", "原油", "金价", "油价", "商品", "期货", "大宗", "避险",
                     "gold", "oil", "commodity", "crude", "OPEC", "通胀",
@@ -152,7 +157,7 @@ def _save_cache(lines, risk_score):
     except Exception:
         pass  # 缓存失败不影响主流程
 
-
+>>>>>>> feat/github-marketing
 
 def _match_keywords(text, keywords):
     """检查文本是否包含关键词列表中的词"""
@@ -198,6 +203,16 @@ def _match_factor(text, factor_info):
 
 
 def _judge_sentiment(title, content=""):
+<<<<<<< HEAD
+    """判断单条新闻的情感倾向"""
+    text = f"{title} {content}"
+
+    # 匹配风险因子
+    matched_factors = []
+    for factor_name, factor_info in GEOPOLITICAL_FACTORS.items():
+        if _match_keywords(text, factor_info["keywords"]):
+            matched_factors.append(factor_name)
+=======
     """v1.4.0 判断单条新闻的情感倾向 — 核心因子5分/边缘因子1分 + 关联词二次过滤"""
     text = f"{title} {content}"
 
@@ -214,7 +229,7 @@ def _judge_sentiment(title, content=""):
                     continue  # 泛泛新闻，不包含商品关联词，跳过
             matched_factors.append(factor_name)
             factor_scores[factor_name] = match_score
-
+>>>>>>> feat/github-marketing
 
     # 判断黄金影响
     gold_bull = _match_keywords(text, GOLD_KEYWORDS_BULLISH)
@@ -240,6 +255,15 @@ def _judge_sentiment(title, content=""):
     else:
         oil_impact = "中性"
 
+<<<<<<< HEAD
+    # 影响程度（基于关键词数量）
+    score = len(matched_factors) * 5
+    if gold_bull:
+        score += 5
+    if gold_bear:
+        score -= 5
+    score = min(score, 20)  # 单条新闻最多20分
+=======
     # v1.4.0 评分：核心因子5分 + 边缘因子1分
     score = sum(factor_scores.values())
     if gold_bull:
@@ -247,7 +271,7 @@ def _judge_sentiment(title, content=""):
     if gold_bear:
         score -= 3
     score = min(score, 25)  # 单条新闻最多25分
-
+>>>>>>> feat/github-marketing
 
     return {
         "factors": matched_factors,
@@ -502,13 +526,15 @@ def assess_geopolitical_risk():
 
 def generate_geopolitical_section():
     """生成地缘政治分析部分（嵌入到每日报告中）"""
+<<<<<<< HEAD
+=======
     # 检查缓存
     cache = _load_cache()
     if cache:
         return cache['lines'], cache['risk_score']
     
     # 缓存未命中，重新采集
-
+>>>>>>> feat/github-marketing
     events, risk_score = assess_geopolitical_risk()
 
     lines = []
@@ -554,8 +580,10 @@ def generate_geopolitical_section():
     else:
         lines.append("    ✅ 地缘风险可控 → 回归技术面分析")
 
+<<<<<<< HEAD
+=======
     # 保存缓存
     _save_cache(lines, risk_score)
     
-
+>>>>>>> feat/github-marketing
     return lines, risk_score

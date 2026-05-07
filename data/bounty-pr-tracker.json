@@ -1,0 +1,45 @@
+{
+  "lastUpdated": "2026-05-07T01:30:00Z",
+  "networkStatus": "degraded",
+  "networkNote": "gh pr list returned empty but individual queries worked",
+  "reporter": "小米辣 🌶️ / zhaog100",
+  "openPRs": {
+    "count": "unknown (gh list empty, per-PR query works)",
+    "note": "Network issues affecting batch queries"
+  },
+  "prsWithReviewIssues": [
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "number": 87,
+      "title": "Auto Time Label Estimator - Bounty #76 ($450)",
+      "status": "CHANGES_REQUESTED",
+      "reviewer": "CodeRabbitAI + alceops community review",
+      "lastReviewDate": "2026-04-28",
+      "issues": [
+        "CodeRabbitAI: Docstring coverage 33% (threshold 80%), missing plugin env placeholders, workflow runs dist without deps install, write-all permissions too broad, missing hard LLM timeout, Time labels fed back into prompt (anchoring), missing label pagination, invalid labels key under GHA job permissions",
+        "alceops (2026-04-28): build fails on clean checkout - import paths broken, logger not destructured in estimateTime(), provider 'none' branch impossible under current schema, issue.labels can be undefined, workflow uses npm ci but no package-lock.json"
+      ],
+      "authorComment": "Asked maintainer for feedback on 2026-04-28, no response yet",
+      "action": "Address alceops feedback: fix import paths, destructure logger, remove impossible provider branch, default labels to [], switch workflow to Bun, then re-request CodeRabbit review"
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "number": 396,
+      "title": "[Tutorial] Building an Unshielded Token dApp with UI",
+      "status": "CLA_PENDING",
+      "lastReviewDate": "2026-04-25",
+      "issues": [
+        "CLA assistant: CLA not yet signed (recheck link available)"
+      ],
+      "action": "Sign CLA at https://cla-assistant.io/check/midnightntwrk/contributor-hub?pullRequest=396"
+    }
+  ],
+  "summary": {
+    "totalOpen": "~2 tracked",
+    "changesRequested": 1,
+    "claPending": 1,
+    "merged": 0,
+    "newReviewComments": 1,
+    "alceopsHelpfulFeedback": "PR #87 has actionable build-fix feedback from alceops (2026-04-28) that aligns with prior CodeRabbitAI feedback — worth incorporating"
+  }
+}

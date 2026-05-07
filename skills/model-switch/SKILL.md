@@ -1,6 +1,9 @@
 ---
 name: model-switch
 description: Switch AI models and providers for the current session. Supports 百炼(bailian), LongCat, OpenRouter, Gemini, GLM, MiniMix and more. Use when user asks to change model, switch provider, compare models, or optimize for coding/thinking/cheap tasks. Also use when model errors occur and fallback is needed.
+
+version: 1.0.0
+
 ---
 
 # Model Switch

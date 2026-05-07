@@ -1,0 +1,45 @@
+# Bounty Known Issues Tracker
+# Last updated: 2026-05-07 08:50 CST
+
+# High-value verified bounties (≥$100 or ≥50 RTC/LTD)
+verl-project/verl:1782:$2500
+microg/GmsCore:2994:$14999
+microg/GmsCore:2843:$1340
+devlikeapro/waha:1076:$2100
+Norbyte/bg3se:162:$350
+commaai/opendbc:1173:$300
+OpenAPITools/openapi-generator:10514:tbd
+MonoGame/MonoGame:8120:tbd
+claude-builders-bounty:737:$50
+claude-builders-bounty:751:$50
+claude-builders-bounty:750:$75
+claude-builders-bounty:749:$100
+pikvm/pikvm:1497:tbd
+qtile/qtile:2703:$2000+
+QubesOS/qubes-issues:4318:3btc
+
+# Historical claims (INDIGOAZUL la-tanda-web)
+INDIGOAZUL/la-tanda-web:267:1000LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:269:750LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:268:750LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:88:300LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:87:250LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:89:200LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:86:150LTD:2026-05-01
+INDIGOAZUL/la-tanda-web:155:30LTD:2026-05-01
+
+# Historical claims (Scottcjn rustchain)
+Scottcjn/rustchain-bounties:6194:15-25RTC:2026-05-01
+Scottcjn/rustchain-bounties:6459:3-30RTC:2026-05-01
+
+# Blacklisted repos (do not scan)
+# zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|coollabsio
+
+# New found in scan 2026-05-07 08:50 CST (API间歇性EOF)
+# NOTE: illbnm is blacklisted - illbnm/homelab-stack #504 excluded
+1btc-news/news-client:33:250k sats
+1btc-news/news-client:39:tbd (Moltbook Inscription)
+tenstorrent/tt-metal:32186:$1500
+hummingbot/hummingbot:8159:tbd
+entrius/gittensor-ui:949:tbd
+devpool-directory/devpool-directory:5924:$9
