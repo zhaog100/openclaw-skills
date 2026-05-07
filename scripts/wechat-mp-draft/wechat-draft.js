@@ -3,14 +3,22 @@
  * 
  * 功能：创建商贸转型主题的公众号草稿
  * 作者：小米椒 🌶️‍🔥
- * 版本：v1.2.0 (内容已脱敏)
+ * 版本：v1.3.0 (FormData兼容性优化)
+ * 
+ * 依赖：
+ *   npm install playwright form-data node-fetch
  * 
  * 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
  */
 
-const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
+const FormData = require('form-data');
+const { chromium } = require('playwright');
+
+// 兼容 Node.js 版本判断
+const nodeVersion = process.version.match(/^v(\d+)/)[1];
+const useNativeFetch = parseInt(nodeVersion) >= 18;
 
 // 内容模板（具体文案需用户填充）
 const CONTENT_TEMPLATE = {
@@ -26,6 +34,20 @@ const CONTENT_TEMPLATE = {
   }
 };
 
+/**
+ * HTTP请求封装（兼容Node.js 18+原生fetch和node-fetch）
+ */
+async function httpRequest(url, options = {}) {
+  if (useNativeFetch) {
+    const response = await fetch(url, options);
+    return response;
+  } else {
+    const nodeFetch = require('node-fetch');
+    const response = await nodeFetch(url, options);
+    return response;
+  }
+}
+
 async function publishBusinessDraft(options = {}) {
   const {
     credentialsPath = './secrets/wechat-mp-credentials.json',
@@ -33,8 +55,8 @@ async function publishBusinessDraft(options = {}) {
   } = options;
 
   console.log('🎯 开始创建商贸主题草稿...');
+  console.log(`📦 Node.js 版本: ${process.version}`);
   
-  // 解析凭证路径（支持绝对/相对路径）
   const resolvedCredentialsPath = path.isAbsolute(credentialsPath) 
     ? credentialsPath 
     : path.resolve(process.cwd(), credentialsPath);
@@ -50,72 +72,36 @@ async function publishBusinessDraft(options = {}) {
   }
   
   const { appId, appSecret } = credentials.account;
-  
-  // 敏感信息脱敏检查
   console.log(`🔐 AppID: ${appId.substring(0, 8)}****`);
   
   let browser;
   
   try {
-    // 确保输出目录存在
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
     
-    // 创建商贸主题封面图
     console.log('🖼️ 生成商贸主题封面图...');
     browser = await chromium.launch({
       headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu'
-      ],
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
       timeout: 60000
     });
     
-    const context = await browser.newContext({
-      viewport: { width: 900, height: 500 }
-    });
-    
+    const context = await browser.newContext({ viewport: { width: 900, height: 500 } });
     const page = await context.newPage();
     
-    // 创建商贸主题封面图 HTML（模板）
     const coverHtml = `
       <!DOCTYPE html>
       <html>
       <head>
         <meta charset="UTF-8">
         <style>
-          body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-          }
-          .container {
-            text-align: center;
-            color: white;
-            padding: 40px;
-          }
-          h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-          }
-          p {
-            font-size: 20px;
-            opacity: 0.9;
-          }
-          .emoji {
-            font-size: 50px;
-            margin-bottom: 15px;
-          }
+          body { margin: 0; padding: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+          .container { text-align: center; color: white; padding: 40px; }
+          h1 { font-size: 42px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+          p { font-size: 20px; opacity: 0.9; }
+          .emoji { font-size: 50px; margin-bottom: 15px; }
         </style>
       </head>
       <body>
@@ -129,8 +115,6 @@ async function publishBusinessDraft(options = {}) {
     `;
     
     await page.setContent(coverHtml);
-    
-    // 截图保存封面图
     const coverPath = path.join(outputDir, 'business-cover.png');
     await page.screenshot({ path: coverPath, fullPage: true });
     console.log(`🖼️ 商贸封面图已保存：${coverPath}`);
@@ -138,11 +122,10 @@ async function publishBusinessDraft(options = {}) {
     await browser.close();
     console.log('🌐 浏览器已关闭');
     
-    // 获取 access_token
     console.log('🔑 获取 access_token...');
     const tokenUrl = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appId}&secret=${appSecret}`;
     
-    const tokenResponse = await fetch(tokenUrl);
+    const tokenResponse = await httpRequest(tokenUrl);
     const tokenData = await tokenResponse.json();
     
     if (!tokenData.access_token) {
@@ -152,21 +135,19 @@ async function publishBusinessDraft(options = {}) {
     const accessToken = tokenData.access_token;
     console.log('✅ access_token 获取成功');
     
-    // 上传封面图
     console.log('📤 上传商贸主题封面图...');
     const uploadUrl = `https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=${accessToken}&type=image`;
     
-    // 读取图片文件并创建 FormData
-    const imageBuffer = fs.readFileSync(coverPath);
+    const form = new FormData();
+    form.append('media', fs.createReadStream(coverPath), {
+      filename: 'business-cover.png',
+      contentType: 'image/png'
+    });
     
-    // 使用 Node.js 内置 FormData（Node 18+）
-    const { FormData } = await import('formdata');
-    const formData = new FormData();
-    formData.append('media', new Blob([imageBuffer]), 'business-cover.png');
-    
-    const uploadResponse = await fetch(uploadUrl, {
+    const uploadResponse = await httpRequest(uploadUrl, {
       method: 'POST',
-      body: formData
+      body: form,
+      headers: form.getHeaders()
     });
     
     const uploadData = await uploadResponse.json();
@@ -175,7 +156,6 @@ async function publishBusinessDraft(options = {}) {
       console.log(`✅ 商贸封面图上传成功！`);
       console.log(`📄 Media ID: ${uploadData.media_id.substring(0, 8)}****`);
       
-      // 创建商贸主题草稿
       console.log('📤 创建商贸主题草稿文章...');
       const draftUrl = `https://api.weixin.qq.com/cgi-bin/draft/add?access_token=${accessToken}`;
       
@@ -192,11 +172,9 @@ async function publishBusinessDraft(options = {}) {
         }]
       };
       
-      const draftResponse = await fetch(draftUrl, {
+      const draftResponse = await httpRequest(draftUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(articleData)
       });
       
@@ -216,17 +194,11 @@ async function publishBusinessDraft(options = {}) {
         };
       } else {
         console.error(`❌ 草稿创建失败: ${draftData.errmsg || '未知错误'} (错误代码: ${draftData.errcode || 'N/A'})`);
-        return { 
-          success: false, 
-          message: `草稿创建失败: ${draftData.errmsg || '未知错误'}` 
-        };
+        return { success: false, message: `草稿创建失败: ${draftData.errmsg || '未知错误'}` };
       }
     } else {
       console.error(`❌ 商贸封面图上传失败: ${uploadData.errmsg || '未知错误'} (错误代码: ${uploadData.errcode || 'N/A'})`);
-      return { 
-        success: false, 
-        message: `商贸封面图上传失败: ${uploadData.errmsg || '未知错误'}` 
-      };
+      return { success: false, message: `商贸封面图上传失败: ${uploadData.errmsg || '未知错误'}` };
     }
   } catch (error) {
     console.error(`❌ 发布失败: ${error.message}`);
@@ -239,7 +211,6 @@ async function publishBusinessDraft(options = {}) {
   }
 }
 
-// 主函数入口
 async function main() {
   const args = process.argv.slice(2);
   const options = {
@@ -255,8 +226,6 @@ async function main() {
   if (result.success) {
     console.log('\n🎉 商贸主题公众号草稿创建成功！');
     console.log('📱 请前往公众号后台查看草稿箱');
-    console.log('✏️  可以继续编辑完善内容');
-    console.log('🚀  准备好后可以直接发布');
   } else {
     console.log('\n❌ 商贸草稿创建失败，请检查错误信息并重试');
   }
@@ -264,10 +233,8 @@ async function main() {
   process.exit(result.success ? 0 : 1);
 }
 
-// 如果直接运行此脚本
 if (require.main === module) {
   main().catch(console.error);
 }
 
-// 导出以便其他模块调用
 module.exports = { publishBusinessDraft, CONTENT_TEMPLATE };

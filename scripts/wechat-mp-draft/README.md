@@ -1,22 +1,26 @@
 # 微信公众号草稿创建工具
 
+**版本**：v1.3.0
 **版权**：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ---
 
 ## 功能
 
-- 自动生成商贸主题封面图
+- 自动生成商贸主题封面图（Playwright）
 - 上传封面图到微信素材库
 - 创建公众号草稿
+- **兼容 Node.js 14+**
+
+## 安装依赖
+
+```bash
+npm install playwright form-data node-fetch
+```
 
 ## 使用方式
 
 ```bash
-# 安装依赖
-npm install playwright
-
-# 运行脚本
 node wechat-draft.js [credentials_path] [output_dir]
 
 # 示例
@@ -36,12 +40,25 @@ node wechat-draft.js ./secrets/wechat-mp-credentials.json ./output
 }
 ```
 
-## 依赖
+## 内容填充
 
-- Node.js 18+
-- Playwright
-- 微信公众平台账号
+```javascript
+const { CONTENT_TEMPLATE, publishBusinessDraft } = require('./wechat-draft.js');
+
+CONTENT_TEMPLATE.cover.title = '我的标题';
+CONTENT_TEMPLATE.article.title = '文章标题';
+CONTENT_TEMPLATE.article.content = '<p>文章HTML内容...</p>';
+
+publishBusinessDraft();
+```
+
+## 兼容性
+
+| Node.js | fetch | FormData |
+|---------|-------|----------|
+| 18+ | 原生fetch | form-data |
+| < 18 | node-fetch | form-data |
 
 ---
 
-*此工具为个人使用，不适合共享发布。*
+*此工具为个人使用。*
