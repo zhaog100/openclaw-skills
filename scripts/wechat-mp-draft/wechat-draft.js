@@ -3,7 +3,7 @@
  * 
  * 功能：创建商贸转型主题的公众号草稿
  * 作者：小米椒 🌶️‍🔥
- * 版本：v1.5.0 (封面图尺寸修复 + 超时优化)
+ * 版本：v1.6.0 (重试机制 + 配置参数化 + 增强日志)
  * 
  * 依赖：
  *   npm install
@@ -15,6 +15,35 @@ const fs = require('fs');
 const path = require('path');
 const FormData = require('form-data');
 const { chromium } = require('playwright');
+
+// ==================== 配置 ====================
+const CONFIG = {
+  // 封面图尺寸（微信标准 900×383）
+  coverSize: { width: 900, height: 383 },
+  
+  // 超时设置（毫秒）
+  timeout: {
+    token: 10000,      // access_token 获取
+    upload: 30000,     // 封面上传
+    draft: 20000       // 草稿创建
+  },
+  
+  // 重试设置
+  retries: {
+    maxAttempts: 3,     // 最大重试次数
+    delayMs: 1000       // 重试延迟（递增）
+  },
+  
+  // 浏览器设置
+  browser: {
+    headless: true,
+    timeout: 60000
+  },
+  
+  // 默认路径
+  defaultCredentialsPath: './secrets/wechat-mp-credentials.json',
+  defaultOutputDir: './output'
+};
 
 // Node.js 版本判断
 const nodeVersion = process.version.match(/^v(\d+)/)[1];
@@ -50,18 +79,10 @@ const WECHAT_ERROR_CODES = {
   50009: '系统内部异常'
 };
 
-// API超时设置（毫秒）
-const API_TIMEOUT = {
-  token: 10000,      // access_token 获取超时
-  upload: 30000,     // 封面上传超时
-  draft: 20000        // 草稿创建超时
-};
+// ==================== 工具函数 ====================
 
 /**
  * 处理微信API错误
- * @param {number} errcode - 错误码
- * @param {string} errmsg - 错误信息
- * @returns {string} 格式化的错误描述
  */
 function handleWechatError(errcode, errmsg) {
   const knownError = WECHAT_ERROR_CODES[errcode];
@@ -75,7 +96,7 @@ function handleWechatError(errcode, errmsg) {
  * HTTP请求封装（兼容Node.js 18+原生fetch和node-fetch，带超时）
  */
 async function httpRequest(url, options = {}) {
-  const timeout = options.timeout || 30000;
+  const timeout = options.timeout || CONFIG.timeout.upload;
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
   
@@ -93,7 +114,39 @@ async function httpRequest(url, options = {}) {
   }
 }
 
-// 内容模板（具体文案需用户填充）
+/**
+ * HTTP请求封装（带重试机制）
+ */
+async function httpRequestWithRetry(url, options = {}, retries = CONFIG.retries.maxAttempts) {
+  const lastError = null;
+  
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      console.log(`  📡 请求中... (${attempt}/${retries})`);
+      const response = await httpRequest(url, options);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      return response;
+    } catch (error) {
+      lastError = error;
+      console.log(`  ⚠️ 请求失败: ${error.message}`);
+      
+      if (attempt < retries) {
+        const delay = CONFIG.retries.delayMs * attempt;
+        console.log(`  ⏳ ${delay/1000}秒后重试...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+  
+  throw lastError;
+}
+
+// ==================== 内容模板 ====================
+
 const CONTENT_TEMPLATE = {
   cover: {
     title: '[标题]',
@@ -107,14 +160,16 @@ const CONTENT_TEMPLATE = {
   }
 };
 
+// ==================== 主函数 ====================
+
 async function publishBusinessDraft(options = {}) {
   const {
-    credentialsPath = './secrets/wechat-mp-credentials.json',
-    outputDir = './output'
+    credentialsPath = CONFIG.defaultCredentialsPath,
+    outputDir = CONFIG.defaultOutputDir
   } = options;
 
   console.log('🎯 开始创建商贸主题草稿...');
-  console.log(`📦 Node.js 版本: ${process.version}`);
+  console.log(`📦 Node.js: ${process.version} | Fetch: ${useNativeFetch ? '原生' : 'node-fetch'}`);
   
   const resolvedCredentialsPath = path.isAbsolute(credentialsPath) 
     ? credentialsPath 
@@ -140,15 +195,14 @@ async function publishBusinessDraft(options = {}) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
     
-    console.log('🖼️ 生成商贸主题封面图...');
+    console.log(`\n🖼️ 生成商贸主题封面图 (${CONFIG.coverSize.width}×${CONFIG.coverSize.height})...`);
     browser = await chromium.launch({
-      headless: true,
+      headless: CONFIG.browser.headless,
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
-      timeout: 60000
+      timeout: CONFIG.browser.timeout
     });
     
-    // 微信封面图要求：900×383像素
-    const context = await browser.newContext({ viewport: { width: 900, height: 383 } });
+    const context = await browser.newContext({ viewport: CONFIG.coverSize });
     const page = await context.newPage();
     
     const coverHtml = `
@@ -177,15 +231,19 @@ async function publishBusinessDraft(options = {}) {
     await page.setContent(coverHtml);
     const coverPath = path.join(outputDir, 'business-cover.png');
     await page.screenshot({ path: coverPath, fullPage: true });
-    console.log(`🖼️ 商贸封面图已保存：${coverPath}`);
     
-    await browser.close();
+    const fileSize = fs.statSync(coverPath).size;
+    console.log(`✅ 封面图已保存: ${coverPath} (${(fileSize/1024).toFixed(1)} KB)`);
+    
+    await browser.close().catch(err => console.warn('浏览器关闭异常:', err.message));
+    browser = null;
     console.log('🌐 浏览器已关闭');
     
-    console.log('🔑 获取 access_token...');
+    console.log('\n🔑 获取 access_token...');
     const tokenUrl = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appId}&secret=${appSecret}`;
+    console.log(`📡 API: token (超时: ${CONFIG.timeout.token/1000}s)`);
     
-    const tokenResponse = await httpRequest(tokenUrl, { timeout: API_TIMEOUT.token });
+    const tokenResponse = await httpRequestWithRetry(tokenUrl, { timeout: CONFIG.timeout.token });
     const tokenData = await tokenResponse.json();
     
     if (!tokenData.access_token) {
@@ -194,9 +252,10 @@ async function publishBusinessDraft(options = {}) {
     }
     
     const accessToken = tokenData.access_token;
-    console.log('✅ access_token 获取成功');
+    console.log(`✅ access_token 获取成功 (长度: ${accessToken.length})`);
     
-    console.log('📤 上传商贸主题封面图...');
+    console.log(`\n📤 上传封面图...`);
+    console.log(`📡 API: material/add_material (超时: ${CONFIG.timeout.upload/1000}s)`);
     const uploadUrl = `https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=${accessToken}&type=image`;
     
     const form = new FormData();
@@ -205,20 +264,20 @@ async function publishBusinessDraft(options = {}) {
       contentType: 'image/png'
     });
     
-    const uploadResponse = await httpRequest(uploadUrl, {
+    const uploadResponse = await httpRequestWithRetry(uploadUrl, {
       method: 'POST',
       body: form,
       headers: form.getHeaders(),
-      timeout: API_TIMEOUT.upload
+      timeout: CONFIG.timeout.upload
     });
     
     const uploadData = await uploadResponse.json();
     
     if (uploadData.media_id) {
-      console.log(`✅ 商贸封面图上传成功！`);
-      console.log(`📄 Media ID: ${uploadData.media_id.substring(0, 8)}****`);
+      console.log(`✅ 封面上传成功! Media ID: ${uploadData.media_id.substring(0, 8)}****`);
       
-      console.log('📤 创建商贸主题草稿文章...');
+      console.log(`\n📤 创建草稿文章...`);
+      console.log(`📡 API: draft/add (超时: ${CONFIG.timeout.draft/1000}s)`);
       const draftUrl = `https://api.weixin.qq.com/cgi-bin/draft/add?access_token=${accessToken}`;
       
       const articleData = {
@@ -234,20 +293,20 @@ async function publishBusinessDraft(options = {}) {
         }]
       };
       
-      const draftResponse = await httpRequest(draftUrl, {
+      const draftResponse = await httpRequestWithRetry(draftUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(articleData),
-        timeout: API_TIMEOUT.draft
+        timeout: CONFIG.timeout.draft
       });
       
       const draftData = await draftResponse.json();
       
       if (draftData.media_id) {
-        console.log(`✅ 商贸主题草稿创建成功！`);
+        console.log(`✅ 草稿创建成功!`);
         console.log(`📄 Media ID: ${draftData.media_id.substring(0, 8)}****`);
-        console.log(`🔗 草稿链接: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&appmsgid=${draftData.media_id}&token=&lang=zh_CN`);
-        console.log(`📝 请到公众号后台「草稿箱」查看并完善内容`);
+        console.log(`🔗 链接: https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&appmsgid=${draftData.media_id}&token=&lang=zh_CN`);
+        console.log(`\n📝 请到公众号后台「草稿箱」查看并完善内容`);
         
         return { 
           success: true, 
@@ -257,12 +316,12 @@ async function publishBusinessDraft(options = {}) {
         };
       } else {
         const errorMsg = handleWechatError(draftData.errcode, draftData.errmsg);
-        console.error(`❌ ${errorMsg}`);
+        console.error(`❌ 草稿创建失败: ${errorMsg}`);
         return { success: false, message: errorMsg };
       }
     } else {
       const errorMsg = handleWechatError(uploadData.errcode, uploadData.errmsg);
-      console.error(`❌ ${errorMsg}`);
+      console.error(`❌ 封面上传失败: ${errorMsg}`);
       return { success: false, message: errorMsg };
     }
   } catch (error) {
@@ -270,17 +329,19 @@ async function publishBusinessDraft(options = {}) {
     return { success: false, message: error.message };
   } finally {
     if (browser) {
-      await browser.close();
+      await browser.close().catch(err => console.warn('浏览器关闭异常:', err.message));
       console.log('🌐 浏览器已关闭');
     }
   }
 }
 
+// ==================== 入口 ====================
+
 async function main() {
   const args = process.argv.slice(2);
   const options = {
-    credentialsPath: args[0] || './secrets/wechat-mp-credentials.json',
-    outputDir: args[1] || './output'
+    credentialsPath: args[0] || CONFIG.defaultCredentialsPath,
+    outputDir: args[1] || CONFIG.defaultOutputDir
   };
   
   const result = await publishBusinessDraft(options);
@@ -289,7 +350,7 @@ async function main() {
   console.log(JSON.stringify(result, null, 2));
   
   if (result.success) {
-    console.log('\n🎉 商贸主题公众号草稿创建成功！');
+    console.log('\n🎉 商贸主题公众号草稿创建成功!');
     console.log('📱 请前往公众号后台查看草稿箱');
   } else {
     console.log('\n❌ 商贸草稿创建失败，请检查错误信息并重试');
@@ -302,4 +363,4 @@ if (require.main === module) {
   main().catch(console.error);
 }
 
-module.exports = { publishBusinessDraft, CONTENT_TEMPLATE, WECHAT_ERROR_CODES, handleWechatError };
+module.exports = { publishBusinessDraft, CONTENT_TEMPLATE, CONFIG, WECHAT_ERROR_CODES, handleWechatError };
