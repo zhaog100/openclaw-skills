@@ -64,7 +64,23 @@ _持续更新，记录重要信息_
 
 ---
 
-## 🔒 安全规则
+## 🛠️ QMD 向量库配置
+
+- **状态**: ✅ 已安装（2026-05-07）
+- **embedding模型**: sentence-transformers/all-MiniLM-L6-v2 (384维, ~90MB)
+- **数据库**: ~/.qmd/db.sqlite
+- **collection**: knowledge (4个文档)
+- **使用方法**: 
+  ```python
+  from qmd.core.embedding import Embedder
+  Embedder.MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+  Embedder.DIM = 384
+  import qmd
+  client = qmd.connect()
+  coll = client.collection("knowledge")
+  results = coll.hybrid_search("query", top_k=5)
+  ```
+- **注意**: 使用前需设置 Embedder.DIM=384 和 MODEL_NAME
 
 ### 敏感信息处理
 - **密码**: 只显示最后4位（`****bwyn`）
@@ -185,4 +201,4 @@ _最后更新: 2026-05-07 08:05 CST_
 - 远程仓库: origin→xiaomila-skills / skills→openclaw-skills
 - 目录结构: memory/INDEX.md 新建 / knowledge/ / data/ 索引已更新
 - 待推送: data/pr-status-2026-05-06.md / data/INDEX.md / memory/INDEX.md / memory/2026-05-07.md
-- 遗留: Gmail阻断 / QMD向量不可用 / la-tanda-web PR待提交
+- 遗留: Gmail阻断 / la-tanda-web PR待提交
