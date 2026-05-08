@@ -1,6 +1,6 @@
 # Bounty PR Tracker - zhaog100
 
-**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated**: 2026-05-08 16:00 CST
+**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated**: 2026-05-08 20:04 CST
 
 ---
 
@@ -18,10 +18,10 @@
 
 | # | Repo | Title | Bounty | Currency | Updated | Status | Notes |
 |---|------|-------|--------|----------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-01 | mergeable | ⚠️ 双付漏洞未修复 |
+| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-08 | mergeable | ⚠️ 双付漏洞fix在fork(mesiyoq965-sudo/permit-generation:fix/pr125-final)；CodeRabbit 2条已修复；CI✅ |
 | 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-04-29 | pending_review | 等审核10天 |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-04-28 | changes_requested | docstring 33% |
-| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-04-28 | changes_requested | docstring 76.92% |
+| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-05-08 | changes_requested | CodeRabbit rate limited(37min)；alceops本地审查发现build失败（import路径错误等） |
+| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-04-28 | changes_requested | CodeRabbit 16条Major |
 | 85 | ubiquity-os/plugins-wishlist | feat: command-plan Plugin | $600 | USDT | 2026-04-28 | open | |
 | 66 | ubiquity-os/plugin-template | feat: Reusable Knip and Jest Workflows | $1200 | USDT | 2026-04-28 | open | |
 | 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | USDT | 2026-04-13 | changes_requested | |
@@ -31,17 +31,10 @@
 | 1030 | ubiquity/ubiquity-dollar | fix: storage layout check | $300 | USDT | 2026-04-13 | review_required | |
 | 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp | N/A | N/A | 2026-04-25 | pending_cla | 需签CLA |
 | 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack | $70 | USDT | 2026-04-29 | open | |
-| 488 | illbnm/homelab-stack | [BOUNTY 30] Home Automation | $30 | USDT | 2026-04-22 | open | |
-| 483 | illbnm/homelab-stack | [BOUNTY 80] Observability | $80 | USDT | 2026-04-22 | open | |
-| 486 | illbnm/homelab-stack | [BOUNTY 50] Backup & DR | $50 | USDT | 2026-04-22 | open | |
-| 484 | illbnm/homelab-stack | [BOUNTY 50] Robustness | $50 | USDT | 2026-04-22 | open | |
-| 485 | illbnm/homelab-stack | [BOUNTY 30] Database Layer | $30 | USDT | 2026-04-22 | open | |
-| 482 | illbnm/homelab-stack | [BOUNTY 00] SSO Authentik | $0 | - | 2026-04-22 | open | |
-| 481 | illbnm/homelab-stack | [BOUNTY 20] AI Stack | $20 | USDT | 2026-04-22 | open | |
 | 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | - | 2026-04-22 | open | |
 | 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute | N/A | - | 2026-05-05 | open | |
-| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-05 | open | 安全PR |
-| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-08 | open | |
+| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-05 | review_required | 安全PR |
+| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-08 | pending_review | ✅ 新提交，欢迎评论；等BCOS标签 |
 | 19 | Chevalier12/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-06 | open | |
 | 5 | 0xbrainkid/agentfolio-mcp-server | agentfolio_beacon_lookup | N/A | - | 2026-04-29 | open | |
 | 508 | claude-builders-bounty/claude-builders-bounty | n8n + Claude Weekly Dev Summary | $200 | USDT | 2026-04-08 | open | |
@@ -88,7 +81,7 @@
 ## 已关闭项目（无付款）
 
 | # | Repo | 状态 | 备注 |
-|---|------|------|------|
+|---|------|------|-------|
 | #6931 | RustChain | closed | 25 RTC claim已关闭（Scottcjn说已打） |
 | #7234 | RustChain | closed | 50-75 RTC claim已关闭 |
 | #7235 | RustChain | closed | PR未合并 |
@@ -103,10 +96,9 @@
 ## 待处理事项
 
 | # | 优先级 | 操作 |
-|---|--------|------|
-| 125 | 🔴 | 合并fork的双付修复 |
-| 87 | 🟡 | 提升docstring至80% |
-| 90 | 🟡 | 提升docstring至80% |
+|---|--------|-------|
+| 125 | 🔴 | 双付修复在fork，等maintainer操作 |
+| 87 | 🟡 | alceops提供本地delta修复build；CodeRabbit等待37min |
 | 396 | 🔵 | 签CLA |
 | 714 | 🔵 | 等审核反馈 |
 
@@ -115,6 +107,38 @@
 ## Notes
 
 - **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为`RTC2f0e423e...`
-- **PR #125**: 危险状态 - CI通过但有未修复的双付漏洞，fix在fork
+- **PR #125**: 危险状态 - CI通过但有未修复的双付漏洞，fix在fork（mesiyoq965-sudo/permit-generation:fix/pr125-final）；CodeRabbit已处理2条评论
+- **PR #87**: alceops本地审查发现build失败：import路径错误、logger未解构、labels可能undefined、workflow用npm ci但无lockfile
 - **Open PRs**: 约300个（含大量无bounty的公关/教程PR）
-- **扫描时间**: 2026-05-08 16:00 CST
+- **扫描时间**: 2026-05-08 20:04 CST
+
+---
+
+## Review 监控 (2026-05-08 19:30 CST)
+
+### PR #4101 (Scottcjn/Rustchain)
+- ✅ 新评论: rockytian-top 和 fengqiankun6-sudo 给予了正面评价 (LGTM)
+- 状态: pending_review (等 maintainer 合并)
+
+### PR #87 (ubiquity-os/plugins-wishlist - Auto Time Label Estimator)
+- 🔴 20条 CodeRabbit 评论 (含4 Critical, 16 Major)
+- 状态: changes_requested
+- 需处理: import路径错误、logger未解构、labels undefined、timeout缺失等问题
+
+### PR #125 (ubiquity-os/permit-generation - Automatic Transfer)
+- 🔴 5条 CodeRabbit 评论 (含2 Critical, 3 Major)
+- 状态: mergeable (fix在fork)
+- 需处理: 双付漏洞修复、setup错误处理、ERC20 skip路径等问题
+
+### PR #396 (midnightntwrk/contributor-hub)
+- 🔵 CLA assistant 评论: 需签CLA
+- 状态: pending_cla
+
+### PR #489 (illbnm/homelab-stack)
+- ℹ️ 无新维护者评论 (仅自己跟进评论)
+
+### PR #714 (claude-builders-bounty)
+- ℹ️ 无新评论
+
+### 需回复评论: 无
+- PR #4101 的评论均为正面，可选择性回复致谢
