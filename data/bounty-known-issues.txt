@@ -84,3 +84,7 @@ lihaoyi/test#728
 
 # Sub-$10 threshold
 watney-ai/open-source-bounties#1
+
+# New claims 2026-05-09 (bounty-scan-gh cron)
+Henry00IS/ShapeEditor#3
+Henry00IS/ShapeEditor#17
