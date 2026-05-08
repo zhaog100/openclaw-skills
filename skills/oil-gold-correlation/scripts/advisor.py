@@ -817,7 +817,6 @@ def analyze_medium_long_term(symbol, batch_data=None):
 # ==================== 每日推送报告 ====================
 
 def generate_daily_report(days=3):
-<<<<<<< HEAD
     """生成每日推送报告：批量下载 → 短期为主 + 中长期补充"""
     horizon = f"{days}天"
     now = datetime.now()
@@ -856,47 +855,11 @@ def generate_daily_report(days=3):
                 if lr:
                     long_results[name] = {**info, **lr}
                 print(f"${sr['price']:,.2f} ({sr['change_1d']:+.2f}%) {sr['advice']}")
-=======
-    """v1.4.0 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
-    horizon = f"{days}天"
-    now = datetime.now()
-    lines = []
-
-    lines.append("=" * 50)
-    lines.append("💰 石油黄金每日投资参考 v1.4.0")
-    lines.append(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{horizon} + 中长期")
-
-    # ━━━ 数据获取：多源 + 永不失败 ━━━
-    short_results = {}
-    long_results = {}
-    raw_data = {}
-    source_report = []
-    currencies = set()
-
-    # --- 阶段1: akshare 国内品种（CNY，最稳定）---
-    ak_names = {k: v for k, v in INSTRUMENTS.items() if v.get("source") == "akshare"}
-    for name, info in ak_names.items():
-        print(f"  [akshare] 获取 {name}...", end=" ", flush=True)
-        try:
-            ak_key = info.get("ak_key", "")
-            df = _fetch_akshare_single(ak_key, "90d")
-            if df is not None and len(df) >= 20:
-                raw_data[name] = df
-                sr = _analyze_from_df(name, info, df, days)
-                if sr:
-                    short_results[name] = sr
-                    currencies.add(info["currency"])
-                    source_report.append(f"✅ {name}({info['symbol']}) [{info['currency']}]")
-                    print(f"✅ {info['currency']}{sr['price']:,.2f} ({sr['change_1d']:+.2f}%)")
-                else:
-                    print("分析失败")
->>>>>>> feat/github-marketing
             else:
                 print("数据不足")
         except Exception as e:
             print(f"失败: {e}")
 
-<<<<<<< HEAD
     if not short_results:
         print("❌ 未获取到数据")
         return
@@ -904,80 +867,17 @@ def generate_daily_report(days=3):
     lines = []
 
     # ===== 一、快速摘要 =====
-=======
-    # --- 阶段2: yfinance 国际品种（USD，可能被限流）---
-    yf_available = _check_yfinance()
-    yf_names = {k: v for k, v in INSTRUMENTS.items() if v.get("source") == "yfinance"}
-
-    if yf_available:
-        yf_symbols = {k: v["symbol"] for k, v in yf_names.items()}
-        unique_syms = list(set(yf_symbols.values()))
-
-        print("  [yfinance] 批量下载国际品种...", flush=True)
-        batch_3mo = batch_download(unique_syms, period="3mo", interval="1d")
-        time.sleep(1)
-        batch_1y = batch_download(unique_syms, period="1y", interval="1d")
-
-        for name, info in yf_names.items():
-            sym = info["symbol"]
-            print(f"  [yfinance] 分析 {name}...", end=" ", flush=True)
-            try:
-                sr = analyze_short_term(sym, days, batch_data=batch_3mo)
-                if sr:
-                    short_results[name] = {**info, **sr}
-                    currencies.add(info["currency"])
-                    if batch_3mo is not None and sym in batch_3mo:
-                        raw_data[name] = batch_3mo[sym].dropna()
-                    source_report.append(f"✅ {name}({sym}) [USD]")
-                    lr = analyze_medium_long_term(sym, batch_data=batch_1y)
-                    if lr:
-                        long_results[name] = {**info, **lr}
-                    print(f"${sr['price']:,.2f} ({sr['change_1d']:+.2f}%) {sr['advice']}")
-                else:
-                    print("数据不足")
-                    source_report.append(f"⚠️ {name}({sym}) 数据不足")
-            except Exception as e:
-                print(f"失败: {e}")
-                source_report.append(f"❌ {name}({sym}) 失败")
-    else:
-        for name in yf_names:
-            source_report.append(f"⚠️ {name} — 国际品种因数据源限速暂缺")
-
-    # --- 阶段3: 只要有任何品种成功就输出报告 ---
-    if not short_results:
-        lines.append("")
-        lines.append("❌ 所有数据源均不可用，报告无法生成")
-        lines.append("  • akshare 服务异常")
-        lines.append("  • yfinance 被限流")
-        lines.append("  • 建议稍后重试")
-        report = "\n".join(lines)
-        print(report)
-        return report
-
-    currency_str = "/".join(sorted(currencies)) if currencies else "N/A"
-    lines.append(f"📊 数据来源: {currency_str} | {' | '.join(source_report)}")
-    lines.append("=" * 50)
-
-    # ━━━ 一、快速摘要 ━━━
->>>>>>> feat/github-marketing
     lines.append(f"\n{'━' * 50}")
     lines.append(f"⚡ 一、今日操作摘要（短期{horizon}）")
     lines.append(f"{'━' * 50}")
 
-<<<<<<< HEAD
     buys = {k: v for k, v in short_results.items() if "BUY" in v.get("action", "")}
     sells = {k: v for k, v in short_results.items() if "SELL" in v.get("action", "")}
     holds = {k: v for k, v in short_results.items() if v.get("action") == "HOLD"}
-=======
-    buys = {k: v for k, v in short_results.items() if "BUY" in str(v.get("action", ""))}
-    sells = {k: v for k, v in short_results.items() if "SELL" in str(v.get("action", ""))}
-    holds = {k: v for k, v in short_results.items() if "HOLD" in str(v.get("action", "HOLD"))}
->>>>>>> feat/github-marketing
 
     if buys:
         lines.append(f"\n  🟢 买入: {', '.join(buys.keys())}")
         for n, r in buys.items():
-<<<<<<< HEAD
             lines.append(f"     {n}: 现价${r['price']:,.2f} → 目标${r['take_profit']} 止损${r['stop_loss']}")
     if sells:
         lines.append(f"\n  🔴 卖出: {', '.join(sells.keys())}")
@@ -1021,62 +921,22 @@ def generate_daily_report(days=3):
             lines.append(f"     {name}: 周线{w} | {d}")
 
     # ===== 二、短期详细 =====
-=======
-            cur = r.get('currency', 'USD')
-            sym = '¥' if cur == 'CNY' else '$'
-            lines.append(f"     {n}: 现价{sym}{r.get('price', r.get('latest', 0)):,.2f} → 目标{sym}{r.get('take_profit', '-')} 止损{sym}{r.get('stop_loss', '-')}")
-    if sells:
-        lines.append(f"\n  🔴 卖出: {', '.join(sells.keys())}")
-    if holds:
-        lines.append(f"\n  🟡 观望: {', '.join(holds.keys())}")
-
-    # 黄金-原油比率
-    gold_price = None
-    oil_price = None
-    for name, r in short_results.items():
-        if "黄金" in name and gold_price is None:
-            gold_price = r.get("price", r.get("latest"))
-        if ("原油" in name or "WTI" in name) and oil_price is None:
-            oil_price = r.get("price", r.get("latest"))
-    gold_oil_ratio = calc_gold_oil_ratio(gold_price, oil_price) if gold_price and oil_price else None
-    if gold_oil_ratio:
-        lines.append(f"\n  ⚖️ 黄金/原油比率: {gold_oil_ratio['ratio']:.1f} — {gold_oil_ratio['level']}")
-
-    # ━━━ 二、短期详细 ━━━
->>>>>>> feat/github-marketing
     lines.append(f"\n{'━' * 50}")
     lines.append(f"📊 二、短期分析（{horizon}，主报告）")
     lines.append(f"{'━' * 50}")
 
     for name, r in short_results.items():
-<<<<<<< HEAD
         lines.append(f"\n  【{name}】({r['symbol']} · {r['type']})")
         lines.append(f"    💵 ${r['price']:,.2f} | 日{r['change_1d']:+.2f}% | 5日{r['change_5d']:+.2f}%")
         lines.append(f"    📈 RSI {r['rsi']} | KDJ K={r['stoch']['K']} D={r['stoch']['D']} ({r['stoch']['signal']})")
         lines.append(f"    📉 MACD {r['macd']['signal']} | 布林 {r['bollinger']['position']}")
         lines.append(f"    📏 {horizon}预测: ${r['pred_low']} ~ ${r['pred_high']} (波动{r['volatility']:.1f}%)")
-=======
-        cur = r.get('currency', 'USD')
-        sym = '¥' if cur == 'CNY' else '$'
-        price = r.get('price', r.get('latest', 0))
-        lines.append(f"\n  【{name}】({r.get('symbol', '')} · {r.get('type', '')})")
-        lines.append(f"    💵 {sym}{price:,.2f} | 日{r.get('change_1d', 0):+.2f}% | 5日{r.get('change_5d', 0):+.2f}%")
-        if r.get('rsi'):
-            lines.append(f"    📈 RSI {r['rsi']}")
-        if r.get('stoch'):
-            lines.append(f"    📈 KDJ K={r['stoch']['K']} D={r['stoch']['D']} ({r['stoch']['signal']})")
-        if r.get('macd') and isinstance(r['macd'], dict):
-            lines.append(f"    📉 MACD {r['macd']['signal']} | 布林 {r.get('bollinger', {}).get('position', '-')}")
-        if r.get('volatility'):
-            lines.append(f"    📏 预测: {sym}{r.get('pred_low', '-')} ~ {sym}{r.get('pred_high', '-')} (波动{r['volatility']:.1f}%)")
->>>>>>> feat/github-marketing
         if r.get('obv'):
             lines.append(f"    📊 OBV: {r['obv']['divergence']}")
         if r.get('fibonacci'):
             lines.append(f"    🔮 Fib: {r['fibonacci']['zone']}")
         if r.get('support_resistance'):
             sr = r['support_resistance']
-<<<<<<< HEAD
             lines.append(f"    📐 支撑: ${sr['support1']} | 阻力: ${sr['resistance1']}")
         lines.append(f"    🎯 {r['advice']} - {r['strategy']}")
 
@@ -1093,32 +953,10 @@ def generate_daily_report(days=3):
         lines.append(f"    🎯 {r['advice']}")
 
     # ===== 四、综合建议 =====
-=======
-            lines.append(f"    📐 支撑: {sym}{sr['support1']} | 阻力: {sym}{sr['resistance1']}")
-        lines.append(f"    🎯 {r.get('advice', '-')}")
-
-    # ━━━ 三、中长期 ━━━
-    if long_results:
-        lines.append(f"\n{'━' * 50}")
-        lines.append("📐 三、中长期趋势（参考）")
-        lines.append(f"{'━' * 50}")
-        for name, r in long_results.items():
-            lines.append(f"\n  【{name}】")
-            lines.append(f"    📊 月{r.get('change_1m', 0):+.2f}% | 季{r.get('change_3m', 0):+.2f}%")
-            lines.append(f"    📏 均线: {r.get('ma', {}).get('trend', '-')}")
-            lines.append(f"    🎯 {r.get('advice', '-')}")
-
-    # ━━━ 四、综合建议 ━━━
-    gold_dict = {k: v for k, v in short_results.items() if "黄金" in k or "沪金" in k}
-    oil_dict = {k: v for k, v in short_results.items() if "原油" in k or "WTI" in k or "布伦特" in k or "沪油" in k}
-    dxy_dict = {k: v for k, v in short_results.items() if "美元" in k}
-
->>>>>>> feat/github-marketing
     lines.append(f"\n{'━' * 50}")
     lines.append("🎯 四、综合建议")
     lines.append(f"{'━' * 50}")
 
-<<<<<<< HEAD
     gold_dict = {k: v for k, v in short_results.items() if "黄金" in k}
     oil_dict = {k: v for k, v in short_results.items() if "原油" in k or "USO" in k}
     silver_dict = {k: v for k, v in short_results.items() if "白银" in k}
@@ -1154,21 +992,6 @@ def generate_daily_report(days=3):
         lines.append(f"\n  💵 美元: {dxy_dir}")
 
     # ===== 五、国际形势（自动采集，独立运行不阻塞技术分析） =====
-=======
-    if gold_dict:
-        gs = np.mean([v.get("score", 50) for v in gold_dict.values()])
-        lines.append(f"\n  🥇 黄金: 短期评分{gs:+.0f}")
-    if oil_dict:
-        os_val = np.mean([v.get("score", 50) for v in oil_dict.values()])
-        lines.append(f"\n  🛢️ 原油: 短期评分{os_val:+.0f}")
-    if dxy_dict:
-        dxy_r = list(dxy_dict.values())[0]
-        dxy_dir = "偏强⚠️利空商品" if dxy_r.get("score", 0) > 10 else "偏弱✅利好商品" if dxy_r.get("score", 0) < -10 else "中性"
-        lines.append(f"\n  💵 美元: {dxy_dir}")
-
-    # ━━━ 五、国际形势 ━━━
-    geo_score = 0
->>>>>>> feat/github-marketing
     try:
         sys.path.insert(0, str(Path(__file__).parent))
         from geopolitics import generate_geopolitical_section
@@ -1177,7 +1000,6 @@ def generate_daily_report(days=3):
     except Exception:
         lines.append(f"\n{'━' * 50}")
         lines.append("🌍 五、国际形势（获取失败）")
-<<<<<<< HEAD
         geo_score = 0
 
     # ===== 六、最终建议（v1.3.0 智能建议引擎） =====
@@ -1190,22 +1012,12 @@ def generate_daily_report(days=3):
         ("🛢️ 原油", oil_dict, 0.2),
         ("🪙 白银", silver_dict, 0.15),
     ]
-=======
-
-    # ━━━ 六、综合投资建议 ━━━
-    lines.append(f"\n{'━' * 50}")
-    lines.append("🎯 六、综合投资建议（智能引擎 v1.4.0）")
-    lines.append(f"{'━' * 50}")
-
-    asset_groups = [("🥇 黄金", gold_dict, 0.3), ("🛢️ 原油", oil_dict, 0.2)]
->>>>>>> feat/github-marketing
 
     for emoji_name, asset_dict, geo_weight in asset_groups:
         if not asset_dict:
             continue
 
         primary = list(asset_dict.values())[0]
-<<<<<<< HEAD
         score = np.mean([v["score"] for v in asset_dict.values()])
         price = primary["price"]; atr = primary["atr"]
         macd_r = primary["macd"]; boll = primary["bollinger"]
@@ -1240,45 +1052,10 @@ def generate_daily_report(days=3):
 
         # 输出
         sep = "═" * 42
-=======
-        score = np.mean([v.get("score", 50) for v in asset_dict.values()])
-        price = primary.get("price", primary.get("latest", 0))
-        atr = primary.get("atr", 0)
-        macd_r = primary.get("macd", {})
-        boll = primary.get("bollinger", {})
-        signals = primary.get("signals", [])
-        fib = primary.get("fibonacci")
-        sr_data = primary.get("support_resistance")
-
-        if isinstance(macd_r, dict) and isinstance(boll, dict):
-            weights, regime = calc_dynamic_weights(macd_r, boll, atr, price)
-        else:
-            weights, regime = {}, "常规行情"
-
-        conflict = resolve_conflicts(signals) if signals else {"bullish": [], "bearish": [], "neutral": [], "ratio": 0.5, "consensus": "无信号", "consensus_pct": 50}
-
-        final_score = score + geo_score * geo_weight
-        if gold_oil_ratio and emoji_name.startswith("🥇"):
-            final_score += gold_oil_ratio.get("score_impact", 0)
-
-        confidence = calc_confidence(final_score, signals, weights, conflict)
-        direction = "buy" if final_score >= 10 else "sell" if final_score <= -10 else None
-
-        sltp = None
-        if direction and sr_data and isinstance(macd_r, dict):
-            fib_levels = fib["levels"] if fib and isinstance(fib, dict) else None
-            sltp = calc_sl_tp(price, atr, fib_levels, sr_data, direction)
-
-        sep = "═" * 42
-        cur = primary.get('currency', 'USD')
-        csym = '¥' if cur == 'CNY' else '$'
-
->>>>>>> feat/github-marketing
         lines.append(f"\n  {sep}")
         lines.append(f"  📊 综合投资建议：{emoji_name}")
         lines.append(f"  {sep}")
         lines.append(f"  🌊 市场环境：{regime}")
-<<<<<<< HEAD
 
         if direction == "buy": lines.append(f"  🎯 方向：做多（买入）")
         elif direction == "sell": lines.append(f"  🎯 方向：做空（卖出）")
@@ -1343,173 +1120,12 @@ def generate_daily_report(days=3):
     lines.append("  • 单品种仓位 ≤ 10%，总仓位 ≤ 30%")
     lines.append("  • 重大事件前观望，严守止损线")
     lines.append("  • v1.3.0: 风险回报比 < 2:1 不建议开仓")
-=======
-        if direction == "buy": lines.append(f"  🎯 方向：做多（买入）")
-        elif direction == "sell": lines.append(f"  🎯 方向：做空（卖出）")
-        else: lines.append(f"  🎯 方向：观望")
-        lines.append(f"  📐 置信度：{confidence['emoji']} {confidence['level']} ({confidence['pct']:.0f}%)")
-        lines.append(f"  📈 评分：{final_score:+.0f}/100")
-
-        if conflict.get("bullish") or conflict.get("bearish"):
-            lines.append(f"\n  📋 信号汇总：")
-            bull_desc = "、".join(s["signal"] for s in conflict.get("bullish", []))
-            bear_desc = "、".join(s["signal"] for s in conflict.get("bearish", [])[:4])
-            if conflict.get("bullish"): lines.append(f"    看多({len(conflict['bullish'])})：{bull_desc}")
-            if conflict.get("bearish"): lines.append(f"    看空({len(conflict['bearish'])})：{bear_desc}")
-            lines.append(f"    一致度：{conflict.get('consensus_pct', 50):.0f}%")
-
-        if direction and sltp:
-            lines.append(f"\n  💰 操作建议：")
-            lines.append(f"    入场：{csym}{price:,.2f} | 止损：{csym}{sltp['sl']:,.2f} | 目标：{csym}{sltp['tp1']:,.2f}")
-            lines.append(f"    风险回报比：1:{sltp['rr1']:.1f}")
-        elif not direction:
-            lines.append(f"\n  💰 操作建议：观望等待")
-        lines.append(f"  {sep}")
-
-    # ━━━ 七、🔍 隐藏机遇扫描 ━━━
-    try:
-        sys.path.insert(0, str(Path(__file__).parent))
-        from opportunity_scanner import OpportunityScanner
-
-        scanner = OpportunityScanner()
-
-        # 内外盘背离
-        gold_domestic = raw_data.get("沪金期货")
-        gold_intl = raw_data.get("黄金期货")
-        if gold_domestic is not None and gold_intl is not None:
-            scanner.scan_divergence(gold_domestic, gold_intl, "沪金", "国际金")
-        oil_domestic = raw_data.get("沪油期货")
-        oil_intl = raw_data.get("WTI原油")
-        if oil_domestic is not None and oil_intl is not None:
-            scanner.scan_divergence(oil_domestic, oil_intl, "沪油", "国际油")
-
-        # 跨品种
-        gold_any = raw_data.get("黄金期货") or raw_data.get("沪金期货")
-        oil_any = raw_data.get("WTI原油") or raw_data.get("沪油期货")
-        if gold_any is not None and oil_any is not None:
-            scanner.scan_cross_commodity(gold_any, oil_any)
-
-        # 量价背离
-        for name, df in raw_data.items():
-            scanner.scan_volume_price(df, name)
-
-        opp_lines = scanner.generate_opportunity_report()
-        opp_impact = scanner.get_total_score_impact()
-
-        lines.append(f"\n{'━' * 50}")
-        lines.append("🔍 七、隐藏机遇扫描（v1.4.0）")
-        lines.append(f"{'━' * 50}")
-        for ol in opp_lines:
-            lines.append(ol)
-        if opp_impact != 0:
-            lines.append(f"  📊 综合影响: {opp_impact:+d}分")
-    except Exception as e:
-        lines.append(f"\n  ⚠️ 机遇扫描暂不可用: {e}")
-
-    # ━━━ 风险提示 ━━━
-    lines.append(f"\n{'━' * 50}")
-    lines.append("⚠️ 风险提示")
-    lines.append(f"{'━' * 50}")
-    lines.append("  • 技术分析+地缘分析仅供参考，不构成投资建议")
-    lines.append("  • 期货有杠杆风险，新手从ETF开始")
-    lines.append("  • 单品种仓位 ≤ 10%，总仓位 ≤ 30%")
-    lines.append("  • v1.4.0: 多源交叉验证 + 隐藏机遇扫描")
->>>>>>> feat/github-marketing
 
     report = "\n".join(lines)
     print(report)
     return report
 
 
-<<<<<<< HEAD
-=======
-def _check_yfinance():
-    """检测 yfinance 是否可用"""
-    try:
-        import yfinance as yf
-        t = yf.Ticker("AAPL")
-        hist = t.history(period="5d")
-        return hist is not None and not hist.empty
-    except Exception:
-        return False
-
-
-def _analyze_from_df(name, info, df, days=3):
-    """从 DataFrame 分析品种（统一入口，用于 akshare 数据）"""
-    try:
-        close = df["Close"] if "Close" in df.columns else df.iloc[:, 0]
-        high = df["High"] if "High" in df.columns else close
-        low = df["Low"] if "Low" in df.columns else close
-        volume = df["Volume"] if "Volume" in df.columns else None
-
-        if len(close) < 20:
-            return None
-
-        price = float(close.iloc[-1])
-        prev = float(close.iloc[-2]) if len(close) > 1 else price
-        prev5 = float(close.iloc[-6]) if len(close) > 5 else prev
-        change_1d = ((price - prev) / prev) * 100
-        change_5d = ((price - prev5) / prev5) * 100
-
-        rsi = calc_rsi(close)
-        macd = calc_macd(close)
-        boll = calc_bollinger(close)
-        stoch = calc_stoch(high, low, close)
-        atr = calc_atr(high, low, close)
-
-        obv = calc_obv(close, volume) if volume is not None and len(volume) > 5 else None
-        fib = calc_fibonacci(float(high.tail(30).max()), float(low.tail(30).min()), price)
-        sr = calc_support_resistance(close, high, low, boll["upper"], boll["lower"], price)
-
-        score = 0
-        signals = []
-        if rsi < 25: score += 35; signals.append("RSI严重超卖")
-        elif rsi < 35: score += 20; signals.append("RSI超卖")
-        elif rsi > 75: score -= 35; signals.append("RSI严重超买")
-        elif rsi > 65: score -= 20; signals.append("RSI偏高")
-
-        if macd["signal"] == "金叉↗": score += 25; signals.append("MACD金叉")
-        elif macd["signal"] == "多头": score += 10; signals.append("MACD多头")
-        elif macd["signal"] == "死叉↘": score -= 25; signals.append("MACD死叉")
-        elif macd["signal"] == "空头": score -= 10; signals.append("MACD空头")
-
-        if obv:
-            score += obv.get("score_impact", 0)
-            signals.append(obv.get("divergence", ""))
-
-        volatility = atr / price * 100 if price > 0 else 0
-        pred_low = round(price * (1 - volatility * days / 100), 2)
-        pred_high = round(price * (1 + volatility * days / 100), 2)
-
-        stop_loss = round(price - 1.5 * atr, 2)
-        take_profit = round(price + 2.0 * atr, 2)
-        if sr:
-            stop_loss = min(stop_loss, sr["support1"])
-            take_profit = max(take_profit, sr["resistance1"])
-
-        if score >= 50: advice, action = "🟢🟢 强烈买入", "STRONG_BUY"
-        elif score >= 25: advice, action = "🟢 建议买入", "BUY"
-        elif score >= 10: advice, action = "🟢 轻仓试探", "LIGHT_BUY"
-        elif score <= -50: advice, action = "🔴🔴 强烈卖出", "STRONG_SELL"
-        elif score <= -25: advice, action = "🔴 建议卖出", "SELL"
-        elif score <= -10: advice, action = "🔴 轻仓减仓", "LIGHT_SELL"
-        else: advice, action = "🟡 观望等待", "HOLD"
-
-        return {
-            **info, "price": round(price, 2), "latest": round(price, 2),
-            "change_1d": round(change_1d, 2), "change_5d": round(change_5d, 2),
-            "rsi": round(rsi, 1), "macd": macd, "bollinger": boll, "stoch": stoch,
-            "atr": round(atr, 2), "stop_loss": stop_loss, "take_profit": take_profit,
-            "score": score, "signals": signals, "advice": advice, "action": action,
-            "pred_low": pred_low, "pred_high": pred_high,
-            "volatility": round(volatility, 2),
-            "obv": obv, "fibonacci": fib, "support_resistance": sr,
-        }
-    except Exception:
-        return None
-
-
->>>>>>> feat/github-marketing
 if __name__ == "__main__OLD":
     import argparse
     parser = argparse.ArgumentParser(description="石油黄金每日投资参考")
