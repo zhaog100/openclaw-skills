@@ -15,67 +15,67 @@
 
 ### New PRs (since last scan)
 
-| # | Repo | Title | Bounty | Updated | Status | Notes |
-|---|------|-------|--------|---------|--------|-------|
-| (none) | | | | | | |
+| # | Repo | Title | Bounty | Currency | Address | Updated | Status | Notes |
+|---|------|-------|--------|---------|---------|--------|-------|
+| (none) | | | | | | | | |
 
 ### Previously Noted
 
-| # | Repo | Title | Bounty | Updated | Status | Notes |
-|---|------|-------|--------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | 2026-05-01 | mergeable_waiting_maintainer | CI ✅; CodeRabbit critical issue (double-payout, line 74) — mesiyoq965-sudo confirmed fix in fork branch `fix/pr125-final`; PR itself has no new commits; no maintainer merge yet |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | 2026-04-28 | changes_requested | CodeRabbit: docstring 33% < 80%; alceops: build fixes needed; zhaog100 sent follow-up 2026-05-07; no new commits |
-| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | 2026-04-28 | changes_requested | CodeRabbit: docstring 76.92% < 80%; zhaog100 sent follow-up 2026-05-07; no new commits |
-| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests for Contributor Role Rewards | $75 | 2026-04-15 | changes_requested | No activity |
-| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | 2026-04-14 | changes_requested | No activity |
-| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | 2026-04-14 | changes_requested | No activity |
-| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | 2026-04-13 | changes_requested | No activity |
-| 53 | ubiquity-os/ubiquity-os-plugin-installer | feat: Premade Plugin Configs for Partners | N/A | 2026-04-14 | open | No activity |
-| 29 | ubiquity-os/command-demo | feat: nudge to claim demo currency | N/A | 2026-04-12 | open | No activity |
-| 510 | ubiquity-os-marketplace/text-conversation-rewards | feat: Differential Reward Distribution | $600 | 2026-04-11 | open | No activity |
-| 513 | ubiquity-os-marketplace/text-conversation-rewards | feat: Structured Outputs for LLM responses | N/A | 2026-04-12 | open | No activity |
-| 512 | ubiquity-os-marketplace/text-conversation-rewards | fix: Validate reward generation requires multi-role participation | $150 | 2026-04-12 | open | No activity |
-| 170 | ubiquity-os-marketplace/daemon-pricing | fix: README code blocks and dataset count update | N/A | 2026-04-09 | open | No activity |
-| 714 | claude-builders-bounty/claude-builders-bounty | feat: WORKFLOW - n8n weekly GitHub summary with Claude API | $200 | 2026-04-29 | pending_review | Waiting for reviewer feedback (9+ days) |
-| 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp with UI | N/A | 2026-04-25 | pending_cla | CLA - needs signing |
-| 395 | midnightntwrk/contributor-hub | [Tutorial] Security Checklist for Midnight dApps | N/A | 2026-04-22 | open | No activity |
-| 394 | midnightntwrk/contributor-hub | [Tutorial] Decoding Error 1010: Invalid Transaction | N/A | 2026-04-22 | open | No activity |
-| 393 | midnightntwrk/contributor-hub | [Tutorial] When Proofs Fail: Debugging Proof Server Errors | N/A | 2026-04-22 | open | No activity |
-| 392 | midnightntwrk/contributor-hub | [Tutorial] Handling Midnight SDK Breaking Changes | N/A | 2026-04-22 | open | No activity |
-| 391 | midnightntwrk/contributor-hub | [Tutorial] Getting NIGHT Tokens: Exchanges, Bridging & Wallet Funding | N/A | 2026-04-22 | open | No activity |
-| 390 | midnightntwrk/contributor-hub | [Tutorial] Running a Midnight Node: Setup, Sync & Monitoring | N/A | 2026-04-22 | open | No activity |
-| 389 | midnightntwrk/contributor-hub | [Tutorial] Midnight vs Other Privacy Chains: Architecture Comparison | N/A | 2026-04-22 | open | No activity |
-| 388 | midnightntwrk/contributor-hub | [Tutorial] Building a Shielded Token dApp with UI | N/A | 2026-04-22 | open | No activity |
-| 387 | midnightntwrk/contributor-hub | [Tutorial] Shielded Token Operations: Mint, Transfer & Burn with Test Suite | N/A | 2026-04-22 | open | No activity |
-| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack — Gitea + Vaultwarden | $70 | 2026-04-29 | open | No activity |
-| 488 | illbnm/homelab-stack | [BOUNTY 30] Home Automation — Home Assistant + Node-RED | $30 | 2026-04-22 | open | No activity |
-| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications — Gotify + Apprise | $0 | 2026-04-22 | open | No activity |
-| 486 | illbnm/homelab-stack | [BOUNTY 50] Backup & DR — Auto Backup + Disaster Recovery | $50 | 2026-04-22 | open | No activity |
-| 485 | illbnm/homelab-stack | [BOUNTY 30] Database Layer — PostgreSQL + Redis + MariaDB | $30 | 2026-04-22 | open | No activity |
-| 484 | illbnm/homelab-stack | [BOUNTY 50] Robustness — Domestic Mirrors + Error Handling | $50 | 2026-04-22 | open | No activity |
-| 483 | illbnm/homelab-stack | [BOUNTY 80] Observability — Prometheus + Grafana + Loki | $80 | 2026-04-22 | open | No activity |
-| 482 | illbnm/homelab-stack | [BOUNTY 00] SSO — Authentik Unified Identity | $0 | 2026-04-22 | open | No activity |
-| 481 | illbnm/homelab-stack | [BOUNTY 20] AI Stack — Ollama + Open WebUI + Stable Diffusion | $20 | 2026-04-22 | open | No activity |
-| 5 | 0xbrainkid/agentfolio-mcp-server | feat: add agentfolio_beacon_lookup | N/A | 2026-04-29 | open | No activity |
-| 1032 | Uniswap/v4-core | security: Add zero address validation in ERC6909 transfers | N/A | 2026-05-05 | review_required | Security PR; no activity |
-| 1030 | ubiquity/ubiquity-dollar | fix: Skip storage layout check for newly added contracts | $300 | 2026-04-13 | review_required | No activity |
-| 4 | zhaog100/rustchain-bounties | feat: VS Code Extension - RustChain Dashboard | N/A | 2026-04-15 | open | No activity |
-| 3 | zhaog100/rustchain-bounties | feat: Add Upstream Contributions Showcase | N/A | 2026-04-15 | open | No activity |
-| 2 | zhaog100/rustchain-bounties | feat: Add RustChain Telegram Bot v1.0 | N/A | 2026-04-15 | open | No activity |
-| 1 | zhaog100/rustchain-bounties | feat: Add RTC Reward Action v1.0 | N/A | 2026-04-15 | open | No activity |
-| 13 | fengking-li/group-buying-data-monitor | feat: 团购+外卖实时数据监测系统 | N/A | 2026-04-09 | open | No activity |
-| 42 | Jennycruzy/sovereign-genesis | test: SovereignAgent Unit Tests | N/A | 2026-04-09 | open | No activity |
-| 41 | Jennycruzy/sovereign-genesis | feat: Gas Optimization | N/A | 2026-04-09 | open | No activity |
-| 40 | Jennycruzy/sovereign-genesis | feat: Mobile Responsive Dashboard | N/A | 2026-04-09 | open | No activity |
-| 39 | Jennycruzy/sovereign-genesis | feat: Enhanced Error Logging | N/A | 2026-04-09 | open | No activity |
-| 38 | Jennycruzy/sovereign-genesis | feat: CI Pipeline | N/A | 2026-04-09 | open | No activity |
-| 994 | SolFoundry/solfoundry | docs: Getting Started Tutorial | N/A | 2026-04-09 | open | No activity |
-| 993 | SolFoundry/solfoundry | feat: Loading Skeleton Animations | N/A | 2026-04-09 | open | No activity |
-| 992 | SolFoundry/solfoundry | feat: Bounty Countdown Timer | N/A | 2026-04-09 | open | No activity |
-| 991 | SolFoundry/solfoundry | feat: Search Bar on Bounties Page | N/A | 2026-04-09 | open | No activity |
-| 18 | thesysdev/openui-creator-program | Written Content: Three Articles | $150-300 | 2026-04-09 | open | No activity |
-| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute section | N/A | 2026-05-05 | open | No activity |
-| 19 | Chevalier12/InkkSlinger | feat: Implement InkCanvas and InkPresenter controls | N/A | 2026-05-06 | open | No activity |
+| # | Repo | Title | Bounty | Currency | Address | Updated | Status | Notes |
+|---|------|-------|--------|---------|---------|--------|-------|
+| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | | |  2026-05-01 | mergeable_waiting_maintainer | CI ✅; CodeRabbit critical issue (double-payout, line 74) — mesiyoq965-sudo confirmed fix in fork branch `fix/pr125-final`; PR itself has no new commits; no maintainer merge yet |
+| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | | |  2026-04-28 | changes_requested | CodeRabbit: docstring 33% < 80%; alceops: build fixes needed; zhaog100 sent follow-up 2026-05-07; no new commits |
+| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | | |  2026-04-28 | changes_requested | CodeRabbit: docstring 76.92% < 80%; zhaog100 sent follow-up 2026-05-07; no new commits |
+| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests for Contributor Role Rewards | $75 | | |  2026-04-15 | changes_requested | No activity |
+| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | | |  2026-04-14 | changes_requested | No activity |
+| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | | |  2026-04-14 | changes_requested | No activity |
+| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | | |  2026-04-13 | changes_requested | No activity |
+| 53 | ubiquity-os/ubiquity-os-plugin-installer | feat: Premade Plugin Configs for Partners | N/A | | |  2026-04-14 | open | No activity |
+| 29 | ubiquity-os/command-demo | feat: nudge to claim demo currency | N/A | | |  2026-04-12 | open | No activity |
+| 510 | ubiquity-os-marketplace/text-conversation-rewards | feat: Differential Reward Distribution | $600 | | |  2026-04-11 | open | No activity |
+| 513 | ubiquity-os-marketplace/text-conversation-rewards | feat: Structured Outputs for LLM responses | N/A | | |  2026-04-12 | open | No activity |
+| 512 | ubiquity-os-marketplace/text-conversation-rewards | fix: Validate reward generation requires multi-role participation | $150 | | |  2026-04-12 | open | No activity |
+| 170 | ubiquity-os-marketplace/daemon-pricing | fix: README code blocks and dataset count update | N/A | | |  2026-04-09 | open | No activity |
+| 714 | claude-builders-bounty/claude-builders-bounty | feat: WORKFLOW - n8n weekly GitHub summary with Claude API | $200 | | |  2026-04-29 | pending_review | Waiting for reviewer feedback (9+ days) |
+| 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp with UI | N/A | | |  2026-04-25 | pending_cla | CLA - needs signing |
+| 395 | midnightntwrk/contributor-hub | [Tutorial] Security Checklist for Midnight dApps | N/A | | |  2026-04-22 | open | No activity |
+| 394 | midnightntwrk/contributor-hub | [Tutorial] Decoding Error 1010: Invalid Transaction | N/A | | |  2026-04-22 | open | No activity |
+| 393 | midnightntwrk/contributor-hub | [Tutorial] When Proofs Fail: Debugging Proof Server Errors | N/A | | |  2026-04-22 | open | No activity |
+| 392 | midnightntwrk/contributor-hub | [Tutorial] Handling Midnight SDK Breaking Changes | N/A | | |  2026-04-22 | open | No activity |
+| 391 | midnightntwrk/contributor-hub | [Tutorial] Getting NIGHT Tokens: Exchanges, Bridging & Wallet Funding | N/A | | |  2026-04-22 | open | No activity |
+| 390 | midnightntwrk/contributor-hub | [Tutorial] Running a Midnight Node: Setup, Sync & Monitoring | N/A | | |  2026-04-22 | open | No activity |
+| 389 | midnightntwrk/contributor-hub | [Tutorial] Midnight vs Other Privacy Chains: Architecture Comparison | N/A | | |  2026-04-22 | open | No activity |
+| 388 | midnightntwrk/contributor-hub | [Tutorial] Building a Shielded Token dApp with UI | N/A | | |  2026-04-22 | open | No activity |
+| 387 | midnightntwrk/contributor-hub | [Tutorial] Shielded Token Operations: Mint, Transfer & Burn with Test Suite | N/A | | |  2026-04-22 | open | No activity |
+| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack — Gitea + Vaultwarden | $70 | | |  2026-04-29 | open | No activity |
+| 488 | illbnm/homelab-stack | [BOUNTY 30] Home Automation — Home Assistant + Node-RED | $30 | | |  2026-04-22 | open | No activity |
+| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications — Gotify + Apprise | $0 | | |  2026-04-22 | open | No activity |
+| 486 | illbnm/homelab-stack | [BOUNTY 50] Backup & DR — Auto Backup + Disaster Recovery | $50 | | |  2026-04-22 | open | No activity |
+| 485 | illbnm/homelab-stack | [BOUNTY 30] Database Layer — PostgreSQL + Redis + MariaDB | $30 | | |  2026-04-22 | open | No activity |
+| 484 | illbnm/homelab-stack | [BOUNTY 50] Robustness — Domestic Mirrors + Error Handling | $50 | | |  2026-04-22 | open | No activity |
+| 483 | illbnm/homelab-stack | [BOUNTY 80] Observability — Prometheus + Grafana + Loki | $80 | | |  2026-04-22 | open | No activity |
+| 482 | illbnm/homelab-stack | [BOUNTY 00] SSO — Authentik Unified Identity | $0 | | |  2026-04-22 | open | No activity |
+| 481 | illbnm/homelab-stack | [BOUNTY 20] AI Stack — Ollama + Open WebUI + Stable Diffusion | $20 | | |  2026-04-22 | open | No activity |
+| 5 | 0xbrainkid/agentfolio-mcp-server | feat: add agentfolio_beacon_lookup | N/A | | |  2026-04-29 | open | No activity |
+| 1032 | Uniswap/v4-core | security: Add zero address validation in ERC6909 transfers | N/A | | |  2026-05-05 | review_required | Security PR; no activity |
+| 1030 | ubiquity/ubiquity-dollar | fix: Skip storage layout check for newly added contracts | $300 | | |  2026-04-13 | review_required | No activity |
+| 4 | zhaog100/rustchain-bounties | feat: VS Code Extension - RustChain Dashboard | N/A | | |  2026-04-15 | open | No activity |
+| 3 | zhaog100/rustchain-bounties | feat: Add Upstream Contributions Showcase | N/A | | |  2026-04-15 | open | No activity |
+| 2 | zhaog100/rustchain-bounties | feat: Add RustChain Telegram Bot v1.0 | N/A | | |  2026-04-15 | open | No activity |
+| 1 | zhaog100/rustchain-bounties | feat: Add RTC Reward Action v1.0 | N/A | | |  2026-04-15 | open | No activity |
+| 13 | fengking-li/group-buying-data-monitor | feat: 团购+外卖实时数据监测系统 | N/A | | |  2026-04-09 | open | No activity |
+| 42 | Jennycruzy/sovereign-genesis | test: SovereignAgent Unit Tests | N/A | | |  2026-04-09 | open | No activity |
+| 41 | Jennycruzy/sovereign-genesis | feat: Gas Optimization | N/A | | |  2026-04-09 | open | No activity |
+| 40 | Jennycruzy/sovereign-genesis | feat: Mobile Responsive Dashboard | N/A | | |  2026-04-09 | open | No activity |
+| 39 | Jennycruzy/sovereign-genesis | feat: Enhanced Error Logging | N/A | | |  2026-04-09 | open | No activity |
+| 38 | Jennycruzy/sovereign-genesis | feat: CI Pipeline | N/A | | |  2026-04-09 | open | No activity |
+| 994 | SolFoundry/solfoundry | docs: Getting Started Tutorial | N/A | | |  2026-04-09 | open | No activity |
+| 993 | SolFoundry/solfoundry | feat: Loading Skeleton Animations | N/A | | |  2026-04-09 | open | No activity |
+| 992 | SolFoundry/solfoundry | feat: Bounty Countdown Timer | N/A | | |  2026-04-09 | open | No activity |
+| 991 | SolFoundry/solfoundry | feat: Search Bar on Bounties Page | N/A | | |  2026-04-09 | open | No activity |
+| 18 | thesysdev/openui-creator-program | Written Content: Three Articles | $150-300 | | |  2026-04-09 | open | No activity |
+| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute section | N/A | | |  2026-05-05 | open | No activity |
+| 19 | Chevalier12/InkkSlinger | feat: Implement InkCanvas and InkPresenter controls | N/A | | |  2026-05-06 | open | No activity |
 
 ## Pending Review (Requiring Action)
 
