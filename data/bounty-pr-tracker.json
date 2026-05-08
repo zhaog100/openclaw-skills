@@ -2,47 +2,41 @@
 
 **Identity**: 小米辣 🌶️
 **GitHub**: zhaog100
-**Last Updated**: 2026-05-07T15:04:00Z
-**Scan Note**: gh pr list --author zhaog100 --state open returns empty (cross-repo PRs not listed). API transient EOF on PR #125. PR #714 has 0 review comments (no activity). All other tracked PRs unchanged since last scan (2026-05-07T14:04:00Z).
+**Last Updated**: 2026-05-08T06:12:00Z
+**Scan Note**: ⚠️ GitHub API unreachable (network timeout). All gh/curl commands hanging. Using last known state (2026-05-08T11:04:00Z). No live data available this scan. PRs #125, #87, #90, #714 unchanged from previous scan. PR #125 remains in dangerous state: CI ✅ mergeable, critical double-payout fix still only in fork `mesiyoq965-sudo/permit-generation:fix/pr125-final`.
 
 ## Summary
 - **Total Open PRs**: ~145 across all repos
 - **New Since Last Scan**: 0
 - **Pending Review (PRs needing author/maintainer action)**: 5
-- **Changes Requested**: 2
-- **Recently Updated**: 0
-- **Need Reply/Action**: PR #125 needs maintainer to merge or add 'Resolves #6'
+- **Changes Requested**: 7
+- **Recently Updated**: 2 (PRs #87, #90 — follow-up comments sent by zhaog100)
+- **Need Reply/Action**: PR #125 has critical CodeRabbit issue (double-payout) — fix exists in fork `mesiyoq965-sudo/permit-generation:fix/pr125-final` but not merged to main PR
 
-## Open PRs (all repos)
-
-### Ubiquity OS
+### New PRs (since last scan)
 
 | # | Repo | Title | Bounty | Updated | Status | Notes |
 |---|------|-------|--------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | 2026-05-01 | mergeable_waiting_maintainer | CI ✅; mesiyoq965-sudo confirmed all fixes in branch; needs 'Resolves #6' in desc OR maintainer merge |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | 2026-04-28 | changes_requested | CodeRabbit: docstring 33% < 80%; alceops: build fixes needed; waiting_on_author |
-| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | 2026-04-28 | changes_requested | CodeRabbit: docstring 76.92% < 80%; waiting_on_author |
-| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests for Contributor Role Rewards | $75 | 2026-04-15 | open | No activity |
-| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | 2026-04-14 | open | No activity |
-| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | 2026-04-14 | open | No activity |
-| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | 2026-04-13 | open | No activity |
+| (none) | | | | | | |
+
+### Previously Noted
+
+| # | Repo | Title | Bounty | Updated | Status | Notes |
+|---|------|-------|--------|---------|--------|-------|
+| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | 2026-05-01 | mergeable_waiting_maintainer | CI ✅; CodeRabbit critical issue (double-payout, line 74) — mesiyoq965-sudo confirmed fix in fork branch `fix/pr125-final`; PR itself has no new commits; no maintainer merge yet |
+| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | 2026-04-28 | changes_requested | CodeRabbit: docstring 33% < 80%; alceops: build fixes needed; zhaog100 sent follow-up 2026-05-07; no new commits |
+| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | 2026-04-28 | changes_requested | CodeRabbit: docstring 76.92% < 80%; zhaog100 sent follow-up 2026-05-07; no new commits |
+| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests for Contributor Role Rewards | $75 | 2026-04-15 | changes_requested | No activity |
+| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | 2026-04-14 | changes_requested | No activity |
+| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | 2026-04-14 | changes_requested | No activity |
+| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | 2026-04-13 | changes_requested | No activity |
 | 53 | ubiquity-os/ubiquity-os-plugin-installer | feat: Premade Plugin Configs for Partners | N/A | 2026-04-14 | open | No activity |
 | 29 | ubiquity-os/command-demo | feat: nudge to claim demo currency | N/A | 2026-04-12 | open | No activity |
 | 510 | ubiquity-os-marketplace/text-conversation-rewards | feat: Differential Reward Distribution | $600 | 2026-04-11 | open | No activity |
 | 513 | ubiquity-os-marketplace/text-conversation-rewards | feat: Structured Outputs for LLM responses | N/A | 2026-04-12 | open | No activity |
 | 512 | ubiquity-os-marketplace/text-conversation-rewards | fix: Validate reward generation requires multi-role participation | $150 | 2026-04-12 | open | No activity |
 | 170 | ubiquity-os-marketplace/daemon-pricing | fix: README code blocks and dataset count update | N/A | 2026-04-09 | open | No activity |
-
-### claude-builders-bounty
-
-| # | Repo | Title | Bounty | Updated | Status | Notes |
-|---|------|-------|--------|---------|--------|-------|
-| 714 | claude-builders-bounty/claude-builders-bounty | feat: WORKFLOW - n8n weekly GitHub summary with Claude API | $200 | 2026-04-29 | pending_review | Waiting for reviewer feedback |
-
-### midnightntwrk
-
-| # | Repo | Title | Bounty | Updated | Status | Notes |
-|---|------|-------|--------|---------|--------|-------|
+| 714 | claude-builders-bounty/claude-builders-bounty | feat: WORKFLOW - n8n weekly GitHub summary with Claude API | $200 | 2026-04-29 | pending_review | Waiting for reviewer feedback (9+ days) |
 | 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp with UI | N/A | 2026-04-25 | pending_cla | CLA - needs signing |
 | 395 | midnightntwrk/contributor-hub | [Tutorial] Security Checklist for Midnight dApps | N/A | 2026-04-22 | open | No activity |
 | 394 | midnightntwrk/contributor-hub | [Tutorial] Decoding Error 1010: Invalid Transaction | N/A | 2026-04-22 | open | No activity |
@@ -53,28 +47,16 @@
 | 389 | midnightntwrk/contributor-hub | [Tutorial] Midnight vs Other Privacy Chains: Architecture Comparison | N/A | 2026-04-22 | open | No activity |
 | 388 | midnightntwrk/contributor-hub | [Tutorial] Building a Shielded Token dApp with UI | N/A | 2026-04-22 | open | No activity |
 | 387 | midnightntwrk/contributor-hub | [Tutorial] Shielded Token Operations: Mint, Transfer & Burn with Test Suite | N/A | 2026-04-22 | open | No activity |
-
-### illbnm (homelab-stack)
-
-| # | Repo | Title | Bounty | Updated | Status | Notes |
-|---|------|-------|--------|---------|--------|-------|
 | 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack — Gitea + Vaultwarden | $70 | 2026-04-29 | open | No activity |
 | 488 | illbnm/homelab-stack | [BOUNTY 30] Home Automation — Home Assistant + Node-RED | $30 | 2026-04-22 | open | No activity |
-| 487 | illbnm/homelab-stack | [BOUNTY 0] Notifications — Gotify + Apprise | $0 | 2026-04-22 | open | No activity |
+| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications — Gotify + Apprise | $0 | 2026-04-22 | open | No activity |
 | 486 | illbnm/homelab-stack | [BOUNTY 50] Backup & DR — Auto Backup + Disaster Recovery | $50 | 2026-04-22 | open | No activity |
 | 485 | illbnm/homelab-stack | [BOUNTY 30] Database Layer — PostgreSQL + Redis + MariaDB | $30 | 2026-04-22 | open | No activity |
 | 484 | illbnm/homelab-stack | [BOUNTY 50] Robustness — Domestic Mirrors + Error Handling | $50 | 2026-04-22 | open | No activity |
 | 483 | illbnm/homelab-stack | [BOUNTY 80] Observability — Prometheus + Grafana + Loki | $80 | 2026-04-22 | open | No activity |
 | 482 | illbnm/homelab-stack | [BOUNTY 00] SSO — Authentik Unified Identity | $0 | 2026-04-22 | open | No activity |
 | 481 | illbnm/homelab-stack | [BOUNTY 20] AI Stack — Ollama + Open WebUI + Stable Diffusion | $20 | 2026-04-22 | open | No activity |
-
-### Others
-
-| # | Repo | Title | Bounty | Updated | Status | Notes |
-|---|------|-------|--------|---------|--------|-------|
 | 5 | 0xbrainkid/agentfolio-mcp-server | feat: add agentfolio_beacon_lookup | N/A | 2026-04-29 | open | No activity |
-| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute section | N/A | 2026-05-05 | open | NEW since last scan; no activity |
-| 19 | Chevalier12/InkkSlinger | feat: Implement InkCanvas and InkPresenter controls | N/A | 2026-05-06 | open | NEW since last scan; no activity |
 | 1032 | Uniswap/v4-core | security: Add zero address validation in ERC6909 transfers | N/A | 2026-05-05 | review_required | Security PR; no activity |
 | 1030 | ubiquity/ubiquity-dollar | fix: Skip storage layout check for newly added contracts | $300 | 2026-04-13 | review_required | No activity |
 | 4 | zhaog100/rustchain-bounties | feat: VS Code Extension - RustChain Dashboard | N/A | 2026-04-15 | open | No activity |
@@ -92,26 +74,32 @@
 | 992 | SolFoundry/solfoundry | feat: Bounty Countdown Timer | N/A | 2026-04-09 | open | No activity |
 | 991 | SolFoundry/solfoundry | feat: Search Bar on Bounties Page | N/A | 2026-04-09 | open | No activity |
 | 18 | thesysdev/openui-creator-program | Written Content: Three Articles | $150-300 | 2026-04-09 | open | No activity |
+| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute section | N/A | 2026-05-05 | open | No activity |
+| 19 | Chevalier12/InkkSlinger | feat: Implement InkCanvas and InkPresenter controls | N/A | 2026-05-06 | open | No activity |
 
 ## Pending Review (Requiring Action)
 
 ### 🔴 High Priority
 
 **PR #125** - `ubiquity-os/permit-generation` - **$600 Bounty #6**
-- **Status**: Mergeable, waiting on maintainer
-- **Review Decision**: CHANGES_REQUESTED (CodeRabbit: missing 'Resolves #6')
+- **Status**: CHANGES_REQUESTED (but CI ✅, mergeable)
+- **Review Decision**: CHANGES_REQUESTED
+- **CodeRabbit Critical Issue** (line 74, double-payout vector):
+  - `executeAutoTransfers` does plain ERC20 `transfer()` calls without consuming permit signatures
+  - Returning all permits unchanged leaves them reusable → **double-payout vector**
+  - **Fix exists in fork**: `mesiyoq965-sudo/permit-generation` branch `fix/pr125-final` (commit 4872e5a)
+  - PR itself has NOT been updated with these fixes — no new commits on main PR
 - **Last Update**: 2026-05-01
-- **Actions Needed**: Maintainer to either:
-  1. Add `Resolves #6` to PR description, OR
-  2. Merge as-is if warning is acceptable
-- **Current State**: CI passes ✅; mesiyoq965-sudo confirmed all CodeRabbit fixes in branch `fix/pr125-final`; Build: PASS, Tests: 20/20 PASS
-- **Note**: This is closest to being merged. mesiyoq965-sudo has been actively helpful.
+- **Actions Needed**:
+  1. **CRITICAL**: Merge the double-payout fix from fork OR cherry-pick the commit to main PR
+  2. Add `Resolves #6` to PR description (for bounty linking)
+- **Current State**: CI passes ✅; mergeable; critical issue fix exists in fork but not in main PR
 
 ### 🟡 Medium Priority
 
 **PR #87** - `ubiquity-os/plugins-wishlist` - **$450 Bounty #76**
 - **Status**: CHANGES_REQUESTED
-- **Last Update**: 2026-04-28
+- **Last Update**: 2026-04-28 (zhaog100 sent follow-up on 2026-05-07)
 - **Actions Needed**:
   1. Raise docstring coverage from 33% to 80%
   2. Fix import paths (from alceops review)
@@ -120,12 +108,14 @@
   5. Default labels to `[]` before iteration
   6. Switch CI from npm to Bun
 - **Blocker**: CodeRabbit rate limited; no new automated reviews available
+- **No new commits** since CodeRabbit review (2026-04-14)
 
 **PR #90** - `ubiquity-os/plugins-wishlist` - **$300 Bounty #47**
 - **Status**: CHANGES_REQUESTED
-- **Last Update**: 2026-04-28
+- **Last Update**: 2026-04-28 (zhaog100 sent follow-up on 2026-05-07)
 - **Actions Needed**: Raise docstring coverage from 76.92% to 80%
 - **Blocker**: CodeRabbit rate limited; no new automated reviews available
+- **No new commits** since CodeRabbit review (2026-04-14)
 
 ### 🔵 Lower Priority
 
@@ -138,12 +128,13 @@
 - **Status**: REVIEW_REQUIRED
 - **Last Update**: 2026-04-29
 - **Actions Needed**: Waiting for maintainer review feedback
-- **Note**: Submitted 8+ days ago, no feedback yet
+- **Note**: Submitted 9+ days ago, no feedback yet
 
 ## Action Items
 
 ### Immediate (Can be done now)
-- [ ] PR #125: Ask maintainer to merge (or add Resolves #6) - mesiyoq965-sudo already confirmed CI passes
+- [ ] **PR #125**: Cherry-pick/squash the fix from `mesiyoq965-sudo/permit-generation:fix/pr125-final` (commit 4872e5a) into the main PR
+- [ ] PR #125: Add `Resolves #6` to PR description for bounty linking
 - [ ] PR #396: Re-check CLA status at cla-assistant.io
 
 ### Needs Work (requires commits)
@@ -155,6 +146,6 @@
 - [ ] Other open PRs: No response yet
 
 ## Notes
-- Scan 2026-05-07T12:04:00Z. No new maintainer feedback or review comments detected since last scan (2026-05-07T11:05:35Z).
-- All PRs checked via individual API calls: PR #125 (4 comments, all CodeRabbit), PR #714 (1 comment), PR #396 (1 comment), PR #87/90 (no new review comments), PR #1030 (0 comments), PR #1032 (0 comments).
-- No PRs were merged, closed, or converted to draft since last scan.
+- Scan 2026-05-08T11:04:00Z (Asia/HK). No new maintainer feedback or review comments detected since last scan (2026-05-08T10:06:00Z). No PRs merged, closed, or converted to draft.
+- ⚠️ PR #125 is in a dangerous state: CI passes and is mergeable, but has an unaddressed critical security issue (double-payout vector). Fix exists in a fork but has NOT been applied to the main PR.
+- ✅ PR #87 and #90: zhaog100 sent follow-up messages on 2026-05-07. Awaiting maintainer response.

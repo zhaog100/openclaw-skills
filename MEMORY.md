@@ -214,3 +214,48 @@ _最后更新: 2026-05-07 23:50 HKT_
 - #2205: merged ✅ → Claim #7235 (closed)
 - #7339/#7326-#7329/#7368-#7369: 待认领
 - ⚠️ Claim Issue付款未到账
+
+### 2026-05-08 扫描与认领记录
+
+#### 已认领Bounty任务
+| Issue | 项目 | 描述 | 金额 | PR |
+|-------|------|------|------|-----|
+| #50 | INDIGOAZUL/la-tanda-web | Developer Documentation | 50 LTD | [#285](https://github.com/INDIGOAZUL/la-tanda-web/pull/285) |
+| #84 | INDIGOAZUL/la-tanda-web | Theme Toggle | 150 LTD | pending |
+| #155 | INDIGOAZUL/la-tanda-web | Fix Broken Links | 30 LTD | pending |
+
+#### 扫描结果
+- la-tanda-web: 3个tier-2任务(#267/#268/#269)无人认领，但需要tier-2资格
+- homelab-stack: 大部分任务已被serfersac等认领
+- RustChain: 之前已完成#6460/#6458/#6459
+
+#### PR状态
+- la-tanda-web PR #285: ✅ 已创建（Developer Docs）
+
+### 2026-05-08 oil-gold-correlation技能修复
+- **问题**: advisor.py包含11个git合并冲突标记，导致IndentationError
+- **原因**: feat/github-marketing分支合并时未正确解决冲突
+- **修复**: 保留HEAD版本，删除冲突分支代码
+- **结果**: 远程仓库已修复（commit 17d33db4）
+- **注意**: 本地技能可能在/root路径，需要重新安装技能
+
+### 2026-05-08 技能修复与发布
+
+#### oil-gold-correlation v1.7.0
+| 修复项 | 内容 |
+|--------|------|
+| SKILL.md | 解决5个Git冲突标记，保留v1.6.1 |
+| advisor.py | 解决11个Git冲突标记 |
+| push-scheme-v2.md | 路径泛化（/root -> ~） |
+| oil-gold-us-adapter.sh | 路径泛化 |
+
+**Tag**: v1.7.0-oil-gold
+
+#### china-exam-info-core v1.0.0
+| 文件 | 状态 |
+|------|------|
+| SKILL.md | ✅ 已同步到main |
+| README.md | ✅ |
+| scripts/get_exam_info.py | ✅ |
+
+**Commit**: 5b68c825
