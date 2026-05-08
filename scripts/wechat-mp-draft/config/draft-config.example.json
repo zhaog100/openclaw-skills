@@ -1,0 +1,58 @@
+{
+  "themes": {
+    "business": {
+      "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "textColor": "white",
+      "emoji": "📦"
+    },
+    "yoga": {
+      "gradient": "linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)",
+      "textColor": "#333333",
+      "emoji": "🧘"
+    },
+    "health": {
+      "gradient": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+      "textColor": "#333333",
+      "emoji": "💪"
+    },
+    "tech": {
+      "gradient": "linear-gradient(135deg, #0f2027 0%, #203a43 0%, #2c5364 100%)",
+      "textColor": "white",
+      "emoji": "⚡"
+    }
+  },
+  "templates": {
+    "business": {
+      "coverTitle": "商贸转型指南",
+      "coverSubtitle": "传统企业数字化升级实战",
+      "articleTitle": "商贸转型完全指南",
+      "author": "小米椒",
+      "digest": "从0到1打造数字化商贸体系",
+      "content": "<p>请在此添加正文内容</p>"
+    },
+    "yoga-shoulder": {
+      "coverTitle": "肩颈理疗",
+      "coverSubtitle": "办公室人群必备的肩颈放松指南",
+      "articleTitle": "肩颈理疗完全指南",
+      "author": "小米椒",
+      "digest": "每天10分钟，缓解肩颈疼痛",
+      "content": "<p>请在此添加正文内容</p>"
+    },
+    "yoga-body": {
+      "coverTitle": "全身舒压",
+      "coverSubtitle": "释放压力，唤醒身体活力",
+      "articleTitle": "全身舒压瑜伽教程",
+      "author": "小米椒",
+      "digest": "一套动作，激活全身能量",
+      "content": "<p>请在此添加正文内容</p>"
+    },
+    "health-diet": {
+      "coverTitle": "健康饮食",
+      "coverSubtitle": "吃得健康，活得精彩",
+      "articleTitle": "健康饮食完全指南",
+      "author": "小米椒",
+      "digest": "科学饮食，健康每一天",
+      "content": "<p>请在此添加正文内容</p>"
+    }
+  }
+}
