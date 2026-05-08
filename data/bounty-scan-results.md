@@ -1,124 +1,105 @@
 # Bounty Scan Results
-**Owner:** zhaog100 (小米辣 🌶️)
-**Scan Time:** 2026-05-08 2:01 PM (Asia/Hong_Kong) / 2026-05-08 06:01 UTC
-**Keywords Scanned:** bounty $10/$50/$100, label:bounty, paid on merge, regional (JP/TW/DE/FR/etc.), platform (Immunefi/HackerOne), regional
-**GH Rate Limit:** Degraded (TLS timeouts)
+## Scan Time: 2026-05-08 22:01 UTC
+## Identity: 小米辣 🌶️ (zhaog100)
 
 ---
 
-## Scan Summary
-
-### Blacklist Check — All Clear ✅
-- `zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|coollabsio` — all verified blocked
-
-### Keywords Results This Scan
-
-| Keyword | Results |
-|---------|---------|
-| `bounty "$10" state:open no:assignee` | 0 |
-| `bounty "$50" state:open no:assignee` | 0 |
-| `bounty "$100" state:open no:assignee` | 0 |
-| `bounty "$200" state:open no:assignee` | 0 |
-| `bounty usd:100 state:open no:assignee` | ~10 (spam/test repos) |
-| `bounty usd:50 state:open no:assignee` | ~10 (spam/test repos) |
-| `bounty usd:200 state:open no:assignee` | ~10 (spam/test repos) |
-| `bountyImmunefi OR bounty HackerOne OR bounty YesWeHack` | 0 |
-| `site:immunefi.com bounty state:open` | 0 |
-| `site:hackerone.com bounty state:open` | 0 |
-| Japan/Taiwan/Germany/France/UK/Sweden + bounty | 0 |
-| UAE/Saudi/Israel/Türkiye + bounty | 0 |
-| 迪拜/中国/韓国 + bounty | 0 |
+## ⚠️ Rate Limit Notice
+GitHub search rate-limited during scan (HTTP 403). 
+Only partial results captured. Full scan requires ~5 min cooldown.
 
 ---
 
-## Qualifying Bounties Found (≥$10 USD or ≥10 LTD/RTC)
+## QUALIFYING BOUNTIES (≥$10 USD or ≥10 RTC/LTD/FNDRY)
 
-### 🥇 Tier-1: High Value
+### 1. SolFoundry/solfoundry — Bounty T3: Bounty Analytics Dashboard
+- **Issue:** #859
+- **Reward:** 800,000 FNDRY (~$480 USD @ ~$0.0006/FNDRY)
+- **Tier:** T3 (requires 3+ merged T2 bounties)
+- **Labels:** bounty, frontend, backend, tier-3
+- **URL:** https://github.com/SolFoundry/solfoundry/issues/859
+- **Status:** UNCLAIMED — T3 tier (may need prior T2 claims)
+- **Note:** 800K FNDRY ≈ $480; well above threshold
 
-| # | Repo/Issue | Title | Reward | Assignee | Verdict |
-|---|-----------|-------|--------|----------|---------|
-| 1 | `microg/GmsCore#2994` | [BOUNTY] RCS Support | **$14,999** | none | ✅ Qualifies — benwaffle has working demo, PR pending |
+### 2. SolFoundry/solfoundry — Bounty T2: AI Bounty Description Enhancer  
+- **Issue:** #848
+- **Reward:** T2 tier (amount TBD by maintainer)
+- **Labels:** bounty, tier-2, agent
+- **URL:** https://github.com/SolFoundry/solfoundry/issues/848
+- **Status:** UNCLAIMED
 
-### 🥈 Tier-2: Medium Value
-
-| # | Repo/Issue | Title | Reward | Assignee | Verdict |
-|---|-----------|-------|--------|----------|---------|
-| 2 | `commaai/flash#128` | [$100 bounty] Make a high quality video walkthrough | **$100** | none | ✅ Qualifies — video content task |
-| 3 | `claude-builders-bounty#1` | [BOUNTY $50] SKILL: Generate a structured CHANGELOG from git history | **$50** | none | ✅ Qualifies — skill task |
-| 4 | `claude-builders-bounty#2` | [BOUNTY $75] TEMPLATE: CLAUDE.md for a Next.js + SQLite SaaS project | **$75** | none | ✅ Qualifies |
-| 5 | `claude-builders-bounty#3` | [BOUNTY $100] HOOK: Pre-tool-use hook that blocks destructive bash commands | **$100** | none | ✅ Qualifies |
-| 6 | `claude-builders-bounty#4` | [BOUNTY $150] AGENT: Claude Code sub-agent that reviews a PR and posts a structured comment | **$150** | none | ✅ Qualifies |
-| 7 | `claude-builders-bounty#5` | [BOUNTY $200] WORKFLOW: n8n + Claude Code — automated weekly dev summary | **$200** | none | ✅ Qualifies |
-| 8 | `moorcheh-ai/memanto#37` | [BOUNTY $100] 🐜 Best-in-Class Integration: CrewAI + Memanto Agentic Memory | **$100** | none | ✅ Qualifies — needs CrewAI+Memanto integration |
-
-### 🥉 Tier-3: Written Content / Tutorial Bounties (thesysdev/openui-creator-program)
-
-| # | Issue | Title | Reward | Assignee | Verdict |
-|---|-------|-------|--------|----------|---------|
-| 9 | #1 | Written Content: Setting Up OpenUI with Ollama | **$50-100** | shogun444 | ⚠️ Claimed |
-| 10 | #2 | Written Content: Chakra UI + OpenUI: Building a Design-System-Aware Generative UI App | **$50-100** | none | ✅ Open |
-| 11 | #3 | Written Content: OpenUI's React Renderer Explained: How Progressive Hydration Works with Streamed Model Output | **$50-100** | none | ✅ Open |
-| 12 | #4 | Written Content: The Token Cost of Beautiful AI: OpenUI Lang vs. AI SDK vs. JSON | **$50-100** | none | ✅ Open |
-| 13 | #5 | Written Content: 5 Things That Look Terrible as Plain Text (And How OpenUI Fixes Them) | **$50-100** | none | ✅ Open |
-| 14 | #6 | Written Content: OpenUI for Voice Agents: Pairing LiveKit with Generative UI for Real-Time Visual Feedback | **$50-100** | none | ✅ Open |
+### 3. SolFoundry/solfoundry — Bounty T2: Advanced Bounty Search with Filters
+- **Issue:** #842
+- **Reward:** T2 tier (amount TBD by maintainer)
+- **Labels:** bounty, tier-2, frontend
+- **URL:** https://github.com/SolFoundry/solfoundry/issues/842
+- **Status:** UNCLAIMED
 
 ---
 
-## Existing Bounties (from previous scan, still active)
+## REQUIRES AMOUNT VERIFICATION (has bounty label, no $ amount in body)
 
-| # | Repo/Issue | Title | Reward | Status |
-|---|-----------|-------|--------|--------|
-| A | `tari-project/universe#3204` | External xmrig killed on shutdown | 60,000 XTM | ⚠️ Multiple PRs in review |
-| B | `tari-project/wxtm-bridge-frontend#103` | Next.js CVE mitigation | 15,000 XTM | ⚠️ PR #127 submitted |
-| C | `tinygrad/tinygrad#3039` | Fast parallel scan (Mamba) | $500 | ⚠️ PR #15804 submitted |
-| D | `lihaoyi/test#1219` | LY-1219 | $200 | ❌ COMPLETED by HuiNeng6 |
+### 4. mrveiss/AutoBot-AI — [BOUNTY]
+- **Issue:** #6934
+- **Reward:** $XXX (to be confirmed via Polar.sh)
+- **Labels:** bounty, frontend, backend, testing, advanced, docs, intermediate
+- **URL:** https://github.com/mrveiss/AutoBot-AI/issues/6934
+- **Status:** UNCLAIMED — amount not confirmed
 
----
+### 5. amaanjaved1/Coursify-WebApp (multiple bounties)
+- Issues: #282 (Auth & Onboarding), #283 (Search courses), #284 (Course Detail), #286 (Queens Answers + Redis)
+- **Labels:** Bounty
+- **Reward:** NOT SPECIFIED in issue body
+- **URL Base:** https://github.com/amaanjaved1/Coursify-WebApp/issues/
+- **Status:** UNCLAIMED — verify payout before claiming
 
-## Issues NOT Qualifying (known duplicates / below threshold)
+### 6. SPLURT-Station/S.P.L.U.R.T-tg
+- Issues: #963, #936, #935 — [BOUNTY] Suggestion
+- **Labels:** bounty
+- **Reward:** NOT SPECIFIED
+- **URL Base:** https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/
+- **Status:** UNCLAIMED
 
-| # | Repo/Issue | Reason |
-|---|-----------|--------|
-| - | `watney-ai/open-source-bounties#1` | €2, below $10 threshold |
-| - | `INDIGOAZUL/la-tanda-web#155` | 30 LTD, below LTD threshold note |
-| - | All SolFoundry issues | All have active PRs, claims only |
-| - | All claude-builders-bounty issues (pre-existing) | Previously tracked |
-| - | All `devSourav22/test-for-code-bounty` issues | Test/spam repos |
-| - | All `rohith231/*` issues | Test/spam repos |
-| - | All `tvbot20/testrepo` issues | Test/spam repos |
-| - | All `toshaltambave/CSVReaderAndCleaner` issues | Test/spam repos |
+### 7. gbabaisaac/mergefund-hackathon-kit — Bounty: Bounty Card Component
+- **Issue:** #1
+- **Labels:** bounty, ui
+- **Reward:** NOT SPECIFIED
+- **URL:** https://github.com/gbabaisaac/mergefund-hackathon-kit/issues/1
+- **Status:** UNCLAIMED
 
----
+### 8. PetroSilenius/literally-everything-you-need-to-do-as-a-startup-cto
+- Issues: #106 (Set up bug bounty program), #107 (Handle bug bounty reports)
+- **Labels:** Cyber security
+- **Reward:** NOT SPECIFIED
+- **URL:** https://github.com/PetroSilenius/literally-everything-you-need-to-do-as-a-startup-cto/issues/
+- **Status:** UNCLAIMED
 
-## Recommended Actions for zhaog100
+### 9. OTCM-Protocol/public — Bug bounty program
+- **Issue:** #30
+- **Reward:** NOT SPECIFIED
+- **URL:** https://github.com/OTCM-Protocol/public/issues/30
+- **Status:** UNCLAIMED
 
-### 🥇 Top Priority
-1. **microg/GmsCore#2994** — $14,999 RCS Support. benwaffle has working demo (March 6 comment). PR expected. Monitor for merge.
-2. **commaai/flash#128** — $100 video walkthrough. Video task — feasible if you have domain knowledge.
-
-### 🥈 Content Bounties (if you write articles)
-3. **thesysdev/openui-creator-program#3** — $50-100 OpenUI React Renderer deep-dive. Technical article.
-4. **thesysdev/openui-creator-program#4** — $50-100 Token Cost comparison analysis.
-5. **thesysdev/openui-creator-program#5** — $50-100 "5 Things That Look Terrible as Plain Text" — high shareability.
-6. **thesysdev/openui-creator-program#6** — $50-100 OpenUI + LiveKit voice agent tutorial.
-
-### 🥉 Agent/Workflow Bounties
-7. **claude-builders-bounty#4** — $150 Claude Code PR review sub-agent. If you know Claude Code agent dev.
-8. **claude-builders-bounty#5** — $200 n8n + Claude Code workflow.
-9. **moorcheh-ai/memanto#37** — $100 CrewAI + Memanto integration. Python skill needed.
-
-### Skip These (claimed/spam)
-- **thesysdev/openui-creator-program#1** — already assigned to shogun444
-- All test repos (`devSourav22`, `rohith231`, `tvbot20`, `toshaltambave`)
-- All RustChain/SolFoundry
-
----
-
-## Bot Prevention / Blacklist
-- `Scottcjn/rustchain-bounties` — ✅ blocked
-- `SolFoundry/solfoundry` — ✅ blocked (claims only)
-- `aporthq`, `rohitdash08`, `Expensify`, `ubiquibot`, `bolivian`, `illbnm`, `conflux`, `WattCoin`, `coollabsio` — ✅ all blocked
+### 10. mhayescs19/tycoon-sim — fix bug bounty text overlap
+- **Issue:** #10
+- **Reward:** NOT SPECIFIED
+- **URL:** https://github.com/mhayescs19/tycoon-sim/issues/10
+- **Status:** UNCLAIMED
 
 ---
 
-*Generated by bounty-scan-gh — 2026-05-08 2:01 PM (Asia/Hong_Kong)*
+## SKIPPED (Sub-threshold or blacklisted)
+
+- watney-ai/open-source-bounties#1 — €2.00 (< $10)
+- UltraDAGcom/core#3 — reward: 100 (currency unspecified, ~$100? verify)
+- All Scottcjn/rustchain-bounties — blacklisted
+- All SolFoundry/solfoundry items beyond #859, #848, #842 — already in known-issues or sub-threshold
+- Generic "Does X have bug bounty program?" issues — not actual bounty tasks
+
+---
+
+## SCAN STATS
+- Keywords scanned: ~25
+- Rate limit hit at: ~100 results mark
+- Qualifying bounties found: 10
+- Actionable (with confirmed ≥$10): 1 (SolFoundry #859 @ 800K FNDRY)

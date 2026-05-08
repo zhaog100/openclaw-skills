@@ -78,13 +78,19 @@ _持续更新，记录重要信息_
 - #7235: PR未合并，不能claim
 - ⏳ 等待 Scottcjn 回复
 
-## 📊 PR 统计 (2026-05-08)
+## 📊 PR 统计 (2026-05-09)
 
 | 状态 | 数量 |
 |------|------|
 | Open | ~300 |
 | Merged | ~15 |
 | Closed | ~200+ |
+
+### 重点关注 PR
+- **PR #125** (ubiquity-os/permit-generation, $600): CodeRabbit 3条新评论待处理（2026-05-08）
+  - 🔴 Critical: operatorFeePercent validation 仍 throw 而非返回 failed-results
+  - 🔴 Critical: Setup 失败路径对 ERC721 permit 可能 NPE
+  - 🟠 Major: wait() 无 timeout - 交易卡住会阻塞整个 batch
 
 ### PR 清单重构
 - ✅ 统一为单表格式
@@ -228,7 +234,7 @@ _持续更新，记录重要信息_
 
 ---
 
-_最后更新: 2026-05-08 16:30 HKT_
+_最后更新: 2026-05-09 05:08 HKT_
 
 ---
 

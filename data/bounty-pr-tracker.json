@@ -1,6 +1,6 @@
 # Bounty PR Tracker - zhaog100
 
-**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-08 23:04 CST
+**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-09 06:07 Asia/Hong_Kong (2026-05-08 22:07 UTC)**
 
 ---
 
@@ -18,9 +18,9 @@
 
 | # | Repo | Title | Bounty | Currency | Updated | Status | Notes |
 |---|------|-------|--------|----------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-08 | mergeable | ⚠️ 双付漏洞fix在fork(mesiyoq965-sudo/permit-generation:fix/pr125-final)；CodeRabbit 新3条(2 Quick win)；CI✅ |
-| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-05-08 | pending_review | 等审核11天 |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-05-08 | changes_requested | CodeRabbit rate limited(37min)；alceops本地审查发现build失败（import路径错误等） |
+| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-08 | changes_requested | ⚠️ CodeRabbit 3条新评论(2026-05-08): operatorFeePercent验证throw、NPE风险(permit.amount.toString)、wait()无timeout |
+| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-04-29 | pending_review | 等审核14天 |
+| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-05-08 | changes_requested | CodeRabbit已处理全部早期评论；alceops本地修复delta可用（build失败） |
 | 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-04-28 | changes_requested | CodeRabbit 16条Major |
 | 85 | ubiquity-os/plugins-wishlist | feat: command-plan Plugin | $600 | USDT | 2026-04-28 | open | |
 | 66 | ubiquity-os/plugin-template | feat: Reusable Knip and Jest Workflows | $1200 | USDT | 2026-04-28 | open | |
@@ -34,8 +34,8 @@
 | 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | - | 2026-04-22 | open | |
 | 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute | N/A | - | 2026-05-05 | open | |
 | 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-05 | review_required | 安全PR |
-| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-08 | pending_review | ✅ 4条新社区评论(rockytian-top + fengqiankun6-sudo x3)；等BCOS标签；无maintainer review |
-| 19 | Chevalier12/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-06 | open | |
+| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-08 | pending_review | 等BCOS标签；无maintainer review |
+| 19 | Chevalier32/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-06 | open | |
 | 5 | 0xbrainkid/agentfolio-mcp-server | agentfolio_beacon_lookup | N/A | - | 2026-04-29 | open | |
 | 508 | claude-builders-bounty/claude-builders-bounty | n8n + Claude Weekly Dev Summary | $200 | USDT | 2026-04-08 | open | |
 | 506 | claude-builders-bounty/claude-builders-bounty | Claude Code PR Review Agent | $150 | USDT | 2026-04-08 | open | |
@@ -96,9 +96,9 @@
 ## 待处理事项
 
 | # | 优先级 | 操作 |
-|---|--------|-------|
-| 125 | 🔴 | 双付修复在fork，等maintainer操作 |
-| 87 | 🟡 | alceops提供本地delta修复build；CodeRabbit等待37min |
+|---|--------|------|
+| 125 | 🔴 | 修复3条新CodeRabbit评论: operatorFeePercent throw→failed-results、NPE(permit.amount?.toString)、wait() timeout |
+| 87 | 🟡 | alceops提供本地delta修复build；CodeRabbit已处理完所有评论 |
 | 396 | 🔵 | 签CLA |
 | 714 | 🔵 | 等审核反馈 |
 
@@ -107,41 +107,38 @@
 ## Notes
 
 - **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为`RTC2f0e423e...`
-- **PR #125**: 危险状态 - CI通过但有未修复的双付漏洞，fix在fork（mesiyoq965-sudo/permit-generation:fix/pr125-final）；CodeRabbit已处理2条评论
-- **PR #87**: alceops本地审查发现build失败：import路径错误、logger未解构、labels可能undefined、workflow用npm ci但无lockfile
+- **PR #125**: 3条CodeRabbit新评论(2026-05-08) - Critical问题需修复（throwing vs failed-results、NPE、wait timeout）
 - **Open PRs**: 约300个（含大量无bounty的公关/教程PR）
-- **扫描时间**: 2026-05-08 23:04 CST
+- **扫描时间**: 2026-05-08 20:07 UTC
 
 ---
 
-## Review 监控 (2026-05-08 23:04 CST)
-
-### PR #4101 (Scottcjn/Rustchain)
-- ✅ 4条新社区评论:
-  - rockytian-top: COMMENTED @ 2026-05-07 18:00
-  - fengqiankun6-sudo: COMMENTED @ 2026-05-07 18:15
-  - fengqiankun6-sudo: COMMENTED @ 2026-05-08 02:11
-  - fengqiankun6-sudo: COMMENTED @ 2026-05-08 14:12
-- 均为正面/审查性评论（非maintainer），可选择性回复致谢
-- 状态: pending_review, mergeable: true
+## Review 监控 (2026-05-08 20:07 UTC)
 
 ### PR #125 (ubiquity-os/permit-generation - Automatic Transfer)
-- 🔴 CodeRabbit 新3条评论 @ 2026-05-08 12:57:
-  - `Invalid operatorFeePercent 仍然 throw 而非返回 failed` (Critical ⚡Quick win)
-  - `Setup-failure paths 可在 ERC721 permits 上 NPE` (Critical ⚡Quick win)
-  - `wait() 无 timeout - 卡住 tx 会阻塞整个 batch` (Major ⚡Quick win)
-- 状态: mergeable: true (双付fix在fork)
+- ⚠️ **新评论 (2026-05-08 12:57 UTC)**:
+  1. 🔴 Critical: `operatorFeePercent` validation仍throw而非返回failed-results
+  2. 🔴 Critical: Setup失败路径对ERC721 permit可能NPE - `permit.amount.toString()`需可选链
+  3. 🟠 Major: `wait()`无timeout - 交易卡住会阻塞整个batch
+- 所有早期评论已标记"✅ Addressed"
+- 状态: CHANGES_REQUESTED, MERGEABLE
+- 双付fix在fork: mesiyoq965-sudo/permit-generation:fix/pr125-final
 
 ### PR #87 (ubiquity-os/plugins-wishlist - Auto Time Label Estimator)
-- 🔴 CodeRabbit 持续活跃，多条 Major/Critical 未解决
-- 状态: changes_requested, mergeable: true
+- ℹ️ 无新评论（CodeRabbit早期评论已全部处理）
+- 状态: CHANGES_REQUESTED, mergeable: true
+- alceops 本地delta可用（需修复build问题）
+
+### PR #714 (claude-builders-bounty - n8n weekly GitHub summary)
+- ℹ️ API访问受限，无法获取最新状态
+- 状态: pending_review，14天无维护者反馈
+
+### PR #4101 (Scottcjn/Rustchain)
+- ℹ️ 无新维护者评论（最后活跃 2026-05-08）
 
 ### PR #396 (midnightntwrk/contributor-hub)
 - 🔵 CLA assistant 评论: 需签CLA
 - 状态: pending_cla
 
-### PR #714 (claude-builders-bounty)
-- ℹ️ 无新评论
-
 ### 需回复评论: 无
-- 所有评论均来自社区（非maintainer），无需强制回复
+- 所有评论均来自CodeRabbit bot（非maintainer），建议处理新评论后再回复
