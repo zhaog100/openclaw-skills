@@ -1,6 +1,6 @@
 # Bounty PR Tracker - zhaog100
 
-**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated**: 2026-05-08 15:30 CST
+**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated**: 2026-05-08 16:00 CST
 
 ---
 
@@ -8,65 +8,80 @@
 
 | 状态 | 数量 |
 |------|------|
-| open | 38 |
-| changes_requested | 6 |
-| pending_review | 2 |
-| review_required | 2 |
-| merged | 0 |
-| paid | 0 |
+| **OPEN** | ~300 |
+| **MERGED** | ~15 |
+| **CLOSED** | ~200+ |
 
 ---
 
-## PR 清单
+## 重要 Open PR（含 Bounty）
 
-| # | Repo | Title | Bounty | Currency | Address | Updated | Status | Notes |
-|---|------|-------|--------|----------|---------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | | 2026-05-01 | mergeable | CI✅ 双付问题未修复; fix在fork |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | | 2026-04-28 | changes_requested | docstring 33%<80%; 需修复 |
-| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | | 2026-04-28 | changes_requested | docstring 76.92%<80% |
-| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests | $75 | USDT | | 2026-04-15 | changes_requested | |
-| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | USDT | | 2026-04-14 | changes_requested | |
-| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | USDT | | 2026-04-14 | changes_requested | |
-| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | USDT | | 2026-04-13 | changes_requested | |
-| 53 | ubiquity-os/ubiquity-os-plugin-installer | feat: Premade Plugin Configs | N/A | | | 2026-04-14 | open | |
-| 29 | ubiquity-os/command-demo | feat: nudge to claim demo currency | N/A | | | 2026-04-12 | open | |
-| 510 | ubiquity-os-marketplace/text-conversation-rewards | feat: Differential Reward Distribution | $600 | | | 2026-04-11 | open | |
-| 513 | ubiquity-os-marketplace/text-conversation-rewards | feat: Structured Outputs for LLM | N/A | | | 2026-04-12 | open | |
-| 512 | ubiquity-os-marketplace/text-conversation-rewards | fix: Validate multi-role participation | $150 | | | 2026-04-12 | open | |
-| 170 | ubiquity-os-marketplace/daemon-pricing | fix: README code blocks | N/A | | | 2026-04-09 | open | |
-| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | | 2026-04-29 | pending_review | 等审核9天 |
-| 396 | midnightntwrk/contributor-hub | [Tutorial] Unshielded Token dApp | N/A | | | 2026-04-25 | pending_cla | 需签CLA |
-| 395-391 | midnightntwrk/contributor-hub | [Tutorial] 系列教程 | N/A | | | 2026-04-22 | open | |
-| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack | $70 | USDT | | 2026-04-29 | open | |
-| 488 | illbnm/homelab-stack | [BOUNTY 30] Home Automation | $30 | USDT | | 2026-04-22 | open | |
-| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | | | 2026-04-22 | open | |
-| 486 | illbnm/homelab-stack | [BOUNTY 50] Backup & DR | $50 | USDT | | 2026-04-22 | open | |
-| 485 | illbnm/homelab-stack | [BOUNTY 30] Database Layer | $30 | USDT | | 2026-04-22 | open | |
-| 484 | illbnm/homelab-stack | [BOUNTY 50] Robustness | $50 | USDT | | 2026-04-22 | open | |
-| 483 | illbnm/homelab-stack | [BOUNTY 80] Observability | $80 | USDT | | 2026-04-22 | open | |
-| 482 | illbnm/homelab-stack | [BOUNTY 00] SSO Authentik | $0 | | | 2026-04-22 | open | |
-| 481 | illbnm/homelab-stack | [BOUNTY 20] AI Stack | $20 | USDT | | 2026-04-22 | open | |
-| 5 | 0xbrainkid/agentfolio-mcp-server | feat: agentfolio_beacon_lookup | N/A | | | 2026-04-29 | open | |
-| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | | | 2026-05-05 | review_required | 安全PR |
-| 1030 | ubiquity/ubiquity-dollar | fix: storage layout check | $300 | | | 2026-04-13 | review_required | |
-| 4-1 | zhaog100/rustchain-bounties | VSCode/GitHub/Telegram Bots | N/A | | | 2026-04-15 | open | |
-| 13 | fengking-li/group-buying-data-monitor | 团购+外卖监测 | N/A | | | 2026-04-09 | open | |
-| 42-38 | Jennycruzy/sovereign-genesis | 多个功能PR | N/A | | | 2026-04-09 | open | |
-| 994-991 | SolFoundry/solfoundry | 多个功能PR | N/A | | | 2026-04-09 | open | |
-| 18 | thesysdev/openui-creator-program | Written Content: Three Articles | $150-300 | | | 2026-04-09 | open | |
-| 33 | iotexproject/awesome-depin | Add RustChain to DePIN | N/A | | | 2026-05-05 | open | |
-| 19 | Chevalier12/InkkSlinger | InkCanvas/InkPresenter | N/A | | | 2026-05-06 | open | |
+| # | Repo | Title | Bounty | Currency | Updated | Status | Notes |
+|---|------|-------|--------|----------|---------|--------|-------|
+| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-01 | mergeable | ⚠️ 双付漏洞未修复 |
+| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-04-29 | pending_review | 等审核10天 |
+| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-04-28 | changes_requested | docstring 33% |
+| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-04-28 | changes_requested | docstring 76.92% |
+| 85 | ubiquity-os/plugins-wishlist | feat: command-plan Plugin | $600 | USDT | 2026-04-28 | open | |
+| 66 | ubiquity-os/plugin-template | feat: Reusable Knip and Jest Workflows | $1200 | USDT | 2026-04-28 | open | |
+| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | USDT | 2026-04-13 | changes_requested | |
+| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | USDT | 2026-04-14 | changes_requested | |
+| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | USDT | 2026-04-14 | changes_requested | |
+| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests | $75 | USDT | 2026-04-15 | changes_requested | |
+| 1030 | ubiquity/ubiquity-dollar | fix: storage layout check | $300 | USDT | 2026-04-13 | review_required | |
+| 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp | N/A | N/A | 2026-04-25 | pending_cla | 需签CLA |
+| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack | $70 | USDT | 2026-04-29 | open | |
+| 488 | illbnm/homelab-stack | [BOUNTY 30] Home Automation | $30 | USDT | 2026-04-22 | open | |
+| 483 | illbnm/homelab-stack | [BOUNTY 80] Observability | $80 | USDT | 2026-04-22 | open | |
+| 486 | illbnm/homelab-stack | [BOUNTY 50] Backup & DR | $50 | USDT | 2026-04-22 | open | |
+| 484 | illbnm/homelab-stack | [BOUNTY 50] Robustness | $50 | USDT | 2026-04-22 | open | |
+| 485 | illbnm/homelab-stack | [BOUNTY 30] Database Layer | $30 | USDT | 2026-04-22 | open | |
+| 482 | illbnm/homelab-stack | [BOUNTY 00] SSO Authentik | $0 | - | 2026-04-22 | open | |
+| 481 | illbnm/homelab-stack | [BOUNTY 20] AI Stack | $20 | USDT | 2026-04-22 | open | |
+| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | - | 2026-04-22 | open | |
+| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute | N/A | - | 2026-05-05 | open | |
+| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-05 | open | 安全PR |
+| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-08 | open | |
+| 19 | Chevalier12/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-06 | open | |
+| 5 | 0xbrainkid/agentfolio-mcp-server | agentfolio_beacon_lookup | N/A | - | 2026-04-29 | open | |
+| 508 | claude-builders-bounty/claude-builders-bounty | n8n + Claude Weekly Dev Summary | $200 | USDT | 2026-04-08 | open | |
+| 506 | claude-builders-bounty/claude-builders-bounty | Claude Code PR Review Agent | $150 | USDT | 2026-04-08 | open | |
+| 507 | claude-builders-bounty/claude-builders-bounty | Pre-tool-use Hook | $75 | USDT | 2026-04-09 | open | |
+| 505 | claude-builders-bounty/claude-builders-bounty | CLAUDE.md for Next.js + SQLite | $75 | USDT | 2026-04-09 | open | |
+| 504 | claude-builders-bounty/claude-builders-bounty | Structured CHANGELOG Generator | $50 | USDT | 2026-04-09 | open | |
 
 ---
 
-## 待处理事项
+## 其他 Open PR（无 Bounty）
 
-| # | 优先级 | 操作 |
-|---|--------|------|
-| 125 | 🔴 | 合并fork的双付修复; 添加Resolves #6 |
-| 87 | 🟡 | 提升docstring至80%; 修复导入; 切换到Bun |
-| 90 | 🟡 | 提升docstring至80% |
-| 396 | 🔵 | 签CLA |
+| # | Repo | Title | Updated |
+|---|------|-------|---------|
+| 108 | Space-Nebula/stellar-nebula-nomad | feat: Add automated bug bounty payout engine | 2026-04-26 |
+| 9 | ubiquity/arbitrage-bot | feat: Arbitrage Bot - Issue #3 ($600) | 2026-04-22 |
+| 50 | bitaps-com/jsbtc | security: Fix invalid threshold input validation (#48) | 2026-04-15 |
+| 31 | ubiquity-os/.github | feat: Sprint Management Dashboard - Bounty #14 | 2026-04-15 |
+| 84 | ubiquity-os/plugins-wishlist | feat: Deadlines Incentive Plugin - Bounty #66 | 2026-04-15 |
+| 4-1 | zhaog100/rustchain-bounties | VSCode/Telegram/RTC Reward Action | 2026-04-15 |
+| 53 | ubiquity-os/ubiquity-os-plugin-installer | feat: Premade Plugin Configs | 2026-04-14 |
+| 510-513 | ubiquity-os-marketplace/text-conversation-rewards | 多个功能PR | 2026-04-09-12 |
+| 169-170 | ubiquity-os-marketplace/daemon-pricing | 多个功能PR | 2026-04-09 |
+| 994-986 | SolFoundry/solfoundry | 多个功能PR | 2026-04-08-09 |
+| 42-38 | Jennycruzy/sovereign-genesis | 多个功能PR | 2026-04-09 |
+| 395-387 | midnightntwrk/contributor-hub | [Tutorial] 系列教程 | 2026-04-22 |
+| 13 | fengking-li/group-buying-data-monitor | 团购+外卖监测 | 2026-04-09 |
+| 18 | thesysdev/openui-creator-program | Written Content: Three Articles ($150-300) | 2026-04-09 |
+
+---
+
+## 已 Merged PR（待认领 Bounty）
+
+| # | Repo | Title | Bounty | Currency | Notes |
+|---|------|-------|--------|----------|-------|
+| 2207 | Scottcjn/Rustchain | [Security Audit #2867] Mining Reward Type Confusion | 25 RTC | RTC | ✅ claim已关闭 |
+| 2165 | Scottcjn/Rustchain | [UTXO-BUG] Critical Security Vulnerabilities | 50-75 RTC | RTC | ✅ claim已关闭 |
+| 2183 | Scottcjn/Rustchain | docs: fix inconsistent link formatting | N/A | - | |
+| 179 | Scottcjn/beacon-skill | Docs: Add zhaog100 to contributors | N/A | - | |
+| 58 | Scottcjn/contributors | Register zhaog100 (小米粒) as contributor | N/A | - | |
 
 ---
 
@@ -74,15 +89,32 @@
 
 | # | Repo | 状态 | 备注 |
 |---|------|------|------|
-| #6931 | RustChain | closed | 25 RTC claim已关闭 |
+| #6931 | RustChain | closed | 25 RTC claim已关闭（Scottcjn说已打） |
 | #7234 | RustChain | closed | 50-75 RTC claim已关闭 |
 | #7235 | RustChain | closed | PR未合并 |
-| #282-284 | la-tanda-web | closed | 不接受外部贡献 |
+| #282-285 | la-tanda-web | closed | 不接受外部贡献，6个PR全关 |
+| 295-277 | INDIGOAZUL/la-tanda-web | closed | 全部关闭 |
+| 13097 | Comfy-Org/ComfyUI | closed | |
+| 2444 | rust-unofficial/awesome-rust | closed | |
+| 4471 | punkpeye/awesome-mcp-servers | closed | |
+
+---
+
+## 待处理事项
+
+| # | 优先级 | 操作 |
+|---|--------|------|
+| 125 | 🔴 | 合并fork的双付修复 |
+| 87 | 🟡 | 提升docstring至80% |
+| 90 | 🟡 | 提升docstring至80% |
+| 396 | 🔵 | 签CLA |
+| 714 | 🔵 | 等审核反馈 |
 
 ---
 
 ## Notes
 
-- **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为RTC2f0e423e...
-- **PR #125**: 危险状态 - CI通过但有未修复的双付漏洞
-- **扫描状态**: ⚠️ GitHub API超时，使用缓存数据
+- **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为`RTC2f0e423e...`
+- **PR #125**: 危险状态 - CI通过但有未修复的双付漏洞，fix在fork
+- **Open PRs**: 约300个（含大量无bounty的公关/教程PR）
+- **扫描时间**: 2026-05-08 16:00 CST
