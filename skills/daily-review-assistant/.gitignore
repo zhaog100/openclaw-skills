@@ -1,7 +1,0 @@
-config/config.json
-logs/
-*.log
-node_modules/
-__pycache__/
-*.pyc
-.env

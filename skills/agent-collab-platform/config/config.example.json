@@ -1,5 +1,0 @@
-{
-  "github_repo": "owner/repo",
-  "check_interval": 30,
-  "log_dir": "logs"
-}
