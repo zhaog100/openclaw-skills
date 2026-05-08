@@ -1,5 +1,5 @@
 # Bounty Known Issues — Deduplication List
-# Last Updated: 2026-05-07 04:01 PM
+# Last Updated: 2026-05-08 2:01 PM (Asia/Hong_Kong)
 # Format: repo#number
 
 # SolFoundry (FNDRY tokens) - claims tasks only, don't submit PRs directly
@@ -46,3 +46,41 @@ rustchain
 
 # Sub-threshold (≥10 LTD but <50 LTD typical tier-0 min)
 INDIGOAZUL/la-tanda-web#155
+
+# illbnm/homelab-stack#504 - $300 USDT bounty claimed by multiple users
+illbnm/homelab-stack#504
+
+# claude-builders-bounty - all open, no assignees (scan 2026-05-08)
+claude-builders-bounty#1
+claude-builders-bounty#2
+claude-builders-bounty#3
+claude-builders-bounty#4
+claude-builders-bounty#5
+
+# claude-builders-bounty - all issues have active PRs, no open remain
+claude-builders-bounty#1
+claude-builders-bounty#2
+claude-builders-bounty#3
+claude-builders-bounty#4
+
+# commaai/flash - $100 video walkthrough (NEW 2026-05-08)
+commaai/flash#128
+
+# moorcheh-ai/memanto - $100 CrewAI+Memanto integration (NEW 2026-05-08)
+moorcheh-ai/memanto#37
+
+# thesysdev/openui-creator-program - written content bounties (NEW 2026-05-08)
+# skip #1 (assigned shogun444)
+thesysdev/openui-creator-program#3
+thesysdev/openui-creator-program#4
+thesysdev/openui-creator-program#5
+thesysdev/openui-creator-program#6
+
+# lihaoyi/test - LY-1219 COMPLETED by HuiNeng6 (PR#223 merged, $200 paid)
+lihaoyi/test#1219
+lihaoyi/test#894
+lihaoyi/test#819
+lihaoyi/test#728
+
+# Sub-$10 threshold
+watney-ai/open-source-bounties#1
