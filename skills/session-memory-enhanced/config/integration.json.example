@@ -1,0 +1,61 @@
+{
+  "version": "4.0.0",
+  "engines": {
+    "session_memory": {
+      "enabled": true,
+      "priority": 1,
+      "features": ["realtime", "git_backup", "qmd_update"],
+      "description": "轻量级实时记忆引擎"
+    },
+    "memu_engine": {
+      "enabled": false,
+      "priority": 2,
+      "features": ["structured_extraction", "vector_search", "multi_agent"],
+      "description": "企业级长期记忆引擎",
+      "requirements": {
+        "openai_api_key": "${OPENAI_API_KEY}",
+        "python_env": "auto",
+        "optional": true
+      }
+    }
+  },
+  "search": {
+    "strategy": "hybrid",
+    "description": "智能检索策略",
+    "primary": "memu_engine",
+    "fallback": "session_memory",
+    "timeout": 5000
+  },
+  "agents": {
+    "main": {
+      "memoryEnabled": true,
+      "searchEnabled": true,
+      "searchableStores": ["self", "shared"],
+      "flushIdleSeconds": 1800,
+      "maxMessagesPerPart": 60,
+      "description": "主代理"
+    },
+    "research": {
+      "memoryEnabled": true,
+      "searchEnabled": true,
+      "searchableStores": ["self", "shared"],
+      "flushIdleSeconds": 3600,
+      "maxMessagesPerPart": 100,
+      "description": "研究代理"
+    },
+    "trial": {
+      "memoryEnabled": true,
+      "searchEnabled": false,
+      "searchableStores": ["self"],
+      "flushIdleSeconds": 7200,
+      "maxMessagesPerPart": 200,
+      "description": "测试代理（完全隔离）"
+    }
+  },
+  "features": {
+    "auto_migration": true,
+    "backup_before_migration": true,
+    "degrade_gracefully": true,
+    "log_level": "info"
+  }
+}

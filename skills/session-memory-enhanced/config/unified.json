@@ -1,0 +1,51 @@
+{
+  "version": "4.0.0",
+  "description": "Session-Memory Enhanced 统一增强版 - 融合 memu-engine 核心功能",
+  "flushIdleSeconds": 1800,
+  "maxMessagesPerPart": 60,
+  "features": {
+    "structuredExtraction": true,
+    "vectorSearch": true,
+    "aiSummary": true,
+    "gitBackup": true,
+    "qmdUpdate": true
+  },
+  "openaiApiKey": "${OPENAI_API_KEY}",
+  "python": {
+    "enabled": true,
+    "autoInstall": true,
+    "requirements": "requirements.txt"
+  },
+  "search": {
+    "strategy": "hybrid",
+    "primaryEngine": "vector",
+    "fallbackEngine": "qmd",
+    "threshold": 0.7,
+    "topK": 5
+  },
+  "agents": {
+    "main": {
+      "searchableStores": [
+        "self",
+        "shared"
+      ],
+      "flushIdleSeconds": 1800,
+      "maxMessagesPerPart": 60
+    },
+    "research": {
+      "searchableStores": [
+        "self",
+        "shared"
+      ],
+      "flushIdleSeconds": 3600,
+      "maxMessagesPerPart": 100
+    },
+    "trial": {
+      "searchableStores": [
+        "self"
+      ],
+      "flushIdleSeconds": 7200,
+      "maxMessagesPerPart": 200
+    }
+  }
+}
