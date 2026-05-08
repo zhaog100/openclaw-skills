@@ -295,3 +295,28 @@ _最后更新: 2026-05-08 16:30 HKT_
 | scripts/get_exam_info.py | ✅ |
 
 **Commit**: 5b68c825
+
+---
+
+## 📋 2026-05-08 17:10 系统性整理记录
+
+### 身份确认
+- 我是: 小米辣 🌶️ · GitHub: zhaog100
+- 远程仓库:
+  - origin (xiaomila-skills): 个人文件（memory/data/MEMORY.md等） ✅
+  - skills (openclaw-skills): 技能/知识库（skills/knowledge/） ✅
+
+### Git 仓库修复
+- 问题: 之前错误地将 skills/ 推送到 origin
+- 解决: 使用 personal-files 分支推送到 origin master，skills/knowledge 只推送到 skills remote
+- 确认: origin/master 无 skills/knowledge ✅
+
+### 已更新文件
+- knowledge/bounty/rustchain.md - 新建
+- knowledge/INDEX.md - 更新RTC钱包信息
+- memory/2026-05-08.md - 记录系统性整理
+- QMD 向量库 - 添加4个文档
+
+### 推送记录
+- origin: personal-files -> master (forced update)
+- skills: master -> master (更新)
