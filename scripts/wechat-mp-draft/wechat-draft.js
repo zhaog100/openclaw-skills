@@ -164,46 +164,44 @@ async function uploadWithFormDataBlob(coverPath, uploadUrl) {
 
 /**
  * 方式2：FormData + Buffer（通用方式）
+ * 使用原生FormData和Buffer，不设置headers，直接使用fetch
  */
 async function uploadWithFormDataBuffer(coverPath, uploadUrl) {
   console.log(`   尝试方式2：FormData + Buffer`);
   
-  const form = new FormData();
-  form.append('media', fs.createReadStream(coverPath), {
+  const imageBuffer = fs.readFileSync(coverPath);
+  const formData = new FormData();
+  formData.append('media', imageBuffer, {
     filename: path.basename(coverPath),
     contentType: 'image/png'
   });
   
   const uploadResponse = await fetch(uploadUrl, {
     method: 'POST',
-    body: form,
-    headers: form.getHeaders()
+    body: formData
   });
   
   return await uploadResponse.json();
 }
 
 /**
- * 方式3：原始 form-data 包方式
+ * 方式3：form-data 包方式（已废弃，推荐使用方式1或2）
+ * 移除form-data包依赖，使用原生FormData + Blob
  */
 async function uploadWithFormDataPackage(coverPath, uploadUrl, accessToken) {
-  console.log(`   尝试方式3：form-data 包`);
+  console.log(`   尝试方式3：form-data 包（已废弃）`);
   
-  const form = new FormData();
-  form.append('media', fs.createReadStream(coverPath), {
-    filename: path.basename(coverPath),
-    contentType: 'image/png'
-  });
+  const imageBuffer = fs.readFileSync(coverPath);
+  const formData = new FormData();
+  formData.append('media', new Blob([imageBuffer]), path.basename(coverPath));
   
   const uploadUrlWithToken = uploadUrl.includes('access_token') 
     ? uploadUrl 
     : `${uploadUrl}${accessToken}`;
   
-  const uploadResponse = await httpRequestWithRetry(uploadUrlWithToken, {
+  const uploadResponse = await fetch(uploadUrlWithToken, {
     method: 'POST',
-    body: form,
-    headers: form.getHeaders(),
-    timeout: CONFIG.timeout.upload
+    body: formData
   });
   
   return await uploadResponse.json();
