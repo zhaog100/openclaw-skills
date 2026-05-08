@@ -298,7 +298,7 @@ _最后更新: 2026-05-08 16:30 HKT_
 
 ---
 
-## 📋 2026-05-08 17:10 系统性整理记录
+## 📋 2026-05-08 17:30 系统性整理记录
 
 ### 身份确认
 - 我是: 小米辣 🌶️ · GitHub: zhaog100
@@ -308,15 +308,28 @@ _最后更新: 2026-05-08 16:30 HKT_
 
 ### Git 仓库修复
 - 问题: 之前错误地将 skills/ 推送到 origin
-- 解决: 使用 personal-files 分支推送到 origin master，skills/knowledge 只推送到 skills remote
-- 确认: origin/master 无 skills/knowledge ✅
+- 解决: 
+  - personal-files 分支推送到 origin master
+  - master 分支推送到 skills master
+- 确认: 
+  - origin/master 无 skills/knowledge ✅
+  - skills/master 有 skills/knowledge ✅
 
 ### 已更新文件
 - knowledge/bounty/rustchain.md - 新建
 - knowledge/INDEX.md - 更新RTC钱包信息
 - memory/2026-05-08.md - 记录系统性整理
-- QMD 向量库 - 添加4个文档
+- MEMORY.md - 记录本次整理
 
 ### 推送记录
-- origin: personal-files -> master (forced update)
-- skills: master -> master (更新)
+- origin: personal-files -> master
+- skills: master -> master (skills/knowledge)
+
+### QMD 向量
+- ✅ 已添加4个文档
+
+### 教训
+以后操作前必须确认:
+1. `git remote -v` 确认仓库地址
+2. `git log origin/master --oneline | head -3` 确认将要推送的内容
+3. origin = 个人文件, skills = 技能文件
