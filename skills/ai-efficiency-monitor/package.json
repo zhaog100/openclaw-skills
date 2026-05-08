@@ -1,8 +1,0 @@
-{
-  "name": "ai-efficiency-monitor",
-  "version": "1.2.1",
-  "description": "AI效率监控工具 - 监控AI任务执行效率，识别浪费模式，生成优化建议",
-  "author": "思捷娅科技 (SJYKJ)",
-  "license": "MIT",
-  "keywords": ["ai", "efficiency", "monitor", "cost", "token", "waste-detection"]
-}
