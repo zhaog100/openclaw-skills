@@ -105,6 +105,13 @@ _持续更新，记录重要信息_
 
 ## 🧠 重要经验教训
 
+### Bounty项目选择（2026-05-08）⚠️
+1. **不是所有bounty都会付款** - 494个PR，27个merged，80个claim，**实际付款≈0**
+2. **RustChain（Scottcjn）**: 承诺160 RTC实际给25 RTC，3个认领全closed ❌
+3. **la-tanda-web**: 不接受外部贡献者，6个PR全部被关闭 ❌
+4. **推荐标准**: 有支付记录 + 维护者响应积极 + 项目活跃
+5. **教训**: 项目选择比努力更重要，不要相信承诺要看实际支付记录
+
 ### 模型配置（2026-04-28）
 1. **OpenClaw三层配置**: openclaw.json (primary) + models.json (provider) + auth-profiles.json (API key)
 2. **缺少 auth profile** 会导致 Unknown model 错误
