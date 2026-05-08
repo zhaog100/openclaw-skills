@@ -23,5 +23,5 @@ if [ "$is_dst" -eq 0 ]; then
     sleep 3600
 fi
 
-python3 /root/.openclaw/workspace/skills/oil-gold-correlation/scripts/report_text.py
+python3 ~/.openclaw/skills/oil-gold-correlation/scripts/report_text.py
 

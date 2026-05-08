@@ -77,7 +77,7 @@ Cron IDs:
   cb74b819-8b6d-4e26-8a13-369df1ca2df3  oil-gold-us-open-bot2
 
 Cron Prompt (统一):
-  运行命令 python3 /root/.openclaw/workspace/skills/oil-gold-correlation/scripts/report_text.py 并把输出内容完整推送，不需要任何修改。
+  运行命令 python3 ~/.openclaw/skills/oil-gold-correlation/scripts/report_text.py 并把输出内容完整推送，不需要任何修改。
 
 QQ Bot推送目标:
   default: qqbot:c2c:C099848DC9A60BF60A7BE31626822790
