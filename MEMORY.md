@@ -333,3 +333,27 @@ _最后更新: 2026-05-08 16:30 HKT_
 1. `git remote -v` 确认仓库地址
 2. `git log origin/master --oneline | head -3` 确认将要推送的内容
 3. origin = 个人文件, skills = 技能文件
+
+---
+
+## 📝 2026-05-08 微信草稿脚本更新
+
+### wechat-draft.js v2.0.0
+**路径**: `scripts/wechat-mp-draft/wechat-draft.js`
+
+**新增功能**:
+- 配置驱动的多模板支持
+- 多上传方式自动切换（FormData+Blob/Buffer/form-data）
+- 主题配置（business/yoga/health/tech）
+- 向后兼容 v1.x publishBusinessDraft()
+
+**使用方式**:
+```bash
+# v1.x 兼容模式
+node wechat-draft.js
+
+# v2.0 配置驱动模式
+node wechat-draft.js yoga-shoulder
+```
+
+**配置文件**: `scripts/wechat-mp-draft/config/draft-config.example.json`
