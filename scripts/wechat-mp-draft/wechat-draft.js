@@ -19,6 +19,10 @@
  *   node wechat-draft.js [模板名称]
  *   示例：node wechat-draft.js yoga-shoulder
  * 
+ * 配置文件：
+ *   - secrets/wechat-mp-credentials.json (公众号凭证)
+ *   - config/draft-config.json (模板配置)
+ *
  * 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
  */
 
