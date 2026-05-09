@@ -1,0 +1,63 @@
+{
+  "version": "2.0",
+  "skill_name": "daily-review-assistant",
+  "description": "定时回顾今日工作，查漏补缺，更新记忆和知识库",
+  "author": "小米辣 (zhaog100)",
+  "license": "MIT",
+  
+  "workspace": "/home/zhaog/.openclaw/workspace",
+  "memory_dir": "/home/zhaog/.openclaw/workspace/memory",
+  "knowledge_dir": "/home/zhaog/.openclaw/workspace/knowledge",
+  
+  "files": {
+    "memory": "/home/zhaog/.openclaw/workspace/MEMORY.md",
+    "heartbeat": "/home/zhaog/.openclaw/workspace/HEARTBEAT.md",
+    "knowledge_index": "/home/zhaog/.openclaw/workspace/knowledge/INDEX.md"
+  },
+  
+  "git": {
+    "branch": "master",
+    "remote": "origin"
+  },
+  
+  "thresholds": {
+    "memory_stale_hours": 24,
+    "heartbeat_stale_hours": 12,
+    "pr_stale_days": 7
+  },
+  
+  "features": {
+    "task_review": true,
+    "git_review": true,
+    "issue_review": true,
+    "learning_review": true,
+    "pr_monitoring": true,
+    "financial_tracking": true
+  },
+  
+  "notifications": {
+    "qqbot_enabled": true,
+    "qqbot_id": "C099848DC9A60BF60A7BE31626822790",
+    "notify_on_completion": true,
+    "notify_on_gaps": true
+  },
+  
+  "cron": {
+    "morning": "0 12 * * *",
+    "evening": "50 23 * * *",
+    "timezone": "Asia/Shanghai"
+  },
+  
+  "review": {
+    "auto_extract_lessons": true,
+    "update_memory_daily": true,
+    "generate_execution_summary": true,
+    "check_content_quality": true
+  },
+  
+  "logs": {
+    "dir": "/home/zhaog/.openclaw/workspace/skills/daily-review-assistant/logs",
+    "level": "info",
+    "retention_days": 30
+  }
+}
