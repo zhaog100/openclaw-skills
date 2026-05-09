@@ -1,6 +1,6 @@
 # Bounty PR Tracker - zhaog100
 
-**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-09 09:04 Asia/Hong_Kong (2026-05-09 01:04 UTC)**
+**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-09 10:06 Asia/Hong_Kong (2026-05-09 02:06 UTC)**
 
 ---
 
@@ -106,39 +106,43 @@
 
 ## Notes
 
+- **2026-05-09**: ⚠️ GitHub API 网络不通（DNS 解析到 198.18.0.70 测试地址，连接超时），无法获取实时数据
 - **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为`RTC2f0e423e...`
 - **PR #125**: 3条CodeRabbit新评论(2026-05-08) - Critical问题需修复（throwing vs failed-results、NPE、wait timeout）
 - **Open PRs**: 约300个（含大量无bounty的公关/教程PR）
-- **扫描时间**: 2026-05-09 01:04 UTC（gh rate limited，无新API数据）
+- **扫描时间**: 2026-05-09 02:06 UTC（⚠️ API不可达 - 网络问题）
 
 ---
 
-## Review 监控 (2026-05-08 20:07 UTC)
+## Review 监控 (2026-05-09 02:06 UTC)
 
-### PR #125 (ubiquity-os/permit-generation - Automatic Transfer)
-- ⚠️ **新评论 (2026-05-08 12:57 UTC)**:
+### ⚠️ API 不可用
+- GitHub API 网络不通（DNS 198.18.0.70，连接超时）
+- 基于上次数据 (2026-05-09 01:04 UTC) 提供状态参考
+
+### PR #125 (ubiquity-os/permit-generation - Automatic Transfer) [上次状态]
+- ⚠️ **3条新CodeRabbit评论 (2026-05-08 12:57 UTC)**:
   1. 🔴 Critical: `operatorFeePercent` validation仍throw而非返回failed-results
   2. 🔴 Critical: Setup失败路径对ERC721 permit可能NPE - `permit.amount.toString()`需可选链
   3. 🟠 Major: `wait()`无timeout - 交易卡住会阻塞整个batch
-- 所有早期评论已标记"✅ Addressed"
 - 状态: CHANGES_REQUESTED, MERGEABLE
 - 双付fix在fork: mesiyoq965-sudo/permit-generation:fix/pr125-final
 
-### PR #87 (ubiquity-os/plugins-wishlist - Auto Time Label Estimator)
-- ℹ️ 无新评论（CodeRabbit早期评论已全部处理）
+### PR #87 (ubiquity-os/plugins-wishlist - Auto Time Label Estimator) [上次状态]
+- CodeRabbit早期评论已全部处理
 - 状态: CHANGES_REQUESTED, mergeable: true
 - alceops 本地delta可用（需修复build问题）
 
-### PR #714 (claude-builders-bounty - n8n weekly GitHub summary)
-- ℹ️ API访问受限，无法获取最新状态
+### PR #714 (claude-builders-bounty - n8n weekly GitHub summary) [上次状态]
 - 状态: pending_review，14天无维护者反馈
 
-### PR #4101 (Scottcjn/Rustchain)
-- ℹ️ 无新维护者评论（最后活跃 2026-05-08）
+### PR #4101 (Scottcjn/Rustchain) [上次状态]
+- 状态: pending_review，等BCOS标签；无maintainer review
 
-### PR #396 (midnightntwrk/contributor-hub)
-- 🔵 CLA assistant 评论: 需签CLA
+### PR #396 (midnightntwrk/contributor-hub) [上次状态]
+- CLA assistant 评论: 需签CLA
 - 状态: pending_cla
 
-### 需回复评论: 无
-- 所有评论均来自CodeRabbit bot（非maintainer），建议处理新评论后再回复
+### 需回复评论: 无新数据
+- API不可达，无法获取最新评论
+- 上次记录：所有评论均来自CodeRabbit bot（非maintainer）
