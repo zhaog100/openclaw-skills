@@ -1,0 +1,12 @@
+# 仓库级Bounty黑名单 - 整个仓库的bounty都无效
+# 格式: owner/repo 或关键词
+# 2026-03-22 ComfyUI bounty已停超过1年
+comfy-org/comfyui
+# 已被多人认领抢光
+illbnm/homelab-stack
+rohitdash08/finmind
+# 无实际奖励
+obot-platform/mcp-catalog
+# Solidity/智能合约 - 环境不支持
+solfoundry/solfoundry
+grainlify/grainlify

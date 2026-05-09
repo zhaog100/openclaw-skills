@@ -1,0 +1,17 @@
+{
+  "imap_server": "imap.gmail.com",
+  "imap_port": 993,
+  "smtp_server": "smtp.gmail.com",
+  "smtp_port": 587,
+  "username": "zhaog100@gmail.com",
+  "app_password": "your_app_password_here",
+  "check_interval_minutes": 30,
+  "last_check_file": "/tmp/gmail_last_check.json",
+  "smtp_timeout": 5,
+  "smtp_enabled": true,
+  "bounty_keywords": [
+    "bounty", "payment", "merged", "pull request", "pr merged",
+    "issue closed", "contribution", "reward"
+  ],
+  "smtp_disabled": false
+}
