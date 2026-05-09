@@ -1,7 +1,7 @@
 ---
 name: multi-article-scraper
 description: 多平台文章爬取技能 - 支持微信/小红书/抖音/知乎等平台
-author: 思捷娅科技 (SJYKJ)
+author: 思捷娅科技 (SJYKJ)/zhaog100
 version: 2.0.0
 ---
 
@@ -124,7 +124,7 @@ MIT License - 免费使用、修改和重新分发
 
 **出处**:
 - GitHub: https://github.com/example-user/openclaw-skills
-- 创建者：思捷娅科技 (SJYKJ)
+- 创建者：思捷娅科技 (SJYKJ)/zhaog100
 
 **版权**: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 

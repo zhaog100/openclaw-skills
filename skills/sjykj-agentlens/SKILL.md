@@ -98,4 +98,4 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 免费使用、修改和重新分发时，需注明出处：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技 (SJYKJ) / 小米粒
+- 创建者: 思捷娅科技 (SJYKJ)/zhaog100 / 小米粒

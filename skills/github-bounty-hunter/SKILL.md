@@ -2,7 +2,7 @@
 name: github-bounty-hunter
 description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v7.4 新增 payment_checker.py + 5条强制规则 + 近期实战经验集成"
 version: 7.4.0
-author: 思捷娅科技 (SJYKJ)
+author: 思捷娅科技 (SJYKJ)/zhaog100
 ---
 
 # GitHub Bounty Hunter v7.4
@@ -818,7 +818,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技 (SJYKJ)
+- 创建者：思捷娅科技 (SJYKJ)/zhaog100
 
 **商业使用授权**：
 - 个人/开源：免费

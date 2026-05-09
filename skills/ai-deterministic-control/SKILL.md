@@ -7,7 +7,7 @@ version: 1.2.0
 # AI 确定性控制工具（ai-deterministic-control）
 
 **版本**: v1.0.0  
-**作者**: 思捷娅科技 (SJYKJ)  
+**作者**: 思捷娅科技 (SJYKJ)/zhaog100  
 **许可**: MIT License  
 
 ---
@@ -94,7 +94,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/example-user/xiaomili-skills
 - ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技 (SJYKJ)
+- 创建者: 思捷娅科技 (SJYKJ)/zhaog100
 
 **商业使用授权**：
 - 个人/开源：免费

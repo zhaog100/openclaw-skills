@@ -2,7 +2,7 @@
 name: auto-document-generator
 description: 自动从代码生成技术文档，支持 Python/JavaScript/Bash，AI 增强文档质量
 version: "1.0.0"
-author: 思捷娅科技 (SJYKJ)
+author: 思捷娅科技 (SJYKJ)/zhaog100
 license: MIT
 ---
 
@@ -73,7 +73,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技 (SJYKJ)
+- 创建者：思捷娅科技 (SJYKJ)/zhaog100
 
 **商业使用授权**：
 - 个人/开源：免费
