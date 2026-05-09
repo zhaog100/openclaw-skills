@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # prd_reader.sh - PRD解析模块
 # 职责: 解析PRD → 提取功能清单和验收标准 → 生成结构化任务声明（JSON）
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # MIT License
 
 set -euo pipefail

@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 引擎测试（进度计算3场景、阻塞检测）
 
 const assert = require('assert');

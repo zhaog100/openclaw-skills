@@ -176,4 +176,4 @@ _v1.0 - 整合到 auto-pipeline 技能_
 
 ---
 
-*版权：MIT License | Copyright (c) 2026 思捷娅科技*
+*版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)*

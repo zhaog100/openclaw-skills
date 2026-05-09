@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # cost_calc.sh - 成本计算模块
 set -euo pipefail
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # reporter.sh - 报告生成模块
 set -euo pipefail
 

@@ -136,4 +136,4 @@ Each confirmed vulnerability must include:
 
 ## 📄 许可证
 
-MIT License - Copyright (c) 2026 思捷娅科技
+MIT License - Copyright (c) 2026 思捷娅科技 (SJYKJ)

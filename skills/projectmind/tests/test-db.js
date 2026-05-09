@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 数据库层测试（建表、CRUD、UPSERT、级联删除）
 
 const assert = require('assert');

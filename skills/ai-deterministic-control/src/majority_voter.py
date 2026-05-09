@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 """MajorityVoter — 多数投票与输出聚类"""
 

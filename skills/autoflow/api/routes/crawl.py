@@ -1,5 +1,5 @@
 # 采集API路由
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel

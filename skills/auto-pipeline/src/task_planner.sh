@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # task_planner.sh - 智能任务拆分器（v2.0）
 # 职责: 读取tasks_approved.json → 按信心度/复杂度拆分为<5分钟的子任务
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # MIT License
 
 set -euo pipefail

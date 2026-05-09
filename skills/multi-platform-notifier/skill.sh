@@ -1,6 +1,6 @@
 #!/bin/bash
 # multi-platform-notifier - 多平台通知集成
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # GitHub: https://github.com/your_username/xiaomili-skills
 
 set -e

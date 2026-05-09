@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # GitHub Issue 评分引擎 - 被 sort_issues.sh 调用
 
 # 计算单维得分（0-100）

@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """核心调度模块 - 一键生成会议纪要"""
 
 try:

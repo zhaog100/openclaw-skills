@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """LLM 成本追踪"""
 from typing import Optional
 

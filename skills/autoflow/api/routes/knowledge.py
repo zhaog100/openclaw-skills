@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """知识库 API 路由"""
 import json
 from datetime import datetime, timezone

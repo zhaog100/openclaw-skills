@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """消息 Webhook 路由 - 企业微信 / 钉钉 / 飞书"""
 import uuid
 from datetime import datetime, timezone

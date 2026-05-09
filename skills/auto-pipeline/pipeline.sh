@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # pipeline.sh - auto-pipeline 主入口
 # 职责: 命令解析 + 流程编排 + 超时处理
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # MIT License
 
 set -euo pipefail
@@ -169,7 +169,7 @@ cmd_status() {
 cmd_help() {
   cat <<'EOF'
 auto-pipeline v2.0.0 - 技能自动开发流水线（半自动化）
-版权: 思捷娅科技 | MIT License
+版权: 思捷娅科技 (SJYKJ) | MIT License
 
 【v2.0 定位】半自动化：Bash脚本提供prompt构造+结果解析，Agent执行spawn。
 

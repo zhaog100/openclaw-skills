@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - DDL建表与索引
 
 const { getDB } = require('./connection');

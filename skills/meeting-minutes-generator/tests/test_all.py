@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """meeting-minutes-generator v1.0 综合测试"""
 
 import datetime

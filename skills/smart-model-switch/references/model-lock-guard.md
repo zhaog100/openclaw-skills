@@ -2,7 +2,7 @@
 
 _日期：2026-04-16 | 更新：2026-04-16_
 
-> MIT License · Copyright (c) 2026 思捷娅科技 · 创建者：小米椒 🌶️‍🔥
+> MIT License · Copyright (c) 2026 思捷娅科技 (SJYKJ) · 创建者：小米椒 🌶️‍🔥
 
 ## 一、问题本质
 

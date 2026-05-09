@@ -82,7 +82,7 @@ qmd clean     # 清理缓存
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 **免费使用、修改和重新分发时，需注明出处。**
 

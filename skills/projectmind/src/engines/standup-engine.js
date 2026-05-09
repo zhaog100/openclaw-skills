@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 站会引擎（收集+摘要+阻塞项检测）
 
 const { getDB } = require('../db/connection');

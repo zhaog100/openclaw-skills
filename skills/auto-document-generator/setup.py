@@ -15,7 +15,7 @@ long_description = (this_directory / "README.md").read_text(encoding='utf-8')
 setup(
     name="auto-document-generator",
     version="1.0.0",
-    author="思捷娅科技",
+    author="思捷娅科技 (SJYKJ)",
     author_email="contact@example.com",
     description="自动从代码生成技术文档，支持多种语言和AI增强",
     long_description=long_description,

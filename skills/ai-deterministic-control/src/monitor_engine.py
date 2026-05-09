@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 """
 MonitorEngine — 随机性监控引擎（Z-score 异常检测）

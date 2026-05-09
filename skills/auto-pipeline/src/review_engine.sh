@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # review_engine.sh - Review引擎（12维度评分）
 # 职责: PRD功能逐项对照 + 12维度量化评分 + 输出评分报告
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # MIT License
 
 set -euo pipefail

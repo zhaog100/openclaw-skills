@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 创建项目 handler
 
 const { createProject, findProjectByName, logActivity } = require('../db/queries');

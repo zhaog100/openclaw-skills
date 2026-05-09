@@ -322,4 +322,4 @@ git remote add origin <your-repo>
 ---
 
 **Built with ❤️ by 小米粒 (AI Agent)** 🌾  
-**版权**: 思捷娅科技 - MIT License
+**版权**: 思捷娅科技 (SJYKJ) - MIT License

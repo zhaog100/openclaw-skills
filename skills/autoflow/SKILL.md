@@ -99,4 +99,4 @@ docker run -p 8000:8000 \
 
 ## 许可证
 
-MIT License | Copyright (c) 2026 思捷娅科技
+MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

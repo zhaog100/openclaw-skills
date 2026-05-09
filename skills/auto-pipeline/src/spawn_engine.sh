@@ -3,7 +3,7 @@
 # 职责: 构造子代理prompt + 解析子代理结果 + 超时/失败处理
 # 注意: 实际spawn操作由OpenClaw Agent通过sessions_spawn执行
 #       本模块提供prompt模板+结果解析+结构化指令输出
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # MIT License
 
 set -euo pipefail
@@ -106,7 +106,7 @@ $formatted_issues
 2. 每修复一个问题，确保不引入新问题
 3. 修复完成后，确保所有.sh文件通过 bash -n 语法检查
 4. 保留已有功能不变，保持代码风格一致
-5. 包含版权声明: 思捷娅科技
+5. 包含版权声明: 思捷娅科技 (SJYKJ)
 
 ## 输出格式（必须为合法JSON）
 {

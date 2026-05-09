@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """会话与消息模型"""
 from dataclasses import dataclass
 from typing import Optional

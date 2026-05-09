@@ -164,4 +164,4 @@ your_wallet_address
 ---
 
 *创建者：小米粒 (PM + Dev) 🌶️*  
-*版权：思捷娅科技 | MIT License*
+*版权：思捷娅科技 (SJYKJ) | MIT License*

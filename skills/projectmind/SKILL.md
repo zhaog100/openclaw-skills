@@ -25,7 +25,7 @@ metadata:
 version: 1.3.1
 # ProjectMind - AI原生项目管理助手
 
-MIT License, Copyright (c) 2026 思捷娅科技
+MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ## 基本信息
 
