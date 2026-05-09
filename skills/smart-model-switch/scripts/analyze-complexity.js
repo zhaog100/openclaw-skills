@@ -1,94 +1,168 @@
-const { loadConfig, getPath } = require('./lib');
+#!/usr/bin/env node
+/**
+ * analyze-complexity.js
+ * 智能复杂度分析 - 集成增强关键词规则
+ */
 
-const config = loadConfig();
-const SKILL_DIR = require('path').join(__dirname, '..');
-const DATA_DIR = getPath('paths.data_dir', 'SMART_MODEL_SWITCH_DATA_DIR') ||
-  require('path').join(SKILL_DIR, 'data');
+const fs = require('fs');
+const path = require('path');
 
-function analyzeComplexity(message) {
-  const { weights, thresholds } = config.complexity_analysis;
-  const { code_patterns, vision_keywords, complex_keywords } = config.feature_detection;
+const SCRIPT_DIR = __dirname;
+const SKILL_DIR = path.dirname(SCRIPT_DIR);
+const CONFIG_FILE = path.join(SKILL_DIR, 'config/model-rules.json');
 
-  // 1. 长度评分 (0-3分)
-  let lengthScore = 0;
-  if (message.length < 50) lengthScore = 1;
-  else if (message.length < 200) lengthScore = 2;
-  else lengthScore = 3;
+// 加载配置
+let config = {
+  feature_detection: {
+    code_patterns: [],
+    vision_keywords: [],
+    complex_keywords: [],
+    simple_keywords: []
+  },
+  keywordRules: {
+    forceComplex: [],
+    forceFlash: [],
+    forceCoding: [],
+    forceVision: []
+  },
+  priority: "forceRule > complexityScore > defaultModel"
+};
 
-  // 2. 关键词评分 (0-3分)
-  let keywordScore = 0;
-  const lowerMessage = message.toLowerCase();
-  let complexKeywordCount = 0;
-
-  complex_keywords.forEach(keyword => {
-    if (lowerMessage.includes(keyword.toLowerCase())) {
-      complexKeywordCount++;
-    }
-  });
-
-  if (complexKeywordCount >= 3) keywordScore = 3;
-  else if (complexKeywordCount >= 2) keywordScore = 2;
-  else if (complexKeywordCount >= 1) keywordScore = 1;
-
-  // 3. 代码检测 (0-3分)
-  let codeScore = 0;
-  let hasCode = false;
-  code_patterns.forEach(pattern => {
-    if (message.includes(pattern)) {
-      hasCode = true;
-      codeScore = 3;
-    }
-  });
-
-  // 4. 视觉检测 (0-3分)
-  let visionScore = 0;
-  let hasVision = false;
-  vision_keywords.forEach(keyword => {
-    if (lowerMessage.includes(keyword.toLowerCase())) {
-      hasVision = true;
-      visionScore = 3;
-    }
-  });
-
-  const score = Math.min(10,
-    lengthScore * weights.length +
-    keywordScore * weights.keywords +
-    codeScore * weights.code +
-    visionScore * weights.vision
-  );
-
-  let complexity = 'simple';
-  if (score <= 3) complexity = 'simple';
-  else if (score <= 6) complexity = 'moderate';
-  else complexity = 'complex';
-
-  return {
-    length: message.length,
-    score: Math.round(score * 10) / 10,
-    features: { hasCode, hasVision, complexity, keywords: [] },
-    breakdown: { lengthScore, keywordScore, codeScore, visionScore }
-  };
-}
-
-function selectModel(analysis) {
-  if (analysis.features.hasVision) return config.models.vision.id;
-  if (analysis.features.hasCode) return config.models.coding.id;
-  if (analysis.score >= config.complexity_analysis.thresholds.complex) return config.models.complex.id;
-  if (analysis.score <= config.complexity_analysis.thresholds.flash) return config.models.flash.id;
-  return config.models.main.id;
-}
-
-if (require.main === module) {
-  const message = process.argv[2] || '';
-  if (!message) {
-    console.error('Usage: node analyze-complexity.js "your message"');
-    process.exit(1);
+try {
+  if (fs.existsSync(CONFIG_FILE)) {
+    const loaded = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf-8'));
+    config = { ...config, ...loaded };
   }
-
-  const analysis = analyzeComplexity(message);
-  const selectedModel = selectModel(analysis);
-
-  console.log(JSON.stringify({ message, analysis, selectedModel, timestamp: new Date().toISOString() }, null, 2));
+} catch (e) {
+  console.error('⚠️ 配置加载失败，使用默认配置');
 }
 
-module.exports = { analyzeComplexity, selectModel };
+// 检查强制规则
+function checkForceRules(text) {
+  const lowerText = text.toLowerCase();
+  
+  // Force Complex
+  for (const kw of config.keywordRules.forceComplex || []) {
+    if (lowerText.includes(kw.toLowerCase())) {
+      return 'complex';
+    }
+  }
+  
+  // Force Flash
+  for (const kw of config.keywordRules.forceFlash || []) {
+    if (lowerText.includes(kw.toLowerCase())) {
+      return 'flash';
+    }
+  }
+  
+  // Force Coding
+  for (const kw of config.keywordRules.forceCoding || []) {
+    if (lowerText.includes(kw.toLowerCase())) {
+      return 'coding';
+    }
+  }
+  
+  // Force Vision
+  for (const kw of config.keywordRules.forceVision || []) {
+    if (lowerText.includes(kw.toLowerCase())) {
+      return 'vision';
+    }
+  }
+  
+  return null;
+}
+
+// 计算复杂度分数
+function calculateComplexityScore(text) {
+  let score = 0;
+  
+  // 长度权重 (0-3)
+  const length = text.length;
+  if (length < 50) score += 0;
+  else if (length < 200) score += 1;
+  else if (length < 1000) score += 2;
+  else score += 3;
+  
+  // 代码模式 (0-3)
+  for (const pattern of config.feature_detection.code_patterns) {
+    if (text.includes(pattern)) {
+      score += 0.5;
+      if (score >= 3) break;
+    }
+  }
+  score = Math.min(score, 3);
+  
+  // 复杂关键词 (0-3)
+  for (const kw of config.feature_detection.complex_keywords) {
+    if (text.includes(kw)) {
+      score += 0.5;
+      if (score >= 3) break;
+    }
+  }
+  score = Math.min(score, 3);
+  
+  // 简单关键词 (0-3) - 降低复杂度
+  for (const kw of config.feature_detection.simple_keywords) {
+    if (text.includes(kw)) {
+      score -= 0.5;
+    }
+  }
+  score = Math.max(score, 0);
+  
+  return score;
+}
+
+// 主函数
+function analyze(input) {
+  // 检查手动覆盖
+  const overrideFile = path.join(SKILL_DIR, '.model-override');
+  if (fs.existsSync(overrideFile)) {
+    try {
+      const override = JSON.parse(fs.readFileSync(overrideFile, 'utf-8'));
+      if (override.forced) {
+        console.log(`⚠️ 使用手动覆盖: ${override.model} (任务: ${override.task})`);
+        return override.model;
+      }
+    } catch (e) {}
+  }
+  
+  // 1. 强制规则检查
+  const forceResult = checkForceRules(input);
+  if (forceResult) {
+    console.log(`🔷 强制规则匹配: ${forceResult}`);
+    const modelMap = {
+      complex: config.models?.complex?.id || 'longcat/LongCat-Flash-Thinking-2601',
+      flash: config.models?.flash?.id || 'longcat/LongCat-Flash-Lite',
+      coding: config.models?.coding?.id || 'zai/glm-5.1',
+      vision: config.models?.vision?.id || 'longcat/LongCat-Flash-Omni-2603'
+    };
+    return modelMap[forceResult];
+  }
+  
+  // 2. 复杂度评分
+  const score = calculateComplexityScore(input);
+  
+  // 3. 根据分数选择模型
+  let model;
+  if (score <= 3) {
+    model = config.models?.flash?.id || 'longcat/LongCat-Flash-Lite';
+  } else if (score <= 6) {
+    model = config.models?.main?.id || 'longcat/LongCat-Flash-Chat';
+  } else {
+    model = config.models?.complex?.id || 'longcat/LongCat-Flash-Thinking-2601';
+  }
+  
+  console.log(`📊 复杂度评分: ${score}/10 → 模型: ${model}`);
+  return model;
+}
+
+// CLI 入口
+const input = process.argv.slice(2).join(' ');
+if (!input) {
+  console.log('用法: node analyze-complexity.js <文本>');
+  console.log('例: node analyze-complexity.js "帮我写一个Python函数"');
+  process.exit(1);
+}
+
+const result = analyze(input);
+console.log(result);
