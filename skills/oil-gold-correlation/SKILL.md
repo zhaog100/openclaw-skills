@@ -238,3 +238,71 @@ cron:
 ---
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+
+---
+
+## 🛠️ 部署指南
+
+### 安装后必做：配置 Cron 任务
+
+**重要**：技能安装后需要手动配置定时任务，否则报告不会自动推送。
+
+#### 1. 添加 Cron 任务
+
+编辑 `~/.openclaw/cron/jobs.json`，添加以下 3 个任务：
+
+```json
+{
+  "id": "oil-gold-morning",
+  "name": "oil-gold-morning",
+  "enabled": true,
+  "schedule": { "kind": "cron", "expr": "0 10 * * *" },
+  "message": "生成并推送石油黄金早盘报告",
+  "model": "minimax/MiniMax-M2.7",
+  "timeoutSeconds": 300
+},
+{
+  "id": "oil-gold-evening",
+  "name": "oil-gold-evening",
+  "enabled": true,
+  "schedule": { "kind": "cron", "expr": "0 21 * * *" },
+  "message": "生成并推送石油黄金晚盘报告",
+  "model": "minimax/MiniMax-M2.7",
+  "timeoutSeconds": 300
+},
+{
+  "id": "oil-gold-us-market",
+  "name": "oil-gold-us-market",
+  "enabled": true,
+  "schedule": { "kind": "cron", "expr": "0 22 * * *" },
+  "message": "生成并推送石油黄金美盘报告",
+  "model": "minimax/MiniMax-M2.7",
+  "timeoutSeconds": 600
+}
+```
+
+#### 2. 验证 Cron 任务
+
+```bash
+openclaw cron list
+```
+
+应看到以下 3 个任务：
+- `oil-gold-morning` (10:00)
+- `oil-gold-evening` (21:00)
+- `oil-gold-us-market` (22:00)
+
+#### 3. 手动测试
+
+```bash
+openclaw cron run oil-gold-morning
+```
+
+### 配置推送目标
+
+编辑 `config/push-config.yaml` 自定义推送目标（见上方配置方式）。
+
+---
+
+**注意**：如果未配置 Cron 任务，技能功能正常但不会自动推送报告。
+
