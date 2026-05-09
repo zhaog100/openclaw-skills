@@ -204,72 +204,92 @@ def fetch_yfinance(period="1y", interval="1d"):
 
 
 def fetch_data(period="1y", interval="1d"):
-    """获取黄金和原油历史数据，优先 akshare → 失败则 fallback yfinance → 缓存"""
+    """获取黄金和原油历史数据，自动容错"""
+    return fetch_with_fallback(period, interval)
+def retry_on_failure(func, max_retries=3, delay=1, backoff=2):
+    """重试装饰器，指数退避"""
+    def wrapper(*args, **kwargs):
+        last_exception = None
+        for attempt in range(max_retries):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                last_exception = e
+                if attempt < max_retries - 1:
+                    wait_time = delay * (backoff ** attempt)
+                    print(f"  ⚠️ {func.__name__} 失败 (尝试 {attempt+1}/{max_retries}), {wait_time}秒后重试...")
+                    time.sleep(wait_time)
+                else:
+                    print(f"  ❌ {func.__name__} 全部重试失败: {e}")
+        return None
+    return wrapper
+
+
+def is_data_valid(data: dict, min_records: int = 10) -> bool:
+    """检查数据是否有效"""
+    if not data:
+        return False
+    for name, d in data.items():
+        if d.get("close") and len(d["close"]) >= min_records:
+            return True
+    return False
+
+
+def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
+    """带容错的数据获取：自动尝试多个数据源"""
+    import akshare
+    import yfinance
+
+    # 先检查缓存
+    if not force_refresh:
+        cached = read_cache(period, interval)
+        if cached and is_data_valid(cached):
+            print(f"[缓存] 使用缓存数据（{period}，{interval}）")
+            return cached
+
+    result = None
+    errors = []
+
+    # 方法1: akshare
+    for attempt in range(2):
+        try:
+            print(f"[akshare] 尝试获取数据 ({period}，{interval})...")
+            result = fetch_akshare(period, interval)
+            if is_data_valid(result):
+                print(f"  ✅ akshare 成功")
+                write_cache(period, interval, result)
+                return result
+        except ImportError as e:
+            errors.append(f"akshare: {e}")
+            break
+        except Exception as e:
+            errors.append(f"akshare: {e}")
+            if attempt < 1:
+                time.sleep(2)
+
+    # 方法2: yfinance
+    for attempt in range(2):
+        try:
+            print(f"[yfinance] 尝试获取数据 ({period}，{interval})...")
+            result = fetch_yfinance(period, interval)
+            if is_data_valid(result):
+                print(f"  ✅ yfinance 成功")
+                write_cache(period, interval, result)
+                return result
+        except ImportError as e:
+            errors.append(f"yfinance: {e}")
+            break
+        except Exception as e:
+            errors.append(f"yfinance: {e}")
+            if attempt < 1:
+                time.sleep(2)
+
+    # 全部失败，返回缓存（即使过期）
+    print(f"  ⚠️ 所有数据源失败，使用过期缓存")
     cached = read_cache(period, interval)
     if cached:
-        print(f"[缓存] 使用缓存数据（{period}，{interval}）")
+        print(f"  📦 使用过期缓存: {len(cached)} 条记录")
         return cached
 
-    # 尝试 akshare
-    print(f"[akshare] 获取数据（{period}，{interval}）...")
-    try:
-        result = fetch_akshare(period, interval)
-        has_data = any(d.get("close") for d in result.values())
-        if has_data:
-            # 补充 brent 如果需要（akshare 没有 brent 对应的国内品种）
-            if has_data:
-                write_cache(period, interval, result)
-            for name, d in result.items():
-                if d["close"]:
-                    latest = d["close"][-1]
-                    prev = d["close"][-2] if len(d["close"]) > 1 else latest
-                    change = ((latest - prev) / prev) * 100 if prev else 0
-                    print(f"  {name.upper():>6} ({d['symbol']}): ¥{latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录 [{d.get('currency', 'CNY')}]")
-            return result
-        else:
-            print("  ⚠️ akshare 数据为空，尝试 yfinance...")
-    except ImportError:
-        print("  ⚠️ akshare 未安装，尝试 yfinance...")
-    except Exception as e:
-        print(f"  ⚠️ akshare 失败: {e}，尝试 yfinance...")
-
-    # 降级到 yfinance
-    print(f"[yfinance] 获取数据（{period}，{interval}）...")
-    result = fetch_yfinance(period, interval)
-    has_data = any(d.get("close") for d in result.values())
-    if has_data:
-        write_cache(period, interval, result)
-        for name, d in result.items():
-            if d["close"]:
-                latest = d["close"][-1]
-                prev = d["close"][-2] if len(d["close"]) > 1 else latest
-                change = ((latest - prev) / prev) * 100 if prev else 0
-                print(f"  {name.upper():>6} ({d['symbol']}): ${latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录 [USD]")
-        return result
-
-    # 全部失败，返回空结构
-    print("❌ 所有数据源均失败")
-    all_symbols = {**AKSHARE_SYMBOLS, **{"brent": {"symbol": "BZ=F"}}}
-    return {name: {"symbol": info.get("symbol", ""), "dates": [], "close": [], "open": [],
-                   "high": [], "low": [], "volume": [], "currency": "N/A"}
-            for name, info in all_symbols.items()}
-
-
-# 需要导入 pandas（akshare 列名处理用）
-import pandas as pd
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="获取石油黄金价格数据")
-    parser.add_argument("--period", default="1y", help="时间范围 (7d, 30d, 90d, 1y, 5y)")
-    parser.add_argument("--interval", default="1d", help="K线间隔 (1d, 1h, 5m)")
-    args = parser.parse_args()
-
-    data = fetch_data(args.period, args.interval)
-
-    if not data or not any(d.get("close") for d in data.values()):
-        print("❌ 未获取到数据")
-        sys.exit(1)
-
-    total = sum(len(d["dates"]) for d in data.values())
-    print(f"\n✅ 数据获取完成：{len(data)} 个品种，{total} 条记录")
+    print(f"  ❌ 数据获取彻底失败: {errors}")
+    return None
