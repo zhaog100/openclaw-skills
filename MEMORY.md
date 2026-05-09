@@ -410,3 +410,18 @@ node wechat-draft.js yoga-shoulder
 ```
 
 **配置文件**: `scripts/wechat-mp-draft/config/draft-config.example.json`
+
+## 🛡️ 2026-05-09 教训：操作前必须明确范围
+
+### 事件
+修改 github-bounty-hunter 技能作者时，误把 Copyright 也改了
+
+### 正确做法
+1. **明确修改范围** - 只改作者/创建者字段，不动 Copyright
+2. **先查看原文** - sed 替换前先 head 查看确认
+3. **小步提交** - 每次只改必要文件，不过度修改
+4. **提交前检查** - git diff --stat 确认改了什么
+
+### 版权信息格式
+- Copyright: `Copyright (c) 2026 思捷娅科技 (SJYKJ)` （不动）
+- 作者: `思捷娅科技 (SJYKJ)/zhaog100`
