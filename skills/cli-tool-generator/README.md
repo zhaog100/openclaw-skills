@@ -2,7 +2,7 @@
 
 > 🚀 快速创建 CLI 工具模板 - Bash/Python 支持
 
-**版本**: v1.0.0 | **创建者**: 思捷娅科技 (SJYKJ) | **日期**: 2026-03-16
+**版本**: v1.0.0 | **创建者**: 思捷娅科技 | **日期**: 2026-03-16
 
 ## 📋 简介
 
@@ -126,14 +126,14 @@ cd deploy-tool
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/example-user/xiaomila-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技 (SJYKJ)
+- 创建者：思捷娅科技
 
 **商业使用授权**：
 - 小微企业（<10 人）：¥999/年

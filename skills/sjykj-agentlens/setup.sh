@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License, Copyright (c) 2026 思捷娅科技
 # AgentLens Setup Script
 
 set -e

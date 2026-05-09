@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - SQLite连接管理（WAL模式）
 
 const path = require('path');

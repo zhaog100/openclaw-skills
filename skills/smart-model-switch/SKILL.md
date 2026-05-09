@@ -70,4 +70,4 @@ node scripts/dynamic-weight-adjust.js
 
 ---
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+Copyright (c) 2026 思捷娅科技 — MIT License

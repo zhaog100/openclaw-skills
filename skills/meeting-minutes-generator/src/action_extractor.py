@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
 """行动项提取模块 - 从会议文本中识别任务、负责人、截止日期和优先级"""
 
 import re

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # aiemon_patterns - 模式管理
 set -euo pipefail
 

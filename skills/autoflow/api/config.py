@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License | Copyright (c) 2026 思捷娅科技
 """配置管理 - 环境变量 + config.json"""
 import os
 import json

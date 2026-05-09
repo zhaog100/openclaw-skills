@@ -7,7 +7,7 @@
 """
 
 __version__ = "1.0.0"
-__author__ = "思捷娅科技 (SJYKJ)"
+__author__ = "思捷娅科技"
 
 from .extractor import KnowledgeExtractor
 from .relation import RelationExtractor

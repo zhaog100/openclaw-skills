@@ -139,7 +139,7 @@ npx skills init my-xyz-skill
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 
 **免费使用、修改和重新分发时，需注明出处。**
 

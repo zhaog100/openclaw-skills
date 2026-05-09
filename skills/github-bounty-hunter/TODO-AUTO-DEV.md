@@ -29,4 +29,4 @@ export PAYMENT_ADDRESS=YOUR_USDT_ADDRESS_HERE
 
 ---
 
-*MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)*
+*MIT License | Copyright (c) 2026 思捷娅科技*

@@ -3,7 +3,7 @@
 石油黄金投资建议模块
 短期（1天~1周）为主 + 中长期（1月~6月）补充
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 

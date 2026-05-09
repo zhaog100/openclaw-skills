@@ -5,7 +5,7 @@ QQ 通知集成脚本
 - 支持多种通知类型
 - 自动格式化消息
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+版权：MIT License | Copyright (c) 2026 思捷娅科技
 GitHub: https://github.com/your_username/openclaw-skills
 """
 
@@ -59,7 +59,7 @@ class QQNotifier:
 - **地址**: `{self.payment_address}`
 
 ---
-*由 github-bounty-hunter v1.3.0 自动发送 | 版权：思捷娅科技 (SJYKJ)*"""
+*由 github-bounty-hunter v1.3.0 自动发送 | 版权：思捷娅科技*"""
     
     def notify_new_bounty(self, task):
         """新任务通知"""

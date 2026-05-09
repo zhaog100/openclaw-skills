@@ -160,14 +160,14 @@ export ALGORA_API_KEY='your_api_key_here'
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技 (SJYKJ)
+- 创建者: 思捷娅科技
 
 **商业使用授权**：
 - 个人/开源：免费

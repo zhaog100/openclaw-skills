@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # fix_engine.sh - 修复引擎
 # 职责: 接收Review问题列表 → 构造修复prompt → 回退判断 → 循环控制（≤3轮）
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # MIT License
 
 set -euo pipefail
@@ -98,7 +98,7 @@ $issues
 - 不要重写整个技能，只修复问题
 - 保留已有功能不变
 - 保持代码风格一致
-- 包含版权声明: 思捷娅科技 (SJYKJ)
+- 包含版权声明: 思捷娅科技
 
 ## 输出格式（必须为合法JSON）
 {

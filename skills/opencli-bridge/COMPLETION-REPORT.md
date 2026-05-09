@@ -178,7 +178,7 @@ opencli bilibili hot --limit 5
 
 - **许可证**: MIT License
 - **作者**: 小米粒 (PM + Dev)
-- **版权**: Copyright (c) 2026 思捷娅科技 (SJYKJ)
+- **版权**: Copyright (c) 2026 思捷娅科技
 - **免费使用**: 需注明出处
 
 **出处**:

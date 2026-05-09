@@ -13,7 +13,7 @@ metadata:
 
 # AgentLens — AI Agent 调试与可观测性平台
 
-MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+MIT License, Copyright (c) 2026 思捷娅科技
 
 ## 基本信息
 
@@ -93,9 +93,9 @@ chmod +x setup.sh && ./setup.sh
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 
 免费使用、修改和重新分发时，需注明出处：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技 (SJYKJ) / 小米粒
+- 创建者: 思捷娅科技 / 小米粒

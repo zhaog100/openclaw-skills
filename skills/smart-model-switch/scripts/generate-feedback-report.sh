@@ -1,4 +1,4 @@
-# MIT License · Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License · Copyright (c) 2026 思捷娅科技
 #!/bin/bash
 # generate-feedback-report.sh - 生成每周反馈统计报告
 

@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - 工时统计引擎
 
 const { listTimeLogs, getTimeSummary, getDailyTimeSummary } = require('../db/queries');

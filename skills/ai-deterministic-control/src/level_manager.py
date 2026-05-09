@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
 
 """LevelManager — 确定性等级管理 (L0-L4)"""
 

@@ -1,4 +1,4 @@
-# MIT License · Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License · Copyright (c) 2026 思捷娅科技
 #!/bin/bash
 # feedback-log.sh - 记录模型选择反馈
 # 用法: ./feedback-log.sh <task_type> <selected_model> <was_correct>

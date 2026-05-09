@@ -163,4 +163,4 @@ projectmind/
 
 ## 📜 许可证
 
-[MIT License](LICENSE) © 2026 思捷娅科技 (SJYKJ)
+[MIT License](LICENSE) © 2026 思捷娅科技

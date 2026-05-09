@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - 删除任务 handler
 
 const { findTaskById, deleteTask, logActivity } = require('../db/queries');

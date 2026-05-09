@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 
 """完整测试套件 - ai-deterministic-control v1.0.0"""
 

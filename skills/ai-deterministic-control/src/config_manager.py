@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 
 """
 ConfigManager — 确定性参数管理器

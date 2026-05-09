@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License | Copyright (c) 2026 思捷娅科技
 """QMD 向量检索客户端"""
 import subprocess
 import json

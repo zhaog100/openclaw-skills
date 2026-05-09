@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License | Copyright (c) 2026 思捷娅科技
 """报表服务 - 模板管理、报表生成、快照查询"""
 import json
 from datetime import datetime, timezone

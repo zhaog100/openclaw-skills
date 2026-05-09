@@ -8,7 +8,7 @@ version: 1.0.1
 
 **版本**: v1.0.0  
 **创建时间**: 2026-03-17  
-**创建者**: 思捷娅科技 (SJYKJ)  
+**创建者**: 思捷娅科技  
 **用途**: 构建知识图谱，支持知识提取、关系识别、图谱可视化
 
 ---
@@ -108,14 +108,14 @@ python -m pytest test_extractor.py -v
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技 (SJYKJ)
+- 创建者：思捷娅科技
 
 ---
 

@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - 趋势分析引擎（纯SQL实现，不依赖LLM）
 
 /**
