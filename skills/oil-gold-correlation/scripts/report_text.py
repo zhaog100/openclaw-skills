@@ -5,7 +5,7 @@
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-Author: 小米辣 (Xiaomila) - AI Agent
+Author: 思捷娅科技 (SJYKJ)/zhaog100
 """
 
 import sys
