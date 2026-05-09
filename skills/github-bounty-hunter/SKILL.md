@@ -1,6 +1,6 @@
 ---
 name: github-bounty-hunter
-GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v7.4 新增 payment_checker.py + 5条强制规则 + 近期实战经验集成
+description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v7.4 新增 payment_checker.py + 5条强制规则 + 近期实战经验集成"
 version: 7.4.0
 author: 小米辣 🌶️
 ---
