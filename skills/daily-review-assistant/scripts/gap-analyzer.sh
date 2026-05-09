@@ -507,8 +507,10 @@ check_daily_log_content() {
     local score=0
     
     # 检查任务完成情况
-    local tasks_completed=$(grep -c "^\- \[x\]" "$daily_log" 2>/dev/null || echo "0")
-    if [ $tasks_completed -gt 0 ]; then
+    local tasks_completed
+    tasks_completed=$(grep -c "^\\- \\[x\\]" "$daily_log" 2>/dev/null | tr -d '\n' || echo "0")
+    tasks_completed=${tasks_completed:-0}
+    if [ "$tasks_completed" -gt 0 ]; then
         score=$((score + 3))
     fi
     
@@ -557,8 +559,10 @@ check_memory_quality() {
     fi
     
     # 检查内容分类
-    local categories=$(grep -c "^## [A-Za-z]" "$memory_file" 2>/dev/null || echo "0")
-    if [ $categories -gt 5 ]; then
+    local categories
+    categories=$(grep -c "^## [A-Za-z]" "$memory_file" 2>/dev/null | tr -d '\n' || echo "0")
+    categories=${categories:-0}
+    if [ "$categories" -gt 5 ]; then
         score=$((score + 2))
     fi
     

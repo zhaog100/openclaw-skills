@@ -142,14 +142,92 @@ confirm_identity() {
     log_info "  ✅ 远程仓库：origin → xiaomila-skills"
 }
 
+# 任务回顾
+review_tasks() {
+    local date="$1"
+    local daily_log="$CFG_MEMORY_DIR/$date.md"
+    
+    log_info "  📋 检查今日任务完成情况..."
+    
+    if [ -f "$daily_log" ]; then
+        local tasks=$(grep -c "^\- \[x\]" "$daily_log" 2>/dev/null || echo "0")
+        log_info "  ✅ 已完成任务: $tasks 个"
+        
+        # 统计任务完成情况
+        local total_tasks=$(grep -c "^\- \[\?\]" "$daily_log" 2>/dev/null || echo "0")
+        local pending_tasks=$(grep -c "^\- \[ \]" "$daily_log" 2>/dev/null || echo "0")
+        
+        log_info "  📊 任务统计：完成 $tasks | 待处理 $pending_tasks"
+        
+        # 列出重要任务
+        if grep -q "^### 上午" "$daily_log"; then
+            log_info "  ☀️ 上午任务："
+            grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep "^\-" | head -5 | while read task; do
+                log_info "    $task"
+            done
+        fi
+        
+        if grep -q "^### 下午" "$daily_log"; then
+            log_info "  🌤️ 下午任务："
+            grep -A 10 "^### 下午" "$daily_log" 2>/dev/null | grep "^\-" | head -5 | while read task; do
+                log_info "    $task"
+            done
+        fi
+    else
+        log_warn "  ⚠️ 今日日志不存在"
+    fi
+}
+
+# Git提交回顾
+review_commits() {
+    local date="$1"
+    local daily_log="$CFG_MEMORY_DIR/$date.md"
+    
+    log_info "  💻 检查Git提交..."
+    
+    cd "$CFG_WORKSPACE" 2>/dev/null || return 1
+    
+    # 统计今日提交
+    local commits=$(git log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | wc -l)
+    log_info "  ✅ 今日提交: $commits 个"
+    
+    # 列出重要提交
+    if [ "$commits" != "0" ]; then
+        log_info "  📋 重要提交："
+        git log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | head -5 | while read commit; do
+            log_info "    - $commit"
+        done
+    fi
+    
+    # 检查未提交文件
+    local uncommitted=$(git status --porcelain 2>/dev/null | wc -l)
+    if [ "$uncommitted" -gt 0 ]; then
+        log_warn "  ⚠️ 有 $uncommitted 个未提交的文件"
+    else
+        log_info "  ✅ Git状态干净"
+    fi
+    
+    # 检查未推送提交
+    local unpushed=$(git log "origin/$CFG_GIT_BRANCH..$CFG_GIT_BRANCH" --oneline 2>/dev/null | wc -l)
+    if [ "$unpushed" -gt 0 ]; then
+        log_warn "  ⚠️ 有 $unpushed 个未推送的提交"
+    else
+        log_info "  ✅ Git推送已同步"
+    fi
+}
+
 # PR状态监控
 review_pr_status() {
     local date="$1"
     local daily_log="$CFG_MEMORY_DIR/$date.md"
     
-    # 获取PR状态
-    local open_prs=$(cd "$CFG_WORKSPACE" && gh pr list --author zhaog100 --state open --json number --jq length 2>/dev/null || echo "0")
-    local merged_prs=$(cd "$CFG_WORKSPACE" && gh pr list --author zhaog100 --state merged --since="$date" --json number --jq length 2>/dev/null || echo "0")
+    # 获取PR状态（带超时控制）
+    log_info "  📊 获取PR状态..."
+    local open_prs
+    local merged_prs
+    
+    open_prs=$(timeout 10 gh pr list --author zhaog100 --state open --json number --jq length 2>/dev/null || echo "0")
+    merged_prs=$(timeout 10 gh pr list --author zhaog100 --state merged --since="$date" --json number --jq length 2>/dev/null || echo "0")
     
     log_info "  📊 Open PRs: $open_prs 个"
     log_info "  ✅ Merged PRs: $merged_prs 个"
