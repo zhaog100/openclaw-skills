@@ -1,11 +1,53 @@
 # Bounty Master List
-**Last Updated:** 2026-05-09 18:06 UTC  
-**New found this scan:** 5  
+**Last Updated:** 2026-05-09 22:02 Asia/Hong_Kong (14:02 UTC)  
+**Scanner:** 小米辣 🌶️ (zhaog100)  
 
-## New Active Bounties
+## Active Bounties (Already Tracked)
 
-- **[$750 LTD]** https://github.com/INDIGOAZUL/la-tanda-web/issues/269 - [BOUNTY] Cosmos Ecosystem Comms Sprint: 4-week content rhythm (750 LTD)
-- **[$750 LTD]** https://github.com/INDIGOAZUL/la-tanda-web/issues/268 - [BOUNTY] Notification Center improvements: grouping + inline actions + history page (750 LTD)
-- **[$250 USD]** https://github.com/Expensify/App/issues/89131 - [$250] Expense - Marked as paid message is shown twice on receipt cropped expense.
-- **[$100 USD]** https://github.com/BitflowFinance/bff-skills/issues/581 - [payout-inquiry] $500 unpaid across Day 13 / Day 14 bonus / Day 21 — 14-16 days unresolved
-- **[$10 USD]** https://github.com/Theioz/mr-bridge-assistant/issues/461 - Billing: Stripe integration + usage metering for paid SaaS
+### USD Denominated ($250 each)
+- **[$250 USD]** https://github.com/Expensify/App/issues/75982 - Wallet - No warning when transferring same balance multiple times
+- **[$250 USD]** https://github.com/Expensify/App/issues/89131 - Marked as paid message shown twice on receipt cropped expense
+- **[$250 USD]** https://github.com/Expensify/App/issues/89056 - Paid offline report appears on "Ready to pay" tab after going online
+
+### USD Denominated (Other)
+- **[$100 USD]** https://github.com/BitflowFinance/bff-skills/issues/581 - [payout-inquiry] $500 unpaid, 14-16 days unresolved
+- **[$10 USD]** https://github.com/Theioz/mr-bridge-assistant/issues/461 - Billing: Stripe integration + usage metering
+
+### Token Denominated (LTD)
+- **[$750 LTD]** https://github.com/INDIGOAZUL/la-tanda-web/issues/269 - [BOUNTY] Cosmos Ecosystem Comms Sprint
+- **[$750 LTD]** https://github.com/INDIGOAZUL/la-tanda-web/issues/268 - [BOUNTY] Notification Center improvements
+
+## Duplicate Entries From Known-Issues (still valid, already claimed)
+- https://github.com/runveil-io/core/issues/26
+- https://github.com/runveil-io/core/issues/25
+- https://github.com/runveil-io/core/issues/24
+- https://github.com/runveil-io/core/issues/23
+- https://github.com/runveil-io/core/issues/22
+- https://github.com/runveil-io/core/issues/10
+- https://github.com/runveil-io/core/issues/8
+- https://github.com/runveil-io/core/issues/7
+- https://github.com/runveil-io/core/issues/4
+- https://github.com/runveil-io/core/issues/3
+- https://github.com/tenstorrent/tt-metal/issues/41030
+- https://github.com/tenstorrent/tt-metal/issues/41029
+- https://github.com/tenstorrent/tt-metal/issues/41028
+- https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/923
+- https://github.com/prasenjeet-symon/shipli-ai/issues/4
+- https://github.com/prasenjeet-symon/shipli-ai/issues/3
+- https://github.com/prasenjeet-symon/shipli-ai/issues/2
+- https://github.com/prasenjeet-symon/shipli-ai/issues/1
+- https://github.com/Conxian/conxius-platform/issues/210
+- https://github.com/Conxian/conxius-platform/issues/206
+- https://github.com/Conxian/conxius-platform/issues/139
+- https://github.com/Conxian/conxius-platform/issues/111
+- https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/918
+- https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/915
+
+## Rejected/Filtered (amount < $10 or no amount specified)
+- watney-ai/open-source-bounties#1: €2.00 (below threshold)
+- mrveiss/AutoBot-AI#6934: no amount specified
+- langchain-ai/langchain#36952: malicious prompt injection (not real bounty)
+- Various "Bug Bounty" placeholder issues: no amounts
+
+---
+*Generated automatically. Only local update.*
