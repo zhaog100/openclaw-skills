@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 石油黄金数据获取模块
-优先使用 akshare 获取国内期货数据，yfinance 作为海外备用数据源
+支持 akshare（国内期货）和 yfinance（国际行情）自动切换
+
+优先级策略：自动检测可用数据源，谁先返回有效数据谁先用
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-Author: 小米粒 (Xiaomili) - AI Agent
+Author: 思捷娅科技 (SJYKJ)/zhaog100
 """
-
 import argparse
 import json
 import os
