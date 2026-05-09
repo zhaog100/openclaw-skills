@@ -503,7 +503,7 @@ def get_data_source_manager() -> DataSourceManager:
 
 
 # ==================== 品种定义 =====
-# 优先使用国际品种（yfinance），国内品种（akshare）作为辅助
+# 自动检测可用数据源，国际品种和国内品种自动切换
 INSTRUMENTS = {
     # 国际品种（主力，美元计价）
     "黄金期货": {"symbol": "GC=F", "type": "期货", "exchange": "COMEX", "currency": "USD", "source": "yfinance"},
@@ -525,7 +525,7 @@ def batch_download(symbols: List[str], period: str = "3mo", interval: str = "1d"
     # 获取数据源管理器
     manager = get_data_source_manager()
     
-    # 优先使用yfinance批量下载
+    # 自动选择可用数据源批量下载
     for attempt in range(max_retries):
         try:
             print(f"[批量下载] 第{attempt+1}次尝试下载 {len(symbols)} 个品种...")
@@ -571,7 +571,7 @@ def batch_download(symbols: List[str], period: str = "3mo", interval: str = "1d"
     
     result_dfs = {}
     for sym in symbols:
-        # 优先使用yfinance
+        # 自动选择可用数据源
         data = safe_yfinance_request(sym, max_retries=2, min_interval=1.0, max_interval=2.0)
         
         if data is not None and len(data) >= 20:
@@ -579,7 +579,7 @@ def batch_download(symbols: List[str], period: str = "3mo", interval: str = "1d"
         else:
             # 尝试其他数据源
             manager = get_data_source_manager()
-            data = manager.get_data(sym, priority="akshare", period=period)
+            data = manager.get_data(sym, period=period)  # 自动选择可用源
             if data is not None:
                 result_dfs[sym] = data
     
