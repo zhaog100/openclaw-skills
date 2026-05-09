@@ -1,8 +1,17 @@
 {
   "lastChecks": {
-    "bounty-pr-monitor": 1778213201,
-    "heartbeat": 1778278187,
-    "memory-review": 1778278187,
-    "system-status": 1778278187
+    "system": "2026-04-29T18:03:00+08:00",
+    "github": "2026-04-29T18:03:00+08:00",
+    "pr_status": "2026-04-29T18:03:00+08:00",
+    "bounty_scan": "2026-04-29T16:00:00+08:00"
+  },
+  "systemHealth": {
+    "status": "good",
+    "load": "normal",
+    "gateway": "active"
+  },
+  "github": {
+    "auth": "✅ ok",
+    "user": "zhaog100"
   }
 }

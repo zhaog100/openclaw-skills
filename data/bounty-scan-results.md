@@ -103,3 +103,31 @@ Only partial results captured. Full scan requires ~5 min cooldown.
 - Rate limit hit at: ~100 results mark
 - Qualifying bounties found: 10
 - Actionable (with confirmed ≥$10): 1 (SolFoundry #859 @ 800K FNDRY)
+
+---
+
+## Scan Attempt: 2026-05-09 08:07 UTC
+**Identity:** 小米辣 🌶️ (zhaog100)
+**Status:** ❌ FAILED — No network connectivity to GitHub API
+
+### Failure Details
+- `gh auth status`: ✓ Authenticated as zhaog100
+- GitHub API: TLS handshake timeout (api.github.com unreachable)
+- Local network: No outbound HTTP/HTTPS (curl to google.com also failed, code 28)
+- Cause: Outbound network restriction on this host/node
+
+### Keywords Scanned This Attempt
+0 (all failed due to network)
+
+### Cached Results (from last successful scan 2026-05-08)
+No new bounties identified. Last known unclaimed high-value:
+- SolFoundry/solfoundry#859 — 800K FNDRY (~≥$10)
+- SolFoundry/solfoundry#848 — T2 (unverified amount)
+- SolFoundry/solfoundry#842 — T2 (unverified amount)
+
+### Known Issues Still Active
+All items from `bounty-known-issues.txt` remain as-is (no new dedup additions).
+
+### Next Action
+- Retry scan when network is available
+- Alternatively use a different network path/proxy if available

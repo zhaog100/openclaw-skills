@@ -1,149 +1,4587 @@
-# Bounty PR Tracker - zhaog100
-
-**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-09 11:04 Asia/Hong_Kong (2026-05-09 03:04 UTC)**
-
----
-
-## PR 总览
-
-| 状态 | 数量 |
-|------|------|
-| **OPEN** | ~300 |
-| **MERGED** | ~15 |
-| **CLOSED** | ~200+ |
-
----
-
-## 重要 Open PR（含 Bounty）
-
-| # | Repo | Title | Bounty | Currency | Updated | Status | Notes |
-|---|------|-------|--------|----------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承；3条CodeRabbit Critical评论待修复(operatorFeePercent throw、NPE、wait timeout) |
-| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-05-09 | pending_review | ⚠️ API不可达，状态继承；等审核15天 |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承；CodeRabbit早期评论已处理完；alceops本地delta可用（build失败） |
-| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
-| 85 | ubiquity-os/plugins-wishlist | feat: command-plan Plugin | $600 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 66 | ubiquity-os/plugin-template | feat: Reusable Knip and Jest Workflows | $1200 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
-| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
-| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
-| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests | $75 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
-| 1030 | ubiquity/ubiquity-dollar | fix: storage layout check | $300 | USDT | 2026-05-09 | review_required | ⚠️ API不可达，状态继承 |
-| 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp | N/A | N/A | 2026-05-09 | pending_cla | ⚠️ API不可达，状态继承；需签CLA |
-| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack | $70 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute | N/A | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-09 | review_required | ⚠️ API不可达，状态继承；安全PR |
-| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-09 | pending_review | ⚠️ API不可达，状态继承；等BCOS标签；无maintainer review |
-| 19 | Chevalier32/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 5 | 0xbrainkid/agentfolio-mcp-server | agentfolio_beacon_lookup | N/A | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 508 | claude-builders-bounty/claude-builders-bounty | n8n + Claude Weekly Dev Summary | $200 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 506 | claude-builders-bounty/claude-builders-bounty | Claude Code PR Review Agent | $150 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 507 | claude-builders-bounty/claude-builders-bounty | Pre-tool-use Hook | $75 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 505 | claude-builders-bounty/claude-builders-bounty | CLAUDE.md for Next.js + SQLite | $75 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-| 504 | claude-builders-bounty/claude-builders-bounty | Structured CHANGELOG Generator | $50 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
-
----
-
-## 其他 Open PR（无 Bounty）
-
-| # | Repo | Title | Updated |
-|---|------|-------|---------|
-| 108 | Space-Nebula/stellar-nebula-nomad | feat: Add automated bug bounty payout engine | 2026-04-26 |
-| 9 | ubiquity/arbitrage-bot | feat: Arbitrage Bot - Issue #3 ($600) | 2026-04-22 |
-| 50 | bitaps-com/jsbtc | security: Fix invalid threshold input validation (#48) | 2026-04-15 |
-| 31 | ubiquity-os/.github | feat: Sprint Management Dashboard - Bounty #14 | 2026-04-15 |
-| 84 | ubiquity-os/plugins-wishlist | feat: Deadlines Incentive Plugin - Bounty #66 | 2026-04-15 |
-| 4-1 | zhaog100/rustchain-bounties | VSCode/Telegram/RTC Reward Action | 2026-04-15 |
-| 53 | ubiquity-os/ubiquity-os-plugin-installer | feat: Premade Plugin Configs | 2026-04-14 |
-| 510-513 | ubiquity-os-marketplace/text-conversation-rewards | 多个功能PR | 2026-04-09-12 |
-| 169-170 | ubiquity-os-marketplace/daemon-pricing | 多个功能PR | 2026-04-09 |
-| 994-986 | SolFoundry/solfoundry | 多个功能PR | 2026-04-08-09 |
-| 42-38 | Jennycruzy/sovereign-genesis | 多个功能PR | 2026-04-09 |
-| 395-387 | midnightntwrk/contributor-hub | [Tutorial] 系列教程 | 2026-04-22 |
-| 13 | fengking-li/group-buying-data-monitor | 团购+外卖监测 | 2026-04-09 |
-| 18 | thesysdev/openui-creator-program | Written Content: Three Articles ($150-300) | 2026-04-09 |
-
----
-
-## 已 Merged PR（待认领 Bounty）
-
-| # | Repo | Title | Bounty | Currency | Notes |
-|---|------|-------|--------|----------|-------|
-| 2207 | Scottcjn/Rustchain | [Security Audit #2867] Mining Reward Type Confusion | 25 RTC | RTC | ✅ claim已关闭 |
-| 2165 | Scottcjn/Rustchain | [UTXO-BUG] Critical Security Vulnerabilities | 50-75 RTC | RTC | ✅ claim已关闭 |
-| 2183 | Scottcjn/Rustchain | docs: fix inconsistent link formatting | N/A | - | |
-| 179 | Scottcjn/beacon-skill | Docs: Add zhaog100 to contributors | N/A | - | |
-| 58 | Scottcjn/contributors | Register zhaog100 (小米粒) as contributor | N/A | - | |
-
----
-
-## 已关闭项目（无付款）
-
-| # | Repo | 状态 | 备注 |
-|---|------|------|-------|
-| #6931 | RustChain | closed | 25 RTC claim已关闭（Scottcjn说已打） |
-| #7234 | RustChain | closed | 50-75 RTC claim已关闭 |
-| #7235 | RustChain | closed | PR未合并 |
-| #282-285 | la-tanda-web | closed | 不接受外部贡献，6个PR全关 |
-| 295-277 | INDIGOAZUL/la-tanda-web | closed | 全部关闭 |
-| 13097 | Comfy-Org/ComfyUI | closed | |
-| 2444 | rust-unofficial/awesome-rust | closed | |
-| 4471 | punkpeye/awesome-mcp-servers | closed | |
-
----
-
-## 待处理事项
-
-| # | 优先级 | 操作 |
-|---|--------|------|
-| 125 | 🔴 | 修复3条新CodeRabbit评论: operatorFeePercent throw→failed-results、NPE(permit.amount?.toString)、wait() timeout |
-| 87 | 🟡 | alceops提供本地delta修复build；CodeRabbit已处理完所有评论 |
-| 396 | 🔵 | 签CLA |
-| 714 | 🔵 | 等审核反馈 |
-
----
-
-## Notes
-
-- **2026-05-09 11:04 UTC**: ⚠️ GitHub API 持续网络不通（DNS 198.18.0.70，连接超时），所有状态继承自上次快照
-- **2026-05-09 02:06 UTC**: ⚠️ GitHub API 网络不通（DNS 解析到 198.18.0.70 测试地址，连接超时），无法获取实时数据
-- **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为`RTC2f0e423e...`
-- **PR #125**: 3条CodeRabbit新评论(2026-05-08) - Critical问题需修复（throwing vs failed-results、NPE、wait timeout）
-- **Open PRs**: 约300个（含大量无bounty的公关/教程PR）
-- **扫描时间**: 2026-05-09 02:06 UTC（⚠️ API不可达 - 网络问题）
-
----
-
-## Review 监控 (2026-05-09 02:06 UTC)
-
-### ⚠️ API 不可用
-- GitHub API 网络不通（DNS 198.18.0.70，连接超时）
-- 基于上次数据 (2026-05-09 01:04 UTC) 提供状态参考
-
-### PR #125 (ubiquity-os/permit-generation - Automatic Transfer) [上次状态]
-- ⚠️ **3条新CodeRabbit评论 (2026-05-08 12:57 UTC)**:
-  1. 🔴 Critical: `operatorFeePercent` validation仍throw而非返回failed-results
-  2. 🔴 Critical: Setup失败路径对ERC721 permit可能NPE - `permit.amount.toString()`需可选链
-  3. 🟠 Major: `wait()`无timeout - 交易卡住会阻塞整个batch
-- 状态: CHANGES_REQUESTED, MERGEABLE
-- 双付fix在fork: mesiyoq965-sudo/permit-generation:fix/pr125-final
-
-### PR #87 (ubiquity-os/plugins-wishlist - Auto Time Label Estimator) [上次状态]
-- CodeRabbit早期评论已全部处理
-- 状态: CHANGES_REQUESTED, mergeable: true
-- alceops 本地delta可用（需修复build问题）
-
-### PR #714 (claude-builders-bounty - n8n weekly GitHub summary) [上次状态]
-- 状态: pending_review，14天无维护者反馈
-
-### PR #4101 (Scottcjn/Rustchain) [上次状态]
-- 状态: pending_review，等BCOS标签；无maintainer review
-
-### PR #396 (midnightntwrk/contributor-hub) [上次状态]
-- CLA assistant 评论: 需签CLA
-- 状态: pending_cla
-
-### 需回复评论: 无新数据
-- API不可达，无法获取最新评论
-- 上次记录：所有评论均来自CodeRabbit bot（非maintainer）
+{
+  "lastUpdated": "2026-04-28T19:20:53",
+  "totalPRs": 450,
+  "summary": {
+    "open": 155,
+    "closed": 295
+  },
+  "prs": [
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 489,
+      "title": "[BOUNTY 70] Productivity Stack — Gitea + Vaultwarden",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/489",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 488,
+      "title": "[BOUNTY 30] Home Automation — Home Assistant + Node-RED",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/488",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 487,
+      "title": "[BOUNTY 0] Notifications — Gotify + Apprise",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/487",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 486,
+      "title": "[BOUNTY 50] Backup & DR — Auto Backup + Disaster Recovery",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/486",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 485,
+      "title": "[BOUNTY 30] Database Layer — PostgreSQL + Redis + MariaDB",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/485",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 484,
+      "title": "[BOUNTY 50] Robustness — Domestic Mirrors + Error Handling",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/484",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 483,
+      "title": "[BOUNTY 80] Observability — Prometheus + Grafana + Loki",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/483",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 482,
+      "title": "[BOUNTY 00] SSO — Authentik Unified Identity",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/482",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 481,
+      "title": "[BOUNTY 20] AI Stack — Ollama + Open WebUI + Stable Diffusion",
+      "status": "open",
+      "url": "https://github.com/illbnm/homelab-stack/pull/481",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 480,
+      "title": "[BOUNTY 00] Testing — Automated Test Suite",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/480",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 396,
+      "title": "[Tutorial] Building an Unshielded Token dApp with UI",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/396",
+      "created": "2026-04-22",
+      "updated": "2026-04-25",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 395,
+      "title": "[Tutorial] Security Checklist for Midnight dApps",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/395",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 394,
+      "title": "[Tutorial] Decoding Error 1010: Invalid Transaction",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/394",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 393,
+      "title": "[Tutorial] When Proofs Fail: Debugging Proof Server Errors",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/393",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 392,
+      "title": "[Tutorial] Handling Midnight SDK Breaking Changes",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/392",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 391,
+      "title": "[Tutorial] Getting NIGHT Tokens: Exchanges, Bridging & Wallet Funding",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/391",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 390,
+      "title": "[Tutorial] Running a Midnight Node: Setup, Sync & Monitoring",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/390",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 389,
+      "title": "[Tutorial] Midnight vs Other Privacy Chains: Architecture Comparison",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/389",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 388,
+      "title": "[Tutorial] Building a Shielded Token dApp with UI",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/388",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 387,
+      "title": "[Tutorial] Shielded Token Operations: Mint, Transfer & Burn with Test Suite",
+      "status": "open",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/387",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 386,
+      "title": "[Tutorial] Security Checklist for Midnight dApps Before Deployment",
+      "status": "closed",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/386",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "midnightntwrk/contributor-hub",
+      "pr": 385,
+      "title": "[Tutorial] Building an Unshielded Token dApp with UI",
+      "status": "closed",
+      "url": "https://github.com/midnightntwrk/contributor-hub/pull/385",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/supabase-payments-audit",
+      "pr": 7,
+      "title": "feat: Historical Permit Backfill & Validation - Issue #4",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/supabase-payments-audit/pull/7",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/supabase-payments-audit",
+      "pr": 6,
+      "title": "feat: Historical Permit Backfill & Validation - Issue #4",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/supabase-payments-audit/pull/6",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1033,
+      "title": "feat: Formal Verification for LibUbiquityPool - Bounty #926",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1033",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/supabase-payments-audit",
+      "pr": 5,
+      "title": "feat: Historical Permit Backfill - Issue #4",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/supabase-payments-audit/pull/5",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/arbitrage-bot",
+      "pr": 11,
+      "title": "feat: Multi-Chain Curve Arbitrage - Bounty #7",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/arbitrage-bot/pull/11",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/pay.ubq.fi",
+      "pr": 461,
+      "title": "feat: Database Type Safety - Phase 3 - Bounty #433",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/pay.ubq.fi/pull/461",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/business-development",
+      "pr": 207,
+      "title": "feat: Opire Partnership Analysis - Bounty #89",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/business-development/pull/207",
+      "created": "2026-04-22",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 3097,
+      "title": "Add RustChain Sea Shanty Submission (xiaomili)",
+      "status": "open",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/3097",
+      "created": "2026-04-20",
+      "updated": "2026-04-26",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/contributors",
+      "pr": 58,
+      "title": "Register zhaog100 (小米粒) as contributor",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/contributors/pull/58",
+      "created": "2026-04-20",
+      "updated": "2026-04-24",
+      "merged_at": "2026-04-24"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 3080,
+      "title": "🔒 Security Audit #2867: 8 Findings (1 Critical, 2 High) — Verified Against Live Node",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/3080",
+      "created": "2026-04-17",
+      "updated": "2026-04-18",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/beacon-skill",
+      "pr": 186,
+      "title": "feat: Moltbook Migration Tool (Bounty #2890, 200 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/beacon-skill/pull/186",
+      "created": "2026-04-17",
+      "updated": "2026-04-18",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2281,
+      "title": "Autonomous Bounty Hunter Agent - #2861 (50 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2281",
+      "created": "2026-04-17",
+      "updated": "2026-04-18",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2280,
+      "title": "Security Audit Findings - Critical Vulnerabilities #2867",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2280",
+      "created": "2026-04-17",
+      "updated": "2026-04-27",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/rustchain-bounties",
+      "pr": 4,
+      "title": "feat: VS Code Extension - RustChain Dashboard v1.0 (#2868)",
+      "status": "open",
+      "url": "https://github.com/zhaog100/rustchain-bounties/pull/4",
+      "created": "2026-04-15",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/rustchain-bounties",
+      "pr": 3,
+      "title": "feat: Add Upstream Contributions Showcase for elyanlabs.ai (#2958)",
+      "status": "open",
+      "url": "https://github.com/zhaog100/rustchain-bounties/pull/3",
+      "created": "2026-04-15",
+      "updated": "2026-04-15",
+      "merged_at": null,
+      "bounty": "15 RTC",
+      "payment_info": "wallet, reward"
+    },
+    {
+      "repo": "zhaog100/rustchain-bounties",
+      "pr": 2,
+      "title": "feat: Add RustChain Telegram Bot v1.0 - Wallet and miner status checker (#2869)",
+      "status": "open",
+      "url": "https://github.com/zhaog100/rustchain-bounties/pull/2",
+      "created": "2026-04-15",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/rustchain-bounties",
+      "pr": 1,
+      "title": "feat: Add RTC Reward Action v1.0 - GitHub Action for automatic token rewards (#2864)",
+      "status": "open",
+      "url": "https://github.com/zhaog100/rustchain-bounties/pull/1",
+      "created": "2026-04-15",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2254,
+      "title": "🔒 Security Audit #2867: 5 Vulnerabilities (3 HIGH + 2 MEDIUM)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2254",
+      "created": "2026-04-14",
+      "updated": "2026-04-27",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 464,
+      "title": "[BOUNTY #14] Integration Testing Suite - 14 Assertions + CI Workflow ($280)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/464",
+      "created": "2026-04-13",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 463,
+      "title": "[BOUNTY #12] Backup & DR - 3-2-1 Strategy with Duplicati + Restic ($150)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/463",
+      "created": "2026-04-13",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 462,
+      "title": "[BOUNTY #1] Base Infrastructure - Traefik + Portainer + Watchtower + Socket Proxy ($150)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/462",
+      "created": "2026-04-13",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1030,
+      "title": "fix: Skip storage layout check for newly added contracts - Bounty #972 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1030",
+      "created": "2026-04-13",
+      "updated": "2026-04-13",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2242,
+      "title": "RIP-309 Phase 1: Fingerprint Check Rotation (4-of-6 per epoch)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2242",
+      "created": "2026-04-12",
+      "updated": "2026-04-27",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 92,
+      "title": "test: Comprehensive Unit Tests for Contributor Role Rewards - Bounty #49 ($75)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/92",
+      "created": "2026-04-12",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 513,
+      "title": "feat: Structured Outputs for LLM responses",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/513",
+      "created": "2026-04-12",
+      "updated": "2026-04-12",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 512,
+      "title": "fix: Validate reward generation requires multi-role participation - Bounty #455 ($150)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/512",
+      "created": "2026-04-12",
+      "updated": "2026-04-12",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/ubiquity-os-plugin-installer",
+      "pr": 53,
+      "title": "feat: Premade Plugin Configs for Partners",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/53",
+      "created": "2026-04-12",
+      "updated": "2026-04-14",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 91,
+      "title": "feat: Config Protection Plugin - Bounty #30 ($75)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/91",
+      "created": "2026-04-12",
+      "updated": "2026-04-14",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 90,
+      "title": "feat: Contributor Rewards Config v3 - Bounty #47 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/90",
+      "created": "2026-04-12",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 89,
+      "title": "feat: Old Proposal Handler - Bounty #70 ($75)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/89",
+      "created": "2026-04-12",
+      "updated": "2026-04-14",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/command-demo",
+      "pr": 29,
+      "title": "feat: nudge to claim demo currency",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/command-demo/pull/29",
+      "created": "2026-04-12",
+      "updated": "2026-04-12",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 88,
+      "title": "feat: Contributor Class Plugin - Bounty #48 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/88",
+      "created": "2026-04-12",
+      "updated": "2026-04-13",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 87,
+      "title": "feat: Auto Time Label Estimator - Bounty #76 ($450)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/87",
+      "created": "2026-04-12",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2984,
+      "title": "docs: SEO Audit + Suggestions for elyanlabs.ai (Bounty #2957, 10 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2984",
+      "created": "2026-04-11",
+      "updated": "2026-04-11",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2983,
+      "title": "feat: sitemap.xml + robots.txt for elyanlabs.ai (Bounty #2959, 5 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2983",
+      "created": "2026-04-11",
+      "updated": "2026-04-11",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2982,
+      "title": "feat: Upstream Contributions Showcase for elyanlabs.ai (Bounty #2958, 15 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2982",
+      "created": "2026-04-11",
+      "updated": "2026-04-11",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2207,
+      "title": "[Security Audit #2867] Real Code PoC — Mining Reward Type Confusion + 5 Findings",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2207",
+      "created": "2026-04-10",
+      "updated": "2026-04-27",
+      "merged_at": "2026-04-12",
+      "payment_note": "已合并，Claim Issue #6931 已创建",
+      "bounty": "160 RTC",
+      "payment_type": "Security Audit"
+    },
+    {
+      "repo": "punkpeye/awesome-mcp-servers",
+      "pr": 4471,
+      "title": "Add RustChain Beacon MCP server",
+      "status": "closed",
+      "url": "https://github.com/punkpeye/awesome-mcp-servers/pull/4471",
+      "created": "2026-04-10",
+      "updated": "2026-04-23",
+      "merged_at": null
+    },
+    {
+      "repo": "iotexproject/awesome-depin",
+      "pr": 33,
+      "title": "Add RustChain to DePIN Compute section",
+      "status": "open",
+      "url": "https://github.com/iotexproject/awesome-depin/pull/33",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2952,
+      "title": "[BOUNTY #2861] Autonomous AI Agent That Claims RustChain Bounties (50 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2952",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2949,
+      "title": "[BOUNTY #2865] Dockerize RustChain Miner — One Command Mining (15 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2949",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2948,
+      "title": "[BOUNTY #2869] Telegram Bot — Wallet Balance & Miner Status (10 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2948",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2200,
+      "title": "[BOUNTY: 100 RTC] Security Audit Test Suite - 5 Critical Tests",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2200",
+      "created": "2026-04-10",
+      "updated": "2026-04-24",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2946,
+      "title": "[BOUNTY CLAIM] VS Code Extension - RustChain Dashboard (#2868)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2946",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/openclaw-skills",
+      "pr": 33,
+      "title": "🚀 v6.1.1: github-bounty-hunter 技能更新 - 双重过滤 + 2026-04-09 实战验证",
+      "status": "merged",
+      "url": "https://github.com/zhaog100/openclaw-skills/pull/33",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": "2026-04-10"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2922,
+      "title": "security: Red Team UTXO Implementation Audit - Bounty #2819 (200 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2922",
+      "created": "2026-04-10",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2908,
+      "title": "🤖 Autonomous Bounty Hunter Agent (50 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2908",
+      "created": "2026-04-09",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "fengking-li/group-buying-data-monitor",
+      "pr": 13,
+      "title": "feat: 团购+外卖实时数据监测系统",
+      "status": "open",
+      "url": "https://github.com/fengking-li/group-buying-data-monitor/pull/13",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/beacon-skill",
+      "pr": 182,
+      "title": "🌉 AgentFolio ↔ Beacon Integration (3/4 deliverables complete)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/beacon-skill/pull/182",
+      "created": "2026-04-09",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2195,
+      "title": "🔒 Security Audit: 5 vulnerabilities found (160 RTC claim)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2195",
+      "created": "2026-04-09",
+      "updated": "2026-04-24",
+      "merged_at": "2026-04-24",
+      "payment_note": "已关闭但未合并，无付款",
+      "bounty": "160 RTC"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2894,
+      "title": "feat: AgentFolio ↔ Beacon Dual-Layer Trust Integration Spec - Bounty #2890 (100 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2894",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2893,
+      "title": "feat: RIP-302 Agent Economy Python SDK - Bounty #2871 (50 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2893",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2892,
+      "title": "security: Red Team UTXO Audit (8 Findings, 2 Critical) - Bounty #2819 (200 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2892",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2889,
+      "title": "feat: Social Media Posts for RustChain - Bounty #2866 (5 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2889",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2888,
+      "title": "feat: Mining Hardware Haiku Collection - Bounty #2844 (5 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2888",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2887,
+      "title": "feat: RustChain Awesome List Submissions - Bounty #2862 (3 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2887",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2886,
+      "title": "docs: Complete RustChain Protocol Documentation - Bounty #2883",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2886",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2885,
+      "title": "feat: Dev.to Article - AI Agent for RustChain Bounties - Bounty #2863 (10 RTC)",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2885",
+      "created": "2026-04-09",
+      "updated": "2026-04-12",
+      "merged_at": "2026-04-12",
+      "bounty": "10 RTC",
+      "payment_type": "Dev.to Article",
+      "payment_note": "已合并，Claim Issue 已创建"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2884,
+      "title": "feat: Claude Code Slash Command - Bounty #2860 (15 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2884",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2882,
+      "title": "feat: Autonomous Bounty Hunter Agent - Bounty #2861 (50 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2882",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2881,
+      "title": "feat: VS Code Miner Dashboard + Bounty Browser - Bounty #2868 (30 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2881",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2880,
+      "title": "feat: Telegram Bot for RustChain - Bounty #2869 (10 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2880",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2879,
+      "title": "feat: RTC Reward GitHub Action - Bounty #2873 (20 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2879",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2878,
+      "title": "security: Red Team Security Audit - 12 Findings - Bounty #2867 (100 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2878",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2877,
+      "title": "feat: Dockerize RustChain Miner - One Command Setup - Bounty #2874 (15 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2877",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2876,
+      "title": "feat: MCP Server for RustChain AI Agent Integration - Bounty #2875 (25 RTC)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2876",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1029,
+      "title": "feat: Formal Verification for LibUbiquityPool - Bounty #926",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1029",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/business-development",
+      "pr": 206,
+      "title": "feat: Opire Collaboration Research - Bounty #89",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/business-development/pull/206",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/business-development",
+      "pr": 205,
+      "title": "feat: Opire Collaboration Research - Bounty #89",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/business-development/pull/205",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1028,
+      "title": "feat: Formal Verification for LibUbiquityPool - Bounty #926",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1028",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/pay.ubq.fi",
+      "pr": 459,
+      "title": "feat: Update Database Types with Helper Types - Bounty #433",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/pay.ubq.fi/pull/459",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/business-development",
+      "pr": 204,
+      "title": "feat: GitHub Based Marketing Prospector - Bounty #90",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/business-development/pull/204",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1027,
+      "title": "fix(ci): skip storage check for newly added contracts and libraries",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1027",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1026,
+      "title": "feat: Liquity V1 Stability Pool Integration - Bounty #997",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1026",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/.github",
+      "pr": 133,
+      "title": "feat: Proposal Router with Auto-Routing - Bounty #123",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/.github/pull/133",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1025,
+      "title": "feat: Final Investor Debt UBQ Distribution - Bounty #937",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1025",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1024,
+      "title": "fix: Storage Layout Check CI Workflow - Bounty #972",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1024",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1023,
+      "title": "feat: Governance Token Emissions to ubq.eth - Bounty #831",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1023",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1022,
+      "title": "feat: Security Monitoring with Auto-Pause - Bounty #927",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1022",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1021,
+      "title": "feat: Liquity V1 Stability Pool Integration - Bounty #997",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1021",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/.github",
+      "pr": 132,
+      "title": "feat: Proposal Router with Auto-Routing - Bounty #123",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/.github/pull/132",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubiquity-dollar",
+      "pr": 1020,
+      "title": "fix: Storage Layout Check CI for New Contracts - Bounty #972",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/ubiquity-dollar/pull/1020",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/.github",
+      "pr": 31,
+      "title": "feat: Sprint Management Dashboard - Bounty #14",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/.github/pull/31",
+      "created": "2026-04-09",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/daemon-pricing",
+      "pr": 170,
+      "title": "fix: README code blocks and dataset count update (CodeRabbit #169)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/170",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Jennycruzy/sovereign-genesis",
+      "pr": 42,
+      "title": "test: SovereignAgent Unit Tests - Bounty #3",
+      "status": "open",
+      "url": "https://github.com/Jennycruzy/sovereign-genesis/pull/42",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Jennycruzy/sovereign-genesis",
+      "pr": 41,
+      "title": "feat: Gas Optimization - Bounty #20",
+      "status": "open",
+      "url": "https://github.com/Jennycruzy/sovereign-genesis/pull/41",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Jennycruzy/sovereign-genesis",
+      "pr": 40,
+      "title": "feat: Mobile Responsive Dashboard - Bounty #16",
+      "status": "open",
+      "url": "https://github.com/Jennycruzy/sovereign-genesis/pull/40",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Jennycruzy/sovereign-genesis",
+      "pr": 39,
+      "title": "feat: Enhanced Error Logging - Bounty #19",
+      "status": "open",
+      "url": "https://github.com/Jennycruzy/sovereign-genesis/pull/39",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Jennycruzy/sovereign-genesis",
+      "pr": 38,
+      "title": "feat: CI Pipeline - Bounty #17",
+      "status": "open",
+      "url": "https://github.com/Jennycruzy/sovereign-genesis/pull/38",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 994,
+      "title": "docs: Getting Started Tutorial - Bounty #830",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/994",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 993,
+      "title": "feat: Loading Skeleton Animations - Bounty #827",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/993",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 992,
+      "title": "feat: Bounty Countdown Timer - Bounty #826",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/992",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "thesysdev/openui-creator-program",
+      "pr": 18,
+      "title": "Written Content: Three Articles ($150-300)",
+      "status": "open",
+      "url": "https://github.com/thesysdev/openui-creator-program/pull/18",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 991,
+      "title": "feat: Search Bar on Bounties Page - Bounty #823",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/991",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "kcolbchain/research",
+      "pr": 7,
+      "title": "Research: MEV on L2 Rollups + Stablecoin Depeg Analysis",
+      "status": "merged",
+      "url": "https://github.com/kcolbchain/research/pull/7",
+      "created": "2026-04-09",
+      "updated": "2026-04-15",
+      "merged_at": "2026-04-15"
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 510,
+      "title": "feat: Differential Reward Distribution - Bounty #301 ($600)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/510",
+      "created": "2026-04-09",
+      "updated": "2026-04-11",
+      "merged_at": null,
+      "bounty": "Unknown",
+      "payment_info": "reward"
+    },
+    {
+      "repo": "devpool-directory/devpool-directory-tasks",
+      "pr": 66,
+      "title": "feat: Matchmaking UI - Issue #63 ($900)",
+      "status": "open",
+      "url": "https://github.com/devpool-directory/devpool-directory-tasks/pull/66",
+      "created": "2026-04-09",
+      "updated": "2026-04-11",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/arbitrage-bot",
+      "pr": 10,
+      "title": "feat: Multi Chain Arbitrage - Issue #7 ($400)",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/arbitrage-bot/pull/10",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/arbitrage-bot",
+      "pr": 9,
+      "title": "feat: Arbitrage Bot - Issue #3 ($600)",
+      "status": "open",
+      "url": "https://github.com/ubiquity/arbitrage-bot/pull/9",
+      "created": "2026-04-09",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/permit-generation",
+      "pr": 125,
+      "title": "feat: Automatic Transfer - Bounty #6 ($600)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/permit-generation/pull/125",
+      "created": "2026-04-09",
+      "updated": "2026-04-28",
+      "merged_at": null,
+      "payment_note": "已修复 CodeRabbit 意见 (2026-04-28)，等待重新审查",
+      "bounty": "$600"
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 509,
+      "title": "fix: Validate reward generation requires human collaborator - Bounty #455 ($150)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/509",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 456,
+      "title": "feat(observability): Complete monitoring stack — Tempo, Uptime Kuma, dashboards, alerts (#10)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/456",
+      "created": "2026-04-09",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 455,
+      "title": "feat: Authentik SSO Stack - Unified Identity Authentication (Bounty #9)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/455",
+      "created": "2026-04-09",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 508,
+      "title": "fix: Implement Differential Reward Distribution for Reopened Issues",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/508",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/daemon-pricing",
+      "pr": 169,
+      "title": "feat: Issue Thread Scraper - Bounty #82 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/169",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/uusd.ubq.fi",
+      "pr": 48,
+      "title": "feat: CoWSwap Improvements - Issue #47",
+      "status": "open",
+      "url": "https://github.com/ubiquity/uusd.ubq.fi/pull/48",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/permit-generation",
+      "pr": 124,
+      "title": "feat: Cloudflare Worker Conversion",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/permit-generation/pull/124",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 86,
+      "title": "feat: Webhook Rewards No Config - Bounty #46 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/86",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 85,
+      "title": "feat: command-plan Plugin - Bounty #78 ($600)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/85",
+      "created": "2026-04-09",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 84,
+      "title": "feat: Deadlines Incentive Plugin - Bounty #66",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/84",
+      "created": "2026-04-09",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/ubiquity-os-kernel",
+      "pr": 340,
+      "title": "feat: Unified Plugin API with Event Handlers - Bounty #261 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/ubiquity-os-kernel/pull/340",
+      "created": "2026-04-09",
+      "updated": "2026-04-09",
+      "merged_at": null,
+      "bounty": "Unknown",
+      "payment_info": "reward"
+    },
+    {
+      "repo": "ubiquity-os/command-demo",
+      "pr": 28,
+      "title": "feat: DEMO Currency Nudge Flow - Bounty #15 ($150)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/command-demo/pull/28",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/ubiquity-os-plugin-installer",
+      "pr": 51,
+      "title": "feat: Premade Configurations for Partners - Bounty #43 ($300)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/51",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugin-template",
+      "pr": 66,
+      "title": "feat: Reusable Knip and Jest Workflows - Bounty #13 ($1200)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugin-template/pull/66",
+      "created": "2026-04-08",
+      "updated": "2026-04-11",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/.github",
+      "pr": 30,
+      "title": "feat: Plugin Health Monitor - Bounty #12 ($450)",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os/.github/pull/30",
+      "created": "2026-04-08",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 83,
+      "title": "feat: Config Protection Proposal - Bounty #30 ($75)",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/83",
+      "created": "2026-04-08",
+      "updated": "2026-04-13",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 508,
+      "title": "[BOUNTY #5] n8n + Claude Weekly Dev Summary Workflow — $200",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/508",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 507,
+      "title": "[BOUNTY #3] Pre-tool-use Hook Blocking Destructive Commands — $100",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/507",
+      "created": "2026-04-08",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 506,
+      "title": "[BOUNTY #4] Claude Code PR Review Agent — $150",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/506",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 505,
+      "title": "[BOUNTY #2] CLAUDE.md for Next.js + SQLite SaaS — $75",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/505",
+      "created": "2026-04-08",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 504,
+      "title": "[BOUNTY #1] Structured CHANGELOG Generator — $50",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/504",
+      "created": "2026-04-08",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 986,
+      "title": "feat(action): GitHub Action for External Repos to Post Bounties - Bounty #855",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/986",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 985,
+      "title": "feat(ai): Multi-LLM Bounty Description Enhancer - Bounty #848",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/985",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 984,
+      "title": "feat(marketplace): GitHub Repo Marketplace - Bounty #857",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/984",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 983,
+      "title": "feat(telegram): Telegram Bot for Bounty Notifications - Bounty #847",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/983",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 982,
+      "title": "feat(vscode): VS Code Extension for Browsing Bounties - Bounty #854",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/982",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2183,
+      "title": "docs: fix inconsistent link formatting in README",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2183",
+      "created": "2026-04-08",
+      "updated": "2026-04-26",
+      "merged_at": "2026-04-09",
+      "bounty": "N/A",
+      "payment_type": "Docs Fix"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 981,
+      "title": "feat(sdk): Comprehensive TypeScript SDK - Bounty #863",
+      "status": "open",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/981",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 454,
+      "title": "[BOUNTY] 6 Stack Implementations - $880 USDT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/454",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 453,
+      "title": "[BOUNTY #14] Testing - Integration Test Suite ($280)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/453",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "langerma/dumpstore",
+      "pr": 68,
+      "title": "feat(auth): migrate password hashing from bcrypt to argon2id",
+      "status": "closed",
+      "url": "https://github.com/langerma/dumpstore/pull/68",
+      "created": "2026-04-08",
+      "updated": "2026-04-13",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 451,
+      "title": "feat: SSO Stack Enhancements - Automated OIDC Setup (#9)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/451",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2856,
+      "title": "feat: RustChain Bounty Solutions - Miner Monitor (#2849) + Multiplier Viz (#2850)",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2856",
+      "created": "2026-04-08",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 450,
+      "title": "[BOUNTY #3] Storage Stack - NFS + Syncthing + MinIO ($150)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/450",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 448,
+      "title": "[BOUNTY #4] Network Stack - AdGuard + Unbound + WireGuard ($140)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/448",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 447,
+      "title": "[BOUNTY #13] Notifications Stack - Ntfy + Gotify + Telegram Bot ($80)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/447",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 449,
+      "title": "[BOUNTY #7] Home Automation Stack - Home Assistant + Zigbee2MQTT + Mosquitto ($130)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/449",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 446,
+      "title": "[BOUNTY #2] Media Stack - Jellyfin + Sonarr + Radarr + qBittorrent + Prowlarr + Jellyseerr ($160 USDT)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/446",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 445,
+      "title": "[BOUNTY #5] Productivity Stack - Gitea + Vaultwarden + Outline + Stirling PDF ($170 USDT)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/445",
+      "created": "2026-04-08",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 443,
+      "title": "[BOUNTY #6] AI Stack - Ollama + Open WebUI + Stable Diffusion + Perplexica ($220 USDT)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/443",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 442,
+      "title": "[BOUNTY #11] Database Layer - PostgreSQL + Redis + MariaDB ($130 USDT)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/442",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 441,
+      "title": "[BOUNTY $250] feat: CN Network Adaptation & Robustness Improvements",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/441",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 440,
+      "title": "[BOUNTY #9] Complete Authentik SSO Integration for All Services",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/440",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 439,
+      "title": "feat: Complete SSO/OIDC Integration (#9) - $300 USDT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/439",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 438,
+      "title": "feat: Comprehensive Robustness and CN Network Adaptation - Bounty #8 ($250)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/438",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 437,
+      "title": "feat(observability): Complete Issue #10 - Observability Stack ($280 USDT)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/437",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 436,
+      "title": "feat: Comprehensive Robustness and CN Network Adaptation - Bounty #8 ($250)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/436",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 2165,
+      "title": "[UTXO-BUG] Critical Security Vulnerabilities - Genesis Race & Integer Overflow",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/2165",
+      "created": "2026-04-07",
+      "updated": "2026-04-24",
+      "merged_at": "2026-04-07",
+      "bounty": "Unknown (需确认)",
+      "payment_type": "Security Bug",
+      "payment_note": "已合并，Claim #7234 已创建"
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 435,
+      "title": "feat: Complete Robustness Bounty Implementation (#8) - 50 USDT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/435",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 434,
+      "title": "feat: Complete SSO Bounty Implementation (#9) - 00 USDT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/434",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 433,
+      "title": "feat: Complete Observability Bounty Implementation (#10) - 80 USDT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/433",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 432,
+      "title": "feat(monitoring): Comprehensive Observability Stack (#10)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/432",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 431,
+      "title": "feat: Complete SSO Bounty Implementation (#9) - 00 USDT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/431",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 430,
+      "title": "feat(robustness): Complete CN network adaptation and environment hardening (#8)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/430",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 429,
+      "title": "fix: Add Socket Proxy for secure Docker socket access",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/429",
+      "created": "2026-04-07",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "FreezingMoon/AncientBeast",
+      "pr": 2977,
+      "title": "feat: Add demo mode system for idle gameplay showcase",
+      "status": "open",
+      "url": "https://github.com/FreezingMoon/AncientBeast/pull/2977",
+      "created": "2026-04-06",
+      "updated": "2026-04-06",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 477,
+      "title": "feat: Add Claude Code PR Review Agent",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/477",
+      "created": "2026-04-06",
+      "updated": "2026-04-06",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 476,
+      "title": "feat: Add pre-tool-use safety hook",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/476",
+      "created": "2026-04-06",
+      "updated": "2026-04-06",
+      "merged_at": null
+    },
+    {
+      "repo": "ANAVHEOBA/PrivacyLayer",
+      "pr": 220,
+      "title": "feat: Add comprehensive fuzzing tests",
+      "status": "open",
+      "url": "https://github.com/ANAVHEOBA/PrivacyLayer/pull/220",
+      "created": "2026-04-06",
+      "updated": "2026-04-06",
+      "merged_at": null
+    },
+    {
+      "repo": "ANAVHEOBA/PrivacyLayer",
+      "pr": 219,
+      "title": "feat: Add comprehensive Security Best Practices Guide",
+      "status": "open",
+      "url": "https://github.com/ANAVHEOBA/PrivacyLayer/pull/219",
+      "created": "2026-04-06",
+      "updated": "2026-04-06",
+      "merged_at": null
+    },
+    {
+      "repo": "Space-Nebula/stellar-nebula-nomad",
+      "pr": 108,
+      "title": "feat: Add automated bug bounty payout engine",
+      "status": "open",
+      "url": "https://github.com/Space-Nebula/stellar-nebula-nomad/pull/108",
+      "created": "2026-04-06",
+      "updated": "2026-04-26",
+      "merged_at": null,
+      "bounty": "Unknown",
+      "payment_info": "paid, reward"
+    },
+    {
+      "repo": "ANAVHEOBA/PrivacyLayer",
+      "pr": 218,
+      "title": "feat: Add comprehensive bug bounty program",
+      "status": "open",
+      "url": "https://github.com/ANAVHEOBA/PrivacyLayer/pull/218",
+      "created": "2026-04-06",
+      "updated": "2026-04-06",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 455,
+      "title": "feat: Add n8n workflow for automated weekly dev summary (Bounty #5)",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/455",
+      "created": "2026-04-04",
+      "updated": "2026-04-04",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 410,
+      "title": "[BOUNTY ] Testing — 自动化测试套件",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/410",
+      "created": "2026-04-02",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 409,
+      "title": "[BOUNTY ] SSO — Authentik 统一身份认证",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/409",
+      "created": "2026-04-02",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "BerriAI/litellm",
+      "pr": 24977,
+      "title": "Security: Fix metrics endpoint authentication & PII exposure (CVSS 7.5)",
+      "status": "open",
+      "url": "https://github.com/BerriAI/litellm/pull/24977",
+      "created": "2026-04-02",
+      "updated": "2026-04-02",
+      "merged_at": null
+    },
+    {
+      "repo": "versila22/hotline-darons",
+      "pr": 4,
+      "title": "feat: Add PDF support to RAG knowledge base",
+      "status": "open",
+      "url": "https://github.com/versila22/hotline-darons/pull/4",
+      "created": "2026-04-02",
+      "updated": "2026-04-02",
+      "merged_at": null
+    },
+    {
+      "repo": "claude-builders-bounty/claude-builders-bounty",
+      "pr": 400,
+      "title": "feat: Add pre-tool-use hook to block destructive commands",
+      "status": "open",
+      "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/400",
+      "created": "2026-04-02",
+      "updated": "2026-04-02",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 406,
+      "title": "feat: Add comprehensive testing framework",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/406",
+      "created": "2026-04-02",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Chevalier12/InkkSlinger",
+      "pr": 19,
+      "title": "feat: Implement InkCanvas and InkPresenter controls",
+      "status": "open",
+      "url": "https://github.com/Chevalier12/InkkSlinger/pull/19",
+      "created": "2026-04-01",
+      "updated": "2026-04-13",
+      "merged_at": null
+    },
+    {
+      "repo": "Chevalier12/InkkSlinger",
+      "pr": 18,
+      "title": "feat: Implement InkCanvas and InkPresenter controls",
+      "status": "closed",
+      "url": "https://github.com/Chevalier12/InkkSlinger/pull/18",
+      "created": "2026-04-01",
+      "updated": "2026-04-01",
+      "merged_at": null
+    },
+    {
+      "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
+      "pr": 72,
+      "title": "feat: Fix PDF report generation",
+      "status": "closed",
+      "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/72",
+      "created": "2026-04-01",
+      "updated": "2026-04-23",
+      "merged_at": null
+    },
+    {
+      "repo": "BerriAI/litellm",
+      "pr": 24895,
+      "title": "🔒 Security: Enable authentication for /metrics endpoint by default",
+      "status": "closed",
+      "url": "https://github.com/BerriAI/litellm/pull/24895",
+      "created": "2026-04-01",
+      "updated": "2026-04-02",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 401,
+      "title": "feat(home-automation): 实现完整的智能家居自动化栈",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/401",
+      "created": "2026-03-31",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 398,
+      "title": "feat(backup): 实现 3-2-1 备份策略和灾难恢复文档",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/398",
+      "created": "2026-03-31",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "pr": 1182,
+      "title": "feat: add on-device persistent memory module",
+      "status": "open",
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3/pull/1182",
+      "created": "2026-03-31",
+      "updated": "2026-03-31",
+      "merged_at": null
+    },
+    {
+      "repo": "devpool-directory/devpool-directory",
+      "pr": 5947,
+      "title": "feat: add Plugin Health Monitor script",
+      "status": "open",
+      "url": "https://github.com/devpool-directory/devpool-directory/pull/5947",
+      "created": "2026-03-31",
+      "updated": "2026-03-31",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/devpool-directory",
+      "pr": 1,
+      "title": "feat: add Plugin Health Monitor script",
+      "status": "open",
+      "url": "https://github.com/zhaog100/devpool-directory/pull/1",
+      "created": "2026-03-31",
+      "updated": "2026-03-31",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/beacon-skill",
+      "pr": 179,
+      "title": "Docs: Add zhaog100 to contributors",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/beacon-skill/pull/179",
+      "created": "2026-03-30",
+      "updated": "2026-04-25",
+      "merged_at": "2026-03-30"
+    },
+    {
+      "repo": "Conxian/conxius-platform",
+      "pr": 306,
+      "title": "feat(ops): Add bounty payout enablement runbook",
+      "status": "closed",
+      "url": "https://github.com/Conxian/conxius-platform/pull/306",
+      "created": "2026-03-30",
+      "updated": "2026-04-16",
+      "merged_at": null
+    },
+    {
+      "repo": "Stellar-Trust-Escrow/stellar-trust-escrow",
+      "pr": 534,
+      "title": "docs: Security model, privacy, and bug bounty documentation",
+      "status": "merged",
+      "url": "https://github.com/Stellar-Trust-Escrow/stellar-trust-escrow/pull/534",
+      "created": "2026-03-28",
+      "updated": "2026-03-28",
+      "merged_at": "2026-03-28"
+    },
+    {
+      "repo": "rsoreq/AutoPrompt",
+      "pr": 80,
+      "title": "[SECURITY] Upgrade nltk to 3.9.4 to fix 7 vulnerabilities",
+      "status": "open",
+      "url": "https://github.com/rsoreq/AutoPrompt/pull/80",
+      "created": "2026-03-28",
+      "updated": "2026-03-28",
+      "merged_at": null
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "pr": 6094,
+      "title": "[BOUNTY #2825] feat: Button customization settings",
+      "status": "closed",
+      "url": "https://github.com/BasedHardware/omi/pull/6094",
+      "created": "2026-03-28",
+      "updated": "2026-03-30",
+      "merged_at": null
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "pr": 6093,
+      "title": "[BOUNTY #3919] feat: One-click deployment for omi system",
+      "status": "closed",
+      "url": "https://github.com/BasedHardware/omi/pull/6093",
+      "created": "2026-03-28",
+      "updated": "2026-03-30",
+      "merged_at": null
+    },
+    {
+      "repo": "Nobayprotocol/Nobay-Protocol",
+      "pr": 7,
+      "title": "feat: Build Listing Discovery Engine (PWA/React UI)",
+      "status": "open",
+      "url": "https://github.com/Nobayprotocol/Nobay-Protocol/pull/7",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "FreezingMoon/AncientBeast",
+      "pr": 2933,
+      "title": "fix: location confirmation slide issue",
+      "status": "closed",
+      "url": "https://github.com/FreezingMoon/AncientBeast/pull/2933",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "Galxe/galxe-contracts",
+      "pr": 19,
+      "title": "feat: add gas-optimized versions of SpaceStationV2 and StarNFTV3",
+      "status": "open",
+      "url": "https://github.com/Galxe/galxe-contracts/pull/19",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "jose-compu/curated-erc",
+      "pr": 36,
+      "title": "feat(utils): implement ERC-4361 SIWE Solidity verifier",
+      "status": "open",
+      "url": "https://github.com/jose-compu/curated-erc/pull/36",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "gbabaisaac/mergefund-hackathon-kit",
+      "pr": 70,
+      "title": "feat: implement Habit Tracker app",
+      "status": "open",
+      "url": "https://github.com/gbabaisaac/mergefund-hackathon-kit/pull/70",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "gbabaisaac/mergefund-hackathon-kit",
+      "pr": 69,
+      "title": "feat: implement multi-factor bounty discovery algorithm",
+      "status": "open",
+      "url": "https://github.com/gbabaisaac/mergefund-hackathon-kit/pull/69",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "gbabaisaac/mergefund-hackathon-kit",
+      "pr": 68,
+      "title": "feat: Implement Advanced Bounty Discovery Algorithm",
+      "status": "open",
+      "url": "https://github.com/gbabaisaac/mergefund-hackathon-kit/pull/68",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 237,
+      "title": "[Bounty #185] Referral Code Generation API",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/237",
+      "created": "2026-03-27",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 364,
+      "title": "[BOUNTY #10] Observability Stack - Complete implementation",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/364",
+      "created": "2026-03-27",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Uniswap/v4-core",
+      "pr": 1032,
+      "title": "security: Add zero address validation in ERC6909 transfers (#1028)",
+      "status": "open",
+      "url": "https://github.com/Uniswap/v4-core/pull/1032",
+      "created": "2026-03-26",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "BerriAI/litellm",
+      "pr": 24600,
+      "title": "security: Make /metrics endpoint authentication required by default (#24530)",
+      "status": "open",
+      "url": "https://github.com/BerriAI/litellm/pull/24600",
+      "created": "2026-03-26",
+      "updated": "2026-04-01",
+      "merged_at": null
+    },
+    {
+      "repo": "cashubtc/nutshell",
+      "pr": 946,
+      "title": "security: Fix unsafe JSON deserialization in core base (#927)",
+      "status": "closed",
+      "url": "https://github.com/cashubtc/nutshell/pull/946",
+      "created": "2026-03-26",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "bitaps-com/jsbtc",
+      "pr": 50,
+      "title": "security: Fix invalid threshold input validation (#48)",
+      "status": "open",
+      "url": "https://github.com/bitaps-com/jsbtc/pull/50",
+      "created": "2026-03-26",
+      "updated": "2026-04-15",
+      "merged_at": null
+    },
+    {
+      "repo": "yosemite01/stellar-creator-portfolio",
+      "pr": 133,
+      "title": "feat: Implement blockchain indexer service for real-time events (#94)",
+      "status": "merged",
+      "url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/133",
+      "created": "2026-03-26",
+      "updated": "2026-03-26",
+      "merged_at": "2026-03-26"
+    },
+    {
+      "repo": "cashubtc/nutshell",
+      "pr": 945,
+      "title": "security: Fix unsafe deserialization in mint cache (#926)",
+      "status": "closed",
+      "url": "https://github.com/cashubtc/nutshell/pull/945",
+      "created": "2026-03-26",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "MindFlowInteractive/quest-contract",
+      "pr": 136,
+      "title": "feat: Add puzzle crowdfund contract for community bounties (#130)",
+      "status": "merged",
+      "url": "https://github.com/MindFlowInteractive/quest-contract/pull/136",
+      "created": "2026-03-25",
+      "updated": "2026-03-26",
+      "merged_at": "2026-03-26"
+    },
+    {
+      "repo": "yosemite01/stellar-creator-portfolio",
+      "pr": 132,
+      "title": "fix: Add freelancer work submission workflow (#100)",
+      "status": "merged",
+      "url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/132",
+      "created": "2026-03-25",
+      "updated": "2026-03-26",
+      "merged_at": "2026-03-26"
+    },
+    {
+      "repo": "ritik4ever/stellar-bounty-board",
+      "pr": 44,
+      "title": "feat: Add notification service hooks for bounty lifecycle (#33)",
+      "status": "merged",
+      "url": "https://github.com/ritik4ever/stellar-bounty-board/pull/44",
+      "created": "2026-03-25",
+      "updated": "2026-03-26",
+      "merged_at": "2026-03-26"
+    },
+    {
+      "repo": "Jagadeeshftw/grainlify",
+      "pr": 864,
+      "title": "[BOUNTY #768] Comprehensive blacklist/whitelist tests (25+ tests, 95%+ coverage)",
+      "status": "closed",
+      "url": "https://github.com/Jagadeeshftw/grainlify/pull/864",
+      "created": "2026-03-25",
+      "updated": "2026-04-20",
+      "merged_at": null
+    },
+    {
+      "repo": "rubrical-works/gh-pmu",
+      "pr": 790,
+      "title": "[BOUNTY #788] Add SECURITY.md security policy",
+      "status": "closed",
+      "url": "https://github.com/rubrical-works/gh-pmu/pull/790",
+      "created": "2026-03-25",
+      "updated": "2026-03-25",
+      "merged_at": null
+    },
+    {
+      "repo": "Jagadeeshftw/grainlify",
+      "pr": 862,
+      "title": "[BOUNTY #795] Invariant catalog documentation",
+      "status": "merged",
+      "url": "https://github.com/Jagadeeshftw/grainlify/pull/862",
+      "created": "2026-03-25",
+      "updated": "2026-03-26",
+      "merged_at": "2026-03-26"
+    },
+    {
+      "repo": "Jagadeeshftw/grainlify",
+      "pr": 854,
+      "title": "[BOUNTY #800] View facade register/deregister with events and stability tests",
+      "status": "closed",
+      "url": "https://github.com/Jagadeeshftw/grainlify/pull/854",
+      "created": "2026-03-25",
+      "updated": "2026-04-20",
+      "merged_at": null
+    },
+    {
+      "repo": "Jagadeeshftw/grainlify",
+      "pr": 852,
+      "title": "[BOUNTY #803] Soroban escrow: identity module — address binding rules",
+      "status": "closed",
+      "url": "https://github.com/Jagadeeshftw/grainlify/pull/852",
+      "created": "2026-03-25",
+      "updated": "2026-04-20",
+      "merged_at": null
+    },
+    {
+      "repo": "tscircuit/matchpack",
+      "pr": 49,
+      "title": "[BOUNTY #15] Specialized Layout for Decoupling Capacitors",
+      "status": "open",
+      "url": "https://github.com/tscircuit/matchpack/pull/49",
+      "created": "2026-03-25",
+      "updated": "2026-03-25",
+      "merged_at": null
+    },
+    {
+      "repo": "tscircuit/core",
+      "pr": 2074,
+      "title": "[BOUNTY #86] Fix same-net traces not visually merged in schematic",
+      "status": "closed",
+      "url": "https://github.com/tscircuit/core/pull/2074",
+      "created": "2026-03-25",
+      "updated": "2026-03-29",
+      "merged_at": null
+    },
+    {
+      "repo": "GalactiGuild/Stellar-Guilds",
+      "pr": 143,
+      "title": "[CONTRACT] Implement Contract Integration Layer",
+      "status": "closed",
+      "url": "https://github.com/GalactiGuild/Stellar-Guilds/pull/143",
+      "created": "2026-03-24",
+      "updated": "2026-04-12",
+      "merged_at": null
+    },
+    {
+      "repo": "Jagadeeshftw/grainlify",
+      "pr": 815,
+      "title": "feat(program-escrow): dispute resolution hooks (Closes #745)",
+      "status": "closed",
+      "url": "https://github.com/Jagadeeshftw/grainlify/pull/815",
+      "created": "2026-03-24",
+      "updated": "2026-04-20",
+      "merged_at": null
+    },
+    {
+      "repo": "amaybaum-prod/V-Achilles",
+      "pr": 253,
+      "title": "fix: upgrade mongoose to 8.9.5 to resolve 5 security vulnerabilities",
+      "status": "open",
+      "url": "https://github.com/amaybaum-prod/V-Achilles/pull/253",
+      "created": "2026-03-24",
+      "updated": "2026-03-24",
+      "merged_at": null
+    },
+    {
+      "repo": "yosemite01/stellar-creator-portfolio",
+      "pr": 36,
+      "title": "feat: Add User Authentication & Profiles",
+      "status": "merged",
+      "url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/36",
+      "created": "2026-03-24",
+      "updated": "2026-03-25",
+      "merged_at": "2026-03-25"
+    },
+    {
+      "repo": "BruceFeIix/picker",
+      "pr": 2335,
+      "title": "Add automatic closing of previous day's daily issue",
+      "status": "open",
+      "url": "https://github.com/BruceFeIix/picker/pull/2335",
+      "created": "2026-03-24",
+      "updated": "2026-03-24",
+      "merged_at": null
+    },
+    {
+      "repo": "ke1rro/tt-wavelet",
+      "pr": 5,
+      "title": "Implement Lifting Wavelet Transform (LWT) and Inverse LWT for Haar wavelet",
+      "status": "closed",
+      "url": "https://github.com/ke1rro/tt-wavelet/pull/5",
+      "created": "2026-03-24",
+      "updated": "2026-03-24",
+      "merged_at": null
+    },
+    {
+      "repo": "code-payments/flipcash-program",
+      "pr": 9,
+      "title": "[BOUNTY #5] Add USDF acquisition tools and bounty hunter guide",
+      "status": "open",
+      "url": "https://github.com/code-payments/flipcash-program/pull/9",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 214,
+      "title": "[BOUNTY #187] Implement Reward Distribution System",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/214",
+      "created": "2026-03-23",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "dotnet/sdk",
+      "pr": 53568,
+      "title": "[BOUNTY #53563] Fix CS0660 false positive for partial classes with source-generated members on Linux",
+      "status": "open",
+      "url": "https://github.com/dotnet/sdk/pull/53568",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 173,
+      "title": "[BOUNTY #159] Add Competition & StreakBet Admin Panel",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/173",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "bolivian-peru/marketplace-service-template",
+      "pr": 289,
+      "title": "[BOUNTY #281] X/Twitter Real-Time Search API — Full Implementation",
+      "status": "open",
+      "url": "https://github.com/bolivian-peru/marketplace-service-template/pull/289",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "zhuzhushiwojia/lobster-rewards",
+      "pr": 3,
+      "title": "[BOUNTY #1] 修复测试套件，确保所有测试通过",
+      "status": "open",
+      "url": "https://github.com/zhuzhushiwojia/lobster-rewards/pull/3",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "bolivian-peru/marketplace-service-template",
+      "pr": 288,
+      "title": "[BOUNTY #284] LinkedIn People & Company Enrichment API — Complete Implementation",
+      "status": "open",
+      "url": "https://github.com/bolivian-peru/marketplace-service-template/pull/288",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "bolivian-peru/os-moda",
+      "pr": 12,
+      "title": "[BOUNTY #2] Add demo scripts and guide for video submission",
+      "status": "open",
+      "url": "https://github.com/bolivian-peru/os-moda/pull/12",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "pr": 40495,
+      "title": "[BOUNTY #40494] Lifting Wavelet Transform (LWT) Implementation",
+      "status": "closed",
+      "url": "https://github.com/tenstorrent/tt-metal/pull/40495",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
+      "pr": 17,
+      "title": "[BOUNTY #11] Prompt Fine-Tuning - Senior Reviewer Quality",
+      "status": "closed",
+      "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/17",
+      "created": "2026-03-23",
+      "updated": "2026-04-23",
+      "merged_at": null
+    },
+    {
+      "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
+      "pr": 16,
+      "title": "[BOUNTY #14] 📄 PDF Report Improvements - Industry-Grade Quality",
+      "status": "closed",
+      "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/16",
+      "created": "2026-03-23",
+      "updated": "2026-04-24",
+      "merged_at": null
+    },
+    {
+      "repo": "yosemite01/stellar-creator-portfolio",
+      "pr": 34,
+      "title": "[BOUNTY #25] 📊 Bounty Milestone Tracking & Progress Updates",
+      "status": "merged",
+      "url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/34",
+      "created": "2026-03-23",
+      "updated": "2026-03-25",
+      "merged_at": "2026-03-25"
+    },
+    {
+      "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
+      "pr": 15,
+      "title": "[BOUNTY #12] 🤖 Android Play Store Auditor Module",
+      "status": "closed",
+      "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/15",
+      "created": "2026-03-23",
+      "updated": "2026-04-24",
+      "merged_at": null
+    },
+    {
+      "repo": "codexbt/Eliza-Lobster",
+      "pr": 4,
+      "title": "[BOUNTY #3] 📮 Pissbook Forum Integration - REST API Client",
+      "status": "open",
+      "url": "https://github.com/codexbt/Eliza-Lobster/pull/4",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 172,
+      "title": "[BOUNTY #158] 🏆 Streak Bets & Achievement Competitions - Smart Contract",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/172",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "INDIGOAZUL/la-tanda-web",
+      "pr": 196,
+      "title": "[BOUNTY #155] 🔗 Fix Broken/Placeholder Links - HTML Accessibility",
+      "status": "closed",
+      "url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/196",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "INDIGOAZUL/la-tanda-web",
+      "pr": 195,
+      "title": "[BOUNTY #154] ♿ Add aria-labels to Icon Buttons - Accessibility Improvement",
+      "status": "closed",
+      "url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/195",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
+      "pr": 9,
+      "title": "[BOUNTY #2] 🎨 Logo Design - AI-Powered App Store Compliance Auditor",
+      "status": "closed",
+      "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/9",
+      "created": "2026-03-23",
+      "updated": "2026-04-23",
+      "merged_at": null
+    },
+    {
+      "repo": "shi2n/bugbounty-operator-toolkit-V2",
+      "pr": 2,
+      "title": "[BOUNTY #1] 📚 Complete README Documentation - Professional Guide",
+      "status": "open",
+      "url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/pull/2",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 171,
+      "title": "[BOUNTY #159] 🎨 Admin UI - Competition & StreakBet Setup Panel",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/171",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 170,
+      "title": "[BOUNTY #161] 🏆 Competition Engine - Escrow, Self-Report, Forfeit & Pot Split",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/170",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "SharedStake/Contracts",
+      "pr": 26,
+      "title": "[BOUNTY #12] 🎯 Solo Staking Implementation - 32 ETH Direct Staking with SGT Bond",
+      "status": "open",
+      "url": "https://github.com/SharedStake/Contracts/pull/26",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
+      "pr": 7,
+      "title": "[BOUNTY #2] 🎨 Logo Design - Modern AI-Powered Compliance Auditor Identity",
+      "status": "closed",
+      "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/7",
+      "created": "2026-03-23",
+      "updated": "2026-04-24",
+      "merged_at": null
+    },
+    {
+      "repo": "mangdangroboticsclub/mini_pupper_ros",
+      "pr": 138,
+      "title": "[BOUNTY #125] 🤖 ROS2 Humble to Jazzy Upgrade - Complete Guide & Automation Script",
+      "status": "open",
+      "url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/pull/138",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "1712n/dn-institute",
+      "pr": 732,
+      "title": "[BOUNTY #277] 🌰 Comprehensive Guide: Wash Trading - Detection, Case Studies & Prevention",
+      "status": "open",
+      "url": "https://github.com/1712n/dn-institute/pull/732",
+      "created": "2026-03-23",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "ton-society/grants-and-bounties",
+      "pr": 1217,
+      "title": "[BOUNTY #1200] feat: Tolk MCP Server - Model Context Protocol Implementation",
+      "status": "open",
+      "url": "https://github.com/ton-society/grants-and-bounties/pull/1217",
+      "created": "2026-03-23",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "databuddy-analytics/Databuddy",
+      "pr": 356,
+      "title": "[BOUNTY #267] feat: Complete Alarms System - Database, API & Dashboard UI",
+      "status": "closed",
+      "url": "https://github.com/databuddy-analytics/Databuddy/pull/356",
+      "created": "2026-03-23",
+      "updated": "2026-04-03",
+      "merged_at": null
+    },
+    {
+      "repo": "Chevalier12/InkkSlinger",
+      "pr": 12,
+      "title": "[BOUNTY #3] feat: Implement InkCanvas and InkPresenter controls",
+      "status": "closed",
+      "url": "https://github.com/Chevalier12/InkkSlinger/pull/12",
+      "created": "2026-03-23",
+      "updated": "2026-04-07",
+      "merged_at": null
+    },
+    {
+      "repo": "vllm-project/vllm-omni",
+      "pr": 2080,
+      "title": "[BOUNTY #2015] feat: CI Benchmark and Performance Tracking for HunYuanImage",
+      "status": "open",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/2080",
+      "created": "2026-03-23",
+      "updated": "2026-03-28",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 213,
+      "title": "[BOUNTY #198] feat: Referral Tracking Backend Logic",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/213",
+      "created": "2026-03-23",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 212,
+      "title": "[BOUNTY #202] feat: Referral and Waitlist Fraud Protection Backend",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/212",
+      "created": "2026-03-22",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 211,
+      "title": "[BOUNTY #187] feat: Reward Distribution System",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/211",
+      "created": "2026-03-22",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 210,
+      "title": "[BOUNTY #200] feat: Waitlist Email Notification Backend",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/210",
+      "created": "2026-03-22",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "StelTade/SwapTrade-Backend",
+      "pr": 209,
+      "title": "[BOUNTY #201] feat: Admin API for Waitlist and Referral Management",
+      "status": "closed",
+      "url": "https://github.com/StelTade/SwapTrade-Backend/pull/209",
+      "created": "2026-03-22",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "Kozea/pygal",
+      "pr": 579,
+      "title": "[BOUNTY #426] Add OHLC Candlestick Chart support",
+      "status": "open",
+      "url": "https://github.com/Kozea/pygal/pull/579",
+      "created": "2026-03-22",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "TheSuperHackers/GeneralsGameCode",
+      "pr": 2485,
+      "title": "[BOUNTY #2434] Fix GLA Cash Bounty using incorrect value for China Red Guard",
+      "status": "closed",
+      "url": "https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485",
+      "created": "2026-03-22",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 233,
+      "title": "[BOUNTY #12] Backup & Disaster Recovery",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/233",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 232,
+      "title": "[BOUNTY #11] Database Layer - PostgreSQL + Redis + MariaDB",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/232",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 231,
+      "title": "[BOUNTY #6] AI Stack - Ollama + Open WebUI + Stable Diffusion",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/231",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 230,
+      "title": "[BOUNTY #8] Robustness - CN Network Adaptation",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/230",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 228,
+      "title": "[BOUNTY #5] Productivity Stack - Gitea + Vaultwarden + Outline + BookStack",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/228",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 227,
+      "title": "[BOUNTY #2] Media Stack - Jellyfin + Sonarr + Radarr + qBittorrent",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/227",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 226,
+      "title": "[BOUNTY #10] Observability - Complete Stack (Metrics/Logs/Traces/Alerting)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/226",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 225,
+      "title": "[BOUNTY #9] SSO - Authentik Unified Identity Provider (OIDC/SAML)",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/225",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 224,
+      "title": "[BOUNTY #7] Home Automation - Home Assistant + Node-RED + Zigbee2MQTT + ESPHome",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/224",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 223,
+      "title": "[BOUNTY #4] Network Stack - AdGuard Home + WireGuard + Cloudflare DDNS + Unbound",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/223",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2335,
+      "title": "[BOUNTY #2297] RustChain Python SDK — pip install rustchain",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2335",
+      "created": "2026-03-22",
+      "updated": "2026-03-25",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 222,
+      "title": "[BOUNTY #3] Storage Stack - Nextcloud + MinIO + FileBrowser + Syncthing",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/222",
+      "created": "2026-03-22",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "obot-platform/mcp-catalog",
+      "pr": 1199,
+      "title": "feat: add execution_market.yaml — AI bounty MCP server",
+      "status": "closed",
+      "url": "https://github.com/obot-platform/mcp-catalog/pull/1199",
+      "created": "2026-03-22",
+      "updated": "2026-04-09",
+      "merged_at": null
+    },
+    {
+      "repo": "Comfy-Org/ComfyUI",
+      "pr": 13105,
+      "title": "fix: include folder path in 'Value not in list' error messages",
+      "status": "open",
+      "url": "https://github.com/Comfy-Org/ComfyUI/pull/13105",
+      "created": "2026-03-22",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "Comfy-Org/ComfyUI",
+      "pr": 13097,
+      "title": "[BOUNTY #8914] Fix Content-Disposition header to match RFC2183 rules",
+      "status": "open",
+      "url": "https://github.com/Comfy-Org/ComfyUI/pull/13097",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Comfy-Org/ComfyUI",
+      "pr": 13096,
+      "title": "[BOUNTY #8935] Run port check at the beginning of the main.py",
+      "status": "open",
+      "url": "https://github.com/Comfy-Org/ComfyUI/pull/13096",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Comfy-Org/ComfyUI",
+      "pr": 13095,
+      "title": "[BOUNTY #8889] Remove tokens from history items",
+      "status": "open",
+      "url": "https://github.com/Comfy-Org/ComfyUI/pull/13095",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2315,
+      "title": "[BOUNTY #747] Bounty Verification Bot — Wallet, Article, and Duplicate Claim Checks",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2315",
+      "created": "2026-03-21",
+      "updated": "2026-03-27",
+      "merged_at": null
+    },
+    {
+      "repo": "Comfy-Org/ComfyUI",
+      "pr": 13094,
+      "title": "[BOUNTY #8899] Add JSON Schema for Prompt API Format",
+      "status": "open",
+      "url": "https://github.com/Comfy-Org/ComfyUI/pull/13094",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "frameprotocol/.github",
+      "pr": 7,
+      "title": "[BOUNTY #6] Implement HUNT dApp - Real-World Discovery Game on FRAME",
+      "status": "closed",
+      "url": "https://github.com/frameprotocol/.github/pull/7",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "backend-br/vagas",
+      "pr": 12213,
+      "title": "[BOUNTY #12194] [Remoto] Especialista Back-end (NestJS/Prisma) - Wizebot",
+      "status": "closed",
+      "url": "https://github.com/backend-br/vagas/pull/12213",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "jose-compu/curated-erc",
+      "pr": 35,
+      "title": "[BOUNTY #12] docs: add SECURITY.md vulnerability disclosure policy",
+      "status": "closed",
+      "url": "https://github.com/jose-compu/curated-erc/pull/35",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "codexbt/Eliza-Lobster",
+      "pr": 2,
+      "title": "feat: integrate SATP (Solana Agent Trust Protocol) via AgentFolio",
+      "status": "closed",
+      "url": "https://github.com/codexbt/Eliza-Lobster/pull/2",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "dlrivada/Encina",
+      "pr": 848,
+      "title": "[BOUNTY #94] [FEATURE] Create SECURITY.md - vulnerability reporting",
+      "status": "closed",
+      "url": "https://github.com/dlrivada/Encina/pull/848",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "amaybaum-prod/shopware",
+      "pr": 205,
+      "title": "[BOUNTY #148] Fix issue",
+      "status": "open",
+      "url": "https://github.com/amaybaum-prod/shopware/pull/205",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 138,
+      "title": "[BOUNTY #128] About Modal: Clean Up Crypto Payment Panel — UI Polish, Annual Plan, USDC Option, Fix Disabled Button & Cancel Clarity",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/138",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "foremetric/foremetric",
+      "pr": 9,
+      "title": "[BOUNTY #4] [BOUNTY] Signal Passport — TEE nullifier implementation",
+      "status": "closed",
+      "url": "https://github.com/foremetric/foremetric/pull/9",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "stellar/stellar-docs",
+      "pr": 2318,
+      "title": "[BOUNTY #2284] Application to Contribute to Stellar Docs – Open Source Developer & Former Bounty Participant",
+      "status": "closed",
+      "url": "https://github.com/stellar/stellar-docs/pull/2318",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 131,
+      "title": "[BOUNTY #116] Bounty Bot: Short, Personalized Comments for Returning Contributors + Stats + Scene Art",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/131",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 122,
+      "title": "[BOUNTY #111] Unified UTC Logging with User-Selectable Local Timezone",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/122",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "TheJollyLaMa/BigNuten_Vanilla",
+      "pr": 120,
+      "title": "[BOUNTY #111] Unified UTC Logging with User-Selectable Local Timezone (Water Tracker/General)",
+      "status": "closed",
+      "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/120",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "ripgrim/ripgrim",
+      "pr": 16,
+      "title": "[BOUNTY #15] Fix issue",
+      "status": "closed",
+      "url": "https://github.com/ripgrim/ripgrim/pull/16",
+      "created": "2026-03-21",
+      "updated": "2026-03-21",
+      "merged_at": null
+    },
+    {
+      "repo": "ANAVHEOBA/PrivacyLayer",
+      "pr": 103,
+      "title": "[BOUNTY #43] Fix documentation typo in README",
+      "status": "closed",
+      "url": "https://github.com/ANAVHEOBA/PrivacyLayer/pull/103",
+      "created": "2026-03-21",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 574,
+      "title": "[BOUNTY #106] Keyboard-first Navigation & Shortcuts",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/574",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 573,
+      "title": "[BOUNTY #112] Universal Bank Statement Normalization Layer",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/573",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 572,
+      "title": "[BOUNTY #111] Smart Reminder Timing Optimization",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/572",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 571,
+      "title": "[BOUNTY #110] Subscription Cost Increase Detection",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/571",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 570,
+      "title": "[BOUNTY #108] Recurring Transaction Anomaly Alerts",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/570",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 569,
+      "title": "[BOUNTY #105] Advanced Search Across Transactions & Bills",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/569",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 568,
+      "title": "[BOUNTY #113] Transaction Deduplication Intelligence Improvements",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/568",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 567,
+      "title": "[BOUNTY #107] Rule-based Auto Tagging & Categorization",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/567",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 566,
+      "title": "[BOUNTY #109] Auto-detect Subscriptions from Recurring Charges",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/566",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 565,
+      "title": "[BOUNTY #114] Smart Payee & Merchant Alias Management",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/565",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 564,
+      "title": "feat: Bulk import validation and preview (#115)",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/564",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 548,
+      "title": "[BOUNTY] Performance: Caching, DB Indexes & API Compression",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/548",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 531,
+      "title": "[BOUNTY #127] Smart caching strategy for dashboard & analytics",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/531",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 530,
+      "title": "[BOUNTY #128] Database indexing optimization for financial queries",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/530",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 529,
+      "title": "[BOUNTY #129] API response compression & payload optimization",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/529",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 528,
+      "title": "[BOUNTY #131] Locale-aware date, currency & number formatting",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/528",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 524,
+      "title": "[BOUNTY #133] Goal-based savings tracking & milestones",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/524",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 64,
+      "title": "[Hacktoberfest] SPIFFE/SPIRE Integration Bridge",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/64",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 63,
+      "title": "[Hacktoberfest] Rails Gem Integration",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/63",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 62,
+      "title": "[Hacktoberfest] Laravel Middleware Package",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/62",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 61,
+      "title": "[Hacktoberfest] VS Code Extension for Policy Development",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/61",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 60,
+      "title": "[Hacktoberfest] GitHub App for PR/Merge Verification",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/60",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 59,
+      "title": "[Hacktoberfest] Discord Bot for Team Verification",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/59",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 58,
+      "title": "[Hacktoberfest] APort CLI for Quick Integration Setup",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/58",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 57,
+      "title": "[Hacktoberfest] Add APort to 5 Awesome Lists (76k+ stars reach)",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/57",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "elangosundar/awesome-api-tools",
+      "pr": 12,
+      "title": "Add APort - Agent identity verification API",
+      "status": "open",
+      "url": "https://github.com/elangosundar/awesome-api-tools/pull/12",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "jamesmurdza/awesome-ai-devtools",
+      "pr": 318,
+      "title": "Add APort - agent identity verification and policy enforcement",
+      "status": "closed",
+      "url": "https://github.com/jamesmurdza/awesome-ai-devtools/pull/318",
+      "created": "2026-03-20",
+      "updated": "2026-03-26",
+      "merged_at": null
+    },
+    {
+      "repo": "devtoolsd/awesome-devtools",
+      "pr": 109,
+      "title": "Add APort - Agent identity verification and policy enforcement",
+      "status": "open",
+      "url": "https://github.com/devtoolsd/awesome-devtools/pull/109",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "ComposioHQ/awesome-claude-skills",
+      "pr": 436,
+      "title": "Add APort agent identity verification skill",
+      "status": "closed",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills/pull/436",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "e2b-dev/awesome-ai-agents",
+      "pr": 516,
+      "title": "Add APort - Agent identity verification and policy enforcement",
+      "status": "open",
+      "url": "https://github.com/e2b-dev/awesome-ai-agents/pull/516",
+      "created": "2026-03-20",
+      "updated": "2026-04-10",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 56,
+      "title": "[Hacktoberfest] n8n Workflow Node for APort Policy Checks",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/56",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "DeepSpaceHarbor/Awesome-AI-Security",
+      "pr": 23,
+      "title": "Add APort - Agent identity verification and policy enforcement",
+      "status": "open",
+      "url": "https://github.com/DeepSpaceHarbor/Awesome-AI-Security/pull/23",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "e2b-dev/awesome-ai-agents",
+      "pr": 515,
+      "title": "Add APort - Agent identity verification and policy enforcement",
+      "status": "open",
+      "url": "https://github.com/e2b-dev/awesome-ai-agents/pull/515",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 55,
+      "title": "[Hacktoberfest] Flask & DRF Integration Examples",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/55",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 54,
+      "title": "[Hacktoberfest] Django Middleware for APort Agent Verification",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/54",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 48,
+      "title": "[BOUNTY #3] PYTH Oracle Integration",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/48",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 47,
+      "title": "[BOUNTY #1] Smart Contract Auditor",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/47",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 46,
+      "title": "[BOUNTY #5] Webhook Relay for On-chain Events",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/46",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 45,
+      "title": "[BOUNTY #18] Conflux Analytics Portal",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/45",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 44,
+      "title": "[BOUNTY #17] x402 Payment Boilerplate",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/44",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 43,
+      "title": "[BOUNTY #16] Conflux Node Status Dashboard",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/43",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "conflux-fans/conflux-bounties",
+      "pr": 42,
+      "title": "[BOUNTY #12] Token/NFT Gated Site Boilerplate",
+      "status": "closed",
+      "url": "https://github.com/conflux-fans/conflux-bounties/pull/42",
+      "created": "2026-03-20",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/.github",
+      "pr": 22,
+      "title": "[BOUNTY #5886] Plugin Health Monitor v2 (fixed)",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os/.github/pull/22",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubq.fi-router",
+      "pr": 12,
+      "title": "[BOUNTY #5905] Health Dashboard",
+      "status": "open",
+      "url": "https://github.com/ubiquity/ubq.fi-router/pull/12",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/pay.ubq.fi",
+      "pr": 458,
+      "title": "[BOUNTY #5911] Self Invalidation - Allow All Owners to Invalidate Permits",
+      "status": "closed",
+      "url": "https://github.com/ubiquity/pay.ubq.fi/pull/458",
+      "created": "2026-03-20",
+      "updated": "2026-03-25",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os/.github",
+      "pr": 21,
+      "title": "[BOUNTY #5886] Plugin Health Monitor",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os/.github/pull/21",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity/ubq.fi-router",
+      "pr": 11,
+      "title": "[BOUNTY #5906] Dynamic Sitemap (Apps & Plugins)",
+      "status": "open",
+      "url": "https://github.com/ubiquity/ubq.fi-router/pull/11",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 498,
+      "title": "[BOUNTY #5012] Implement Differential Reward Distribution for Reopened Issues",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/498",
+      "created": "2026-03-20",
+      "updated": "2026-03-25",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/text-conversation-rewards",
+      "pr": 497,
+      "title": "[BOUNTY #5887] Fix: Exclude bot accounts from collaborative reward check",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/497",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "ubiquity-os-marketplace/daemon-pricing",
+      "pr": 163,
+      "title": "[BOUNTY #5020] Scraper: Create Time Estimate Training Dataset",
+      "status": "closed",
+      "url": "https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/163",
+      "created": "2026-03-20",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "jhipster/jhipster.github.io",
+      "pr": 1572,
+      "title": "[BOUNTY #27215] Improve API First Development documentation",
+      "status": "open",
+      "url": "https://github.com/jhipster/jhipster.github.io/pull/1572",
+      "created": "2026-03-20",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/nuclei",
+      "pr": 7273,
+      "title": "[BOUNTY #6398] Fix: Use OrderedMap in Path.Parse() for deterministic fuzzing iteration",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/nuclei/pull/7273",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "jhipster/generator-jhipster",
+      "pr": 32768,
+      "title": "[BOUNTY #17550] Fix: Add configurable JWK retrieval timeout for Okta/Auth0",
+      "status": "open",
+      "url": "https://github.com/jhipster/generator-jhipster/pull/32768",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 100,
+      "title": "[BOUNTY #30] Search & Filter Engine - PostgreSQL FTS",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/100",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 99,
+      "title": "[BOUNTY #29] Notification System - Redis + WebSocket",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/99",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 98,
+      "title": "[BOUNTY #11] GitHub OAuth + Wallet Auth System",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/98",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "Merit-Systems/echo",
+      "pr": 746,
+      "title": "[BOUNTY #573] Add Vercel AI Gateway as a Provider",
+      "status": "open",
+      "url": "https://github.com/Merit-Systems/echo/pull/746",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/solfoundry",
+      "pr": 1,
+      "title": "[BOUNTY #11] GitHub OAuth + Wallet Authentication System",
+      "status": "merged",
+      "url": "https://github.com/zhaog100/solfoundry/pull/1",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": "2026-03-19",
+      "bounty": "Unknown",
+      "payment_info": "wallet, payment"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 96,
+      "title": "[BOUNTY] Payout History & Treasury Stats API",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/96",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 95,
+      "title": "[BOUNTY] GitHub Actions CI/CD Pipeline",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/95",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/trashclaw",
+      "pr": 112,
+      "title": "[BOUNTY] Add image/screenshot viewing for vision models",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/trashclaw/pull/112",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "zhaog100/trashclaw",
+      "pr": 1,
+      "title": "feat: add image viewing and screenshot support (Issue #65)",
+      "status": "open",
+      "url": "https://github.com/zhaog100/trashclaw/pull/1",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/trashclaw",
+      "pr": 111,
+      "title": "Fix typos/docs, add comprehensive tests, add CI",
+      "status": "closed",
+      "url": "https://github.com/Scottcjn/trashclaw/pull/111",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "Recon-Fuzz/recon-extension",
+      "pr": 98,
+      "title": "feat: add Dynamic Replacement panel for Setup.sol constants",
+      "status": "closed",
+      "url": "https://github.com/Recon-Fuzz/recon-extension/pull/98",
+      "created": "2026-03-19",
+      "updated": "2026-04-17",
+      "merged_at": null
+    },
+    {
+      "repo": "Merit-Systems/echo",
+      "pr": 745,
+      "title": "feat: add Vercel AI Gateway as a provider",
+      "status": "open",
+      "url": "https://github.com/Merit-Systems/echo/pull/745",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "Expensify/App",
+      "pr": 85737,
+      "title": "Sort RBR-actionable expenses first in carousel and transaction list",
+      "status": "closed",
+      "url": "https://github.com/Expensify/App/pull/85737",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "Expensify/App",
+      "pr": 85736,
+      "title": "[50] Fix distance expense map preview cropping start/finish points",
+      "status": "closed",
+      "url": "https://github.com/Expensify/App/pull/85736",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 51,
+      "title": "feat: Next.js Middleware Integration (App + Pages Router)",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/51",
+      "created": "2026-03-19",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 50,
+      "title": "feat: VS Code Extension for Policy Development",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/50",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 49,
+      "title": "feat: CLI to Bootstrap APort Integrations",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/49",
+      "created": "2026-03-19",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "aporthq/aport-integrations",
+      "pr": 48,
+      "title": "feat: LangGraph Checkpoint Guardrails integration",
+      "status": "closed",
+      "url": "https://github.com/aporthq/aport-integrations/pull/48",
+      "created": "2026-03-19",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 519,
+      "title": "feat: Resilient background job retry & monitoring",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/519",
+      "created": "2026-03-19",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 45,
+      "title": "feat(ui): responsive site navigation and layout shell",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/45",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 42,
+      "title": "feat(webhooks): GitHub webhook receiver with signature verification",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/42",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 41,
+      "title": "feat(api): contributor profiles API",
+      "status": "merged",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/41",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": "2026-03-19"
+    },
+    {
+      "repo": "SolFoundry/solfoundry",
+      "pr": 40,
+      "title": "feat(api): leaderboard API with pagination and filtering",
+      "status": "closed",
+      "url": "https://github.com/SolFoundry/solfoundry/pull/40",
+      "created": "2026-03-19",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "hashgraph/guardian",
+      "pr": 5862,
+      "title": "feat(minting): configurable rounding strategy for token minting",
+      "status": "closed",
+      "url": "https://github.com/hashgraph/guardian/pull/5862",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "hashgraph/guardian",
+      "pr": 5861,
+      "title": "feat(events): add external event for token minting failure",
+      "status": "closed",
+      "url": "https://github.com/hashgraph/guardian/pull/5861",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "hashgraph/guardian",
+      "pr": 5860,
+      "title": "fix(ui): grey out 'Add Document' button when no schemas exist",
+      "status": "closed",
+      "url": "https://github.com/hashgraph/guardian/pull/5860",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "comet-ml/opik",
+      "pr": 5732,
+      "title": "[BOUNTY #1010] Bulk Trace Annotation UI",
+      "status": "open",
+      "url": "https://github.com/comet-ml/opik/pull/5732",
+      "created": "2026-03-19",
+      "updated": "2026-04-07",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 256,
+      "title": "Add Elasticsearch Monitoring Dashboard",
+      "status": "closed",
+      "url": "https://github.com/SigNoz/dashboards/pull/256",
+      "created": "2026-03-19",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 255,
+      "title": "Add Kafka Server Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/255",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 254,
+      "title": "Add AWS MSK Cluster Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/254",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 253,
+      "title": "Add Istio Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/253",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 252,
+      "title": "Add Kong Gateway Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/252",
+      "created": "2026-03-19",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "asyncapi/cli",
+      "pr": 2059,
+      "title": "fix: add 10s timeout to registry URL validation to prevent CLI hang",
+      "status": "closed",
+      "url": "https://github.com/asyncapi/cli/pull/2059",
+      "created": "2026-03-19",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 193,
+      "title": "[BOUNTY #14] Testing Framework — Integration Tests for All 12 Stacks + CI",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/193",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 192,
+      "title": "[BOUNTY #8] Robustness — CN Network Adaptation + Env Detection + Graceful Shutdown",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/192",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 189,
+      "title": "[BOUNTY #10] Observability — Prometheus + Grafana + Loki + Tempo + Alertmanager + Uptime Kuma",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/189",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 188,
+      "title": "[BOUNTY #9] SSO Stack — Authentik OIDC + Forward Auth + 6 Service Integration",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/188",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 186,
+      "title": "[BOUNTY #7] Home Automation — HA + Node-RED + Mosquitto + Zigbee2MQTT",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/186",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 185,
+      "title": "[BOUNTY #5] Productivity Stack — Gitea + Vaultwarden + Outline + Stirling PDF",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/185",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 184,
+      "title": "[BOUNTY #4] Network Stack — AdGuard + WireGuard + Cloudflare DDNS + NPM",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/184",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 182,
+      "title": "[BOUNTY #12] Backup & DR — Duplicati + Restic + 3-2-1 Strategy",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/182",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 181,
+      "title": "[BOUNTY #3] Storage Stack — Nextcloud + MinIO + FileBrowser + Syncthing",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/181",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 180,
+      "title": "[BOUNTY #2] Media Stack — Jellyfin + Sonarr + Radarr + Prowlarr + qBittorrent + Jellyseerr",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/180",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 178,
+      "title": "[BOUNTY #1] Base Infrastructure — Socket Proxy + Enhanced Base Stack",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/178",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 250,
+      "title": "[BOUNTY #5996] ASP.NET Metrics Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/250",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 249,
+      "title": "[BOUNTY #6010] Elasticsearch Monitoring Dashboard",
+      "status": "closed",
+      "url": "https://github.com/SigNoz/dashboards/pull/249",
+      "created": "2026-03-18",
+      "updated": "2026-04-08",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 248,
+      "title": "[BOUNTY #6028] Kong Gateway Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/248",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 247,
+      "title": "[BOUNTY #6025] Istio Service Mesh Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/247",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 246,
+      "title": "[BOUNTY #6026] Kafka Server Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/246",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 245,
+      "title": "[BOUNTY #6023] cert-manager Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/245",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "SigNoz/dashboards",
+      "pr": 244,
+      "title": "[BOUNTY #6036] AWS MSK Cluster Monitoring Dashboard",
+      "status": "open",
+      "url": "https://github.com/SigNoz/dashboards/pull/244",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/nuclei",
+      "pr": 7259,
+      "title": "[BOUNTY #5567] Template configuration improvements",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/nuclei/pull/7259",
+      "created": "2026-03-18",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/nuclei",
+      "pr": 7258,
+      "title": "[BOUNTY #6592] Fix authenticated scan starting before key file templates complete",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/nuclei/pull/7258",
+      "created": "2026-03-18",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/nuclei",
+      "pr": 7257,
+      "title": "[BOUNTY #6403] Add honeypot detection capabilities",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/nuclei/pull/7257",
+      "created": "2026-03-18",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/retryablehttp-go",
+      "pr": 533,
+      "title": "[BOUNTY #2240] Fix HTTP/2 fallback ignoring -pr http11 flag",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/retryablehttp-go/pull/533",
+      "created": "2026-03-18",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/tlsx",
+      "pr": 964,
+      "title": "[BOUNTY #819] Fix indefinite hanging on certain hosts",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/tlsx/pull/964",
+      "created": "2026-03-18",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/tlsx",
+      "pr": 963,
+      "title": "fix: support comma-separated inputs in list file (-l option)",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/tlsx/pull/963",
+      "created": "2026-03-18",
+      "updated": "2026-03-19",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/dnsx",
+      "pr": 963,
+      "title": "feat: add --auto-wildcard flag for automatic wildcard DNS detection",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/dnsx/pull/963",
+      "created": "2026-03-18",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "projectdiscovery/nuclei",
+      "pr": 7256,
+      "title": "fix: XSS context analyzer - javascript: URI, JSON script, srcdoc",
+      "status": "closed",
+      "url": "https://github.com/projectdiscovery/nuclei/pull/7256",
+      "created": "2026-03-18",
+      "updated": "2026-03-20",
+      "merged_at": null
+    },
+    {
+      "repo": "keephq/keep",
+      "pr": 6107,
+      "title": "feat: SNMP provider - trap listener + OID mapping",
+      "status": "open",
+      "url": "https://github.com/keephq/keep/pull/6107",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "onyx-dot-app/onyx",
+      "pr": 9437,
+      "title": "[BOUNTY #2281] Jira Service Management Connector",
+      "status": "open",
+      "url": "https://github.com/onyx-dot-app/onyx/pull/9437",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "potpie-ai/potpie",
+      "pr": 698,
+      "title": "[BOUNTY #223] Hash-based inference caching with branch-aware diff",
+      "status": "open",
+      "url": "https://github.com/potpie-ai/potpie/pull/698",
+      "created": "2026-03-18",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 501,
+      "title": "[BOUNTY #121] Smart Digest with Weekly Financial Summary",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/501",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 500,
+      "title": "[BOUNTY #130] Resilient Background Job Retry & Monitoring",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/500",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 499,
+      "title": "[BOUNTY #132] Multi-account Financial Overview Dashboard",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/499",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "rohitdash08/FinMind",
+      "pr": 498,
+      "title": "feat: Goal-based savings tracking & milestones",
+      "status": "closed",
+      "url": "https://github.com/rohitdash08/FinMind/pull/498",
+      "created": "2026-03-18",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 83,
+      "title": "[BOUNTY #10] Observability — Tempo + Uptime Kuma + Alerting + Dashboards",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/83",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 82,
+      "title": "[BOUNTY #9] SSO — Authentik OIDC Automation + ForwardAuth + 6 Providers",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/82",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 81,
+      "title": "[BOUNTY #7] Home Automation — HA + Node-RED + Zigbee2MQTT + ESPHome",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/81",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 80,
+      "title": "[BOUNTY #6] AI Stack — GPU/CPU adaptive, SD WebUI, Perplexica",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/80",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 79,
+      "title": "[BOUNTY #5] Productivity Stack — Stirling PDF + Excalidraw + Enhanced configs",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/79",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 78,
+      "title": "[BOUNTY #8] Robustness — CN Network Adaptation + Environment Hardening",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/78",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 77,
+      "title": "[BOUNTY #12] Backup & DR — Encrypted backup, multi-target, disaster recovery",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/77",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 76,
+      "title": "[BOUNTY #11] Database Layer — MariaDB + pgAdmin + Redis Commander",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/76",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 74,
+      "title": "[BOUNTY #13] Notifications Stack — Gotify + ntfy + Unified notify.sh",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/74",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "illbnm/homelab-stack",
+      "pr": 73,
+      "title": "[BOUNTY #14] Integration Testing — Full Integration Test Suite",
+      "status": "closed",
+      "url": "https://github.com/illbnm/homelab-stack/pull/73",
+      "created": "2026-03-18",
+      "updated": "2026-04-22",
+      "merged_at": null
+    },
+    {
+      "repo": "bolivian-peru/baozi-openclaw",
+      "pr": 145,
+      "title": "[BOUNTY] Night Kitchen — Bilingual Market Report Agent",
+      "status": "open",
+      "url": "https://github.com/bolivian-peru/baozi-openclaw/pull/145",
+      "created": "2026-03-17",
+      "updated": "2026-03-17",
+      "merged_at": null
+    },
+    {
+      "repo": "asyncapi/cli",
+      "pr": 2047,
+      "title": "fix: add 10s timeout to registryValidation to prevent indefinite hang",
+      "status": "closed",
+      "url": "https://github.com/asyncapi/cli/pull/2047",
+      "created": "2026-03-17",
+      "updated": "2026-03-23",
+      "merged_at": null
+    },
+    {
+      "repo": "wangnaihe/w3cos",
+      "pr": 25,
+      "title": "feat(ai-bridge): annotated screenshot rendering for AI agents (#6)",
+      "status": "closed",
+      "url": "https://github.com/wangnaihe/w3cos/pull/25",
+      "created": "2026-03-17",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "chainstacklabs/pumpfun-cli",
+      "pr": 9,
+      "title": "feat: Add sell amount validation (TASK-006)",
+      "status": "closed",
+      "url": "https://github.com/chainstacklabs/pumpfun-cli/pull/9",
+      "created": "2026-03-17",
+      "updated": "2026-03-17",
+      "merged_at": null
+    },
+    {
+      "repo": "chainstacklabs/pumpfun-cli",
+      "pr": 8,
+      "title": "feat: Add amount validation for buy and sell operations",
+      "status": "closed",
+      "url": "https://github.com/chainstacklabs/pumpfun-cli/pull/8",
+      "created": "2026-03-17",
+      "updated": "2026-03-17",
+      "merged_at": null
+    },
+    {
+      "repo": "wangnaihe/w3cos",
+      "pr": 24,
+      "title": "feat(cli): add --strip and --lto flags for smaller binaries",
+      "status": "merged",
+      "url": "https://github.com/wangnaihe/w3cos/pull/24",
+      "created": "2026-03-17",
+      "updated": "2026-03-17",
+      "merged_at": "2026-03-17"
+    },
+    {
+      "repo": "wangnaihe/w3cos",
+      "pr": 23,
+      "title": "test(runtime): add 20 comprehensive layout tests",
+      "status": "merged",
+      "url": "https://github.com/wangnaihe/w3cos/pull/23",
+      "created": "2026-03-17",
+      "updated": "2026-03-17",
+      "merged_at": "2026-03-17"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 2205,
+      "title": "[BOUNTY] Add unit tests for star_tracker.py",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2205",
+      "created": "2026-03-17",
+      "updated": "2026-03-17",
+      "merged_at": "2026-03-17"
+    },
+    {
+      "repo": "wangnaihe/w3cos",
+      "pr": 9,
+      "title": "feat(animation): implement CSS transition animation engine",
+      "status": "closed",
+      "url": "https://github.com/wangnaihe/w3cos/pull/9",
+      "created": "2026-03-17",
+      "updated": "2026-03-18",
+      "merged_at": null
+    },
+    {
+      "repo": "wangnaihe/w3cos",
+      "pr": 8,
+      "title": "feat(examples): add 5 new example applications",
+      "status": "closed",
+      "url": "https://github.com/wangnaihe/w3cos/pull/8",
+      "created": "2026-03-17",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "wangnaihe/w3cos",
+      "pr": 7,
+      "title": "feat: Add w3cos init scaffolding command",
+      "status": "closed",
+      "url": "https://github.com/wangnaihe/w3cos/pull/7",
+      "created": "2026-03-17",
+      "updated": "2026-03-22",
+      "merged_at": null
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 3468,
+      "title": "[CLAIM] PR #2867 - Security Audit",
+      "status": "open",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/issues/3468",
+      "created": "2026-04-23",
+      "bounty": "2 RTC",
+      "payment_note": "Claim Issue 已创建，等待付款"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 3070,
+      "title": "UTXO Red Team Findings (350 RTC)",
+      "status": "open",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/issues/3070",
+      "created": "2026-04-17",
+      "bounty": "350 RTC",
+      "payment_note": "Claim Issue 已创建，等待付款"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 6931,
+      "title": "[CLAIM] PR #2207 - Security Audit: Mining Reward Type Confusion (160 RTC)",
+      "status": "open",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/issues/6931",
+      "created": "2026-04-28",
+      "bounty": "160 RTC",
+      "payment_note": "Claim Issue 已创建 (2026-04-28)，等待付款",
+      "type": "claim"
+    },
+    {
+      "repo": "ubiquity-os/plugins-wishlist",
+      "pr": 93,
+      "title": "feat: command-plan Plugin - Bounty #78 ($600)",
+      "status": "open",
+      "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/93",
+      "created": "2026-04-28",
+      "updated": "2026-04-28",
+      "bounty": "$600",
+      "bounty_num": "78",
+      "payment_note": "已提交 PR，等待审核",
+      "payment_type": "USDC (Algora)"
+    }
+  ],
+  "lastTracked": "2026-04-30 03:31:13",
+  "lastOpenCount": 178,
+  "merged": [
+    {
+      "number": 7328,
+      "title": "Adversarial Steelman #1: Passport sybil attack vs biographical design layer",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7328",
+      "mergedAt": "2026-04-30T01:34:58Z"
+    },
+    {
+      "number": 7327,
+      "title": "Judge Packet #1: Rank 5 open claims",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7327",
+      "mergedAt": "2026-04-30T01:35:44Z"
+    },
+    {
+      "number": 7326,
+      "title": "Self-Audit: passport/passport_ledger.py — 3 findings",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7326",
+      "mergedAt": "2026-04-30T01:33:51Z"
+    }
+  ],
+  "recentlyMerged": [
+    {
+      "number": 7328,
+      "repo": "Scottcjn/rustchain-bounties",
+      "title": "Adversarial Steelman #1: Passport sybil attack",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7328",
+      "mergedAt": "2026-04-30T01:34:58Z",
+      "wallet": "RTC00a1347cc...claimed"
+    },
+    {
+      "number": 7327,
+      "repo": "Scottcjn/rustchain-bounties",
+      "title": "Judge Packet #1: Rank 5 open claims",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7327",
+      "mergedAt": "2026-04-30T01:35:44Z",
+      "wallet": "RTC00a1347cc...claimed"
+    },
+    {
+      "number": 7326,
+      "repo": "Scottcjn/rustchain-bounties",
+      "title": "Self-Audit: passport_ledger.py",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7326",
+      "mergedAt": "2026-04-30T01:33:51Z",
+      "wallet": "RTC00a1347cc...claimed"
+    }
+  ]
+}
