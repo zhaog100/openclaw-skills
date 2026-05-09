@@ -75,11 +75,27 @@ do_review() {
         esac
     done
     
+    # 根据模式确定回顾深度
+    local review_depth="full"
+    case "$mode" in
+        morning|am) review_depth="morning" ;;
+        full|evening) review_depth="full" ;;
+        auto)
+            # 自动判断当前时间
+            local hour=$(date +%H)
+            if [ "$hour" -ge 12 ] && [ "$hour" -lt 17 ]; then
+                review_depth="morning"
+            else
+                review_depth="full"
+            fi
+            ;;
+    esac
+    
     log_info "╔════════════════════════════════════════════════════════╗"
     log_info "║  定时回顾更新助手 v2.0 - 小米辣 (zhaog100)              ║"
     log_info "╠════════════════════════════════════════════════════════╣"
     log_info "║  日期：$date"
-    log_info "║  模式：$mode"
+    log_info "║  模式：$mode → $review_depth"
     log_info "║  身份：小米辣 🌶️ | GitHub: zhaog100"
     log_info "╚════════════════════════════════════════════════════════╝"
     
@@ -87,51 +103,84 @@ do_review() {
     update_daily_log_template "$date"
     
     local step=0
-    local total=7
-
-    # 1. 身份确认和工作区检查
-    step=$((step + 1))
-    log_info "🔍 步骤 $step/$total: 身份和工作区确认..."
-    confirm_identity "$date"
+    local total
     
-    # 2. PR状态监控
-    step=$((step + 1))
-    log_info "📊 步骤 $step/$total: PR状态监控..."
-    review_pr_status "$date"
-    
-    # 3. 财务状态汇总
-    step=$((step + 1))
-    log_info "💰 步骤 $step/$total: 财务状态汇总..."
-    review_financial_status "$date"
-    
-    # 4. 任务回顾
-    if [ "$CFG_FEATURE_TASK_REVIEW" = "true" ]; then
+    if [ "$review_depth" = "morning" ]; then
+        # 午间回顾（简短版）
+        total=4
+        
+        # 1. 身份确认和工作区检查
         step=$((step + 1))
-        log_info "📋 步骤 $step/$total: 今日任务回顾..."
-        review_tasks "$date"
-    fi
-
-    # 5. Git提交回顾
-    if [ "$CFG_FEATURE_GIT_REVIEW" = "true" ]; then
+        log_info "🔍 步骤 $step/$total: 身份和工作区确认..."
+        confirm_identity "$date"
+        
+        # 2. 上午任务完成情况
         step=$((step + 1))
-        log_info "💻 步骤 $step/$total: Git提交回顾..."
-        review_commits "$date"
-    fi
+        log_info "☀️ 步骤 $step/$total: 上午任务完成情况..."
+        review_morning_tasks "$date"
+        
+        # 3. Git提交（上午）
+        step=$((step + 1))
+        log_info "💻 步骤 $step/$total: Git提交（上午）..."
+        review_morning_commits "$date"
+        
+        # 4. 下午计划
+        step=$((step + 1))
+        log_info "🌤️ 步骤 $step/$total: 下午计划..."
+        review_afternoon_plan "$date"
+        
+        log_info "✅ 午间回顾完成！"
+        log_info ""
+        generate_morning_summary "$date"
+        
+    else
+        # 晚间回顾（完整版）
+        total=7
+        
+        # 1. 身份确认和工作区检查
+        step=$((step + 1))
+        log_info "🔍 步骤 $step/$total: 身份和工作区确认..."
+        confirm_identity "$date"
+        
+        # 2. PR状态监控
+        step=$((step + 1))
+        log_info "📊 步骤 $step/$total: PR状态监控..."
+        review_pr_status "$date"
+        
+        # 3. 财务状态汇总
+        step=$((step + 1))
+        log_info "💰 步骤 $step/$total: 财务状态汇总..."
+        review_financial_status "$date"
+        
+        # 4. 任务回顾
+        if [ "$CFG_FEATURE_TASK_REVIEW" = "true" ]; then
+            step=$((step + 1))
+            log_info "📋 步骤 $step/$total: 今日任务回顾..."
+            review_tasks "$date"
+        fi
 
-    # 6. 学习总结和经验教训
-    step=$((step + 1))
-    log_info "🎓 步骤 $step/$total: 学习总结和经验教训..."
-    review_learning_and_lessons "$date"
-    
-    # 7. 查漏补缺和MEMORY.md更新
-    step=$((step + 1))
-    log_info "🔄 步骤 $step/$total: 查漏补缺和MEMORY更新..."
-    review_gaps_and_update_memory "$date"
-    
-    log_info "✅ 回顾完成！"
-    log_info ""
-    log_info "📊 执行摘要："
-    generate_execution_summary "$date"
+        # 5. Git提交回顾
+        if [ "$CFG_FEATURE_GIT_REVIEW" = "true" ]; then
+            step=$((step + 1))
+            log_info "💻 步骤 $step/$total: Git提交回顾..."
+            review_commits "$date"
+        fi
+
+        # 6. 学习总结和经验教训
+        step=$((step + 1))
+        log_info "🎓 步骤 $step/$total: 学习总结和经验教训..."
+        review_learning_and_lessons "$date"
+        
+        # 7. 查漏补缺和MEMORY.md更新
+        step=$((step + 1))
+        log_info "🔄 步骤 $step/$total: 查漏补缺和MEMORY更新..."
+        review_gaps_and_update_memory "$date"
+        
+        log_info "✅ 晚间回顾完成！"
+        log_info ""
+        log_info "📊 执行摘要："
+        generate_execution_summary "$date"
+    fi
 }
 
 # 身份确认
@@ -480,6 +529,164 @@ update_today_summary_in_memory() {
         log_info "  ✅ 今日任务已记录"
     fi
 }
+
+# 上午任务完成情况
+# 上午任务完成情况
+review_morning_tasks() {
+    local date="$1"
+    local daily_log="$CFG_MEMORY_DIR/$date.md"
+    
+    log_info "  ☀️ 检查上午任务完成情况..."
+    
+    if [ -f "$daily_log" ]; then
+        # 检查上午章节
+        if grep -q "^### 上午" "$daily_log"; then
+            local morning_tasks=0
+            local completed_tasks=0
+            morning_tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\-" | tr -d '\n' || echo "0")
+            completed_tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\- \[x\]" | tr -d '\n' || echo "0")
+            log_info "  ✅ 上午任务: $completed_tasks / $morning_tasks 完成"
+            
+            # 列出完成的重点任务
+            if [ "$completed_tasks" -gt 0 ]; then
+                log_info "  📋 已完成任务："
+                grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep "^\- \[x\]" | head -5 | while read task; do
+                    log_info "    $task"
+                done
+            fi
+        else
+            log_warn "  ⚠️ 上午日志为空"
+        fi
+        
+        # 检查是否有未完成的任务
+        local pending_tasks=0
+        pending_tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\- \[ \]" | tr -d '\n' || echo "0")
+        if [ "$pending_tasks" -gt 0 ]; then
+            log_warn "  ⚠️ 有 $pending_tasks 个未完成的上午任务"
+        fi
+    else
+        log_warn "  ⚠️ 今日日志不存在"
+    fi
+}
+# 上午Git提交
+review_morning_commits() {
+    local date="$1"
+    
+    log_info "  💻 检查上午Git提交..."
+    
+    cd "$CFG_WORKSPACE" 2>/dev/null || return 1
+    
+    # 统计上午提交（06:00-12:00）
+    local morning_commits
+    morning_commits=$(git log --since="$date 06:00" --until="$date 12:00" --oneline 2>/dev/null | wc -l)
+    morning_commits=${morning_commits:-0}
+    log_info "  ✅ 上午提交: $morning_commits 个"
+    
+    # 列出上午的重要提交
+    if [ "$morning_commits" -gt 0 ]; then
+        log_info "  📋 上午提交："
+        git log --since="$date 06:00" --until="$date 12:00" --oneline 2>/dev/null | head -5 | while read commit; do
+            log_info "    - $commit"
+        done
+    fi
+    
+    # 检查未提交文件
+    local uncommitted=$(git status --porcelain 2>/dev/null | wc -l)
+    if [ "$uncommitted" -gt 0 ]; then
+        log_warn "  ⚠️ 有 $uncommitted 个未提交的文件"
+    else
+        log_info "  ✅ Git状态干净"
+    fi
+}
+
+# 下午计划
+review_afternoon_plan() {
+    local date="$1"
+    local daily_log="$CFG_MEMORY_DIR/$date.md"
+    
+    log_info "  🌤️ 检查下午计划..."
+    
+    if [ -f "$daily_log" ]; then
+        # 检查下午计划章节
+        if grep -q "^### 下午" "$daily_log"; then
+            local afternoon_tasks=0
+            afternoon_tasks=$(grep -A 10 "^### 下午" "$daily_log" 2>/dev/null | grep -c "^\\-" | tr -d '\n' || echo "0")
+            log_info "  📋 下午计划任务: $afternoon_tasks 个"
+            
+            # 列出下午要完成的任务
+            if [ "$afternoon_tasks" -gt 0 ]; then
+                log_info "  📝 待办任务："
+                grep -A 10 "^### 下午" "$daily_log" 2>/dev/null | grep "^\-" | head -5 | while read task; do
+                    log_info "    $task"
+                done
+            fi
+        else
+            log_warn "  ⚠️ 下午计划为空"
+            log_info "  💡 建议：添加下午待办任务到日志"
+        fi
+        
+        # 检查明日计划
+        if grep -q "^## 🎯 明日计划" "$daily_log"; then
+            log_info "  📅 明日计划已制定"
+        else
+            log_info "  💡 建议：考虑制定明日计划"
+        fi
+    else
+        log_warn "  ⚠️ 今日日志不存在"
+    fi
+}
+
+# 生成午间回顾摘要
+generate_morning_summary() {
+    local date="$1"
+    local daily_log="$CFG_MEMORY_DIR/$date.md"
+    
+    log_info "╔════════════════════════════════════════════════════════╗"
+    log_info "║  午间回顾摘要                                         ║"
+    log_info "╚════════════════════════════════════════════════════════╝"
+    
+    # 上午任务完成情况
+    local morning_tasks=0
+    local completed_tasks=0
+    if [ -f "$daily_log" ]; then
+        morning_tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\\-" | tr -d '\n' || echo "0")
+        completed_tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\\- \\[x\\]" | tr -d '\n' || echo "0")
+    fi
+    log_info "☀️ 上午任务: $completed_tasks / $morning_tasks 完成"
+    
+    # Git提交
+    local commits
+    commits=$(cd "$CFG_WORKSPACE" && git log --since="$date 06:00" --until="$date 12:00" --oneline 2>/dev/null | wc -l)
+    commits=${commits:-0}
+    log_info "💻 上午提交: $commits 个"
+    
+    # 下午重点
+    log_info ""
+    log_info "🌤️ 下午重点："
+    if [ -f "$daily_log" ]; then
+        local afternoon_items
+        afternoon_items=$(grep -A 10 "^### 下午" "$daily_log" 2>/dev/null | grep "^\\-" | head -3)
+        if [ -n "$afternoon_items" ]; then
+            echo "$afternoon_items" | while read item; do
+                log_info "  $item"
+            done
+        else
+            log_info "  📝 请添加下午待办事项"
+        fi
+    else
+        log_info "  📝 请添加下午待办事项"
+    fi
+    
+    log_info ""
+    log_info "⏰ 提醒：晚间回顾将于 23:50 自动执行"
+    
+    # 推送通知到QQ Bot
+    if [ "$CFG_NOTIFY_QQBOT" = "true" ] && [ -n "$CFG_QQBOT_ID" ]; then
+        local summary="午间回顾 ☀️ | 上午任务: $completed_tasks/$morning_tasks | Git: $commits"
+        log_info "📡 推送通知到QQ Bot: $summary"
+    fi
+}
+
 
 # 生成执行摘要
 generate_execution_summary() {
