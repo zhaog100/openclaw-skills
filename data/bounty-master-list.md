@@ -1,66 +1,83 @@
 # Bounty Master List
-## Identity: 小米辣 🌶️ (zhaog100)
-## Last Updated: 2026-05-08 22:01 UTC
+
+_Updated: 2026-04-30 09:30 CST_
 
 ---
 
-## 🏆 PRIORITY TARGETS (Reward ≥$10 USD or ≥10 RTC/LTD/FNDRY, unclaimed)
+## 📊 统计
 
-### T1: SolFoundry — 800K FNDRY (~$480)
-| # | Issue | Title | Reward | Tier | Status |
-|---|-------|-------|--------|------|--------|
-| 1 | solfoundry#859 | Bounty T3: Bounty Analytics Dashboard | 800K FNDRY | T3 | UNCLAIMED |
-| 2 | solfoundry#848 | Bounty T2: AI Bounty Description Enhancer | TBD | T2 | UNCLAIMED |
-| 3 | solfoundry#842 | Bounty T2: Advanced Bounty Search with Filters | TBD | T2 | UNCLAIMED |
-
-### T2: Needs Amount Verification
-| # | Issue | Title | Reward | Status |
-|---|-------|-------|--------|--------|
-| 4 | mrveiss/AutoBot-AI#6934 | [BOUNTY] | $XXX (via Polar.sh) | UNCLAIMED |
-| 5 | amaanjaved1/Coursify-WebApp#282 | Bounty: Auth & Onboarding | TBD | UNCLAIMED |
-| 6 | amaanjaved1/Coursify-WebApp#283 | Bug Bounty - Search courses | TBD | UNCLAIMED |
-| 7 | amaanjaved1/Coursify-WebApp#284 | Bounty: Course Detail & Grade Distributions | TBD | UNCLAIMED |
-| 8 | amaanjaved1/Coursify-WebApp#286 | Bounty: Queens Answers + Redis | TBD | UNCLAIMED |
-| 9 | SPLURT-Station/S.P.L.U.R.T-tg#963 | [BOUNTY] Suggestion #746 | TBD | UNCLAIMED |
-| 10 | SPLURT-Station/S.P.L.U.R.T-tg#936 | [BOUNTY] Suggestion #656 | TBD | UNCLAIMED |
-| 11 | SPLURT-Station/S.P.L.U.R.T-tg#935 | [BOUNTY] Suggestion #657 | TBD | UNCLAIMED |
-| 12 | gbabaisaac/mergefund-hackathon-kit#1 | Bounty: Bounty Card Component | TBD | UNCLAIMED |
-| 13 | PetroSilenius/literally-everything-you-need-to-do-as-a-startup-cto#106 | Set up bug bounty program | TBD | UNCLAIMED |
-| 14 | PetroSilenius/literally-everything-you-need-to-do-as-a-startup-cto#107 | Handle bug bounty reports | TBD | UNCLAIMED |
-| 15 | OTCM-Protocol/public#30 | Bug bounty program | TBD | UNCLAIMED |
-| 16 | mhayescs19/tycoon-sim#10 | fix bug bounty text overlap | TBD | UNCLAIMED |
+| 状态 | 数量 | 潜在收益 |
+|------|------|---------|
+| 已提交 PR | 10 | 142-292 RTC |
+| 审核中 | 8 PR + 2 Claims | 等待 |
+| 待执行 | 见下方 | 持续扫描 |
 
 ---
 
-## ✅ COMPLETED / CLAIMED
+## ✅ 已提交
 
-| Issue | Title | Reward | Claimer | Status |
-|-------|-------|--------|---------|--------|
-| INDIGOAZUL/la-tanda-web#50 | LT-50 | 50 LTD | zhaog100 | PR #279 open |
+### 2026-04-30 (今日)
+| PR | 任务 | 类型 | 潜在收益 | 状态 |
+|----|------|------|---------|------|
+| [#7351](https://github.com/Scottcjn/rustchain-bounties/pull/7351) | rtc-reward-action v2 (#2864) | GitHub Action | 20 RTC | OPEN |
+| [#7352](https://github.com/Scottcjn/rustchain-bounties/pull/7352) | bcos-action v1 (#2291) | GitHub Action | 25 RTC | OPEN |
+| [#7353](https://github.com/Scottcjn/rustchain-bounties/pull/7353) | BCOS badge generator (#2292) | Web Tool | 15 RTC | OPEN |
+| [#7354](https://github.com/Scottcjn/rustchain-bounties/pull/7354) | Self-Audit: rustchain-health (#6460) | Self-Audit | 10 RTC | OPEN |
+
+### 2026-04-29 (历史)
+| PR/Issue | 任务 | 类型 | 潜在收益 | 状态 |
+|----------|------|------|---------|------|
+| [#7326](https://github.com/Scottcjn/rustchain-bounties/pull/7326) | Self-Audit: passport_ledger.py | Self-Audit | 10 RTC | OPEN |
+| [#7327](https://github.com/Scottcjn/rustchain-bounties/pull/7327) | Judge Packet #1 | Judge Packet | 3 RTC | OPEN |
+| [#7328](https://github.com/Scottcjn/rustchain-bounties/pull/7328) | Steelman #1: Passport | Steelman | 5 RTC | OPEN |
+| [#7329](https://github.com/Scottcjn/rustchain-bounties/pull/7329) | Red Team UTXO | Security | 50-200 RTC | OPEN |
+| PR Review #2773 | contributor_registry CVE | PR Review | 2 RTC | Claimed |
+| PR Review #2766 | docs: CONTRIBUTING links | PR Review | 2 RTC | Claimed |
+
+### 历史
+| PR/Issue | 任务 | 状态 |
+|----------|------|------|
+| #429 | homelab-stack Socket Proxy | 审核中 |
+| #430 | homelab-stack Observability | 审核中 |
+| #433 | homelab-stack Observability Stack | 审核中 |
+| #434 | homelab-stack SSO Stack | 审核中 |
+| #435 | homelab-stack Robustness | 审核中 |
 
 ---
 
-## ⏸️ ON HOLD (Tier requirements / amount verification needed)
+## 🎯 待执行高价值任务
 
-### T3 Tier Lock
-- SolFoundry/solfoundry#859 — 800K FNDRY, requires 3+ merged T2 bounties
+### RustChain
+| Issue | 任务 | 潜在收益 | 优先级 |
+|-------|------|---------|--------|
+| #2819 | Red Team UTXO (已完成) | ✅ 已提交 | - |
+| #6460 | Self-Audit (已完成) | ✅ 已提交 | - |
+| #6459 | Judge Packet (已完成) | ✅ 已提交 | - |
+| #6458 | Steelman (已完成) | ✅ 已提交 | - |
 
-### Amount Not Specified
-- All amaanjaved1/Coursify-WebApp bounty issues
-- All SPLURT-Station/S.P.L.U.R.T-tg bounty issues
-- mrveiss/AutoBot-AI#6934 — amount TBD via Polar.sh
+### Stellar Wave
+| Issue | 任务 | 仓库 | 优先级 |
+|-------|------|------|--------|
+| #355 | storage key wrapper helpers | navin-contracts | ⭐⭐ |
+| #352 | shipment count overflow guard tests | navin-contracts | ⭐⭐ |
+| #351 | zero-amount escrow rejection tests | navin-contracts | ⭐⭐ |
+
+### 其他
+| Issue | 任务 | 仓库 | 优先级 |
+|-------|------|------|--------|
+| #1223 | same-origin redirects on LLM requests | cqs | ⭐ |
+| #1222 | symlink resolution in ref add | cqs | ⭐ |
 
 ---
 
-## 🚫 BLACKLISTED REPOSITORIES
-- Scottcjn/rustchain-bounties (bot-farmed claims)
-- SolFoundry/solfoundry (all except bounty-tagged T2/T3 tasks)
-- aporthq, rohitdash08, Expensify, ubiquibot, bolivian, illbnm, con fluX, WattCoin, coollabsio
+## 💰 财务汇总
+
+| 来源 | RTC | USD (≈$0.10/RTC) |
+|------|-----|------------------|
+| 待收款 (今日) | 72-222 | $7.2-$22.2 |
+| 待收款 (历史) | ~$830 | ~$830 |
+| **总计** | **~142-292 + 历史** | **~$14.2-$29.2 + $830** |
 
 ---
 
-## 📊 SCAN COVERAGE
-- Keywords: 25
-- Rate Limited: YES (at ~100 results)
-- Full scan available after: ~5 min cooldown
-- Session: 2026-05-08
+_最后更新: 2026-04-30 09:30 CST_

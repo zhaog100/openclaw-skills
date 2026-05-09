@@ -1,90 +1,87 @@
-# Bounty Known Issues — Deduplication List
-# Last Updated: 2026-05-08 2:01 PM (Asia/Hong_Kong)
-# Format: repo#number
+ANAVHEOBA/PrivacyLayer##40
+Cap-go/capgo#1667
+Inferara/soroban-security-portal##111
+OWASP-BLT/BLT-Lettuce##84
+OWASP-BLT/BLT-Sammich##64
+PX4/PX4-Autopilot#22464
+QuantumSavory/QuantumSavory.jl#129
+SPLURT-Station/S.P.L.U.R.T-tg#891
+Smartdevs17/stellarlend##54
+Stellar-Trust-Escrow/stellar-trust-escrow##526
+StellarState/SS-contracts##37
+Suncrest-Labs/nester##185
+The-Pantseller/StarEscrow##13
+Tyaoo/picker##1326
+ace-step/ACE-Step-1.5##168
+anthropics/claude-code##2142
+archestra-ai/archestra#3378
+bartervg/barter.vg#299
+brave/brave-browser##7200
+calcom/cal.com##5756
+chatmcp/mcpso##1
+claude-builders-bounty/claude-builders-bounty#1
+claude-builders-bounty/claude-builders-bounty#2
+claude-builders-bounty/claude-builders-bounty#3
+claude-builders-bounty/claude-builders-bounty#4
+claude-builders-bounty/claude-builders-bounty#5
+deepseek-ai/DeepSeek-V3##1059
+deskflow/deskflow#8031
+deskflow/deskflow#8032
+dotnet/sdk##52732
+dotnet/sdk##53563
+dotnet/sdk##53606
+duanyytop/agents-radar##286
+etherisc/depeg-contracts#31
+etherisc/registry-contracts#2
+filecoin-project/devgrants##2067
+go-gitea/gitea#24635
+golemcloud/golem-cli#275
+imjuya/juya-ai-daily##40
+keephq/keep##2112
+kellymusk/Aframp-backend##211
+mantiqjs/mantiq#200
+mantiqjs/mantiq#201
+mantiqjs/mantiq#206
+mantiqjs/mantiq#208
+milah-247/Nova-Rewards##283
+projectdiscovery/nuclei#5567
+projectdiscovery/nuclei#5838
+projectdiscovery/nuclei#6398
+projectdiscovery/nuclei#6403
+qdrant/qdrant#3322
+qojulia/QuantumOptics.jl#407
+zed-industries/zed#4440
+zio/izumi-reflect#481
+zio/zio#9356
+zio/zio#9877
+zio/zio#9878
+zio/zio-blocks#519
+zio/zio-http#3472https://github.com/runveil-io/core/issues/26
+https://github.com/runveil-io/core/issues/25
+https://github.com/runveil-io/core/issues/24
+https://github.com/runveil-io/core/issues/23
+https://github.com/runveil-io/core/issues/22
+https://github.com/runveil-io/core/issues/10
+https://github.com/runveil-io/core/issues/8
+https://github.com/runveil-io/core/issues/7
+https://github.com/runveil-io/core/issues/4
+https://github.com/runveil-io/core/issues/3
+https://github.com/tenstorrent/tt-metal/issues/41030
+https://github.com/tenstorrent/tt-metal/issues/41029
+https://github.com/tenstorrent/tt-metal/issues/41028
+https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/923
+https://github.com/prasenjeet-symon/shipli-ai/issues/4
+https://github.com/prasenjeet-symon/shipli-ai/issues/3
+https://github.com/prasenjeet-symon/shipli-ai/issues/2
+https://github.com/prasenjeet-symon/shipli-ai/issues/1
+https://github.com/Conxian/conxius-platform/issues/210
+https://github.com/Conxian/conxius-platform/issues/206
+https://github.com/Conxian/conxius-platform/issues/139
+https://github.com/Conxian/conxius-platform/issues/111
+https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/918
+https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/915
 
-# SolFoundry (FNDRY tokens) - claims tasks only, don't submit PRs directly
-# (all open bounties now have PRs in progress — no unclaimed remains)
-SolFoundry/solfoundry#826
-SolFoundry/solfoundry#823
-SolFoundry/solfoundry#838
-SolFoundry/solfoundry#842
-SolFoundry/solfoundry#848
-SolFoundry/solfoundry#851
-SolFoundry/solfoundry#847
-SolFoundry/solfoundry#853
-SolFoundry/solfoundry#840
-SolFoundry/solfoundry#854
-SolFoundry/solfoundry#859
-SolFoundry/solfoundry#861
-
-# Other platforms - duplicates or resolved
-boundlessfi/bounties#181
-langchain-ai/langchain#36952
-HHS/simpler-grants-gov#10079
-1Hive/honeyswap-interface#97
-HellWatcher/honksquad-ss14#131
-
-# Claimed/Completed - keep for reference
-# LT-50 (INDIGOAZUL/la-tanda-web#50) — PR #279 open, zhaog100
-INDIGOAZUL/la-tanda-web#50
-
-# RustChain - archived/no bounty payment
-Scottcjn/rustchain-bounties
-
-# Bot prevention
-aporthq
-rohitdash08
-Expensify
-ubiquibot
-bolivan
-illbnm
-conflux
-WattCoin
-coollabsio
-Scottcjn
-rustchain
-
-# Sub-threshold (≥10 LTD but <50 LTD typical tier-0 min)
-INDIGOAZUL/la-tanda-web#155
-
-# illbnm/homelab-stack#504 - $300 USDT bounty claimed by multiple users
-illbnm/homelab-stack#504
-
-# claude-builders-bounty - all open, no assignees (scan 2026-05-08)
-claude-builders-bounty#1
-claude-builders-bounty#2
-claude-builders-bounty#3
-claude-builders-bounty#4
-claude-builders-bounty#5
-
-# claude-builders-bounty - all issues have active PRs, no open remain
-claude-builders-bounty#1
-claude-builders-bounty#2
-claude-builders-bounty#3
-claude-builders-bounty#4
-
-# commaai/flash - $100 video walkthrough (NEW 2026-05-08)
-commaai/flash#128
-
-# moorcheh-ai/memanto - $100 CrewAI+Memanto integration (NEW 2026-05-08)
-moorcheh-ai/memanto#37
-
-# thesysdev/openui-creator-program - written content bounties (NEW 2026-05-08)
-# skip #1 (assigned shogun444)
-thesysdev/openui-creator-program#3
-thesysdev/openui-creator-program#4
-thesysdev/openui-creator-program#5
-thesysdev/openui-creator-program#6
-
-# lihaoyi/test - LY-1219 COMPLETED by HuiNeng6 (PR#223 merged, $200 paid)
-lihaoyi/test#1219
-lihaoyi/test#894
-lihaoyi/test#819
-lihaoyi/test#728
-
-# Sub-$10 threshold
-watney-ai/open-source-bounties#1
-
-# New claims 2026-05-09 (bounty-scan-gh cron)
-Henry00IS/ShapeEditor#3
-Henry00IS/ShapeEditor#17
+# 2026-04-29 已处理
+Scottcjn/rustchain-bounties#6460
+Scottcjn/rustchain-bounties#6459
+Scottcjn/rustchain-bounties#6458
