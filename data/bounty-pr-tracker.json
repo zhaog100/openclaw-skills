@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-05-09T11:30:00Z",
-  "totalPRs": 450,
+  "lastUpdated": "2026-05-09T15:04:00Z",
+  "totalPRs": 452,
   "summary": {
     "open": 155,
-    "closed": 295
+    "closed": 276
   },
   "prs": [
     {
@@ -300,10 +300,10 @@
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 3097,
       "title": "Add RustChain Sea Shanty Submission (xiaomili)",
-      "status": "open",
+      "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/3097",
       "created": "2026-04-20",
-      "updated": "2026-04-26",
+      "updated": "2026-04-30",
       "merged_at": null
     },
     {
@@ -1232,13 +1232,25 @@
       "repo": "ubiquity-os/permit-generation",
       "pr": 125,
       "title": "feat: Automatic Transfer - Bounty #6 ($600)",
-      "status": "open",
+      "status": "closed",
       "url": "https://github.com/ubiquity-os/permit-generation/pull/125",
       "created": "2026-04-09",
-      "updated": "2026-04-28",
+      "updated": "2026-05-09T06:30:21Z",
       "merged_at": null,
-      "payment_note": "已修复 CodeRabbit 意见 (2026-04-28)，等待重新审查",
-      "bounty": "$600"
+      "payment_note": "已关闭 (2026-05-09)，CodeRabbit 最后审查 (2026-05-08) 要求修复 Critical 问题"
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "pr": 4101,
+      "title": "[UTXO-BUG] Race condition and TOCTOU test cases for #2819",
+      "status": "open",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/4101",
+      "created": "2026-05-08",
+      "updated": "2026-05-08T14:12:52Z",
+      "merged_at": null,
+      "labels": ["BCOS-L1", "size/L", "node"],
+      "bounty": "待确认",
+      "review_status": "4 条评论 (rockytian-top, fengqiankun6-sudo)，无 CHANGES_REQUESTED"
     },
     {
       "repo": "ubiquity-os-marketplace/text-conversation-rewards",
