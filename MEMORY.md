@@ -91,11 +91,35 @@ _持续更新，记录重要信息_
   - 🔴 Critical: operatorFeePercent validation 仍 throw 而非返回 failed-results
   - 🔴 Critical: Setup 失败路径对 ERC721 permit 可能 NPE
   - 🟠 Major: wait() 无 timeout - 交易卡住会阻塞整个 batch
+  - 📝 状态: CodeRabbit review paused (branch under active development)
 
 ### PR 清单重构
 - ✅ 统一为单表格式
 - ✅ 新增 Currency + Address 列
-- ✅ 重大更新: 295-277 PR全关，la-tanda-web 不收外部贡献
+- ⚠️ 重大发现 (2026-05-09): la-tanda-web 19个PR（295-277）全部CLOSED
+  - 结论: 项目不接受外部贡献者，停止对该项目的投入
+  - 影响: 之前认领的 #267/#268/#269 等高价值任务无法完成
+
+---
+
+## ⚠️ 2026-05-09 重大发现
+
+### la-tanda-web 项目关闭 ❌
+- **事件**: 19个PR（295-277）全部CLOSED
+- **结论**: 项目不接受外部贡献者
+- **影响**: 之前认领的 #267/#268/#269 等高价值任务（总计2500 LTD）无法完成
+- **教训**: 项目选择必须验证是否接受外部贡献
+
+### PR #125 状态更新
+- CodeRabbit review paused (branch under active development)
+- 3条评论仍待处理但暂停审查
+- 双付漏洞 fix 在 fork (mesiyoq965-sudo/permit-generation:fix/pr125-final)
+
+### RustChain 催款状态
+- #6931: 25 RTC claim关闭（Scottcjn说已打？）
+- #7234: 50-75 RTC claim关闭（需澄清）
+- #7235: PR未合并，不能claim
+- ⏳ 等待 Scottcjn 回复
 
 ---
 
@@ -140,12 +164,12 @@ _持续更新，记录重要信息_
 
 ## 🧠 重要经验教训
 
-### Bounty项目选择（2026-05-08）⚠️
+### Bounty项目选择（2026-05-09）⚠️
 1. **不是所有bounty都会付款** - 494个PR，27个merged，80个claim，**实际付款≈0**
 2. **RustChain（Scottcjn）**: 承诺160 RTC实际给25 RTC，3个认领全closed ❌
-3. **la-tanda-web**: 不接受外部贡献者，6个PR全部被关闭 ❌
-4. **推荐标准**: 有支付记录 + 维护者响应积极 + 项目活跃
-5. **教训**: 项目选择比努力更重要，不要相信承诺要看实际支付记录
+3. **la-tanda-web**: 19个PR全部被关闭，不接受外部贡献者 ❌
+4. **推荐标准**: 有支付记录 + 维护者响应积极 + 项目活跃 + 接受外部贡献
+5. **教训**: 项目选择比努力更重要，不要相信承诺要看实际支付记录，必须先验证项目政策
 
 ### 模型配置（2026-04-28）
 1. **OpenClaw三层配置**: openclaw.json (primary) + models.json (provider) + auth-profiles.json (API key)
@@ -201,16 +225,19 @@ _持续更新，记录重要信息_
 | 索引重建 | memory/knowledge/data INDEX.md |
 | 磁盘使用 | 30% → 18% |
 
-### RustChain PR 状态 (2026-05-06)
+### RustChain PR 状态 (2026-05-09)
 - #2207: merged ✅ → Claim #6931 (160 RTC, closed)
 - #2165: merged ✅ → Claim #7234 (closed)
 - #2205: merged ✅ → Claim #7235 (closed)
+- #4101: OPEN, pending_review, 等BCOS标签
 - #7339/#7326-#7329/#7368-#7369: 待认领
+- ⚠️ 付款问题: 承诺160 RTC实际给25 RTC，需跟进
 
-### Open PRs 统计 (2026-05-06)
+### Open PRs 统计 (2026-05-09)
 - **总计**: 76 个 Open / 124 个 Closed (200+ total)
 - **高价值**: homelab-stack(9/$1,110+), ubiquity-os(9/$2,175+), claude-builders-bounty(10/$600+)
 - **RustChain待认领**: 60+ closed PRs 可申请 bounty
+- **项目状态**: la-tanda-web 关闭（19 PRs CLOSED）❌
 
 ---
 
@@ -234,16 +261,18 @@ _持续更新，记录重要信息_
 
 ---
 
-_最后更新: 2026-05-09 05:08 HKT_
+_最后更新: 2026-05-09 08:08 HKT_
 
 ---
 
 ### la-tanda-web Bounty PRs (2026-05-07)
+**⚠️ 重要更新 (2026-05-09)**: 19个PR（295-277）全部CLOSED，项目不接受外部贡献者 ❌
+
 | PR # | Issue | 分支 | 状态 |
 |------|-------|------|------|
-| #282 | #268 Notification Center内联操作 | feature/notification-center-improvements | OPEN |
-| #283 | #89 Chain Explorer搜索+详情 | feature/chain-explorer-enhancements | OPEN |
-| #284 | #85 Accessibility Audit修复 | feature/accessibility-audit | OPEN |
+| #282 | #268 Notification Center内联操作 | feature/notification-center-improvements | CLOSED ❌ |
+| #283 | #89 Chain Explorer搜索+详情 | feature/chain-explorer-enhancements | CLOSED ❌ |
+| #284 | #85 Accessibility Audit修复 | feature/accessibility-audit | CLOSED ❌ |
 
 ### la-tanda-web 验证问题已回答
 - **#84** (Theme Toggle): --bg-primary=#0f172a, components-loader.js+design-tokens.css
@@ -339,6 +368,7 @@ _最后更新: 2026-05-09 05:08 HKT_
 1. `git remote -v` 确认仓库地址
 2. `git log origin/master --oneline | head -3` 确认将要推送的内容
 3. origin = 个人文件, skills = 技能文件
+4. **项目验证**: 确认项目接受外部贡献者（la-tanda-web 教训）
 
 ---
 
