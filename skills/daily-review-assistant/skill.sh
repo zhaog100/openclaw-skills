@@ -95,7 +95,7 @@ do_review() {
     log_info "║  定时回顾更新助手 v2.0 - 小米辣 (zhaog100)              ║"
     log_info "╠════════════════════════════════════════════════════════╣"
     log_info "║  日期：$date"
-    log_info "║  模式：$mode → $review_depth"
+    log_info "║  模式：午间/晚间 回顾 ($review_depth)"
     log_info "║  身份：小米辣 🌶️ | GitHub: zhaog100"
     log_info "╚════════════════════════════════════════════════════════╝"
     
@@ -103,84 +103,51 @@ do_review() {
     update_daily_log_template "$date"
     
     local step=0
-    local total
+    local total=7
     
-    if [ "$review_depth" = "morning" ]; then
-        # 午间回顾（简短版）
-        total=4
-        
-        # 1. 身份确认和工作区检查
+    # 1. 身份确认和工作区检查
+    step=$((step + 1))
+    log_info "🔍 步骤 $step/$total: 身份和工作区确认..."
+    confirm_identity "$date"
+    
+    # 2. PR状态监控
+    step=$((step + 1))
+    log_info "📊 步骤 $step/$total: PR状态监控..."
+    review_pr_status "$date" "$review_depth"
+    
+    # 3. 财务状态汇总
+    step=$((step + 1))
+    log_info "💰 步骤 $step/$total: 财务状态汇总..."
+    review_financial_status "$date" "$review_depth"
+    
+    # 4. 任务回顾
+    if [ "$CFG_FEATURE_TASK_REVIEW" = "true" ]; then
         step=$((step + 1))
-        log_info "🔍 步骤 $step/$total: 身份和工作区确认..."
-        confirm_identity "$date"
-        
-        # 2. 上午任务完成情况
-        step=$((step + 1))
-        log_info "☀️ 步骤 $step/$total: 上午任务完成情况..."
-        review_morning_tasks "$date"
-        
-        # 3. Git提交（上午）
-        step=$((step + 1))
-        log_info "💻 步骤 $step/$total: Git提交（上午）..."
-        review_morning_commits "$date"
-        
-        # 4. 下午计划
-        step=$((step + 1))
-        log_info "🌤️ 步骤 $step/$total: 下午计划..."
-        review_afternoon_plan "$date"
-        
-        log_info "✅ 午间回顾完成！"
-        log_info ""
-        generate_morning_summary "$date"
-        
-    else
-        # 晚间回顾（完整版）
-        total=7
-        
-        # 1. 身份确认和工作区检查
-        step=$((step + 1))
-        log_info "🔍 步骤 $step/$total: 身份和工作区确认..."
-        confirm_identity "$date"
-        
-        # 2. PR状态监控
-        step=$((step + 1))
-        log_info "📊 步骤 $step/$total: PR状态监控..."
-        review_pr_status "$date"
-        
-        # 3. 财务状态汇总
-        step=$((step + 1))
-        log_info "💰 步骤 $step/$total: 财务状态汇总..."
-        review_financial_status "$date"
-        
-        # 4. 任务回顾
-        if [ "$CFG_FEATURE_TASK_REVIEW" = "true" ]; then
-            step=$((step + 1))
-            log_info "📋 步骤 $step/$total: 今日任务回顾..."
-            review_tasks "$date"
-        fi
-
-        # 5. Git提交回顾
-        if [ "$CFG_FEATURE_GIT_REVIEW" = "true" ]; then
-            step=$((step + 1))
-            log_info "💻 步骤 $step/$total: Git提交回顾..."
-            review_commits "$date"
-        fi
-
-        # 6. 学习总结和经验教训
-        step=$((step + 1))
-        log_info "🎓 步骤 $step/$total: 学习总结和经验教训..."
-        review_learning_and_lessons "$date"
-        
-        # 7. 查漏补缺和MEMORY.md更新
-        step=$((step + 1))
-        log_info "🔄 步骤 $step/$total: 查漏补缺和MEMORY更新..."
-        review_gaps_and_update_memory "$date"
-        
-        log_info "✅ 晚间回顾完成！"
-        log_info ""
-        log_info "📊 执行摘要："
-        generate_execution_summary "$date"
+        log_info "📋 步骤 $step/$total: 今日任务回顾..."
+        review_tasks "$date" "$review_depth"
     fi
+
+    # 5. Git提交回顾
+    if [ "$CFG_FEATURE_GIT_REVIEW" = "true" ]; then
+        step=$((step + 1))
+        log_info "💻 步骤 $step/$total: Git提交回顾..."
+        review_commits "$date" "$review_depth"
+    fi
+
+    # 6. 学习总结和经验教训
+    step=$((step + 1))
+    log_info "🎓 步骤 $step/$total: 学习总结和经验教训..."
+    review_learning_and_lessons "$date" "$review_depth"
+    
+    # 7. 查漏补缺和MEMORY.md更新
+    step=$((step + 1))
+    log_info "🔄 步骤 $step/$total: 查漏补缺和MEMORY更新..."
+    review_gaps_and_update_memory "$date" "$review_depth"
+    
+    log_info "✅ ${review_depth}回顾完成！"
+    log_info ""
+    log_info "📊 执行摘要："
+    generate_execution_summary "$date" "$review_depth"
 }
 
 # 身份确认
@@ -194,33 +161,49 @@ confirm_identity() {
 # 任务回顾
 review_tasks() {
     local date="$1"
+    local time_range="${2:-full}"
     local daily_log="$CFG_MEMORY_DIR/$date.md"
     
     log_info "  📋 检查今日任务完成情况..."
     
     if [ -f "$daily_log" ]; then
-        local tasks=$(grep -c "^\- \[x\]" "$daily_log" 2>/dev/null || echo "0")
-        log_info "  ✅ 已完成任务: $tasks 个"
-        
-        # 统计任务完成情况
-        local total_tasks=$(grep -c "^\- \[\?\]" "$daily_log" 2>/dev/null || echo "0")
-        local pending_tasks=$(grep -c "^\- \[ \]" "$daily_log" 2>/dev/null || echo "0")
-        
-        log_info "  📊 任务统计：完成 $tasks | 待处理 $pending_tasks"
-        
-        # 列出重要任务
-        if grep -q "^### 上午" "$daily_log"; then
-            log_info "  ☀️ 上午任务："
-            grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep "^\-" | head -5 | while read task; do
-                log_info "    $task"
-            done
-        fi
-        
-        if grep -q "^### 下午" "$daily_log"; then
-            log_info "  🌤️ 下午任务："
-            grep -A 10 "^### 下午" "$daily_log" 2>/dev/null | grep "^\-" | head -5 | while read task; do
-                log_info "    $task"
-            done
+        # 根据时间范围过滤任务
+        if [ "$time_range" = "morning" ]; then
+            log_info "  ☀️ 仅统计上午任务"
+            local tasks
+            tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\\- \\[x\\]" | tr -d '\n' || echo "0")
+            tasks=${tasks:-0}
+            local total_tasks
+            total_tasks=$(grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep -c "^\\-" | tr -d '\n' || echo "0")
+            total_tasks=${total_tasks:-0}
+            log_info "  ✅ 上午任务: $tasks / $total_tasks 完成"
+            
+            if [ "$tasks" -gt 0 ]; then
+                log_info "  📋 已完成上午任务："
+                grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep "^\\- \\[x\\]" | head -5 | while read task; do
+                    log_info "    $task"
+                done
+            fi
+        else
+            local tasks
+            tasks=$(grep -c "^\\- \\[x\\]" "$daily_log" 2>/dev/null | tr -d '\n' || echo "0")
+            tasks=${tasks:-0}
+            log_info "  ✅ 全天任务: $tasks 个完成"
+            
+            # 列出上午和下午任务
+            if grep -q "^### 上午" "$daily_log"; then
+                log_info "  ☀️ 上午任务："
+                grep -A 10 "^### 上午" "$daily_log" 2>/dev/null | grep "^\\-" | head -5 | while read task; do
+                    log_info "    $task"
+                done
+            fi
+            
+            if grep -q "^### 下午" "$daily_log"; then
+                log_info "  🌤️ 下午任务："
+                grep -A 10 "^### 下午" "$daily_log" 2>/dev/null | grep "^\\-" | head -5 | while read task; do
+                    log_info "    $task"
+                done
+            fi
         fi
     else
         log_warn "  ⚠️ 今日日志不存在"
@@ -230,20 +213,32 @@ review_tasks() {
 # Git提交回顾
 review_commits() {
     local date="$1"
+    local time_range="${2:-full}"
     local daily_log="$CFG_MEMORY_DIR/$date.md"
     
     log_info "  💻 检查Git提交..."
     
     cd "$CFG_WORKSPACE" 2>/dev/null || return 1
     
-    # 统计今日提交
-    local commits=$(git log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | wc -l)
-    log_info "  ✅ 今日提交: $commits 个"
+    # 根据时间范围确定git log时间范围
+    local since_time="$date 00:00"
+    local until_time="$date 23:59"
+    if [ "$time_range" = "morning" ]; then
+        since_time="$date 00:00"
+        until_time="$date 12:00"
+        log_info "  ☀️ 仅统计上午（00:00-12:00）的提交"
+    fi
+    
+    # 统计提交
+    local commits
+    commits=$(git log --since="$since_time" --until="$until_time" --oneline 2>/dev/null | wc -l)
+    commits=${commits:-0}
+    log_info "  ✅ ${time_range}提交: $commits 个"
     
     # 列出重要提交
-    if [ "$commits" != "0" ]; then
+    if [ "$commits" -gt 0 ]; then
         log_info "  📋 重要提交："
-        git log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | head -5 | while read commit; do
+        git log --since="$since_time" --until="$until_time" --oneline 2>/dev/null | head -5 | while read commit; do
             log_info "    - $commit"
         done
     fi
