@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.1.0] - 2026-05-09
+
+### Added
+- 容错增强：retry_on_failure 指数退避重试
+- is_data_valid 数据有效性检查
+- fetch_with_fallback 多数据源自动切换
+- 过期缓存兜底机制
+
+### Fixed
+- 移除数据源硬性偏好，统一为自动检测
+- advisor.py 注释已更新为自动选择
+- 修复 report_text.py Git 冲突标记
+
+### Changed
+- 数据源策略：谁先返回有效数据谁先用
 ## [2.0.0] - 2026-05-09
 
 ### Added
