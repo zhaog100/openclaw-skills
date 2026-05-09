@@ -8,7 +8,7 @@ version: 0.3.1
 
 专门针对终端/命令行界面截图的OCR识别和文本提取技能。
 
-**版权：MIT License | Copyright (c) 2026 思捷娅科技**
+**版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)**
 
 ## 🎯 核心特性
 
@@ -161,4 +161,4 @@ AI：[调用terminal-ocr] → 提取配置内容 → 分析设置
 
 ---
 
-**MIT License | Copyright (c) 2026 思捷娅科技**
+**MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)**

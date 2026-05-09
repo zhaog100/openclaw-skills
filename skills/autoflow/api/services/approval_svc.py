@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """审批服务 - 流程定义、实例管理、审批操作"""
 import json
 from datetime import datetime, timezone

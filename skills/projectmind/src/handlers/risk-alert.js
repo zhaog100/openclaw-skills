@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 风险预警 handler
 
 const { findProjectByName, createRisk, listRisks, logActivity } = require('../db/queries');

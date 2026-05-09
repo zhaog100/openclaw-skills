@@ -139,4 +139,4 @@ prd_read "docs/products/xxx_PRD.md"
 
 ## 版权
 
-MIT License | Copyright (c) 2026 思捷娅科技
+MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

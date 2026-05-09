@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # mock_skill 测试
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 set -euo pipefail
 
 # 测试help

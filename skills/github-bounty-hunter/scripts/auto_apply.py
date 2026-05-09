@@ -5,7 +5,7 @@
 - 发送专业接单信息
 - 支持多平台
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技
+版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/your_username/openclaw-skills
 """
 
@@ -105,7 +105,7 @@ class AutoApply:
 - **地址**: `{self.payment_address}`
 
 ---
-*由 github-bounty-hunter v1.3.0 自动发送 | 版权：思捷娅科技*"""
+*由 github-bounty-hunter v1.3.0 自动发送 | 版权：思捷娅科技 (SJYKJ)*"""
     
     def _generate_algora_message(self):
         """生成 Algora 申请消息"""

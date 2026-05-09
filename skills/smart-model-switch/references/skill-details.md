@@ -2,7 +2,7 @@
 
 _日期：2026-05-09 | 版本：v1.9.0_
 
-> MIT License · Copyright (c) 2026 思捷娅科技 · 创建者：zhaog100
+> MIT License · Copyright (c) 2026 思捷娅科技 (SJYKJ) · 创建者：zhaog100
 
 ---
 

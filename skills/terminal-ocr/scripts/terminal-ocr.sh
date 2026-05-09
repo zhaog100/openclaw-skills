@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # License: MIT
 #!/bin/bash
 

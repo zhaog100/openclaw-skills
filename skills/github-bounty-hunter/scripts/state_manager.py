@@ -5,7 +5,7 @@ STATE.yaml 事件驱动管理器
 - 事件日志记录
 - 状态自动更新
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技
+版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/your_username/openclaw-skills
 """
 

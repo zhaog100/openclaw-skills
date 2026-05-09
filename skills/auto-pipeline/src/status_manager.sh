@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # status_manager.sh - 状态管理模块
 # 职责: JSON状态文件读写 + 状态流转 + list/status命令
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # MIT License
 
 set -euo pipefail

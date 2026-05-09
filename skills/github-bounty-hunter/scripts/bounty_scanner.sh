@@ -1,7 +1,7 @@
 #!/bin/bash
 # GitHub Bounty 扫描脚本
 # 每2小时执行，发现新bounty写入文件供agent读取
-# 版权：MIT | Copyright (c) 2026 思捷娅科技
+# 版权：MIT | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 WORKSPACE="/root/.openclaw/workspace"
 RESULT_FILE="$WORKSPACE/data/bounty-scan-results.md"

@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - 工时追踪 handler（log-time + time-report）
 
 const { findProjectByName, findTaskById, createTimeLog, listTimeLogs, getTimeSummary, getDailyTimeSummary, logActivity, listTasks } = require('../db/queries');

@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 """
 SeedManager — 随机种子管理器

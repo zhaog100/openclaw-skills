@@ -1,4 +1,4 @@
-// MIT License | Copyright (c) 2026 思捷娅科技
+// MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // AutoFlow Dashboard - Vue3 + Element Plus
 
 const { createApp, ref, reactive, computed, onMounted, watch } = Vue;

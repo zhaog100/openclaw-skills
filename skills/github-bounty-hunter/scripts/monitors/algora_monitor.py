@@ -21,7 +21,7 @@ Algora Bounty 监控脚本（v2.1 - 增强健壮性）
 - 自动发送 /attempt 评论
 - 统一追踪 Claim 状态
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技
+版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/your_username/openclaw-skills
 ClawHub: https://clawhub.com
 """

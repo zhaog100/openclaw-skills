@@ -3,7 +3,7 @@
 技能自动开发流水线 — 将PRD转化为可发布技能的质量保障工具。
 
 **版本**: v1.0（PM辅助工具）  
-**版权**: MIT License | Copyright (c) 2026 思捷娅科技
+**版权**: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ## 简介
 
@@ -147,4 +147,4 @@ bash tests/test_all.sh
 
 ## 版权
 
-MIT License | Copyright (c) 2026 思捷娅科技
+MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

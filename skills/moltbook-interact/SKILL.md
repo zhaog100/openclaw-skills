@@ -68,4 +68,4 @@ See `references/api.md` for full API documentation.
 
 ## 📄 许可证
 
-MIT License - Copyright (c) 2026 思捷娅科技
+MIT License - Copyright (c) 2026 思捷娅科技 (SJYKJ)

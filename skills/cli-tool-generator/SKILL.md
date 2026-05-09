@@ -99,7 +99,7 @@ skills/cli-tool-generator/
 
 ## 📄 许可证与版权声明
 MIT License
-Copyright (c) 2026 思捷娅科技
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
 免费使用、修改和重新分发时，需注明出处。
-出处：GitHub: https://github.com/example-user/xiaomili-skills | ClawHub: https://clawhub.com | 创建者: 思捷娅科技
+出处：GitHub: https://github.com/example-user/xiaomili-skills | ClawHub: https://clawhub.com | 创建者: 思捷娅科技 (SJYKJ)
 商业使用授权：个人免费 | 小微¥999/年 | 中型¥4,999/年 | 大型¥19,999/年

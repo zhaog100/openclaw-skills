@@ -3,7 +3,7 @@
 # 每5分钟由 crontab 调用，清理 sessions.json 和 auth-state.json 中的模型锁定状态
 # 适用于所有模型厂商（百炼、智谱、LongCat、OpenRouter 等）
 #
-# MIT License · Copyright (c) 2026 思捷娅科技
+# MIT License · Copyright (c) 2026 思捷娅科技 (SJYKJ)
 #
 # 部署: crontab -e
 #   */5 * * * * /path/to/skills/smart-model-switch/scripts/model-guard.sh >> /path/to/logs/model-guard.log 2>&1

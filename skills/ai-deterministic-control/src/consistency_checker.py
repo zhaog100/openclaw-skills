@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 """
 ConsistencyChecker — 输出一致性检查器

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # generator.sh - Core CLI tool generation logic
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -339,7 +339,7 @@ generate_test_file() {
 
     cat > "$test_file" <<TESTHEADER
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # test_${name}.sh - ${name} 自动化测试
 
 set -euo pipefail
@@ -466,7 +466,7 @@ generate_bash_tool() {
 
     cat > "$main_file" <<HEADER
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # ${name} - ${desc}
 set -euo pipefail
 
@@ -567,7 +567,7 @@ generate_python_tool() {
 
     cat > "$main_file" <<'PYHEADER'
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """${name} - ${desc}"""
 
 import argparse
@@ -755,7 +755,7 @@ Built with [cligen](https://clawhub.com) v1.0.0
 
 ## License
 
-MIT License - Copyright (c) 2026 思捷娅科技
+MIT License - Copyright (c) 2026 思捷娅科技 (SJYKJ)
 README_FOOTER
 }
 

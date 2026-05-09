@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 """
 一致性算法模块：Levenshtein 编辑距离 + TF-IDF 余弦相似度 + 综合评分

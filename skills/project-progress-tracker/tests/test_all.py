@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """Comprehensive tests for project-progress-tracker. No network required."""
 
 import json

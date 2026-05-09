@@ -6,7 +6,7 @@ PR 自动提交脚本
 - 自动创建 PR
 - 自动回复评论
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技
+版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 GitHub: https://github.com/your_username/openclaw-skills
 """
 
@@ -190,7 +190,7 @@ class AutoPR:
 - ✅ 符合项目规范
 
 ---
-*由 github-bounty-hunter v1.3.0 自动生成 | 版权：思捷娅科技*"""
+*由 github-bounty-hunter v1.3.0 自动生成 | 版权：思捷娅科技 (SJYKJ)*"""
         
         pr_url = self.create_pr(repo_owner, repo_name, issue_number, title, body)
         

@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """SQLite 连接管理与数据模型"""
 import aiosqlite
 from pathlib import Path

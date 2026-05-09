@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # 浪费模式定义文件
 # 每个模式：name, description, threshold, detection_rule
 

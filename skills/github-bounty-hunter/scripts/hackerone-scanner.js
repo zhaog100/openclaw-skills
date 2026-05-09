@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * GitHub Bounty Hunter v7.4.0
- * Copyright © 2026 思捷娅科技. All rights reserved.
+ * Copyright © 2026 思捷娅科技 (SJYKJ). All rights reserved.
  * MIT License
  */
 

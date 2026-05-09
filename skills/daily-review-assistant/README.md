@@ -283,7 +283,7 @@ tail -f logs/daily-review.log
 ## 📄 许可证
 
 MIT License  
-Copyright (c) 2026 思捷娅科技
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ---
 

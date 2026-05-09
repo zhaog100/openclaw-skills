@@ -1,7 +1,7 @@
 #!/bin/bash
 # GitHub Bounty Hunter - Crontab 守护脚本
 # 每 10 分钟检查监控进程，确保持续运行
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_DIR="$SCRIPT_DIR/logs"

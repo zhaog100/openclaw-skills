@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技
+// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
 // ProjectMind - handler端到端测试（创建项目→创建任务→列表→更新→状态→删除）
 
 const assert = require('assert');

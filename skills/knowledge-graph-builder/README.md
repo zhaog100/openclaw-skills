@@ -3,7 +3,7 @@
 > 🚀 从文档中自动提取知识和关系，构建可视化知识图谱
 
 **版本**: v1.0.0  
-**创建者**: 思捷娅科技  
+**创建者**: 思捷娅科技 (SJYKJ)  
 **创建日期**: 2026-03-17  
 **许可证**: MIT License
 
@@ -156,14 +156,14 @@ python -m pytest test_extractor.py -v
 
 MIT License
 
-Copyright (c) 2026 思捷娅科技
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技
+- 创建者：思捷娅科技 (SJYKJ)
 
 ---
 

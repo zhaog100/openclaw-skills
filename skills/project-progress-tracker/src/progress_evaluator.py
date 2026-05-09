@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """Progress evaluator combining git stats and issue stats."""
 
 def evaluate(git_stats, issue_stats, prd_path=None):
