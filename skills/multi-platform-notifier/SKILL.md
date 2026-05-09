@@ -6,7 +6,7 @@ version: 1.0.1
 
 **版本**: v1.0  
 **创建时间**: 2026-03-16  
-**创建者**: 思捷娅科技 (SJYKJ)  
+**创建者**: 思捷娅科技 (SJYKJ)/zhaog100  
 **状态**: Phase 1 完成
 
 ---
@@ -76,7 +76,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **出处**：
 - GitHub: https://github.com/example-user/xiaomili-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技 (SJYKJ)
+- 创建者：思捷娅科技 (SJYKJ)/zhaog100
 
 **商业使用授权**：
 - 小微企业（<10 人）：¥999/年

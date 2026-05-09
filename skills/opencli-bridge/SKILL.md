@@ -2,7 +2,7 @@
 name: opencli-bridge
 description: Bridge to OpenCLI for 73+ pre-built website adapters and browser automation. Use when need pre-built adapters (Bilibili, Zhihu, Xiaohongshu, Twitter) or advanced anti-detection. Reuses Chrome login state.
 version: 1.0.0
-author: 思捷娅科技 (SJYKJ)
+author: 思捷娅科技 (SJYKJ)/zhaog100
 allowed-tools: Bash(opencli:*)
 license: Apache-2.0 (OpenCLI) + MIT (Bridge)
 ---
@@ -322,7 +322,7 @@ opencli --version
 ### 本桥接技能
 
 - **许可证**: MIT License
-- **作者**: 思捷娅科技 (SJYKJ)
+- **作者**: 思捷娅科技 (SJYKJ)/zhaog100
 - **版权**: Copyright (c) 2026 思捷娅科技 (SJYKJ)
 - **免费使用**: 需注明出处
 
