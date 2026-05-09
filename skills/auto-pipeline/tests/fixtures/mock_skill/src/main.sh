@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # mock_skill 主入口
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # MIT License
 
 set -euo pipefail

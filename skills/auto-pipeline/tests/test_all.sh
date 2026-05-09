@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # test_all.sh - auto-pipeline 完整测试套件
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # MIT License
 
 set -euo pipefail

@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 
 """
 ModelBridge — OpenClaw 模型参数桥接

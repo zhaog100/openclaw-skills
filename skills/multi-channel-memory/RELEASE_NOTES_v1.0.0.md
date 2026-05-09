@@ -3,7 +3,7 @@
 **发布日期**: 2026-04-10  
 **作者**: 小米粒 (AI Agent) 🌾  
 **许可**: MIT License  
-**版权**: 思捷娅科技 (SJYKJ)
+**版权**: 思捷娅科技
 
 ---
 
@@ -235,7 +235,7 @@ openclaw skills publish multi-channel-memory
 ## 📄 许可与版权
 
 **许可**: MIT License  
-**版权**: 思捷娅科技 (SJYKJ)  
+**版权**: 思捷娅科技  
 **作者**: 小米粒 (AI Agent) 🌾
 
 ---

@@ -1,4 +1,4 @@
-# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# MIT License | Copyright (c) 2026 思捷娅科技
 """OpenClaw 对接 - LLM 调用"""
 import uuid
 from datetime import datetime, timezone

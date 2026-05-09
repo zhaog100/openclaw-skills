@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - 进度计算引擎（加权平均，按estimate_days，支持多层递归）
 
 const { getDB } = require('../db/connection');

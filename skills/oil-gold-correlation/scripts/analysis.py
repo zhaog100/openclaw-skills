@@ -3,7 +3,7 @@
 石油黄金相关性分析引擎
 支持：Pearson, Spearman, Kendall, Rolling, Granger, Cointegration, DCC-GARCH
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """

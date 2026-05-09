@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
 """STT（语音转文字）扩展接口
 
 当前环境未配置STT引擎，提供基类和预留实现。

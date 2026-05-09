@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # test_all.sh - Full test suite for cligen
 
 set -euo pipefail

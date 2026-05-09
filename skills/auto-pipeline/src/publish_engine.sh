@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # publish_engine.sh - 发布引擎
 # 职责: Git提交推送 + ClawHub发布 + PRD状态更新 + 最终报告
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # MIT License
 
 set -euo pipefail
@@ -46,7 +46,7 @@ git_commit_and_push() {
 Review评分: $score/60
 修复轮次: $rounds
 生成时间: $(date '+%Y-%m-%d %H:%M')
-版权: 思捷娅科技 (SJYKJ)" 2>/dev/null || pipeline_log "Git提交: 无变更或已提交"
+版权: 思捷娅科技" 2>/dev/null || pipeline_log "Git提交: 无变更或已提交"
 
     # 推送到xiaomili仓库
     git push xiaomili HEAD 2>&1 || {
@@ -61,7 +61,7 @@ Review评分: $score/60
 Review评分: $score/60
 修复轮次: $rounds
 生成时间: $(date '+%Y-%m-%d %H:%M')
-版权: 思捷娅科技 (SJYKJ)" 2>/dev/null || pipeline_log "Git提交: 无变更"
+版权: 思捷娅科技" 2>/dev/null || pipeline_log "Git提交: 无变更"
     git push 2>&1 || pipeline_log "⚠️ Git推送失败"
   else
     pipeline_log "⚠️ 未找到Git仓库，跳过Git提交"
@@ -137,7 +137,7 @@ generate_final_report() {
 
 **生成时间**: $timestamp
 **流水线**: auto-pipeline v1.0
-**版权**: 思捷娅科技 (SJYKJ)
+**版权**: 思捷娅科技
 
 ## 概览
 
@@ -158,7 +158,7 @@ $(echo "$review_result" | jq -r '.dimensions[]? | "| \(.name) | \(.score)/\(.max
 $(echo "$review_result" | jq -r '.issues[]? | "- [\(.severity)] \(.dimension): \(.desc)"' 2>/dev/null || echo "无问题")
 
 ---
-*Copyright (c) 2026 思捷娅科技 (SJYKJ)*
+*Copyright (c) 2026 思捷娅科技*
 EOF
 
   pipeline_log "📄 交付报告: $report_path"

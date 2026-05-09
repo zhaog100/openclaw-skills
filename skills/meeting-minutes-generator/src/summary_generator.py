@@ -1,4 +1,4 @@
-# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 版权声明：MIT License | Copyright (c) 2026 思捷娅科技
 """纪要生成模块 - 整合解析结果和行动项，生成结构化会议纪要"""
 
 import re

@@ -1,7 +1,7 @@
 #!/bin/bash
 # subagent_rescue.sh v1.0 — Subagent 超时后手动补救
 # 用法: bash subagent_rescue.sh <work_dir> <branch_name> <commit_msg> <repo> <issue_num> <amount>
-# 版权：MIT | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 版权：MIT | Copyright (c) 2026 思捷娅科技
 
 set -euo pipefail
 

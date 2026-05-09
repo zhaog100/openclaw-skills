@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - 更新任务 handler
 
 const { findTaskById, updateTask, logActivity, findProjectById } = require('../db/queries');

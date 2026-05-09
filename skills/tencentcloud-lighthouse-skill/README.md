@@ -321,7 +321,7 @@ MIT License
 **出处**：
 - GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者: 思捷娅科技 (SJYKJ)
+- 创建者: 思捷娅科技
 
 详见 [LICENSE](../../LICENSE) 文件。
 

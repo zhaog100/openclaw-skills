@@ -40,4 +40,4 @@ github-bounty-hunter/
 - 不写提交信息
 
 ---
-*版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)*
+*版权：MIT License | Copyright (c) 2026 思捷娅科技*

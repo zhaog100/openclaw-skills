@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 
 """AI 确定性控制工具"""
 

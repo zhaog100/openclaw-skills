@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # plan_reviewer.sh - Plan预审模块
 # 职责: 审查任务声明 → 循环改进 → 信心度评分 → 输出审查通过的任务声明
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # MIT License
 
 set -euo pipefail

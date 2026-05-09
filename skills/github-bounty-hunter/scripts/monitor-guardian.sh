@@ -1,6 +1,6 @@
 #!/bin/bash
 # 监控守护脚本 - 自动检查和重启监控进程
-# 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 版权：MIT License | Copyright (c) 2026 思捷娅科技
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_FILE="/tmp/bounty-guardian.log"

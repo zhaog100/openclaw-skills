@@ -106,4 +106,4 @@ version: 1.0.0
 
 ## 📄 许可证
 
-MIT License - Copyright (c) 2026 思捷娅科技 (SJYKJ)
+MIT License - Copyright (c) 2026 思捷娅科技

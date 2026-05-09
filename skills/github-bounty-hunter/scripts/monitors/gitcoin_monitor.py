@@ -5,7 +5,7 @@ Gitcoin Bounty 监控脚本
 - 支持 GraphQL API
 - 自动通知
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+版权：MIT License | Copyright (c) 2026 思捷娅科技
 GitHub: https://github.com/your_username/openclaw-skills
 """
 
@@ -117,7 +117,7 @@ class GitcoinMonitor:
 3. 申请任务
 
 ---
-*由 github-bounty-hunter v1.3.0 自动发送 | 版权：思捷娅科技 (SJYKJ)*"""
+*由 github-bounty-hunter v1.3.0 自动发送 | 版权：思捷娅科技*"""
         
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(content)

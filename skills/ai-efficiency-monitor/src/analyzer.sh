@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# Copyright (c) 2026 思捷娅科技
 # analyzer.sh - 浪费模式分析模块
 set -euo pipefail
 

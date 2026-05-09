@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2026 思捷娅科技 (SJYKJ)
+// MIT License, Copyright (c) 2026 思捷娅科技
 // ProjectMind - 参数校验
 
 const VALID_PRIORITIES = ['critical', 'high', 'medium', 'low'];
