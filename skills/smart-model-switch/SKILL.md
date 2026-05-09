@@ -1,8 +1,6 @@
----
 name: smart-model-switch
 description: 智能模型自动切换 + 错误 Fallback。根据消息复杂度和文件类型自动选择最优模型（Flash/Main/Coding/Vision/Complex），API 失败时自动切换备用模型。Trigger on "模型切换", "智能模型", "自动选择模型", "model switch", "fallback", "模型降级".
 version: 1.9.0
----
 
 # 智能模型切换 v1.9.0
 
@@ -61,13 +59,14 @@ node scripts/dynamic-weight-adjust.js
 复杂架构: "请设计微服务架构" → complex ✅
 ```
 
-## 监控指标
+## 📚 详细文档
 
-| 指标 | 目标值 |
-|------|--------|
-| 整体准确率 | > 90% |
-| 编码任务准确率 | > 95% |
-| API成本节省 | > 60% |
+完整使用指南见 `references/skill-details.md`，包含：
+- 文件类型 → 模型映射表
+- 复杂度评分算法详解
+- 子代理模型选择配置
+- 故障排查指南
+- 最佳实践
 
 ---
 
