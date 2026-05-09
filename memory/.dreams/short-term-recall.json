@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-08T02:34:47.616Z",
+  "updatedAt": "2026-05-09T03:24:34.911Z",
   "entries": {
     "memory:memory/2026-05-01.md:123:139": {
       "key": "memory:memory/2026-05-01.md:123:139",
@@ -161,6 +161,37 @@
         "enhancements/notification-center",
         "data/bounty-scan-results.md",
         "memory/2026-05-01.md"
+      ]
+    },
+    "memory:memory/2026-05-01.md:1:49": {
+      "key": "memory:memory/2026-05-01.md:1:49",
+      "path": "memory/2026-05-01.md",
+      "startLine": 1,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "# 2026-05-01 日志 ## ☀️ 午间回顾 (12:05) ### 系统状态 - 运行时间: 18h31m - 负载: 0.06 (极低) - 内存: 3.1G/7.2G (43%) - 磁盘: 15G/196G (9%) - gh CLI: ❌ 未找到 (PATH 问题) - GitHub API: ✅ 可用 ### PR 状态 (GitHub API) - **Open PRs**: 147 个 (作者: zhaog100) - **最新**: 1. feat: WORKFLOW - n8n weekly GitHub summary with Cl | claude-builders-bounty#714 2. feat: add agentfolio_beacon_lookup | agentfolio-mcp-server#5 3. homelab-stack: 10 个 bounty PRs (#481-#489) 4. midnightntwrk/contributor-hub: 9 个 tutorial PRs (#389-#396) ### gh CLI 状态 - ❌ 未安装 (apt/snap/npm 均无) - 替代方案: GitHub API (curl) 可用 - 建议: 安装 gh CLI 以便后续操作 ### 待办 - [ ] 安装 gh CLI (可选) - [ ] 确认 homelab-stack PR 审核状态 - [ ] 确认 midnightntwrk tutorial PR 审核状态 - [ ] 检查",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-09T03:24:34.911Z",
+      "lastRecalledAt": "2026-05-09T03:24:34.911Z",
+      "queryHashes": [
+        "f56e1dfa5bed"
+      ],
+      "recallDays": [
+        "2026-05-09"
+      ],
+      "conceptTags": [
+        "0.06",
+        "3.1g/7.2g",
+        "15g/196g",
+        "claude-builders-bounty",
+        "agentfolio-beacon-lookup",
+        "agentfolio-mcp-server",
+        "homelab-stack",
+        "midnightntwrk/contributor-hub"
       ]
     }
   }

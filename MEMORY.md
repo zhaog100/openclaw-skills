@@ -60,23 +60,38 @@ _持续更新，记录重要信息_
 - [ ] 等待 Scottcjn 回复 RustChain 催款
 - [ ] 扫描有支付记录的好项目
 - [ ] 更新 QMD 向量库
+- [ ] PR #125: 修复3条CodeRabbit Critical评论（operatorFeePercent validation、NPE、wait timeout）
+- [ ] PR #87: 解决build问题合并alceops delta
+- [ ] PR #396: 签署CLA
+- [ ] GitHub API网络问题排查（DNS解析问题）
 
-## ⚠️ 2026-05-08 重大发现
+## ⚠️ 2026-05-09 重要更新
 
-### 钱包事件
-- ❌ `RTCb72a1accd46b9ba9f22dbd4b5c6aad5a5831572b` 属于 @Dlove123，不是我的
-- ✅ 新钱包: `RTC2f0e423eafe70cb9394fd11ff4d11bd515d`（自己创建的）
-- 已在 issue #6885 声明澄清
+### GitHub API 网络问题
+- ❌ DNS解析到198.18.0.70测试地址，连接超时
+- ❌ 多次TLS握手失败
+- ⏳ 需要排查网络配置
 
-### la-tanda-web 全部关闭
-- 19个PR（295-277）全部CLOSED
-- 结论: 不接受外部贡献者 ❌
+### la-tanda-web 项目关闭
+- ❌ 19个PR（295-277）全部CLOSED
+- ❌ 结论: 项目不接受外部贡献者，停止投入
+
+### PR #125 紧急问题 (ubiquity-os/permit-generation, $600 USDT)
+- 🔴 Critical: operatorFeePercent validation 仍 throw 而非返回 failed-results
+- 🔴 Critical: Setup 失败路径对 ERC721 permit 可能 NPE
+- 🟠 Major: wait() 无 timeout - 交易卡住会阻塞整个 batch
+- 📝 状态: CodeRabbit review paused (branch under active development)
 
 ### RustChain 催款状态
 - #6931: 25 RTC claim关闭（Scottcjn说已打？）
 - #7234: 50-75 RTC claim关闭（需澄清）
 - #7235: PR未合并，不能claim
 - ⏳ 等待 Scottcjn 回复
+
+### 钱包事件
+- ❌ `RTCb72a1accd46b9ba9f22dbd4b5c6aad5a5831572b` 属于 @Dlove123，不是我的
+- ✅ 新钱包: `RTC2f0e423eafe70cb9394fd11ff4d11bd515d`（自己创建的）
+- 已在 issue #6885 声明澄清
 
 ## 📊 PR 统计 (2026-05-09)
 
@@ -87,11 +102,13 @@ _持续更新，记录重要信息_
 | Closed | ~200+ |
 
 ### 重点关注 PR
-- **PR #125** (ubiquity-os/permit-generation, $600): CodeRabbit 3条新评论待处理（2026-05-08）
+- **PR #125** (ubiquity-os/permit-generation, $600 USDT): 3条CodeRabbit Critical评论待处理
   - 🔴 Critical: operatorFeePercent validation 仍 throw 而非返回 failed-results
   - 🔴 Critical: Setup 失败路径对 ERC721 permit 可能 NPE
   - 🟠 Major: wait() 无 timeout - 交易卡住会阻塞整个 batch
   - 📝 状态: CodeRabbit review paused (branch under active development)
+- **PR #87** ($450 USDT): alceops本地修复可用，build问题待解决
+- **PR #714** ($200 USDT): 等审核14天无反馈
 
 ### PR 清单重构
 - ✅ 统一为单表格式

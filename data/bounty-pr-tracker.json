@@ -1,6 +1,6 @@
 # Bounty PR Tracker - zhaog100
 
-**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-09 10:06 Asia/Hong_Kong (2026-05-09 02:06 UTC)**
+**Identity**: 小米辣 🌶️ | **GitHub**: zhaog100 | **Last Updated: 2026-05-09 11:04 Asia/Hong_Kong (2026-05-09 03:04 UTC)**
 
 ---
 
@@ -18,30 +18,30 @@
 
 | # | Repo | Title | Bounty | Currency | Updated | Status | Notes |
 |---|------|-------|--------|----------|---------|--------|-------|
-| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-08 | changes_requested | ⚠️ CodeRabbit 3条新评论(2026-05-08): operatorFeePercent验证throw、NPE风险(permit.amount.toString)、wait()无timeout |
-| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-04-29 | pending_review | 等审核14天 |
-| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-05-08 | changes_requested | CodeRabbit已处理全部早期评论；alceops本地修复delta可用（build失败） |
-| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-04-28 | changes_requested | CodeRabbit 16条Major |
-| 85 | ubiquity-os/plugins-wishlist | feat: command-plan Plugin | $600 | USDT | 2026-04-28 | open | |
-| 66 | ubiquity-os/plugin-template | feat: Reusable Knip and Jest Workflows | $1200 | USDT | 2026-04-28 | open | |
-| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | USDT | 2026-04-13 | changes_requested | |
-| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | USDT | 2026-04-14 | changes_requested | |
-| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | USDT | 2026-04-14 | changes_requested | |
-| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests | $75 | USDT | 2026-04-15 | changes_requested | |
-| 1030 | ubiquity/ubiquity-dollar | fix: storage layout check | $300 | USDT | 2026-04-13 | review_required | |
-| 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp | N/A | N/A | 2026-04-25 | pending_cla | 需签CLA |
-| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack | $70 | USDT | 2026-04-29 | open | |
-| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | - | 2026-04-22 | open | |
-| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute | N/A | - | 2026-05-05 | open | |
-| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-05 | review_required | 安全PR |
-| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-08 | pending_review | 等BCOS标签；无maintainer review |
-| 19 | Chevalier32/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-06 | open | |
-| 5 | 0xbrainkid/agentfolio-mcp-server | agentfolio_beacon_lookup | N/A | - | 2026-04-29 | open | |
-| 508 | claude-builders-bounty/claude-builders-bounty | n8n + Claude Weekly Dev Summary | $200 | USDT | 2026-04-08 | open | |
-| 506 | claude-builders-bounty/claude-builders-bounty | Claude Code PR Review Agent | $150 | USDT | 2026-04-08 | open | |
-| 507 | claude-builders-bounty/claude-builders-bounty | Pre-tool-use Hook | $75 | USDT | 2026-04-09 | open | |
-| 505 | claude-builders-bounty/claude-builders-bounty | CLAUDE.md for Next.js + SQLite | $75 | USDT | 2026-04-09 | open | |
-| 504 | claude-builders-bounty/claude-builders-bounty | Structured CHANGELOG Generator | $50 | USDT | 2026-04-09 | open | |
+| 125 | ubiquity-os/permit-generation | feat: Automatic Transfer | $600 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承；3条CodeRabbit Critical评论待修复(operatorFeePercent throw、NPE、wait timeout) |
+| 714 | claude-builders-bounty/claude-builders-bounty | feat: n8n weekly GitHub summary | $200 | USDT | 2026-05-09 | pending_review | ⚠️ API不可达，状态继承；等审核15天 |
+| 87 | ubiquity-os/plugins-wishlist | feat: Auto Time Label Estimator | $450 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承；CodeRabbit早期评论已处理完；alceops本地delta可用（build失败） |
+| 90 | ubiquity-os/plugins-wishlist | feat: Contributor Rewards Config v3 | $300 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
+| 85 | ubiquity-os/plugins-wishlist | feat: command-plan Plugin | $600 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 66 | ubiquity-os/plugin-template | feat: Reusable Knip and Jest Workflows | $1200 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 88 | ubiquity-os/plugins-wishlist | feat: Contributor Class Plugin | $300 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
+| 89 | ubiquity-os/plugins-wishlist | feat: Old Proposal Handler | $75 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
+| 91 | ubiquity-os/plugins-wishlist | feat: Config Protection Plugin | $75 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
+| 92 | ubiquity-os/plugins-wishlist | test: Comprehensive Unit Tests | $75 | USDT | 2026-05-09 | changes_requested | ⚠️ API不可达，状态继承 |
+| 1030 | ubiquity/ubiquity-dollar | fix: storage layout check | $300 | USDT | 2026-05-09 | review_required | ⚠️ API不可达，状态继承 |
+| 396 | midnightntwrk/contributor-hub | [Tutorial] Building an Unshielded Token dApp | N/A | N/A | 2026-05-09 | pending_cla | ⚠️ API不可达，状态继承；需签CLA |
+| 489 | illbnm/homelab-stack | [BOUNTY 70] Productivity Stack | $70 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 487 | illbnm/homelab-stack | [BOUNTY 00] Notifications | $0 | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 33 | iotexproject/awesome-depin | Add RustChain to DePIN Compute | N/A | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 1032 | Uniswap/v4-core | security: ERC6909 validation | N/A | - | 2026-05-09 | review_required | ⚠️ API不可达，状态继承；安全PR |
+| 4101 | Scottcjn/Rustchain | [UTXO-BUG] Race condition test cases | N/A | RTC | 2026-05-09 | pending_review | ⚠️ API不可达，状态继承；等BCOS标签；无maintainer review |
+| 19 | Chevalier32/InkkSlinger | InkCanvas/InkPresenter | N/A | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 5 | 0xbrainkid/agentfolio-mcp-server | agentfolio_beacon_lookup | N/A | - | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 508 | claude-builders-bounty/claude-builders-bounty | n8n + Claude Weekly Dev Summary | $200 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 506 | claude-builders-bounty/claude-builders-bounty | Claude Code PR Review Agent | $150 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 507 | claude-builders-bounty/claude-builders-bounty | Pre-tool-use Hook | $75 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 505 | claude-builders-bounty/claude-builders-bounty | CLAUDE.md for Next.js + SQLite | $75 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
+| 504 | claude-builders-bounty/claude-builders-bounty | Structured CHANGELOG Generator | $50 | USDT | 2026-05-09 | open | ⚠️ API不可达，状态继承 |
 
 ---
 
@@ -106,7 +106,8 @@
 
 ## Notes
 
-- **2026-05-09**: ⚠️ GitHub API 网络不通（DNS 解析到 198.18.0.70 测试地址，连接超时），无法获取实时数据
+- **2026-05-09 11:04 UTC**: ⚠️ GitHub API 持续网络不通（DNS 198.18.0.70，连接超时），所有状态继承自上次快照
+- **2026-05-09 02:06 UTC**: ⚠️ GitHub API 网络不通（DNS 解析到 198.18.0.70 测试地址，连接超时），无法获取实时数据
 - **2026-05-08**: RustChain催款中，等Scottcjn回复；钱包已更新为`RTC2f0e423e...`
 - **PR #125**: 3条CodeRabbit新评论(2026-05-08) - Critical问题需修复（throwing vs failed-results、NPE、wait timeout）
 - **Open PRs**: 约300个（含大量无bounty的公关/教程PR）
