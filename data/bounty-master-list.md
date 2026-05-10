@@ -1,8 +1,22 @@
 # Bounty Master List
-**Last Updated:** 2026-05-09 22:02 Asia/Hong_Kong (14:02 UTC)  
+**Last Updated:** 2026-05-10 04:01 Asia/Hong_Kong (20:01 UTC)  
 **Scanner:** 小米辣 🌶️ (zhaog100)  
 
 ## Active Bounties (Already Tracked)
+
+### QuantumSavory/QuantumSavory.jl (Julia quantum computing)
+| Amount | Issue | Title | Status |
+|--------|-------|-------|--------|
+| **$1600** | [#134](https://github.com/QuantumSavory/QuantumSavory.jl/issues/134) | Entanglement tracker protocol with UUIDs assigned to each Bell pair | Claimed (blocked) |
+| **$400** | [#137](https://github.com/QuantumSavory/QuantumSavory.jl/issues/137) | Implement a networking protocol primitive | Claimed (blocked) |
+| **$400** | [#129](https://github.com/QuantumSavory/QuantumSavory.jl/issues/129) | Tensor Networks Backend | Claimed (blocked) |
+| **$200** | [#132](https://github.com/QuantumSavory/QuantumSavory.jl/issues/132) | Improve Makie visualization capabilities | Claimed (blocked) |
+| **$200** | [#131](https://github.com/QuantumSavory/QuantumSavory.jl/issues/131) | More thorough benchmarks | Claimed (blocked) |
+
+### JuliaDynamics/ResumableFunctions.jl
+| Amount | Issue | Title | Status |
+|--------|-------|-------|--------|
+| **$600** | [#99](https://github.com/JuliaDynamics/ResumableFunctions.jl/issues/99) | Use JuliaLowering.jl for a cleaner way to transform resumable functions to finite state machines | Claimed (blocked) |
 
 ### USD Denominated ($250 each)
 - **[$250 USD]** https://github.com/Expensify/App/issues/75982 - Wallet - No warning when transferring same balance multiple times
@@ -48,6 +62,16 @@
 - mrveiss/AutoBot-AI#6934: no amount specified
 - langchain-ai/langchain#36952: malicious prompt injection (not real bounty)
 - Various "Bug Bounty" placeholder issues: no amounts
+
+## Total Potential Value
+| Category | Count | Value |
+|----------|-------|-------|
+| QuantumSavory.jl | 5 | $2800 |
+| JuliaDynamics | 1 | $600 |
+| Expensify | 3 | $750 |
+| Other USD | 2 | $110 |
+| Token (LTD) | 2 | 1500 LTD |
+| **TOTAL USD** | **13** | **$4260** |
 
 ---
 *Generated automatically. Only local update.*
