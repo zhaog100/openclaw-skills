@@ -1,11 +1,73 @@
 {
-  "lastUpdated": "2026-05-09T15:04:00Z",
-  "totalPRs": 452,
+  "lastUpdated": "2026-05-10T00:04:00Z",
+  "totalPRs": 457,
   "summary": {
-    "open": 155,
-    "closed": 276
+    "open": 153,
+    "closed": 277,
+    "merged": 27
   },
   "prs": [
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 7369,
+      "title": "Steelman: beacon API — SSL MITM bounty injection vs demo-only visualization (Bounty #6458)",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7369",
+      "created": "2026-04-30",
+      "updated": "2026-04-30",
+      "merged_at": "2026-04-30",
+      "bounty": "5 RTC (Codex deep-verify)"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 7368,
+      "title": "Steelman: bridge API — unconfirmed external tx vs controlled deployment (Bounty #6458)",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7368",
+      "created": "2026-04-30",
+      "updated": "2026-04-30",
+      "merged_at": "2026-04-30"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 7339,
+      "title": "Security Audit #2867: 3 OTC Bridge Vulnerabilities (CRITICAL/HIGH/MEDIUM)",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7339",
+      "created": "2026-04-30",
+      "updated": "2026-04-30",
+      "merged_at": "2026-04-30"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 7328,
+      "title": "Adversarial Steelman #1: Passport sybil attack vs biographical design layer",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7328",
+      "created": "2026-04-30",
+      "updated": "2026-04-30",
+      "merged_at": "2026-04-30"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 7327,
+      "title": "Judge Packet #1: Rank 5 open claims (security audits, docs, Aether)",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7327",
+      "created": "2026-04-30",
+      "updated": "2026-04-30",
+      "merged_at": "2026-04-30"
+    },
+    {
+      "repo": "Scottcjn/rustchain-bounties",
+      "pr": 7326,
+      "title": "Self-Audit: passport/passport_ledger.py — 3 findings (hash integrity, auth bypass, race condition)",
+      "status": "merged",
+      "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7326",
+      "created": "2026-04-30",
+      "updated": "2026-04-30",
+      "merged_at": "2026-04-30"
+    },
     {
       "repo": "illbnm/homelab-stack",
       "pr": 489,
@@ -1235,9 +1297,10 @@
       "status": "closed",
       "url": "https://github.com/ubiquity-os/permit-generation/pull/125",
       "created": "2026-04-09",
-      "updated": "2026-05-09T06:30:21Z",
+      "updated": "2026-05-09",
       "merged_at": null,
-      "payment_note": "已关闭 (2026-05-09)，CodeRabbit 最后审查 (2026-05-08) 要求修复 Critical 问题"
+      "payment_note": "已关闭 (2026-05-09)，CodeRabbit 最后审查 (2026-05-08) 要求修复 Critical 问题",
+      "notes": "CodeRabbit review (2026-05-08): CHANGES_REQUESTED, 4 critical issues (operatorFeePercent, NPE, wait timeout)"
     },
     {
       "repo": "Scottcjn/Rustchain",
@@ -1246,11 +1309,16 @@
       "status": "open",
       "url": "https://github.com/Scottcjn/Rustchain/pull/4101",
       "created": "2026-05-08",
-      "updated": "2026-05-08T14:12:52Z",
+      "updated": "2026-05-08",
       "merged_at": null,
-      "labels": ["BCOS-L1", "size/L", "node"],
+      "labels": [
+        "BCOS-L1",
+        "size/L",
+        "node"
+      ],
       "bounty": "待确认",
-      "review_status": "4 条评论 (rockytian-top, fengqiankun6-sudo)，无 CHANGES_REQUESTED"
+      "review_status": "4 评论 (rockytian-top, fengqiankun6-sudo)，无 CHANGES_REQUESTED",
+      "notes": "fengqiankun6-sudo: LGTM, 8-12 RTC 估值"
     },
     {
       "repo": "ubiquity-os-marketplace/text-conversation-rewards",
