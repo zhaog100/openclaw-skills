@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-10T00:04:00Z",
+  "lastUpdated": "2026-05-10T01:44:25Z",
   "totalPRs": 457,
   "summary": {
     "open": 153,
@@ -1300,7 +1300,7 @@
       "updated": "2026-05-09",
       "merged_at": null,
       "payment_note": "已关闭 (2026-05-09)，CodeRabbit 最后审查 (2026-05-08) 要求修复 Critical 问题",
-      "notes": "CodeRabbit review (2026-05-08): CHANGES_REQUESTED, 4 critical issues (operatorFeePercent, NPE, wait timeout)"
+      "notes": "Closed by maintainer (2026-05-09). CodeRabbit review passed but PR closed without merge."
     },
     {
       "repo": "Scottcjn/Rustchain",
