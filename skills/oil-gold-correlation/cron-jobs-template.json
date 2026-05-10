@@ -1,0 +1,44 @@
+{
+  "oil-gold-morning": {
+    "id": "oil-gold-morning",
+    "name": "石油黄金 - 早盤報告 (10:00 CST)",
+    "enabled": true,
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 10 * * *"
+    },
+    "message": "生成並推送石油黃金早盤報告",
+    "model": "zai/glm-5",
+    "timeoutSeconds": 300,
+    "sessionTarget": "isolated",
+    "lightContext": true
+  },
+  "oil-gold-evening": {
+    "id": "oil-gold-evening",
+    "name": "石油黄金 - 晚盤報告 (21:00 CST)",
+    "enabled": true,
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 21 * * *"
+    },
+    "message": "生成並推送石油黃金晚盤報告",
+    "model": "zai/glm-5",
+    "timeoutSeconds": 300,
+    "sessionTarget": "isolated",
+    "lightContext": true
+  },
+  "oil-gold-us-market": {
+    "id": "oil-gold-us-market",
+    "name": "石油黄金 - 美盤報告 (22:00/23:00 CST)",
+    "enabled": true,
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 22 * * *"
+    },
+    "message": "生成並推送石油黃金美盤報告 (夏/冬令時自動切換)",
+    "model": "zai/glm-5",
+    "timeoutSeconds": 600,
+    "sessionTarget": "isolated",
+    "lightContext": true
+  }
+}

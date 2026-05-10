@@ -4,7 +4,7 @@
 合并 report.py + report_card.py
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
-Author: 思捷娅科技 (SJYKJ)/zhaog100
+Author: 思捷娅科技 (SJYKJ)
 """
 
 import argparse
