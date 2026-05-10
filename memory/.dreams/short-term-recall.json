@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-09T03:24:34.911Z",
+  "updatedAt": "2026-05-10T10:58:33.298Z",
   "entries": {
     "memory:memory/2026-05-01.md:123:139": {
       "key": "memory:memory/2026-05-01.md:123:139",
@@ -42,20 +42,22 @@
       "endLine": 49,
       "source": "memory",
       "snippet": "- MEMORY.md 更新：API 配置、RustChain PR 状态、经验教训 - AGENTS.md 更新：敏感信息处理规则、权限分级、自动执行策略 - IDENTITY.md 更新：GitHub 用户名 zhaog100 - **安全注意**：.env 文件包含敏感凭证，未直接合并 ## 配置信息 - 推送目标 1: qqbot:c2c:C099848DC9A60BF60A7BE31626822790 (default) - 推送目标 2: qqbot:c2c:E7331F9772A02575890BBE94E788248A (bot2) - QQ Bot AppID: 102911630 - 模型：qwen/qwen3.5-plus (主要), zai/glm-5 (cron 任务) ## 待办 - [ ] 配置 GitHub Token (bounty hunter 需要) - [ ] 测试 oil-gold-correlation 报告生成 - [ ] 设置 multi-agent (xiaomila-pm + xiaomila-dev) --- © 2026 思捷娅科技 (SJYKJ)",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.8015791173872457,
+      "totalScore": 2.4347056804420557,
       "maxScore": 1,
       "firstRecalledAt": "2026-05-06T02:27:21.124Z",
-      "lastRecalledAt": "2026-05-08T02:34:47.616Z",
+      "lastRecalledAt": "2026-05-10T10:58:33.298Z",
       "queryHashes": [
         "eec1632f20ee",
-        "b7726515b8f2"
+        "b7726515b8f2",
+        "d03acd54a14e"
       ],
       "recallDays": [
         "2026-05-06",
-        "2026-05-08"
+        "2026-05-08",
+        "2026-05-10"
       ],
       "conceptTags": [
         "memory.md",
@@ -170,18 +172,20 @@
       "endLine": 49,
       "source": "memory",
       "snippet": "# 2026-05-01 日志 ## ☀️ 午间回顾 (12:05) ### 系统状态 - 运行时间: 18h31m - 负载: 0.06 (极低) - 内存: 3.1G/7.2G (43%) - 磁盘: 15G/196G (9%) - gh CLI: ❌ 未找到 (PATH 问题) - GitHub API: ✅ 可用 ### PR 状态 (GitHub API) - **Open PRs**: 147 个 (作者: zhaog100) - **最新**: 1. feat: WORKFLOW - n8n weekly GitHub summary with Cl | claude-builders-bounty#714 2. feat: add agentfolio_beacon_lookup | agentfolio-mcp-server#5 3. homelab-stack: 10 个 bounty PRs (#481-#489) 4. midnightntwrk/contributor-hub: 9 个 tutorial PRs (#389-#396) ### gh CLI 状态 - ❌ 未安装 (apt/snap/npm 均无) - 替代方案: GitHub API (curl) 可用 - 建议: 安装 gh CLI 以便后续操作 ### 待办 - [ ] 安装 gh CLI (可选) - [ ] 确认 homelab-stack PR 审核状态 - [ ] 确认 midnightntwrk tutorial PR 审核状态 - [ ] 检查",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1,
+      "totalScore": 2,
       "maxScore": 1,
       "firstRecalledAt": "2026-05-09T03:24:34.911Z",
-      "lastRecalledAt": "2026-05-09T03:24:34.911Z",
+      "lastRecalledAt": "2026-05-10T10:58:33.298Z",
       "queryHashes": [
-        "f56e1dfa5bed"
+        "f56e1dfa5bed",
+        "d03acd54a14e"
       ],
       "recallDays": [
-        "2026-05-09"
+        "2026-05-09",
+        "2026-05-10"
       ],
       "conceptTags": [
         "0.06",
@@ -192,6 +196,99 @@
         "agentfolio-mcp-server",
         "homelab-stack",
         "midnightntwrk/contributor-hub"
+      ]
+    },
+    "memory:memory/2026-05-06.md:43:73": {
+      "key": "memory:memory/2026-05-06.md:43:73",
+      "path": "memory/2026-05-06.md",
+      "startLine": 43,
+      "endLine": 73,
+      "source": "memory",
+      "snippet": "3. **la-tanda-web PR** — 需提交 (#267/#268 已开发完成) --- ## 💰 Bounty 资产 | 项目 | 数量 | 状态 | |------|------|------| | Open PRs | 145 | 等待审核 | | homelab-stack | $1,110+ USDT | 待审核 | | ubiquity-os | $2,175+ USDT | 待审核 | | la-tanda-web | 3,445+ LTD | PR待提交 | --- ## 📚 知识库主题 1. bounty/github-bounty 2. bounty/homelab-stack 3. bounty/rustchain 4. bounty/la-tanda-web 5. bounty/ubiquity-os 6. bounty/claude-builders 7. git 8. system 9. oil-gold --- _更新时间: 2026-05-06 16:00 CST_",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6337747924595459,
+      "maxScore": 0.6337747924595459,
+      "firstRecalledAt": "2026-05-10T10:58:33.298Z",
+      "lastRecalledAt": "2026-05-10T10:58:33.298Z",
+      "queryHashes": [
+        "d03acd54a14e"
+      ],
+      "recallDays": [
+        "2026-05-10"
+      ],
+      "conceptTags": [
+        "la-tanda-web",
+        "homelab-stack",
+        "ubiquity-os",
+        "bounty/github-bounty",
+        "bounty/homelab-stack",
+        "bounty/rustchain",
+        "bounty/la-tanda-web",
+        "bounty/ubiquity-os"
+      ]
+    },
+    "memory:memory/2026-05-08.md:1:41": {
+      "key": "memory:memory/2026-05-08.md:1:41",
+      "path": "memory/2026-05-08.md",
+      "startLine": 1,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "# 2026-05-08 Bounty PR 监控 **身份**: 小米辣 🌶️ | **GitHub**: zhaog100 | **时间**: 2026-05-08 16:05 UTC --- ## 当前 PR 状态总览 | # | Repo | Bounty | 状态 | 备注 | |---|------|--------|------|------| | 125 | ubiquity-os/permit-generation | $600 | mergeable | 双付fix在fork；CodeRabbit review paused | | 714 | claude-builders-bounty | $200 | pending_review | 等审核12天 | | 87 | ubiquity-os/plugins-wishlist | $450 | changes_requested | CodeRabbit rate limited | | 4101 | Scottcjn/Rustchain | N/A | pending_review | 等BCOS标签 | | 396 | midnightntwrk/contributor-hub | N/A | pending_cla | 需签CLA | --- ## 状态变化 - PR #125: CodeRabbit review 暂停（自动检测到活跃开发） - PR #714: 无新评论，等审核中 - PR #87: CodeRabbit rate limited，恢复后继续审查 - PR #41",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6326326352197,
+      "maxScore": 0.6326326352197,
+      "firstRecalledAt": "2026-05-10T10:58:33.298Z",
+      "lastRecalledAt": "2026-05-10T10:58:33.298Z",
+      "queryHashes": [
+        "d03acd54a14e"
+      ],
+      "recallDays": [
+        "2026-05-10"
+      ],
+      "conceptTags": [
+        "ubiquity-os/permit-generation",
+        "claude-builders-bounty",
+        "pending-review",
+        "ubiquity-os/plugins-wishlist",
+        "changes-requested",
+        "scottcjn/rustchain",
+        "n/a",
+        "midnightntwrk/contributor-hub"
+      ]
+    },
+    "memory:memory/2026-05-09.md:1:48": {
+      "key": "memory:memory/2026-05-09.md:1:48",
+      "path": "memory/2026-05-09.md",
+      "startLine": 1,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "# 2026-05-09 Bounty PR 监控 **身份**: 小米辣 🌶️ | **GitHub**: zhaog100 | **时间**: 2026-05-09 13:04 Asia/Hong_Kong (05:04 UTC) --- ## API 状态 - **GitHub Web (github.com)**: ✅ 可达 (HTTP 200) - **GitHub API (api.github.com)**: ❌ 不可达 (超时) - **gh CLI**: ❌ 超时 (pr list, rate_limit 等命令全部超时) - **结论**: GitHub 页面可访问，但 API 层完全阻塞 --- ## 当前 PR 状态总览 | # | Repo | Bounty | 状态 | 备注 | |---|------|--------|------|------| | 125 | ubiquity-os/permit-generation | $600 | changes_requested | 3条CodeRabbit Critical评论待修复 | | 714 | claude-builders-bounty | $200 | pending_review | 等审核15天 | | 87 | ubiquity-os/plugins-wishlist | $450 | changes_requested | CodeRabbit早期评论已处理完 | | 4101 | Scottcjn/Rustchain | N/A | pending_revie",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6322240487046997,
+      "maxScore": 0.6322240487046997,
+      "firstRecalledAt": "2026-05-10T10:58:33.298Z",
+      "lastRecalledAt": "2026-05-10T10:58:33.298Z",
+      "queryHashes": [
+        "d03acd54a14e"
+      ],
+      "recallDays": [
+        "2026-05-10"
+      ],
+      "conceptTags": [
+        "asia/hong-kong",
+        "github.com",
+        "api.github.com",
+        "rate-limit",
+        "ubiquity-os/permit-generation",
+        "changes-requested",
+        "claude-builders-bounty",
+        "pending-review"
       ]
     }
   }

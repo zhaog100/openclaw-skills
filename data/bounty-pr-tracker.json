@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-05-10T01:44:25Z",
+  "lastUpdated": "2026-05-10T15:04:00Z",
   "totalPRs": 457,
   "summary": {
-    "open": 153,
-    "closed": 277,
+    "open": 152,
+    "closed": 278,
     "merged": 27
   },
   "prs": [
@@ -176,7 +176,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/396",
       "created": "2026-04-22",
       "updated": "2026-04-25",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -186,7 +187,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/395",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -196,7 +198,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/394",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -206,7 +209,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/393",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -216,7 +220,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/392",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -226,7 +231,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/391",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -236,7 +242,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/390",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -246,7 +253,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/389",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -256,7 +264,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/388",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -266,7 +275,8 @@
       "url": "https://github.com/midnightntwrk/contributor-hub/pull/387",
       "created": "2026-04-22",
       "updated": "2026-04-22",
-      "merged_at": null
+      "merged_at": null,
+      "review_status": "REVIEW_REQUIRED - Maintainer review pending"
     },
     {
       "repo": "midnightntwrk/contributor-hub",
@@ -617,8 +627,10 @@
       "status": "open",
       "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/87",
       "created": "2026-04-12",
-      "updated": "2026-04-15",
-      "merged_at": null
+      "updated": "2026-05-10",
+      "merged_at": null,
+      "review_status": "CHANGES_REQUESTED (2026-05-10) - CodeRabbit: 4 CHANGES_REQUESTED reviews (Critical issues remain: import paths, logger destructure, provider branch, labels undefined); alceops: build errors; zhaog100 replied 2026-04-28; no maintainer response yet",
+      "notes": "CodeRabbit still rate-limited. Multiple CHANGES_REQUESTED reviews posted (2026-04-12 to 2026-04-14). zhaog100 replied asking for update (2026-04-28) — no maintainer response. Build errors need fixing before merge."
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
@@ -1309,16 +1321,16 @@
       "status": "open",
       "url": "https://github.com/Scottcjn/Rustchain/pull/4101",
       "created": "2026-05-08",
-      "updated": "2026-05-08",
+      "updated": "2026-05-10",
       "merged_at": null,
       "labels": [
         "BCOS-L1",
         "size/L",
         "node"
       ],
-      "bounty": "待确认",
-      "review_status": "4 评论 (rockytian-top, fengqiankun6-sudo)，无 CHANGES_REQUESTED",
-      "notes": "fengqiankun6-sudo: LGTM, 8-12 RTC 估值"
+      "bounty": "15 RTC (Medium tier)",
+      "review_status": "APPROVED (2026-05-10) - Scottcjn: 15 RTC payout approved. Payout confirms in 24h. Pending tx hash visible in PR.",
+      "notes": "APPROVED per HOLD review. Payout 15 RTC. Tx hash pending."
     },
     {
       "repo": "ubiquity-os-marketplace/text-conversation-rewards",

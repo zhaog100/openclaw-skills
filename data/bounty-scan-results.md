@@ -1,40 +1,38 @@
 # Bounty Scan Results
 **Scanner:** 小米辣 🌶️ (zhaog100)  
-**Scan Time:** 2026-05-10 04:01 Asia/Hong_Kong (20:01 UTC)  
-**New bounties found:** 6  
+**Scan Time:** 2026-05-10 22:02 Asia/Hong_Kong (14:02 UTC)  
+**New bounties found:** 0 (validated)  
 
 ## Scan Summary
-Total queries executed: 14 keyword queries across global/regional/platform categories
-Duplicate check against known-issues: already tracked items filtered
-New qualifying bounties (≥$10 USD or ≥10 RTC/LTD): 6
+- Executed 20+ keyword queries across global/regional/platform categories
+- Keywords with exact `$N` amounts returned empty (bounty:$10/50/100)
+- Platform queries (Immunefi, HackerOne, YesWeHack) returned no results
+- Regional queries (Japan/Taiwan/Germany/France/etc.) returned no results
+- "paid on merge" query returned non-bounty results (context: payment status labels)
+- GitHub search rate limits reduced result sets significantly
 
-## New Bounties Claimed
+## Duplicate Check: Applied
+All results cross-checked against `data/bounty-known-issues.txt` — no new duplicates found.
 
-### QuantumSavory/QuantumSavory.jl (Julia quantum computing)
-| Amount | Issue | Title |
-|--------|-------|-------|
-| **$1600** | [#134](https://github.com/QuantumSavory/QuantumSavory.jl/issues/134) | Entanglement tracker protocol with UUIDs assigned to each Bell pair |
-| **$400** | [#137](https://github.com/QuantumSavory/QuantumSavory.jl/issues/137) | Implement a networking protocol primitive |
-| **$400** | [#129](https://github.com/QuantumSavory/QuantumSavory.jl/issues/129) | Tensor Networks Backend |
-| **$200** | [#132](https://github.com/QuantumSavory/QuantumSavory.jl/issues/132) | Improve Makie visualization capabilities |
-| **$200** | [#131](https://github.com/QuantumSavory/QuantumSavory.jl/issues/131) | More thorough benchmarks |
+## New Findings: NONE
+No new qualifying bounties (≥$10 USD or ≥10 RTC/LTD) discovered this scan.
 
-### JuliaDynamics/ResumableFunctions.jl
-| Amount | Issue | Title |
-|--------|-------|-------|
-| **$600** | [#99](https://github.com/JuliaDynamics/ResumableFunctions.jl/issues/99) | Use JuliaLowering.jl for a cleaner way to transform resumable functions to finite state machines |
+## Carry-Over from Previous Scan (Still Valid, Unclaimable Without Write Access)
+| Repo | Amount | Issue | Title | Status |
+|------|--------|-------|-------|--------|
+| Henry00IS/ShapeEditor | $50 | [#3](https://github.com/Henry00IS/ShapeEditor/issues/3) | [50$ Bounty] Create RealtimeCSG Brush from PolygonMesh | No triage permission |
+| Henry00IS/ShapeEditor | $50 | [#17](https://github.com/Henry00IS/ShapeEditor/issues/17) | [50$ Bounty] PolyBool can cause an editor crash | No triage permission |
+| mangdangroboticsclub/mini_pupper_ros | $100 | [#125](https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125) | Upgrade ROS2 Humble to Jazzy | No triage permission |
+| Fahad-Dezloper/Crowdify | $50 | [#27](https://github.com/Fahad-Dezloper/Crowdify/issues/27) | Multiple Admin Support | No triage permission |
+| tscircuit/kicad-component-converter | $50 | [#114](https://github.com/tscircuit/kicad-component-converter/issues/114) | Fix the schematic view | No triage permission |
+| simonmichael/hledger | $20 | [#1148](https://github.com/simonmichael/hledger/issues/1148) | [💰20$ bounty] Inconsistent alignment for currencies with long names | Unclaimed |
+| simonmichael/hledger | $20 | [#1640](https://github.com/simonmichael/hledger/issues/1640) | [💰 20$ bounty] Pivoting over multiple tags | Unclaimed |
 
-## Claim Attempts
-- ⚠️ **GraphQL: User is blocked** — Cannot comment on QuantumSavory.jl issues (account blocked by maintainer or rate limit)
-- All 6 new issues added to known-issues.txt for deduplication
-- Total potential value: **$3400 USD**
+## Permission Status
+Read-only access on all candidate repos — cannot assign issues. Authenticated as zhaog100.
 
-## Notes
-- QuantumSavory.jl is a Julia-based quantum computing simulation library
-- Claim via comment or email to skrastanov@umass.edu (per issue body)
-- Account blocked on QuantumSavory — may need email claim route
-- No other qualifying bounties found across Europe/Asia regional searches
-- Many "bug bounty" labeled issues lack specific reward amounts
+## Blacklist Applied
+`zhaog100|Scottcjn|rustchain|solfoundry|aporthq|rohitdash08|Expensify|ubiquibot|bolivian|illbnm|conflux|WattCoin|coollabsio`
 
 ---
 *Generated automatically. Only local update.*
