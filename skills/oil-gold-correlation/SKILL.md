@@ -2,8 +2,8 @@
 description: 原油黄金相关性分析工具。
 name: oil-gold-correlation
 石油黄金实时相关性分析。获取大宗商品价格数据，计算多种相关性指标（Pearson/Spearman/Kendall），支持 DCC-GARCH 动态相关、Granger 因果检验、协整分析，输出可视化图表和自然语言结论。
-version: 2.1.0
-author: 小米粒 🌾
+version: 2.1.4
+author: 思捷娅科技 (SJYKJ)
 recommendModel: zai/glm-5
 altModels:
   - zai/glm-5
@@ -228,18 +228,59 @@ cron:
 
 ## 依赖
 
-- yfinance >= 0.2
+### Python 环境（推荐 Miniconda）
+```bash
+# 创建并激活环境
+conda create -n oil-gold python=3.11 -y
+conda activate oil-gold
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+### 依赖清单
+- yfinance >= 0.2.36
 - pandas >= 2.0
-- numpy
+- numpy >= 1.24
 - scipy >= 1.10
 - plotly >= 5.0
-- statsmodels（Granger/协整检验，可选）
+- statsmodels >= 0.14
+- requests >= 2.28
+- akshare >= 1.10
+
+### 跨平台启动脚本
+为方便使用，提供统一启动脚本：
+- **Linux/macOS**: `./run.sh {fetch|analyze|visualize|report|advisor|all}`
+- **Windows**: `run.bat {fetch|analyze|visualize|report|advisor|all}`
 
 ---
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
 ---
+
+## 🌐 技能仓库
+
+**官方仓库**: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+**主分支**: `main`
+**版本**: `v2.1.3`
+
+### 📥 下载方式
+
+#### 1. 通过 Git 下载（推荐）
+```bash
+git clone https://github.com/zhaog100/openclaw-skills.git
+cd openclaw-skills/skills/oil-gold-correlation
+git checkout v2.1.3
+```
+
+#### 2. 通过 OpenClaw CLI 安装
+```bash
+openclaw skills install oil-gold-correlation@v2.1.3
+```
+
+#### 3. 手动下载
+下载链接: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
 
 ## 🛠️ 部署指南
 
@@ -303,6 +344,23 @@ openclaw cron run oil-gold-morning
 编辑 `config/push-config.yaml` 自定义推送目标（见上方配置方式）。
 
 ---
+
+### 三平台路径映射
+为方便配置，以下是各平台的路径对应关系：
+
+```
+┌─────────────┬──────────────────────────────────────────┐
+│  平台        │  Cron 配置路径                             │
+├─────────────┼──────────────────────────────────────────┤
+│ Windows     │  %USERPROFILE%\.openclaw\cron\        │
+│             │    jobs.json                              │
+│ Linux/macOS │  ~/.openclaw/cron/jobs.json               │
+│ macOS       │  ~/.openclaw/cron/jobs.json               │
+└─────────────┴──────────────────────────────────────────┘
+```
+
+### 模板文件
+技能目录已提供 `cron-jobs-template.json` 文件，可直接复制到对应路径使用。
 
 **注意**：如果未配置 Cron 任务，技能功能正常但不会自动推送报告。
 

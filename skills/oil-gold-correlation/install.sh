@@ -1,20 +1,51 @@
 #!/bin/bash
-# oil-gold-correlation 技能安装脚本
+# oil-gold-correlation 技能安装脚本 - 优化版
 # Copyright (c) 2026 思捷娅科技 (SJYKJ)
-# Author: 思捷娅科技 (SJYKJ)/zhaog100
+# Author: 思捷娅科技 (SJYKJ)
+
+# 颜色输出
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
 
 set -e
 
 SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
 CRON_FILE="$HOME/.openclaw/cron/jobs.json"
 
-echo "🌶️ 石油黄金技能安装中..."
+echo -e "${BLUE}🌶️ 石油黄金技能安装中...${NC}"
 
-# 1. 检查依赖
-echo "📦 检查依赖..."
-python3 -c "import akshare" 2>/dev/null || echo "⚠️ akshare 未安装（pip install akshare）"
-python3 -c "import pandas" 2>/dev/null || echo "⚠️ pandas 未安装"
-python3 -c "import yfinance" 2>/dev/null || echo "⚠️ yfinance 未安装"
+# 1. 环境选择
+echo -e "${YELLOW}? 选择安装方式 (1: Miniconda环境 2: 系统Python 3: 轻量级版本)${NC}"
+read -p "选择 [1-3]: " INSTALL_TYPE
+
+case $INSTALL_TYPE in
+    1)
+        echo -e "${BLUE}📦 创建Miniconda环境...${NC}"
+        conda create -n oil-gold python=3.11 -y
+        conda activate oil-gold
+        PIP="pip"
+        ;;
+    2)
+        echo -e "${BLUE}📦 使用系统Python...${NC}"
+        PIP="pip"
+        ;;
+    3)
+        echo -e "${BLUE}📦 安装轻量级版本...${NC}"
+        echo -e "${YELLOW}⚠️  轻量级版本功能有限，依赖内置工具${NC}"
+        PIP="pip"
+        ;;
+    *)
+        echo -e "${BLUE}📦 使用Miniconda环境（默认）...${NC}"
+        PIP="pip"
+        ;;
+esac
+
+# 2. 检查依赖
+echo -e "${BLUE}📦 安装依赖...${NC}"
+$PIP install -r requirements.txt 2>/dev/null || echo "⚠️ 部分依赖安装失败，请手动安装"
 
 # 2. 创建 cron 任务
 echo "⏰ 配置 Cron 任务..."
@@ -89,13 +120,49 @@ else
     echo "⚠️ 未找到 cron/jobs.json，跳过 cron 配置"
 fi
 
-# 3. 配置推送（可选）
-echo "📨 检查推送配置..."
-if [ -f "$SKILL_DIR/config/push-config.yaml" ]; then
-    echo "✅ 推送配置已存在"
-else
-    echo "⚠️ 推送配置不存在，报告将输出到终端"
-fi
+# 3. 配置通知渠道
+echo -e "${YELLOW}? 选择通知渠道 (1: QQ机器人 2: 飞书 3: 钉钉 4: 终端输出)${NC}"
+read -p "选择 [1-4]: " NOTIFY_CHOICE
+
+case $NOTIFY_CHOICE in
+    1)
+        NOTIFY_TYPE="qqbot"
+        echo -e "${YELLOW}? 输入QQ机器人ID${NC}"
+        read -p "QQ机器人ID: " QQBOT_ID
+        ;;
+    2)
+        NOTIFY_TYPE="feishu"
+        echo -e "${YELLOW}? 输入飞书Webhook${NC}"
+        read -p "飞书Webhook: " FEISHU_WEBHOOK
+        ;;
+    3)
+        NOTIFY_TYPE="dingtalk"
+        echo -e "${YELLOW}? 输入钉钉Webhook${NC}"
+        read -p "钉钉Webhook: " DINGTALK_WEBHOOK
+        ;;
+    4)
+        NOTIFY_TYPE="terminal"
+        ;;
+    *)
+        NOTIFY_TYPE="terminal"
+        ;;
+esac
+
+# 生成推送配置
+cat > "$SKILL_DIR/config/push-config.yaml" << EOF
+push:
+  enabled: true
+  channels:
+    - name: default
+      type: $NOTIFY_TYPE
+      target: c2c
+      account: default
+      qqbot_id: $QQBOT_ID
+      feishu_webhook: $FEISHU_WEBHOOK
+      dingtalk_webhook: $DINGTALK_WEBHOOK
+EOF
+
+echo -e "${GREEN}✅ 推送配置已生成${NC}"
 
 echo ""
 echo "🌶️ 安装完成！"

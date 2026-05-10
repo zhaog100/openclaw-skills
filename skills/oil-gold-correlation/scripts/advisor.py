@@ -5,7 +5,10 @@
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-Author: 小米粒 (Xiaomili) - AI Agent
+Author: 思捷娅科技 (SJYKJ)
+
+⚠️ 重要声明：本工具提供技术分析参考，不构成投资建议。
+   市场有风险，投资需谨慎。所有分析结果仅供参考。
 
 v2.0 更新：
 - 多数据源支持（yfinance + AlphaVantage + Twelve Data + FRED）
@@ -1460,6 +1463,97 @@ def generate_daily_report(days=3):
     report = "\n".join(lines)
     print(report)
     return report
+
+
+def _analyze_instrument(instrument_name, period="90d", horizon=3):
+    """
+    分析单个金融工具（黄金/原油）
+    返回技术指标和评分
+    用于 report_text.py 生成双消息报告
+    """
+    try:
+        # 找到对应的金融工具
+        info = None
+        for name, data in INSTRUMENTS.items():
+            if instrument_name in name:
+                info = data
+                break
+        
+        if not info:
+            return None
+        
+        # 获取数据
+        from fetch_data import fetch_data
+        df = fetch_data(info.get("ak_key", ""), period=period)
+        
+        if not df or len(df) < 20:
+            return None
+        
+        # 获取最新价格
+        latest_price = df["Close"].iloc[-1]
+        
+        # 计算技术指标
+        close = df["Close"]
+        high = df["High"]
+        low = df["Low"]
+        
+        rsi = calc_rsi(close)
+        macd = calc_macd(close)
+        boll = calc_bollinger(close)
+        kdj = calc_stoch(high, low, close)
+        
+        # 计算综合评分
+        tech_score = 0
+        
+        # 均线系统
+        ma20 = close.rolling(20).mean().iloc[-1]
+        ma60 = close.rolling(60).mean().iloc[-1] if len(close) >= 60 else None
+        
+        if ma60:
+            if ma20 > ma60:
+                tech_score += 20
+            elif ma20 < ma60:
+                tech_score -= 20
+        
+        # RSI
+        if rsi < 30:
+            tech_score += 15
+        elif rsi > 70:
+            tech_score -= 15
+        
+        # MACD
+        if macd["signal"] in ("金叉↗", "多头"):
+            tech_score += 10
+        elif macd["signal"] in ("死叉↘", "空头"):
+            tech_score -= 10
+        
+        # 布林带
+        if boll["pct"] < 20:
+            tech_score += 10
+        elif boll["pct"] > 80:
+            tech_score -= 10
+        
+        # 信号标签
+        if tech_score >= 60:
+            signal_label = "建议买入"
+        elif tech_score >= 40:
+            signal_label = "可考虑"
+        elif tech_score >= 20:
+            signal_label = "观望"
+        else:
+            signal_label = "建议回避"
+        
+        return {
+            "score": tech_score,
+            "tech_score": tech_score,
+            "macro_score": 50,
+            "signal_label": signal_label,
+            "latest": latest_price
+        }
+        
+    except Exception as e:
+        print(f"    [_analyze_instrument] 分析 {instrument_name} 失败: {e}")
+        return None
 
 
 if __name__ == "__main__":

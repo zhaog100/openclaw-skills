@@ -7,7 +7,7 @@
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-Author: 思捷娅科技 (SJYKJ)/zhaog100
+Author: 思捷娅科技 (SJYKJ)
 """
 import argparse
 import pandas as pd
@@ -237,7 +237,14 @@ def is_data_valid(data: dict, min_records: int = 10) -> bool:
 
 
 def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
-    """带容错的数据获取：自动尝试多个数据源"""
+    """带容错的数据获取：优先使用akshare，yfinance作为备用
+    
+    策略：
+    1. 先检查缓存（默认30分钟TTL）
+    2. 主数据源：akshare（国内期货，无IP限制）
+    3. 备用数据源：yfinance（国际行情，腾讯云IP可能被限速）
+    4. 失败重试：指数退避策略
+    """
     import akshare
     import yfinance
 
@@ -251,46 +258,70 @@ def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
     result = None
     errors = []
 
-    # 方法1: akshare
-    for attempt in range(2):
+    # 主数据源: akshare（国内期货，无IP限制，优先使用）
+    print(f"[主数据源: akshare] 获取数据 ({period}，{interval})...")
+    for attempt in range(3):
         try:
-            print(f"[akshare] 尝试获取数据 ({period}，{interval})...")
             result = fetch_akshare(period, interval)
             if is_data_valid(result):
-                print(f"  ✅ akshare 成功")
+                print(f"  ✅ akshare 成功获取有效数据")
                 write_cache(period, interval, result)
                 return result
+            else:
+                print(f"  ⚠️ akshare 返回数据无效，尝试备用数据源")
+                break
         except ImportError as e:
             errors.append(f"akshare: {e}")
+            print(f"  ⚠️ akshare 不可用: {e}，切换到备用数据源")
             break
         except Exception as e:
             errors.append(f"akshare: {e}")
-            if attempt < 1:
-                time.sleep(2)
+            if attempt < 2:
+                wait_time = 2  # 固定短等待
+                print(f"  ⚠️ akshare 失败 (尝试 {attempt+1}/3): {e}")
+                print(f"  ⏳ {wait_time}秒后重试...")
+                time.sleep(wait_time)
+            else:
+                print(f"  ❌ akshare 全部重试失败")
 
-    # 方法2: yfinance
+    # 备用数据源: yfinance（国际行情，腾讯云IP可能被限速）
+    print(f"[备用数据源: yfinance] 获取数据 ({period}，{interval})...")
     for attempt in range(2):
         try:
-            print(f"[yfinance] 尝试获取数据 ({period}，{interval})...")
+            # yfinance需要更长的等待时间避免限速
+            if attempt == 0:
+                print(f"  ⏳ 等待3秒避免yfinance限速...")
+                time.sleep(3)
+            
             result = fetch_yfinance(period, interval)
             if is_data_valid(result):
-                print(f"  ✅ yfinance 成功")
+                print(f"  ✅ yfinance 成功获取有效数据")
                 write_cache(period, interval, result)
                 return result
+            else:
+                print(f"  ⚠️ yfinance 返回数据无效")
         except ImportError as e:
             errors.append(f"yfinance: {e}")
+            print(f"  ⚠️ yfinance 不可用: {e}")
             break
         except Exception as e:
             errors.append(f"yfinance: {e}")
             if attempt < 1:
-                time.sleep(2)
+                wait_time = 5  # 指数退避
+                print(f"  ⚠️ yfinance 失败 (尝试 {attempt+1}/2): {e}")
+                print(f"  ⏳ {wait_time}秒后重试...")
+                time.sleep(wait_time)
+            else:
+                print(f"  ❌ yfinance 全部重试失败")
 
     # 全部失败，返回缓存（即使过期）
-    print(f"  ⚠️ 所有数据源失败，使用过期缓存")
+    print(f"  ⚠️ 所有数据源失败，尝试使用过期缓存...")
     cached = read_cache(period, interval)
     if cached:
-        print(f"  📦 使用过期缓存: {len(cached)} 条记录")
+        cache_age = int(time.time() - cached.get('_cache_timestamp', 0))
+        print(f"  📦 使用过期缓存: {len(cached)} 条记录 (缓存{cache_age}秒)")
         return cached
 
-    print(f"  ❌ 数据获取彻底失败: {errors}")
+    print(f"  ❌ 数据获取彻底失败，无可用数据源")
+    print(f"  错误汇总: {errors}")
     return None
