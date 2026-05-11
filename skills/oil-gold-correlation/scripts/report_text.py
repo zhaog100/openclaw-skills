@@ -181,13 +181,13 @@ def get_operation_advice(gold_score, oil_score):
     # 黄金建议
     g_advice, g_emoji = score_verdict(gold_score)
     if gold_score >= 75:
-        g_reason = "综合评分{gold_score}，建议买入"
+        g_reason = f"综合评分={gold_score}，建议买入"
     elif gold_score >= 60:
-        g_reason = "综合评分{gold_score}，可考虑轻仓"
+        g_reason = f"综合评分={gold_score}，可考虑轻仓"
     elif gold_score >= 40:
-        g_reason = "综合评分{gold_score}，建议观望"
+        g_reason = f"综合评分={gold_score}，建议观望"
     else:
-        g_reason = "综合评分{gold_score}，建议回避"
+        g_reason = f"综合评分={gold_score}，建议回避"
     lines.append(f"🥇 黄金：{g_emoji} {g_advice}")
     lines.append(f"  理由：{g_reason}")
     lines.append("")
@@ -195,13 +195,13 @@ def get_operation_advice(gold_score, oil_score):
     # 原油建议
     o_advice, o_emoji = score_verdict(oil_score)
     if oil_score >= 75:
-        o_reason = "综合评分{oil_score}，建议买入"
+        o_reason = f"综合评分={oil_score}，建议买入"
     elif oil_score >= 60:
-        o_reason = "综合评分{oil_score}，可考虑轻仓"
+        o_reason = f"综合评分={oil_score}，可考虑轻仓"
     elif oil_score >= 40:
-        o_reason = "综合评分{oil_score}，建议观望"
+        o_reason = f"综合评分={oil_score}，建议观望"
     else:
-        o_reason = "综合评分{oil_score}，建议回避"
+        o_reason = f"综合评分={oil_score}，建议回避"
     lines.append(f"🛢️ 原油：{o_emoji} {o_advice}")
     lines.append(f"  理由：{o_reason}")
     lines.append("")
@@ -217,8 +217,22 @@ def get_operation_advice(gold_score, oil_score):
     lines.append(f"组合建议：黄金:原油 = {ratio}")
     lines.append("")
     
-    # 结论
-    lines.append("结论：结合技术面和宏观信号综合判断，等趋势明朗后再操作。")
+    # 动态生成结论
+    try:
+        from fetch_fred_unified import get_consumer_confidence
+        conf_data = get_consumer_confidence()
+        conf_val = conf_data.get('value') if conf_data else None
+        
+        if conf_val is not None and conf_val < 60:
+            lines.append(f"结论：消费者信心={conf_val:.0f}偏低，建议谨慎操作。")
+        elif gold_score > 60 and oil_score > 60:
+            lines.append("结论：黄金与原油信号均偏多，可考虑建仓。")
+        elif gold_score < 40 and oil_score < 40:
+            lines.append("结论：黄金与原油信号均偏空，建议回避。")
+        else:
+            lines.append("结论：多空信号分化，建议等待趋势明朗。")
+    except Exception:
+        lines.append("结论：数据获取中，建议关注后续信号。")
     lines.append("")
     lines.append("⚠️ 仅供参考，不构成投资建议")
     

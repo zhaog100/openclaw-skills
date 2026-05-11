@@ -265,15 +265,15 @@ def draw_report(results, tech_scores, risk_score):
         conf_data = get_consumer_confidence()
         conf_val = conf_data.get('value') if conf_data else None
         
-        # 基于宏观数据生成结论
+        # 基于宏观数据和市场信号动态生成结论
         if conf_val is not None and conf_val < 60:
-            conclusion1 = '全部观望不动。'
-            conclusion2 = f'消费信心{conf_val}极低，避险利多黄金'
-            conclusion3 = '但技术面偏空，等信号灯转正。'
+            conclusion1 = '宏观信心偏低，注意避险需求变化。'
+            conclusion2 = f'消费信心={conf_val:.0f}处于低位区间，关注后续走势。'
+            conclusion3 = '建议等待宏观信号与技术面信号共振后再操作。'
         else:
-            conclusion1 = '市场信号中性。'
-            conclusion2 = '等待更明确的宏观信号。'
-            conclusion3 = '建议关注技术面变化。'
+            conclusion1 = '宏观信号中性，关注技术面变化。'
+            conclusion2 = '消费者信心处于正常区间。'
+            conclusion3 = '建议关注量能和技术指标信号。'
     except Exception as e:
         conclusion1 = '数据获取中...'
         conclusion2 = '等待宏观数据更新。'
