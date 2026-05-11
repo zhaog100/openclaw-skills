@@ -128,24 +128,47 @@ def get_operation_advice(gold_score, oil_score):
     
     # 宏观信号灯（尝试获取真实数据）
     try:
-        from fetch_fred import get_consumer_confidence, get_vix, get_yield_spread, get_credit_spread
+        from fetch_fred_unified import get_consumer_confidence, get_vix, get_yield_spread, get_credit_spread
         
         conf = get_consumer_confidence()
         vix = get_vix()
         spread = get_yield_spread()
         credit = get_credit_spread()
         
-        conf_val = conf.get('value', 57) if conf else 57
-        vix_val = vix.get('value', 19.2) if vix else 19.2
-        spread_val = spread.get('value', 0.52) if spread else 0.52
-        credit_val = credit.get('value', 2.94) if credit else 2.94
+        # 不再使用硬编码 fallback 值，而是明确标注数据状态
+        conf_val = conf.get('value') if conf and conf.get('value') is not None else None
+        vix_val = vix.get('value') if vix and vix.get('value') is not None else None
+        spread_val = spread.get('value') if spread and spread.get('value') is not None else None
+        credit_val = credit.get('value') if credit and credit.get('value') is not None else None
         
-        conf_status = "悲极" if conf_val < 60 else "正常"
-        vix_status = "平静" if vix_val < 20 else "紧张"
-        spread_status = "正常" if 0.3 <= spread_val <= 1.0 else "异常"
-        credit_status = "宽松" if credit_val < 3.0 else "紧张"
+        # 动态生成宏观信号灯显示
+        signal_parts = []
         
-        lines.append(f"信心:{conf_val:.0f} {conf_status} | VIX:{vix_val:.1f} {vix_status} | 利差:{spread_val:.2f} {spread_status} | 信用:{credit_val:.2f} {credit_status}")
+        if conf_val is not None:
+            conf_status = "悲极" if conf_val < 60 else "正常"
+            signal_parts.append(f"信心:{conf_val:.0f} {conf_status}")
+        else:
+            signal_parts.append("信心:[数据不可用]")
+        
+        if vix_val is not None:
+            vix_status = "平静" if vix_val < 20 else "紧张"
+            signal_parts.append(f"VIX:{vix_val:.1f} {vix_status}")
+        else:
+            signal_parts.append("VIX:[数据不可用]")
+        
+        if spread_val is not None:
+            spread_status = "正常" if 0.3 <= spread_val <= 1.0 else "异常"
+            signal_parts.append(f"利差:{spread_val:.2f} {spread_status}")
+        else:
+            signal_parts.append("利差:[数据不可用]")
+        
+        if credit_val is not None:
+            credit_status = "宽松" if credit_val < 3.0 else "紧张"
+            signal_parts.append(f"信用:{credit_val:.2f} {credit_status}")
+        else:
+            signal_parts.append("信用:[数据不可用]")
+        
+        lines.append(" | ".join(signal_parts))
         
     except Exception as e:
         lines.append("⚠️ 宏观数据获取失败，请稍后重试")
@@ -211,8 +234,22 @@ def generate_report_parts():
     
     # 关键拐点
     lines1.append('>> 关键拐点')
-    lines1.append('消费者信心=57 持续低位')
-    lines1.append('历史上<60连续3月 = 黄金大级别买入信号')
+    try:
+        from fetch_fred import get_consumer_confidence
+        conf_data = get_consumer_confidence()
+        if conf_data and conf_data.get('value') is not None:
+            conf_val = conf_data['value']
+            lines1.append(f'消费者信心={conf_val} 持续低位')
+            if conf_val < 60:
+                lines1.append('历史上<60连续3月 = 黄金大级别买入信号')
+            else:
+                lines1.append('消费者信心数据已更新')
+        else:
+            lines1.append('消费者信心=[数据获取失败]')
+            lines1.append('等待数据更新')
+    except Exception as e:
+        lines1.append('消费者信心=[数据不可用]')
+        lines1.append('等待数据更新')
     lines1.append("")
     
     # 行情数据

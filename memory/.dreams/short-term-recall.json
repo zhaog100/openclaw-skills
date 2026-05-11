@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-10T10:58:33.298Z",
+  "updatedAt": "2026-05-11T11:40:06.286Z",
   "entries": {
     "memory:memory/2026-05-01.md:123:139": {
       "key": "memory:memory/2026-05-01.md:123:139",
@@ -289,6 +289,627 @@
         "changes-requested",
         "claude-builders-bounty",
         "pending-review"
+      ]
+    },
+    "memory:memory/2026-04-27.md:39:79": {
+      "key": "memory:memory/2026-04-27.md:39:79",
+      "path": "memory/2026-04-27.md",
+      "startLine": 39,
+      "endLine": 79,
+      "source": "memory",
+      "snippet": "--- ## Git状态 **当前分支**: main **remote配置**: - origin → openclaw-skills（技能） - xiaomila → xiaomila-skills（个人信息） **待提交**: - 配置文件（MEMORY.md/HEARTBEAT.md/IDENTITY.md/TOOLS.md/.env等） - bounty相关文件（master-list/pr-board） - ZIP恢复的新文件 **注意**：不要推送到错误的remote！ - 个人信息 → xiaomila remote - 技能更新 → origin remote --- ## 结构化整理任务 - [ ] memory/ 整理（42个文件，建立索引） - [ ] knowledge/ 更新索引（134文件） - [ ] skills/ 整理（781文件） - [ ] data/ 更新（bounty-pr-tracker等） - [ ] QMD向量更新 - [ ] Git commit + 推送到正确remote --- ## 待查漏补缺 1. memory/2026-04-27.md 是否完整记录今天事件 2. ZIP中的新skills是否有遗漏 3. bounty-pr-tracker.json 是否需要更新 reward 字段 4. QMD索引是否需要刷新 --- _最后更新: 2026-04-27 18:15_",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T07:59:52.907Z",
+      "lastRecalledAt": "2026-05-11T07:59:52.907Z",
+      "queryHashes": [
+        "78187211abb3"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "qmd",
+        "openclaw-skills",
+        "xiaomila-skills",
+        "master-list/pr-board",
+        "bounty-pr-tracker等",
+        "memory/2026-04-27.md",
+        "bounty-pr-tracker.json",
+        "git"
+      ]
+    },
+    "memory:memory/2026-03-29.md:576:628": {
+      "key": "memory:memory/2026-03-29.md:576:628",
+      "path": "memory/2026-03-29.md",
+      "startLine": 576,
+      "endLine": 628,
+      "source": "memory",
+      "snippet": "## 🔄 Git 远程仓库配置进展 (05:06 PDT) ### 已识别的远程仓库 1. **公开仓库**: `git@github.com:zhaog100/openclaw-skills.git` - 用途: 技能相关内容（公开可见） 2. **私有仓库**: `git@github.com:zhaog100/xiaomili-skills.git` - 用途: 个人数据（私有访问） ### 当前状态 - ✅ Git fetch 已完成（remote: nimble-c） - ⏳ 本地有 4 个新提交待推送 - ⏳ 远程有大量历史提交待合并 - 🔜 需要执行历史合并操作 ### 下一步行动 ```bash # 合并历史（保留双方提交） git pull origin main --allow-unrelated-histories --no-edit # 推送到远程 git push origin main ``` ### 注意事项 - 使用 `--allow-unrelated-histories` 参数允许合并不相关的历史 - `--no-edit` 自动接受合并提交消息 - 合并后可能需要解决冲突（如果有） - 确保推送前检查合并结果 ### 预期结果 - ✅ 本地 4 个新提交与远程历史共存 - ✅ 工作区内容完整同步到 GitHub - ✅ 建立持续同步的远程仓库连接 --- _更新时间: 2026-03-29 05:06 PDT_ --- ## 🔄 数据整合与修正 (05:20 PDT) ### ⚠️ 发现的问题",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T07:59:52.907Z",
+      "lastRecalledAt": "2026-05-11T07:59:52.907Z",
+      "queryHashes": [
+        "78187211abb3"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "github.com",
+        "zhaog100/openclaw-skills.git",
+        "zhaog100/xiaomili-skills.git",
+        "nimble-c",
+        "allow-unrelated-histories",
+        "no-edit",
+        "git",
+        "远程"
+      ]
+    },
+    "memory:memory/2026-03-29.md:150:214": {
+      "key": "memory:memory/2026-03-29.md:150:214",
+      "path": "memory/2026-03-29.md",
+      "startLine": 150,
+      "endLine": 214,
+      "source": "memory",
+      "snippet": "**效果**: 工作时间从 2小时 → 预计 30分钟 ### 3. 数据驱动 **问题**: 凭感觉选择 bounty 项目 **解决**: 建立 4 维度评分算法 **效果**: 成功率预期提升 3x ### 4. 经验沉淀 **问题**: 重复犯错，忘记教训 **解决**: 建立 lessons.md 文档 **效果**: 避免重复踩坑 --- ## 🔍 遗漏检查 ### 已补充 ✅ - ✅ 企业级 SECURITY.md 模板 - ✅ Bounty 过滤和评分算法 - ✅ 历史记录和经验教训 - ✅ 深度总结文档 ### 仍需优化 🔄 - [ ] 自动化扫描脚本开发 - [ ] GitHub API 集成（实时监控） - [ ] PR 状态自动跟踪 - [ ] 远程 Git 仓库配置 - [ ] QMD 向量索引优化 --- ## 🚀 下一步计划 ### 短期（本周） 1. **配置远程仓库** ```bash git remote add origin <url> git push -u origin main ``` 2. **跟进 PR #198** - 每日检查状态 - 响应维护者反馈 3. **继续 Bounty 工作** - 应用新的评分系统 - 提交 2-3 个新 PR ### 中期（本月） 1. **自动化开发** - GitHub 搜索脚本 - 黑名单自动更新 - PR 模板生成器 2. **规模化** - 扫描效率: 50/天 →",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T07:59:52.907Z",
+      "lastRecalledAt": "2026-05-11T07:59:52.907Z",
+      "queryHashes": [
+        "78187211abb3"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "qmd",
+        "lessons.md",
+        "security.md",
+        "2-3",
+        "50/天",
+        "效果",
+        "工作",
+        "时间"
+      ]
+    },
+    "memory:memory/2026-03-29.md:415:474": {
+      "key": "memory:memory/2026-03-29.md:415:474",
+      "path": "memory/2026-03-29.md",
+      "startLine": 415,
+      "endLine": 474,
+      "source": "memory",
+      "snippet": "- 新增: **1,780 行** - 知识库: **1,482 行** - 记忆: **298 行** ### 知识密度 - Bounty 策略文档: **6 个** - SECURITY.md 模板: **3 套** - 工作流程图: **4 个** --- ## 💡 核心学习 ### 1. 系统化思维 **问题**: 之前的知识零散分布，难以复用 **解决**: 建立层次化知识库体系 **效果**: 知识检索时间从 10分钟 → 30秒 ### 2. 模板化提效 **问题**: 每次 SECURITY.md 都从零开始 **解决**: 建立标准/精简/企业级三套模板 **效果**: 工作时间从 2小时 → 预计 30分钟 ### 3. 数据驱动 **问题**: 凭感觉选择 bounty 项目 **解决**: 建立 4 维度评分算法 **效果**: 成功率预期提升 3x ### 4. 经验沉淀 **问题**: 重复犯错，忘记教训 **解决**: 建立 lessons.md 文档 **效果**: 避免重复踩坑 --- ## 🔍 遗漏检查 ### 已补充 ✅ - ✅ 企业级 SECURITY.md 模板 - ✅ Bounty 过滤和评分算法 - ✅ 历史记录和经验教训 - ✅ 深度总结文档 ### 仍需优化 🔄 - [ ] 自动化扫描脚本开发 - [ ] GitHub API 集成（实时监控） - [ ] PR 状态自动跟踪 - [ ] 远程 Git 仓库配置 - [ ] QMD 向量索引优化 --- ## 🚀",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T07:59:52.907Z",
+      "lastRecalledAt": "2026-05-11T07:59:52.907Z",
+      "queryHashes": [
+        "78187211abb3"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "qmd",
+        "security.md",
+        "建立标准/精简/企业级三套模板",
+        "lessons.md",
+        "新增",
+        "1,780",
+        "知识",
+        "1,482"
+      ]
+    },
+    "memory:memory/2026-03-29.md:1001:1062": {
+      "key": "memory:memory/2026-03-29.md:1001:1062",
+      "path": "memory/2026-03-29.md",
+      "startLine": 1001,
+      "endLine": 1062,
+      "source": "memory",
+      "snippet": "- [ ] QMD 向量索引（24小时后生效） --- ## 🎯 价值评估 ### 时间投入 - 整理时间: **1.5 小时** - 文档编写: **2 小时** ### 收益预期 - **效率提升**: 3x（模板复用） - **成功率提升**: 2x（科学评估） - **知识复用**: 10x（结构化体系） - **协作效率**: 5x（清晰索引） ### ROI - 投入: 3.5 小时 - 预期节省: **35+ 小时/月** - **ROI: 10x** --- _系统化整理完成！准备进入规模化执行阶段_ --- **Git 提交记录**: - `b527fca` - 系统化整理（11 files） - `6f80e94` - 深度补充（7 files） **总文件数**: 24 **总代码行**: 1,780+ **知识密度**: 高 📚 --- ## 🔄 Git 远程仓库配置进展 (05:06 PDT) ### 已识别的远程仓库 1. **公开仓库**: `git@github.com:zhaog100/openclaw-skills.git` - 用途: 技能相关内容（公开可见） 2. **私有仓库**: `git@github.com:zhaog100/xiaomili-skills.git` - 用途: 个人数据（私有访问） ### 当前状态 - ✅ Git fetch 已完成（remote: nimble-c） - ⏳ 本地有 4 个新提交待推送 - ⏳ 远程有大量历史提交待合并 - 🔜 需要执行历史合并",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T07:59:52.907Z",
+      "lastRecalledAt": "2026-05-11T08:02:22.648Z",
+      "queryHashes": [
+        "78187211abb3",
+        "3c1af8d68ce8"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "qmd",
+        "1.5",
+        "3.5",
+        "小时/月",
+        "github.com",
+        "zhaog100/openclaw-skills.git",
+        "zhaog100/xiaomili-skills.git",
+        "nimble-c"
+      ]
+    },
+    "memory:memory/2026-03-24.md:283:343": {
+      "key": "memory:memory/2026-03-24.md:283:343",
+      "path": "memory/2026-03-24.md",
+      "startLine": 283,
+      "endLine": 343,
+      "source": "memory",
+      "snippet": "| 16:19 | 恢复提交推错 | 个人文件回 origin | 再次删除 | **根因**： 1. 没有提交前分类，习惯性 `git add .` 2. 习惯性 `git push origin && git push xiaomila` 3. 没有真正理解\"禁止同一个 commit 推两个仓库\" **正确做法**： ```bash # ✅ 公共内容 git add STRUCTURE-INDEX.md data/bounty-*.txt git commit -m \"chore: 公共数据更新\" git push origin master # ✅ 个人内容 git add memory/2026-*.md docs/*-assessment.md git commit -m \"docs: 今日笔记\" git push xiaomila master # ❌ 禁止 git add . git commit -m \"更新\" git push origin master git push xiaomila master # 绝对禁止！ ``` **固化到 MEMORY.md**： - 推送规则详情（origin vs xiaomila） - 三次教训记录 - 禁止同一个 commit 推两个仓库 **最终状态**： - ✅ origin 无个人笔记 - ✅ xiaomila 个人笔记完整 - ✅ 本地文件安全 --- ### 结构化整理报告 v2.0 **创建文件**：`docs/structure-report-2026-03-24.md` **内容*",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T08:02:22.648Z",
+      "lastRecalledAt": "2026-05-11T08:02:22.648Z",
+      "queryHashes": [
+        "3c1af8d68ce8"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "structure-index.md",
+        "data/bounty",
+        "memory/2026",
+        "assessment.md",
+        "memory.md",
+        "v2.0",
+        "恢复",
+        "提交"
+      ]
+    },
+    "memory:memory/2026-04-22.md:152:194": {
+      "key": "memory:memory/2026-04-22.md:152:194",
+      "path": "memory/2026-04-22.md",
+      "startLine": 152,
+      "endLine": 194,
+      "source": "memory",
+      "snippet": "- ✅ 无数据丢失 ### 3. Gateway 重启 ✅ - 重启后 Gateway 健康正常 - ⚠️ QQ Bot 插件重复警告（内置+扩展同时存在） - QQ Bot enabled=true, appId=102911630 已配置 ### 4. 网络诊断 ❌ - GitHub API: ✅ 200（正常） - SSH port 22: ❌ Connection closed - SSH port 443: ❌ Connection Closed - git-receive-pack: ❌ 403/SSL_ERROR - DNS: ✅ 正常解析 - **结论**: VMware网络层深度封锁git协议 - **本地提交**: 2个（bd564cf2 + 9de9c354）待推送 ### 5. QMD 向量更新 ✅ - 132文件/546向量（+4新文件/+14向量） ### 6. LongCat 模型配置更新 ✅ - 用户提供了LongCat API完整文档 - models.json更新：7个模型注册 - LongCat-Flash-Lite（快速扫描） - LongCat-Flash-Thinking-2601（深度思考） - LongCat-Flash-Chat（通用对话） - LongCat-Flash-Omni-2603（多模态） - Sphynx（Agentic） - LongCat-Flash-Chat-2602-Exp - LongCat-Flash-Thinking（别名） - API端点: `https://ap",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T08:57:39.366Z",
+      "lastRecalledAt": "2026-05-11T08:57:39.366Z",
+      "queryHashes": [
+        "56202a21521c"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "网络",
+        "git-receive-pack",
+        "403/ssl-error",
+        "132文件/546向量",
+        "models.json更新",
+        "longcat-flash-lite"
+      ]
+    },
+    "memory:memory/2026-04-21.md:1:36": {
+      "key": "memory:memory/2026-04-21.md:1:36",
+      "path": "memory/2026-04-21.md",
+      "startLine": 1,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "## 📅 2026-04-21 工作记录 ### ✅ 已完成 #### LongCat API 连接问题 - **问题**: LongCat API 返回 301/404 错误，API端点已变更 - **诊断**: 旧地址/api.longcat.chat/openai/v1/* 不再可用 - **影响**: 模型切换功能完全不可用 - **状态**: API服务迁移中，需等待官方文档更新 #### QQ Bot 连接问题解决 - **问题诊断**：QQ Bot DNS 劫持导致连接失败（bots.qq.com 解析到保留IP段） - **根本原因**：Windows 主机 VMware 网络层 DNS 污染 - **解决方案**：升级 OpenClaw 到 2026.4.19-beta.2（修复 DNS 相关问题） - **验证结果**：QQ Bot 现在正常运行，已连接并准备接收消息 #### LongCat 模型配置 - **添加 LongCat provider**：配置 longcat/LongCat-Flash-Lite、LongCat-Flash-Chat、LongCat-Thinking 模型 - **设置默认模型**：将 primary 模型设置为 LongCat-Flash-Lite - **验证状态**：模型列表显示成功，gateway 重启后可用 #### QQ Bot 凭证更新 - **旧凭证**：appId 102911630（之前尝试但无效） - **新凭证**：使用用户提供的有效 QQ Bot 凭据 - **状态**：凭证配置成功，b",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T08:57:39.366Z",
+      "lastRecalledAt": "2026-05-11T08:57:39.366Z",
+      "queryHashes": [
+        "56202a21521c"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "openai",
+        "网络",
+        "301/404",
+        "旧地址/api.longcat.chat/openai/v1",
+        "bots.qq.com",
+        "2026.4.19-beta.2",
+        "longcat/longcat-flash-lite"
+      ]
+    },
+    "memory:memory/2026-04-22.md:188:228": {
+      "key": "memory:memory/2026-04-22.md:188:228",
+      "path": "memory/2026-04-22.md",
+      "startLine": 188,
+      "endLine": 228,
+      "source": "memory",
+      "snippet": "- openclaw.json defaults.models 已更新 ### 8. QQ Bot 模型问题 ⚠️ 发现 - QQ Bot 使用默认模型 = `longcat/LongCat-Flash-Thinking-2601` - auth-profiles.json 中**没有 LongCat 的 API Key** - 只有 zai:default 和 minimax:cn 有 key - 导致 `Unknown model: longcat/LongCat-Flash-Thinking-2601` 错误 - **待修复**: 需要把 LongCat key 加到 auth-profiles.json --- ## ⚠️ 待解决问题 - [ ] **LongCat auth-profiles**: 需要添加 LongCat API Key 到 auth-profiles.json - [ ] GitHub Token / 网络封锁（API正常但git push被封锁） - [ ] QQ Bot 插件重复警告 - [ ] 百炼 API 配额耗尽 - [ ] browser/ 插件需重启生效 --- ## IDENTITY.md 更新 ✅ - 已填写: 辣椒儿/小米辣 🌶️ - GitHub: zhaog100 - Platform: OpenClaw on Linux Desktop (Ubuntu) --- ## 晚间回顾（23:02） ### 今日完成 1. ✅ Chrome 书签三省六部制整理（148个书签，用户表扬） 2. ✅ OpenClaw",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T08:57:39.366Z",
+      "lastRecalledAt": "2026-05-11T08:57:39.366Z",
+      "queryHashes": [
+        "56202a21521c"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "网络",
+        "openclaw.json",
+        "defaults.models",
+        "auth-profiles.json",
+        "auth-profiles",
+        "identity.md",
+        "辣椒儿/小米辣",
+        "更新"
+      ]
+    },
+    "memory:memory/2026-03-25.md:62:83": {
+      "key": "memory:memory/2026-03-25.md:62:83",
+      "path": "memory/2026-03-25.md",
+      "startLine": 62,
+      "endLine": 83,
+      "source": "memory",
+      "snippet": "7. **ubiquity-os 生态** — 必须核心团队成员才能认领任务，普通贡献者被拒 8. **toku.agency** — AI agent 服务市场，USD 结算，85% 分成，API: ~/.openclaw/secrets/toku.env 9. **OpenClaw QQBot 引用格式** — `[引用消息开始]...[引用消息结束]`，由插件自动嵌入消息体 10. **Git 历史恢复** — `git show <commit>~1:<path>` 可恢复已删除文件 11. **bash `local result=$(...)`** — 会覆盖 `$?`，需用 `local rc=$?` 立即保存 12. **Tesseract OCR** — v5.3.4，中英文需 tesseract-ocr-chi-sim，pytesseract Python 库 ## ⏳ 待办 - tscircuit/core #2074 — 等 review - tscircuit/matchpack #49 — 等 review（上游 convertCircuitJsonToSchematicSimulationSvg 依赖问题） - AncientBeast #1469 — 已认领，暂不处理（代币价值不明） ## 🔍 遗漏/待改进 - 子代理类型错误频发，需要加强 PR 前本地类型检查 - Bounty 扫描效率可优化，考虑脚本化筛选冷门 org --- **MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)**",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:47:35.673Z",
+      "lastRecalledAt": "2026-05-11T10:47:35.673Z",
+      "queryHashes": [
+        "88109f1e5576"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "ubiquity-os",
+        "toku.agency",
+        "openclaw/secrets/toku.env",
+        "v5.3.4",
+        "tesseract-ocr-chi-sim",
+        "tscircuit/core",
+        "tscircuit/matchpack",
+        "遗漏/待改进"
+      ]
+    },
+    "memory:memory/2026-03-25.md:1:26": {
+      "key": "memory:memory/2026-03-25.md:1:26",
+      "path": "memory/2026-03-25.md",
+      "startLine": 1,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "# 2026-03-25 工作记录 ## ✅ 完成任务 ### Bounty PR | 时间 | 任务 | 详情 | |------|------|------| | 上午 | tscircuit/core #86 | 同网走线断裂修复，PR #2074，改 maxMspPairDistance 2.4→5 | | 上午 | tscircuit/matchpack #15 | 去耦电容水平布局，PR #49，SingleInnerPartitionPackingSolver 特殊处理 decoupling_caps | | 上午 | PR #49 CI 修复 | Side 类型 left/right→x-/x+、undefined 类型断言、biome 格式化 | ### 信息收集 | 时间 | 任务 | 详情 | |------|------|------| | 上午 | 邮箱检查 | 发现 matchpack CI 失败→及时修复；AncientBeast #1469 自动认领（70 XTR） | | 上午 | Bounty 市场扫描 | dokploy/scratchdata/arakoodev 等，竞争激烈（6-18 claims/issue） | ### 运维 | 时间 | 任务 | 详情 | |------|------|------| | 下午 | 微信 Bot 安装 | @tencent-weixin/openclaw-weixin 插件 | | 下午 | Workspace 整理 | MEMORY.md 精简、目录归档、git push xiaomil",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:47:35.673Z",
+      "lastRecalledAt": "2026-05-11T10:47:35.673Z",
+      "queryHashes": [
+        "88109f1e5576"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "tscircuit/core",
+        "2.4",
+        "tscircuit/matchpack",
+        "decoupling-caps",
+        "left/right",
+        "dokploy/scratchdata/arakoodev",
+        "6-18",
+        "claims/issue"
+      ]
+    },
+    "memory:memory/2026-03-25.md:45:64": {
+      "key": "memory:memory/2026-03-25.md:45:64",
+      "path": "memory/2026-03-25.md",
+      "startLine": 45,
+      "endLine": 64,
+      "source": "memory",
+      "snippet": "| 下午 | Quote Reader QQ 适配 | 修复 detect-quote.sh 的 $? bug、新增 OpenClaw QQBot 嵌入引用格式识别、多行引用提取 | | 下午 | Terminal OCR 恢复 | 从 Git 历史恢复 v0.2.0，补全 Tesseract OCR 核心功能，更新 v0.3.0，发布 ClawHub | ### 配置修正 | 时间 | 任务 | 详情 | |------|------|------| | 下午 | 全局名称修正 | \"小米辣\"→\"小米粒\"，sed 批量替换 230 个 md 文件 | | 下午 | Workspace 结构化整理 | 子代理执行：索引更新、归档 91 个文件、Git push | ## 🧠 新知识 1. **matchpack Side 类型** — `Side = \"x-\" | \"x+\" | \"y-\" | \"y+\"` 2. **PartitionInputProblem 类型** — chipMap/chipPinMap/netMap，isDecouplingCap 字段 3. **Gmail IMAP** — App Password + IMAP 可程序化读取邮件 4. **Algora 竞争分析** — 热门 org 6-18 claims，需找冷门 5. **systemd service** — openclaw-gateway.service disabled，直接启动会杀当前会话 6. **子代理类型教训** — 写测试用了 left/right 而非实际 Side 类",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:47:35.673Z",
+      "lastRecalledAt": "2026-05-11T10:47:35.673Z",
+      "queryHashes": [
+        "88109f1e5576"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "detect-quote.sh",
+        "v0.2.0",
+        "v0.3.0",
+        "chipmap/chippinmap/netmap",
+        "6-18",
+        "openclaw-gateway.service",
+        "left/right"
+      ]
+    },
+    "memory:memory/2026-03-31.md:42:87": {
+      "key": "memory:memory/2026-03-31.md:42:87",
+      "path": "memory/2026-03-31.md",
+      "startLine": 42,
+      "endLine": 87,
+      "source": "memory",
+      "snippet": "- `data/INDEX.md` - 数据文件主索引 --- ## 🗑️ 删除的文件 - `temp-projects/` 目录（28 个文件） - 临时测试文件 --- ## 📊 PR 状态 | 状态 | 数量 | 说明 | |------|------|------| | 🟢 已合并待付款 | 1 | RustChain #2205 (Claim Issue #2755) | | 🟡 开放中 | 2 | vllm-omni, pygal | | 🔴 已关闭 | 1 | GeneralsGameCode #2485 | --- ## 💡 重要发现 ### RustChain 付款流程 - **流程**: PR → 验证 → **创建 Claim Issue** → 付款 - **教训**: 必须主动创建 Claim Issue，不要等待 ### 百炼 API 状态 - **端点**: `https://coding.dashscope.aliyuncs.com/v1` (OpenAI 兼容) - **状态**: ✅ API Key 有效，⚠️ 配额不足 - **解决**: 充值或等待配额重置 --- ## 📈 统计 - **扫描邮件**: 303 封 - **创建文件**: 7 个 - **删除文件**: 28 个 - **Git 提交**: 2 个 - **创建 Claim Issue**: 1 个 --- _日志生成时间: 2026-03-31 02:58 PDT_",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:47:35.673Z",
+      "lastRecalledAt": "2026-05-11T10:47:35.673Z",
+      "queryHashes": [
+        "88109f1e5576"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "openai",
+        "data/index.md",
+        "temp-projects",
+        "vllm-omni",
+        "coding.dashscope.aliyuncs.com/v1",
+        "data",
+        "index.md",
+        "数据"
+      ]
+    },
+    "memory:memory/2026-04-29.md:30:76": {
+      "key": "memory:memory/2026-04-29.md:30:76",
+      "path": "memory/2026-04-29.md",
+      "startLine": 30,
+      "endLine": 76,
+      "source": "memory",
+      "snippet": "- 自动化测试文件: tests/test_utxo_red_team_findings.py ### 潜在收益 - Self-Audit: 10 RTC - Judge Packet: 3 RTC - Steelman: 5 RTC - Red Team UTXO: 50-200 RTC (取决于 findings 评级) - **合计: 68-218 RTC** ### 全部 PR 列表 | PR | 任务 | 潜在收益 | |----|------|---------| | #7326 | Self-Audit #6460 | 10 RTC | | #7327 | Judge Packet #6459 | 3 RTC | | #7328 | Steelman #6458 | 5 RTC | | #7329 | Red Team UTXO #2819 | 50-200 RTC | ## 🎯 Bounty 自动执行 (09:27 CST - 第三批) ### PR Review Claims (Bounty #2782, 2 RTC each) - ✅ Issue #7331 - PR Review #2773 (CVE: secret_key) - ✅ Issue #7332 - PR Review #2766 (docs: CONTRIBUTING links) - ✅ Issue #7333 - PR Review #2765 (Aether solution) - ✅ Issue #7334 - PR Review #2712 (license fi",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:55:48.518Z",
+      "lastRecalledAt": "2026-05-11T10:55:48.518Z",
+      "queryHashes": [
+        "4e455ccc100f"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "self-audit",
+        "50-200",
+        "68-218",
+        "secret-key",
+        "自动",
+        "测试",
+        "文件",
+        "tests"
+      ]
+    },
+    "memory:memory/2026-04-30.md:33:76": {
+      "key": "memory:memory/2026-04-30.md:33:76",
+      "path": "memory/2026-04-30.md",
+      "startLine": 33,
+      "endLine": 76,
+      "source": "memory",
+      "snippet": "1. rustchain-health.py (378 行) 2. anti_double_mining.py (1034 行) 3. claims_eligibility.py (737 行) 4. rewards_rip200.py (386 行) 5. governance.py (614 行) 6. utxo_db.py (898 行) 7. rustchain_bft_consensus.py (1113 行) ⭐ 8. beacon_api.py (830 行) 9. bridge_api.py (875 行) 10. claims_settlement.py (656 行) ### 经验 - Self-Audit pool 已满，不能再提交 - 转向其他 bounty 类型：Steelman (50 RTC pool), Judge Packets (30 RTC pool) - 每个 Self-Audit 需要正确格式：`submissions/self-audits/<name>-<module>.md` - 包含：3 findings, known failures, confidence, what I would test next ### 下一步 - 更多 Steelman 提交 (5 RTC 每个) - 更多 Judge Packets (3 RTC 每个) - 监控 PR 审核状态 - 等待 Self-Audit 接受 ### 10:22 CST 更新 - PR #7367: Steelman #1 (BFT consensus) - 5 R",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:55:48.518Z",
+      "lastRecalledAt": "2026-05-11T10:55:48.518Z",
+      "queryHashes": [
+        "4e455ccc100f"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "rustchain-health.py",
+        "anti-double-mining.py",
+        "claims-eligibility.py",
+        "rewards-rip200.py",
+        "governance.py",
+        "utxo-db.py",
+        "rustchain-bft-consensus.py",
+        "beacon-api.py"
+      ]
+    },
+    "memory:memory/2026-04-29.md:1:41": {
+      "key": "memory:memory/2026-04-29.md:1:41",
+      "path": "memory/2026-04-29.md",
+      "startLine": 1,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "## 🎯 Bounty 自动执行 (09:23 CST) ### 执行结果 - ✅ **Self-Audit #6460** (10 RTC) → PR [#7326](https://github.com/Scottcjn/rustchain-bounties/pull/7326) - 审计模块: passport/passport_ledger.py - 3 findings: hash integrity, auth bypass, race condition - ✅ **Judge Packet #6459** (3 RTC) → PR [#7327](https://github.com/Scottcjn/rustchain-bounties/pull/7327) - 排名 5 个 open claims (7317, 7315, 7324, 7313, 7325) - ✅ **Adversarial Steelman #6458** (5 RTC) → PR [#7328](https://github.com/Scottcjn/rustchain-bounties/pull/7328) - Attack: Passport sybil via fabricated identities - Steelman: Biographical layer, not security boundary - Patch: owner_address in hash + transfer_ownership() ### 潜在收益 - Self-",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:55:48.518Z",
+      "lastRecalledAt": "2026-05-11T10:55:48.518Z",
+      "queryHashes": [
+        "4e455ccc100f"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "self-audit",
+        "passport/passport-ledger.py",
+        "owner-address",
+        "transfer-ownership",
+        "bounty",
+        "自动",
+        "执行",
+        "cst"
+      ]
+    },
+    "memory:memory/2026-04-30.md:65:106": {
+      "key": "memory:memory/2026-04-30.md:65:106",
+      "path": "memory/2026-04-30.md",
+      "startLine": 65,
+      "endLine": 106,
+      "source": "memory",
+      "snippet": "- PR #7375: Steelman #8 (rewards RIP-200) - 5 RTC ### 当前状态 - 总 PR: 27 个 - 潜在收益: 210+ RTC - Steelman pool: 8/10 (2 slots left, 40/50 RTC) - Self-Audit pool: 10/10 (FULL, 100 RTC) - Judge Packets: 2/10 (2/30 RTC) - 其他: 7 PRs (BCOS, Haikus, etc.) ### 10:30 CST 最终更新 - PR #7376: Steelman #9 (anti-double-mining) - 5 RTC - PR #7377: Steelman #10 (BCOS engine) - 5 RTC ### 今日最终统计 (09:10 - 10:30 CST, 1 小时 20 分钟) | 类型 | 数量 | 潜在 RTC | |------|------|----------| | Self-Audit | 10 | 100 | | Steelman | 10 | 50 | | Judge Packets | 2 | 6 | | GitHub Action | 2 | 45 | | Web Tool | 1 | 15 | | Haikus | 1 | 15 | | 其他 | 3 | 15+ | | **总计** | **29** | **~246 RTC** | ### 池状态 - Self-Audit #6460: 10/10 ✅ FULL (100",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:55:48.518Z",
+      "lastRecalledAt": "2026-05-11T10:55:48.518Z",
+      "queryHashes": [
+        "4e455ccc100f"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "rip-200",
+        "8/10",
+        "40/50",
+        "self-audit",
+        "10/10",
+        "2/10",
+        "2/30",
+        "anti-double-mining"
+      ]
+    },
+    "memory:memory/2026-04-07.md:85:100": {
+      "key": "memory:memory/2026-04-07.md:85:100",
+      "path": "memory/2026-04-07.md",
+      "startLine": 85,
+      "endLine": 100,
+      "source": "memory",
+      "snippet": "1. **监控 PR 审核**（9 个 Open PR） 2. **RustChain 付款跟进**（2 RTC 逾期 10 天） 3. **继续 bounty 任务**（剩余任务 $1,860） 4. **Gmail 配置**（需用户新密码） ### 📈 财务状态 **待收款**: - homelab-stack: $630 USDT（5 个 PR） - RustChain: 202 RTC（逾期） - **总计**: ~$830 USD --- _专注 bounty 任务,赚钱优先! 💰",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T10:55:48.518Z",
+      "lastRecalledAt": "2026-05-11T10:55:48.518Z",
+      "queryHashes": [
+        "4e455ccc100f"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "homelab-stack",
+        "审核",
+        "open",
+        "rustchain",
+        "付款",
+        "跟进",
+        "rtc",
+        "逾期"
+      ]
+    },
+    "memory:memory/2026-03-29.md:615:672": {
+      "key": "memory:memory/2026-03-29.md:615:672",
+      "path": "memory/2026-03-29.md",
+      "startLine": 615,
+      "endLine": 672,
+      "source": "memory",
+      "snippet": "--- ## 🔄 数据整合与修正 (05:20 PDT) ### ⚠️ 发现的问题 **MEMORY.md数据过时**： - 记录：\"提交PR: 1\" - 实际：\"已提交PR: 20个\"（相差20倍！） **知识库重复**： - 本地：`knowledge/bounty/`（简化版） - 远程：`knowledge/github-bounty/`（实现文档） **技能系统缺失**： - 60个已开发技能未在INDEX.md中体现 ### ✅ 已执行整合 #### 1. 更新MEMORY.md - ✅ 修正工作统计（56个任务，20个PR，$5,280预估） - ✅ 添加技能系统索引（60个技能） - ✅ 更新数据系统引用（bounty-master-list.md等） #### 2. 整合知识库 ```bash # 合并重复目录 knowledge/github-bounty/ → knowledge/bounty/references/ ``` - ✅ 移动实现文档到统一位置 - ✅ 保持目录结构清晰 - ✅ 更新README.md目录树 #### 3. 更新INDEX.md - ✅ 修正项目规模数据 - ✅ 添加技能系统部分（60个技能） - ✅ 添加数据系统引用（master-list, pr-tracker） - ✅ 更新知识库路径 ### 📊 整合后状态 **记忆系统**： - ✅ 数据准确（与远程一致） - ✅ 引用完整 - ✅ 结构清晰 **知识库**： - ✅ 无重复 - ✅ 单一入口（knowledge/bounty/） - ✅ 完",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T11:40:06.286Z",
+      "lastRecalledAt": "2026-05-11T11:40:06.286Z",
+      "queryHashes": [
+        "a7ce038ffd33"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "memory.md数据过时",
+        "knowledge/bounty",
+        "knowledge/github-bounty",
+        "60个已开发技能未在index.md中体现",
+        "更新memory.md",
+        "bounty-master-list.md等",
+        "knowledge/bounty/references",
+        "更新readme.md目录树"
+      ]
+    },
+    "memory:memory/2026-03-29.md:1092:1142": {
+      "key": "memory:memory/2026-03-29.md:1092:1142",
+      "path": "memory/2026-03-29.md",
+      "startLine": 1092,
+      "endLine": 1142,
+      "source": "memory",
+      "snippet": "- 60个已开发技能未在INDEX.md中体现 ### ✅ 已执行整合 #### 1. 更新MEMORY.md - ✅ 修正工作统计（56个任务，20个PR，$5,280预估） - ✅ 添加技能系统索引（60个技能） - ✅ 更新数据系统引用（bounty-master-list.md等） #### 2. 整合知识库 ```bash # 合并重复目录 knowledge/github-bounty/ → knowledge/bounty/references/ ``` - ✅ 移动实现文档到统一位置 - ✅ 保持目录结构清晰 - ✅ 更新README.md目录树 #### 3. 更新INDEX.md - ✅ 修正项目规模数据 - ✅ 添加技能系统部分（60个技能） - ✅ 添加数据系统引用（master-list, pr-tracker） - ✅ 更新知识库路径 ### 📊 整合后状态 **记忆系统**： - ✅ 数据准确（与远程一致） - ✅ 引用完整 - ✅ 结构清晰 **知识库**： - ✅ 无重复 - ✅ 单一入口（knowledge/bounty/） - ✅ 完整覆盖（模板+策略+实现+经验） **索引系统**： - ✅ 技能系统完整索引 - ✅ 数据系统完整引用 - ✅ 快速导航路径 ### 💡 经验教训 1. **定期同步** - 本地记忆与远程实际数据需要定期核对 2. **单一数据源** - 避免多个目录存储同类信息 3. **索引优先** - 大规模系统必须有完整索引 4. **数据验证** - 关键数字需从源头文件验证 ---",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-05-11T11:40:06.286Z",
+      "lastRecalledAt": "2026-05-11T11:40:06.286Z",
+      "queryHashes": [
+        "a7ce038ffd33"
+      ],
+      "recallDays": [
+        "2026-05-11"
+      ],
+      "conceptTags": [
+        "60个已开发技能未在index.md中体现",
+        "更新memory.md",
+        "bounty-master-list.md等",
+        "knowledge/github-bounty",
+        "knowledge/bounty/references",
+        "更新readme.md目录树",
+        "更新index.md",
+        "master-list"
       ]
     }
   }

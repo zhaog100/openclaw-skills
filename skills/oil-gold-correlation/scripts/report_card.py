@@ -99,8 +99,24 @@ def draw_report(results, tech_scores, risk_score):
     card(L, y - ki_h, W, ki_h)
     cx = L + PAD
     text(cx, y - 0.018, '>> 关键拐点', fontsize=14, fontweight='bold', color=GOLD)
-    text(cx, y - 0.042, '消费者信心=57 持续低位', fontsize=12, color=WHITE)
-    text(cx, y - 0.060, '历史上<60连续3月 = 黄金大级别买入信号', fontsize=12, color=YELLOW)
+    
+    # 动态获取消费者信心数据
+    try:
+        from fetch_fred_unified import get_consumer_confidence
+        conf_data = get_consumer_confidence()
+        if conf_data and 'value' in conf_data:
+            conf_value = conf_data['value']
+            conf_text = f'消费者信心={conf_value} 持续低位'
+            signal_text = '历史上<60连续3月 = 黄金大级别买入信号' if conf_value < 60 else '消费者信心数据可用'
+        else:
+            conf_text = '消费者信心=[数据获取失败]'
+            signal_text = '等待数据更新'
+    except Exception as e:
+        conf_text = '消费者信心=[数据不可用]'
+        signal_text = '等待数据更新'
+    
+    text(cx, y - 0.042, conf_text, fontsize=12, color=WHITE)
+    text(cx, y - 0.060, signal_text, fontsize=12, color=YELLOW)
     y -= (ki_h + GAP + 0.010)
 
     # ===== DASHBOARD TITLE =====
@@ -171,12 +187,63 @@ def draw_report(results, tech_scores, risk_score):
     text(cx, mr1, '宏观信号灯', fontsize=14, fontweight='bold', color=WHITE)
 
     mr2 = mr1 - ROW
-    signals = [
-        ('信心', '57', RED, '悲观'),
-        ('VIX', '19.2', GREEN, '平静'),
-        ('利差', '0.52', GREEN, '正常'),
-        ('信用', '2.94', GREEN, '宽松'),
-    ]
+    
+    # 动态获取宏观数据
+    try:
+        from fetch_fred_unified import get_all_macro_data
+        macro_data = get_all_macro_data()
+        
+        signals = []
+        
+        # 消费者信心
+        conf = macro_data.get('consumer_confidence', {})
+        conf_val = conf.get('value') if conf else None
+        if conf_val is not None:
+            conf_color = RED if conf_val < 60 else GREEN
+            conf_label = '悲观' if conf_val < 60 else '正常'
+            signals.append(('信心', str(conf_val), conf_color, conf_label))
+        else:
+            signals.append(('信心', '[N/A]', GRAY, '无数据'))
+        
+        # VIX
+        vix = macro_data.get('vix', {})
+        vix_val = vix.get('value') if vix else None
+        if vix_val is not None:
+            vix_color = GREEN if vix_val < 20 else YELLOW if vix_val < 30 else RED
+            vix_label = '平静' if vix_val < 20 else '波动' if vix_val < 30 else '高波动'
+            signals.append(('VIX', f'{vix_val:.1f}', vix_color, vix_label))
+        else:
+            signals.append(('VIX', '[N/A]', GRAY, '无数据'))
+        
+        # 利差
+        spread = macro_data.get('spread', {})
+        spread_val = spread.get('value') if spread else None
+        if spread_val is not None:
+            spread_color = GREEN if 0.2 <= spread_val <= 1.0 else YELLOW
+            spread_label = '正常' if 0.2 <= spread_val <= 1.0 else '异常'
+            signals.append(('利差', f'{spread_val:.2f}', spread_color, spread_label))
+        else:
+            signals.append(('利差', '[N/A]', GRAY, '无数据'))
+        
+        # 信用
+        credit = macro_data.get('credit', {})
+        credit_val = credit.get('value') if credit else None
+        if credit_val is not None:
+            credit_color = GREEN if credit_val < 3.5 else YELLOW
+            credit_label = '宽松' if credit_val < 3.5 else '紧缩'
+            signals.append(('信用', f'{credit_val:.2f}', credit_color, credit_label))
+        else:
+            signals.append(('信用', '[N/A]', GRAY, '无数据'))
+            
+    except Exception as e:
+        # 如果获取数据失败，显示无数据
+        signals = [
+            ('信心', '[N/A]', GRAY, '无数据'),
+            ('VIX', '[N/A]', GRAY, '无数据'),
+            ('利差', '[N/A]', GRAY, '无数据'),
+            ('信用', '[N/A]', GRAY, '无数据'),
+        ]
+    
     for i, (n, v, c, lb) in enumerate(signals):
         sx = cx + i * 0.20
         text(sx, mr2, f'{n}: {v}', fontsize=11, fontweight='bold', color=c)
@@ -191,12 +258,33 @@ def draw_report(results, tech_scores, risk_score):
 
     cr1 = y - 0.018
     text(cx, cr1, '结论', fontsize=14, fontweight='bold', color=GOLD)
+    
+    # 动态生成结论
+    try:
+        from fetch_fred_unified import get_consumer_confidence
+        conf_data = get_consumer_confidence()
+        conf_val = conf_data.get('value') if conf_data else None
+        
+        # 基于宏观数据生成结论
+        if conf_val is not None and conf_val < 60:
+            conclusion1 = '全部观望不动。'
+            conclusion2 = f'消费信心{conf_val}极低，避险利多黄金'
+            conclusion3 = '但技术面偏空，等信号灯转正。'
+        else:
+            conclusion1 = '市场信号中性。'
+            conclusion2 = '等待更明确的宏观信号。'
+            conclusion3 = '建议关注技术面变化。'
+    except Exception as e:
+        conclusion1 = '数据获取中...'
+        conclusion2 = '等待宏观数据更新。'
+        conclusion3 = '建议持续关注市场变化。'
+    
     cr2 = cr1 - 0.025
-    text(cx, cr2, '全部观望不动。', fontsize=12, color=WHITE)
+    text(cx, cr2, conclusion1, fontsize=12, color=WHITE)
     cr3 = cr2 - 0.022
-    text(cx, cr3, '消费信心57极低，避险利多黄金', fontsize=12, color=WHITE)
+    text(cx, cr3, conclusion2, fontsize=12, color=WHITE)
     cr4 = cr3 - 0.020
-    text(cx, cr4, '但技术面偏空，等信号灯转正。', fontsize=12, color=WHITE)
+    text(cx, cr4, conclusion3, fontsize=12, color=WHITE)
 
     y -= (conc_h + 0.010)
 

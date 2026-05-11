@@ -20,7 +20,7 @@ REPORT_DIR = Path(os.environ.get(
 # CACHE_DIR: 数据缓存目录
 CACHE_DIR = Path(os.environ.get(
     "OIL_GOLD_CACHE_DIR",
-    Path("/tmp") / "oil-gold-cache"
+    Path.home() / ".cache" / "oil-gold-correlation"
 ))
 
 # ===== 报告文件名 =====

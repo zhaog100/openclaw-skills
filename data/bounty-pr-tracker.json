@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-05-11T08:40:19Z",
+  "lastUpdated": "2026-05-11T15:04:00Z",
   "totalPRs": 457,
   "summary": {
     "total": 457,
-    "merged": 4,
-    "open": 178,
+    "merged": 5,
+    "open": 177,
     "recentActivity": "2026-05-11"
   },
   "prs": [
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 7369,
-      "title": "Steelman: beacon API — SSL MITM bounty injection vs demo-only visualization (Bounty #6458)",
+      "title": "Steelman: beacon API \u2014 SSL MITM bounty injection vs demo-only visualization (Bounty #6458)",
       "status": "merged",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7369",
       "created": "2026-04-30",
@@ -22,7 +22,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 7368,
-      "title": "Steelman: bridge API — unconfirmed external tx vs controlled deployment (Bounty #6458)",
+      "title": "Steelman: bridge API \u2014 unconfirmed external tx vs controlled deployment (Bounty #6458)",
       "status": "merged",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7368",
       "created": "2026-04-30",
@@ -62,7 +62,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 7326,
-      "title": "Self-Audit: passport/passport_ledger.py — 3 findings (hash integrity, auth bypass, race condition)",
+      "title": "Self-Audit: passport/passport_ledger.py \u2014 3 findings (hash integrity, auth bypass, race condition)",
       "status": "merged",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7326",
       "created": "2026-04-30",
@@ -72,7 +72,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 489,
-      "title": "[BOUNTY 70] Productivity Stack — Gitea + Vaultwarden",
+      "title": "[BOUNTY 70] Productivity Stack \u2014 Gitea + Vaultwarden",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/489",
       "created": "2026-04-22",
@@ -82,7 +82,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 488,
-      "title": "[BOUNTY 30] Home Automation — Home Assistant + Node-RED",
+      "title": "[BOUNTY 30] Home Automation \u2014 Home Assistant + Node-RED",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/488",
       "created": "2026-04-22",
@@ -92,7 +92,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 487,
-      "title": "[BOUNTY 0] Notifications — Gotify + Apprise",
+      "title": "[BOUNTY 0] Notifications \u2014 Gotify + Apprise",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/487",
       "created": "2026-04-22",
@@ -102,7 +102,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 486,
-      "title": "[BOUNTY 50] Backup & DR — Auto Backup + Disaster Recovery",
+      "title": "[BOUNTY 50] Backup & DR \u2014 Auto Backup + Disaster Recovery",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/486",
       "created": "2026-04-22",
@@ -112,7 +112,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 485,
-      "title": "[BOUNTY 30] Database Layer — PostgreSQL + Redis + MariaDB",
+      "title": "[BOUNTY 30] Database Layer \u2014 PostgreSQL + Redis + MariaDB",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/485",
       "created": "2026-04-22",
@@ -122,7 +122,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 484,
-      "title": "[BOUNTY 50] Robustness — Domestic Mirrors + Error Handling",
+      "title": "[BOUNTY 50] Robustness \u2014 Domestic Mirrors + Error Handling",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/484",
       "created": "2026-04-22",
@@ -132,7 +132,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 483,
-      "title": "[BOUNTY 80] Observability — Prometheus + Grafana + Loki",
+      "title": "[BOUNTY 80] Observability \u2014 Prometheus + Grafana + Loki",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/483",
       "created": "2026-04-22",
@@ -142,7 +142,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 482,
-      "title": "[BOUNTY 00] SSO — Authentik Unified Identity",
+      "title": "[BOUNTY 00] SSO \u2014 Authentik Unified Identity",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/482",
       "created": "2026-04-22",
@@ -152,7 +152,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 481,
-      "title": "[BOUNTY 20] AI Stack — Ollama + Open WebUI + Stable Diffusion",
+      "title": "[BOUNTY 20] AI Stack \u2014 Ollama + Open WebUI + Stable Diffusion",
       "status": "open",
       "url": "https://github.com/illbnm/homelab-stack/pull/481",
       "created": "2026-04-22",
@@ -162,7 +162,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 480,
-      "title": "[BOUNTY 00] Testing — Automated Test Suite",
+      "title": "[BOUNTY 00] Testing \u2014 Automated Test Suite",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/480",
       "created": "2026-04-22",
@@ -382,7 +382,7 @@
     {
       "repo": "Scottcjn/contributors",
       "pr": 58,
-      "title": "Register zhaog100 (小米粒) as contributor",
+      "title": "Register zhaog100 (\u5c0f\u7c73\u7c92) as contributor",
       "status": "merged",
       "url": "https://github.com/Scottcjn/contributors/pull/58",
       "created": "2026-04-20",
@@ -392,7 +392,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 3080,
-      "title": "🔒 Security Audit #2867: 8 Findings (1 Critical, 2 High) — Verified Against Live Node",
+      "title": "\ud83d\udd12 Security Audit #2867: 8 Findings (1 Critical, 2 High) \u2014 Verified Against Live Node",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/3080",
       "created": "2026-04-17",
@@ -474,7 +474,7 @@
     {
       "repo": "Scottcjn/Rustchain",
       "pr": 2254,
-      "title": "🔒 Security Audit #2867: 5 Vulnerabilities (3 HIGH + 2 MEDIUM)",
+      "title": "\ud83d\udd12 Security Audit #2867: 5 Vulnerabilities (3 HIGH + 2 MEDIUM)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/Rustchain/pull/2254",
       "created": "2026-04-14",
@@ -666,13 +666,13 @@
     {
       "repo": "Scottcjn/Rustchain",
       "pr": 2207,
-      "title": "[Security Audit #2867] Real Code PoC — Mining Reward Type Confusion + 5 Findings",
+      "title": "[Security Audit #2867] Real Code PoC \u2014 Mining Reward Type Confusion + 5 Findings",
       "status": "merged",
       "url": "https://github.com/Scottcjn/Rustchain/pull/2207",
       "created": "2026-04-10",
       "updated": "2026-04-27",
       "merged_at": "2026-04-12",
-      "payment_note": "已合并，Claim Issue #6931 已创建",
+      "payment_note": "\u5df2\u5408\u5e76\uff0cClaim Issue #6931 \u5df2\u521b\u5efa",
       "bounty": "160 RTC",
       "payment_type": "Security Audit"
     },
@@ -709,7 +709,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 2949,
-      "title": "[BOUNTY #2865] Dockerize RustChain Miner — One Command Mining (15 RTC)",
+      "title": "[BOUNTY #2865] Dockerize RustChain Miner \u2014 One Command Mining (15 RTC)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2949",
       "created": "2026-04-10",
@@ -719,7 +719,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 2948,
-      "title": "[BOUNTY #2869] Telegram Bot — Wallet Balance & Miner Status (10 RTC)",
+      "title": "[BOUNTY #2869] Telegram Bot \u2014 Wallet Balance & Miner Status (10 RTC)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2948",
       "created": "2026-04-10",
@@ -749,7 +749,7 @@
     {
       "repo": "zhaog100/openclaw-skills",
       "pr": 33,
-      "title": "🚀 v6.1.1: github-bounty-hunter 技能更新 - 双重过滤 + 2026-04-09 实战验证",
+      "title": "\ud83d\ude80 v6.1.1: github-bounty-hunter \u6280\u80fd\u66f4\u65b0 - \u53cc\u91cd\u8fc7\u6ee4 + 2026-04-09 \u5b9e\u6218\u9a8c\u8bc1",
       "status": "merged",
       "url": "https://github.com/zhaog100/openclaw-skills/pull/33",
       "created": "2026-04-10",
@@ -769,7 +769,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 2908,
-      "title": "🤖 Autonomous Bounty Hunter Agent (50 RTC)",
+      "title": "\ud83e\udd16 Autonomous Bounty Hunter Agent (50 RTC)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2908",
       "created": "2026-04-09",
@@ -779,7 +779,7 @@
     {
       "repo": "fengking-li/group-buying-data-monitor",
       "pr": 13,
-      "title": "feat: 团购+外卖实时数据监测系统",
+      "title": "feat: \u56e2\u8d2d+\u5916\u5356\u5b9e\u65f6\u6570\u636e\u76d1\u6d4b\u7cfb\u7edf",
       "status": "open",
       "url": "https://github.com/fengking-li/group-buying-data-monitor/pull/13",
       "created": "2026-04-09",
@@ -789,7 +789,7 @@
     {
       "repo": "Scottcjn/beacon-skill",
       "pr": 182,
-      "title": "🌉 AgentFolio ↔ Beacon Integration (3/4 deliverables complete)",
+      "title": "\ud83c\udf09 AgentFolio \u2194 Beacon Integration (3/4 deliverables complete)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/beacon-skill/pull/182",
       "created": "2026-04-09",
@@ -799,19 +799,19 @@
     {
       "repo": "Scottcjn/Rustchain",
       "pr": 2195,
-      "title": "🔒 Security Audit: 5 vulnerabilities found (160 RTC claim)",
+      "title": "\ud83d\udd12 Security Audit: 5 vulnerabilities found (160 RTC claim)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/Rustchain/pull/2195",
       "created": "2026-04-09",
       "updated": "2026-04-24",
       "merged_at": "2026-04-24",
-      "payment_note": "已关闭但未合并，无付款",
+      "payment_note": "\u5df2\u5173\u95ed\u4f46\u672a\u5408\u5e76\uff0c\u65e0\u4ed8\u6b3e",
       "bounty": "160 RTC"
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 2894,
-      "title": "feat: AgentFolio ↔ Beacon Dual-Layer Trust Integration Spec - Bounty #2890 (100 RTC)",
+      "title": "feat: AgentFolio \u2194 Beacon Dual-Layer Trust Integration Spec - Bounty #2890 (100 RTC)",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2894",
       "created": "2026-04-09",
@@ -889,7 +889,7 @@
       "merged_at": "2026-04-12",
       "bounty": "10 RTC",
       "payment_type": "Dev.to Article",
-      "payment_note": "已合并，Claim Issue 已创建"
+      "payment_note": "\u5df2\u5408\u5e76\uff0cClaim Issue \u5df2\u521b\u5efa"
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
@@ -1312,7 +1312,7 @@
       "created": "2026-04-09",
       "updated": "2026-05-09",
       "merged_at": null,
-      "payment_note": "已关闭 (2026-05-09)，CodeRabbit 最后审查 (2026-05-08) 要求修复 Critical 问题",
+      "payment_note": "\u5df2\u5173\u95ed (2026-05-09)\uff0cCodeRabbit \u6700\u540e\u5ba1\u67e5 (2026-05-08) \u8981\u6c42\u4fee\u590d Critical \u95ee\u9898",
       "notes": "Closed by maintainer (2026-05-09). CodeRabbit review passed but PR closed without merge."
     },
     {
@@ -1346,7 +1346,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 456,
-      "title": "feat(observability): Complete monitoring stack — Tempo, Uptime Kuma, dashboards, alerts (#10)",
+      "title": "feat(observability): Complete monitoring stack \u2014 Tempo, Uptime Kuma, dashboards, alerts (#10)",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/456",
       "created": "2026-04-09",
@@ -1498,7 +1498,7 @@
     {
       "repo": "claude-builders-bounty/claude-builders-bounty",
       "pr": 508,
-      "title": "[BOUNTY #5] n8n + Claude Weekly Dev Summary Workflow — $200",
+      "title": "[BOUNTY #5] n8n + Claude Weekly Dev Summary Workflow \u2014 $200",
       "status": "open",
       "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/508",
       "created": "2026-04-08",
@@ -1508,7 +1508,7 @@
     {
       "repo": "claude-builders-bounty/claude-builders-bounty",
       "pr": 507,
-      "title": "[BOUNTY #3] Pre-tool-use Hook Blocking Destructive Commands — $100",
+      "title": "[BOUNTY #3] Pre-tool-use Hook Blocking Destructive Commands \u2014 $100",
       "status": "open",
       "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/507",
       "created": "2026-04-08",
@@ -1518,7 +1518,7 @@
     {
       "repo": "claude-builders-bounty/claude-builders-bounty",
       "pr": 506,
-      "title": "[BOUNTY #4] Claude Code PR Review Agent — $150",
+      "title": "[BOUNTY #4] Claude Code PR Review Agent \u2014 $150",
       "status": "open",
       "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/506",
       "created": "2026-04-08",
@@ -1528,7 +1528,7 @@
     {
       "repo": "claude-builders-bounty/claude-builders-bounty",
       "pr": 505,
-      "title": "[BOUNTY #2] CLAUDE.md for Next.js + SQLite SaaS — $75",
+      "title": "[BOUNTY #2] CLAUDE.md for Next.js + SQLite SaaS \u2014 $75",
       "status": "open",
       "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/505",
       "created": "2026-04-08",
@@ -1538,7 +1538,7 @@
     {
       "repo": "claude-builders-bounty/claude-builders-bounty",
       "pr": 504,
-      "title": "[BOUNTY #1] Structured CHANGELOG Generator — $50",
+      "title": "[BOUNTY #1] Structured CHANGELOG Generator \u2014 $50",
       "status": "open",
       "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/504",
       "created": "2026-04-08",
@@ -1816,9 +1816,9 @@
       "created": "2026-04-07",
       "updated": "2026-04-24",
       "merged_at": "2026-04-07",
-      "bounty": "Unknown (需确认)",
+      "bounty": "Unknown (\u9700\u786e\u8ba4)",
       "payment_type": "Security Bug",
-      "payment_note": "已合并，Claim #7234 已创建"
+      "payment_note": "\u5df2\u5408\u5e76\uff0cClaim #7234 \u5df2\u521b\u5efa"
     },
     {
       "repo": "illbnm/homelab-stack",
@@ -1975,7 +1975,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 410,
-      "title": "[BOUNTY ] Testing — 自动化测试套件",
+      "title": "[BOUNTY ] Testing \u2014 \u81ea\u52a8\u5316\u6d4b\u8bd5\u5957\u4ef6",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/410",
       "created": "2026-04-02",
@@ -1985,7 +1985,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 409,
-      "title": "[BOUNTY ] SSO — Authentik 统一身份认证",
+      "title": "[BOUNTY ] SSO \u2014 Authentik \u7edf\u4e00\u8eab\u4efd\u8ba4\u8bc1",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/409",
       "created": "2026-04-02",
@@ -2065,7 +2065,7 @@
     {
       "repo": "BerriAI/litellm",
       "pr": 24895,
-      "title": "🔒 Security: Enable authentication for /metrics endpoint by default",
+      "title": "\ud83d\udd12 Security: Enable authentication for /metrics endpoint by default",
       "status": "closed",
       "url": "https://github.com/BerriAI/litellm/pull/24895",
       "created": "2026-04-01",
@@ -2075,7 +2075,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 401,
-      "title": "feat(home-automation): 实现完整的智能家居自动化栈",
+      "title": "feat(home-automation): \u5b9e\u73b0\u5b8c\u6574\u7684\u667a\u80fd\u5bb6\u5c45\u81ea\u52a8\u5316\u6808",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/401",
       "created": "2026-03-31",
@@ -2085,7 +2085,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 398,
-      "title": "feat(backup): 实现 3-2-1 备份策略和灾难恢复文档",
+      "title": "feat(backup): \u5b9e\u73b0 3-2-1 \u5907\u4efd\u7b56\u7565\u548c\u707e\u96be\u6062\u590d\u6587\u6863",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/398",
       "created": "2026-03-31",
@@ -2405,7 +2405,7 @@
     {
       "repo": "Jagadeeshftw/grainlify",
       "pr": 852,
-      "title": "[BOUNTY #803] Soroban escrow: identity module — address binding rules",
+      "title": "[BOUNTY #803] Soroban escrow: identity module \u2014 address binding rules",
       "status": "closed",
       "url": "https://github.com/Jagadeeshftw/grainlify/pull/852",
       "created": "2026-03-25",
@@ -2535,7 +2535,7 @@
     {
       "repo": "bolivian-peru/marketplace-service-template",
       "pr": 289,
-      "title": "[BOUNTY #281] X/Twitter Real-Time Search API — Full Implementation",
+      "title": "[BOUNTY #281] X/Twitter Real-Time Search API \u2014 Full Implementation",
       "status": "open",
       "url": "https://github.com/bolivian-peru/marketplace-service-template/pull/289",
       "created": "2026-03-23",
@@ -2545,7 +2545,7 @@
     {
       "repo": "zhuzhushiwojia/lobster-rewards",
       "pr": 3,
-      "title": "[BOUNTY #1] 修复测试套件，确保所有测试通过",
+      "title": "[BOUNTY #1] \u4fee\u590d\u6d4b\u8bd5\u5957\u4ef6\uff0c\u786e\u4fdd\u6240\u6709\u6d4b\u8bd5\u901a\u8fc7",
       "status": "open",
       "url": "https://github.com/zhuzhushiwojia/lobster-rewards/pull/3",
       "created": "2026-03-23",
@@ -2555,7 +2555,7 @@
     {
       "repo": "bolivian-peru/marketplace-service-template",
       "pr": 288,
-      "title": "[BOUNTY #284] LinkedIn People & Company Enrichment API — Complete Implementation",
+      "title": "[BOUNTY #284] LinkedIn People & Company Enrichment API \u2014 Complete Implementation",
       "status": "open",
       "url": "https://github.com/bolivian-peru/marketplace-service-template/pull/288",
       "created": "2026-03-23",
@@ -2595,7 +2595,7 @@
     {
       "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
       "pr": 16,
-      "title": "[BOUNTY #14] 📄 PDF Report Improvements - Industry-Grade Quality",
+      "title": "[BOUNTY #14] \ud83d\udcc4 PDF Report Improvements - Industry-Grade Quality",
       "status": "closed",
       "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/16",
       "created": "2026-03-23",
@@ -2605,7 +2605,7 @@
     {
       "repo": "yosemite01/stellar-creator-portfolio",
       "pr": 34,
-      "title": "[BOUNTY #25] 📊 Bounty Milestone Tracking & Progress Updates",
+      "title": "[BOUNTY #25] \ud83d\udcca Bounty Milestone Tracking & Progress Updates",
       "status": "merged",
       "url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/34",
       "created": "2026-03-23",
@@ -2615,7 +2615,7 @@
     {
       "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
       "pr": 15,
-      "title": "[BOUNTY #12] 🤖 Android Play Store Auditor Module",
+      "title": "[BOUNTY #12] \ud83e\udd16 Android Play Store Auditor Module",
       "status": "closed",
       "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/15",
       "created": "2026-03-23",
@@ -2625,7 +2625,7 @@
     {
       "repo": "codexbt/Eliza-Lobster",
       "pr": 4,
-      "title": "[BOUNTY #3] 📮 Pissbook Forum Integration - REST API Client",
+      "title": "[BOUNTY #3] \ud83d\udcee Pissbook Forum Integration - REST API Client",
       "status": "open",
       "url": "https://github.com/codexbt/Eliza-Lobster/pull/4",
       "created": "2026-03-23",
@@ -2635,7 +2635,7 @@
     {
       "repo": "TheJollyLaMa/BigNuten_Vanilla",
       "pr": 172,
-      "title": "[BOUNTY #158] 🏆 Streak Bets & Achievement Competitions - Smart Contract",
+      "title": "[BOUNTY #158] \ud83c\udfc6 Streak Bets & Achievement Competitions - Smart Contract",
       "status": "closed",
       "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/172",
       "created": "2026-03-23",
@@ -2645,7 +2645,7 @@
     {
       "repo": "INDIGOAZUL/la-tanda-web",
       "pr": 196,
-      "title": "[BOUNTY #155] 🔗 Fix Broken/Placeholder Links - HTML Accessibility",
+      "title": "[BOUNTY #155] \ud83d\udd17 Fix Broken/Placeholder Links - HTML Accessibility",
       "status": "closed",
       "url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/196",
       "created": "2026-03-23",
@@ -2655,7 +2655,7 @@
     {
       "repo": "INDIGOAZUL/la-tanda-web",
       "pr": 195,
-      "title": "[BOUNTY #154] ♿ Add aria-labels to Icon Buttons - Accessibility Improvement",
+      "title": "[BOUNTY #154] \u267f Add aria-labels to Icon Buttons - Accessibility Improvement",
       "status": "closed",
       "url": "https://github.com/INDIGOAZUL/la-tanda-web/pull/195",
       "created": "2026-03-23",
@@ -2665,7 +2665,7 @@
     {
       "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
       "pr": 9,
-      "title": "[BOUNTY #2] 🎨 Logo Design - AI-Powered App Store Compliance Auditor",
+      "title": "[BOUNTY #2] \ud83c\udfa8 Logo Design - AI-Powered App Store Compliance Auditor",
       "status": "closed",
       "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/9",
       "created": "2026-03-23",
@@ -2675,7 +2675,7 @@
     {
       "repo": "shi2n/bugbounty-operator-toolkit-V2",
       "pr": 2,
-      "title": "[BOUNTY #1] 📚 Complete README Documentation - Professional Guide",
+      "title": "[BOUNTY #1] \ud83d\udcda Complete README Documentation - Professional Guide",
       "status": "open",
       "url": "https://github.com/shi2n/bugbounty-operator-toolkit-V2/pull/2",
       "created": "2026-03-23",
@@ -2685,7 +2685,7 @@
     {
       "repo": "TheJollyLaMa/BigNuten_Vanilla",
       "pr": 171,
-      "title": "[BOUNTY #159] 🎨 Admin UI - Competition & StreakBet Setup Panel",
+      "title": "[BOUNTY #159] \ud83c\udfa8 Admin UI - Competition & StreakBet Setup Panel",
       "status": "closed",
       "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/171",
       "created": "2026-03-23",
@@ -2695,7 +2695,7 @@
     {
       "repo": "TheJollyLaMa/BigNuten_Vanilla",
       "pr": 170,
-      "title": "[BOUNTY #161] 🏆 Competition Engine - Escrow, Self-Report, Forfeit & Pot Split",
+      "title": "[BOUNTY #161] \ud83c\udfc6 Competition Engine - Escrow, Self-Report, Forfeit & Pot Split",
       "status": "closed",
       "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/170",
       "created": "2026-03-23",
@@ -2705,7 +2705,7 @@
     {
       "repo": "SharedStake/Contracts",
       "pr": 26,
-      "title": "[BOUNTY #12] 🎯 Solo Staking Implementation - 32 ETH Direct Staking with SGT Bond",
+      "title": "[BOUNTY #12] \ud83c\udfaf Solo Staking Implementation - 32 ETH Direct Staking with SGT Bond",
       "status": "open",
       "url": "https://github.com/SharedStake/Contracts/pull/26",
       "created": "2026-03-23",
@@ -2715,7 +2715,7 @@
     {
       "repo": "atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource",
       "pr": 7,
-      "title": "[BOUNTY #2] 🎨 Logo Design - Modern AI-Powered Compliance Auditor Identity",
+      "title": "[BOUNTY #2] \ud83c\udfa8 Logo Design - Modern AI-Powered Compliance Auditor Identity",
       "status": "closed",
       "url": "https://github.com/atharvnaik1/GraciasAi-Appstore-Policy-Auditor-Opensource/pull/7",
       "created": "2026-03-23",
@@ -2725,7 +2725,7 @@
     {
       "repo": "mangdangroboticsclub/mini_pupper_ros",
       "pr": 138,
-      "title": "[BOUNTY #125] 🤖 ROS2 Humble to Jazzy Upgrade - Complete Guide & Automation Script",
+      "title": "[BOUNTY #125] \ud83e\udd16 ROS2 Humble to Jazzy Upgrade - Complete Guide & Automation Script",
       "status": "open",
       "url": "https://github.com/mangdangroboticsclub/mini_pupper_ros/pull/138",
       "created": "2026-03-23",
@@ -2735,7 +2735,7 @@
     {
       "repo": "1712n/dn-institute",
       "pr": 732,
-      "title": "[BOUNTY #277] 🌰 Comprehensive Guide: Wash Trading - Detection, Case Studies & Prevention",
+      "title": "[BOUNTY #277] \ud83c\udf30 Comprehensive Guide: Wash Trading - Detection, Case Studies & Prevention",
       "status": "open",
       "url": "https://github.com/1712n/dn-institute/pull/732",
       "created": "2026-03-23",
@@ -2955,7 +2955,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 2335,
-      "title": "[BOUNTY #2297] RustChain Python SDK — pip install rustchain",
+      "title": "[BOUNTY #2297] RustChain Python SDK \u2014 pip install rustchain",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2335",
       "created": "2026-03-22",
@@ -2975,7 +2975,7 @@
     {
       "repo": "obot-platform/mcp-catalog",
       "pr": 1199,
-      "title": "feat: add execution_market.yaml — AI bounty MCP server",
+      "title": "feat: add execution_market.yaml \u2014 AI bounty MCP server",
       "status": "closed",
       "url": "https://github.com/obot-platform/mcp-catalog/pull/1199",
       "created": "2026-03-22",
@@ -3025,7 +3025,7 @@
     {
       "repo": "Scottcjn/rustchain-bounties",
       "pr": 2315,
-      "title": "[BOUNTY #747] Bounty Verification Bot — Wallet, Article, and Duplicate Claim Checks",
+      "title": "[BOUNTY #747] Bounty Verification Bot \u2014 Wallet, Article, and Duplicate Claim Checks",
       "status": "closed",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/2315",
       "created": "2026-03-21",
@@ -3105,7 +3105,7 @@
     {
       "repo": "TheJollyLaMa/BigNuten_Vanilla",
       "pr": 138,
-      "title": "[BOUNTY #128] About Modal: Clean Up Crypto Payment Panel — UI Polish, Annual Plan, USDC Option, Fix Disabled Button & Cancel Clarity",
+      "title": "[BOUNTY #128] About Modal: Clean Up Crypto Payment Panel \u2014 UI Polish, Annual Plan, USDC Option, Fix Disabled Button & Cancel Clarity",
       "status": "closed",
       "url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/138",
       "created": "2026-03-21",
@@ -3115,7 +3115,7 @@
     {
       "repo": "foremetric/foremetric",
       "pr": 9,
-      "title": "[BOUNTY #4] [BOUNTY] Signal Passport — TEE nullifier implementation",
+      "title": "[BOUNTY #4] [BOUNTY] Signal Passport \u2014 TEE nullifier implementation",
       "status": "closed",
       "url": "https://github.com/foremetric/foremetric/pull/9",
       "created": "2026-03-21",
@@ -3125,7 +3125,7 @@
     {
       "repo": "stellar/stellar-docs",
       "pr": 2318,
-      "title": "[BOUNTY #2284] Application to Contribute to Stellar Docs – Open Source Developer & Former Bounty Participant",
+      "title": "[BOUNTY #2284] Application to Contribute to Stellar Docs \u2013 Open Source Developer & Former Bounty Participant",
       "status": "closed",
       "url": "https://github.com/stellar/stellar-docs/pull/2318",
       "created": "2026-03-21",
@@ -4047,7 +4047,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 193,
-      "title": "[BOUNTY #14] Testing Framework — Integration Tests for All 12 Stacks + CI",
+      "title": "[BOUNTY #14] Testing Framework \u2014 Integration Tests for All 12 Stacks + CI",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/193",
       "created": "2026-03-18",
@@ -4057,7 +4057,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 192,
-      "title": "[BOUNTY #8] Robustness — CN Network Adaptation + Env Detection + Graceful Shutdown",
+      "title": "[BOUNTY #8] Robustness \u2014 CN Network Adaptation + Env Detection + Graceful Shutdown",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/192",
       "created": "2026-03-18",
@@ -4067,7 +4067,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 189,
-      "title": "[BOUNTY #10] Observability — Prometheus + Grafana + Loki + Tempo + Alertmanager + Uptime Kuma",
+      "title": "[BOUNTY #10] Observability \u2014 Prometheus + Grafana + Loki + Tempo + Alertmanager + Uptime Kuma",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/189",
       "created": "2026-03-18",
@@ -4077,7 +4077,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 188,
-      "title": "[BOUNTY #9] SSO Stack — Authentik OIDC + Forward Auth + 6 Service Integration",
+      "title": "[BOUNTY #9] SSO Stack \u2014 Authentik OIDC + Forward Auth + 6 Service Integration",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/188",
       "created": "2026-03-18",
@@ -4087,7 +4087,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 186,
-      "title": "[BOUNTY #7] Home Automation — HA + Node-RED + Mosquitto + Zigbee2MQTT",
+      "title": "[BOUNTY #7] Home Automation \u2014 HA + Node-RED + Mosquitto + Zigbee2MQTT",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/186",
       "created": "2026-03-18",
@@ -4097,7 +4097,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 185,
-      "title": "[BOUNTY #5] Productivity Stack — Gitea + Vaultwarden + Outline + Stirling PDF",
+      "title": "[BOUNTY #5] Productivity Stack \u2014 Gitea + Vaultwarden + Outline + Stirling PDF",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/185",
       "created": "2026-03-18",
@@ -4107,7 +4107,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 184,
-      "title": "[BOUNTY #4] Network Stack — AdGuard + WireGuard + Cloudflare DDNS + NPM",
+      "title": "[BOUNTY #4] Network Stack \u2014 AdGuard + WireGuard + Cloudflare DDNS + NPM",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/184",
       "created": "2026-03-18",
@@ -4117,7 +4117,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 182,
-      "title": "[BOUNTY #12] Backup & DR — Duplicati + Restic + 3-2-1 Strategy",
+      "title": "[BOUNTY #12] Backup & DR \u2014 Duplicati + Restic + 3-2-1 Strategy",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/182",
       "created": "2026-03-18",
@@ -4127,7 +4127,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 181,
-      "title": "[BOUNTY #3] Storage Stack — Nextcloud + MinIO + FileBrowser + Syncthing",
+      "title": "[BOUNTY #3] Storage Stack \u2014 Nextcloud + MinIO + FileBrowser + Syncthing",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/181",
       "created": "2026-03-18",
@@ -4137,7 +4137,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 180,
-      "title": "[BOUNTY #2] Media Stack — Jellyfin + Sonarr + Radarr + Prowlarr + qBittorrent + Jellyseerr",
+      "title": "[BOUNTY #2] Media Stack \u2014 Jellyfin + Sonarr + Radarr + Prowlarr + qBittorrent + Jellyseerr",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/180",
       "created": "2026-03-18",
@@ -4147,7 +4147,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 178,
-      "title": "[BOUNTY #1] Base Infrastructure — Socket Proxy + Enhanced Base Stack",
+      "title": "[BOUNTY #1] Base Infrastructure \u2014 Socket Proxy + Enhanced Base Stack",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/178",
       "created": "2026-03-18",
@@ -4377,7 +4377,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 83,
-      "title": "[BOUNTY #10] Observability — Tempo + Uptime Kuma + Alerting + Dashboards",
+      "title": "[BOUNTY #10] Observability \u2014 Tempo + Uptime Kuma + Alerting + Dashboards",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/83",
       "created": "2026-03-18",
@@ -4387,7 +4387,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 82,
-      "title": "[BOUNTY #9] SSO — Authentik OIDC Automation + ForwardAuth + 6 Providers",
+      "title": "[BOUNTY #9] SSO \u2014 Authentik OIDC Automation + ForwardAuth + 6 Providers",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/82",
       "created": "2026-03-18",
@@ -4397,7 +4397,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 81,
-      "title": "[BOUNTY #7] Home Automation — HA + Node-RED + Zigbee2MQTT + ESPHome",
+      "title": "[BOUNTY #7] Home Automation \u2014 HA + Node-RED + Zigbee2MQTT + ESPHome",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/81",
       "created": "2026-03-18",
@@ -4407,7 +4407,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 80,
-      "title": "[BOUNTY #6] AI Stack — GPU/CPU adaptive, SD WebUI, Perplexica",
+      "title": "[BOUNTY #6] AI Stack \u2014 GPU/CPU adaptive, SD WebUI, Perplexica",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/80",
       "created": "2026-03-18",
@@ -4417,7 +4417,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 79,
-      "title": "[BOUNTY #5] Productivity Stack — Stirling PDF + Excalidraw + Enhanced configs",
+      "title": "[BOUNTY #5] Productivity Stack \u2014 Stirling PDF + Excalidraw + Enhanced configs",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/79",
       "created": "2026-03-18",
@@ -4427,7 +4427,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 78,
-      "title": "[BOUNTY #8] Robustness — CN Network Adaptation + Environment Hardening",
+      "title": "[BOUNTY #8] Robustness \u2014 CN Network Adaptation + Environment Hardening",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/78",
       "created": "2026-03-18",
@@ -4437,7 +4437,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 77,
-      "title": "[BOUNTY #12] Backup & DR — Encrypted backup, multi-target, disaster recovery",
+      "title": "[BOUNTY #12] Backup & DR \u2014 Encrypted backup, multi-target, disaster recovery",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/77",
       "created": "2026-03-18",
@@ -4447,7 +4447,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 76,
-      "title": "[BOUNTY #11] Database Layer — MariaDB + pgAdmin + Redis Commander",
+      "title": "[BOUNTY #11] Database Layer \u2014 MariaDB + pgAdmin + Redis Commander",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/76",
       "created": "2026-03-18",
@@ -4457,7 +4457,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 74,
-      "title": "[BOUNTY #13] Notifications Stack — Gotify + ntfy + Unified notify.sh",
+      "title": "[BOUNTY #13] Notifications Stack \u2014 Gotify + ntfy + Unified notify.sh",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/74",
       "created": "2026-03-18",
@@ -4467,7 +4467,7 @@
     {
       "repo": "illbnm/homelab-stack",
       "pr": 73,
-      "title": "[BOUNTY #14] Integration Testing — Full Integration Test Suite",
+      "title": "[BOUNTY #14] Integration Testing \u2014 Full Integration Test Suite",
       "status": "closed",
       "url": "https://github.com/illbnm/homelab-stack/pull/73",
       "created": "2026-03-18",
@@ -4477,7 +4477,7 @@
     {
       "repo": "bolivian-peru/baozi-openclaw",
       "pr": 145,
-      "title": "[BOUNTY] Night Kitchen — Bilingual Market Report Agent",
+      "title": "[BOUNTY] Night Kitchen \u2014 Bilingual Market Report Agent",
       "status": "open",
       "url": "https://github.com/bolivian-peru/baozi-openclaw/pull/145",
       "created": "2026-03-17",
@@ -4592,7 +4592,7 @@
       "url": "https://github.com/Scottcjn/rustchain-bounties/issues/3468",
       "created": "2026-04-23",
       "bounty": "2 RTC",
-      "payment_note": "Claim Issue 已创建，等待付款"
+      "payment_note": "Claim Issue \u5df2\u521b\u5efa\uff0c\u7b49\u5f85\u4ed8\u6b3e"
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
@@ -4602,7 +4602,7 @@
       "url": "https://github.com/Scottcjn/rustchain-bounties/issues/3070",
       "created": "2026-04-17",
       "bounty": "350 RTC",
-      "payment_note": "Claim Issue 已创建，等待付款"
+      "payment_note": "Claim Issue \u5df2\u521b\u5efa\uff0c\u7b49\u5f85\u4ed8\u6b3e"
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
@@ -4612,7 +4612,7 @@
       "url": "https://github.com/Scottcjn/rustchain-bounties/issues/6931",
       "created": "2026-04-28",
       "bounty": "160 RTC",
-      "payment_note": "Claim Issue 已创建 (2026-04-28)，等待付款",
+      "payment_note": "Claim Issue \u5df2\u521b\u5efa (2026-04-28)\uff0c\u7b49\u5f85\u4ed8\u6b3e",
       "type": "claim"
     },
     {
@@ -4625,7 +4625,7 @@
       "updated": "2026-04-28",
       "bounty": "$600",
       "bounty_num": "78",
-      "payment_note": "已提交 PR，等待审核",
+      "payment_note": "\u5df2\u63d0\u4ea4 PR\uff0c\u7b49\u5f85\u5ba1\u6838",
       "payment_type": "USDC (Algora)"
     }
   ],
@@ -4646,7 +4646,7 @@
     },
     {
       "number": 7326,
-      "title": "Self-Audit: passport/passport_ledger.py — 3 findings",
+      "title": "Self-Audit: passport/passport_ledger.py \u2014 3 findings",
       "url": "https://github.com/Scottcjn/rustchain-bounties/pull/7326",
       "mergedAt": "2026-04-30T01:33:51Z"
     }
