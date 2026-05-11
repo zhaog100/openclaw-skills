@@ -14,6 +14,13 @@ warnings.filterwarnings('ignore')
 import numpy as np
 import pandas as pd
 from datetime import datetime
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+# 导入配置文件
+from config.scanner_config import get_scanner_config, get_confidence_formula
 
 
 # 关联词（用于二次过滤泛泛新闻不相关的机遇）
@@ -68,11 +75,17 @@ class OpportunityScanner:
         gap_5 = abs(i5 - d5)
         gap_20 = abs(i20 - d20) if i20 is not None and d20 is not None else 0
 
-        # 背离阈值：内外盘涨跌幅差距 > 1.5%
-        if gap_5 > 1.5:
+        # 加载配置
+        config = get_scanner_config()
+        gap_threshold = config['gap_thresholds']['gap_5_threshold']
+        
+        # 背离阈值：内外盘涨跌幅差距 > gap_threshold%
             if i5 > d5 and i5 > 0:
                 # 国际涨得多 → 国内补涨机会
-                conf = min(50 + gap_5 * 10, 85)
+                # 使用配置文件中的置信度公式
+                conf_config = config['confidence_config']
+                conf = min(conf_config['base_confidence'] + gap_5 * conf_config['gap_multiplier'], 
+                          conf_config['max_confidence'])
                 self.opportunities.append(Opportunity(
                     "divergence",
                     f"内外盘背离：{domestic_name}补涨机会",
@@ -80,11 +93,14 @@ class OpportunityScanner:
                     conf,
                     f"国际{international_name}5日{i5:+.1f}% vs {domestic_name}{d5:+.1f}% → 差距{gap_5:.1f}%\n"
                     f"   建议关注{domestic_name}做多机会",
-                    score_impact=int(gap_5 * 3),
+                    # 使用配置文件中的影响分数
+                    score_impact=int(gap_5 * config['score_impact'].get('trend_up', 3)),
                 ))
             elif d5 > i5 and d5 > 0:
                 # 国内涨得多 → 国际可能补涨，或国内有特殊因素
-                conf = min(40 + gap_5 * 8, 70)
+                # 使用配置文件中的置信度参数
+                conf_config = config['confidence_config']
+                conf = min(40 + gap_5 * 8, conf_config['max_confidence'])
                 self.opportunities.append(Opportunity(
                     "divergence",
                     f"内外盘背离：{domestic_name}强于国际",
@@ -95,8 +111,11 @@ class OpportunityScanner:
                     score_impact=0,
                 ))
 
+        # 加载技术指标阈值
+        i5_threshold = config['technical_thresholds']['i5_threshold']
+        
         # 国际跌但国内不跌
-        if i5 < -1 and d5 > -0.5:
+        if i5 < i5_threshold and d5 > -0.5:
             self.opportunities.append(Opportunity(
                 "divergence",
                 f"{domestic_name}抗跌：国内需求支撑",

@@ -255,7 +255,7 @@ def create_default_manager():
                 df = df.set_index("Date").sort_index()
             return df if not df.empty else None
 
-        mgr.register_source("akshare", _ak_fetch, priority=8, currency="CNY", instruments={
+        mgr.register_source("akshare", _ak_fetch, priority=6, currency="CNY", instruments={
             "gold_domestic": "AU0", "oil_domestic": "SC0",
         })
     except ImportError:

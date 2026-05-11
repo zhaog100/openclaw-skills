@@ -295,7 +295,7 @@ async def get_status() -> Dict[str, Any]:
     """获取服务状态"""
     return {
         "service": "oil-gold-correlation-mcp",
-        "version": "2.1.3",
+        "version": "2.1.4",
         "framework": "openclaw",
         "mcp_enabled": True,
         "data_sources": ["akshare", "yfinance", "fred", "alphavantage"]
