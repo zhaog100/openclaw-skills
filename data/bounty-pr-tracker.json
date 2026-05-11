@@ -1,10 +1,11 @@
 {
-  "lastUpdated": "2026-05-11T08:04:00Z",
+  "lastUpdated": "2026-05-11T08:40:19Z",
   "totalPRs": 457,
   "summary": {
-    "open": 153,
-    "closed": 276,
-    "merged": 29
+    "total": 457,
+    "merged": 4,
+    "open": 178,
+    "recentActivity": "2026-05-11"
   },
   "prs": [
     {
@@ -4651,6 +4652,12 @@
     }
   ],
   "recentlyMerged": [
+    {
+      "number": 4101,
+      "title": "[UTXO-BUG] Race condition and TOCTOU test cases for #2819",
+      "url": "https://github.com/Scottcjn/Rustchain/pull/4101",
+      "mergedAt": "2026-05-10T00:00:00Z"
+    },
     {
       "number": 7328,
       "repo": "Scottcjn/rustchain-bounties",
