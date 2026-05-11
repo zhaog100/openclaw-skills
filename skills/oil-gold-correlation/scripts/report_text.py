@@ -297,7 +297,7 @@ def generate_report_parts():
     if scores:
         part2 = get_operation_advice(scores[0], scores[1] if len(scores) > 1 else 50)
     else:
-        part2 = "💡 宏观信号灯\n\n信心:57 悲极 | VIX:19.2 平静|利差:0.52 正常| 信用:2.94 宽松\n\n⚠️ 数据获取失败，请稍后重试"
+        part2 = "💡 宏观信号灯\n\n⚠️ 数据获取失败，无法生成操作建议\n请稍后重试或检查网络连接"
     
     return "\n".join(lines1), part2
 

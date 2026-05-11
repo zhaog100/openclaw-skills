@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 石油黄金相关性分析引擎
-支持：Pearson, Spearman, Kendall, Rolling, Granger, Cointegration, DCC-GARCH
+支持：Pearson, Spearman, Kendall, Rolling, Granger, Cointegration, 白银-黄金/白银-原油相关性
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT

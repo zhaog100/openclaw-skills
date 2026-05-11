@@ -58,7 +58,8 @@ python3 scripts/analysis.py [--method all] [--window 30]
 | Rolling Correlation | 滚动窗口相关 | 相关性变化趋势 |
 | Granger Causality | 因果方向 | 谁领先谁 |
 | Cointegration (ADF) | 长期均衡 | 是否存在稳定关系 |
-| DCC-GARCH | 动态条件相关 | 波动聚类下的相关性 |
+| 白银-黄金相关 | 白银与黄金收益率相关 | 商品联动分析 |
+| 白银-原油相关 | 白银与原油收益率相关 | 商品联动分析 |
 
 ### 3. 可视化
 
@@ -70,7 +71,6 @@ python3 scripts/visualize.py [--output media/oil-gold.html]
 1. 价格走势叠加图（双 Y 轴）
 2. 收益率散点图 + 回归线
 3. 滚动相关系数时序图
-4. 相关性热力图（多时间窗口）
 
 ### 4. 报告生成
 
