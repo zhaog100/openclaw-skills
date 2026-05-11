@@ -1,10 +1,10 @@
 {
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
+    "email": 1746919920,
+    "calendar": 1746919920,
+    "weather": 1746919920,
     "github": 1746708720,
     "memory": 1746708720
   },
-  "lastHeartbeat": "2026-05-09T10:12:00+08:00"
+  "lastHeartbeat": "2026-05-11T10:12:00+08:00"
 }

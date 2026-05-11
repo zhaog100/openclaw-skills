@@ -1,99 +1,149 @@
-# Bounty Master List
-**Last Updated:** 2026-05-10 22:02 Asia/Hong_Kong (14:02 UTC)  
-**Scanner:** 小米辣 🌶️ (zhaog100)  
+# Bounty Master List — 2026-05-11
 
-## Active Bounties (Already Tracked)
-
-### illbnm/homelab-stack (Chinese homelab stack, USDT)
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$300** | [#504](https://github.com/illbnm/homelab-stack/issues/504) | [BOUNTY $300] SSO Stack — 统一身份认证 | Claimed |
-| **$300** | [#9](https://github.com/illbnm/homelab-stack/issues/9) | [BOUNTY $300] SSO — Authentik 统一身份认证 | Claimed |
-| **$280** | [#14](https://github.com/illbnm/homelab-stack/issues/14) | [BOUNTY $200] Testing — 自动化测试套件 | Claimed |
-| **$250** | [#8](https://github.com/illbnm/homelab-stack/issues/8) | [BOUNTY $250] Robustness — 国内网络适配 + 环境鲁棒性 | Claimed |
-| **$150** | [#12](https://github.com/illbnm/homelab-stack/issues/12) | [BOUNTY $150] Backup & DR — 自动备份 + 灾难恢复 | Claimed |
-| **$150** | [#3](https://github.com/illbnm/homelab-stack/issues/3) | [BOUNTY $150] Storage Stack — Nextcloud + MinIO + FileBrowser | Claimed |
-
-### INDIGOAZUL/la-tanda-web (LTD token)
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **750 LTD** | [#269](https://github.com/INDIGOAZUL/la-tanda-web/issues/269) | [BOUNTY] Cosmos Ecosystem Comms Sprint | Claimed |
-| **750 LTD** | [#268](https://github.com/INDIGOAZUL/la-tanda-web/issues/268) | [BOUNTY] Notification Center improvements | Claimed |
-| **250 LTD** | [#87](https://github.com/INDIGOAZUL/la-tanda-web/issues/87) | 📲 Mobile Push Notification UX — 250 LTD Bounty | Claimed |
-| **250 LTD** | [#51](https://github.com/INDIGOAZUL/la-tanda-web/issues/51) | 🚩 Content Report/Flag System — 250 LTD Bounty | Claimed |
-| **200 LTD** | [#89](https://github.com/INDIGOAZUL/la-tanda-web/issues/89) | 🔭 Chain Explorer Enhancements — 200 LTD Bounty | Claimed |
-| **200 LTD** | [#85](https://github.com/INDIGOAZUL/la-tanda-web/issues/85) | ♿ Accessibility Audit + Fixes — 200 LTD Bounty | Claimed |
-| **200 LTD** | [#84](https://github.com/INDIGOAZUL/la-tanda-web/issues/84) | 🌓 Dark/Light Theme Toggle — 200 LTD Bounty | Claimed |
-| **200 LTD** | [#86](https://github.com/INDIGOAZUL/la-tanda-web/issues/86) | ⚡ Performance Audit + Lighthouse Optimization — 150 LTD Bounty | Claimed |
-| **300 LTD** | [#88](https://github.com/INDIGOAZUL/la-tanda-web/issues/88) | 🎓 Onboarding Tour / First-Time User Flow — 300 LTD Bounty | Claimed |
-
-### QuantumSavory/QuantumSavory.jl (Julia quantum computing)
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$1600** | [#134](https://github.com/QuantumSavory/QuantumSavory.jl/issues/134) | Entanglement tracker protocol with UUIDs assigned to each Bell pair | Claimed (blocked) |
-| **$400** | [#137](https://github.com/QuantumSavory/QuantumSavory.jl/issues/137) | Implement a networking protocol primitive | Claimed (blocked) |
-| **$400** | [#129](https://github.com/QuantumSavory/QuantumSavory.jl/issues/129) | Tensor Networks Backend | Claimed (blocked) |
-| **$200** | [#132](https://github.com/QuantumSavory/QuantumSavory.jl/issues/132) | Improve Makie visualization capabilities | Claimed (blocked) |
-| **$200** | [#131](https://github.com/QuantumSavory/QuantumSavory.jl/issues/131) | More thorough benchmarks | Claimed (blocked) |
-
-### JuliaDynamics/ResumableFunctions.jl
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$600** | [#99](https://github.com/JuliaDynamics/ResumableFunctions.jl/issues/99) | Use JuliaLowering.jl for a cleaner way to transform resumable functions to finite state machines | Claimed (blocked) |
-
-### Expensify/App (USD)
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$250** | [#75982](https://github.com/Expensify/App/issues/75982) | Wallet - No warning when transferring same balance multiple times | Claimed |
-| **$250** | [#89131](https://github.com/Expensify/App/issues/89131) | Marked as paid message shown twice on receipt cropped expense | Claimed |
-| **$250** | [#89056](https://github.com/Expensify/App/issues/89056) | Paid offline report appears on "Ready to pay" tab after going online | Claimed |
-
-### claude-builders-bounty/claude-builders-bounty (USD)
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$200** | [#5](https://github.com/claude-builders-bounty/claude-builders-bounty/issues/5) | [BOUNTY $200] WORKFLOW: n8n + Claude Code — automated weekly dev summary | Competitive |
-| **$75** | [#2](https://github.com/claude-builders-bounty/claude-builders-bounty/issues/2) | [BOUNTY $75] TEMPLATE: CLAUDE.md for a Next.js + SQLite SaaS project | Claimed |
-
-### permission-protocol/deploy-gate (USD)
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$200** | [#36](https://github.com/permission-protocol/deploy-gate/issues/36) | Challenge: Bypass the Ed25519 signature verification | Locked |
-
-### Other USD Denominated
-| Amount | Issue | Title | Status |
-|--------|-------|-------|--------|
-| **$100** | [BitflowFinance/bff-skills#581](https://github.com/BitflowFinance/bff-skills/issues/581) | [payout-inquiry] $500 unpaid, 14-16 days unresolved | Unpaid inquiry |
-| **$10** | [Theioz/mr-bridge-assistant#461](https://github.com/Theioz/mr-bridge-assistant/issues/461) | Billing: Stripe integration + usage metering | Claimed |
-
-## New Findings (2026-05-10 Scan — NONE)
-
-No new qualifying bounties found this scan.
-
-## Pending (No Write Access)
-| Repo | Amount | Issue | Title |
-|------|--------|-------|-------|
-| Henry00IS/ShapeEditor | $50 | [#3](https://github.com/Henry00IS/ShapeEditor/issues/3) | [50$ Bounty] Create RealtimeCSG Brush from PolygonMesh |
-| Henry00IS/ShapeEditor | $50 | [#17](https://github.com/Henry00IS/ShapeEditor/issues/17) | [50$ Bounty] PolyBool can cause an editor crash |
-| mangdangroboticsclub/mini_pupper_ros | $100 | [#125](https://github.com/mangdangroboticsclub/mini_pupper_ros/issues/125) | Upgrade ROS2 Humble to Jazzy |
-| Fahad-Dezloper/Crowdify | $50 | [#27](https://github.com/Fahad-Dezloper/Crowdify/issues/27) | Multiple Admin Support |
-| tscircuit/kicad-component-converter | $50 | [#114](https://github.com/tscircuit/kicad-component-converter/issues/114) | Fix the schematic view |
-| simonmichael/hledger | $20 | [#1148](https://github.com/simonmichael/hledger/issues/1148) | [💰20$ bounty] Inconsistent alignment for currencies |
-| simonmichael/hledger | $20 | [#1640](https://github.com/simonmichael/hledger/issues/1640) | [💰 20$ bounty] Pivoting over multiple tags |
-
-## Portfolio Summary
-| Category | Count | Value |
-|----------|-------|-------|
-| illbnm/homelab-stack | 6 | $1,330 USDT |
-| INDIGOAZUL (LTD) | 9 | 2700 LTD |
-| QuantumSavory.jl | 5 | $2,800 |
-| JuliaDynamics | 1 | $600 |
-| Expensify | 3 | $750 |
-| claude-builders-bounty | 2 | $275 |
-| permission-protocol | 1 | $200 |
-| Other USD | 2 | $110 |
-| Pending USD | 7 | $340 |
-| **TOTAL USD (claimed)** | **20** | **$6,065** |
-| **TOTAL LTD** | **9** | **2700 LTD** |
+**Last updated:** 2026-05-11 10:02 UTC  
+**Maintained by:** 小米辣 🌶️ (zhaog100)
 
 ---
-*Generated automatically. Only local update.*
+
+## 🚀 Top Priority — Claim Now
+
+### openclaw/openclaw#64129
+**Title:** [Bug]: Configuring a paid Google Gemini key implicitly turned existing heartbeat traffic into paid background usage  
+**Price:** N/A (bug report)  
+**Labels:** bug  
+**Link:** https://github.com/openclaw/openclaw/issues/64129  
+**Status:** Open, no assignee  
+**Notes:** Clear bug, reproducible steps, fits agent workflow. Related to #74395.
+
+### openclaw/openclaw#74395
+**Title:** Auto-migration silently switches default model to a paid `-preview` variant on upgrade, causing unintended billing  
+**Price:** N/A (enhancement, ~$390 unintended billing documented)  
+**Labels:** enhancement  
+**Link:** https://github.com/openclaw/openclaw/issues/74395  
+**Status:** Open, no assignee  
+**Notes:** ~$390 billing impact. Related to #64129. Same root cause.
+
+---
+
+## 💰 High Value — Devpool UbiquityOS Ecosystem ($75-$1800)
+
+### $1800 (x1)
+- devpool-directory [#5916](https://github.com/devpool-directory/devpool-directory/issues/5916) — UbiquityOS Sprint Management Dashboard
+
+### $900 (x1)
+- devpool-directory [#5064](https://github.com/devpool-directory/devpool-directory/issues/5064) — Nomic Embeddings Model for +10% Accuracy
+
+### $600 (x7)
+- devpool-directory [#5017](https://github.com/devpool-directory/devpool-directory/issues/5017) — Automatic Transfer
+- devpool-directory [#5066](https://github.com/devpool-directory/devpool-directory/issues/5066) — Cow Swap Cash Out
+- devpool-directory [#5012](https://github.com/devpool-directory/devpool-directory/issues/5012) — Differential Reward Distribution for Reopened Issues
+- devpool-directory [#5844](https://github.com/devpool-directory/devpool-directory/issues/5844) — Governance Token emissions to `ubq.eth` new strategy
+- devpool-directory [#5846](https://github.com/devpool-directory/devpool-directory/issues/5846) — Security monitoring
+- devpool-directory [#5925](https://github.com/devpool-directory/devpool-directory/issues/5925) — Launch campaign towards L1s/L2s for managing their GitHubs
+- devpool-directory [#5902](https://github.com/devpool-directory/devpool-directory/issues/5902) — General Improvements
+
+### $450 (x1)
+- devpool-directory [#5886](https://github.com/devpool-directory/devpool-directory/issues/5886) — Plugin health monitor
+
+### $400 (x1)
+- devpool-directory [#4998](https://github.com/devpool-directory/devpool-directory/issues/4998) — Multi Chain Arbitrage
+
+### $300 (x8)
+- devpool-directory [#5840](https://github.com/devpool-directory/devpool-directory/issues/5840) — New Proposal Router
+- devpool-directory [#5874](https://github.com/devpool-directory/devpool-directory/issues/5874) — Integrate Wallet Connect via Reown AppKit
+- devpool-directory [#5027](https://github.com/devpool-directory/devpool-directory/issues/5027) — Check dev experience on starting an issue
+- devpool-directory [#5039](https://github.com/devpool-directory/devpool-directory/issues/5039) — Generalized "GitHub Webhook + Contributor Role -> Rewards" No Config v1
+- devpool-directory [#5043](https://github.com/devpool-directory/devpool-directory/issues/5043) — Callbacks - event handlers and hybrid plugins
+- devpool-directory [#5045](https://github.com/devpool-directory/devpool-directory/issues/5045) — Generalized "GitHub Webhook + Contributor Role -> Rewards" Contributor Class v2
+- devpool-directory [#5020](https://github.com/devpool-directory/devpool-directory/issues/5020) — Scraper: Scrape Issue Threads with Time estimates
+- devpool-directory [#5927](https://github.com/devpool-directory/devpool-directory/issues/5927) — Generalized "GitHub Webhook + Contributor Role -> Rewards" With Config v3
+
+### $200 (x1)
+- devpool-directory [#5024](https://github.com/devpool-directory/devpool-directory/issues/5024) — GitHub Based Marketing
+
+### $150 (x5)
+- devpool-directory [#5885](https://github.com/devpool-directory/devpool-directory/issues/5885) — Migrate to Bun: runtime, tests, and CI
+- devpool-directory [#5887](https://github.com/devpool-directory/devpool-directory/issues/5887) — Validate reward generation behavior
+- devpool-directory [#5839](https://github.com/devpool-directory/devpool-directory/issues/5839) — RPC Robustness & Fallback – Handoff
+- devpool-directory [#5071](https://github.com/devpool-directory/devpool-directory/issues/5071) — Dynamically append the revision hash on every app footer
+- devpool-directory [#5000](https://github.com/devpool-directory/devpool-directory/issues/5000) — Nudge to claim DEMO currency
+
+### $75 (x7)
+- devpool-directory [#5085](https://github.com/devpool-directory/devpool-directory/issues/5085) — Improve Task Assignment Limit Handling
+- devpool-directory [#5056](https://github.com/devpool-directory/devpool-directory/issues/5056) — Credit for research
+- devpool-directory [#5055](https://github.com/devpool-directory/devpool-directory/issues/5055) — Multiple Matchmaking Comments
+- devpool-directory [#5905](https://github.com/devpool-directory/devpool-directory/issues/5905) — Health Dashboard
+- devpool-directory [#5906](https://github.com/devpool-directory/devpool-directory/issues/5906) — Dynamic Sitemap (Apps & Plugins)
+- devpool-directory [#5911](https://github.com/devpool-directory/devpool-directory/issues/5911) — Self Invalidations
+- devpool-directory [#5926](https://github.com/devpool-directory/devpool-directory/issues/5926) — Fix Cannot convert undefined or null to object error
+- devpool-directory [#5957](https://github.com/devpool-directory/devpool-directory/issues/5957) — Reminder is sent on PR reopening even with no assignee
+
+### $37.50 (x1)
+- devpool-directory [#5873](https://github.com/devpool-directory/devpool-directory/issues/5873) — Multiline slash commands should not be evaluated as a comment
+
+### $9 (x2) — skip (below $10 threshold)
+- devpool-directory [#5924](https://github.com/devpool-directory/devpool-directory/issues/5924) — Launch Another DoraHacks Bounty Post
+- devpool-directory [#5928](https://github.com/devpool-directory/devpool-directory/issues/5928) — Upgrade to `voyage-4-large` for better performance
+
+---
+
+## 🪙 Token / Non-USD Bounties
+
+### watney-ai/open-source-bounties
+- [#1](https://github.com/watney-ai/open-source-bounties/issues/1) — 💰 BOUNTY: Fix typo in BOUNTY.md — **€2.00** (label: 💰 BOUNTY)
+
+### cashubtc/nutshell
+- [#557](https://github.com/cashubtc/nutshell/issues/557) — [Nodesignal bounty] Bug report bounty — **sats** (label: bounty)
+
+### S.P.L.U.R.T-tg (SPLURT)
+- [#963](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/963) — [BOUNTY] Suggestion #746 — (label: bounty)
+- [#936](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/936) — [BOUNTY] Suggestion #656 — (label: bounty)
+- [#935](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/935) — [BOUNTY] Suggestion #657 — (label: bounty)
+- [#932](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/932) — [BOUNTY] Suggestion #675 — (label: bounty)
+- [#931](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/931) — [BOUNTY] Suggestion #659 — (label: bounty)
+- [#918](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/918) — [BOUNTY] Suggestion #633 — (label: bounty)
+- [#915](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/915) — [BOUNTY] Suggestion #447 — (label: bounty)
+- [#136](https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/136) — [BOUNTY] Bounties and Issues Guidelines! — (label: bounty)
+
+---
+
+## ❌ Blacklist (do not touch)
+
+| Org/Repo | Reason |
+|---|---|
+| Scottcjn/* | per blacklist |
+| rustchain* | per blacklist |
+| SolFoundry/solfoundry | per blacklist |
+| aporthq | per blacklist |
+| rohitdash08 | per blacklist |
+| Expensify/* | per blacklist + known issues |
+| ubiquibot | per blacklist |
+| illbnm/* | per blacklist |
+| conflux | per blacklist |
+| WattCoin | per blacklist |
+| coollabsio | per blacklist |
+
+---
+
+## 📊 Summary Statistics
+
+| Category | Count | Est. Value |
+|---|---|---|
+| OpenClaw bugs (claimable) | 2 | N/A |
+| Devpool UbiquityOS ($9-$1800) | 37 | ~$8,450 |
+| Devpool qualifying (≥$10) | 35 | ~$8,432 |
+| Token/SPLURT bounties | 9 | Varies |
+| **Total qualifying (≥$10)** | **37** | **~$8,432+** |
+
+---
+
+## 🏷️ Key Labels for Filtering
+
+- `bounty` — explicit bounty tag
+- `Priority: 3 (High)` — high priority items
+- `Price: XXX USD` — price in label
+- `Time: <1 Day/Week/Hour` — time estimate
+
+---
+
+*Last updated: 2026-05-11 10:02 UTC by bounty-scan-gh cron*

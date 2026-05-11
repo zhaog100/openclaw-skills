@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-05-10T15:04:00Z",
+  "lastUpdated": "2026-05-11T02:09:00Z",
   "totalPRs": 457,
   "summary": {
-    "open": 152,
-    "closed": 278,
-    "merged": 27
+    "open": 153,
+    "closed": 276,
+    "merged": 28
   },
   "prs": [
     {
@@ -627,10 +627,10 @@
       "status": "open",
       "url": "https://github.com/ubiquity-os/plugins-wishlist/pull/87",
       "created": "2026-04-12",
-      "updated": "2026-05-10",
+      "updated": "2026-05-08",
       "merged_at": null,
-      "review_status": "CHANGES_REQUESTED (2026-05-10) - CodeRabbit: 4 CHANGES_REQUESTED reviews (Critical issues remain: import paths, logger destructure, provider branch, labels undefined); alceops: build errors; zhaog100 replied 2026-04-28; no maintainer response yet",
-      "notes": "CodeRabbit still rate-limited. Multiple CHANGES_REQUESTED reviews posted (2026-04-12 to 2026-04-14). zhaog100 replied asking for update (2026-04-28) — no maintainer response. Build errors need fixing before merge."
+      "review_status": "CHANGES_REQUESTED (2026-05-08) - CodeRabbit: CHANGES_REQUESTED (import paths, logger destructure, provider branch, labels undefined); alceops: build errors; zhaog100 replied 2026-04-28; no maintainer response yet",
+      "notes": "CodeRabbit rate limited. alceops reported build errors. Still awaiting maintainer response to zhaog100 reply (2026-04-28)."
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
@@ -1318,19 +1318,19 @@
       "repo": "Scottcjn/Rustchain",
       "pr": 4101,
       "title": "[UTXO-BUG] Race condition and TOCTOU test cases for #2819",
-      "status": "open",
+      "status": "merged",
       "url": "https://github.com/Scottcjn/Rustchain/pull/4101",
       "created": "2026-05-08",
       "updated": "2026-05-10",
-      "merged_at": null,
+      "merged_at": "2026-05-10T21:37:41Z",
       "labels": [
         "BCOS-L1",
         "size/L",
         "node"
       ],
       "bounty": "15 RTC (Medium tier)",
-      "review_status": "APPROVED (2026-05-10) - Scottcjn: 15 RTC payout approved. Payout confirms in 24h. Pending tx hash visible in PR.",
-      "notes": "APPROVED per HOLD review. Payout 15 RTC. Tx hash pending."
+      "review_status": "MERGED (2026-05-10) - Payout: 15 RTC approved. Tx hash confirmed in PR.",
+      "notes": "MERGED. Payout 15 RTC confirmed. UTXO race/TOCTOU test suite."
     },
     {
       "repo": "ubiquity-os-marketplace/text-conversation-rewards",

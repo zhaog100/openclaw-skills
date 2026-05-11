@@ -126,8 +126,31 @@ def get_operation_advice(gold_score, oil_score):
     lines.append("💡 宏观信号灯")
     lines.append("")
     
-    # 宏观信号灯（固定格式）
-    lines.append("信心:57 悲极 | VIX:19.2 平静|利差:0.52 正常| 信用:2.94 宽松")
+    # 宏观信号灯（尝试获取真实数据）
+    try:
+        from fetch_fred import get_consumer_confidence, get_vix, get_yield_spread, get_credit_spread
+        
+        conf = get_consumer_confidence()
+        vix = get_vix()
+        spread = get_yield_spread()
+        credit = get_credit_spread()
+        
+        conf_val = conf.get('value', 57) if conf else 57
+        vix_val = vix.get('value', 19.2) if vix else 19.2
+        spread_val = spread.get('value', 0.52) if spread else 0.52
+        credit_val = credit.get('value', 2.94) if credit else 2.94
+        
+        conf_status = "悲极" if conf_val < 60 else "正常"
+        vix_status = "平静" if vix_val < 20 else "紧张"
+        spread_status = "正常" if 0.3 <= spread_val <= 1.0 else "异常"
+        credit_status = "宽松" if credit_val < 3.0 else "紧张"
+        
+        lines.append(f"信心:{conf_val:.0f} {conf_status} | VIX:{vix_val:.1f} {vix_status} | 利差:{spread_val:.2f} {spread_status} | 信用:{credit_val:.2f} {credit_status}")
+        
+    except Exception as e:
+        # 如果获取失败，使用默认值并提示
+        lines.append("信心:57 悲极 | VIX:19.2 平静|利差:0.52 正常| 信用:2.94 宽松")
+        lines.append("⚠️ 宏观数据获取失败，请稍后重试")
     lines.append("")
     
     # 操作建议（新样式）
@@ -206,13 +229,8 @@ def generate_report_parts():
                 lines1.append(f'{label} ¥{latest:.0f}/克 日{change_1d:+.2f}% 30日{change_30d:+.1f}% 年初至今{change_ytd:+.1f}%')
                 lines1.append(f'  30日区间: ¥{low_30d:.0f}-¥{high_30d:.0f}')
             else:
-                # 假数据（演示用）
-                if key == 'gold':
-                    lines1.append('🥇 黄金 ¥1,058/克 日+0.51% 30日-8.2% 年初至今+6.4%')
-                    lines1.append('  30日区间: ¥1,000-¥1,100')
-                else:
-                    lines1.append('🛢️ 原油 ¥630/桶 日-3.27% 30日-1.7% 年初至今+49.4%')
-                    lines1.append('  30日区间: ¥620-¥630')
+                # 获取真实数据失败时的占位提示
+                lines1.append(f'{label} ⚠️ 数据获取失败，请稍后重试')
         except Exception as e:
             lines1.append(f'{label} 错误: {e}')
     
