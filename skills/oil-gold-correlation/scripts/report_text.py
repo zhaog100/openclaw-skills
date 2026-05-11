@@ -148,8 +148,6 @@ def get_operation_advice(gold_score, oil_score):
         lines.append(f"信心:{conf_val:.0f} {conf_status} | VIX:{vix_val:.1f} {vix_status} | 利差:{spread_val:.2f} {spread_status} | 信用:{credit_val:.2f} {credit_status}")
         
     except Exception as e:
-        # 如果获取失败，使用默认值并提示
-        lines.append("信心:57 悲极 | VIX:19.2 平静|利差:0.52 正常| 信用:2.94 宽松")
         lines.append("⚠️ 宏观数据获取失败，请稍后重试")
     lines.append("")
     
@@ -159,14 +157,28 @@ def get_operation_advice(gold_score, oil_score):
     
     # 黄金建议
     g_advice, g_emoji = score_verdict(gold_score)
-    g_reason = "回调8%提供入场点，¥1,040-1,050区间可考虑，止损¥1,000" if gold_score >= 60 else "技术面偏空，等企稳信号再考虑"
+    if gold_score >= 75:
+        g_reason = "综合评分{gold_score}，建议买入"
+    elif gold_score >= 60:
+        g_reason = "综合评分{gold_score}，可考虑轻仓"
+    elif gold_score >= 40:
+        g_reason = "综合评分{gold_score}，建议观望"
+    else:
+        g_reason = "综合评分{gold_score}，建议回避"
     lines.append(f"🥇 黄金：{g_emoji} {g_advice}")
     lines.append(f"  理由：{g_reason}")
     lines.append("")
     
     # 原油建议
     o_advice, o_emoji = score_verdict(oil_score)
-    o_reason = "地缘风险支撑，但技术面弱，等¥600以下+均线金叉" if oil_score >= 60 else "技术面仅5分，等¥600以下+均线金叉再考虑"
+    if oil_score >= 75:
+        o_reason = "综合评分{oil_score}，建议买入"
+    elif oil_score >= 60:
+        o_reason = "综合评分{oil_score}，可考虑轻仓"
+    elif oil_score >= 40:
+        o_reason = "综合评分{oil_score}，建议观望"
+    else:
+        o_reason = "综合评分{oil_score}，建议回避"
     lines.append(f"🛢️ 原油：{o_emoji} {o_advice}")
     lines.append(f"  理由：{o_reason}")
     lines.append("")
@@ -183,7 +195,7 @@ def get_operation_advice(gold_score, oil_score):
     lines.append("")
     
     # 结论
-    lines.append("结论：消费信心57极低，避险利多黄金但技术面偏空，等信号灯转正。")
+    lines.append("结论：结合技术面和宏观信号综合判断，等趋势明朗后再操作。")
     lines.append("")
     lines.append("⚠️ 仅供参考，不构成投资建议")
     

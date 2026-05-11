@@ -102,7 +102,14 @@ def plot_analysis(period: str = "1y", window: int = 30, output: str = None):
 
     # 保存
     if output is None:
-        output_dir = Path(__file__).parent.parent.parent.parent / "media"
+        # 使用 config.py 中的 MEDIA_DIR，避免多级 parent 脆弱路径
+        try:
+            sys.path.insert(0, str(Path(__file__).parent))
+            from config import MEDIA_DIR
+            output_dir = MEDIA_DIR
+        except Exception:
+            # 回退到 skills/oil-gold-correlation 的 media 目录
+            output_dir = Path(__file__).parent.parent / "media"
         output_dir.mkdir(exist_ok=True)
         output = str(output_dir / "oil-gold-correlation.html")
 
