@@ -1,6 +1,7 @@
 # Memory Index
 
 ## 最新日志
+- [2026-05-11](./2026-05-11.md) - Bounty监控：RustChain #4101 merged (15 RTC)
 - [2026-05-09](./2026-05-09.md) - Bounty晚间监控：PR#125关$600, PR#4101新开, la-tanda-web全关
 - [2026-04-30](./2026-04-30.md) - Bounty 大爆发：29 PRs, ~246 RTC
 - [2026-04-29](./2026-04-29.md) - RustChain 4 PRs + 4 Claims (76-226 RTC)

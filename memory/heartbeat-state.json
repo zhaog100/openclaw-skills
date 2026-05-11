@@ -1,18 +1,9 @@
 {
   "lastChecks": {
-    "system": "2026-05-10T10:00:00+08:00",
-    "github": "2026-05-10T10:00:00+08:00",
-    "pr_status": "2026-05-10T10:00:00+08:00",
-    "bounty_scan": "2026-05-10T04:01:00+08:00"
-  },
-  "systemHealth": {
-    "status": "good",
-    "load": "normal",
-    "gateway": "active"
-  },
-  "github": {
-    "auth": "✅ ok",
-    "user": "zhaog100"
-  },
-  "notes": "Bounty scan found 6 new issues ($3400 potential). QuantumSavory blocked - email claim route. Git push auto-committed."
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "github_bounty": null,
+    "system_status": 1746939600
+  }
 }

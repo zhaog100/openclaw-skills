@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-05-11T02:09:00Z",
+  "lastUpdated": "2026-05-11T03:30:00Z",
   "totalPRs": 457,
   "summary": {
     "open": 153,
     "closed": 276,
-    "merged": 28
+    "merged": 29
   },
   "prs": [
     {
@@ -630,7 +630,7 @@
       "updated": "2026-05-08",
       "merged_at": null,
       "review_status": "CHANGES_REQUESTED (2026-05-08) - CodeRabbit: CHANGES_REQUESTED (import paths, logger destructure, provider branch, labels undefined); alceops: build errors; zhaog100 replied 2026-04-28; no maintainer response yet",
-      "notes": "CodeRabbit rate limited. alceops reported build errors. Still awaiting maintainer response to zhaog100 reply (2026-04-28)."
+      "notes": "CodeRabbit rate limited. alceops reported build errors (2026-04-28). zhaog100 replied 2026-04-28 requesting maintainer feedback. No maintainer response as of 2026-05-11 (13 days). PR remains stale."
     },
     {
       "repo": "Scottcjn/rustchain-bounties",
@@ -1329,8 +1329,9 @@
         "node"
       ],
       "bounty": "15 RTC (Medium tier)",
-      "review_status": "MERGED (2026-05-10) - Payout: 15 RTC approved. Tx hash confirmed in PR.",
-      "notes": "MERGED. Payout 15 RTC confirmed. UTXO race/TOCTOU test suite."
+      "review_status": "MERGED (2026-05-10) - Payout: 15 RTC confirmed. Tx hash confirmed in PR.",
+      "notes": "MERGED (2026-05-10 21:37:41Z). 5 security reviews from rockytian-top + fengqiankun6-sudo (3 reviews). All APPROVED. Payout 15 RTC confirmed."
+    },
     },
     {
       "repo": "ubiquity-os-marketplace/text-conversation-rewards",
