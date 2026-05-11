@@ -33,6 +33,7 @@ YFINANCE_SYMBOLS = {
     "gold": "GC=F",        # 黄金期货
     "wti": "CL=F",         # WTI 原油期货
     "brent": "BZ=F",       # 布伦特原油期货
+    "silver": "SI=F",      # 白银期货
 }
 
 

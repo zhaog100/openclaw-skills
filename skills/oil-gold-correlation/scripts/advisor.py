@@ -512,6 +512,7 @@ INSTRUMENTS = {
     "黄金期货": {"symbol": "GC=F", "type": "期货", "exchange": "COMEX", "currency": "USD", "source": "yfinance"},
     "WTI原油": {"symbol": "CL=F", "type": "期货", "exchange": "NYMEX", "currency": "USD", "source": "yfinance"},
     "布伦特原油": {"symbol": "BZ=F", "type": "期货", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
+    "白银期货": {"symbol": "SI=F", "type": "期货", "exchange": "COMEX", "currency": "USD", "source": "yfinance"},
     "美元指数": {"symbol": "DX-Y.NYB", "type": "指数", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
     # 国内品种（辅助，人民币计价）
     "沪金期货": {"symbol": "AU0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "gold"},

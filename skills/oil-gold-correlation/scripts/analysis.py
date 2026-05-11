@@ -29,7 +29,7 @@ except ImportError:
 
 
 def load_data(period: str = "1y") -> pd.DataFrame:
-    """从缓存加载数据为 DataFrame"""
+    """从缓存加载数据为 DataFrame（含黄金、原油、白银）"""
     sys.path.insert(0, str(Path(__file__).parent))
     from fetch_data import fetch_data
 
@@ -43,9 +43,19 @@ def load_data(period: str = "1y") -> pd.DataFrame:
         "wti": raw["wti"]["close"],
     }, index=pd.to_datetime(raw["gold"]["dates"]))
 
+    # 添加白银（如有）
+    if "silver" in raw:
+        silver_series = pd.Series(
+            raw["silver"]["close"],
+            index=pd.to_datetime(raw["silver"]["dates"])
+        )
+        df["silver"] = silver_series
+
     # 添加收益率
     df["gold_ret"] = df["gold"].pct_change()
     df["wti_ret"] = df["wti"].pct_change()
+    if "silver" in df.columns:
+        df["silver_ret"] = df["silver"].pct_change()
 
     return df.dropna()
 
@@ -134,6 +144,31 @@ def cointegration_test(df: pd.DataFrame) -> dict:
     }
 
 
+# ===== 白银相关分析 =====
+
+def silver_gold_corr(df: pd.DataFrame) -> dict:
+    """白银-黄金相关性"""
+    if "silver_ret" not in df.columns:
+        return {"error": "无白银数据"}
+    r, p = stats.pearsonr(df["silver_ret"], df["gold_ret"])
+    return {"silver_gold_r": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+
+
+def silver_oil_corr(df: pd.DataFrame) -> dict:
+    """白银-原油相关性"""
+    if "silver_ret" not in df.columns:
+        return {"error": "无白银数据"}
+    r, p = stats.pearsonr(df["silver_ret"], df["wti_ret"])
+    return {"silver_oil_r": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+
+
+def silver_rolling_corr(df: pd.DataFrame, window: int = 30) -> pd.Series:
+    """白银-黄金滚动相关"""
+    if "silver_ret" not in df.columns:
+        return pd.Series()
+    return df["silver_ret"].rolling(window).corr(df["gold_ret"])
+
+
 def interpret_correlation(r: float) -> str:
     """解读相关系数"""
     abs_r = abs(r)
@@ -159,7 +194,8 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     # 基础统计
     print(f"\n📅 数据范围: {df.index[0].date()} ~ {df.index[-1].date()}")
     print(f"📈 样本数: {len(df)} 个交易日")
-    print(f"🥇 黄金: ${df['gold'].iloc[-1]:,.2f} | WTI: ${df['wti'].iloc[-1]:,.2f}")
+    has_silver = "silver" in df.columns
+    print(f"🥇 黄金: ${df['gold'].iloc[-1]:,.2f} | WTI: ${df['wti'].iloc[-1]:,.2f}" + (f" | 白银: ${df['silver'].iloc[-1]:,.2f}" if has_silver else " | 白银: 无数据"))
 
     # 1. Pearson
     p = pearson_corr(df)
@@ -208,6 +244,19 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
         print(f"  统计量: {ci['coint_stat']} | p={ci['p_value']}")
         print(f"  结论: {ci['interpretation']}")
 
+    # 7. 白银分析
+    silver_result = {}
+    if has_silver:
+        print(f"\n--- 白银相关分析 ---")
+        sg = silver_gold_corr(df)
+        so = silver_oil_corr(df)
+        print(f"  白银-黄金: r={sg['silver_gold_r']} (p={sg['p_value']}) {'✅ 显著' if sg['significant'] else '❌ 不显著'}")
+        print(f"  白银-原油: r={so['silver_oil_r']} (p={so['p_value']}) {'✅ 显著' if so['significant'] else '❌ 不显著'}")
+        silver_result = {"silver_gold": sg, "silver_oil": so}
+    else:
+        print(f"\n--- 白银相关分析 ---")
+        print(f"  ⚠️ 无白银数据（yfinance 可能被限速）")
+
     return {
         "pearson": p,
         "spearman": s,
@@ -216,6 +265,7 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
         "rolling_range": [round(rc.min(), 4), round(rc.max(), 4)],
         "granger": g,
         "cointegration": ci,
+        "silver": silver_result,
     }
 
 
