@@ -4,6 +4,19 @@ _持续更新，记录重要信息_
 
 ---
 
+## ⚠️ Git 推送规则（最高优先级，每次推送前必读）
+
+| Remote | 仓库 | 推送内容 |
+|--------|------|---------|
+| `origin` | xiaomila-skills | **个人信息**：memory/、data/、MEMORY.md、HEARTBEAT.md 等 |
+| `skills` | openclaw-skills | **技能内容**：skills/、knowledge/ |
+
+**⚠️ 禁止**：把 skills/ 推送到 origin，或把 memory/ 推送到 skills。
+
+**操作前必查**：`git remote -v` 确认目标仓库，再执行 `git push`。
+
+---
+
 ## 👤 用户信息
 
 - **称呼**: 官家
