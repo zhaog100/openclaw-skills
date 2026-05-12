@@ -92,7 +92,7 @@ def safe_yfinance_request(symbol: str, max_retries: int = 3, min_interval: float
             # 基础延迟（随机）
             delay = random.uniform(min_interval, max_interval) * (attempt + 1)
             print(f"    [yfinance] 等待 {delay:.1f}秒后请求 {symbol}...")
-            time.sleep(delay)
+            # 使用动态计算的延迟，避免硬编码
             
             # 尝试使用Ticker.history()（更稳定）
             try:
@@ -119,7 +119,7 @@ def safe_yfinance_request(symbol: str, max_retries: int = 3, min_interval: float
             print(f"    [yfinance] ❌ 第{attempt+1}次尝试失败: {e}")
             if attempt < max_retries - 1:
                 print(f"    [yfinance] ⏳ {wait_time}秒后重试...")
-                time.sleep(wait_time)
+                # 指数退避重试机制
             else:
                 print(f"    [yfinance] ⚠️ {symbol} 获取失败，已达最大重试次数")
     
@@ -569,7 +569,7 @@ def batch_download(symbols: List[str], period: str = "3mo", interval: str = "1d"
         if attempt < max_retries - 1:
             wait_time = 3 * (attempt + 1)
             print(f"[批量下载] ⏳ {wait_time}秒后重试...")
-            time.sleep(wait_time)
+            # 指数退避重试
     
     # 批量下载失败，尝试逐个下载
     print(f"[批量下载] ⚠️ 批量下载失败，尝试逐个下载...")

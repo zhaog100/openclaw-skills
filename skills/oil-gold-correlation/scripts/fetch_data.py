@@ -177,7 +177,7 @@ def fetch_yfinance(period="1y", interval="1d"):
                     break
             except Exception as e:
                 if attempt == 0:
-                    time.sleep(2)
+                    time.sleep(random.uniform(1.5, 2.5))  # 随机延迟避免触发限制
                 else:
                     print(f"  ⚠️ {symbol} Ticker.history() 失败: {e}")
 
@@ -299,7 +299,7 @@ def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
             # yfinance需要更长的等待时间避免限速
             if attempt == 0:
                 print(f"  ⏳ 等待3秒避免yfinance限速...")
-                time.sleep(3)
+                time.sleep(random.uniform(2.5, 3.5))  # 随机延迟避免触发限制
             
             result = fetch_yfinance(period, interval)
             if is_data_valid(result, min_records):
