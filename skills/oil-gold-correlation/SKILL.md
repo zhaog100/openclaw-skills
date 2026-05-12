@@ -263,7 +263,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
 **官方仓库**: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 **主分支**: `main`
-**版本**: `v2.1.5`
+**版本**: `v2.1.6`
 
 ### 📥 下载方式
 
@@ -271,12 +271,12 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 ```bash
 git clone https://github.com/your-username/openclaw-skills.git
 cd openclaw-skills/skills/oil-gold-correlation
-git checkout v2.1.5
+git checkout v2.1.6
 ```
 
 #### 2. 通过 OpenClaw CLI 安装
 ```bash
-openclaw skills install oil-gold-correlation@v2.1.5
+openclaw skills install oil-gold-correlation@v2.1.6
 ```
 
 #### 3. 手动下载
@@ -374,7 +374,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
 **官方仓库**: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 **主分支**: `main`
-**版本**: `v2.1.5`
+**版本**: `v2.1.6`
 
 ### 📥 下载方式
 
@@ -382,12 +382,12 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 ```bash
 git clone https://github.com/your-username/openclaw-skills.git
 cd openclaw-skills/skills/oil-gold-correlation
-git checkout v2.1.5
+git checkout v2.1.6
 ```
 
 #### 2. 通过 OpenClaw CLI 安装
 ```bash
-openclaw skills install oil-gold-correlation@v2.1.5
+openclaw skills install oil-gold-correlation@v2.1.6
 ```
 
 #### 3. 手动下载

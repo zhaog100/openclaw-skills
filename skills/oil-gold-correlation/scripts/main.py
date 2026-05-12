@@ -272,7 +272,7 @@ def show_version():
     """显示版本信息"""
     version_info = {
         'skill_name': 'oil-gold-correlation',
-        'version': '2.1.5',
+        'version': '2.1.6',
         'description': '原油黄金相关性分析系统',
         'author': '思捷娅科技 (SJYKJ)',
         'features': [
