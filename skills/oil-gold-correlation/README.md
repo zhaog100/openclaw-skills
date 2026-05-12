@@ -1,6 +1,6 @@
 # Oil-Gold Correlation — 石油黄金相关性分析工具
 
-_版本: 2.1.3 | MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)_
+_版本: 2.1.4 | MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)_
 
 ⚠️ **重要声明**: 本工具提供技术分析参考，不构成投资建议。市场有风险，投资需谨慎。所有分析结果仅供参考。
 

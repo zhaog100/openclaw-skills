@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 
 # 缓存设置
-CACHE_DIR = Path(__file__).parent / "cache"
+from config import CACHE_DIR
 CACHE_TTL = 86400  # 24小时缓存
 
 def get_cache_key(topic: str) -> str:

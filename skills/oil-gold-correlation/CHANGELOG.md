@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [2.1.4] - 2026-05-12
+
+### Updated
+- 版本号更新至 2.1.4
+- 完善技能仓库地址信息
+- 统一所有文件版本号一致性
+- 优化版权信息展示
+
+### Fixed
+- 修复 README.md 版本号不一致问题
+- 完善 SKILL.md 文档结构
+
 ## [2.1.0] - 2026-05-09
 
 ### Added

@@ -13,7 +13,31 @@ from pathlib import Path
 from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).parent))
-from advisor import _analyze_instrument, _fetch_akshare_single
+from advisor import _analyze_instrument
+
+
+def _fetch_akshare_single(ak_key, period="365d"):
+    """获取单个品种的akshare数据"""
+    import pandas as pd
+    try:
+        from fetch_data import fetch_akshare
+        raw_data = fetch_akshare(period=period)
+        if raw_data and ak_key in raw_data:
+            # 转换数据格式为DataFrame
+            data = raw_data[ak_key]
+            if data and 'close' in data:
+                dates = pd.to_datetime(data['date']) if 'date' in data else pd.date_range(end=datetime.now(), periods=len(data['close']), freq='D')
+                df = pd.DataFrame({
+                    'Close': data['close'],
+                    'Open': data.get('open', data['close']),
+                    'High': data.get('high', data['close']),
+                    'Low': data.get('low', data['close']),
+                    'Volume': data.get('volume', [0]*len(data['close']))
+                }, index=dates)
+                return df
+    except Exception as e:
+        print(f"[_fetch_akshare_single] {ak_key} 失败: {e}")
+    return None
 
 # Emoji progress bar colors
 BAR_COLORS = {
@@ -120,7 +144,7 @@ def get_tech_detail(result, df, instrument_key):
     
     return " | ".join(lines)
 
-def get_operation_advice(gold_score, oil_score):
+def get_operation_advice(gold_score, oil_score, silver_score=None):
     """生成操作建议文本"""
     lines = []
     lines.append("💡 宏观信号灯")
@@ -206,15 +230,41 @@ def get_operation_advice(gold_score, oil_score):
     lines.append(f"  理由：{o_reason}")
     lines.append("")
     
+    # 白银建议
+    if silver_score is not None:
+        s_advice, s_emoji = score_verdict(silver_score)
+        if silver_score >= 75:
+            s_reason = f"综合评分={silver_score}，建议买入"
+        elif silver_score >= 60:
+            s_reason = f"综合评分={silver_score}，可考虑轻仓"
+        elif silver_score >= 40:
+            s_reason = f"综合评分={silver_score}，建议观望"
+        else:
+            s_reason = f"综合评分={silver_score}，建议回避"
+        lines.append(f"🥈 白银：{s_emoji} {s_advice}")
+        lines.append(f"  理由：{s_reason}")
+        lines.append("")
+    
     # 组合建议
-    diff = gold_score - oil_score
-    if diff > 20:
-        ratio = "7:3（黄金偏防守，原油波动大）"
-    elif diff < -20:
-        ratio = "3:7（原油偏强）"
+    if silver_score is not None:
+        # 三资产组合建议
+        avg_score = (gold_score + oil_score + silver_score) / 3
+        if avg_score > 60:
+            lines.append(f"组合建议：黄金:原油:白银 = 4:3:3（整体偏多）")
+        elif avg_score < 40:
+            lines.append(f"组合建议：黄金:原油:白银 = 4:3:3（整体偏空，建议观望）")
+        else:
+            lines.append(f"组合建议：黄金:原油:白银 = 4:3:3（均衡配置）")
     else:
-        ratio = "5:5（均衡配置）"
-    lines.append(f"组合建议：黄金:原油 = {ratio}")
+        # 两资产组合建议
+        diff = gold_score - oil_score
+        if diff > 20:
+            ratio = "7:3（黄金偏防守，原油波动大）"
+        elif diff < -20:
+            ratio = "3:7（原油偏强）"
+        else:
+            ratio = "5:5（均衡配置）"
+        lines.append(f"组合建议：黄金:原油 = {ratio}")
     lines.append("")
     
     # 动态生成结论
@@ -225,6 +275,13 @@ def get_operation_advice(gold_score, oil_score):
         
         if conf_val is not None and conf_val < 60:
             lines.append(f"结论：消费者信心={conf_val:.0f}偏低，建议谨慎操作。")
+        elif silver_score is not None:
+            if gold_score > 60 and oil_score > 60 and silver_score > 60:
+                lines.append("结论：黄金、原油、白银信号均偏多，可考虑建仓。")
+            elif gold_score < 40 and oil_score < 40 and silver_score < 40:
+                lines.append("结论：黄金、原油、白银信号均偏空，建议回避。")
+            else:
+                lines.append("结论：多空信号分化，建议等待趋势明朗。")
         elif gold_score > 60 and oil_score > 60:
             lines.append("结论：黄金与原油信号均偏多，可考虑建仓。")
         elif gold_score < 40 and oil_score < 40:
@@ -274,6 +331,7 @@ def generate_report_parts():
     instruments = [
         ('🥇 黄金', 'gold'),
         ('🛢️ 原油', 'wti'),
+        ('🥈 白银', 'silver'),
     ]
     
     for label, key in instruments:
@@ -303,8 +361,9 @@ def generate_report_parts():
     lines1.append('🎯 仪表盘')
     gold_result = _analyze_instrument('沪金期货', period="90d", horizon=3)
     oil_result = _analyze_instrument('沪油期货', period="90d", horizon=3)
+    silver_result = _analyze_instrument('沪银期货', period="90d", horizon=3)
     
-    results = [gold_result, oil_result]
+    results = [gold_result, oil_result, silver_result]
     scores = []
     
     for i, (label, key) in enumerate(instruments):
@@ -358,7 +417,7 @@ def generate_report_parts():
     
     # PART 2：宏观信号灯 + 操作建议
     if scores:
-        part2 = get_operation_advice(scores[0], scores[1] if len(scores) > 1 else 50)
+        part2 = get_operation_advice(scores[0], scores[1] if len(scores) > 1 else 50, scores[2] if len(scores) > 2 else None)
     else:
         part2 = "💡 宏观信号灯\n\n⚠️ 数据获取失败，无法生成操作建议\n请稍后重试或检查网络连接"
     

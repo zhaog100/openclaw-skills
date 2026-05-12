@@ -26,6 +26,7 @@ CACHE_TTL = 300  # 5 分钟缓存
 AKSHARE_SYMBOLS = {
     "gold": {"symbol": "AU0", "name": "黄金期货", "exchange": "上海期货交易所", "currency": "CNY"},
     "wti": {"symbol": "SC0", "name": "原油期货", "exchange": "上海国际能源交易中心", "currency": "CNY"},
+    "silver": {"symbol": "AG0", "name": "白银期货", "exchange": "上海期货交易所", "currency": "CNY"},
 }
 
 # ===== yfinance 品种定义（备用数据源，美元计价） =====

@@ -364,3 +364,32 @@ openclaw cron run oil-gold-morning
 
 **注意**：如果未配置 Cron 任务，技能功能正常但不会自动推送报告。
 
+---
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+
+---
+
+## 🌐 技能仓库
+
+**官方仓库**: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+**主分支**: `main`
+**版本**: `v2.1.4`
+
+### 📥 下载方式
+
+#### 1. 通过 Git 下载（推荐）
+```bash
+git clone https://github.com/zhaog100/openclaw-skills.git
+cd openclaw-skills/skills/oil-gold-correlation
+git checkout v2.1.4
+```
+
+#### 2. 通过 OpenClaw CLI 安装
+```bash
+openclaw skills install oil-gold-correlation@v2.1.4
+```
+
+#### 3. 手动下载
+下载链接: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+

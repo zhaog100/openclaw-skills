@@ -15,8 +15,11 @@ CACHE_DIR = Path(__file__).parent / "cache"
 CACHE_DIR.mkdir(exist_ok=True)
 
 # 报告输出目录
-REPORT_TEXT = Path(__file__).parent / "reports"
-REPORT_TEXT.mkdir(exist_ok=True)
+REPORT_DIR = Path(__file__).parent / "reports"
+REPORT_DIR.mkdir(exist_ok=True)
+
+# 报告输出文件
+REPORT_TEXT = REPORT_DIR / "oil-gold-report.txt"
 
 # 媒体输出目录
 MEDIA_DIR = Path(__file__).parent.parent / "media" / "oil-gold"
@@ -25,7 +28,7 @@ MEDIA_DIR.mkdir(parents=True, exist_ok=True)
 def ensure_dirs():
     """确保所有必要目录存在"""
     CACHE_DIR.mkdir(exist_ok=True)
-    REPORT_TEXT.mkdir(exist_ok=True)
+    REPORT_DIR.mkdir(exist_ok=True)
     MEDIA_DIR.mkdir(parents=True, exist_ok=True)
     return True
 

@@ -26,6 +26,9 @@ from pathlib import Path
 import pandas as pd
 
 # 缓存
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from config import CACHE_DIR
 CACHE_TTL = 3600  # 1小时
 

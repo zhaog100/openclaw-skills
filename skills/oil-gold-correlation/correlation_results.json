@@ -1,0 +1,62 @@
+{
+  "pearson": {
+    "pearson_r": -0.0853,
+    "p_value": 0.17857,
+    "significant": false
+  },
+  "spearman": {
+    "spearman_r": -0.0647,
+    "p_value": 0.308462,
+    "significant": false
+  },
+  "kendall": {
+    "kendall_tau": -0.0432,
+    "p_value": 0.308435,
+    "significant": false
+  },
+  "rolling_current": -0.6949,
+  "rolling_range": [
+    -0.6949,
+    0.3392
+  ],
+  "granger": {
+    "oil_causes_gold": {
+      "min_pvalue": 0.158445,
+      "best_lag": 4,
+      "significant": "False"
+    },
+    "gold_causes_oil": {
+      "min_pvalue": 0.231697,
+      "best_lag": 1,
+      "significant": "False"
+    }
+  },
+  "cointegration": {
+    "coint_stat": -1.505,
+    "p_value": 0.759262,
+    "cointegrated": false,
+    "interpretation": "\u4e0d\u5b58\u5728\u957f\u671f\u5747\u8861\u5173\u7cfb"
+  },
+  "silver": {
+    "silver_gold": {
+      "silver_gold_r": 0.802,
+      "p_value": 0.0,
+      "significant": true
+    },
+    "silver_oil": {
+      "silver_oil_r": -0.1111,
+      "p_value": 0.079647,
+      "significant": false
+    }
+  },
+  "silver_gold_corr": {
+    "silver_gold_r": 0.802,
+    "p_value": 0.0,
+    "significant": true
+  },
+  "silver_oil_corr": {
+    "silver_oil_r": -0.1111,
+    "p_value": 0.079647,
+    "significant": false
+  }
+}

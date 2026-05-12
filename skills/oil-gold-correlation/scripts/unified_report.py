@@ -48,14 +48,14 @@ def generate_correlation_analysis(period="1y", window=30):
     
     return {
         "pearson_r": p["pearson_r"],
-        "pearson_p": p["pearson_p"],
+        "pearson_p": p.get("pearson_p", 0.0),
         "spearman_r": s["spearman_r"],
-        "spearman_p": s["spearman_p"],
+        "spearman_p": s.get("spearman_p", 0.0),
         "rolling_current": rc_now,
         "rolling_range": rc_range,
         "interpretation": interpretation,
         "stability": stability,
-        "significance": p["significance"]
+        "significance": p.get("significance", False)
     }
 
 

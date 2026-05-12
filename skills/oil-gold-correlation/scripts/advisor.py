@@ -517,6 +517,7 @@ INSTRUMENTS = {
     # 国内品种（辅助，人民币计价）
     "沪金期货": {"symbol": "AU0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "gold"},
     "沪油期货": {"symbol": "SC0", "type": "期货", "exchange": "上海国际能源交易中心", "currency": "CNY", "source": "akshare", "ak_key": "wti"},
+    "沪银期货": {"symbol": "AG0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "silver"},
 }
 
 
@@ -1485,9 +1486,37 @@ def _analyze_instrument(instrument_name, period="90d", horizon=3):
         
         # 获取数据
         from fetch_data import fetch_data
-        df = fetch_data(info.get("ak_key", ""), period=period)
+        raw_data = fetch_data(period=period)
         
-        if not df or len(df) < 20:
+        # 根据数据来源选择键
+        if info.get("ak_key") and info.get("ak_key") in raw_data:
+            data = raw_data[info.get("ak_key")]
+        else:
+            # 如果没有ak_key，尝试使用symbol
+            symbol = info.get("symbol", "")
+            if symbol == "AU0":
+                data = raw_data.get("gold")
+            elif symbol == "SC0":
+                data = raw_data.get("wti")
+            else:
+                return None
+        
+        # 转换为DataFrame
+        if not data or 'close' not in data:
+            return None
+            
+        import pandas as pd
+        from datetime import datetime
+        dates = pd.to_datetime(data['date']) if 'date' in data else pd.date_range(end=datetime.now(), periods=len(data['close']), freq='D')
+        df = pd.DataFrame({
+            'Close': data['close'],
+            'Open': data.get('open', data['close']),
+            'High': data.get('high', data['close']),
+            'Low': data.get('low', data['close']),
+            'Volume': data.get('volume', [0]*len(data['close']))
+        }, index=dates)
+        
+        if df is None or len(df) < 20:
             return None
         
         # 获取最新价格
