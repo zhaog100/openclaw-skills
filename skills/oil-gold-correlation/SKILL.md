@@ -2,7 +2,7 @@
 description: 原油黄金相关性分析工具。
 name: oil-gold-correlation
 石油黄金实时相关性分析。获取大宗商品价格数据，计算多种相关性指标（Pearson/Spearman/Kendall），支持 DCC-GARCH 动态相关、Granger 因果检验、协整分析，输出可视化图表和自然语言结论。
-version: 2.1.4
+version: 2.1.5
 author: 思捷娅科技 (SJYKJ)
 recommendModel: zai/glm-5
 altModels:
@@ -261,26 +261,26 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
 ## 🌐 技能仓库
 
-**官方仓库**: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+**官方仓库**: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 **主分支**: `main`
-**版本**: `v2.1.4`
+**版本**: `v2.1.5`
 
 ### 📥 下载方式
 
 #### 1. 通过 Git 下载（推荐）
 ```bash
-git clone https://github.com/zhaog100/openclaw-skills.git
+git clone https://github.com/your-username/openclaw-skills.git
 cd openclaw-skills/skills/oil-gold-correlation
-git checkout v2.1.4
+git checkout v2.1.5
 ```
 
 #### 2. 通过 OpenClaw CLI 安装
 ```bash
-openclaw skills install oil-gold-correlation@v2.1.4
+openclaw skills install oil-gold-correlation@v2.1.5
 ```
 
 #### 3. 手动下载
-下载链接: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+下载链接: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 
 ## 🛠️ 部署指南
 
@@ -372,24 +372,24 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
 ## 🌐 技能仓库
 
-**官方仓库**: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+**官方仓库**: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 **主分支**: `main`
-**版本**: `v2.1.4`
+**版本**: `v2.1.5`
 
 ### 📥 下载方式
 
 #### 1. 通过 Git 下载（推荐）
 ```bash
-git clone https://github.com/zhaog100/openclaw-skills.git
+git clone https://github.com/your-username/openclaw-skills.git
 cd openclaw-skills/skills/oil-gold-correlation
-git checkout v2.1.4
+git checkout v2.1.5
 ```
 
 #### 2. 通过 OpenClaw CLI 安装
 ```bash
-openclaw skills install oil-gold-correlation@v2.1.4
+openclaw skills install oil-gold-correlation@v2.1.5
 ```
 
 #### 3. 手动下载
-下载链接: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+下载链接: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 

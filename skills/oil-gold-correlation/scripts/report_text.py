@@ -75,19 +75,26 @@ def score_verdict(score):
 
 def fetch_data(ak_key, period="365d"):
     """获取数据（akshare），带缓存"""
+    # 修复config导入路径问题
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).parent.parent))
     from config import CACHE_DIR
     import os
-    import pickle
+    import json
     
-    cache_file = CACHE_DIR / f"{ak_key}_{period.replace('d', '')}.pkl"
+    cache_file = CACHE_DIR / f"{ak_key}_{period.replace('d', '')}.json"
     
     # 检查缓存（5分钟）
     if cache_file.exists():
         mtime = os.path.getmtime(cache_file)
         if datetime.now().timestamp() - mtime < 300:
             try:
-                with open(cache_file, 'rb') as f:
-                    df = pickle.load(f)
+                with open(cache_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                # 转换回DataFrame格式
+                import pandas as pd
+                df = pd.DataFrame(data['data'], columns=data['columns'], index=pd.to_datetime(data['index']))
                 return df
             except:
                 pass
@@ -97,8 +104,14 @@ def fetch_data(ak_key, period="365d"):
         df = _fetch_akshare_single(ak_key, period)
         if df is not None and not df.empty:
             cache_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(cache_file, 'wb') as f:
-                pickle.dump(df, f)
+            # 转换为JSON可序列化格式
+            data = {
+                'index': df.index.strftime('%Y-%m-%d %H:%M:%S').tolist(),
+                'columns': df.columns.tolist(),
+                'data': df.values.tolist()
+            }
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
         return df
     except Exception as e:
         print(f"[fetch_data] {ak_key} 失败: {e}")

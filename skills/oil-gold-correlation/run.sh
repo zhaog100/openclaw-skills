@@ -22,7 +22,7 @@ case "${1:-all}" in
     visualize)  python3 "$SCRIPT_DIR/scripts/visualize.py" "$@" ;;
     report)     python3 "$SCRIPT_DIR/scripts/report.py" "$@" ;;
     advisor)    python3 "$SCRIPT_DIR/scripts/advisor.py" "$@" ;;
-    all)        python3 "$SCRIPT_DIR/scripts/main.py" "$@" ;;
+    all)        python3 "$SCRIPT_DIR/scripts/main.py" daily ;;
     health)     python3 "$SCRIPT_DIR/scripts/advisor.py" --health-check ;;
     geopolitics) python3 "$SCRIPT_DIR/scripts/geopolitics.py" "$@" ;;
     opportunity) python3 "$SCRIPT_DIR/scripts/opportunity_scanner.py" "$@" ;;

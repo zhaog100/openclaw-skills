@@ -30,7 +30,7 @@
   "macro_data": {
     "error": "宏观数据获取失败: '<' not supported between instances of 'float' and 'str'"
   },
-  "timestamp": "2026-05-12T15:36:47.154341",
+  "timestamp": "2026-05-12T15:40:09.036331",
   "period": "1y",
   "window": 30
 }

@@ -1,6 +1,6 @@
 # Oil-Gold Correlation — 石油黄金相关性分析工具
 
-_版本: 2.1.4 | MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)_
+_版本: 2.1.5 | MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)_
 
 ⚠️ **重要声明**: 本工具提供技术分析参考，不构成投资建议。市场有风险，投资需谨慎。所有分析结果仅供参考。
 
@@ -8,15 +8,15 @@ _版本: 2.1.4 | MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)_
 
 ## 🌐 技能仓库
 
-**官方仓库**: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+**官方仓库**: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 **主分支**: `main`
-**版本**: `v2.1.4`
+**版本**: `v2.1.5`
 
 ### 📥 下载方式
 
 #### 1. 通过 Git 下载（推荐）
 ```bash
-git clone https://github.com/zhaog100/openclaw-skills.git
+git clone https://github.com/your-username/openclaw-skills.git
 cd openclaw-skills/skills/oil-gold-correlation
 git checkout v2.1.4
 ```
@@ -27,7 +27,7 @@ openclaw skills install oil-gold-correlation@v2.1.4
 ```
 
 #### 3. 手动下载
-下载链接: `https://github.com/zhaog100/openclaw-skills/tree/main/skills/oil-gold-correlation`
+下载链接: `https://github.com/your-username/openclaw-skills/tree/main/skills/oil-gold-correlation`
 
 ---
 
