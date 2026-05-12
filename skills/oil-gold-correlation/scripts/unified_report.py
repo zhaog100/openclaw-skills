@@ -172,8 +172,8 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description="石油黄金统一报告生成器")
-    parser.add_argument("--type", choices=["text", "visual", "all"], default="text", 
-                       help="报告类型: text(文本), visual(可视化), all(全部)")
+    parser.add_argument("--type", choices=["text", "visual", "json", "all"], default="text", 
+                       help="报告类型: text(文本), visual(可视化), json(JSON), all(全部)")
     parser.add_argument("--period", default="1y", help="数据周期")
     parser.add_argument("--window", type=int, default=30, help="滚动窗口")
     
@@ -194,6 +194,24 @@ def main():
         with open(REPORT_TEXT, 'w') as f:
             f.write(text_report)
         print(f"\n文本报告已保存: {REPORT_TEXT}")
+    
+    if args.type in ["json", "all"]:
+        import json
+        json_report = {
+            "correlation_analysis": correlation_data,
+            "market_data": market_data,
+            "macro_data": macro_data,
+            "timestamp": datetime.now().isoformat(),
+            "period": args.period,
+            "window": args.window
+        }
+        print(json.dumps(json_report, ensure_ascii=False, indent=2))
+        
+        # 保存JSON报告
+        json_path = Path(__file__).parent.parent / "reports" / "oil-gold-report.json"
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(json_report, f, ensure_ascii=False, indent=2)
+        print(f"\nJSON报告已保存: {json_path}")
     
     if args.type in ["visual", "all"]:
         card_path = generate_visual_card(market_data, macro_data)

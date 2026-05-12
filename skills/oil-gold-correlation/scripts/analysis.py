@@ -74,21 +74,21 @@ def pearson_corr(df: pd.DataFrame) -> dict:
     """Pearson 线性相关系数"""
     df = _ensure_returns(df)
     r, p = stats.pearsonr(df["gold_ret"], df["wti_ret"])
-    return {"pearson_r": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+    return {"pearson_r": round(r, 4), "p_value": round(p, 6), "significant": bool(p < 0.05)}
 
 
 def spearman_corr(df: pd.DataFrame) -> dict:
     """Spearman 秩相关"""
     df = _ensure_returns(df)
     r, p = stats.spearmanr(df["gold_ret"], df["wti_ret"])
-    return {"spearman_r": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+    return {"spearman_r": round(r, 4), "p_value": round(p, 6), "significant": bool(p < 0.05)}
 
 
 def kendall_corr(df: pd.DataFrame) -> dict:
     """Kendall 秩相关"""
     df = _ensure_returns(df)
     r, p = stats.kendalltau(df["gold_ret"], df["wti_ret"])
-    return {"kendall_tau": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+    return {"kendall_tau": round(r, 4), "p_value": round(p, 6), "significant": bool(p < 0.05)}
 
 
 def rolling_corr(df: pd.DataFrame, window: int = 30) -> pd.Series:
@@ -109,7 +109,7 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
         results["oil_causes_gold"] = {
             "min_pvalue": round(min(pvals_og), 6),
             "best_lag": pvals_og.index(min(pvals_og)) + 1,
-            "significant": min(pvals_og) < 0.05,
+            "significant": bool(min(pvals_og) < 0.05),
         }
     except Exception as e:
         results["oil_causes_gold"] = {"error": str(e)}
@@ -121,7 +121,7 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
         results["gold_causes_oil"] = {
             "min_pvalue": round(min(pvals_go), 6),
             "best_lag": pvals_go.index(min(pvals_go)) + 1,
-            "significant": min(pvals_go) < 0.05,
+            "significant": bool(min(pvals_go) < 0.05),
         }
     except Exception as e:
         results["gold_causes_oil"] = {"error": str(e)}
@@ -139,7 +139,7 @@ def cointegration_test(df: pd.DataFrame) -> dict:
     return {
         "coint_stat": round(score, 4),
         "p_value": round(pvalue, 6),
-        "cointegrated": pvalue < 0.05,
+        "cointegrated": bool(pvalue < 0.05),
         "interpretation": "存在长期均衡关系" if pvalue < 0.05 else "不存在长期均衡关系",
     }
 
@@ -151,7 +151,7 @@ def silver_gold_corr(df: pd.DataFrame) -> dict:
     if "silver_ret" not in df.columns:
         return {"error": "无白银数据"}
     r, p = stats.pearsonr(df["silver_ret"], df["gold_ret"])
-    return {"silver_gold_r": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+    return {"silver_gold_r": round(r, 4), "p_value": round(p, 6), "significant": bool(p < 0.05)}
 
 
 def silver_oil_corr(df: pd.DataFrame) -> dict:
@@ -159,7 +159,7 @@ def silver_oil_corr(df: pd.DataFrame) -> dict:
     if "silver_ret" not in df.columns:
         return {"error": "无白银数据"}
     r, p = stats.pearsonr(df["silver_ret"], df["wti_ret"])
-    return {"silver_oil_r": round(r, 4), "p_value": round(p, 6), "significant": p < 0.05}
+    return {"silver_oil_r": round(r, 4), "p_value": round(p, 6), "significant": bool(p < 0.05)}
 
 
 def silver_rolling_corr(df: pd.DataFrame, window: int = 30) -> pd.Series:

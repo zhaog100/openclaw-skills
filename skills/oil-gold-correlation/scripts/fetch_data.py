@@ -19,8 +19,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # 缓存设置
-from config import CACHE_DIR
-CACHE_TTL = 300  # 5 分钟缓存
+from cache_config import CACHE_TTL, CACHE_DIR
 
 # ===== akshare 品种定义（主数据源，人民币计价） =====
 AKSHARE_SYMBOLS = {
@@ -43,11 +42,9 @@ def get_cache_key(period: str, interval: str) -> str:
 
 
 def read_cache(period, interval):
-    CACHE_DIR.mkdir(exist_ok=True)
+    from cache_config import is_cache_valid, CACHE_TTL
     cache_file = CACHE_DIR / get_cache_key(period, interval)
-    if cache_file.exists():
-        age = time.time() - cache_file.stat().st_mtime
-        if age < CACHE_TTL:
+    if is_cache_valid(cache_file, CACHE_TTL['market_data']):
             with open(cache_file) as f:
                 return json.load(f)
     return None
@@ -250,10 +247,19 @@ def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
     import akshare
     import yfinance
 
+    # 根据周期设置最小记录数要求
+    period_min_records = {
+        "7d": 3, "5d": 3,
+        "30d": 10, "1mo": 10,
+        "90d": 20, "3mo": 20,
+        "1y": 50, "2y": 100, "5y": 200,
+    }
+    min_records = period_min_records.get(period, 10)
+
     # 先检查缓存
     if not force_refresh:
         cached = read_cache(period, interval)
-        if cached and is_data_valid(cached):
+        if cached and is_data_valid(cached, min_records):
             print(f"[缓存] 使用缓存数据（{period}，{interval}）")
             return cached
 
@@ -265,7 +271,7 @@ def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
     for attempt in range(3):
         try:
             result = fetch_akshare(period, interval)
-            if is_data_valid(result):
+            if is_data_valid(result, min_records):
                 print(f"  ✅ akshare 成功获取有效数据")
                 write_cache(period, interval, result)
                 return result
@@ -296,7 +302,7 @@ def fetch_with_fallback(period="1y", interval="1d", force_refresh=False):
                 time.sleep(3)
             
             result = fetch_yfinance(period, interval)
-            if is_data_valid(result):
+            if is_data_valid(result, min_records):
                 print(f"  ✅ yfinance 成功获取有效数据")
                 write_cache(period, interval, result)
                 return result

@@ -24,8 +24,12 @@ case "${1:-all}" in
     advisor)    python3 "$SCRIPT_DIR/scripts/advisor.py" "$@" ;;
     all)        python3 "$SCRIPT_DIR/scripts/main.py" "$@" ;;
     health)     python3 "$SCRIPT_DIR/scripts/advisor.py" --health-check ;;
-    *)          echo "用法: $0 {fetch|analyze|visualize|report|advisor|all|health}"
+    geopolitics) python3 "$SCRIPT_DIR/scripts/geopolitics.py" "$@" ;;
+    opportunity) python3 "$SCRIPT_DIR/scripts/opportunity_scanner.py" "$@" ;;
+    *)          echo "用法: $0 {fetch|analyze|visualize|report|advisor|all|health|geopolitics|opportunity}"
                 echo "示例: ./run.sh fetch 7d"
                 echo "      ./run.sh advisor 3"
-                echo "      ./run.sh all" ;;
+                echo "      ./run.sh all"
+                echo "      ./run.sh geopolitics"
+                echo "      ./run.sh opportunity" ;;
 esac

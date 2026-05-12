@@ -1128,7 +1128,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     else:
         import yfinance as yf
         data = yf.download(symbol, period="3mo", interval="1d", progress=False)
-        time.sleep(1)
+        # 减少延迟，因为已经有缓存机制
 
     if data.empty or len(data) < 20:
         return None
@@ -1259,7 +1259,7 @@ def analyze_medium_long_term(symbol, batch_data=None):
     else:
         import yfinance as yf
         data = yf.download(symbol, period="1y", interval="1d", progress=False)
-        time.sleep(1)
+        # 减少延迟，因为已经有缓存机制
 
     if data.empty or len(data) < 60:
         return None
@@ -1347,7 +1347,7 @@ def generate_daily_report(days=3):
 
     print("  批量下载数据...", flush=True)
     batch_3mo = batch_download(unique_symbols, period="3mo", interval="1d")
-    time.sleep(2)
+    # 减少延迟，因为已经有缓存机制
     batch_1y = batch_download(unique_symbols, period="1y", interval="1d")
 
     short_results = {}
@@ -1576,7 +1576,7 @@ def _analyze_instrument(instrument_name, period="90d", horizon=3):
         return {
             "score": tech_score,
             "tech_score": tech_score,
-            "macro_score": 50,
+            # "macro_score": 50,  # 暂时注释掉硬编码的宏观评分
             "signal_label": signal_label,
             "latest": latest_price
         }

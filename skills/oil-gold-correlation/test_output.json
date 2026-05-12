@@ -1,0 +1,74 @@
+{
+  "analysis_date": "2026-05-12T15:19:57.912670",
+  "period": "90d",
+  "window": 30,
+  "correlation_analysis": {
+    "pearson": {
+      "pearson_r": -0.4463,
+      "p_value": 0.00081,
+      "significant": true
+    },
+    "spearman": {
+      "spearman_r": -0.4525,
+      "p_value": 0.000669,
+      "significant": true
+    },
+    "kendall": {
+      "kendall_tau": -0.3469,
+      "p_value": 0.000246,
+      "significant": true
+    },
+    "rolling_current": -0.7387,
+    "rolling_range": [
+      -0.7843,
+      -0.395
+    ],
+    "granger": {
+      "oil_causes_gold": {
+        "min_pvalue": 0.511235,
+        "best_lag": 2,
+        "significant": false
+      },
+      "gold_causes_oil": {
+        "min_pvalue": 0.304285,
+        "best_lag": 3,
+        "significant": false
+      }
+    },
+    "cointegration": {
+      "coint_stat": -1.2771,
+      "p_value": 0.836534,
+      "cointegrated": false,
+      "interpretation": "不存在长期均衡关系"
+    },
+    "silver": {
+      "silver_gold": {
+        "silver_gold_r": 0.8636,
+        "p_value": 0.0,
+        "significant": true
+      },
+      "silver_oil": {
+        "silver_oil_r": -0.4825,
+        "p_value": 0.000253,
+        "significant": true
+      }
+    }
+  },
+  "market_analysis": {
+    "gold": {
+      "score": 10,
+      "tech_score": 10,
+      "signal_label": "建议回避",
+      "latest": 1026.8
+    },
+    "oil": {
+      "score": 10,
+      "tech_score": 10,
+      "signal_label": "建议回避",
+      "latest": 635.2
+    }
+  },
+  "macro_analysis": {
+    "error": "宏观数据获取失败: '<' not supported between instances of 'float' and 'str'"
+  }
+}

@@ -28,9 +28,9 @@ import pandas as pd
 # 缓存
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
-from config import CACHE_DIR
-CACHE_TTL = 3600  # 1小时
+sys.path.insert(0, str(Path(__file__).parent))
+
+from cache_config import CACHE_TTL, CACHE_DIR
 
 
 def get_api_key():
@@ -59,9 +59,8 @@ def fetch_fred_series(series_id, days_back=90):
     CACHE_DIR.mkdir(exist_ok=True)
     cache_key = f"fred_{series_id}_{start}_{end}"
     cache_file = CACHE_DIR / f"{cache_key}.json"
-    if cache_file.exists():
-        age = time.time() - cache_file.stat().st_mtime
-        if age < CACHE_TTL:
+    from cache_config import is_cache_valid
+    if is_cache_valid(cache_file, 'fred_data'):
             try:
                 records = json.loads(cache_file.read_text())
                 if records:

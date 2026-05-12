@@ -23,12 +23,12 @@
     "oil_causes_gold": {
       "min_pvalue": 0.158445,
       "best_lag": 4,
-      "significant": "False"
+      "significant": false
     },
     "gold_causes_oil": {
       "min_pvalue": 0.231697,
       "best_lag": 1,
-      "significant": "False"
+      "significant": false
     }
   },
   "cointegration": {
