@@ -26,10 +26,12 @@ case "${1:-all}" in
     health)     python3 "$SCRIPT_DIR/scripts/advisor.py" --health-check ;;
     geopolitics) python3 "$SCRIPT_DIR/scripts/geopolitics.py" "$@" ;;
     opportunity) python3 "$SCRIPT_DIR/scripts/opportunity_scanner.py" "$@" ;;
-    *)          echo "用法: $0 {fetch|analyze|visualize|report|advisor|all|health|geopolitics|opportunity}"
+    json) python3 "$SCRIPT_DIR/scripts/report_json.py" "$@" ;;
+    *)          echo "用法: $0 {fetch|analyze|visualize|report|advisor|all|health|geopolitics|opportunity|json}"
                 echo "示例: ./run.sh fetch 7d"
                 echo "      ./run.sh advisor 3"
                 echo "      ./run.sh all"
                 echo "      ./run.sh geopolitics"
+                echo "      ./run.sh json --period 1y"
                 echo "      ./run.sh opportunity" ;;
 esac

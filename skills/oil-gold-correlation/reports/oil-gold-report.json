@@ -1,0 +1,36 @@
+{
+  "correlation_analysis": {
+    "pearson_r": -0.1378,
+    "pearson_p": 0.0,
+    "spearman_r": -0.11,
+    "spearman_p": 0.0,
+    "rolling_current": -0.7387,
+    "rolling_range": [
+      -0.7843,
+      0.6087
+    ],
+    "interpretation": "极弱/无负相关（反向变动）",
+    "stability": "波动较大，相关关系不稳定",
+    "significance": false
+  },
+  "market_data": {
+    "gold": {
+      "score": 10,
+      "tech_score": 10,
+      "signal_label": "建议回避",
+      "latest": 1026.8
+    },
+    "oil": {
+      "score": 10,
+      "tech_score": 10,
+      "signal_label": "建议回避",
+      "latest": 635.2
+    }
+  },
+  "macro_data": {
+    "error": "宏观数据获取失败: '<' not supported between instances of 'float' and 'str'"
+  },
+  "timestamp": "2026-05-12T15:36:47.154341",
+  "period": "1y",
+  "window": 30
+}

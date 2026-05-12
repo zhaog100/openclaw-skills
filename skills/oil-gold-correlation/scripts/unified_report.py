@@ -195,7 +195,7 @@ def main():
             f.write(text_report)
         print(f"\n文本报告已保存: {REPORT_TEXT}")
     
-    if args.type in ["json", "all"]:
+    if args.type == "json":
         import json
         json_report = {
             "correlation_analysis": correlation_data,
@@ -205,6 +205,36 @@ def main():
             "period": args.period,
             "window": args.window
         }
+        print(json.dumps(json_report, ensure_ascii=False, indent=2))
+        
+        # 保存JSON报告
+        json_path = Path(__file__).parent.parent / "reports" / "oil-gold-report.json"
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(json_report, f, ensure_ascii=False, indent=2)
+        
+    elif args.type in ["all"]:
+        # 生成文本报告
+        text_report = format_text_report(correlation_data, market_data, macro_data)
+        print(text_report)
+        
+        # 保存文本报告
+        from config import REPORT_TEXT, ensure_dirs
+        ensure_dirs()
+        with open(REPORT_TEXT, 'w') as f:
+            f.write(text_report)
+        print(f"\n文本报告已保存: {REPORT_TEXT}")
+        
+        # 生成JSON报告
+        import json
+        json_report = {
+            "correlation_analysis": correlation_data,
+            "market_data": market_data,
+            "macro_data": macro_data,
+            "timestamp": datetime.now().isoformat(),
+            "period": args.period,
+            "window": args.window
+        }
+        print("\n--- JSON 格式 ---")
         print(json.dumps(json_report, ensure_ascii=False, indent=2))
         
         # 保存JSON报告
