@@ -968,3 +968,805 @@ After doing this, you may fix the identity used for this commit with:
 
  1 file changed, 18 insertions(+)
  create mode 100644 "memory/ai\345\255\246\344\271\240-2026-05-02.md"
+[master 3ea9a85d] docs(xiaomijiao): 午间回顾 - 2026-05-07
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 79 files changed, 9515 insertions(+), 453 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-07.md
+ create mode 100644 drafts/yoga-first-article-draft.html
+ create mode 100644 logs/data-review.log
+ create mode 100644 logs/oil-gold-push.log
+ create mode 100644 logs/report_2026-05-07.txt
+ create mode 100644 logs/wechat-publish.log
+ create mode 100644 memory/2026-05-07.md
+ create mode 100644 publish/yoga-article-publish.txt
+ create mode 100755 scripts/data-review.sh
+ create mode 100644 scripts/enhanced-daily-review.sh
+ create mode 100755 scripts/platform-rules.sh
+ create mode 100755 scripts/wechat-publish.sh
+ create mode 100755 scripts/weekly-summary.sh
+ create mode 100644 skills/wechat-mp-publisher/scripts/final-draft.js
+ create mode 100644 skills/wechat-mp-publisher/scripts/publish-new-draft.js
+ create mode 100644 skills/wechat-mp-publisher/scripts/simple-draft.js
+ create mode 100644 skills/wechat-mp-publisher/scripts/upload-image-and-publish.js
+ create mode 100644 temp/additional_jd_scripts.sh
+ create mode 100644 temp/alternative_crontab_setup.sh
+ create mode 100644 temp/cookie_debug.js
+ create mode 100644 temp/create_ql_tasks_via_api.js
+ create mode 100644 temp/create_remaining_scripts.sh
+ create mode 100644 temp/create_tasks_simple.sh
+ create mode 100644 temp/debug_account_issue.sh
+ create mode 100644 temp/force_ql_restart.sh
+ create mode 100644 temp/full_jd_test.sh
+ create mode 100644 temp/improved_cash_task.js
+ create mode 100644 temp/jd_basic_sign.js
+ create mode 100644 temp/jd_cash_sign.js
+ create mode 100644 temp/jd_config.sh
+ create mode 100644 temp/jd_config_complete.sh
+ create mode 100644 temp/jd_env.sh
+ create mode 100644 temp/jd_install_script.sh
+ create mode 100644 temp/jd_install_v2.sh
+ create mode 100644 temp/jd_live_test.sh
+ create mode 100644 temp/jd_manual_install.sh
+ create mode 100644 temp/jd_monitoring_dashboard.sh
+ create mode 100644 temp/jd_plant_bean.js
+ create mode 100644 temp/jd_points_to_phone.js
+ create mode 100644 temp/jd_price_protection.js
+ create mode 100644 temp/jd_schedule_config.sh
+ create mode 100644 temp/jd_task_config.json
+ create mode 100644 temp/jd_test_summary.sh
+ create mode 100644 temp/manual_crontab_setup.sh
+ create mode 100644 temp/multi_task_test.sh
+ create mode 100644 temp/plant_bean_monitor_setup.sh
+ create mode 100644 temp/plant_bean_monitoring_plan.md
+ create mode 100644 temp/qinglong_admin_guide.sh
+ create mode 100644 temp/ql_db_direct_insert.sh
+ create mode 100644 temp/ql_manual_task_guide.md
+ create mode 100644 temp/ql_tasks_direct_create.sh
+ create mode 100644 temp/ql_update_and_restart.sh
+ create mode 100644 temp/test_all_jd_tasks.sh
+ create mode 100755 temp/test_jd.sh
+ create mode 100644 temp/test_jd_sign.sh
+ create mode 100644 temp/test_optimized_tasks.sh
+ create mode 100644 "temp/\345\260\217\347\272\242\344\271\2469\345\274\240\345\233\276\347\211\207\345\256\214\346\225\264\346\226\207\346\241\210.txt"
+ create mode 100644 "temp/\345\260\217\347\272\242\344\271\246\350\222\270\346\261\275\347\234\274\347\275\251\350\277\220\350\220\245\346\226\271\346\241\210.md"
+ create mode 100644 "temp/\345\260\217\347\272\242\344\271\246\350\222\270\346\261\275\347\234\274\347\275\251\350\277\220\350\220\245\346\226\271\346\241\210.txt"
+ create mode 100644 templates/yoga-article-anxiety-relief.html
+ create mode 100644 templates/yoga-first-article.html
+ create mode 100644 templates/yoga-transition-article.html
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 7d130972] docs(xiaomijiao): 午间回顾 - 2026-05-08
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 14 files changed, 2738 insertions(+), 81 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-08.md
+ create mode 100644 logs/report_2026-05-08.txt
+ create mode 100644 memory/2026-05-08.md
+ create mode 100644 oil-gold-silver-investment-report-2026-05-08-standard.md
+ create mode 100644 oil-gold-silver-investment-report-2026-05-08.md
+ create mode 100644 oil-gold-standard-report-2026-05-08.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 6ee029b9] docs(xiaomijiao): 每日回顾 - 2026-05-09
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 36 files changed, 4633 insertions(+), 95 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-09.md
+ create mode 100644 content/xiaohongshu-neck-massager-optimized.md
+ create mode 100644 content/yoga-shoulder-guide-optimized.html
+ create mode 100644 content/yoga-shoulder-guide-optimized.txt
+ create mode 100644 logs/oil-gold-evening-2026-05-08.log
+ create mode 100644 logs/oil-gold-morning-2026-05-09.log
+ create mode 100644 logs/oil-gold-us-market-2026-05-08.log
+ create mode 100644 memory/2026-05-09.md
+ create mode 100644 skills/wechat-mp-publisher/config/draft-config-github-v2.0.1.json
+ create mode 100644 skills/wechat-mp-publisher/config/draft-config.json.bak
+ create mode 100644 skills/wechat-mp-publisher/config/draft-config.json.temp
+ create mode 100644 skills/wechat-mp-publisher/output/health-diet-correct-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/health-diet-final-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/health-diet-unified-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-body-correct-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-body-final-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-body-unified-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-shoulder-correct-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-shoulder-final-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-shoulder-optimized-cover.png
+ create mode 100644 skills/wechat-mp-publisher/output/yoga-shoulder-unified-cover.png
+ create mode 100644 skills/wechat-mp-publisher/scripts/wechat-draft-github-v2.0.1.js
+ create mode 100644 skills/wechat-mp-publisher/scripts/wechat-draft.js
+ create mode 100644 tools/exam-demo.py
+ create mode 100644 tools/exam-filter-cli.py
+ create mode 100644 tools/exam-position-filter.py
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 87f07f85] docs(xiaomijiao): 午间回顾 - 2026-05-09
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 108 insertions(+), 2 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master d7c0d350] docs(xiaomijiao): 午间回顾 - 2026-05-09
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 6 files changed, 796 insertions(+), 4 deletions(-)
+ create mode 100644 logs/oil-gold-afternoon-2026-05-09.log
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master b010f76f] docs(xiaomijiao): 每日回顾 - 2026-05-09
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 63 files changed, 6795 insertions(+), 10693 deletions(-)
+ create mode 100644 drafts/office-yoga-5min-draft.html
+ create mode 100644 drafts/office-yoga-complete-guide-draft.html
+ create mode 100644 drafts/yoga-stress-relief-draft.html
+ delete mode 100644 intel/archive/oil-gold-geopolitics-upgrade.txt
+ delete mode 100644 intel/archive/oil-gold-skill-diagnosis.txt
+ delete mode 100644 intel/archive/oil-gold-skill-fixes.txt
+ delete mode 100644 intel/archive/oil-gold-v1.5.5-bug-feedback.txt
+ delete mode 100644 intel/oil-gold-geopolitics-upgrade.md
+ delete mode 100644 logs/oil-gold-afternoon-2026-05-09.log
+ delete mode 100644 logs/oil-gold-cron.log
+ delete mode 100644 logs/oil-gold-evening-2026-05-08.log
+ delete mode 100644 logs/oil-gold-morning-2026-05-09.log
+ delete mode 100644 logs/oil-gold-push.log
+ delete mode 100644 logs/oil-gold-us-market-2026-05-08.log
+ delete mode 100644 logs/oil-gold.log
+ delete mode 100644 oil-gold-silver-investment-report-2026-05-08-standard.md
+ delete mode 100644 oil-gold-silver-investment-report-2026-05-08.md
+ delete mode 100644 oil-gold-standard-report-2026-05-08.md
+ delete mode 100755 scripts/oil-gold-cron.sh
+ delete mode 100755 scripts/oil-gold-tasks.sh
+ delete mode 100755 scripts/oil-gold-us-adapter.sh
+ delete mode 100755 scripts/send-oil-gold-report.sh
+ delete mode 100644 skills/oil-gold-correlation/.gitignore
+ delete mode 100644 skills/oil-gold-correlation/SKILL.md
+ delete mode 100644 skills/oil-gold-correlation/cache/geopolitics_cache.json
+ delete mode 100644 skills/oil-gold-correlation/config/push-config.yaml
+ delete mode 100755 skills/oil-gold-correlation/oil-gold-us-adapter.sh
+ delete mode 100644 skills/oil-gold-correlation/output_part1.txt
+ delete mode 100644 skills/oil-gold-correlation/output_part2.txt
+ delete mode 100644 skills/oil-gold-correlation/package.json
+ delete mode 100644 skills/oil-gold-correlation/push-scheme-v2.md
+ delete mode 100644 skills/oil-gold-correlation/requirements.txt
+ delete mode 100644 skills/oil-gold-correlation/scripts/advisor.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/analysis.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/config.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/fetch_alpha_vantage.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/fetch_data.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/fetch_fred.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/fetch_twelve_data.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/geopolitics.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/multi_source.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/opportunity_scanner.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/report.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/report_card.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/report_text.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/report_text_brief.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/report_text_v2.0_draft.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/test_report.py
+ delete mode 100644 skills/oil-gold-correlation/scripts/visualize.py
+ create mode 100644 skills/wechat-mp-publisher/scripts/publish-office-yoga-guide.js
+ create mode 100644 templates/office-yoga-complete-guide.html
+ create mode 100644 templates/xiaohongshu-style-template.html
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master c94c15e1] docs(xiaomijiao): 午间回顾 - 2026-05-10
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 790 insertions(+), 24 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-10.md
+ create mode 100644 memory/2026-05-10.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master b1930ec1] docs(xiaomijiao): 每日回顾 - 2026-05-10
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 9 files changed, 874 insertions(+), 68 deletions(-)
+ create mode 100644 logs/oil-gold-manual.log
+ create mode 100644 logs/weekly.log
+ create mode 100755 scripts/oil-gold-cron.sh
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 4a624d50] docs(xiaomijiao): 午间回顾 - 2026-05-11
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 10 files changed, 513 insertions(+), 52 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-11.md
+ create mode 100644 logs/platform-rules.log
+ create mode 100644 memory/2026-05-11.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 0180081c] docs(xiaomijiao): 每日回顾 - 2026-05-11
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 5 files changed, 1005 insertions(+), 5 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 86eeb9a3] docs(xiaomijiao): 午间回顾 - 2026-05-12
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 8 files changed, 565 insertions(+), 23 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-12.md
+ create mode 100644 memory/2026-05-12.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 8c346108] docs(xiaomijiao): 每日回顾 - 2026-05-12
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 33 files changed, 528 insertions(+), 7660 deletions(-)
+ delete mode 100644 "intel/archive/\347\237\263\346\262\271\351\273\204\351\207\221\346\212\245\345\221\212\346\250\241\346\235\277\344\274\230\345\214\226\346\226\271\346\241\210.txt"
+ delete mode 100644 "intel/archive/\347\237\263\346\262\271\351\273\204\351\207\221\347\233\270\345\205\263\346\200\247\345\210\206\346\236\220\346\212\200\350\203\275\346\226\271\346\241\210.txt"
+ delete mode 100644 "intel/\347\237\263\346\262\271\351\273\204\351\207\221\347\233\270\345\205\263\346\200\247\345\210\206\346\236\220\346\212\200\350\203\275\346\226\271\346\241\210.md"
+ delete mode 100644 logs/oil-gold-manual.log
+ delete mode 100755 scripts/oil-gold-cron.sh
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/.gitignore
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/SKILL.md
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/cache/geopolitics_cache.json
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/config/push-config.yaml
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/oil-gold-us-adapter.sh
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/push-scheme-v2.md
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/requirements.txt
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/advisor.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/analysis.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/config.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/fetch_alpha_vantage.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/fetch_data.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/fetch_fred.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/fetch_twelve_data.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/geopolitics.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/multi_source.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/opportunity_scanner.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/report.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/report_card.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/report_text.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/report_text_v2.0_draft.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/test_report.py
+ delete mode 100644 skills_backup_20260505_145010_DEPRECATED/oil-gold-correlation/scripts/visualize.py
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 46e7e2ce] docs(xiaomijiao): 午间回顾 - 2026-05-13
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 501 insertions(+), 23 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-13.md
+ create mode 100644 memory/2026-05-13.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 9f518f00] docs(xiaomijiao): 每日回顾 - 2026-05-13
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 8 files changed, 738 insertions(+), 27 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 40e811dd] docs(xiaomijiao): 午间回顾 - 2026-05-14
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 581 insertions(+), 23 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-14.md
+ create mode 100644 memory/2026-05-14.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master e92a372f] docs(xiaomijiao): 每日回顾 - 2026-05-14
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 905 insertions(+), 5 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 90176830] docs(xiaomijiao): 午间回顾 - 2026-05-15
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 8 files changed, 740 insertions(+), 24 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-15.md
+ create mode 100644 memory/2026-05-15.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 4e470c1e] docs(xiaomijiao): 每日回顾 - 2026-05-15
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 885 insertions(+), 3 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master a0c7a210] docs(xiaomijiao): 午间回顾 - 2026-05-16
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 921 insertions(+), 23 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-16.md
+ create mode 100644 memory/2026-05-16.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master fde02dba] docs(xiaomijiao): 每日回顾 - 2026-05-16
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 1029 insertions(+), 5 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master b4b94c80] docs(xiaomijiao): 午间回顾 - 2026-05-17
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 675 insertions(+), 23 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-17.md
+ create mode 100644 memory/2026-05-17.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master a0d28344] docs(xiaomijiao): 每日回顾 - 2026-05-17
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 6 files changed, 760 insertions(+), 6 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 0c2fc1b1] docs(xiaomijiao): 午间回顾 - 2026-05-18
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 8 files changed, 962 insertions(+), 24 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-18.md
+ create mode 100644 memory/2026-05-18.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 97279175] docs(xiaomijiao): 每日回顾 - 2026-05-18
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 5 files changed, 1672 insertions(+), 15 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 1ba3e7ac] docs(xiaomijiao): 午间回顾 - 2026-05-19
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 9 files changed, 684 insertions(+), 61 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-19.md
+ create mode 100644 memory/2026-05-19.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 8a815ddf] docs(xiaomijiao): 每日回顾 - 2026-05-19
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 513 insertions(+), 4 deletions(-)
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 1d120389] docs(xiaomijiao): 午间回顾 - 2026-05-20
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 10 files changed, 795 insertions(+), 25 deletions(-)
+ create mode 100644 agents/xiaomijiao/memory/chat-2026-05-20.md
+ create mode 100644 "intel/\344\273\212\346\227\245\346\225\260\346\215\256\345\244\215\347\233\230_20260520.md"
+ create mode 100644 "intel/\344\273\212\346\227\245\350\277\220\350\220\245\346\212\245\345\221\212_20260520.md"
+ create mode 100644 "intel/\346\225\260\346\215\256\345\244\215\347\233\230_20260519.md"
+ create mode 100644 memory/2026-05-20.md
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 1e7dae92] docs(xiaomijiao): 午间回顾 - 2026-05-20
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 24 files changed, 5424 insertions(+), 101 deletions(-)
+ create mode 100644 crontab-new
+ create mode 100644 drafts/yoga-beginner-guide-draft.html
+ create mode 100644 "intel/oil-gold-\345\215\270\350\275\275\346\200\273\347\273\223_20260520.md"
+ create mode 100644 "intel/\344\272\254\344\270\234\350\264\246\345\217\267\351\205\215\347\275\256_20260520.md"
+ create mode 100644 "intel/\345\217\214\344\272\254\344\270\234\350\264\246\345\217\267\351\205\215\347\275\256_20260520.md"
+ create mode 100644 "intel/\345\260\217\347\272\242\344\271\246\351\246\226\347\257\207\347\254\224\350\256\260_20260520.md"
+ create mode 100644 "intel/\350\277\220\350\220\245\346\225\260\346\215\256\350\267\237\350\270\252\350\241\250_20260520.md"
+ create mode 100644 "intel/\351\227\262\351\261\274\350\277\220\350\220\245\346\211\213\345\206\214_20260520.md"
+ create mode 100644 logs/wechat-publish-history.log
+ create mode 100755 scripts/wechat-publish-yoga.sh
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[master 0829c2c1] docs(xiaomijiao): 每日回顾 - 2026-05-20
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 15 files changed, 3101 insertions(+), 24 deletions(-)
+ create mode 100644 logs/file-cleanup.log
+ create mode 100644 logs/oil-gold-cron.log
+ create mode 100644 oil-gold-correlation.zip
+ create mode 100644 oil-gold-main.zip
+ create mode 100644 oil_gold_report.py
+ create mode 100644 reports/oil-gold-report-20260520_181412.md
+ create mode 100644 reports/oil-gold-sample-report.md
+ create mode 100755 scripts/cleanup-old-files.sh
+fatal: 'xiaomijiao' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
