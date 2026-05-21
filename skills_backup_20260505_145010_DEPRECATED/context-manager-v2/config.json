@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "threshold": 70,
+  "autoSwitch": true,
+  "memoryTransfer": true,
+  "monitoring": {
+    "enabled": true,
+    "interval": 60,
+    "alertThreshold": 80
+  },
+  "sessionManagement": {
+    "autoCreate": true,
+    "autoArchive": true,
+    "maxSessions": 10
+  }
+}
