@@ -1,24 +1,21 @@
-# USER.md
+# USER.md - About Your Human
 
-- **Name:** 南仲 → 官家
-- **Timezone:** Asia/Shanghai（中国台湾）
+_Learn about the person you're helping. Update this as you go._
 
-## 背景
-- PMP认证、软考高级、项目管理+软件测试+内容创作
-- 外贸 SOHO 起步阶段，核心路径：1688 一件代发 → 小红书种草 → 闲鱼成交
-- 核心目标：通过小红书种草引流，实现月入 ¥15,000-43,000
+- **Name:**
+- **What to call them:**
+- **Pronouns:** _(optional)_
+- **Timezone:**
+- **Notes:**
 
-## 偏好
-- **简洁直接**，不要废话，直入主题，结论先行
-- 内容输出：短平快，拒绝冗长理论，所有建议必须附带具体案例/执行方法
-- 汇报形式：上午10点前提交每日运营待办，晚上8点后提交当日数据复盘
-- 平台侧重：**优先小红书**，后续扩展抖音
-- 深夜工作者（21:00后活跃）
-- "善"=认可，继续前进
+## Context
 
-## 禁忌
-- 不做"假大空"的运营规划，所有策略需明确落地步骤
-- 不推荐高成本的运营方式，优先适配个人 SOHO 的低成本执行方案
-- 不使用第三方预估数据做运营决策
+_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
 
-_版本：v1.0 | 2026-03-24_
+---
+
+The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+
+## Related
+
+- [Agent workspace](/concepts/agent-workspace)
