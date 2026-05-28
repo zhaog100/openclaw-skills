@@ -57,12 +57,20 @@
 | 石油黄金晚盘 | 每天 21:00 | OpenClaw cron |
 | 石油黄金美盘 | 每天 22:00 | OpenClaw cron |
 
+## 服务器安全
+- **防火墙**: ufw 已启用，默认拒绝入站，放行 22(SSH) / 5700(青龙)
+- **青龙认证**: nginx 反向代理 5701 端口 + Basic Auth（用户名: qladmin）
+- **端口**: 22(SSH), 5700(青龙直连), 5701(青龙+认证)
+
 ## 经验教训
 1. BusyBox grep 不支持 -P，用 sed 替代
 2. crontab 脚本路径要写绝对路径
 3. OpenClaw 升级后需重启 gateway
 4. 创建 cron 前先确认脚本存在
 5. 远程仓库 push 前必须确认目标
+6. openclaw-skills 是子模块，绝对不要修改和推送
+7. nginx/ufw 等命令 PATH 需要加 /usr/sbin
+8. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
 
 ---
 _最后更新: 2026-05-28_
