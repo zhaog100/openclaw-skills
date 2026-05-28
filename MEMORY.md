@@ -59,8 +59,9 @@
 
 ## 服务器安全
 - **防火墙**: ufw 已启用，默认拒绝入站，放行 22(SSH) / 5700(青龙)
-- **青龙认证**: nginx 反向代理 5701 端口 + Basic Auth（用户名: qladmin）
+- **青龙认证**: nginx 反向代理 5701 端口 + Basic Auth（用户名: qladmin, 密码: 2IJX/VF8vC+BreMx)
 - **端口**: 22(SSH), 5700(青龙直连), 5701(青龙+认证)
+- **待加固**: SSH 密钥登录、关闭 root 远程登录（官家暂未确认执行）
 
 ## 经验教训
 1. BusyBox grep 不支持 -P，用 sed 替代
@@ -71,6 +72,15 @@
 6. openclaw-skills 是子模块，绝对不要修改和推送
 7. nginx/ufw 等命令 PATH 需要加 /usr/sbin
 8. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
+9. QMD 向量索引需要 embedding API（OpenAI），FTS 全文搜索可临时替代
+10. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
+11. 每日回顾任务中必须明确"不碰 openclaw-skills"规则
+
+## QMD 知识库
+- **数据库**: /root/.openclaw/memory/main.sqlite
+- **状态**: FTS 全文搜索可用，向量索引待配置
+- **已索引**: MEMORY.md (8 chunks), memory/2026-05-28.md (10 chunks)
+- **待办**: 配置 OpenAI API Key 启用向量索引
 
 ---
-_最后更新: 2026-05-28_
+_最后更新: 2026-05-28 22:51 CST_
