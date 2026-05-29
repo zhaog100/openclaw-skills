@@ -180,7 +180,7 @@ ERROR_THRESHOLD=5      # 错误阈值（5次/小时）
 - SKILL.md（技能文档）
 
 **社区**：
-- GitHub: https://github.com/zhaog100/openclaw-skills
+- GitHub: https://github.com/example-user/openclaw-skills
 - ClawHub: https://clawhub.com
 - Discord: https://discord.com/invite/clawd
 
