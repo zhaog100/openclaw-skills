@@ -1,24 +1,24 @@
 {
   "models": {
     "flash": {
-      "id": "longcat/LongCat-Flash-Lite",
-      "description": "免费5500万token/天，简单任务首选"
+      "id": "longcat/LongCat-2.0-Preview",
+      "description": "128K上下文，通用任务首选"
     },
     "main": {
-      "id": "longcat/LongCat-Flash-Chat",
-      "description": "免费500万token/天，通用对话"
+      "id": "longcat/LongCat-2.0-Preview",
+      "description": "128K上下文，通用对话"
     },
     "coding": {
-      "id": "zai/glm-5.1",
-      "description": "代码专用，高质量"
+      "id": "longcat/LongCat-2.0-Preview",
+      "description": "代码生成，128K上下文"
     },
     "vision": {
       "id": "longcat/LongCat-Flash-Omni-2603",
       "description": "多模态，图片识别"
     },
     "complex": {
-      "id": "longcat/LongCat-Flash-Thinking-2601",
-      "description": "深度推理，免费"
+      "id": "longcat/LongCat-2.0-Preview",
+      "description": "深度推理，128K上下文"
     },
     "long-context": {
       "id": "openrouter/qwen3.6-plus-preview:free",

@@ -5,7 +5,7 @@
 LOG_FILE="/root/.openclaw/workspace/logs/longcat-usage.log"
 TODAY=$(date +%Y-%m-%d)
 LONGCAT_LIMIT=16666666  # 16,666,666 - LongCat 供应商统一配额（所有模型共享）
-MODELS=("LongCat-Flash-Lite" "LongCat-Flash-Chat" "LongCat-Flash-Thinking-2601" "LongCat-Flash-Omni-2603" "LongCat-Flash-Chat-2602-Exp")
+MODELS=("LongCat-2.0-Preview")
 MODEL_COUNT=${#MODELS[@]}
 
 # 颜色定义
