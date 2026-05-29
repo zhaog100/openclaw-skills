@@ -73,10 +73,10 @@ STARTUP_THRESHOLD=30  # 启动后警告
 ### 防护流程
 ```
 上下文 > 75% → /compact 压缩（预防性）
-上下文 > 85% → 切换大窗口模型（LongCat-Lite 320K）+ /compact
+上下文 > 85% → 切换大窗口模型（LongCat-2.0-Preview 128K）+ /compact
 上下文 > 90% → 保存记忆到 memory/ → 创建新会话
-API 429 → 自动切换备用模型（zai/glm-5.1 ↔ longcat ↔ openrouter 轮转）
-LLM 超时 → 自动 fallback 到快速模型（longcat/LongCat-Flash-Lite）
+API 429 → 自动切换备用模型（minimax/MiniMax-M2.7 ↔ longcat 轮转）
+LLM 超时 → 自动 fallback 到快速模型（longcat/LongCat-2.0-Preview）
 API Key 缺失 → 检查 auth-profiles.json + models.json 是否存在
 Unknown model → 检查 models.json 是否包含该 provider 定义
 连续 2 次请求失败 → 强制 compaction + 切换模型
@@ -85,17 +85,16 @@ Unknown model → 检查 models.json 是否包含该 provider 定义
 
 ### 超时防护配置（⭐ 重点）
 
-**问题**：智谱 GLM-5 在上下文较大时容易超时（>150s），触发 `Something went wrong`。
+**问题**：模型在上下文较大时容易超时（>150s），触发 `Something went wrong`。
 
-**解决方案**：配置 `modelFallbacks`，超时自动切换到快速模型。
+**解决方案**：配置 `modelFallbacks`，超时自动切换到备用模型。
 
 ```json
 // ~/.openclaw/openclaw.json → agents.defaults
 {
-  "model": "zai/glm-5",
+  "model": "longcat/LongCat-2.0-Preview",
   "modelFallbacks": [
-    "longcat/LongCat-Flash-Lite",
-    "longcat/LongCat-Flash-Chat"
+    "minimax/MiniMax-M2.7"
   ]
 }
 ```
@@ -107,10 +106,9 @@ Unknown model → 检查 models.json 是否包含该 provider 定义
 
 ### 模型轮转顺序
 ```
-1. longcat/LongCat-Flash-Lite（320K窗口，免费）
-2. longcat/LongCat-Flash-Chat（256K窗口，免费）
-3. zai/glm-5.1（203K窗口）
-4. openrouter/qwen3.6-plus-preview:free（100万窗口）
+1. longcat/LongCat-2.0-Preview（128K窗口，主力）
+2. minimax/MiniMax-M2.7（200K窗口，备用）
+3. longcat/LongCat-Flash-Omni-2603（多模态，图片/视频理解）
 ```
 
 ### 心跳集成

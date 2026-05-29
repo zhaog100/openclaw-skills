@@ -75,6 +75,8 @@
 9. QMD 向量索引需要 embedding API（OpenAI），FTS 全文搜索可临时替代
 10. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
 11. 每日回顾任务中必须明确"不碰 openclaw-skills"规则
+12. LongCat Flash 系列模型（Flash-Lite/Flash-Chat/Flash-Thinking-2601）已下线不可用，统一使用 LongCat-2.0-Preview
+13. openclaw-skills 子模块中的旧模型引用不能修改（规则6），但 workspace/ 下的脚本和技能配置需要同步更新
 
 ## QMD 知识库
 - **数据库**: /root/.openclaw/memory/main.sqlite
@@ -83,4 +85,4 @@
 - **待办**: 配置 OpenAI API Key 启用向量索引
 
 ---
-_最后更新: 2026-05-28 22:51 CST_
+_最后更新: 2026-05-29 10:28 CST_
