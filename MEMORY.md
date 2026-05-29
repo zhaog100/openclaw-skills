@@ -77,6 +77,11 @@
 11. 每日回顾任务中必须明确"不碰 openclaw-skills"规则
 12. LongCat Flash 系列模型（Flash-Lite/Flash-Chat/Flash-Thinking-2601）已下线不可用，统一使用 LongCat-2.0-Preview
 13. openclaw-skills 子模块中的旧模型引用不能修改（规则6），但 workspace/ 下的脚本和技能配置需要同步更新
+14. crontab 脚本路径要反复确认，特别是子目录结构（如 scripts/ 子目录）
+15. 创建 crontab 任务前必须确认脚本文件存在且可执行
+16. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
+17. ⚠️ 石油黄金 crontab 路径缺少 scripts/ 导致全部分析失败（2026-05-29 发现）
+18. ⚠️ data-review.sh / weekly-summary.sh / platform-rules.sh 脚本缺失（2026-05-29 发现）
 
 ## QMD 知识库
 - **数据库**: /root/.openclaw/memory/main.sqlite
@@ -85,4 +90,4 @@
 - **待办**: 配置 OpenAI API Key 启用向量索引
 
 ---
-_最后更新: 2026-05-29 10:28 CST_
+_最后更新: 2026-05-29 12:00 CST_
