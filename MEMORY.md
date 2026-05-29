@@ -82,6 +82,8 @@
 16. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
 17. ⚠️ 石油黄金 crontab 路径缺少 scripts/ 导致全部分析失败（2026-05-29 发现）
 18. ⚠️ data-review.sh / weekly-summary.sh / platform-rules.sh 脚本缺失（2026-05-29 发现）
+19. ⚠️ 石油黄金 crontab 中 `main.py daily` 也不存在，实际入口是 `scripts/analysis.py`（2026-05-29 晚间确认）
+20. 系统全天无用户交互，所有任务均为自动化 cron 执行
 
 ## QMD 知识库
 - **数据库**: /root/.openclaw/memory/main.sqlite
@@ -90,4 +92,4 @@
 - **待办**: 配置 OpenAI API Key 启用向量索引
 
 ---
-_最后更新: 2026-05-29 12:00 CST_
+_最后更新: 2026-05-29 22:50 CST_
