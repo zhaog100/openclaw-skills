@@ -80,13 +80,18 @@
 14. crontab 脚本路径要反复确认，特别是子目录结构（如 scripts/ 子目录）
 15. 创建 crontab 任务前必须确认脚本文件存在且可执行
 16. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
-17. ⚠️ 石油黄金 crontab 路径缺少 scripts/ 导致全部分析失败（2026-05-29 发现）
-18. ⚠️ data-review.sh / weekly-summary.sh / platform-rules.sh 脚本缺失（2026-05-29 发现）
-19. ⚠️ 石油黄金 crontab 中 `main.py daily` 也不存在，实际入口是 `scripts/analysis.py`（2026-05-29 晚间确认）
+17. ✅ 石油黄金 crontab 路径已修复（2026-05-30）：加了 scripts/，main.py→report_text.py
+18. ✅ 缺失脚本已创建（2026-05-30）：data-review.sh / weekly-summary.sh / platform-rules.sh
+19. ⚠️ 石油黄金 crontab 中 `main.py daily` 不存在，已改为 `scripts/report_text.py`
 20. 系统全天无用户交互，所有任务均为自动化 cron 执行
-21. ⚠️ 石油黄金路径问题已持续 2 天未修复（5-29 发现，5-30 确认仍存在）
-22. ⚠️ 缺失脚本问题已持续 2 天未修复（data-review.sh / weekly-summary.sh / platform-rules.sh）
-23. 📅 2026-05-30（周六）：系统运行正常，热点采集和公考采集均成功，无用户交互
+21. ✅ 石油黄金路径问题已修复（持续 2 天后于 5-30 修复）
+22. ✅ 缺失脚本问题已修复（持续 2 天后于 5-30 修复）
+23. 📅 2026-05-30（周六）：修复日 — 石油黄金路径修正 + 三个缺失脚本创建 + 旧日志清理
+24. ⚠️ 石油黄金 7d 分析 Granger 因果检验数据不足（Insufficient observations），可能需要更长周期数据
+25. ✅ 石油黄金修复后验证（2026-05-30 22:50）：hourly 10次成功，0错误
+26. ✅ data-review.sh 于 20:30 自动执行成功
+27. ⚠️ 平台规则/数据复盘脚本仅为框架，实际内容需官家补充
+28. 📅 2026-05-30 全天无用户交互（除12:37修复指令），纯自动化运行
 
 ## QMD 知识库
 - **数据库**: /root/.openclaw/memory/main.sqlite
@@ -95,4 +100,4 @@
 - **待办**: 配置 OpenAI API Key 启用向量索引
 
 ---
-_最后更新: 2026-05-30 12:00 CST_
+_最后更新: 2026-05-30 22:50 CST_
