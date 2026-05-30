@@ -84,6 +84,9 @@
 18. ⚠️ data-review.sh / weekly-summary.sh / platform-rules.sh 脚本缺失（2026-05-29 发现）
 19. ⚠️ 石油黄金 crontab 中 `main.py daily` 也不存在，实际入口是 `scripts/analysis.py`（2026-05-29 晚间确认）
 20. 系统全天无用户交互，所有任务均为自动化 cron 执行
+21. ⚠️ 石油黄金路径问题已持续 2 天未修复（5-29 发现，5-30 确认仍存在）
+22. ⚠️ 缺失脚本问题已持续 2 天未修复（data-review.sh / weekly-summary.sh / platform-rules.sh）
+23. 📅 2026-05-30（周六）：系统运行正常，热点采集和公考采集均成功，无用户交互
 
 ## QMD 知识库
 - **数据库**: /root/.openclaw/memory/main.sqlite
@@ -92,4 +95,4 @@
 - **待办**: 配置 OpenAI API Key 启用向量索引
 
 ---
-_最后更新: 2026-05-29 22:50 CST_
+_最后更新: 2026-05-30 12:00 CST_
