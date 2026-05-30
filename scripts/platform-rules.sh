@@ -1,7 +1,31 @@
+#!/bin/bash
+# =============================================================================
+# 平台规则更新脚本
+# 用途: 抓取各平台最新规则/算法变化，生成报告
+# 时间: 每周一 11:00 执行
+# =============================================================================
+
+set -euo pipefail
+
+WORKSPACE="/root/.openclaw/workspace"
+REPORT_DIR="$WORKSPACE/intel"
+LOG_FILE="$WORKSPACE/logs/platform-rules.log"
+TODAY=$(date +%Y-%m-%d)
+NOW=$(date '+%H:%M')
+REPORT_FILE="$REPORT_DIR/平台规则更新.md"
+
+echo "[$TODAY $NOW] 开始平台规则更新..." | tee -a "$LOG_FILE"
+
+# 确保目录存在
+mkdir -p "$REPORT_DIR"
+mkdir -p "$WORKSPACE/logs"
+
+# 生成报告框架（平台规则需要人工补充，脚本提供检查清单）
+cat > "$REPORT_FILE" << EOF
 # 🔔 平台规则更新报告
 
-**日期**: 2026-05-30（周一）
-**检查时间**: 12:46
+**日期**: ${TODAY}（周一）
+**检查时间**: ${NOW}
 **维护**: 小米椒 🌶️🔥
 
 ---
@@ -54,6 +78,9 @@
 
 ---
 
-_自动生成 by platform-rules.sh | 2026-05-30 12:46_
+_自动生成 by platform-rules.sh | ${TODAY} ${NOW}_
 
 **版权：** MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+EOF
+
+echo "[$TODAY $NOW] 平台规则报告已生成（需官家补充内容）✅" | tee -a "$LOG_FILE"
