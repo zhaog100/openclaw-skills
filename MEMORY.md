@@ -98,9 +98,10 @@
 
 ## QMD 知识库
 - **数据库**: /root/.openclaw/memory/main.sqlite
-- **状态**: FTS 全文搜索可用，向量索引待配置
-- **已索引**: MEMORY.md (8 chunks), memory/2026-05-28.md (10 chunks)
-- **待办**: 配置 OpenAI API Key 启用向量索引
+- **数据库**: /root/.openclaw/memory/main.sqlite
+- **状态**: FTS 全文搜索可用；向量索引受限于内存（1.9G），Qwen3-Embedding-0.6B 加载时 OOM
+- **已索引**: MEMORY.md (4 chunks in `memory` collection)
+- **待办**: 向量索引需要更大内存服务器或改用 OpenAI API embedding
 
 ---
 _最后更新: 2026-05-31 12:00 CST_
