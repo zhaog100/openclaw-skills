@@ -14,7 +14,7 @@ TODAY=$(date +%Y-%m-%d)
 NOW=$(date '+%H:%M')
 REPORT_FILE="$REPORT_DIR/平台规则更新.md"
 
-echo "[$TODAY $NOW] 开始平台规则更新..." | tee -a "$LOG_FILE"
+echo "[$TODAY $NOW] 开始平台规则更新..." >> "$LOG_FILE"
 
 # 确保目录存在
 mkdir -p "$REPORT_DIR"
@@ -83,4 +83,4 @@ _自动生成 by platform-rules.sh | ${TODAY} ${NOW}_
 **版权：** MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 EOF
 
-echo "[$TODAY $NOW] 平台规则报告已生成（需官家补充内容）✅" | tee -a "$LOG_FILE"
+echo "[$TODAY $NOW] 平台规则报告已生成（需官家补充内容）✅" >> "$LOG_FILE"
