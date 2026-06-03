@@ -14,7 +14,7 @@ TODAY=$(date +%Y-%m-%d)
 NOW=$(date '+%H:%M')
 REPORT_FILE="$REPORT_DIR/数据复盘.md"
 
-echo "[$TODAY $NOW] 开始每日数据复盘..." | tee -a "$LOG_FILE"
+echo "[$TODAY $NOW] 开始每日数据复盘..." >> "$LOG_FILE"
 
 # 确保目录存在
 mkdir -p "$REPORT_DIR"
@@ -101,4 +101,4 @@ echo "" >> "$REPORT_FILE"
 echo "---" >> "$REPORT_FILE"
 echo "_自动生成 by data-review.sh | ${TODAY} ${NOW}_" >> "$REPORT_FILE"
 
-echo "[$TODAY $NOW] 数据复盘完成 ✅" | tee -a "$LOG_FILE"
+echo "[$TODAY $NOW] 数据复盘完成 ✅" >> "$LOG_FILE"

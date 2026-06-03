@@ -21,7 +21,7 @@ THIS_SUNDAY="$TODAY"
 LAST_MONDAY=$(date -d "monday - 13 days" +%Y-%m-%d 2>/dev/null || echo "$TODAY")
 LAST_SUNDAY=$(date -d "monday - 7 days" +%Y-%m-%d 2>/dev/null || echo "$TODAY")
 
-echo "[$TODAY $NOW] 开始每周运营总结..." | tee -a "$LOG_FILE"
+echo "[$TODAY $NOW] 开始每周运营总结..." >> "$LOG_FILE"
 
 # 确保目录存在
 mkdir -p "$REPORT_DIR"
@@ -107,4 +107,4 @@ _自动生成 by weekly-summary.sh | ${TODAY} ${NOW}_
 **版权：** MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 EOF
 
-echo "[$TODAY $NOW] 每周运营总结完成 ✅" | tee -a "$LOG_FILE"
+echo "[$TODAY $NOW] 每周运营总结完成 ✅" >> "$LOG_FILE"
