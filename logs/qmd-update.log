@@ -300,3 +300,4 @@ Cleaned up 1 orphaned content hash(es)
 ✓ All collections updated.
 
 Run 'qmd embed' to update embeddings (406 unique hashes need vectors)
+[2026-06-04 12:05:14] QMD中午同步: files=62, chunks=406, FTS=403, embedding=0
