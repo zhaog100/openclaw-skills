@@ -89,6 +89,7 @@ EXAM_FILES=(
     "$WORKSPACE/reports/exam-info-sichuan-${TODAY}.md"
     "$WORKSPACE/reports/exam-info-chengdu-${TODAY}.md"
     "$WORKSPACE/reports/exam-info-luzhou-${TODAY}.md"
+    "$WORKSPACE/reports/exam-info-state-owned-${TODAY}.md"
 )
 
 # 地区代码 → 中文显示名
@@ -96,6 +97,7 @@ declare -A REGION_NAMES=(
     ["sichuan"]="🏛️ 四川省"
     ["chengdu"]="🌆 成都市"
     ["luzhou"]="🍶 泸州市"
+    ["state-owned"]="🏢 国企央企"
 )
 
 EXAM_FOUND=0
