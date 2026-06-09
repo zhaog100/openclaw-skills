@@ -79,14 +79,76 @@ else
     echo "- ⚠️ 暂无分析日志" >> "$REPORT_FILE"
 fi
 
-# 检查公考信息采集
+# ============================================================
+# 公考信息采集 — 详细版（含岗位名称/学历/年龄/报名截止）
+# ============================================================
 echo "" >> "$REPORT_FILE"
-echo "## 🎓 公考信息采集状态" >> "$REPORT_FILE"
-EXAM_FILE="$WORKSPACE/reports/exam-info-chengdu-${TODAY}.md"
-if [ -f "$EXAM_FILE" ]; then
-    echo "- ✅ 成都公考信息已采集" >> "$REPORT_FILE"
-else
-    echo "- ℹ️ 今日无公考信息采集（可能非执行日）" >> "$REPORT_FILE"
+echo "## 🎓 公考信息采集详情" >> "$REPORT_FILE"
+
+EXAM_FILES=(
+    "$WORKSPACE/reports/exam-info-sichuan-${TODAY}.md"
+    "$WORKSPACE/reports/exam-info-chengdu-${TODAY}.md"
+    "$WORKSPACE/reports/exam-info-luzhou-${TODAY}.md"
+)
+
+# 地区代码 → 中文显示名
+declare -A REGION_NAMES=(
+    ["sichuan"]="🏛️ 四川省"
+    ["chengdu"]="🌆 成都市"
+    ["luzhou"]="🍶 泸州市"
+)
+
+EXAM_FOUND=0
+for ef in "${EXAM_FILES[@]}"; do
+    if [ -f "$ef" ]; then
+        EXAM_FOUND=1
+        REGION_CODE=$(basename "$ef" | sed 's/^exam-info-//;s/-[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\.md$//')
+        REGION_NAME="${REGION_NAMES[$REGION_CODE]:-$REGION_CODE}"
+        echo "" >> "$REPORT_FILE"
+        echo "### ${REGION_NAME}公考信息" >> "$REPORT_FILE"
+        echo "" >> "$REPORT_FILE"
+        # 提取每条公考的标题和关键信息
+        # 格式：**序号. 标题** → 提取标题行
+        # 格式：👥 人数　🎓 学历　📅 年龄 → 提取要求
+        # 格式：发布 xxx　|　截止 **xxx** ⚠️　|　考试 xxx → 提取时间
+        # 格式：📝 科目　|　🔗 链接 → 提取科目和链接
+        awk '
+        /\*\*[0-9]+\./ {
+            line = $0
+            gsub(/\*\*|[0-9]+\.\s*/, "", line)
+            gsub(/✅\s*$/, "", line)
+            gsub(/[[:space:]]+$/, "", line)
+            if (line != "") print "- **" line "**"
+            next
+        }
+        /👥|🎓|📅/ {
+            line = $0
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
+            gsub(/　/, " | ", line)
+            if (line != "") print "  - " line
+            next
+        }
+        /发布|截止|考试/ {
+            line = $0
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
+            gsub(/　\|　/, " | ", line)
+            if (line != "") print "  - " line
+            next
+        }
+        /📝|🔗/ {
+            line = $0
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
+            gsub(/　\|　/, " | ", line)
+            if (line != "") print "  - " line
+            next
+        }
+        ' "$ef" >> "$REPORT_FILE"
+    fi
+done
+
+if [ "$EXAM_FOUND" -eq 0 ]; then
+    echo "" >> "$REPORT_FILE"
+    echo "ℹ️ 今日无公考信息采集（可能非执行日）" >> "$REPORT_FILE"
 fi
 
 # 添加待办提醒
