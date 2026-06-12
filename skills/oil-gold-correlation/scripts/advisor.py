@@ -1586,11 +1586,22 @@ def run_advisor_akshare(days=3):
     except Exception as e:
         print(f"  ⚠️ FRED 宏观数据不可用: {e}")
 
+    # ━━━ 多周期共振分析 ━━━
+    mta_results = []
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from multi_timeframe_analysis import run_multi_timeframe_analysis
+        mta_results, mta_lines = run_multi_timeframe_analysis(source="akshare")
+        for line in mta_lines:
+            print(line)
+    except Exception as e:
+        print(f"  ⚠️ 多周期共振分析不可用: {e}")
+
     # ━━━ 最终建议 ━━━
-    _print_final_recommendation(results, tech_scores, risk_score, macro_data)
+    _print_final_recommendation(results, tech_scores, risk_score, macro_data, mta_results)
 
 
-def _print_final_recommendation(results, tech_scores, risk_score, macro_data):
+def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mta_results=None):
     """最终买卖建议 - 表格风格"""
     
     # 获取宏观信号灯分数
