@@ -11,3 +11,4 @@ __pycache__
 ../agents/
 backup/
 openclaw-skills/
+scripts/fix-gateway.sh
