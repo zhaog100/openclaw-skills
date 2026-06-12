@@ -1,8 +1,8 @@
 ---
 name: oil-gold-correlation
 石油黄金白银实时相关性分析。多数据源交叉验证 + 隐藏机遇扫描 + 智能建议引擎。
-version: 1.6.0
-author: 小米粒 🌾
+version: 1.7.0
+author: 小米辣 🌶️
 lessons_updated: 2026-04-24
 ---
 
