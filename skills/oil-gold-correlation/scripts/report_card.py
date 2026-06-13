@@ -1,3 +1,4 @@
+# 版本: v3.3 | 石油黄金白银相关性分析
 #!/usr/bin/env python3
 """石油黄金报告卡片 v9 - 大间距防手机重叠"""
 import sys
@@ -236,3 +237,4 @@ except:
     pass
 
 draw_report(results, tech_scores, risk_score)
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License

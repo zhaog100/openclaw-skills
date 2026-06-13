@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-石油黄金投资参考 - 精简版 v2.0
+石油黄金投资参考 - 精简版 v3.3
 定时推送专用：顶部摘要卡 + 趋势箭头 + 具体价位 + 结论
 
-格式与 report_text.py v3.0 对齐
+格式与 report_text.py v3.3 对齐
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT

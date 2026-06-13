@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""测试石油黄金报告模板 v2.0"""
+"""测试石油黄金报告模板 v3.3"""
 
 from datetime import datetime
 
@@ -106,3 +106,4 @@ print("=== PART 1 ===")
 print("\n".join(lines1))
 print("\n=== PART 2 ===")
 print("\n".join(lines2))
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
