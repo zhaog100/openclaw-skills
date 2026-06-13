@@ -106,7 +106,7 @@ OIL_KEYWORDS_BULLISH = ["减产", "OPEC减产", "供应中断", "霍尔木兹", 
 OIL_KEYWORDS_BEARISH = ["增产", "OPEC增产", "需求疲软", "库存增加", "经济放缓", "衰退",
                          "停火", "贸易战", "关税"]
 
-# v1.4.0: 关联词 — 用于二次过滤泛泛新闻
+# v3.3: 关联词 — 用于二次过滤泛泛新闻
 RELEVANCE_WORDS = ["黄金", "原油", "金价", "油价", "商品", "期货", "大宗", "避险",
                     "gold", "oil", "commodity", "crude", "OPEC", "通胀",
                     "能源", "贵金属", "矿产", "铜", "铝", "铁矿"]
@@ -196,7 +196,7 @@ def _match_factor(text, factor_info):
 
 
 def _judge_sentiment(title, content=""):
-    """v1.4.0 判断单条新闻的情感倾向 — 核心因子5分/边缘因子1分 + 关联词二次过滤"""
+    """v3.3 判断单条新闻的情感倾向 — 核心因子5分/边缘因子1分 + 关联词二次过滤"""
     text = f"{title} {content}"
 
     # 匹配风险因子（使用分级匹配）
@@ -205,7 +205,7 @@ def _judge_sentiment(title, content=""):
     for factor_name, factor_info in GEOPOLITICAL_FACTORS.items():
         matched, match_score = _match_factor(text, factor_info)
         if matched:
-            # v1.4.0: 关联词二次过滤
+            # v3.3: 关联词二次过滤
             relevance_required = factor_info.get("relevance_required", False)
             if relevance_required:
                 if not _match_keywords(text, RELEVANCE_WORDS):
@@ -237,7 +237,7 @@ def _judge_sentiment(title, content=""):
     else:
         oil_impact = "中性"
 
-    # v1.4.0 评分：核心因子5分 + 边缘因子1分
+    # v3.3 评分：核心因子5分 + 边缘因子1分
     score = sum(factor_scores.values())
     if gold_bull:
         score += 3

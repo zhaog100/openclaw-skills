@@ -2,6 +2,7 @@
 全局配置 — 集中管理路径和可配置参数
 通过环境变量或默认值配置，避免硬编码路径
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 import os
 from pathlib import Path
 
@@ -33,3 +34,4 @@ def ensure_dirs():
     """确保所有输出目录存在"""
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License

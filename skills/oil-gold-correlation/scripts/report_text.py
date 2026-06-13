@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-石油黄金投资参考 - 纯文本报告生成器 v3.2
+石油黄金投资参考 - 纯文本报告生成器 v3.3
 优化：信号灯颜色更清晰 + 趋势箭头文字化 + 信息密度精简
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
@@ -14,6 +14,7 @@ from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).parent))
 from advisor import _analyze_instrument, _fetch_akshare_single
+from multi_timeframe_analysis import run_multi_timeframe_analysis
 
 BAR_COLORS = {'red': '🟥', 'orange': '🟧', 'blue': '🟦', 'yellow': '🟨', 'green': '🟩', 'empty': '⬜'}
 
@@ -373,6 +374,18 @@ def generate_report():
     except:
         pass
     lines.append('')
+
+    # ========== 多周期共振分析 ==========
+    try:
+        mta_results, mta_lines = run_multi_timeframe_analysis(source="akshare")
+        if mta_lines:
+            lines.append("")
+            for mta_line in mta_lines:
+                lines.append(mta_line)
+            lines.append("")
+    except Exception as e:
+        lines.append(f"  ⚠️ 多周期共振分析不可用: {e}")
+        lines.append("")
 
     # ========== 结论 ==========
     lines.append('━' * 30)

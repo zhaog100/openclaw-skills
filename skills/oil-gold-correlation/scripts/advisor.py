@@ -464,7 +464,7 @@ def calc_ichimoku_signal(high, low, close):
     }
 
 
-# ==================== v1.3.0 智能建议引擎 ====================
+# ==================== v3.3 智能建议引擎 ====================
 
 def calc_dynamic_weights(macd_result, boll, atr, price):
     """根据市场环境动态调整指标权重"""
@@ -636,7 +636,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     fib = calc_fibonacci(float(high.tail(30).max()), float(low.tail(30).min()), price)
     sr = calc_support_resistance(close, high, low, boll["upper"], boll["lower"], price)
 
-    # === v1.5.4 增强指标 ===
+    # === v3.3 增强指标 ===
     adx_val, adx_regime = calc_adx(high, low, close)
     williams_r, wr_signal = calc_williams_r(high, low, close)
     ichimoku = calc_ichimoku_signal(high, low, close)
@@ -680,7 +680,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         score += fib["score_impact"]
         signals.append(f"Fib区间: {fib['zone']}")
 
-    # === v1.5.4 ADX 趋势强度加权 ===
+    # === v3.3 ADX 趋势强度加权 ===
     if adx_val > 50:
         # 强趋势：趋势指标权重加大
         if macd["signal"] in ("金叉↗", "多头"):
@@ -698,7 +698,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         elif rsi > 70:
             score -= 5
 
-    # === v1.5.4 Williams %R 交叉验证 ===
+    # === v3.3 Williams %R 交叉验证 ===
     if wr_signal == "超买" and rsi > 65:
         score -= 8  # 双超买确认，加空
         signals.append(f"W%R={williams_r}+RSI={rsi:.0f}双超卖")
@@ -710,7 +710,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     elif wr_signal == "超卖" and rsi > 50:
         signals.append(f"W%R超卖但RSI未确认→分歧")
 
-    # === v1.5.4 一目均衡表 ===
+    # === v3.3 一目均衡表 ===
     if ichimoku:
         score += ichimoku["score_impact"]
         signals.append(f"一目: {ichimoku['trend']}")
@@ -819,13 +819,13 @@ def analyze_medium_long_term(symbol, batch_data=None):
 # ==================== 每日推送报告 ====================
 
 def generate_daily_report(days=3):
-    """v1.4.0 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
+    """v3.3 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
     horizon = f"{days}天"
     now = datetime.now()
     lines = []
 
     lines.append("=" * 50)
-    lines.append("💰 石油黄金每日投资参考 v1.4.0")
+    lines.append("💰 石油黄金每日投资参考 v3.3")
     lines.append(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{horizon} + 中长期")
 
     # ━━━ 数据获取：多源 + 永不失败 ━━━
@@ -1015,7 +1015,7 @@ def generate_daily_report(days=3):
 
     # ━━━ 六、综合投资建议 ━━━
     lines.append(f"\n{'━' * 50}")
-    lines.append("🎯 六、综合投资建议（智能引擎 v1.4.0）")
+    lines.append("🎯 六、综合投资建议（智能引擎 v3.3）")
     lines.append(f"{'━' * 50}")
 
     asset_groups = [("🥇 黄金", gold_dict, 0.3), ("🥈 白银", silver_dict, 0.25), ("🛢️ 原油", oil_dict, 0.2)]
@@ -1114,7 +1114,7 @@ def generate_daily_report(days=3):
         opp_impact = scanner.get_total_score_impact()
 
         lines.append(f"\n{'━' * 50}")
-        lines.append("🔍 七、隐藏机遇扫描（v1.4.0）")
+        lines.append("🔍 七、隐藏机遇扫描（v3.3）")
         lines.append(f"{'━' * 50}")
         for ol in opp_lines:
             lines.append(ol)
@@ -1130,7 +1130,7 @@ def generate_daily_report(days=3):
     lines.append("  • 技术分析+地缘分析仅供参考，不构成投资建议")
     lines.append("  • 期货有杠杆风险，新手从ETF开始")
     lines.append("  • 单品种仓位 ≤ 10%，总仓位 ≤ 30%")
-    lines.append("  • v1.4.0: 多源交叉验证 + 隐藏机遇扫描")
+    lines.append("  • v3.3: 多源交叉验证 + 隐藏机遇扫描")
 
     report = "\n".join(lines)
     print(report)
@@ -1335,7 +1335,7 @@ def _analyze_instrument(name, period="90d", horizon=3):
     except Exception as e:
         sr_data = None
 
-    # === v1.5.4 增强指标 ===
+    # === v3.3 增强指标 ===
     adx_val, adx_regime = calc_adx(high, low, close)
     williams_r, wr_signal = calc_williams_r(high, low, close)
     ichimoku = calc_ichimoku_signal(high, low, close)
@@ -1390,7 +1390,7 @@ def _analyze_instrument(name, period="90d", horizon=3):
             if divergence == "底背离": score += 10; signals.append("OBV底背离（看涨）")
             elif divergence == "顶背离": score -= 10; signals.append("OBV顶背离（看跌）")
 
-    # === v1.5.4 ADX 趋势强度加权 ===
+    # === v3.3 ADX 趋势强度加权 ===
     if adx_val > 50:
         if macd_data and isinstance(macd_data, dict):
             sig = macd_data.get("signal", "")
@@ -1401,13 +1401,13 @@ def _analyze_instrument(name, period="90d", horizon=3):
         if rsi < 30: score += 5
         elif rsi > 70: score -= 5
 
-    # === v1.5.4 Williams %R 交叉验证 ===
+    # === v3.3 Williams %R 交叉验证 ===
     if wr_signal == "超买" and rsi > 65:
         score -= 6; signals.append(f"W%R={williams_r}+RSI双超买")
     elif wr_signal == "超卖" and rsi < 35:
         score += 6; signals.append(f"W%R={williams_r}+RSI双超卖")
 
-    # === v1.5.4 一目均衡表 ===
+    # === v3.3 一目均衡表 ===
     if ichimoku:
         score += ichimoku["score_impact"]
         signals.append(f"一目: {ichimoku['trend']}")
@@ -1529,7 +1529,7 @@ def run_advisor_akshare(days=3):
         if r.get("signals"):
             print(f"  信号: {', '.join(r['signals'])}")
 
-        # v1.5.4 增强指标
+        # v3.3 增强指标
         if r.get("adx_regime"):
             print(f"  ADX: {r.get('adx', '?')} ({r['adx_regime']})")
         if r.get("wr_signal"):

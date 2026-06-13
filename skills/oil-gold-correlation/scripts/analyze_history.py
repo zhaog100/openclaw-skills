@@ -2,6 +2,7 @@
 """
 历史走势分析报告 — 收集黄金石油近期走势数据，发现报告优化点
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 import sys
 import numpy as np
 from pathlib import Path
@@ -133,3 +134,4 @@ def analyze():
 
 if __name__ == '__main__':
     analyze()
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""石油黄金投资参考 - 纯文本报告生成器 v2.0
+"""石油黄金投资参考 - 纯文本报告生成器 v3.3
 拆分为 PART 1（行情+仪表盘+技术）和 PART 2（宏观+操作建议）"""
 
 import sys
@@ -296,3 +296,4 @@ if __name__ == '__main__':
     print(f'完整: {REPORT_TEXT}')
     print(f'PART1: {REPORT_TEXT.with_suffix(".part1.txt")}')
     print(f'PART2: {REPORT_TEXT.with_suffix(".part2.txt")}')
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
