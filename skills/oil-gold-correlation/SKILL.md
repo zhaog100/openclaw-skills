@@ -197,7 +197,7 @@ export TWELVE_DATA_API_KEY=your_key
 
 | 版本 | 日期 | 关键变更 |
 |------|------|----------|
-| v1.0.0 | 04-12 | 初始安装，yfinance 限速问题发现 |
+| v3.3.0 | 04-12 | 初始安装，yfinance 限速问题发现 |
 | v3.3 | 04-14 | fetch_data.py SyntaxError 修复（docstring重复） |
 | v3.3 | 04-14 | bug 修复验证通过 |
 | v3.3 | 04-13~16 | 多数据源架构 + 隐藏机遇扫描器 + 地缘评分优化 |

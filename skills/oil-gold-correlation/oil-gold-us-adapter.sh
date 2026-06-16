@@ -25,3 +25,4 @@ fi
 
 python3 /root/.openclaw/workspace/skills/oil-gold-correlation/scripts/report_text.py
 
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
