@@ -435,3 +435,17 @@ _最后更新: 2026-06-15 12:07 CST_
 - 三品种30日共振强度均为30%(方向分歧，低置信度)
 ---
 _最后更新: 2026-06-15 21:05 CST_
+
+## 今日变更记录（2026-06-16）
+- 10:14 官家要求添加 SSH 公钥到 GitHub
+  - 公钥已添加，SSH 连接验证通过 ✅
+  - 官家发的 key: NbVMqQuwEm0laTNW7BbNHBqwnK/DXYPh5aA3DZjYS7o
+- 11:02 官家确认：本次可推送远程技能仓库，以后需同意，只更新三个技能
+- 11:04-11:14 推送 openclaw-skills 远程仓库
+  - oil-gold-correlation: 远程和本地完全一致，无需更新 ✅
+  - china-exam-info-core: SKILL.md v1.1.0→v3.3.0，get_exam_info.py 更新（国企央企采集重构）
+  - 推送成功: commit f11d31e → origin/main
+  - 只更新了2个文件，未覆盖其他技能 ✅
+- ⚠️ 注意: openclaw-skills 和 xiaomijiao-skills 是两个不同仓库，不要搞混
+---
+_最后更新: 2026-06-16 11:14 CST_
