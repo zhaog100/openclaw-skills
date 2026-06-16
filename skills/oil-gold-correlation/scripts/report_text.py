@@ -387,20 +387,26 @@ def generate_report():
         lines.append(f"  ⚠️ 多周期共振分析不可用: {e}")
         lines.append("")
 
-    # ========== 结论 ==========
+    # ========== 结论（必须与三品种建议一致） ==========
     lines.append('━' * 30)
 
-    if gold_adj >= 50 and oil_score >= 50:
-        conclusion = '黄金和原油均有支撑，可逢低分批布局。'
-    elif gold_adj >= 50 and oil_score < 40:
-        conclusion = '黄金可逢低布局，原油偏弱等企稳信号。'
-    elif gold_adj < 40 and oil_score >= 50:
-        conclusion = '黄金偏弱观望，原油有支撑可轻仓。'
-    else:
-        conclusion = '双弱观望，等信号灯转正再操作。'
+    buy_count = sum(1 for s in [gold_score, silver_score, oil_score] if s >= 60)
+    hold_count = sum(1 for s in [gold_score, silver_score, oil_score] if 40 <= s < 60)
+    avoid_count = sum(1 for s in [gold_score, silver_score, oil_score] if s < 40)
 
-    if risk_score >= 40:
-        conclusion += f' 地缘+{risk_score}利多避险。'
+    if buy_count >= 2:
+        conclusion = '多品种信号偏强，可逢低分批布局。'
+    elif buy_count == 1 and hold_count >= 1:
+        conclusion = '个别品种有支撑，轻仓试探，其余观望。'
+    elif hold_count >= 2:
+        conclusion = '方向分歧，建议观望为主，等待信号明朗。'
+    elif avoid_count >= 2:
+        conclusion = '多品种偏弱，强烈建议观望，等信号灯转正。'
+    else:
+        conclusion = '信号混杂，建议观望，等待方向明朗。'
+
+    if risk_score >= 40 and buy_count < 2:
+        conclusion += f' 地缘风险({risk_score})偏高，注意避险。'
 
     lines.append(f'>> 💡 结论：{conclusion}')
     lines.append(f'>> ⚠️ 仅供参考，不构成投资建议')
