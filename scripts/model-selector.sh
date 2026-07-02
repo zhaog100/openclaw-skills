@@ -11,25 +11,25 @@ analyze_task() {
     # 关键词特征匹配
     if echo "$input" | grep -qiE "分析|推理|计算|思考|逻辑|论证|证明"; then
         task_type="深度思考"
-        recommended_model="longcat/LongCat-2.0-Preview"
+        recommended_model="agnes/agnes-2.0-flash"
     elif echo "$input" | grep -qiE "写诗|写文|创作|剧本|小说|文案|内容"; then
         task_type="内容创作"
-        recommended_model="longcat/LongCat-2.0-Preview"
+        recommended_model="agnes/agnes-2.0-flash"
     elif echo "$input" | grep -qiE "代码|编程|函数|算法|调试|bug|sql"; then
         task_type="代码生成"
-        recommended_model="longcat/LongCat-2.0-Preview"
+        recommended_model="agnes/agnes-2.0-flash"
     elif echo "$input" | grep -qiE "图片|识别|看图|多模态|视觉"; then
         task_type="多模态理解"
-        recommended_model="longcat/LongCat-Flash-Omni-2603"
+        recommended_model="agnes/agnes-2.0-flash"
     elif echo "$input" | grep -qiE "对话|聊天|交流|讨论|沟通"; then
         task_type="复杂对话"
-        recommended_model="longcat/LongCat-2.0-Preview"
+        recommended_model="agnes/agnes-2.0-flash"
     elif echo "$input" | grep -qiE "查|搜索|找|问|简单|快速|简短"; then
         task_type="简单查询"
-        recommended_model="longcat/LongCat-2.0-Preview"
+        recommended_model="agnes/agnes-2.0-flash"
     else
         task_type="未知任务"
-        recommended_model="longcat/LongCat-2.0-Preview"
+        recommended_model="agnes/agnes-2.0-flash"
     fi
 
     echo "$task_type|$recommended_model"
@@ -42,29 +42,29 @@ main() {
     if [ -z "$input" ]; then
         echo "📋 模型自动选择指南："
         echo ""
-        echo "🔥 轻量任务 (LongCat-Flash-Lite)"
+        echo "🔥 轻量任务 (agnes-2.0-flash)"
         echo "   - 简单查询"
         echo "   - 快速响应"
         echo "   - 日常任务"
         echo ""
-        echo "💬 对话任务 (LongCat-Flash-Chat)"
+        echo "💬 对话任务 (agnes-2.0-flash)"
         echo "   - 复杂对话"
         echo "   - 内容创作"
         echo "   - 多轮交互"
         echo ""
-        echo "🧠 思考任务 (LongCat-Flash-Thinking-2601)"
+        echo "🧠 思考任务 (agnes-2.0-flash)"
         echo "   - 深度思考"
         echo "   - 逻辑推理"
         echo "   - 代码生成"
         echo "   - 数学计算"
         echo ""
-        echo "🖼️ 多模态 (LongCat-Flash-Omni-2603)"
+        echo "🖼️ 多模态 (agnes-2.0-flash)"
         echo "   - 图片识别"
         echo "   - 多模态理解"
         echo ""
         echo "🎯 使用方式："
         echo "   /model <模型ID>"
-        echo "   例如：/model longcat/LongCat-2.0-Preview"
+        echo "   例如：/model agnes/agnes-2.0-flash"
         return 0
     fi
 

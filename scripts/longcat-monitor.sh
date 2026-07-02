@@ -2,10 +2,10 @@
 # 美团 LongCat 额度监控脚本
 # 用途：监控每日 token 使用量，避免超限
 
-LOG_FILE="/root/.openclaw/workspace/logs/longcat-usage.log"
+LOG_FILE="/root/.openclaw/workspace/logs/agnes-usage.log"
 TODAY=$(date +%Y-%m-%d)
 LONGCAT_LIMIT=16666666  # 16,666,666 - LongCat 供应商统一配额（所有模型共享）
-MODELS=("LongCat-2.0-Preview")
+MODELS=("agnes-2.0-flash")
 MODEL_COUNT=${#MODELS[@]}
 
 # 颜色定义
@@ -44,7 +44,7 @@ main() {
     log "脚本启动"
     
     # 检查配置
-    if ! grep -q "longcat" /root/.openclaw/openclaw.json; then
+    if ! grep -q "agnes" /root/.openclaw/openclaw.json; then
         log "❌ 未检测到 LongCat 配置"
         exit 1
     fi

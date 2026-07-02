@@ -50,7 +50,11 @@ TIMEFRAMES = {
 def _fetch_akshare_single(ak_key, period="1y"):
     """akshare 获取单个品种"""
     import akshare as ak
-    from config import CACHE_DIR
+    try:
+        from config import CACHE_DIR
+    except ImportError:
+        from pathlib import Path
+        CACHE_DIR = Path("/tmp/oil-gold-cache")
 
     cache_key = f"mta_{ak_key}_{period}"
     cache_file = CACHE_DIR / f"{cache_key}.pkl"
@@ -137,7 +141,11 @@ def _fetch_akshare_single(ak_key, period="1y"):
 def _fetch_yfinance_single(symbol, period="1y"):
     """yfinance 获取单个品种"""
     import yfinance as yf
-    from config import CACHE_DIR
+    try:
+        from config import CACHE_DIR
+    except ImportError:
+        from pathlib import Path
+        CACHE_DIR = Path("/tmp/oil-gold-cache")
 
     cache_key = f"mta_yf_{symbol}_{period}"
     cache_file = CACHE_DIR / f"{cache_key}.pkl"
