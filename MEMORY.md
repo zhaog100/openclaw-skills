@@ -9,10 +9,15 @@
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
-| openclaw-skills | github.com/zhaog100/openclaw-skills | OpenClaw 技能仓库（子模块，不碰） |
-| origin | github.com/zhaog100/xiaomijiao-skills | 小米椒技能仓库（个人仓库） |
+| openclaw-skills | github.com/zhaog100/openclaw-skills | OpenClaw 技能仓库（子模块，**绝对不碰**） |
+| origin | github.com/zhaog100/xiaomijiao-skills | 小米椒技能仓库（个人仓库，**可更新**） |
 
-**⚠️ 注意:** 不要搞混仓库，push 前确认目标仓库！
+**⚠️ 安全规则:**
+- 每次 push 前必须确认目标仓库
+- `origin` = 个人仓库 ✅ 可推送
+- `openclaw-skills` = 子模块 ❌ 绝不推送
+
+_最后更新: 2026-07-03 16:20_
 
 ## 服务器
 - **IP:** 43.133.55.138 (腾讯云轻量)
