@@ -7,7 +7,12 @@
 1. process.env.JD_COOKIE
 2. /ql/data/config/config.sh 或 /ql/config/config.sh
 3. /ql/data/env.sh 或 /ql/env.sh
-4. 青龙 API (http://127.0.0.1:5700) 自动读取
+4. 青龙 API (通过 QL_URL 配置) 自动读取
+
+青龙面板配置 (可选):
+- QL_URL: 青龙面板地址 (默认 http://localhost:5700)
+- QL_USER: 青龙管理员用户名 (默认 admin)
+- QL_PASS: 青龙管理员密码 (默认 admin)
 
 cron: 0 20 * * 4 (每周四 20:00)
 */
@@ -73,7 +78,7 @@ function getJDCookies() {
   // Fallback 3: 通过青龙 API 读取（青龙 2.21 推荐方式）
   if (!envValue) {
     try {
-      const qlHost = process.env.QL_URL || 'http://127.0.0.1:5700';
+      const qlHost = process.env.QL_URL || 'http://localhost:5700';
       const qlUser = process.env.QL_USER || 'admin';
       const qlPass = process.env.QL_PASS || 'admin';
       
@@ -199,3 +204,5 @@ async function main() {
 }
 
 main().catch(e => { log('ERROR', e.message); process.exit(1); });
+
+// MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

@@ -17,7 +17,44 @@
 - `origin` = 个人仓库 ✅ 可推送
 - `openclaw-skills` = 子模块 ❌ 绝不推送
 
-_最后更新: 2026-07-03 16:20_
+_最后更新: 2026-07-03 21:28 CST_
+
+## 今日变更记录（2026-07-03）
+- **青龙面板升级**：2.17.9 → 2.21.0，数据迁移修复（整数时间戳转 ISO 字符串）
+- **Cookie 管理**：主账号 zhaog100 更新 pt_key，副账号 jd_5722c14df4b06 待更新
+- **京东黑色星期五抢券脚本**：
+  - Node.js 版 v1.0.1：四层 Cookie 获取逻辑（环境变量→配置文件→env.sh→青龙 API）
+  - Python 版 v1.0.0：多账号支持，requests 库
+  - 脚本位置：`/ql/data/scripts/6dylan6_jdpro_main/jd_black_friday.js`
+  - 验证：通过青龙 API 成功读取到 1 个有效账号
+- **Agnes AI 模型配置**：
+  - 基础地址：`https://apihub.agnes-ai.com/v1`
+  - 已配置 5 个模型：agnes-2.0-flash, agnes-1.5-flash, agnes-image-2.0-flash, agnes-image-2.1-flash, agnes-video-v2.0
+  - 默认模型切换至 agnes-1.5-flash
+- **QMD 向量索引升级**：TF-IDF 500d → Gemini 3072d（671/671 chunk）
+- **npm → pnpm 迁移**：青龙容器内修复 npm ENOTEMPTY 错误
+- **技能部署**：context-manager-v2 v2.9.0 + long-context v2.0.0
+- **抢券脚本审查修复**：
+  - 添加版权信息（MIT License + SJYKJ）
+  - 统一版本号（Python 也改为 v1.0.1）
+  - 青龙 API 地址改为 localhost（不暴露具体 IP）
+  - 移除 `/root/.ql/` 硬编码路径
+
+### 关键教训
+1. 青龙 2.21 环境变量存储在 SQLite，不再使用 config.sh
+2. pm2 不继承 shell env.sh 变量
+3. 通过青龙面板 UI 或 API 触发脚本时，系统自动注入环境变量
+4. 混淆 JS ≠ 空壳（看文件大小不看行数）
+5. 所有身份文件仔细核对，永远不要搞混名字
+6. openclaw-skills 子模块，触碰前要三思
+
+### 待解决问题
+- 副账号 Cookie 待更新
+- 抢券脚本最终测试（活动期间验证）
+- QMD 向量索引 embedding_cache=0（需排查）
+
+---
+_最后更新: 2026-07-03 21:28 CST_
 
 ## 服务器
 - **IP:** 43.133.55.138 (腾讯云轻量)
