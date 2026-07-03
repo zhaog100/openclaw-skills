@@ -60,7 +60,7 @@ def _fetch_akshare_single(ak_key, period="1y"):
     cache_file = CACHE_DIR / f"{cache_key}.pkl"
     if cache_file.exists():
         age = time.time() - cache_file.stat().st_mtime
-        if age < 300:
+        if age < 3600:
             try:
                 import pickle
                 with open(cache_file, "rb") as f:
@@ -151,7 +151,7 @@ def _fetch_yfinance_single(symbol, period="1y"):
     cache_file = CACHE_DIR / f"{cache_key}.pkl"
     if cache_file.exists():
         age = time.time() - cache_file.stat().st_mtime
-        if age < 300:
+        if age < 3600:
             try:
                 import pickle
                 with open(cache_file, "rb") as f:
