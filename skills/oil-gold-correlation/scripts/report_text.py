@@ -394,18 +394,27 @@ def generate_report():
     hold_count = sum(1 for s in [gold_score, silver_score, oil_score] if 40 <= s < 60)
     avoid_count = sum(1 for s in [gold_score, silver_score, oil_score] if s < 40)
 
-    if buy_count >= 2:
+    # 优先检查回避品种数量，避免"可考虑"掩盖"回避"信号
+    if avoid_count >= 2:
+        conclusion = '多品种偏弱，强烈建议观望，等信号灯转正。'
+    elif avoid_count == 1 and buy_count >= 2:
+        # 有回避品种但其他两个可考虑 → 不能笼统说"偏强"
+        conclusion = '个别品种有支撑，但存在回避品种，轻仓试探，严控仓位。'
+    elif avoid_count == 1 and buy_count == 1:
+        conclusion = '信号混杂，建议观望，等待方向明朗。'
+    elif avoid_count == 1:
+        conclusion = '存在回避品种，建议观望为主，仅对可考虑品种轻仓试探。'
+    elif buy_count >= 2 and avoid_count == 0:
         conclusion = '多品种信号偏强，可逢低分批布局。'
     elif buy_count == 1 and hold_count >= 1:
         conclusion = '个别品种有支撑，轻仓试探，其余观望。'
     elif hold_count >= 2:
         conclusion = '方向分歧，建议观望为主，等待信号明朗。'
-    elif avoid_count >= 2:
-        conclusion = '多品种偏弱，强烈建议观望，等信号灯转正。'
     else:
         conclusion = '信号混杂，建议观望，等待方向明朗。'
 
-    if risk_score >= 40 and buy_count < 2:
+    # 地缘风险始终检查，只要偏高就追加警告
+    if risk_score >= 40:
         conclusion += f' 地缘风险({risk_score})偏高，注意避险。'
 
     lines.append(f'>> 💡 结论：{conclusion}')
