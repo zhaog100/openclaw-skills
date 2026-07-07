@@ -1,14 +1,36 @@
-xiaomijiao-gateway-issue.txt
-
 # Secrets
 secrets/
 *.env
 api-keys.json
-__pycache__
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
 
 # OpenClaw 主配置（可能含敏感信息）
 ../openclaw.json
 ../agents/
+
+# 备份
 backup/
+
+# 子模块
 openclaw-skills/
+
+# 废弃/临时
+skills_backup_*/
+xiaomijiao-skills/
+node_modules/
+workspace/workspace/
+agents/xiaomijiao/
+
+# 中间文件
+output_part*.txt
+*.tar_*
+
+# 脚本修复
 scripts/fix-gateway.sh
