@@ -74,18 +74,21 @@ def _period_to_dates(period: str):
 
 
 def fetch_akshare(period="1y", interval="1d"):
-    """使用 akshare 获取国内期货数据（人民币计价）"""
+    """使用 akshare 获取国内期货数据（人民币计价），带超时"""
     import akshare as ak
+    import socket
+    old_timeout = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(15)
+    try:
+        start_date, end_date = _period_to_dates(period)
+        result = {}
 
-    start_date, end_date = _period_to_dates(period)
-    result = {}
-
-    for name, info in AKSHARE_SYMBOLS.items():
-        try:
-            df = ak.futures_main_sina(symbol=info["symbol"], start_date=start_date, end_date=end_date)
-            if df is None or df.empty:
-                print(f"  ⚠️ {info['name']}({info['symbol']}) 数据为空")
-                continue
+        for name, info in AKSHARE_SYMBOLS.items():
+            try:
+                df = ak.futures_main_sina(symbol=info["symbol"], start_date=start_date, end_date=end_date)
+                if df is None or df.empty:
+                    print(f"  ⚠️ {info['name']}({info['symbol']}) 数据为空")
+                    continue
 
             # akshare 列名：日期/开盘价/最高价/最低价/收盘价/成交量/持仓量
             # 标准化列名
@@ -134,6 +137,10 @@ def fetch_akshare(period="1y", interval="1d"):
         except Exception as e:
             print(f"  ⚠️ akshare {info['name']}({info['symbol']}) 获取失败: {e}")
 
+        except Exception:
+            pass  # socket timeout handled by global default
+    finally:
+        socket.setdefaulttimeout(old_timeout)
     return result
 
 
