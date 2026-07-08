@@ -24,9 +24,10 @@ _最后更新: 2026-07-03 21:28 CST_
 - **Cookie 管理**：主账号 zhaog100 更新 pt_key，副账号 jd_5722c14df4b06 待更新
 - **京东黑色星期五抢券脚本**：
   - Node.js 版 v1.0.1：四层 Cookie 获取逻辑（环境变量→配置文件→env.sh→青龙 API）
-  - Python 版 v1.0.0：多账号支持，requests 库
+  - Python 版 v1.0.1：多账号支持，requests 库
   - 脚本位置：`/ql/data/scripts/6dylan6_jdpro_main/jd_black_friday.js`
   - 验证：通过青龙 API 成功读取到 1 个有效账号
+- **副账号 Cookie 更新**：jd_5722c14df4b06 已更新并验证有效（status=0）
 - **Agnes AI 模型配置**：
   - 基础地址：`https://apihub.agnes-ai.com/v1`
   - 已配置 5 个模型：agnes-2.0-flash, agnes-1.5-flash, agnes-image-2.0-flash, agnes-image-2.1-flash, agnes-video-v2.0
@@ -49,7 +50,6 @@ _最后更新: 2026-07-03 21:28 CST_
 6. openclaw-skills 子模块，触碰前要三思
 
 ### 待解决问题
-- 副账号 Cookie 待更新（已更新，待面板触发验证）
 - 抢券脚本最终测试（活动期间验证）
 
 ---
