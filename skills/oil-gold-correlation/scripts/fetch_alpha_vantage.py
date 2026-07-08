@@ -110,3 +110,5 @@ def fetch_av_quote(symbol):
         }
     except Exception:
         return None
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

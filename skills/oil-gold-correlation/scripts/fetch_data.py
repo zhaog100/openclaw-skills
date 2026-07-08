@@ -274,3 +274,5 @@ if __name__ == "__main__":
 
     total = sum(len(d["dates"]) for d in data.values())
     print(f"\n✅ 数据获取完成：{len(data)} 个品种，{total} 条记录")
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

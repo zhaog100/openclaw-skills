@@ -774,3 +774,5 @@ def format_commodity_signals(macro=None, sentiment=None, assessment=None):
 
 if __name__ == "__main__":
     print("\n".join(format_macro_report()))
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

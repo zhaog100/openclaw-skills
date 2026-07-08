@@ -431,3 +431,5 @@ def generate_report():
 
 if __name__ == '__main__':
     generate_report()
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

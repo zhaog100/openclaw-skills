@@ -106,3 +106,5 @@ def fetch_td_price(symbol):
         return None
     except Exception:
         return None
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
