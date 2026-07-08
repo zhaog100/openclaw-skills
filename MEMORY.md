@@ -31,7 +31,7 @@ _最后更新: 2026-07-03 21:28 CST_
   - 基础地址：`https://apihub.agnes-ai.com/v1`
   - 已配置 5 个模型：agnes-2.0-flash, agnes-1.5-flash, agnes-image-2.0-flash, agnes-image-2.1-flash, agnes-video-v2.0
   - 默认模型切换至 agnes-1.5-flash
-- **QMD 向量索引升级**：TF-IDF 500d → Gemini 3072d（671/671 chunk）
+- **QMD 向量索引升级**：TF-IDF 500d → Gemini 3072d（671/671 chunk）+ embedding_cache 重建（2026-07-08 修复）
 - **npm → pnpm 迁移**：青龙容器内修复 npm ENOTEMPTY 错误
 - **技能部署**：context-manager-v2 v2.9.0 + long-context v2.0.0
 - **抢券脚本审查修复**：
@@ -49,12 +49,11 @@ _最后更新: 2026-07-03 21:28 CST_
 6. openclaw-skills 子模块，触碰前要三思
 
 ### 待解决问题
-- 副账号 Cookie 待更新
+- 副账号 Cookie 待更新（已更新，待面板触发验证）
 - 抢券脚本最终测试（活动期间验证）
-- QMD 向量索引 embedding_cache=0（需排查）
 
 ---
-_最后更新: 2026-07-03 21:28 CST_
+_最后更新: 2026-07-08 13:30 CST_
 
 ## 服务器
 - **IP:** 43.133.55.138 (腾讯云轻量)
