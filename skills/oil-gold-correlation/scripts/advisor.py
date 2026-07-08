@@ -40,21 +40,27 @@ INSTRUMENTS = {
 # ==================== 批量数据下载（避免限速）====================
 
 def batch_download(symbols, period="3mo", interval="1d", max_retries=3):
-    """批量下载数据，带重试"""
+    """批量下载数据，带重试和超时"""
     import yfinance as yf
-    for attempt in range(max_retries):
-        try:
-            data = yf.download(symbols, period=period, interval=interval,
-                               group_by="ticker", progress=False)
-            return data
-        except Exception as e:
-            if attempt < max_retries - 1:
-                wait = 3 * (attempt + 1)
-                print(f"[重试] 批量下载第{attempt+1}次失败，{wait}秒后重试...")
-                time.sleep(wait)
-            else:
-                print(f"❌ 批量下载失败: {e}")
-                return pd.DataFrame()
+    import socket
+    old_timeout = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(15)
+    try:
+        for attempt in range(max_retries):
+            try:
+                data = yf.download(symbols, period=period, interval=interval,
+                                   group_by="ticker", progress=False, timeout=15)
+                return data
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    wait = 3 * (attempt + 1)
+                    print(f"[重试] 批量下载第{attempt+1}次失败，{wait}秒后重试...")
+                    time.sleep(wait)
+                else:
+                    print(f"❌ 批量下载失败: {e}")
+                    return pd.DataFrame()
+    finally:
+        socket.setdefaulttimeout(old_timeout)
 
 
 # ==================== 技术指标函数 ====================
@@ -1235,26 +1241,33 @@ if __name__ == "__main__OLD":
 # ==================== akshare 数据适配器 ====================
 
 def _fetch_yfinance_single(symbol, period="90d"):
-    """获取单个 yfinance 品种数据 - Ticker.history() 优先，download fallback"""
+    """获取单个 yfinance 品种数据 - Ticker.history() 优先，download fallback，带超时"""
     try:
         import yfinance as yf
-        # 方法 1: Ticker.history()（最稳定）
+        import socket
+        # 设置全局超时：socket + yfinance
+        old_timeout = socket.getdefaulttimeout()
+        socket.setdefaulttimeout(15)
         try:
-            t = yf.Ticker(symbol)
-            df = t.history(period=period, interval="1d")
-            if df is not None and len(df) >= 20:
-                return df.dropna()
-        except Exception:
-            pass
-        # 方法 2: download fallback
-        try:
-            df = yf.download(symbol, period=period, interval="1d", progress=False)
-            if df is not None and len(df) >= 20:
-                if isinstance(df.columns, pd.MultiIndex):
-                    df = df[symbol]
-                return df.dropna()
-        except Exception:
-            pass
+            # 方法 1: Ticker.history()（最稳定）
+            try:
+                t = yf.Ticker(symbol)
+                df = t.history(period=period, interval="1d")
+                if df is not None and len(df) >= 20:
+                    return df.dropna()
+            except Exception:
+                pass
+            # 方法 2: download fallback
+            try:
+                df = yf.download(symbol, period=period, interval="1d", progress=False, timeout=15)
+                if df is not None and len(df) >= 20:
+                    if isinstance(df.columns, pd.MultiIndex):
+                        df = df[symbol]
+                    return df.dropna()
+            except Exception:
+                pass
+        finally:
+            socket.setdefaulttimeout(old_timeout)
     except Exception:
         pass
     return None

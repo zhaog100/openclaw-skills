@@ -146,6 +146,25 @@ def get_entry_exit(result, geo_risk=0):
     return entry_note, stop_loss, target
 
 def generate_report():
+    import signal
+    class ReportTimeout(Exception):
+        pass
+    def timeout_handler(signum, frame):
+        raise ReportTimeout("报告生成超时（300秒）")
+    
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(300)  # 5分钟超时
+    
+    try:
+        _generate_report_inner()
+    except ReportTimeout:
+        print("\n⚠️ 报告生成超时，输出缓存数据...")
+        _generate_report_cached()
+    finally:
+        signal.alarm(0)
+
+def _generate_report_inner():
+    """报告生成主逻辑（带超时保护）"""
     now = datetime.now()
     lines = []
 
