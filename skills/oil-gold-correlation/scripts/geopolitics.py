@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-地缘政治分析模块
+地缘政治分析模块 v3.3
 自动采集新闻 → 评估对石油黄金的影响
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -553,3 +555,5 @@ def generate_geopolitical_section():
     _save_cache(lines, risk_score)
     
     return lines, risk_score
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

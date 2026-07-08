@@ -126,3 +126,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     plot_analysis(args.period, args.window, args.output)
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

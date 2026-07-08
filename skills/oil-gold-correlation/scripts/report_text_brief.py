@@ -232,3 +232,5 @@ def generate_brief_report():
 
 if __name__ == '__main__':
     generate_brief_report()
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

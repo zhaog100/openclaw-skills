@@ -1,6 +1,13 @@
-# 版本: v3.3 | 石油黄金白银相关性分析
 #!/usr/bin/env python3
-"""石油黄金报告卡片 v9 - 大间距防手机重叠"""
+"""
+石油黄金报告卡片模块 v3.3
+大间距防手机重叠
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
+Author: 小米粒 (Xiaomili) - AI Agent
+"""
+# 版本: v3.3 | 石油黄金白银相关性分析
 import sys
 from pathlib import Path
 from datetime import datetime

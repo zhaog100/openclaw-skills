@@ -242,3 +242,5 @@ if __name__ == "__main__":
         }
         result = func_map[args.method](df)
         print(json.dumps(result, indent=2, default=str))
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

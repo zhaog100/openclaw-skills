@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-石油黄金投资建议模块
+石油黄金投资建议模块 v3.3
 短期（1天~1周）为主 + 中长期（1月~6月）补充
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -1919,3 +1920,5 @@ if __name__ == "__main__":
     parser.add_argument("--days", type=int, default=3)
     args = parser.parse_args()
     run_advisor_akshare(days=args.days)
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

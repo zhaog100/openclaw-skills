@@ -117,3 +117,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_report(args.period, args.window)
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

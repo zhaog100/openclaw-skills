@@ -317,3 +317,5 @@ if __name__ == "__main__":
             cons = mgr.consensus(data)
             if cons:
                 print(f"  共识价: {cons['price']} ({cons['sources']} 源)")
+
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
