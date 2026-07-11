@@ -221,26 +221,43 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="石油黄金相关性分析")
-    parser.add_argument("--period", default="1y")
-    parser.add_argument("--method", default="all", choices=["all", "pearson", "spearman", "granger", "cointegration"])
-    parser.add_argument("--window", type=int, default=30)
-    args = parser.parse_args()
+    import signal
+    import os
+    
+    # 超时控制：30分钟强制退出，防止残留进程
+    def timeout_handler(signum, frame):
+        print(f"\n⚠️ 超时（30分钟），强制退出")
+        os._exit(1)
+    
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(1800)  # 30分钟
+    
+    try:
+        parser = argparse.ArgumentParser(description="石油黄金相关性分析")
+        parser.add_argument("--period", default="1y")
+        parser.add_argument("--method", default="all", choices=["all", "pearson", "spearman", "granger", "cointegration"])
+        parser.add_argument("--window", type=int, default=30)
+        args = parser.parse_args()
 
-    df = load_data(args.period)
-    if df.empty:
+        df = load_data(args.period)
+        if df.empty:
+            sys.exit(1)
+
+        if args.method == "all":
+            result = run_all(df, args.window)
+        else:
+            func_map = {
+                "pearson": pearson_corr,
+                "spearman": spearman_corr,
+                "granger": granger_test,
+                "cointegration": cointegration_test,
+            }
+            result = func_map[args.method](df)
+            print(json.dumps(result, indent=2, default=str))
+    except Exception as e:
+        print(f"\n❌ 分析失败: {e}")
         sys.exit(1)
-
-    if args.method == "all":
-        result = run_all(df, args.window)
-    else:
-        func_map = {
-            "pearson": pearson_corr,
-            "spearman": spearman_corr,
-            "granger": granger_test,
-            "cointegration": cointegration_test,
-        }
-        result = func_map[args.method](df)
-        print(json.dumps(result, indent=2, default=str))
+    finally:
+        signal.alarm(0)  # 取消超时
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
