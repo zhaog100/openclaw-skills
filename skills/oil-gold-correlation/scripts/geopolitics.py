@@ -8,7 +8,6 @@ License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
 # 版本: v3.3 | 石油黄金白银相关性分析
-# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')

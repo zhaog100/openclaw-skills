@@ -115,6 +115,22 @@ def get_entry_exit(result, geo_risk=0):
         target = latest * 1.05
     return entry_note, stop_loss, target
 
+def _compute_macro_label():
+    """从 FRED 宏观数据动态计算宏观面评分"""
+    try:
+        from fetch_fred import market_comprehensive_assessment
+        assessment = market_comprehensive_assessment()
+        score = assessment.get('score', 50)
+        if score >= 65:
+            return '偏多'
+        elif score >= 45:
+            return '中性'
+        else:
+            return '偏空'
+    except Exception:
+        return '⏳无数据'
+
+
 def generate_brief_report():
     now = datetime.now()
     lines = []
@@ -146,7 +162,9 @@ def generate_brief_report():
     lines.append(f'│  🥈 白银  {s_emoji} {s_verdict:<6}  综合评分 {silver_score:>3}/100  │')
     lines.append(f'│  🛢️ 原油  {o_emoji} {o_verdict:<6}  综合评分 {oil_score:>3}/100  │')
     risk_label = '🔴极高' if risk_score >= 40 else '🟡中等' if risk_score >= 20 else '🟢低'
-    lines.append(f'│  🌍地缘风险 {risk_label}  宏观面:偏空           │')
+    # 宏观面评分：从 FRED 宏观数据动态计算
+    macro_label = _compute_macro_label()
+    lines.append(f'│  🌍地缘风险 {risk_label}  宏观面:{macro_label:<7} │')
     lines.append(f'└────────────────────────────────────────────┘')
 
     # ========== 仪表盘（一行一个品种，只给价格和方向） ==========

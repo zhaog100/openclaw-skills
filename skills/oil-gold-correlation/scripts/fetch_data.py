@@ -13,6 +13,7 @@ import argparse
 import json
 import os
 import sys
+import pandas as pd
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -90,55 +91,55 @@ def fetch_akshare(period="1y", interval="1d"):
                     print(f"  ⚠️ {info['name']}({info['symbol']}) 数据为空")
                     continue
 
-            # akshare 列名：日期/开盘价/最高价/最低价/收盘价/成交量/持仓量
-            # 标准化列名
-            col_map = {}
-            for col in df.columns:
-                col_lower = str(col).strip()
-                if "日期" in col_lower or "date" in col_lower:
-                    col_map[col] = "date"
-                elif "开盘" in col_lower or "open" in col_lower:
-                    col_map[col] = "open"
-                elif "最高" in col_lower or "high" in col_lower:
-                    col_map[col] = "high"
-                elif "最低" in col_lower or "low" in col_lower:
-                    col_map[col] = "low"
-                elif "收盘" in col_lower or "close" in col_lower:
-                    col_map[col] = "close"
-                elif "成交" in col_lower or "volume" in col_lower:
-                    col_map[col] = "volume"
-                elif "持仓" in col_lower or "hold" in col_lower.lower():
-                    col_map[col] = "open_interest"
+                # akshare 列名：日期/开盘价/最高价/最低价/收盘价/成交量/持仓量
+                # 标准化列名
+                col_map = {}
+                for col in df.columns:
+                    col_lower = str(col).strip()
+                    if "日期" in col_lower or "date" in col_lower:
+                        col_map[col] = "date"
+                    elif "开盘" in col_lower or "open" in col_lower:
+                        col_map[col] = "open"
+                    elif "最高" in col_lower or "high" in col_lower:
+                        col_map[col] = "high"
+                    elif "最低" in col_lower or "low" in col_lower:
+                        col_map[col] = "low"
+                    elif "收盘" in col_lower or "close" in col_lower:
+                        col_map[col] = "close"
+                    elif "成交" in col_lower or "volume" in col_lower:
+                        col_map[col] = "volume"
+                    elif "持仓" in col_lower or "hold" in col_lower.lower():
+                        col_map[col] = "open_interest"
 
-            df = df.rename(columns=col_map)
-            df["date"] = pd.to_datetime(df["date"])
-            df = df.sort_values("date").reset_index(drop=True)
+                df = df.rename(columns=col_map)
+                df["date"] = pd.to_datetime(df["date"])
+                df = df.sort_values("date").reset_index(drop=True)
 
-            dates = [str(d.date()) for d in df["date"]]
-            closes = [round(float(v), 2) for v in df["close"].values]
-            opens = [round(float(v), 2) for v in df["open"].values]
-            highs = [round(float(v), 2) for v in df["high"].values]
-            lows = [round(float(v), 2) for v in df["low"].values]
-            volumes = [int(v) for v in df["volume"].values]
+                dates = [str(d.date()) for d in df["date"]]
+                closes = [round(float(v), 2) for v in df["close"].values]
+                opens = [round(float(v), 2) for v in df["open"].values]
+                highs = [round(float(v), 2) for v in df["high"].values]
+                lows = [round(float(v), 2) for v in df["low"].values]
+                volumes = [int(v) for v in df["volume"].values]
 
-            result[name] = {
-                "symbol": info["symbol"],
-                "name": info["name"],
-                "exchange": info["exchange"],
-                "currency": info["currency"],
-                "dates": dates,
-                "close": closes,
-                "open": opens,
-                "high": highs,
-                "low": lows,
-                "volume": volumes,
-            }
+                result[name] = {
+                    "symbol": info["symbol"],
+                    "name": info["name"],
+                    "exchange": info["exchange"],
+                    "currency": info["currency"],
+                    "dates": dates,
+                    "close": closes,
+                    "open": opens,
+                    "high": highs,
+                    "low": lows,
+                    "volume": volumes,
+                }
 
-        except Exception as e:
-            print(f"  ⚠️ akshare {info['name']}({info['symbol']}) 获取失败: {e}")
+            except Exception as e:
+                print(f"  ⚠️ akshare {info['name']}({info['symbol']}) 获取失败: {e}")
 
-        except Exception:
-            pass  # socket timeout handled by global default
+            except Exception:
+                pass  # socket timeout handled by global default
     finally:
         socket.setdefaulttimeout(old_timeout)
     return result
@@ -264,7 +265,6 @@ def fetch_data(period="1y", interval="1d"):
 
 
 # 需要导入 pandas（akshare 列名处理用）
-import pandas as pd
 
 
 if __name__ == "__main__":
