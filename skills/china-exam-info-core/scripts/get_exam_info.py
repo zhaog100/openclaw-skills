@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 """
 中国公考+国企央企信息获取工具 v4.0
 使用Python标准库 + 真实数据源抓取 + 详情页深入提取
