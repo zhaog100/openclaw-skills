@@ -726,11 +726,11 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     pred_low = round(price * (1 - volatility * days / 100), 2)
     pred_high = round(price * (1 + volatility * days / 100), 2)
 
-    if score >= 50: advice, action, strategy = "🟢🟢 强烈买入", "STRONG_BUY", f"今日逢低买入，目标${take_profit}"
-    elif score >= 25: advice, action, strategy = "🟢 建议买入", "BUY", f"本周逢低建仓，目标${take_profit}"
+    if score >= 50: advice, action, strategy = "🟢🟢 强烈买入", "STRONG_BUY", f"今日逢低买入，目标{take_profit}"
+    elif score >= 25: advice, action, strategy = "🟢 建议买入", "BUY", f"本周逢低建仓，目标{take_profit}"
     elif score >= 10: advice, action, strategy = "🟢 轻仓试探", "LIGHT_BUY", "小仓试探，观察1-2天"
-    elif score <= -50: advice, action, strategy = "🔴🔴 强烈卖出", "STRONG_SELL", f"今日减仓，止损${stop_loss}"
-    elif score <= -25: advice, action, strategy = "🔴 建议卖出", "SELL", f"本周减仓，止损${stop_loss}"
+    elif score <= -50: advice, action, strategy = "🔴🔴 强烈卖出", "STRONG_SELL", f"今日减仓，止损{stop_loss}"
+    elif score <= -25: advice, action, strategy = "🔴 建议卖出", "SELL", f"本周减仓，止损{stop_loss}"
     elif score <= -10: advice, action, strategy = "🔴 轻仓减仓", "LIGHT_SELL", "减部分仓位观察"
     else: advice, action, strategy = "🟡 观望等待", "HOLD", "信号不明，等待1-2天"
 

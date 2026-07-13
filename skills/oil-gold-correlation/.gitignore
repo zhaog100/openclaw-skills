@@ -3,3 +3,12 @@ __pycache__/
 .env
 *.log
 /tmp/
+cache/
+reports/
+*.egg-info/
+*.pickle
+data/
+output_part1.txt
+output_part2.txt
+*.tar.gz
+*.gz

@@ -40,4 +40,4 @@ def ensure_dirs():
     """确保所有输出目录存在"""
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

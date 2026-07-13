@@ -71,8 +71,8 @@ def generate_report(period: str = "1y", window: int = 30) -> str:
 
 📅 分析区间: {df.index[0].date()} ~ {df.index[-1].date()}
 📈 样本数: {len(df)} 个交易日
-🥇 黄金现价: ${df['gold'].iloc[-1]:,.2f}
-🛢️ WTI现价: ${df['wti'].iloc[-1]:,.2f}
+🥇 黄金现价: ¥{df['gold'].iloc[-1]:,.2f}
+🛢️ WTI现价: ¥{df['wti'].iloc[-1]:,.2f}
 
 ━━━ 相关性指标 ━━━
 

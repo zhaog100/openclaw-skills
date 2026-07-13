@@ -5,7 +5,7 @@
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-Author: 小米辣 🌶️
+Author: 小米粒 (Xiaomili) - AI Agent
 """
 # 版本: v3.3 | 石油黄金白银相关性分析
 
@@ -729,4 +729,4 @@ if __name__ == "__main__":
     print(f"\n✅ 分析完成 | {len(results)}个品种 | "
           f"{sum(1 for r in results if r and r['resonance']['strength'] >= 60)}个强共振信号")
 
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

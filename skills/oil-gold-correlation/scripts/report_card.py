@@ -64,6 +64,21 @@ def draw_progress_bar(ax, x, y, width, score, height=0.008):
         ax.add_patch(rect)
 
 def draw_report(results, tech_scores, risk_score):
+    # 获取 FRED 宏观数据
+    fred_macro = {}
+    fred_sentiment = {}
+    fred_assessment = {}
+    try:
+        from fetch_fred import analyze_macro_indicators, analyze_valuation_sentiment, market_comprehensive_assessment
+        fred_macro = analyze_macro_indicators()
+        fred_sentiment = analyze_valuation_sentiment()
+        fred_assessment = market_comprehensive_assessment()
+    except Exception:
+        pass  # FRED 数据不可用时跳过
+
+    # 信号灯综合评分
+    macro_score = fred_assessment.get('score', 50) if fred_assessment else 50
+
     # Use a tall figure, each section gets plenty of room
     fig, ax = plt.subplots(figsize=(8, 16))
     fig.set_facecolor(BG)
@@ -107,8 +122,20 @@ def draw_report(results, tech_scores, risk_score):
     card(L, y - ki_h, W, ki_h)
     cx = L + PAD
     text(cx, y - 0.018, '>> 关键拐点', fontsize=14, fontweight='bold', color=GOLD)
-    text(cx, y - 0.042, '消费者信心=57 持续低位', fontsize=12, color=WHITE)
-    text(cx, y - 0.060, '历史上<60连续3月 = 黄金大级别买入信号', fontsize=12, color=YELLOW)
+    # 动态消费者信心
+    cs = fred_macro.get('UMCSENT')
+    if cs:
+        val = cs['value']
+        if val < 60:
+            text(cx, y - 0.042, f'消费者信心={val:.0f} 持续低位', fontsize=12, color=RED)
+        elif val < 70:
+            text(cx, y - 0.042, f'消费者信心={val:.0f} 偏悲观', fontsize=12, color=YELLOW)
+        else:
+            text(cx, y - 0.042, f'消费者信心={val:.0f} 正常', fontsize=12, color=GREEN)
+        text(cx, y - 0.060, '历史上<60连续3月 = 黄金大级别买入信号', fontsize=12, color=YELLOW)
+    else:
+        text(cx, y - 0.042, '⏳宏观数据待接入', fontsize=12, color=WHITE)
+        text(cx, y - 0.060, '（FRED API 配置后可动态更新）', fontsize=11, color=GRAY)
     y -= (ki_h + GAP + 0.010)
 
     # ===== DASHBOARD TITLE =====
@@ -179,12 +206,44 @@ def draw_report(results, tech_scores, risk_score):
     text(cx, mr1, '宏观信号灯', fontsize=14, fontweight='bold', color=WHITE)
 
     mr2 = mr1 - ROW
-    signals = [
-        ('信心', '57', RED, '悲观'),
-        ('VIX', '19.2', GREEN, '平静'),
-        ('利差', '0.52', GREEN, '正常'),
-        ('信用', '2.94', GREEN, '宽松'),
-    ]
+    # 动态宏观指标（从 FRED 获取）
+    signals = []
+    # 消费者信心
+    cs = fred_macro.get('UMCSENT')
+    if cs:
+        v = cs['value']
+        c = RED if v < 65 else YELLOW if v < 75 else GREEN
+        lb = '悲观' if v < 65 else '偏弱' if v < 75 else '正常'
+        signals.append(('信心', f'{v:.0f}', c, lb))
+    else:
+        signals.append(('信心', '⏳', GRAY, '—'))
+    # VIX
+    vx = fred_sentiment.get('VIXCLS')
+    if vx:
+        v = vx['value']
+        c = RED if v > 30 else YELLOW if v > 20 else GREEN
+        lb = '恐慌' if v > 30 else '波动' if v > 20 else '平静'
+        signals.append(('VIX', f'{v:.1f}', c, lb))
+    else:
+        signals.append(('VIX', '⏳', GRAY, '—'))
+    # 利差 (T10Y2Y)
+    ti = fred_sentiment.get('T10Y2Y')
+    if ti:
+        v = ti['value']
+        c = RED if v < 0 else YELLOW if v < 0.5 else GREEN
+        lb = '倒挂' if v < 0 else '趋平' if v < 0.5 else '正常'
+        signals.append(('利差', f'{v:.2f}', c, lb))
+    else:
+        signals.append(('利差', '⏳', GRAY, '—'))
+    # 信用
+    cr = fred_sentiment.get('BAMLH0A0HYM2')
+    if cr:
+        v = cr['value']
+        c = RED if v > 5 else YELLOW if v > 3.5 else GREEN
+        lb = '危机' if v > 5 else '收紧' if v > 3.5 else '宽松'
+        signals.append(('信用', f'{v:.2f}', c, lb))
+    else:
+        signals.append(('信用', '⏳', GRAY, '—'))
     for i, (n, v, c, lb) in enumerate(signals):
         sx = cx + i * 0.20
         text(sx, mr2, f'{n}: {v}', fontsize=11, fontweight='bold', color=c)
@@ -200,11 +259,32 @@ def draw_report(results, tech_scores, risk_score):
     cr1 = y - 0.018
     text(cx, cr1, '结论', fontsize=14, fontweight='bold', color=GOLD)
     cr2 = cr1 - 0.025
-    text(cx, cr2, '全部观望不动。', fontsize=12, color=WHITE)
+    # 动态结论：基于信号灯评分 + FRED 宏观
+    gold_score = tech_scores.get('沪金期货', 50)
+    oil_score = tech_scores.get('沪油期货', 50)
+    fred_label = ''
+    if fred_assessment:
+        fs = fred_assessment.get('score', 50)
+        if fs >= 65:
+            fred_label = ' FRED宏观偏多'
+        elif fs >= 45:
+            fred_label = ' FRED宏观中性'
+        else:
+            fred_label = ' FRED宏观偏空'
+    if gold_score > 65 and oil_score > 65:
+        conclusion = '双品种看多，可逢低布局'
+        conc_color = GREEN
+    elif gold_score < 35 and oil_score < 35:
+        conclusion = '双品种看空，建议减仓避险'
+        conc_color = RED
+    else:
+        conclusion = '信号分化，建议观望等待'
+        conc_color = YELLOW
+    text(cx, cr2, conclusion, fontsize=12, color=conc_color)
     cr3 = cr2 - 0.022
-    text(cx, cr3, '消费信心57极低，避险利多黄金', fontsize=12, color=WHITE)
+    text(cx, cr3, f'沪金评分: {gold_score}/100  沪油评分: {oil_score}/100{fred_label}', fontsize=11, color=WHITE)
     cr4 = cr3 - 0.020
-    text(cx, cr4, '但技术面偏空，等信号灯转正。', fontsize=12, color=WHITE)
+    text(cx, cr4, '⏳宏观指标通过 FRED API 动态评估', fontsize=10, color=GRAY)
 
     y -= (conc_h + 0.010)
 
@@ -244,4 +324,4 @@ except:
     pass
 
 draw_report(results, tech_scores, risk_score)
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

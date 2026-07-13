@@ -57,4 +57,4 @@ schedule:
 cron:
   sessionTarget: isolated
   lightContext: true
-  model: zai/glm-5
+  model: zai/glm-5.2
