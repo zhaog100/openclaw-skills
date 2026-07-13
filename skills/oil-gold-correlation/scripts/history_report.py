@@ -8,12 +8,12 @@
 4. 关键价位汇总卡（支撑/阻力一目了然）
 5. 历史相似性参考（当前处于什么阶段）
 
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-License: MIT
 """
 
 import sys
 import numpy as np
+import pandas as pd
+import pandas as pd
 from pathlib import Path
 from datetime import datetime
 

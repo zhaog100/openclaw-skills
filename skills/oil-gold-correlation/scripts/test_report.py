@@ -108,5 +108,4 @@ print("=== PART 1 ===")
 print("\n".join(lines1))
 print("\n=== PART 2 ===")
 print("\n".join(lines2))
-
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

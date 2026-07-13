@@ -6,6 +6,8 @@
 # 版本: v3.3 | 石油黄金白银相关性分析
 import sys
 import numpy as np
+import pandas as pd
+import pandas as pd
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))

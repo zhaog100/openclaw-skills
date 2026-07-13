@@ -1,3 +1,5 @@
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+
 ---
 name: oil-gold-correlation
 石油黄金白银实时相关性分析。多数据源交叉验证 + 隐藏机遇扫描 + 智能建议引擎。
@@ -197,7 +199,7 @@ export TWELVE_DATA_API_KEY=your_key
 
 | 版本 | 日期 | 关键变更 |
 |------|------|----------|
-| v3.3.0 | 04-12 | 初始安装，yfinance 限速问题发现 |
+| v1.0.0 | 04-12 | 初始安装，yfinance 限速问题发现 |
 | v3.3 | 04-14 | fetch_data.py SyntaxError 修复（docstring重复） |
 | v3.3 | 04-14 | bug 修复验证通过 |
 | v3.3 | 04-13~16 | 多数据源架构 + 隐藏机遇扫描器 + 地缘评分优化 |
