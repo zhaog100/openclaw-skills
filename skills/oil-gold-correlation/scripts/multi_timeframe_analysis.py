@@ -314,7 +314,7 @@ def analyze_single_timeframe(df, tf_key):
     ma5 = calc_ma(close, 5)
     ma10 = calc_ma(close, 10)
     ma20 = calc_ma(close, 20)
-    ma60 = calc_ma(close, 60) if num_records >= 60 else None
+    ma60 = calc_ma(close, 60) if n >= 60 else None
 
     # 均线趋势方向
     ma_trend = "—"
@@ -374,7 +374,7 @@ def analyze_single_timeframe(df, tf_key):
     # 支撑/阻力（用布林带上下轨近似）
     support = None
     resistance = None
-    if num_records >= 20:
+    if n >= 20:
         ma20_val = close.rolling(20).mean()
         std20 = close.rolling(20).std()
         support = round(float(ma20_val.iloc[-1] - 2 * std20.iloc[-1]), 2)
@@ -447,7 +447,7 @@ def analyze_single_timeframe(df, tf_key):
         "tf_key": tf_key,
         "latest": round(latest, 2),
         "change_pct": change_pct,
-        "n_bars": num_records,
+        "n_bars": n,
         "ma5": ma5, "ma10": ma10, "ma20": ma20, "ma60": ma60,
         "ma_trend": ma_trend,
         "ma_signals": ma_signals,
