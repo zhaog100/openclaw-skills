@@ -74,4 +74,12 @@ from pathlib import Path
 DATA_CACHE_DIR = "/tmp/oil_gold_cache"
 CACHE_DIR = Path(DATA_CACHE_DIR)
 
+# ─── 报告输出 ────────────────────────────────────────────────
+REPORT_DIR = Path(__file__).parent.parent / "reports"
+REPORT_TEXT = REPORT_DIR / "report_text_latest.txt"
+
+def ensure_dirs():
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
