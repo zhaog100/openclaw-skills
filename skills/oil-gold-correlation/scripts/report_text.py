@@ -8,9 +8,9 @@ License: MIT
 """
 
 import sys
-import numpy as np
 from pathlib import Path
 from datetime import datetime
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 from advisor import _analyze_instrument, _fetch_akshare_single
