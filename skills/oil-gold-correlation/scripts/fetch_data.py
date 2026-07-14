@@ -178,7 +178,7 @@ def fetch_yfinance(period="1y", interval="1d"):
     for name, symbol in YFINANCE_SYMBOLS.items():
         for attempt in range(2):
             try:
-                t = yf.Ticker(symbol)
+                ticker = yf.Ticker(symbol)
                 df = t.history(period=period, interval=interval)
                 parsed = _parse_ticker_data(symbol, df)
                 if parsed and parsed["close"]:
@@ -233,7 +233,10 @@ def fetch_data(period="1y", interval="1d"):
                     latest = d["close"][-1]
                     prev = d["close"][-2] if len(d["close"]) > 1 else latest
                     change = ((latest - prev) / prev) * 100 if prev else 0
-                    print(f"  {name.upper():>6} ({d['symbol']}): ¥{latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录 [{d.get('currency', 'CNY')}]")
+                    cur = d.get('currency', 'CNY')
+                    print(f"  {name.upper():>6} ({d['symbol']})"
+                          f": ¥{latest:,.2f} ({change:+.2f}%)"
+                          f" | {len(d['dates'])} 条记录 [{cur}]")
             return result
         else:
             print("  ⚠️ akshare 数据为空，尝试 yfinance...")
@@ -253,7 +256,9 @@ def fetch_data(period="1y", interval="1d"):
                 latest = d["close"][-1]
                 prev = d["close"][-2] if len(d["close"]) > 1 else latest
                 change = ((latest - prev) / prev) * 100 if prev else 0
-                print(f"  {name.upper():>6} ({d['symbol']}): ${latest:,.2f} ({change:+.2f}%) | {len(d['dates'])} 条记录 [USD]")
+                print(f"  {name.upper():>6} ({d['symbol']})"
+                      f": ${latest:,2f} ({change:+.2f}%)"
+                      f" | {len(d['dates'])} 条记录 [USD]")
         return result
 
     # 全部失败，返回空结构

@@ -43,8 +43,35 @@ from typing import List, Dict, Optional, Any
 REGION_KEYWORDS = {
     'chengdu': ['成都', '成都市', '双流', '龙泉驿', '温江', '新都', '郫都', '武侯', '锦江', '青羊', '金牛', '成华', '成都高新区', '天府新区'],
     'luzhou': ['泸州', '泸州市', '江阳', '纳溪', '龙马潭', '古蔺', '合江', '叙永', '泸县'],
-    'sichuan': ['四川', '四川省', '绵阳', '德阳', '宜宾', '南充', '达州', '自贡', '攀枝花', '广元', '遂宁', '内江', '乐山', '眉山', '雅安', '巴中', '资阳', '西昌', '阿坝', '甘孜', '凉山'],
-    'state-owned': ['国企', '央企', '国有', '中央企业', '国有企业', '国资', '中船', '中煤', '中铁', '中化', '中石油', '中石化', '中海油', '国家电网', '南方电网', '中国电科', '中国能建', '中国铁建', '中国交建', '中国中车', '中国通号', '中国核电', '中国华电', '中国大唐', '中国华能', '国家能源', '国家电投', '中广核', '中核', '航天科工', '航天科技', '航空工业', '中国商飞', '中国船舶', '中国兵器', '中国电子', '中国移动', '中国联通', '中国电信', '中国邮政', '中国烟草', '中国铁路', '中国铁建', '中国建筑', '中国中铁', '中国中冶', '中国有色', '中国黄金', '中国稀土', '中国铝业', '中国五矿', '中国宝武', '鞍钢', '宝钢', '河钢', '首钢', '沙钢', '华润', '招商局', '保利', '中信', '光大', '中粮', '中储粮', '中纺', '中盐', '中国建材', '中国国新', '中国诚通', '中国通用技术', '中国医药', '中国生物', '中国南水北调', '中国节能', '中国环保', '中国绿发', '中国星网', '中国卫星', '中国卫通', '中国铁塔', '中国中化', '中国化学', '中国电建', '中国能建', '中国安能', '中国铁工', '中国中铁', '中国铁建', '中国交建', '中国港湾', '中国路桥', '中国土木', '中国武夷', '中国海诚', '中国中材', '中国巨石', '中国恒瑞', '中国核电', '中国广核', '中核集团', '中核建', '中国同辐', '中国铀业', '中国原子能', '中国核建', '中核华兴', '中核二二', '中核二二', '中核二二'],
+    'sichuan': [
+        '四川', '四川省', '绵阳', '德阳', '宜宾',
+        '南充', '达州', '自贡', '攀枝花', '广元',
+        '遂宁', '内江', '乐山', '眉山', '雅安',
+        '巴中', '资阳', '西昌', '阿坝', '甘孜', '凉山'
+    ],
+    
+    'state-owned': [
+        '国企', '央企', '国有', '中央企业', '国有企业', '国资',
+        '中船', '中煤', '中铁', '中化', '中石油', '中石化', '中海油',
+        '国家电网', '南方电网', '中国电科', '中国能建', '中国铁建',
+        '中国交建', '中国中车', '中国通号', '中国核电', '中国华电',
+        '中国大唐', '中国华能', '国家能源', '国家电投', '中广核',
+        '中核', '航天科工', '航天科技', '航空工业', '中国商飞',
+        '中国船舶', '中国兵器', '中国电子', '中国移动', '中国联通',
+        '中国电信', '中国邮政', '中国烟草', '中国铁路', '中国建筑',
+        '中国中铁', '中国中冶', '中国有色', '中国黄金', '中国稀土',
+        '中国铝业', '中国五矿', '中国宝武', '鞍钢', '宝钢', '河钢',
+        '首钢', '沙钢', '华润', '招商局', '保利', '中信', '光大',
+        '中粮', '中储粮', '中纺', '中盐', '中国建材', '中国国新',
+        '中国诚通', '中国通用技术', '中国医药', '中国生物',
+        '中国南水北调', '中国节能', '中国环保', '中国绿发', '中国星网',
+        '中国卫星', '中国卫通', '中国铁塔', '中国化学', '中国电建',
+        '中国安能', '中国铁工', '中国港湾', '中国路桥', '中国土木',
+        '中国武夷', '中国海诚', '中国中材', '中国巨石', '中国恒瑞',
+        '中国广核', '中核集团', '中核建', '中国同辐', '中国铀业',
+        '中国原子能', '中国核建', '中核华兴', '中核二二'
+    ],
+    
 }
 
 KEYWORD_TO_REGION = {}
@@ -122,7 +149,7 @@ class ExamInfoExtractor(HTMLParser):
 
 
 class ChinaExamInfo:
-    """公考信息获取类 v3.3"""
+    """公考信息获取类 v4.0"""
 
     def __init__(self, timeout=30):
         self.timeout = timeout
@@ -976,7 +1003,7 @@ class ChinaExamInfo:
         seen = set()
         unique = []
         for e in final:
-            n = e.get('exam_name', '')
+            num_records = e.get('exam_name', '')
             if not n:
                 continue
             # 精确匹配
@@ -1015,7 +1042,8 @@ class ChinaExamInfo:
         core = _re.sub(r'[·\s]+', '', core)
         return core.strip()
 
-    def _process_listing(self, url, source_type, target_regions, results, fetch_details=True, max_detail=3, ssl_retry=1):
+    def _process_listing(self, url, source_type, target_regions, results, fetch_details=True, max_detail=3,
+    ssl_retry=1):
         """处理列表页 → 过滤 → （可选）抓详情"""
         print(f"列表页: {url}", file=sys.stderr)
         html_content = None
@@ -1231,7 +1259,7 @@ class ChinaExamInfo:
         # 按地区分组
         by_region = {'sichuan': [], 'chengdu': [], 'luzhou': [], 'state-owned': []}
         for e in exams:
-            r = e.get('region', 'sichuan')
+            result = e.get('region', 'sichuan')
             if r in by_region:
                 by_region[r].append(e)
 
@@ -1257,7 +1285,7 @@ class ChinaExamInfo:
                 lines.append(f'**{i}. {name}**{detail_mark}\n')
 
                 # 核心报考条件一行看完
-                c = e.get('recruitment_count', '')
+                color_code = e.get('recruitment_count', '')
                 reqs = e.get('requirements', {})
                 edu = reqs.get('education', '?')
                 age = reqs.get('age', '?')
@@ -1321,7 +1349,7 @@ class ChinaExamInfo:
     def output_text(self, exams):
         lines = [
             '=' * 60,
-            '公考+国企央企信息汇总（真实数据 v3.3）',
+            '公考+国企央企信息汇总（真实数据 v4.0）',
             f'时间: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}',
             f'数量: {len(exams)}个',
             '=' * 60,
@@ -1332,7 +1360,7 @@ class ChinaExamInfo:
             lines.append(f'   类型:{e.get("exam_type","?")} 地区:{e.get("region","?")} 发布:{e.get("publish_date","?")}')
             reqs = e.get('requirements', {})
             lines.append(f'   学历:{reqs.get("education","?")} 年龄:{reqs.get("age","?")}')
-            c = e.get('recruitment_count', '')
+            color_code = e.get('recruitment_count', '')
             if c and c != '详见公告':
                 lines.append(f'   人数:{c}')
             url = e.get('source_url', '')
@@ -1352,7 +1380,12 @@ def get_demo_exams():
             'exam_type': '公务员考试', 'region': 'sichuan',
             'publish_date': '2025-10-29', 'recruitment_count': '12628人',
             'source_url': 'https://www.eoffcn.com/kszx/detail/1883949.html',
-            'requirements': {'age': '18-35岁', 'education': '大专及以上', 'major': '不限', 'experience': '不限', 'politics': '不限'},
+            'requirements': {
+                'age': '18-35岁', 'education': '大专及以上',
+                'major': '不限', 'experience': '不限',
+                'politics': '不限'
+            },
+    
             'position': {'location': '四川', 'organization': '四川省委组织部', 'level': '科员'},
             'registration': {'method': '网上报名', 'website': 'https://www.scpta.com.cn/', 'phone': '', 'fee': ''},
             'exam_content': {'written_test': '行测、申论', 'interview': '结构化面试', 'score_calculation': '笔试60%+面试40%'},
@@ -1363,9 +1396,19 @@ def get_demo_exams():
             'exam_type': '事业单位考试', 'region': 'chengdu',
             'publish_date': '2026-03-15', 'recruitment_count': '471人',
             'source_url': 'https://www.shiyebian.com/xinxi/',
-            'requirements': {'age': '18-35岁', 'education': '本科及以上', 'major': '不限', 'experience': '不限', 'politics': '不限'},
+            'requirements': {
+                'age': '18-35岁', 'education': '本科及以上',
+                'major': '不限', 'experience': '不限',
+                'politics': '不限'
+            },
+    
             'position': {'location': '成都', 'organization': '成都市人社局', 'level': '科员'},
-            'registration': {'method': '网上报名', 'website': 'https://cdpta.cdhrss.chengdu.gov.cn/', 'phone': '', 'fee': ''},
+            'registration': {
+                'method': '网上报名',
+                'website': 'https://cdpta.cdhrss.chengdu.gov.cn/',
+                'phone': '', 'fee': ''
+            },
+    
             'exam_content': {'written_test': '职测、公基', 'interview': '结构化面试', 'score_calculation': '详见公告'},
             'detail_fetched': False,
         },
@@ -1374,7 +1417,12 @@ def get_demo_exams():
             'exam_type': '事业单位考试', 'region': 'luzhou',
             'publish_date': '2026-04-01', 'recruitment_count': '155人',
             'source_url': 'https://www.lzsrsks.cn/',
-            'requirements': {'age': '18-40岁', 'education': '大专及以上', 'major': '不限', 'experience': '不限', 'politics': '不限'},
+            'requirements': {
+                'age': '18-40岁', 'education': '大专及以上',
+                'major': '不限', 'experience': '不限',
+                'politics': '不限'
+            },
+    
             'position': {'location': '泸州', 'organization': '泸州市人社局', 'level': '职员'},
             'registration': {'method': '网上报名', 'website': 'https://www.lzsrsks.cn/', 'phone': '', 'fee': ''},
             'exam_content': {'written_test': '职测、公基', 'interview': '结构化面试', 'score_calculation': '详见公告'},
@@ -1385,7 +1433,12 @@ def get_demo_exams():
             'exam_type': '国企央企招聘', 'region': 'state-owned',
             'publish_date': '2026-06-08', 'recruitment_count': '详见公告',
             'source_url': 'https://www.gwy.com/gqzp/qtgq/',
-            'requirements': {'age': '详见公告', 'education': '本科及以上', 'major': '详见公告', 'experience': '详见公告', 'politics': '详见公告'},
+            'requirements': {
+                'age': '详见公告', 'education': '本科及以上',
+                'major': '详见公告', 'experience': '详见公告',
+                'politics': '详见公告'
+            },
+    
             'position': {'location': '详见公告', 'organization': '详见公告', 'level': '详见公告'},
             'registration': {'method': '网上报名', 'website': 'https://www.gwy.com/gqzp/qtgq/', 'phone': '', 'fee': ''},
             'exam_content': {'written_test': '详见公告', 'interview': '详见公告', 'score_calculation': '详见公告'},
@@ -1395,16 +1448,16 @@ def get_demo_exams():
 
 
 def create_parser():
-    p = argparse.ArgumentParser(description='公考信息获取工具 v3.3 - 真实数据+详情页')
-    p.add_argument('--all', action='store_true')
-    p.add_argument('--region', type=str, help='地区 (chengdu/luzhou/sichuan/state-owned，逗号分隔)')
-    p.add_argument('--type', type=str, help='类型 (civil-service/public-institution/state-owned)')
-    p.add_argument('--format', default='text', choices=['json', 'markdown', 'text'])
-    p.add_argument('--save', type=str, help='保存到文件')
-    p.add_argument('--timeout', type=int, default=30)
-    p.add_argument('--fast', action='store_true', help='快速模式：不抓取详情页，仅列表页信息')
-    p.add_argument('--demo', action='store_true', help='使用演示数据')
-    return p
+    parser = argparse.ArgumentParser(description='公考信息获取工具 v4.0 - 真实数据+详情页')
+    parser.add_argument('--all', action='store_true')
+    parser.add_argument('--region', type=str, help='地区 (chengdu/luzhou/sichuan/state-owned，逗号分隔)')
+    parser.add_argument('--type', type=str, help='类型 (civil-service/public-institution/state-owned)')
+    parser.add_argument('--format', default='text', choices=['json', 'markdown', 'text'])
+    parser.add_argument('--save', type=str, help='保存到文件')
+    parser.add_argument('--timeout', type=int, default=30)
+    parser.add_argument('--fast', action='store_true', help='快速模式：不抓取详情页，仅列表页信息')
+    parser.add_argument('--demo', action='store_true', help='使用演示数据')
+    return parser
 
 
 def main():
