@@ -22,6 +22,7 @@ import time
 import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
+from config import FRED_API_BASE
 
 import pandas as pd
 
@@ -68,7 +69,7 @@ def fetch_fred_series(series_id, days_back=90):
             except:
                 pass
     
-    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}&cosd={start}&coed={end}"
+    url = f"{FRED_API_BASE}?id={series_id}&cosd={start}&coed={end}"
     
     # 方法1: curl
     csv_content = ""

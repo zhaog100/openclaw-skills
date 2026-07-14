@@ -142,8 +142,14 @@ class OpportunityScanner:
         z_score = (current_ratio - mean_ratio) / std_ratio
 
         # 涨跌幅方向
-        gold_ret = (float(gold_close.iloc[-1]) - float(gold_close.iloc[-6])) / float(gold_close.iloc[-6]) * 100 if len(gold_close) > 5 else 0
-        oil_ret = (float(oil_close.iloc[-1]) - float(oil_close.iloc[-6])) / float(oil_close.iloc[-6]) * 100 if len(oil_close) > 5 else 0
+        if len(gold_close) > 5:
+            gold_ret = (float(gold_close.iloc[-1]) - float(gold_close.iloc[-6])) / float(gold_close.iloc[-6]) * 100
+        else:
+            gold_ret = 0
+        if len(oil_close) > 5:
+            oil_ret = (float(oil_close.iloc[-1]) - float(oil_close.iloc[-6])) / float(oil_close.iloc[-6]) * 100
+        else:
+            oil_ret = 0
 
         # 黄金涨+原油跌 = 避险飙升
         if gold_ret > 1 and oil_ret < -1:

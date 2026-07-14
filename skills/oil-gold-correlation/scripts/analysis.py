@@ -165,7 +165,7 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     # 1. Pearson
     p = pearson_corr(df)
     print(f"\n--- Pearson 相关系数 ---")
-    print(f"  r = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
+    print(f"  result = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
     print(f"  解读: {interpret_correlation(p['pearson_r'])}")
 
     # 2. Spearman
@@ -198,7 +198,9 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
         if "error" in result:
             print(f"  {direction}: ⚠️ {result['error']}")
         else:
-            print(f"  {direction}: p={result['min_pvalue']} (lag={result['best_lag']}) {'✅' if result['significant'] else '❌'}")
+            sig = '✅' if result['significant'] else '❌'
+            print(f"  {direction}: period={result['min_pvalue']}"
+                  f" (lag={result['best_lag']}) {sig}")
 
     # 6. 协整
     print(f"\n--- 协整检验 ---")
@@ -206,7 +208,7 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     if "error" in ci:
         print(f"  ⚠️ {ci['error']}")
     else:
-        print(f"  统计量: {ci['coint_stat']} | p={ci['p_value']}")
+        print(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
         print(f"  结论: {ci['interpretation']}")
 
     return {
@@ -235,7 +237,8 @@ if __name__ == "__main__":
     try:
         parser = argparse.ArgumentParser(description="石油黄金相关性分析")
         parser.add_argument("--period", default="1y")
-        parser.add_argument("--method", default="all", choices=["all", "pearson", "spearman", "granger", "cointegration"])
+        parser.add_argument("--method", default="all", choices=["all", "pearson", "spearman", "granger",
+    "cointegration"])
         parser.add_argument("--window", type=int, default=30)
         args = parser.parse_args()
 
