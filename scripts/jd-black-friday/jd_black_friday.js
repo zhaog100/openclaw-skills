@@ -35,8 +35,9 @@ const DEFAULT_HEADERS = {
 
 // ⚠️ 这些 ID 需要根据实际活动更新
 const BLACK_FRIDAY_COUPONS = [
-  { couponId: 'black_friday_2026', name: '满300减30' },
-  { couponId: 'bf_usd_50', name: '满$50减$10' },
+  { couponId: '755461154191', name: '满300减30 平台补贴券' },
+  { couponId: '755461154195', name: '满300减30 平台补贴券' },
+  { couponId: '755461154199', name: '满300减30 平台补贴券' },
 ];
 
 function log(level, msg) {
