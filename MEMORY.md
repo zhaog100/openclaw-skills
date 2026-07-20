@@ -120,3 +120,18 @@ _最后更新: 2026-07-15 16:52 CST_
 
 ---
 _最后更新: 2026-07-15 16:52 CST_
+
+## 2026-07-20 变更记录
+- **模型配置更新**: smart-model-switch v3.0.0 + context-manager-v2 模型引用清理
+- **全局 fallback 链**: `agnes/2.0-flash → 1.5-flash → 2.5-flash`
+- **系统全面检查**:
+  - Swap 清理：938MB → 523MB（释放415MB）
+  - 过期备份清理：删除8个文件+空目录
+  - 停滞日志清理：清空5个日志（>30天）
+  - seamless-switch-cron.log 清空+备份
+  - platform-rules.sh 空文件删除
+  - 内核升级：6.8.0-134 → 6.8.0-136（待重启生效）
+- **QMD 数据库**: main.sqlite 损坏（0字节），实际索引在 openclaw-agent.sqlite（884 chunks）
+- **待办**: 22:00 重启服务器
+
+_最后更新: 2026-07-20 19:38 CST_
