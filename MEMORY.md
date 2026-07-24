@@ -123,15 +123,35 @@ _最后更新: 2026-07-15 16:52 CST_
 
 ## 2026-07-20 变更记录
 - **模型配置更新**: smart-model-switch v3.0.0 + context-manager-v2 模型引用清理
-- **全局 fallback 链**: `agnes/2.0-flash → 1.5-flash → 2.5-flash`
+- **全局 fallback 链**: `agnes/2.0-flash → 1.5-flash → gemini-2.0-flash`（2026-07-23 移除 2.5-flash，平台 503）
 - **系统全面检查**:
   - Swap 清理：938MB → 523MB（释放415MB）
   - 过期备份清理：删除8个文件+空目录
   - 停滞日志清理：清空5个日志（>30天）
   - seamless-switch-cron.log 清空+备份
   - platform-rules.sh 空文件删除
-  - 内核升级：6.8.0-134 → 6.8.0-136（待重启生效）
+  - 内核升级：6.8.0-134 → 6.8.0-136 ✅ 已生效（2026-07-21 09:05 reboot）
 - **QMD 数据库**: main.sqlite 损坏（0字节），实际索引在 openclaw-agent.sqlite（884 chunks）
-- **待办**: 22:00 重启服务器
+- **QQ Bot 故障修复**:
+  - qqbot 插件升级: 2026.6.11 → 2026.7.1 ✅
+  - llama-cpp 插件升级: 2026.6.11 → 2026.7.1 ✅
+  - Gateway 重启生效 ✅
+  - 根因: QQ Bot 会话使用 agnes-2.5-flash，Agnes AI 平台 cachellm 分组无可用通道(503)
+  - 修复: 从 fallback 链移除 agnes-2.5-flash，降级到 1.5-flash/gemini-2.0-flash
+  - 插件版本漂移问题已消除
+- **模型配置**: fallback 链 `2.0-flash → 1.5-flash → gemini-2.0-flash`
 
-_最后更新: 2026-07-20 19:38 CST_
+## 2026-07-24 变更记录
+- **系统全面检查** ✅
+  - Cron 任务修复：5个失败任务模型从 1.5-flash → 2.0-flash（午间回顾/日盘/晚盘/美盘/晚间回顾）
+  - 黑色星期五提醒：payload 重写为 agentTurn + 直接推送文字
+  - Swap 清理：517MB → 0（内核自动回收属正常）
+  - 安全更新：10个包升级完成（krb5/libsqlite3/nginx等）
+  - UFW 防火墙：active，放行 22/5700/5701/80/443
+  - SSH 加固：PermitRootLogin no / PubkeyAuthentication yes / PasswordAuthentication no
+  - 内核：6.8.0-136-generic（最新）
+  - OpenClaw：2026.7.1-2（最新）
+  - Gateway：运行中，连接正常
+  - ⚠️ 待重启：linux-generic 内核升级需 reboot 生效（非紧急）
+
+_最后更新: 2026-07-24 09:30 CST_
