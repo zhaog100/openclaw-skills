@@ -154,4 +154,16 @@ _最后更新: 2026-07-15 16:52 CST_
   - Gateway：运行中，连接正常
   - ⚠️ 待重启：linux-generic 内核升级需 reboot 生效（非紧急）
 
-_最后更新: 2026-07-24 09:30 CST_
+_最后更新: 2026-08-05 19:30 CST_
+
+## 2026-08-05 变更记录
+- **系统全面维护**：
+  - 修复multi_timeframe_analysis.py bug（ticker→t.history）
+  - 清理Docker过期镜像573MB
+  - 清理APT/pip缓存
+  - 屏蔽暴力破解IP 43.153.173.214
+  - 系统升级30个包完成
+  - 内核升级6.8.0-137待reboot生效
+  - 7个cron任务模型统一为agnes/agnes-2.0-flash
+  - 黑色星期五cron手动测试推送成功
+- **QQ Bot token**：正常工作 ✅
