@@ -9,13 +9,13 @@
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
-| openclaw-skills | github.com/zhaog100/openclaw-skills | OpenClaw 技能仓库（子模块，**绝对不碰**） |
-| origin | github.com/zhaog100/xiaomijiao-skills | 小米椒技能仓库（个人仓库，**可更新**） |
+| openclaw-skills | github.com/zhaog100/openclaw-skills | 技能远程仓库（技能文件推送到这里） |
+| origin | github.com/zhaog100/xiaomijiao-skills | 个人信息远程仓库（个人信息/记忆/配置推送到这里） |
 
-**⚠️ 安全规则:**
-- 每次 push 前必须确认目标仓库
-- `origin` = 个人仓库 ✅ 可推送
-- `openclaw-skills` = 子模块 ❌ 绝不推送
+**⚠️ 推送规则（绝对遵守）:**
+- **个人信息/记忆/配置** → 推送到 `origin` (xiaomijiao-skills) ✅
+- **技能文件** → 推送到 `openclaw-skills` ✅
+- 每次 push 前必须确认目标仓库，不要搞混！
 
 _最后更新: 2026-07-15 16:52 CST_
 
@@ -77,13 +77,13 @@ _最后更新: 2026-07-15 16:52 CST_
 3. OpenClaw 升级后需重启 gateway
 4. 创建 cron 前先确认脚本存在
 5. 远程仓库 push 前必须确认目标
-6. openclaw-skills 是子模块，绝对不要修改和推送
+6. 远程仓库分别推送：个人信息→origin，技能文件→openclaw-skills，不可混淆
 7. nginx/ufw 等命令 PATH 需要加 /usr/sbin
 8. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
 9. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
-10. 每日回顾任务中必须明确"不碰 openclaw-skills"规则
+10. 远程仓库分别推送：个人信息→origin，技能文件→openclaw-skills，不可混淆
 11. LongCat Flash 系列模型已下线不可用，统一使用 agnes-2.0-flash
-12. openclaw-skills 子模块中的旧模型引用不能修改（规则6），但 workspace/ 下的脚本和技能配置需要同步更新
+12. 技能文件推送到 `openclaw-skills`，个人信息推送到 `origin`，不可混淆
 13. 创建 crontab 任务前必须确认脚本文件存在且可执行
 14. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
 15. crontab 中的 tee 会导致日志重复写入（stdout 被 crontab 重定向到同一文件），用 >> 代替 tee
@@ -188,3 +188,13 @@ _最后更新: 2026-08-05 19:30 CST_
   - 技能文件 → 推送到 `openclaw-skills` ✅
 - **根因**: 之前混淆了两个仓库的用途
 - **教训**: 技能更新需要分别推送到对应仓库
+
+## 2026-08-06 变更记录
+- **推送规则修正**: 明确区分两个仓库的用途
+  - `origin` (xiaomijiao-skills): 个人信息/记忆/配置 → 推送到此 ✅
+  - `openclaw-skills`: 技能文件 → 推送到此 ✅
+  - 每次 push 前必须确认目标仓库，不可混淆
+
+---
+
+_最后更新: 2026-08-06 06:58 CST_
