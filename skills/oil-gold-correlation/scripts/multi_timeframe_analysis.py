@@ -161,7 +161,7 @@ def _fetch_yfinance_single(symbol, period="1y"):
 
     try:
         t = yf.Ticker(symbol)
-        df = ticker.history(period=period)
+        df = t.history(period=period)
         if df is None or len(df) < 3:
             return None
 
