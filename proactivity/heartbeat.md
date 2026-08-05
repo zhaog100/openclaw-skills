@@ -1,34 +1,35 @@
 # Proactivity Heartbeat State
 
-- **最后检查**: 2026-08-05 20:30 CST
-- **状态**: ✅ 恢复中（token 已恢复，context overflow 需处理）
+- **最后检查**: 2026-08-05 21:02 CST
+- **状态**: ✅ **已完全恢复**
 
-## 重要进展
-- **QQ Bot token 已恢复** — Gateway 就绪（20:04:58）
-- **黑色星期五 cron 正常** — 1小时前成功执行并推送
-- **无新 OutboundDeliveryError** — 20:00 小时 0 条 ✅
-- **20:14 成功推送** — `[qqbot:default] Sent markdown message with 0 HTTP images (c2c)`
+## 🎉 重大进展
 
-## 需关注
-- **当前会话 Context overflow** — 20:04 出现（77 messages），20:00 小时 4 条记录
-- **建议**: 运行 `/reset` 清理会话
+**晚盘报告 cron 成功执行！**
+- `59977014` 石油黄金-晚盘报告 (21:00) — **status: ok** ✅
+- 21:01:44 成功推送 markdown 消息到 QQ ✅
+- **这是 token 恢复后首次定时任务成功推送！**
 
 ## 系统状态
-- Gateway PID 1009849 运行中
+- Gateway PID 1024856 运行中
 - 内存 1.0G / 1.9G (52%)
 - 磁盘 24G / 50G (48%)
-- 模型 API 200 OK（31秒响应）
+- 模型 API 正常（200 OK，16-27秒响应）
 
 ## Cron 状态
-- ✅ 1 ok：黑色星期五抢券提醒（1小时前成功）
-- ❌ 6 error：累积历史错误（token 失效导致）
-- 今晚 21:00 晚盘报告将首次重新执行
+- ✅ 2 ok：黑色星期五抢券提醒 + 石油黄金-晚盘报告
+- ❌ 5 error：累积历史错误（等待后续任务执行清除）
+
+## 21:00 小时错误统计
+- Context overflow: **0 条** ✅
+- OutboundDeliveryError: **0 条** ✅
+- **QQ Bot 完全恢复正常！**
 
 ## 待处理
-- 当前会话 /reset — context overflow
-- 21:00 观察晚盘报告推送
+- 当前会话 context overflow（77 messages）— 建议 `/reset`
+- 观察 22:00 美盘报告、23:05 晚间回顾是否继续成功
 
 ---
-_最后更新: 2026-08-05 20:30 CST_
+_最后更新: 2026-08-05 21:02 CST_
 
 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
