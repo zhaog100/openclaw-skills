@@ -55,7 +55,7 @@ _最后更新: 2026-07-15 16:52 CST_
 | 农场转盘 | 每天 11:00 | 青龙 (jd_newfarmlottery.js) |
 | 京东自动评价 | 每天 14:00 | 青龙 (jd_AutoEval.js) |
 | 京东自动评价(二) | 每天 20:00 | 青龙 (jd_AutoEval.js) |
-| 每日回顾(中午) | 每天 12:05 | OpenClaw cron |
+| 每日回顾(中午) | ~~已暂停~~ | ~~已暂停~~ |
 | 每日回顾(晚上) | 每天 23:05 | OpenClaw cron |
 | 石油黄金早盘 | 每天 10:00 | OpenClaw cron |
 | 石油黄金日盘 | 每天 15:00 | OpenClaw cron |
