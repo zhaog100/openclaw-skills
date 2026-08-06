@@ -61,7 +61,6 @@ _最后更新: 2026-07-15 16:52 CST_
 | 石油黄金日盘 | 每天 15:00 | OpenClaw cron |
 | 石油黄金晚盘 | 每天 21:00 | OpenClaw cron |
 | 石油黄金美盘 | 每天 22:00 | OpenClaw cron |
-| 黑色星期五抢券 | 每周四 17:00 | OpenClaw cron |
 
 ⚠️ 已移除脚本（上游 jdpro 仓库已删除）：jd_bean_extra_sign.js、jd_farm_auto_tasks.js、jd_gift_card_beans.js
 
