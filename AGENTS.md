@@ -15,6 +15,10 @@
    - 系统化运营：选题开发→内容跟进→数据复盘
    - 出海规划：国内验证→跨境测试→全球化运营
    - 核心观点：出海不是目的，做出有价值的产品才是
+5. **仓库分离：绝对红线，不可混淆**
+   - 个人信息 → `origin` (xiaomijiao-skills)
+   - 技能文件 → `openclaw-skills`
+   - 每次 push 前必须确认目标仓库
 
 
 ## ⏰ Cron 任务规范
@@ -155,6 +159,23 @@
 
 ## 🔒 记忆规则
 
+### 🚀 远程仓库推送规则（严格分离 - 绝对红线）
+
+| 内容类型 | 目标仓库 | URL |
+|----------|----------|-----|
+| **个人信息/记忆/配置** | `origin` | https://github.com/zhaog100/xiaomijiao-skills/tree/main |
+| **技能文件** | `openclaw-skills` | https://github.com/zhaog100/openclaw-skills/tree/main |
+
+**📁 内容分类：**
+- **个人信息**：AGENTS.md, MEMORY.md, SOUL.md, COMMS.md, IDENTITY.md, TOOLS.md, USER.md, HEARTBEAT.md, agents/, memory/, intel/, proactivity/, backup/, docs/ 等
+- **技能文件**：skills/ 目录
+
+**🚨 绝对禁止：**
+- ❌ 个人信息推送到 openclaw-skills
+- ❌ 技能文件推送到 origin
+
+**✅ 每次 push 前必须确认目标仓库，不可混淆！**
+
 - **每日笔记**：`memory/YYYY-MM-DD.md` — 当日运营动作、数据、热点
 - **长期记忆**：`MEMORY.md` — 提炼后的运营经验精华
 - **"心理记忆"不存在**，所有重要信息必须写入文件
@@ -216,16 +237,25 @@
 - 内部操作（读文件/搜索/整理）大胆做
 - Git remote `xiaomila` 推到 `main` 分支
 
-### 🚀 远程仓库推送规则（严格分离）
-| 内容类型 | 目标仓库 | 说明 |
-|----------|----------|------|
-| 个人信息/记忆/配置 | `origin` (xiaomijiao-skills) | AGENTS/MEMORY/SOUL/agents/memory 等 |
-| 技能文件 | `openclaw-skills` | skills/ 目录 |
+### 🚀 远程仓库推送规则（严格分离 - 绝对红线）
 
-**⚠️ 每次 push 前必须确认目标仓库，不可混淆！**
+| 内容类型 | 目标仓库 | URL |
+|----------|----------|-----|
+| **个人信息/记忆/配置** | `origin` | https://github.com/zhaog100/xiaomijiao-skills/tree/main |
+| **技能文件** | `openclaw-skills` | https://github.com/zhaog100/openclaw-skills/tree/main |
+
+**📁 内容分类：**
+- **个人信息**：AGENTS.md, MEMORY.md, SOUL.md, COMMS.md, IDENTITY.md, TOOLS.md, USER.md, HEARTBEAT.md, agents/, memory/, intel/, proactivity/, backup/, docs/ 等
+- **技能文件**：skills/ 目录
+
+**🚨 绝对禁止：**
+- ❌ 个人信息推送到 openclaw-skills
+- ❌ 技能文件推送到 origin
+
+**✅ 每次 push 前必须确认目标仓库，不可混淆！**
 
 ---
-_v3.5 | 2026-08-24 | 严格分离：个人信息→origin，技能→openclaw-skills
+_v3.6 | 2026-08-24 | 强化仓库分离规则 + 添加第五条核心原则
 
 ---
 
