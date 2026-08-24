@@ -1,0 +1,39 @@
+# 个人信息目录
+AGENTS.md
+MEMORY.md
+SOUL.md
+COMMS.md
+IDENTITY.md
+TOOLS.md
+USER.md
+HEARTBEAT.md
+README.md
+
+# 记忆和知识
+memory/
+agents/
+intel/
+docs/
+proactivity/
+knowledge-base/
+backup/
+
+# 媒体和脚本
+media/
+scripts/
+products/
+
+# 配置文件
+openclaw-workspace-state.json
+package.json
+package-lock.json
+
+# 嵌套 git 仓库
+openclaw-skills/
+
+# 缓存和临时文件
+.clawhub/
+.env
+*.log
+logs/
+data/
