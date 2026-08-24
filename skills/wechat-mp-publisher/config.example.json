@@ -1,0 +1,35 @@
+{
+  "name": "wechat-mp-publisher",
+  "version": "1.1.0",
+  "description": "微信公众号自动发布技能 - 心灵的寻光之旅",
+  "author": "小米椒 🌶️🔥",
+  "account": {
+    "name": "心灵的寻光之旅",
+    "loginEmail": "your_email@example.com",
+    "originalId": "gh_xxxxxxxxxxxx",
+    "appId": "wxXXXXXXXXXXXXXXXX"
+  },
+  "browser": {
+    "profile": "openclaw",
+    "cdpPort": 18800,
+    "cdpUrl": "http://127.0.0.1:18800"
+  },
+  "wechat": {
+    "baseUrl": "https://mp.weixin.qq.com",
+    "loginUrl": "https://mp.weixin.qq.com",
+    "homeUrl": "https://mp.weixin.qq.com/cgi-bin/home",
+    "draftUrl": "https://mp.weixin.qq.com/cgi-bin/draft/list",
+    "publishUrl": "https://mp.weixin.qq.com/cgi-bin/freepublish/submit"
+  },
+  "article": {
+    "titleMax": 36,
+    "summaryMax": 120,
+    "coverSize": "900x383",
+    "contentFormat": "html"
+  },
+  "security": {
+    "credentialsPath": "secrets/",
+    "sessionRetention": true,
+    "autoRefresh": true
+  }
+}
