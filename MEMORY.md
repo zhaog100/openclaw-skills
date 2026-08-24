@@ -9,13 +9,11 @@
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
-| openclaw-skills | github.com/zhaog100/openclaw-skills | 技能远程仓库（技能文件推送到这里） |
-| origin | github.com/zhaog100/xiaomijiao-skills | 个人信息远程仓库（个人信息/记忆/配置推送到这里） |
+| origin | github.com/zhaog100/xiaomijiao-skills | 唯一远程仓库（个人信息/记忆/配置/技能文件全部推送到这里） |
 
 **⚠️ 推送规则（绝对遵守）:**
-- **个人信息/记忆/配置** → 推送到 `origin` (xiaomijiao-skills) ✅
-- **技能文件** → 推送到 `openclaw-skills` ✅
-- 每次 push 前必须确认目标仓库，不要搞混！
+- **所有文件** → 统一推送到 `origin` (xiaomijiao-skills) ✅
+- 已废弃 openclaw-skills 远程仓库，不再使用
 
 _最后更新: 2026-07-15 16:52 CST_
 
@@ -76,13 +74,10 @@ _最后更新: 2026-07-15 16:52 CST_
 3. OpenClaw 升级后需重启 gateway
 4. 创建 cron 前先确认脚本存在
 5. 远程仓库 push 前必须确认目标
-6. 远程仓库分别推送：个人信息→origin，技能文件→openclaw-skills，不可混淆
-7. nginx/ufw 等命令 PATH 需要加 /usr/sbin
-8. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
-9. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
-10. 远程仓库分别推送：个人信息→origin，技能文件→openclaw-skills，不可混淆
-11. LongCat Flash 系列模型已下线不可用，统一使用 agnes-2.0-flash
-12. 技能文件推送到 `openclaw-skills`，个人信息推送到 `origin`，不可混淆
+6. nginx/ufw 等命令 PATH 需要加 /usr/sbin
+7. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
+8. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
+9. LongCat Flash 系列模型已下线不可用，统一使用 agnes-2.0-flash
 13. 创建 crontab 任务前必须确认脚本文件存在且可执行
 14. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
 15. crontab 中的 tee 会导致日志重复写入（stdout 被 crontab 重定向到同一文件），用 >> 代替 tee
@@ -171,36 +166,15 @@ _最后更新: 2026-08-05 19:30 CST_
   - 黑色星期五cron手动测试推送成功
 - **QQ Bot token**：正常工作 ✅
 
-## 2026-08-05 19:30 变更记录
-- **Git推送违规**: 在openclaw-skills子模块中错误执行了git push
-- **根因**: 未严格遵守"openclaw-skills是子模块，绝对不要修改和推送"规则
-- **教训**: 子模块只应更新引用，不进入子模块目录操作
-- **修正**: 已记录到MEMORY.md，后续严格遵守
-
-## 2026-08-05 22:15 变更记录
-- **Git推送违规**: 在openclaw-skills子模块中错误执行了git push
-- **违规提交**: 96ef345c 🧹 清理: 仅保留技能
-- **根因**: 未严格遵守"openclaw-skills是子模块，绝对不要修改和推送"规则
-- **教训**: 子模块只应更新引用，不进入子模块目录操作git
-- **修正**: 已记录，后续严格遵守规则
-
-## 2026-08-05 22:10 Git推送规则修正
-- **原规则**: openclaw-skills是子模块，绝对不要修改和推送 ❌
-- **新规则**: 
-  - 个人信息/记忆 → 推送到 `origin` (xiaomijiao-skills) ✅
-  - 技能文件 → 推送到 `openclaw-skills` ✅
-- **根因**: 之前混淆了两个仓库的用途
-- **教训**: 技能更新需要分别推送到对应仓库
-
-## 2026-08-06 变更记录
-- **推送规则修正**: 明确区分两个仓库的用途
-  - `origin` (xiaomijiao-skills): 个人信息/记忆/配置 → 推送到此 ✅
-  - `openclaw-skills`: 技能文件 → 推送到此 ✅
-  - 每次 push 前必须确认目标仓库，不可混淆
+## 2026-08-24 Git仓库整合
+- **问题**: openclaw-skills 远程与本地历史不相连（unrelated histories）
+- **决策**: 方案C - 放弃 openclaw-skills，统一使用 origin
+- **执行**: 已移除 openclaw-skills 远程，所有文件推送到 origin
+- **教训**: 多仓库管理复杂度高，统一仓库更简单可靠
 
 ---
 
-_最后更新: 2026-08-06 06:58 CST_
+_最后更新: 2026-08-24 11:36 CST_
 
 ## 2026-08-22 变更记录
 - **系统重启**: 内核6.8.0-137生效 ✅
