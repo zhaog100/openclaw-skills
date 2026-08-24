@@ -12,10 +12,18 @@
 | origin | github.com/zhaog100/xiaomijiao-skills | 个人信息仓库（AGENTS/MEMORY/SOUL/agents/memory/等） |
 | openclaw-skills | github.com/zhaog100/openclaw-skills | 技能仓库（仅 skills/ 目录） |
 
-**⚠️ 推送规则（绝对遵守）:**
-- **个人信息文件** → `origin` (xiaomijiao-skills) ✅
-- **技能文件** → `openclaw-skills` ✅
-- **严禁混淆**：个人信息不要推送到 openclaw-skills，技能文件不要推送到 origin
+**⚠️ 推送规则（绝对红线，不可违反）:**
+
+| 内容类型 | 目标仓库 | 说明 |
+|----------|----------|------|
+| **个人信息/记忆/配置** | `origin` (xiaomijiao-skills) | AGENTS/MEMORY/SOUL/agents/memory/intel/proactivity/ 等 |
+| **技能文件** | `openclaw-skills` | skills/ 目录 |
+
+**🚨 严禁混淆：**
+- ❌ 个人信息文件 → 不得推送到 openclaw-skills
+- ❌ 技能文件 → 不得推送到 origin
+
+**✅ 每次 push 前必须确认目标仓库，不可混淆！**
 
 _最后更新: 2026-08-24 14:50 CST_
 
@@ -176,7 +184,7 @@ _最后更新: 2026-08-05 19:30 CST_
 
 ---
 
-_最后更新: 2026-08-24 14:50 CST_
+_最后更新: 2026-08-24 17:15 CST_
 
 ## 2026-08-22 变更记录
 - **系统重启**: 内核6.8.0-137生效 ✅
