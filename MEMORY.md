@@ -9,11 +9,13 @@
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
-| origin | github.com/zhaog100/xiaomijiao-skills | 唯一远程仓库（个人信息/记忆/配置/技能文件全部推送到这里） |
+| origin | github.com/zhaog100/xiaomijiao-skills | 个人信息仓库（AGENTS/MEMORY/SOUL/agents/memory/等） |
+| openclaw-skills | github.com/zhaog100/openclaw-skills | 技能仓库（仅 skills/ 目录） |
 
 **⚠️ 推送规则（绝对遵守）:**
-- **所有文件** → 统一推送到 `origin` (xiaomijiao-skills) ✅
-- 已废弃 openclaw-skills 远程仓库，不再使用
+- **个人信息文件** → `origin` (xiaomijiao-skills) ✅
+- **技能文件** → `openclaw-skills` ✅
+- **严禁混淆**：个人信息不要推送到 openclaw-skills，技能文件不要推送到 origin
 
 _最后更新: 2026-08-24 14:50 CST_
 
