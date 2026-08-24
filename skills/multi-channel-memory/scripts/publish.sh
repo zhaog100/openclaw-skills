@@ -1,3 +1,4 @@
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 #!/bin/bash
 # 发布到 ClawHub 和 GitHub
 # =========================================

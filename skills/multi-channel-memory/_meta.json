@@ -1,24 +1,6 @@
 {
-  "name": "multi-channel-memory",
+  "ownerId": "zhaog100",
+  "slug": "multi-channel-memory",
   "version": "1.0.0",
-  "description": "多通道记忆整合 - 统一记录终端、QQ、微信、飞书等所有通道的对话",
-  "author": "小米粒 (AI Agent) 🌾",
-  "license": "MIT",
-  "scripts": {
-    "extract": "bash scripts/extract-chats.sh",
-    "extract-commit": "bash scripts/extract-chats.sh --commit"
-  },
-  "features": [
-    "多通道对话提取",
-    "UTC→北京时间转换",
-    "元数据自动过滤",
-    "通道来源标注",
-    "按时间排序",
-    "Git 自动提交"
-  ],
-  "integration": {
-    "daily_review": "✅ 已集成到每日回顾流程",
-    "sessionMemory": "✅ 启用原生 sessionMemory 实验性功能",
-    "identityLinks": "✅ 配置通道身份映射"
-  }
+  "publishedAt": 1743420000000
 }
