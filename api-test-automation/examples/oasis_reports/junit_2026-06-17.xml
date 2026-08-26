@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<testsuites>
+  <testsuite name="API 测试套件" tests="10" failures="0" errors="0" skipped="0" time="0.000">
+    <properties>
+      <property name="environment" value="oasis_live"/>
+      <property name="source_spec" value="绿洲中台对外API文档"/>
+      <property name="generated_at" value="2026-06-17T19:10:03.794639"/>
+      <property name="concurrency" value="1"/>
+      <property name="total_requests" value="10"/>
+      <property name="p50_ms" value="0"/>
+      <property name="p95_ms" value="0"/>
+      <property name="p99_ms" value="0"/>
+      <property name="tps" value="0"/>
+      <property name="error_rate" value="1.0"/>
+    </properties>
+    <testcase name="智慧厕所-环境传感器" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧厕所-门锁状态" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧能耗-建筑列表" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧能耗-用户列表" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧食堂-用户列表" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧食堂-订单列表" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧车辆-车场信息" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧车辆-设备信息" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="智慧车辆-车道信息" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+    <testcase name="门禁-设备列表" classname="oasis_api" time="0.000">
+      <error message="执行错误" type="Error">无详细信息</error>
+    </testcase>
+  </testsuite>
+</testsuites>

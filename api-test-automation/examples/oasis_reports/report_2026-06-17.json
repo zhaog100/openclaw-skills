@@ -1,0 +1,171 @@
+{
+  "summary": {
+    "total": 10,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": "0.0%",
+    "generated_at": "2026-06-17T19:10:03.794420",
+    "performance": {
+      "concurrency": 1,
+      "total_requests": 10,
+      "p50_ms": 0,
+      "p95_ms": 0,
+      "p99_ms": 0,
+      "tps": 0,
+      "error_rate": 1.0
+    }
+  },
+  "manifest": {
+    "environment": "oasis_live",
+    "source_spec": "绿洲中台对外API文档",
+    "endpoints": [
+      "/api/Device/WashRoom/Environment/LatestData",
+      "/api/Device/WashRoom/DoorLock/LatestData",
+      "/basapi/building/v1.0.0/buildinglist",
+      "/basapi/building/v1.0.0/userlist",
+      "/api/mobile/v1/third/user/list",
+      "/api/mobile/v1/third/order/list",
+      "/api/E8/sys-park-info/get-park-tree-table",
+      "/api/E8/base-device-info/get-page-list",
+      "/api/E8/park-channel-info/get-page-list",
+      "/api/bss/v1/udm/guard/list"
+    ],
+    "coverage": {
+      "total_cases": 10,
+      "executed_cases": 10
+    }
+  },
+  "results": [
+    {
+      "test_name": "智慧厕所-环境传感器",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/Device/WashRoom/Environment/LatestData"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d0438710 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧厕所-门锁状态",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/Device/WashRoom/DoorLock/LatestData"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d0602150 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧能耗-建筑列表",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/basapi/building/v1.0.0/buildinglist"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d04494f0 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧能耗-用户列表",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/basapi/building/v1.0.0/userlist"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d062a5b0 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧食堂-用户列表",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/mobile/v1/third/user/list"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d06160a0 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧食堂-订单列表",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/mobile/v1/third/order/list"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d0605c70 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧车辆-车场信息",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/E8/sys-park-info/get-park-tree-table"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d04944d0 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧车辆-设备信息",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/E8/base-device-info/get-page-list"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d04961d0 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "智慧车辆-车道信息",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/E8/park-channel-info/get-page-list"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d04b0250 state=finished raised ReadTimeout>]"
+      }
+    },
+    {
+      "test_name": "门禁-设备列表",
+      "status": "error",
+      "duration_ms": 0,
+      "classname": "oasis_api",
+      "request": {
+        "method": "GET",
+        "url": "https://117.176.167.49:33027/api/bss/v1/udm/guard/list"
+      },
+      "response": {
+        "error": "RetryError[<Future at 0x7885d04b2150 state=finished raised ReadTimeout>]"
+      }
+    }
+  ]
+}
