@@ -1,0 +1,17 @@
+{
+  "name": "diagram-generator",
+  "version": "1.0.0",
+  "description": "Generate diagrams and flowcharts using Mermaid CLI",
+  "author": "米粒儿",
+  "license": "MIT",
+  "keywords": ["diagram", "flowchart", "mermaid", "sequence", "gantt"],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "latest"
+  },
+  "files": [
+    "USAGE.md"
+  ]
+}

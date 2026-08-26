@@ -1,0 +1,78 @@
+{
+  "id": "api-test-skill",
+  "name": "API 自动化测试",
+  "version": "2.0.0",
+  "description": "基于 OpenAPI 自动生成并执行 API 测试用例，支持智能用例生成、数据工厂、性能基线、安全测试",
+  "type": "api_test",
+  "author": "SJYKJ",
+  "repository": "https://github.com/your-org/api-test-automation",
+  "license": "MIT",
+  "category": "testing",
+  "tags": ["api", "automation", "openapi", "pytest"],
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "spec_file": {
+        "type": "string",
+        "description": "OpenAPI 文档路径（相对于技能根目录）",
+        "default": "openapi.json"
+      },
+      "environment": {
+        "type": "string",
+        "enum": ["dev", "sit", "staging", "prod"],
+        "description": "目标测试环境",
+        "default": "sit"
+      },
+      "tags": {
+        "type": "string",
+        "description": "pytest 标签过滤（smoke/security/performance）",
+        "default": ""
+      },
+      "workers": {
+        "type": "integer",
+        "description": "并行执行线程数（0 表示自动）",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 16
+      },
+      "retry_count": {
+        "type": "integer",
+        "description": "失败用例自动重试次数",
+        "default": 1,
+        "minimum": 0,
+        "maximum": 3
+      }
+    },
+    "required": ["spec_file", "environment"]
+  },
+  "dependencies": {
+    "python_packages": [
+      "pytest>=8.0",
+      "httpx>=0.27",
+      "jsonschema>=4.23",
+      "tenacity>=9.0",
+      "pyyaml>=6.0",
+      "jinja2>=3.1",
+      "faker>=25.0",
+      "pytest-xdist>=3.6",
+      "pytest-html>=4.1"
+    ],
+    "system_tools": ["python3"],
+    "python_version": ">=3.10"
+  },
+  "entry_point": "skill.py",
+  "class_name": "APITestSkill",
+  "examples": [
+    {
+      "name": "冒烟测试（开发环境）",
+      "params": {"spec_file": "openapi.json", "environment": "dev", "tags": "smoke"}
+    },
+    {
+      "name": "全量测试（测试环境）",
+      "params": {"spec_file": "openapi.json", "environment": "sit", "workers": 4}
+    }
+  ],
+  "changelog": [
+    {"version": "2.0.0", "date": "2026-07-03", "changes": ["适配平台 BaseSkill 接口", "重构目录结构"]}
+  ]
+}

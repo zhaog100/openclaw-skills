@@ -1,0 +1,15 @@
+{
+  "feishu": {
+    "api_base": "https://open.feishu.cn/open-apis",
+    "message_endpoint": "/im/v1/messages",
+    "token_cache_path": "data/token-cache.json"
+  },
+  "paths": {
+    "intent_rules": "config/intent-rules.json",
+    "quote_patterns": "config/quote-patterns.json"
+  },
+  "limits": {
+    "max_context_before": 2,
+    "max_context_after": 2
+  }
+}

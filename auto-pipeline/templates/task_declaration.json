@@ -1,0 +1,20 @@
+{
+  "title": "技能名称",
+  "priority": "P1",
+  "version": "v1.0",
+  "status": "待开发",
+  "tasks": [
+    {
+      "task_id": "T1",
+      "name": "实现主入口脚本",
+      "input": "PRD功能描述",
+      "output": "src/main.sh，含命令分发",
+      "acceptance": [
+        "--help 正常显示用法说明",
+        "未知命令返回错误码1",
+        "bash -n 语法检查通过"
+      ],
+      "confidence": 8
+    }
+  ]
+}

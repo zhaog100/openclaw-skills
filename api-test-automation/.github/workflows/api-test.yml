@@ -1,0 +1,156 @@
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# Version: v1.2
+name: API 自动化测试 CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # 每天 UTC 06:00 运行（HKT 14:00）
+    - cron: '0 6 * * *'
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-doc.md
+          pip install pytest pytest-cov jinja2
+
+      - name: 运行单元测试
+        run: |
+          python -m pytest tests/test_api_suite.py -v --tb=short
+
+      - name: 运行迭代三测试
+        run: |
+          python -m pytest tests/test_iteration3.py -v --tb=short
+
+      - name: 验证报告生成
+        run: |
+          python3 -c "
+          from scripts.utils.reporter import ReportGenerator
+          from pathlib import Path
+          import tempfile
+          import json
+
+          with tempfile.TemporaryDirectory() as tmpdir:
+              rg = ReportGenerator(output_dir=tmpdir)
+              results = [
+                  {'test_name': '登录正常', 'status': 'passed', 'duration_ms': 523, 'classname': 'test_login'},
+                  {'test_name': '密码错误', 'status': 'failed', 'duration_ms': 321, 'classname': 'test_login',
+                   'error': '预期返回401，实际返回500',
+                   'request': {'method': 'POST', 'url': 'https://api.example.com/login'},
+                   'response': {'status_code': 500, 'body': {'error': 'Internal Server Error'}}},
+                  {'test_name': '数据库超时', 'status': 'error', 'duration_ms': 123, 'classname': 'test_db',
+                   'error': '连接超时'},
+                  {'test_name': '已禁用', 'status': 'skipped', 'duration_ms': 1, 'classname': 'test_disabled',
+                   'error': '该用例在当前环境下不适用'},
+              ]
+              manifest = {
+                  'environment': 'github_actions',
+                  'source_spec': 'openapi.json',
+                  'endpoints': [],
+                  'coverage': {'total_cases': 4, 'executed_cases': 4}
+              }
+              perf = {
+                  'concurrency': 10,
+                  'total_requests': 1000,
+                  'p50_ms': 25,
+                  'p95_ms': 89,
+                  'p99_ms': 234,
+                  'tps': 100.5,
+                  'error_rate': 0.5,
+              }
+              
+              summary = rg.generate(results, manifest, perf)
+              
+              # 验证所有报告类型都生成
+              assert 'markdown_report' in summary, '缺少 Markdown 报告'
+              assert 'json_report' in summary, '缺少 JSON 报告'
+              assert 'junit_xml_report' in summary, '缺少 JUnit XML 报告'
+              assert 'html_report' in summary, '缺少 HTML 报告'
+              
+              # 验证文件存在
+              for key in ['markdown_report', 'json_report', 'junit_xml_report', 'html_report']:
+                  path = Path(summary[key])
+                  assert path.exists(), f'{key} 文件不存在: {path}'
+                  assert path.stat().st_size > 0, f'{key} 文件为空'
+              
+              print('✅ 所有报告生成验证通过')
+              print(f'  Markdown: {summary[\"markdown_report\"]}')
+              print(f'  JSON: {summary[\"json_report\"]}')
+              print(f'  JUnit XML: {summary[\"junit_xml_report\"]}')
+              print(f'  HTML: {summary[\"html_report\"]}')
+          "
+
+      - name: 上传报告工件
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-test-reports-py${{ matrix.python-version }}
+          path: |
+            reports/*.md
+            reports/*.json
+            reports/*.xml
+            reports/*.html
+          retention-days: 14
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装 lint 工具
+        run: pip install ruff flake8 black
+
+      - name: 运行 flake8
+        run: |
+          flake8 scripts/ tests/ --max-line-length=120 --exclude=__pycache__,.git
+
+      - name: 运行 ruff
+        run: |
+          ruff check scripts/ tests/
+
+  deploy-report:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: 下载所有报告
+        uses: actions/download-artifact@v4
+        with:
+          pattern: api-test-reports-*
+          path: reports/
+          merge-multiple: true
+
+      - name: 部署到 GitHub Pages（可选）
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.repository == 'zhaog100/api-test-automation' || startsWith(github.repository, 'test-')
+        with:
+          publish_dir: ./reports
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force_orphan: true

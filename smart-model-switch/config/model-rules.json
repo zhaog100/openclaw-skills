@@ -1,0 +1,119 @@
+{
+  "models": {
+    "primary": {
+      "id": "agnes/agnes-2.0-flash",
+      "description": "主力模型，优先使用（2026-05-22 更新）"
+    },
+    "flash": {
+      "id": "agnes/agnes-2.0-flash",
+      "description": "快速响应，简单任务，2.0额度用完时降级"
+    },
+    "main": {
+      "id": "agnes/agnes-2.0-flash",
+      "description": "通用对话，2.0额度用完时降级"
+    },
+    "coding": {
+      "id": "agnes/agnes-2.0-flash",
+      "description": "代码/推理专用，2.0额度用完时降级"
+    },
+    "vision": {
+      "id": "agnes/agnes-2.0-flash",
+      "description": "多模态，图片识别"
+    },
+    "complex": {
+      "id": "agnes/agnes-2.0-flash",
+      "description": "深度推理，2.0额度用完时降级"
+    },
+    "fallback": {
+      "id": "agnes-2.0-flash",
+      "description": "兜底模型"
+    },
+    "long-context": {
+      "id": "openrouter/qwen3.6-plus-preview:free",
+      "description": "超长上下文100万token",
+      "context_window": 1000000
+    }
+  },
+  "complexity_analysis": {
+    "weights": {
+      "length": 0.3,
+      "keywords": 0.4,
+      "code": 0.2,
+      "vision": 0.1
+    },
+    "thresholds": {
+      "flash": 3,
+      "main": 6,
+      "complex": 8
+    }
+  },
+  "context_switch_strategy": {
+    "rules": [
+      {
+        "name": "长上下文切换",
+        "threshold": 85,
+        "consecutive_hits": 2,
+        "target_model": "long-context",
+        "auto_switch": false
+      }
+    ],
+    "cooldown": {
+      "duration_minutes": 10
+    }
+  },
+  "feature_detection": {
+    "code_patterns": [
+      "function", "class ", "def ", "import ", "export ", "const ", "let ", "var ",
+      "if ", "for ", "while ", "return ", "switch(", "case ", "try {", "catch(",
+      "interface ", "type ", "enum ", "struct ", "impl ", "pub fn", "fn ",
+      "async ", "await ", "Promise", "SELECT ", "INSERT ", "UPDATE ", "DELETE ",
+      "git commit", "npm install", "docker build", "kubectl ", "package "
+    ],
+    "vision_keywords": [
+      "图片", "截图", "照片", "图像", "视频", "frame", "visual", "image",
+      "screenshot", "photo", "media", "attachment", "jpg", "png", "gif",
+      "webp", "bmp", "tiff", "mp4", "avi", "mov", "mkv", "可视化", "图表"
+    ],
+    "complex_keywords": [
+      "分析", "设计", "架构", "深度", "详细", "全面", "系统", "方案", "策略",
+      "优化", "研究", "探讨", "文档", "PDF", "报告", "架构设计", "技术选型",
+      "重构方案", "性能优化", "安全审计", "代码审查", "bug分析", "数据库设计",
+      "API设计", "微服务", "分布式", "集群", "高可用", "容灾", "监控"
+    ],
+    "simple_keywords": [
+      "你好", "谢谢", "再见", "在吗", "吗", "多少", "什么", "哪里",
+      "时间", "日期", "今天", "明天", "昨天", "看看", "检查"
+    ]
+  },
+  "keywordRules": {
+    "forceComplex": [
+      "架构设计", "系统设计", "技术选型", "重构方案", "性能优化", "安全审计",
+      "代码审查", "bug分析", "数据库设计", "API设计", "微服务", "分布式",
+      "高可用", "容灾", "监控", "技术方案", "实现思路", "详细设计"
+    ],
+    "forceFlash": [
+      "你好", "谢谢", "再见", "在吗", "吗？", "多少？", "什么？", "哪里？",
+      "时间？", "日期？", "今天？", "明天？", "昨天？"
+    ],
+    "forceCoding": [
+      ".js", ".ts", ".jsx", ".tsx", ".py", ".java", ".go", ".rs", ".cpp",
+      ".c", ".h", ".hpp", ".cs", ".rb", ".php", ".swift", ".kt", ".scala",
+      "function ", "def ", "class ", "import ", "export ", "interface ",
+      "async ", "await ", "Promise", "git commit", "npm install", "docker build",
+      "SELECT ", "INSERT INTO", "帮我写", "帮我创建", "帮我实现", "写一个函数",
+      "写段代码", "代码示例"
+    ],
+    "forceVision": [
+      ".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".tiff", ".mp4",
+      ".avi", ".mov", ".mkv", ".webm", "图片", "视频", "截图", "图表",
+      "可视化", "image", "video", "screenshot", "photo", "frame"
+    ]
+  },
+  "priority": "forceRule > complexityScore > defaultModel",
+  "file_type_mapping": {
+    "vision": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".tiff", ".mp4", ".avi", ".mov", ".mkv", ".webm"],
+    "coding": [".js", ".jsx", ".ts", ".tsx", ".py", ".java", ".cpp", ".c", ".html", ".css", ".json", ".xml", ".yaml", ".yml", ".go", ".rs", ".rb", ".php"],
+    "complex": [".pdf", ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx"],
+    "main": [".txt", ".md", ".csv"]
+  }
+}

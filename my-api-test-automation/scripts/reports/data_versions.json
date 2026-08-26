@@ -1,0 +1,88 @@
+[
+  {
+    "batch_id": "batch_20260701_153532_f0b0b2e2",
+    "timestamp": "2026-07-01T15:35:32.631438",
+    "environment": "dev",
+    "endpoints": [
+      "POST /api/users",
+      "POST /api/orders"
+    ],
+    "data_ids": [
+      "batch_20260701_153532_f0b0b2e2_1",
+      "batch_20260701_153532_f0b0b2e2_2",
+      "batch_20260701_153532_f0b0b2e2_1",
+      "batch_20260701_153532_f0b0b2e2_2"
+    ],
+    "record_count": 4,
+    "records": [
+      {
+        "data_id": "batch_20260701_153532_f0b0b2e2_1",
+        "batch_id": "batch_20260701_153532_f0b0b2e2",
+        "endpoint": "/api/users",
+        "method": "POST",
+        "payload": {
+          "username_user01": "比较计划浏览制作发现一下正在留言这里.",
+          "email_user01": "swen@example.org",
+          "age_user01": 65,
+          "gender_user01": "other",
+          "bio_user01": "手机标准不会最大.而且大小提供孩子不断一切.中心政府帮助如果本站电子.\n这么是否继续美国信息来源.进入资料之后不会.\n的人名称可是.留言搜索这样电影朋友注意.会员新闻资料增加其中上海.\n今天客户评论一下学习论坛.那么没有数据看到关于成为作者.深圳更多次数销售新闻."
+        },
+        "created_at": "2026-07-01T15:35:32.630938",
+        "cleanup_path": "/api/users/{id}",
+        "cleanup_id_key": "id"
+      },
+      {
+        "data_id": "batch_20260701_153532_f0b0b2e2_2",
+        "batch_id": "batch_20260701_153532_f0b0b2e2",
+        "endpoint": "/api/users",
+        "method": "POST",
+        "payload": {
+          "username_user02": "标准准备那么一种.网上或者所有商品教育不会.",
+          "email_user02": "gang67@example.net",
+          "age_user02": 12,
+          "gender_user02": "male",
+          "bio_user02": "一下阅读发布次数.她的看到汽车发展其实.自己系列推荐阅读基本.发生为什的人任何方式内容."
+        },
+        "created_at": "2026-07-01T15:35:32.631024",
+        "cleanup_path": "/api/users/{id}",
+        "cleanup_id_key": "id"
+      },
+      {
+        "data_id": "batch_20260701_153532_f0b0b2e2_1",
+        "batch_id": "batch_20260701_153532_f0b0b2e2",
+        "endpoint": "/api/orders",
+        "method": "POST",
+        "payload": {
+          "product_order01": "正在一样程序应用.得到以及推荐处理日期目前.一些直接已经过程详细要求.工具生活表示成为下载威望中文.",
+          "quantity_order01": 7836,
+          "price_order01": 37862.23,
+          "currency_order01": "CNY",
+          "tags_order01": [
+            "原因类型当然责任之后两个部分."
+          ]
+        },
+        "created_at": "2026-07-01T15:35:32.631132",
+        "cleanup_path": "/api/orders/{id}",
+        "cleanup_id_key": "id"
+      },
+      {
+        "data_id": "batch_20260701_153532_f0b0b2e2_2",
+        "batch_id": "batch_20260701_153532_f0b0b2e2",
+        "endpoint": "/api/orders",
+        "method": "POST",
+        "payload": {
+          "product_order02": "希望评论留言.类别一直一定感觉政府信息.",
+          "quantity_order02": 8344,
+          "price_order02": 57979.64,
+          "currency_order02": "CNY",
+          "tags_order02": [
+            "研究拥有关系."
+          ]
+        },
+        "created_at": "2026-07-01T15:35:32.631245",
+        "cleanup_path": "/api/orders/{id}",
+        "cleanup_id_key": "id"
+      }
+    ]
+  }
+]
