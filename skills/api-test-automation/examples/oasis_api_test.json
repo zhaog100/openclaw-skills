@@ -1,0 +1,148 @@
+{
+  "base_url": "https://117.176.167.49:33027",
+  "token_base_url": "http://117.176.167.49:33024",
+  "auth": {
+    "token_header": "X-H3C-TOKEN",
+    "token_endpoint": "/api/token/getToken",
+    "token_params": {
+      "appId": "datauser",
+      "code": "7"
+    }
+  },
+  "environments": {
+    "dev": {
+      "base_url": "https://117.176.167.49:33027",
+      "token_base_url": "http://117.176.167.49:33024"
+    }
+  },
+  "tests": [
+    {
+      "name": "智慧厕所-环境传感器",
+      "method": "GET",
+      "path": "/api/Device/WashRoom/Environment/LatestData",
+      "params": {"deviceNo": ""},
+      "headers": {"X-H3C-TOKEN": "{{TOKEN}}"},
+      "expected_status": 200,
+      "assertions": [
+        {"type": "status_code", "value": 200},
+        {"type": "json_path", "path": "$.code", "value": 200},
+        {"type": "json_path", "path": "$.data", "operator": "exists"}
+      ],
+      "sample_response": {
+        "msg": "请求成功",
+        "code": 200,
+        "data": [{
+          "createTime": "2024-01-11 10:35:23",
+          "dtuNo": "DT0012AP00001",
+          "deviceNo": "ES0012AA00001",
+          "beatSpan": 60,
+          "powerMode": 2,
+          "voltage": 220,
+          "nh3": 0.02,
+          "h2s": 0.0049,
+          "tem": 24,
+          "hum": 26,
+          "pm25": 9
+        }]
+      }
+    },
+    {
+      "name": "智慧厕所-门锁状态",
+      "method": "GET",
+      "path": "/api/Device/WashRoom/DoorLock/LatestData",
+      "params": {"deviceNo": ""},
+      "headers": {"X-H3C-TOKEN": "{{TOKEN}}"},
+      "expected_status": 200,
+      "assertions": [
+        {"type": "status_code", "value": 200},
+        {"type": "json_path", "path": "$.code", "value": 200}
+      ],
+      "sample_response": {
+        "msg": "请求成功",
+        "code": 200,
+        "data": [{
+          "createTime": "2023-10-20 18:09:13",
+          "dtuNo": "DT00129F00098",
+          "deviceNo": "DD00102185864",
+          "lockStatus": 1,
+          "rssi": 58
+        }]
+      }
+    },
+    {
+      "name": "智慧能耗-建筑列表",
+      "method": "GET",
+      "path": "/basapi/building/v1.0.0/buildinglist",
+      "params": {"name": ""},
+      "headers": {"X-H3C-TOKEN": "{{TOKEN}}"},
+      "expected_status": 200,
+      "assertions": [
+        {"type": "status_code", "value": 200},
+        {"type": "json_path", "path": "$.code", "value": "0"}
+      ],
+      "sample_response": {
+        "msg": "请求成功",
+        "code": "0",
+        "data": [{
+          "buildingid": "510007",
+          "buildingsn": "510007",
+          "name": "眉山天府新区智慧城市智慧园区",
+          "usernum": "100"
+        }]
+      }
+    },
+    {
+      "name": "智慧食堂-用户列表",
+      "method": "GET",
+      "path": "/api/mobile/v1/third/user/list",
+      "params": {"name": "", "pageNum": 1, "pageSize": 10},
+      "headers": {"X-H3C-TOKEN": "{{TOKEN}}"},
+      "expected_status": 200,
+      "assertions": [
+        {"type": "status_code", "value": 200},
+        {"type": "json_path", "path": "$.code", "value": "0"}
+      ],
+      "sample_response": {
+        "msg": "请求成功",
+        "code": "0",
+        "data": {
+          "current": 1,
+          "size": 1,
+          "total": 4318,
+          "records": [{
+            "name": "李宝昌",
+            "mobile": "18181941886",
+            "status": "1"
+          }]
+        }
+      }
+    },
+    {
+      "name": "智慧车辆-车场信息",
+      "method": "GET",
+      "path": "/api/E8/sys-park-info/get-park-tree-table",
+      "params": {"Name": "", "pageNum": 1, "pageSize": 10},
+      "headers": {"X-H3C-TOKEN": "{{TOKEN}}"},
+      "expected_status": 200,
+      "assertions": [
+        {"type": "status_code", "value": 200},
+        {"type": "json_path", "path": "$.code", "value": "0"}
+      ],
+      "sample_response": {
+        "msg": "请求成功",
+        "code": "0",
+        "data": {
+          "current": 1,
+          "size": 1,
+          "total": 1,
+          "records": [{
+            "Code": "518203618463813",
+            "Name": "眉山环天智慧园",
+            "TotalParkingLot": "460",
+            "RemainParkingLot": "263"
+          }]
+        }
+      }
+    }
+  ]
+}

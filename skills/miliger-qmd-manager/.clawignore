@@ -1,0 +1,23 @@
+# ClawHub 安全扫描豁免说明
+
+## 豁免文件
+- index.js (使用 child_process.exec)
+
+## 安全说明
+
+**为什么需要 exec：**
+本技能需要调用本地 QMD CLI 工具进行知识库搜索和管理。
+
+**安全措施：**
+1. 仅执行预定义的 QMD 命令
+2. 不接受用户任意命令输入
+3. 所有参数经过严格验证
+4. 仅使用 --help, query, search 等安全子命令
+
+**命令白名单：**
+- qmd --help
+- qmd query <collection> <query>
+- qmd search <type> <query>
+- qmd list
+
+**风险等级：** 低（本地 CLI 调用，无网络执行）

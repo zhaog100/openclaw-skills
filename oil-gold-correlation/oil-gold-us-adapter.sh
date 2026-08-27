@@ -1,4 +1,3 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 # oil-gold-us-adapter.sh
 # 自动判断美股夏/冬令时，动态调整推送时间
 # 夏令时(3月第2周日~11月第1周日): 美股21:30开盘 → cron 23:00直接推送
@@ -24,5 +23,5 @@ if [ "$is_dst" -eq 0 ]; then
     sleep 3600
 fi
 
-python3 "$(dirname "$0")/../scripts/report_text.py"
+python3 /root/.openclaw/workspace/skills/oil-gold-correlation/scripts/report_text.py
 

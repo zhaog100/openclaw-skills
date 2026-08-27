@@ -1,0 +1,47 @@
+{
+  "name": "opencli-bridge",
+  "version": "1.0.0",
+  "description": "Bridge to OpenCLI for 73+ pre-built website adapters",
+  "author": "小米粒 (PM + Dev)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your_username/openclaw-skills"
+  },
+  "keywords": [
+    "opencli",
+    "browser-automation",
+    "web-scraping",
+    "ai-agent",
+    "cli"
+  ],
+  "dependencies": {
+    "@jackwener/opencli": ">=1.0.0"
+  },
+  "peerDependencies": {
+    "chrome-browser": "*"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "install": "npm install -g @jackwener/opencli",
+    "verify": "opencli doctor",
+    "update": "npm install -g @jackwener/opencli@latest"
+  },
+  "config": {
+    "sensitive_fields": ["email", "password", "token", "api_key"],
+    "mask_pattern": "***",
+    "log_level": "info",
+    "rate_limit": {
+      "requests_per_minute": 20,
+      "delay_seconds": 3
+    }
+  },
+  "security": {
+    "data_storage": "local_only",
+    "network": "https_only",
+    "sanitize_logs": true,
+    "mask_sensitive": true
+  }
+}
