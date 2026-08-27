@@ -1,4 +1,5 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# License: MIT
 #!/bin/bash
 
 # 引用检测脚本

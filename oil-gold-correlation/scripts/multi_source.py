@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 多数据源管理器
 统一管理 akshare/yfinance/Alpha Vantage/Twelve Data/FRED，自动降级，交叉验证
 
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')

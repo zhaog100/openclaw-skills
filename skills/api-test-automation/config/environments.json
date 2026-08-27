@@ -1,0 +1,25 @@
+{
+  "environments": {
+    "dev": {
+      "base_url": "http://localhost:8080",
+      "timeout": 30,
+      "retry_count": 3
+    },
+    "sit": {
+      "base_url": "https://sit-api.example.com",
+      "timeout": 30,
+      "retry_count": 3
+    },
+    "staging": {
+      "base_url": "https://staging-api.example.com",
+      "timeout": 30,
+      "retry_count": 3
+    },
+    "prod": {
+      "base_url": "https://api.example.com",
+      "timeout": 60,
+      "retry_count": 2
+    }
+  },
+  "default": "sit"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "alert",
+  "description": "系统告警通知",
+  "template": "🚨【系统告警】\n时间：{{time}}\n级别：{{level}}\n内容：{{message}}\n负责人：{{owner}}",
+  "variables": ["time", "level", "message", "owner"],
+  "defaults": {
+    "owner": "系统管理员",
+    "level": "普通"
+  }
+}

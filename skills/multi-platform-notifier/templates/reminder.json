@@ -1,0 +1,9 @@
+{
+  "name": "reminder",
+  "description": "定时提醒",
+  "template": "⏰【定时提醒】\n时间：{{time}}\n事项：{{event}}\n备注：{{note}}",
+  "variables": ["time", "event", "note"],
+  "defaults": {
+    "note": "无"
+  }
+}

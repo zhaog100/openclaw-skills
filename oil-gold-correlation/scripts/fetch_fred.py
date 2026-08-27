@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 FRED（美联储经济数据）数据源 v3.3
 美国官方宏观经济数据 + 美股市场全维度分析
@@ -14,6 +11,9 @@ FRED（美联储经济数据）数据源 v3.3
 
 数据来源: https://fred.stlouisfed.org
 免费 API Key: https://fred.stlouisfed.org/docs/api/api_key.html
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 """
 
 import os
@@ -22,6 +22,7 @@ import time
 import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
+from config import FRED_API_BASE
 
 import pandas as pd
 
@@ -68,7 +69,7 @@ def fetch_fred_series(series_id, days_back=90):
             except:
                 pass
     
-    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}&cosd={start}&coed={end}"
+    url = f"{FRED_API_BASE}?id={series_id}&cosd={start}&coed={end}"
     
     # 方法1: curl
     csv_content = ""

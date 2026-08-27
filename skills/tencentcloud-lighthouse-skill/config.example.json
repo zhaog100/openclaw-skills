@@ -1,0 +1,12 @@
+{
+  "mcporter": {
+    "configPath": "~/.mcporter/mcporter.json"
+  },
+  "lighthouse": {
+    "defaultRegion": "ap-guangzhou"
+  },
+  "env": {
+    "TENCENTCLOUD_SECRET_ID": "<your-secret-id>",
+    "TENCENTCLOUD_SECRET_KEY": "<your-secret-key>"
+  }
+}

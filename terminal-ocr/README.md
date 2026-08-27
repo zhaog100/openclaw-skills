@@ -1,6 +1,3 @@
-<!--
-Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
--->
 # 终端OCR技能
 
 专门处理终端/命令行界面截图的OCR识别技能。

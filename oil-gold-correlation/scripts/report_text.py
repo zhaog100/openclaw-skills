@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 石油黄金投资参考 - 纯文本报告生成器 v3.3
 优化：信号灯颜色更清晰 + 趋势箭头文字化 + 信息密度精简
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 """
 
 import sys
-import numpy as np
 from pathlib import Path
 from datetime import datetime
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 from advisor import _analyze_instrument, _fetch_akshare_single
@@ -241,7 +241,10 @@ def _generate_report_inner():
                 change_1d = df['Close'].pct_change().iloc[-1] * 100
                 change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
                 change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
-                lines.append(f'  {label} ¥{latest:,.0f}/克  日{change_1d:+.2f}%  30日{change_30d:+.1f}%  年初至今{change_ytd:+.1f}%')
+                lines.append(f'  {label} ¥{latest:,.0f}/克'
+                             f'  日{change_1d:+.2f}%'
+                             f'  30日{change_30d:+.1f}%'
+                             f'  年初至今{change_ytd:+.1f}%')
             else:
                 lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}/克  (缓存)')
         except Exception as e:
@@ -308,7 +311,14 @@ def _generate_report_inner():
             min_len = min(len(g_ret), len(o_ret))
             if min_len > 10:
                 corr_val = g_ret.iloc[-min_len:].corr(o_ret.iloc[-min_len:])
-                corr_label = '强负相关' if corr_val < -0.5 else '弱负相关' if corr_val < -0.2 else '弱正相关' if corr_val < 0.5 else '强正相关'
+                if corr_val < -0.5:
+                    corr_label = '强负相关'
+                elif corr_val < -0.2:
+                    corr_label = '弱负相关'
+                elif corr_val < 0.5:
+                    corr_label = '弱正相关'
+                else:
+                    corr_label = '强正相关'
                 lines.append(f'  黄金-原油 90日收益率相关系数: {corr_val:.3f} ({corr_label})')
                 if corr_val < -0.3:
                     lines.append(f'  📉 避险主导：黄金涨→原油跌')

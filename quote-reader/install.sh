@@ -1,4 +1,3 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/bin/bash
 
 # 引用前文内容读取技能 - 安装脚本

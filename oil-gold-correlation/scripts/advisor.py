@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 石油黄金投资建议模块 v3.3
 短期（1天~1周）为主 + 中长期（1月~6月）补充
 
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -31,9 +31,24 @@ INSTRUMENTS = {
     "布伦特原油": {"symbol": "BZ=F", "type": "期货", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
     "美元指数": {"symbol": "DX-Y.NYB", "type": "指数", "exchange": "ICE", "currency": "USD", "source": "yfinance"},
     # 国内品种（辅助，人民币计价）
-    "沪金期货": {"symbol": "AU0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "gold"},
-    "沪银期货": {"symbol": "AG0", "type": "期货", "exchange": "上海期货交易所", "currency": "CNY", "source": "akshare", "ak_key": "silver"},
-    "沪油期货": {"symbol": "SC0", "type": "期货", "exchange": "上海国际能源交易中心", "currency": "CNY", "source": "akshare", "ak_key": "wti"},
+    "沪金期货": {
+        "symbol": "AU0", "type": "期货",
+        "exchange": "上海期货交易所",
+        "currency": "CNY", "source": "akshare",
+        "ak_key": "gold"
+    },
+    "沪银期货": {
+        "symbol": "AG0", "type": "期货",
+        "exchange": "上海期货交易所",
+        "currency": "CNY", "source": "akshare",
+        "ak_key": "silver"
+    },
+    "沪油期货": {
+        "symbol": "SC0", "type": "期货",
+        "exchange": "上海国际能源交易中心",
+        "currency": "CNY", "source": "akshare",
+        "ak_key": "wti"
+    },
 }
 
 
@@ -931,7 +946,10 @@ def generate_daily_report(days=3):
         for n, r in buys.items():
             cur = r.get('currency', 'USD')
             sym = '¥' if cur == 'CNY' else '$'
-            lines.append(f"     {n}: 现价{sym}{r.get('price', r.get('latest', 0)):,.2f} → 目标{sym}{r.get('take_profit', '-')} 止损{sym}{r.get('stop_loss', '-')}")
+            tp = r.get('take_profit', '-')
+            sl = r.get('stop_loss', '-')
+            lines.append(f"     {n}: 现价{sym}{r.get('price', r.get('latest', 0)):,.2f}"
+                         f" → 目标{sym}{tp} 止损{sym}{sl}")
     if sells:
         lines.append(f"\n  🔴 卖出: {', '.join(sells.keys())}")
     if holds:
@@ -967,7 +985,10 @@ def generate_daily_report(days=3):
         if r.get('macd') and isinstance(r['macd'], dict):
             lines.append(f"    📉 MACD {r['macd']['signal']} | 布林 {r.get('bollinger', {}).get('position', '-')}")
         if r.get('volatility'):
-            lines.append(f"    📏 预测: {sym}{r.get('pred_low', '-')} ~ {sym}{r.get('pred_high', '-')} (波动{r['volatility']:.1f}%)")
+            pl = r.get('pred_low', '-')
+            ph = r.get('pred_high', '-')
+            vol = r['volatility']
+            lines.append(f"    📏 预测: {sym}{pl} ~ {sym}{ph} (波动{vol:.1f}%)")
         if r.get('obv'):
             lines.append(f"    📊 OBV: {r['obv']['divergence']}")
         if r.get('fibonacci'):
@@ -1046,7 +1067,11 @@ def generate_daily_report(days=3):
         else:
             weights, regime = {}, "常规行情"
 
-        conflict = resolve_conflicts(signals) if signals else {"bullish": [], "bearish": [], "neutral": [], "ratio": 0.5, "consensus": "无信号", "consensus_pct": 50}
+        conflict = resolve_conflicts(signals) if signals else {
+            "bullish": [], "bearish": [],
+            "neutral": [], "ratio": 0.5,
+            "consensus": "无信号", "consensus_pct": 50
+        }
 
         final_score = score + geo_score * geo_weight
         if gold_oil_ratio and emoji_name.startswith("🥇"):
@@ -1518,7 +1543,9 @@ def run_advisor_akshare(days=3):
         if r.get("boll"):
             b = r["boll"]
             if isinstance(b, dict):
-                print(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f} / {sym}{b['upper']:.2f} ({b.get('position','')})")
+                pos = b.get('position', '')
+                print(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f}"
+                      f" / {sym}{b['upper']:.2f} ({pos})")
             else:
                 lo, mid, hi = b
                 print(f"  布林带: {sym}{lo:.2f} / {sym}{mid:.2f} / {sym}{hi:.2f}")

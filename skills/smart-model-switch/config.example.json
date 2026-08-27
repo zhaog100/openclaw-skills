@@ -1,0 +1,183 @@
+{
+  "models": {
+    "flash": {
+      "id": "sensenova/sensenova-6.8-flash-lite",
+      "description": "快速响应，轻量多模态，适合简单问题（免费）"
+    },
+    "main": {
+      "id": "custom-apihub-agnes-ai-cn/agnes-2.5-flash",
+      "description": "主力模型，平衡性能和质量"
+    },
+    "coding": {
+      "id": "sensenova/deepseek-v4-flash",
+      "description": "DeepSeek V4 Flash，1M上下文+thinking模式，适合代码/推理"
+    },
+    "vision": {
+      "id": "sensenova/sensenova-6.8-flash-lite",
+      "description": "多模态理解，支持图文输入（免费）"
+    },
+    "complex": {
+      "id": "sensenova/deepseek-v4-flash",
+      "description": "1M上下文+reasoning，适合深度分析和架构设计"
+    },
+    "long-context": {
+      "id": "sensenova/deepseek-v4-flash",
+      "description": "超长上下文，1024k窗口，适合长文档/代码库分析",
+      "context_window": 1048576
+    }
+  },
+  "complexity_analysis": {
+    "weights": {
+      "length": 0.3,
+      "keywords": 0.4,
+      "code": 0.2,
+      "vision": 0.1
+    },
+    "thresholds": {
+      "flash": 3,
+      "main": 6,
+      "complex": 8
+    }
+  },
+  "context_switch_strategy": {
+    "rules": [
+      {
+        "name": "长上下文切换",
+        "threshold": 85,
+        "consecutive_hits": 2,
+        "target_model": "long-context",
+        "auto_switch": false
+      }
+    ],
+    "cooldown": {
+      "duration_minutes": 10
+    },
+    "notification": {
+      "enabled": false,
+      "message": "上下文过高，已自动切换模型"
+    },
+    "notify_interval_seconds": 300,
+    "proactive_check": {
+      "enabled": true
+    }
+  },
+  "feature_detection": {
+    "code_patterns": [
+      "function",
+      "class",
+      "def",
+      "import",
+      "export",
+      "const",
+      "let",
+      "var",
+      "if",
+      "for",
+      "while",
+      "return"
+    ],
+    "vision_keywords": [
+      "图片",
+      "截图",
+      "照片",
+      "图像",
+      "视频",
+      "frame",
+      "visual",
+      "image",
+      "screenshot",
+      "photo",
+      "media",
+      "attachment"
+    ],
+    "complex_keywords": [
+      "分析",
+      "设计",
+      "架构",
+      "深度",
+      "详细",
+      "全面",
+      "系统",
+      "方案",
+      "策略",
+      "优化",
+      "研究",
+      "探讨",
+      "文档",
+      "PDF",
+      "报告"
+    ]
+  },
+  "file_type_mapping": {
+    "vision": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".webp",
+      ".bmp",
+      ".tiff",
+      ".mp4",
+      ".avi",
+      ".mov",
+      ".mkv",
+      ".webm"
+    ],
+    "coding": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".py",
+      ".java",
+      ".cpp",
+      ".c",
+      ".html",
+      ".css",
+      ".json",
+      ".xml",
+      ".yaml",
+      ".yml"
+    ],
+    "complex": [
+      ".pdf",
+      ".doc",
+      ".docx",
+      ".ppt",
+      ".pptx",
+      ".xls",
+      ".xlsx"
+    ],
+    "main": [
+      ".txt",
+      ".md",
+      ".csv"
+    ]
+  },
+  "cost_tracking": {
+    "model_costs_per_1k_tokens": {
+      "flash": 7.5e-05,
+      "turbo": 0.00015,
+      "main": 0.0003,
+      "complex": 0.0012,
+      "vision": 0.0025
+    }
+  },
+  "api_endpoints": {
+    "flash": "https://api.z.ai/api/coding/paas/v4/chat/completions",
+    "turbo": "https://api.z.ai/api/coding/paas/v4/chat/completions",
+    "main": "https://coding.dashscope.aliyuncs.com/v1/chat/completions",
+    "complex": "https://coding.dashscope.aliyuncs.com/v1/chat/completions"
+  },
+  "paths": {
+    "data_dir": "data",
+    "log_dir": "~/.openclaw/logs",
+    "openclaw_config": "~/.openclaw/config.json",
+    "openclaw_status": "~/.openclaw/status.json",
+    "model_switch_requests": "~/.openclaw/model-switch-requests"
+  },
+  "load_balancer": {
+    "connect_timeout_seconds": 3,
+    "max_timeout_seconds": 5
+  }
+}

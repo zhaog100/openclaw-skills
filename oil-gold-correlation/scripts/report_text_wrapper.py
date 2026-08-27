@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 石油黄金报告生成器 - 超时保护版 v3.3
 包装 report_text.py，带超时保护和降级机制
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import subprocess
 import sys

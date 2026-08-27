@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 # 版本: v3.3 | 石油黄金白银相关性分析
-# Author: 小米粒 (Xiaomili) - AI Agent
 """测试石油黄金报告模板 v3.3"""
 
 from datetime import datetime

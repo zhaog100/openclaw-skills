@@ -1,0 +1,30 @@
+# Python 虚拟环境
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 日志和数据库
+*.log
+*.db
+*.sqlite
+
+# 临时文件
+*.tmp
+*.bak
+*.cache
+
+# 测试文件
+tests/
+
+# 文档
+docs/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# 配置文件（保留模板）
+config/unified.json

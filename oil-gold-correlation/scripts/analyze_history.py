@@ -4,9 +4,9 @@
 历史走势分析报告 — 收集黄金石油近期走势数据，发现报告优化点
 """
 # 版本: v3.3 | 石油黄金白银相关性分析
-# Author: 小米粒 (Xiaomili) - AI Agent
 import sys
 import numpy as np
+import pandas as pd
 import pandas as pd
 from pathlib import Path
 

@@ -1,6 +1,3 @@
-<!--
-Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
--->
 # 终端OCR技能用户指南
 
 ## 📋 快速开始

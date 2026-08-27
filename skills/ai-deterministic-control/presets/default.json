@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "presets": {
+    "code_generation": {
+      "name": "代码生成",
+      "description": "最高确定性，适用于代码、SQL、正则等生成任务",
+      "temperature": 0.1,
+      "top_p": 0.85,
+      "seed": null,
+      "tags": ["code", "sql", "regex", "api"]
+    },
+    "config_generation": {
+      "name": "配置生成",
+      "description": "高确定性，适用于 JSON、YAML、配置文件生成",
+      "temperature": 0.2,
+      "top_p": 0.88,
+      "seed": null,
+      "tags": ["json", "yaml", "config", "dockerfile"]
+    },
+    "conversation": {
+      "name": "常规对话",
+      "description": "平衡模式，适用于日常对话和问答",
+      "temperature": 0.5,
+      "top_p": 0.9,
+      "seed": null,
+      "tags": ["chat", "qa", "dialogue"]
+    },
+    "creative_writing": {
+      "name": "创意写作",
+      "description": "高随机性，适用于创意写作、头脑风暴",
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "seed": null,
+      "tags": ["creative", "writing", "brainstorm", "story"]
+    },
+    "data_analysis": {
+      "name": "数据分析",
+      "description": "高确定性，适用于数据分析、统计报告",
+      "temperature": 0.15,
+      "top_p": 0.87,
+      "seed": null,
+      "tags": ["analysis", "statistics", "data"]
+    },
+    "translation": {
+      "name": "翻译任务",
+      "description": "高确定性，确保翻译一致性",
+      "temperature": 0.1,
+      "top_p": 0.85,
+      "seed": null,
+      "tags": ["translation", "i18n", "localization"]
+    }
+  }
+}

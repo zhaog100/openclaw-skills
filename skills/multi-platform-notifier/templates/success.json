@@ -1,0 +1,10 @@
+{
+  "name": "success",
+  "description": "成功通知",
+  "template": "✅【操作成功】\n时间：{{time}}\n任务：{{task}}\n结果：{{result}}",
+  "variables": ["time", "task", "result"],
+  "defaults": {
+    "task": "未知任务",
+    "result": "成功"
+  }
+}
