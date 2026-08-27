@@ -37,3 +37,10 @@ openclaw-skills/
 *.log
 logs/
 data/
+
+# 新增忽略规则
+node_modules/
+secrets/
+self-improving/
+reports/
+projects/萤火燃天/
