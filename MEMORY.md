@@ -29,7 +29,7 @@ _最后更新: 2026-08-24 14:50 CST_
 
 ## 服务器
 - **IP:** 43.133.55.138 (腾讯云轻量)
-- **系统:** Ubuntu 6.8.0-111-generic
+- **系统:** Ubuntu 6.8.0-138-generic
 - **CPU:** 2核 Xeon Gold 6133
 - **内存:** 1.9G
 - **磁盘:** 50G
@@ -94,7 +94,8 @@ _最后更新: 2026-08-24 14:50 CST_
 16. 公考信息采集 crontab 日期不能写死，需用 $(date +%Y-%m-%d) 动态生成
 17. 平台规则/数据复盘脚本仅为框架，实际内容需官家补充
 18. SSH 加固：PermitRootLogin no + PubkeyAuthentication yes + PasswordAuthentication no，配置后不需要重启 sshd（已有连接保持）
-19. 国企央企采集 v4.0：fetch_sc_soe() 重构，编制招聘网(bianzhia.com)为主数据源，URL+公司名双重去重，同一公司多岗位合并，过滤劳务外包/合同制
+20. apt dist-upgrade 用于更新内核，普通 upgrade 无法更新内核
+21. 晚间回顾cron不可包含git操作，会触发stage失败
 
 ## 石油黄金分析增强
 - **多周期共振分析**：2026-06-12 新增 `multi_timeframe_analysis.py` v1.0
@@ -106,8 +107,9 @@ _最后更新: 2026-08-24 14:50 CST_
   - 黄金从¥1004跌至¥895(-10.9%)，数据真实有效
 
 ## QMD 知识库
-- **数据库:** /root/.openclaw/memory/main.sqlite
-- **状态:** 671 chunks / 671 vectors / 671 FTS / 671 embedding_cache ✅ 全部正常（2026-07-02 升级 Gemini 3072d）
+- **数据库:** /root/.openclaw/memory/main.sqlite (符号链接)
+- **实际文件:** /root/.openclaw/agents/main/agent/openclaw-agent.sqlite (39MB)
+- **状态:** 966 chunks / 1469 embeddings / 913 FTS / 114 sources ✅（2026-08-27 更新）
 - **注意:** sqlite3 CLI 未安装，需用 python3 操作数据库
 
 ## 待解决问题
@@ -157,7 +159,7 @@ _最后更新: 2026-08-24 14:50 CST_
   - 安全更新：10个包升级完成（krb5/libsqlite3/nginx等）
   - UFW 防火墙：active，放行 22/5700/5701/80/443
   - SSH 加固：PermitRootLogin no / PubkeyAuthentication yes / PasswordAuthentication no
-  - 内核：6.8.0-136-generic（最新）
+  - 内核：6.8.0-138-generic（最新）
   - OpenClaw：2026.7.1-2（最新）
   - Gateway：运行中，连接正常
   - ⚠️ 待重启：linux-generic 内核升级需 reboot 生效（非紧急）
@@ -184,7 +186,43 @@ _最后更新: 2026-08-05 19:30 CST_
 
 ---
 
-_最后更新: 2026-08-24 17:15 CST_
+## 2026-08-27 变更记录
+- **Agnes Video 2.5 Flash 配置**：已添加到 OpenClaw 模型列表，模型 ID `agnes-video-2.5-flash`，支持文生视频/关键帧/图片参考，免费（原价 $0.025/秒）
+- **配置位置**：`~/.openclaw/openclaw.json` + `~/.openclaw/agents/main/agent/models.json`
+- **备份位置**：`~/.openclaw/backup/2026-08-27/openclaw.json.bak`
+
+---
+
+_最后更新: 2026-08-27 21:54 CST_
+
+## 2026-08-27 系统全面检查处理
+- **系统更新**: 70个包已更新，12个待更新（内核6.8.0-138需重启）✅
+- **UFW防火墙**: 安装并启用，放行22/5700/5701/80/443，屏蔽暴力破解IP ✅
+- **过期备份清理**: 删除8月6日备份（7个文件）和7月备份空目录 ✅
+- **空目录清理**: 清理选题库空目录 ✅
+- **晚间回顾cron修复**: 更新prompt，移除git操作，避免stage失败 ✅
+- **.gitignore更新**: 新增node_modules/secrets/self-improving/reports/projects/忽略规则 ✅
+
+---
+
+## 2026-08-27 视频/图片模型配置
+- **videoGenerationModel**: primary=agnes/agnes-video-2.5-flash, fallback=agnes/agnes-video-v2.0 ✅
+- **imageGenerationModel**: primary=agnes/agnes-image-2.1-flash, fallback=agnes/agnes-image-2.0-flash ✅
+- 配置生效，无需重启 gateway
+
+---
+
+## 2026-08-27 内核更新
+- **内核升级**: 6.8.0-137 → 6.8.0-138 ✅
+- **重启生效**: 21:47 reboot完成 ✅
+- **Python包**: 9个更新完成，Python 3.12.3 ✅
+
+## 2026-08-27 记忆整理
+- **QMD数据库**: 966 chunks, 1469 embeddings, 913 FTS, 114 sources ✅
+- **memory/2026-08-27.md**: 记录今日系统维护事件 ✅
+- **MEMORY.md**: 更新服务器信息、经验教训、变更记录 ✅
+
+---
 
 ## 2026-08-22 变更记录
 - **系统重启**: 内核6.8.0-137生效 ✅
