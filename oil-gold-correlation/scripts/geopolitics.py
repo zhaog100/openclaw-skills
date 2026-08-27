@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 地缘政治分析模块 v3.3
 自动采集新闻 → 评估对石油黄金的影响
 
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -316,33 +316,15 @@ def fetch_news_akshare():
             import subprocess
             import re as _re
 
-            INTERNATIONAL_RSS = [
-                # 🇺🇸 美国
-                ("https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147", "CNBC Top"),
-                ("https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=103700022", "CNBC Economy"),
-                ("https://feeds.marketwatch.com/marketwatch/topstories/", "MarketWatch"),
-                ("https://seekingalpha.com/market_currents.xml", "SeekingAlpha"),
-                # 🇯🇵 日本
-                ("https://www3.nhk.or.jp/rss/news/cat0.xml", "NHK Japan"),
-                # 🇰🇷 韩国
-                ("https://www.koreaherald.com/common/rss.php", "Korea Herald"),
-                # 🛢️ 能源专业（对原油分析至关重要）
-                ("https://www.eia.gov/rss/todayinenergy.xml", "EIA能源署"),
-                # 🏛️ 央行/国际组织
-                ("https://www.ecb.europa.eu/rss/press.html", "ECB欧洲央行"),
-                ("https://news.un.org/feed/subscribe/en/news/all/rss.xml", "UN News"),
-                ("https://www.imf.org/en/News/rss", "IMF国际货币基金"),
-                # 🥇 贵金属专业
-                ("https://www.gold.org/rss.xml", "WGC世界黄金协会"),
-                # 📡 实时/外汇/商品
-                ("https://www.fxstreet.com/rss", "FXStreet"),
+            from config import RSS_SOURCES
+            INTERNATIONAL_RSS = RSS_SOURCES + [
                 ("https://www.forexlive.com/feed/", "ForexLive"),
                 ("https://hnrss.org/frontpage", "HackerNews"),
             ]
 
             for feed_url, feed_name in INTERNATIONAL_RSS:
                 try:
-                    r = subprocess.run(["curl", "-sL", "--max-time", "6", feed_url],
+                    result = subprocess.run(["curl", "-sL", "--max-time", "6", feed_url],
                                        capture_output=True, text=True, timeout=8)
                     if not r.stdout or len(r.stdout) < 200:
                         continue

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoFlow Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/theme-chalk/dark/css-vars.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body, #app { height: 100%; }
+    body { background: #141414; color: #e5eaf3; font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', sans-serif; }
+    .app-container { display: flex; height: 100%; }
+    .app-sidebar { width: 220px; background: #1d1e1f; border-right: 1px solid #414243; display: flex; flex-direction: column; }
+    .app-sidebar .logo { padding: 20px; text-align: center; font-size: 18px; font-weight: bold; color: #409eff; }
+    .app-sidebar .logo small { display: block; font-size: 11px; color: #a3a6ad; font-weight: normal; }
+    .app-main { flex: 1; overflow-y: auto; padding: 24px; }
+    .page-header { margin-bottom: 20px; }
+    .page-header h2 { font-size: 22px; font-weight: 600; }
+    .stat-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: #1d1e1f; border: 1px solid #414243; border-radius: 8px; padding: 20px; }
+    .stat-card .label { font-size: 13px; color: #a3a6ad; margin-bottom: 8px; }
+    .stat-card .value { font-size: 28px; font-weight: bold; color: #409eff; }
+    .el-menu { border-right: none !important; }
+    .login-container { display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-box { width: 380px; background: #1d1e1f; padding: 40px; border-radius: 12px; border: 1px solid #414243; }
+    .login-box h2 { text-align: center; margin-bottom: 8px; color: #409eff; }
+    .login-box p { text-align: center; color: #a3a6ad; font-size: 13px; margin-bottom: 24px; }
+    .footer { text-align: center; padding: 16px; color: #a3a6ad; font-size: 12px; }
+    .msg-bubble { padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; max-width: 75%; }
+    .msg-user { background: #409eff; color: #fff; margin-left: auto; }
+    .msg-assistant { background: #2c2e30; color: #e5eaf3; }
+    .msg-time { font-size: 11px; color: #a3a6ad; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/element-plus/dist/index.full.min.js"></script>
+  <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+<!-- MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ) -->

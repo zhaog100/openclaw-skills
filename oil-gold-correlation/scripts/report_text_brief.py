@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 石油黄金投资参考 - 精简版 v3.3
 定位：一页纸快速扫一眼，30秒看完
 只保留：信号灯 + 仪表盘 + 操作建议 + 结论
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 """
 
 import sys

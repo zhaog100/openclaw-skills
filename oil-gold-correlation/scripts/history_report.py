@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 版本: v3.3 | 石油黄金白银相关性分析
-# Author: 小米粒 (Xiaomili) - AI Agent
 """
 历史走势增强版报告 — 在 v3.3 基础上增加：
 1. 历史区间统计（近期高低点、回撤幅度）
@@ -9,10 +7,12 @@
 3. 趋势强度量化（MA偏离度）
 4. 关键价位汇总卡（支撑/阻力一目了然）
 5. 历史相似性参考（当前处于什么阶段）
+
 """
 
 import sys
 import numpy as np
+import pandas as pd
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
@@ -202,7 +202,10 @@ def generate_history_report():
                 change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
                 low_30d = df['Close'].iloc[-30:].min()
                 high_30d = df['Close'].iloc[-30:].max()
-                lines.append(f'{label} ¥{latest:,.0f}/克  日{change_1d:+.2f}%  30日{change_30d:+.1f}%  年初至今{change_ytd:+.1f}%')
+                lines.append(f'{label} ¥{latest:,.0f}/克'
+                             f'  日{change_1d:+.2f}%'
+                             f'  30日{change_30d:+.1f}%'
+                             f'  年初至今{change_ytd:+.1f}%')
                 lines.append(f'  30日区间: ¥{low_30d:,.0f} ~ ¥{high_30d:,.0f}')
             else:
                 if result:
@@ -280,7 +283,14 @@ def generate_history_report():
             min_len = min(len(g_ret), len(o_ret))
             if min_len > 10:
                 corr_val = g_ret.iloc[-min_len:].corr(o_ret.iloc[-min_len:])
-                corr_label = '强负相关' if corr_val < -0.5 else '弱负相关' if corr_val < -0.2 else '弱正相关' if corr_val < 0.5 else '强正相关'
+                if corr_val < -0.5:
+                    corr_label = '强负相关'
+                elif corr_val < -0.2:
+                    corr_label = '弱负相关'
+                elif corr_val < 0.5:
+                    corr_label = '弱正相关'
+                else:
+                    corr_label = '强正相关'
                 lines.append(f'  黄金-原油 90日收益率相关系数: {corr_val:.3f} ({corr_label})')
                 if corr_val < -0.3:
                     lines.append(f'  📉 避险主导：黄金涨→原油跌')

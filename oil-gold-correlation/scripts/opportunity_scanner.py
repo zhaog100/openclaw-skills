@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# Author: 小米粒 (Xiaomili) - AI Agent
-# 版本: v3.3 | 石油黄金白银相关性分析
 """
 隐藏机遇扫描器
 跨市场背离、跨品种异常、量价背离、多时间框架共振检测
 
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v3.3 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -142,8 +142,14 @@ class OpportunityScanner:
         z_score = (current_ratio - mean_ratio) / std_ratio
 
         # 涨跌幅方向
-        gold_ret = (float(gold_close.iloc[-1]) - float(gold_close.iloc[-6])) / float(gold_close.iloc[-6]) * 100 if len(gold_close) > 5 else 0
-        oil_ret = (float(oil_close.iloc[-1]) - float(oil_close.iloc[-6])) / float(oil_close.iloc[-6]) * 100 if len(oil_close) > 5 else 0
+        if len(gold_close) > 5:
+            gold_ret = (float(gold_close.iloc[-1]) - float(gold_close.iloc[-6])) / float(gold_close.iloc[-6]) * 100
+        else:
+            gold_ret = 0
+        if len(oil_close) > 5:
+            oil_ret = (float(oil_close.iloc[-1]) - float(oil_close.iloc[-6])) / float(oil_close.iloc[-6]) * 100
+        else:
+            oil_ret = 0
 
         # 黄金涨+原油跌 = 避险飙升
         if gold_ret > 1 and oil_ret < -1:

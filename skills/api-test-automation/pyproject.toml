@@ -1,0 +1,51 @@
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# Version: v1.2
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "api-test-automation"
+version = "v1.2"
+description = "API 测试自动化框架（v1.0 迭代一 + v1.1 迭代二 + v1.2 迭代三）"
+requires-python = ">=3.10"
+authors = [
+    {name = "思捷娅科技 (SJYKJ)"}
+]
+dependencies = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+    "jsonschema>=4.23",
+    "tenacity>=9.0",
+    "pyyaml>=6.0",
+    "jinja2>=3.1.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest-xdist>=3.6",
+    "pytest-html>=4.1",
+    "allure-pytest>=2.13",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["scripts"]
+norecursedirs = ["src", "test-check", ".pytest_cache", ".hypothesis"]
+python_files = ["test_*.py"]
+python_classes = ["Test*", "TestCase"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+pythonpath = ["src"]
+markers = [
+    "smoke: smoke test",
+    "slow: slow running tests",
+    "network: requires network connection",
+    "security: security-related tests",
+    "performance: performance-related tests",
+    "verification: full verification suite (stages 1-9)",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]

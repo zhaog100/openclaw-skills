@@ -1,4 +1,3 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/bin/bash
 
 # Terminal OCR 技能安装脚本

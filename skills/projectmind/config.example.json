@@ -1,0 +1,19 @@
+{
+  "db_path": "data/projectmind.db",
+  "default_project": null,
+  "notifications": {
+    "enabled": false,
+    "channels": {
+      "feishu": { "webhook": "", "secret": "" },
+      "wecom": { "webhook": "" },
+      "dingtalk": { "webhook": "", "secret": "" },
+      "slack": { "webhook": "" },
+      "email": { "smtp_host": "", "smtp_port": 465, "user": "", "pass": "", "to": "" }
+    },
+    "rules": [
+      { "event": "blocker_detected", "channels": [] },
+      { "event": "task_completed", "channels": [] },
+      { "event": "daily_standup_reminder", "channels": [] }
+    ]
+  }
+}
