@@ -1,4 +1,4 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 #!/bin/bash
 # 发布到 ClawHub 和 GitHub
 # =========================================
@@ -20,7 +20,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_NAME="multi-channel-memory"
 VERSION="${1:-v1.0.0}"
-GITHUB_REPO="${GITHUB_USERNAME:-your_username}/repo-name"
+GITHUB_REPO="zhaog100/xiaomili-skills"
 WORKSPACE_DIR="$HOME/.openclaw/workspace"
 
 # 颜色

@@ -1,0 +1,161 @@
+{
+  "summary": {
+    "total": 15,
+    "passed": 5,
+    "failed": 10,
+    "skipped": 0,
+    "pass_rate": "33.3%",
+    "generated_at": "2026-06-17T07:00:57.845702"
+  },
+  "manifest": {
+    "version": "1.0.0",
+    "last_updated": "",
+    "source_spec": "",
+    "environment": "sit",
+    "runner": "pytest",
+    "endpoints": [
+      {
+        "path": "/pets",
+        "method": "GET",
+        "cases": [
+          "happy-path",
+          "invalid-type",
+          "schema-validation"
+        ]
+      },
+      {
+        "path": "/pets",
+        "method": "POST",
+        "cases": [
+          "happy-path",
+          "invalid-type",
+          "schema-validation"
+        ]
+      },
+      {
+        "path": "/pets/{petId}",
+        "method": "GET",
+        "cases": [
+          "happy-path",
+          "invalid-type",
+          "schema-validation"
+        ]
+      },
+      {
+        "path": "/health",
+        "method": "GET",
+        "cases": [
+          "happy-path",
+          "invalid-type",
+          "schema-validation"
+        ]
+      },
+      {
+        "path": "/login",
+        "method": "POST",
+        "cases": [
+          "happy-path",
+          "invalid-type",
+          "schema-validation"
+        ]
+      }
+    ],
+    "coverage": {
+      "total_cases": 15,
+      "executed_cases": 0,
+      "uncovered": []
+    }
+  },
+  "results": [
+    {
+      "test_name": "test_listPets_happy-path",
+      "status": "passed",
+      "duration_ms": 136,
+      "error": null
+    },
+    {
+      "test_name": "test_listPets_invalid-type",
+      "status": "failed",
+      "duration_ms": 141,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_listPets_schema-validation",
+      "status": "failed",
+      "duration_ms": 134,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_createPet_happy-path",
+      "status": "passed",
+      "duration_ms": 136,
+      "error": null
+    },
+    {
+      "test_name": "test_createPet_invalid-type",
+      "status": "failed",
+      "duration_ms": 141,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_createPet_schema-validation",
+      "status": "failed",
+      "duration_ms": 134,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_getPetById_happy-path",
+      "status": "passed",
+      "duration_ms": 102,
+      "error": null
+    },
+    {
+      "test_name": "test_getPetById_invalid-type",
+      "status": "failed",
+      "duration_ms": 135,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_getPetById_schema-validation",
+      "status": "failed",
+      "duration_ms": 118,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_healthCheck_happy-path",
+      "status": "passed",
+      "duration_ms": 54,
+      "error": null
+    },
+    {
+      "test_name": "test_healthCheck_invalid-type",
+      "status": "failed",
+      "duration_ms": 77,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_healthCheck_schema-validation",
+      "status": "failed",
+      "duration_ms": 129,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_login_happy-path",
+      "status": "passed",
+      "duration_ms": 110,
+      "error": null
+    },
+    {
+      "test_name": "test_login_invalid-type",
+      "status": "failed",
+      "duration_ms": 65,
+      "error": "Simulated failure"
+    },
+    {
+      "test_name": "test_login_schema-validation",
+      "status": "failed",
+      "duration_ms": 101,
+      "error": "Simulated failure"
+    }
+  ]
+}

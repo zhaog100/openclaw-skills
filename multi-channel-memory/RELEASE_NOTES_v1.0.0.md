@@ -13,7 +13,7 @@
 |------|------|
 | **技能名称** | multi-channel-memory |
 | **版本** | 1.0.0 |
-| **GitHub** | https://github.com/example-user/xiaomili-skills/tree/main/skills/multi-channel-memory |
+| **GitHub** | https://github.com/zhaog100/xiaomili-skills/tree/main/skills/multi-channel-memory |
 | **ClawHub** | 待发布 |
 | **敏感信息检查** | ✅ 通过 |
 | **版权信息** | ✅ 完整 |
@@ -196,7 +196,7 @@ bash skills/multi-channel-memory/scripts/extract-chats.sh
 ## 🌐 发布渠道
 
 ### GitHub
-- **仓库**: https://github.com/example-user/xiaomili-skills
+- **仓库**: https://github.com/zhaog100/xiaomili-skills
 - **路径**: `skills/multi-channel-memory/`
 - **状态**: ✅ 已推送
 

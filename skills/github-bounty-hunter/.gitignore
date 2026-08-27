@@ -1,0 +1,45 @@
+# GitHub Bounty Hunter - Git Ignore Rules
+# 防止敏感文件和临时文件被提交
+
+# 配置文件（可能含 token）
+config.json
+.env
+*.env
+
+# 密钥和凭证
+secrets/
+*.key
+*.pem
+gmail.env
+
+# 运行时数据
+logs/
+*.log
+data/
+
+# 临时通知文件
+/tmp/bounty_*
+/tmp/github-bounty-notifies/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 备份文件
+*.bak
+*.backup
+*.old

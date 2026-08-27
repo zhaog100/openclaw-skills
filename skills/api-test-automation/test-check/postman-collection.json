@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "Pet Store Postman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Pets",
+      "item": [
+        {
+          "name": "List pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "protocol": "https",
+              "host": ["petstore", "swagger.io"],
+              "path": ["v2", "pets"]
+            }
+          }
+        },
+        {
+          "name": "Create pet",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Fluffy\"}"
+            },
+            "url": {
+              "protocol": "https",
+              "host": ["petstore", "swagger.io"],
+              "path": ["v2", "pets"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

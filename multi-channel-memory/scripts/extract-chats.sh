@@ -1,4 +1,3 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/bin/bash
 # 多通道对话提取脚本 - Multi-Channel Chat Extractor
 # ===================================================
@@ -22,7 +21,7 @@ set -e
 # 配置
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$HOME/.openclaw/workspace"
-MEMORY_DIR="$WORKSPACE_DIR/memory"
+MEMORY_DIR="$WORKSPACE_DIR/agents/xiaomijiao/memory"
 PYTHON_SCRIPT="$SCRIPT_DIR/../src/chat_extractor.py"
 
 # 颜色

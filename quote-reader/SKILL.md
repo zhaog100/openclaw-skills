@@ -6,7 +6,7 @@
 
 name: quote-reader
 description: 引用前文内容读取技能。当用户引用之前的消息时，自动检索并理解引用内容，支持飞书/QQ/企业微信交互式卡片内容获取。Trigger on "引用", "回复", "quote", "reply", "前文"。
-version: 1.3.2
+version: 2.1.1
 ---
 ⚠️ **安全提示**：
 - 检索真实消息需要 Feishu 凭据和适当权限
@@ -14,7 +14,7 @@ version: 1.3.2
 - 请勿将凭据告诉 AI agent
 
 
-# 引用前文内容读取技能 v1.3.1
+# 引用前文内容读取技能 v2.1.1
 
 智能识别用户引用的历史消息，通过平台API获取真实消息内容。
 
@@ -91,9 +91,9 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 **免费使用、修改和重新分发时，需注明出处。**
 
 **出处**：
-- GitHub: https://github.com/example-user/openclaw-skills
+- GitHub: https://github.com/zhaog100/openclaw-skills
 - ClawHub: https://clawhub.com
-- 创建者：思捷娅科技 (SJYKJ)/zhaog100
+- 创建者：小米粒 (PM + Dev)
 
 **商业使用授权**：
 - 个人/开源：免费
