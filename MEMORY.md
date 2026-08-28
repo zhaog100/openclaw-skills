@@ -402,3 +402,35 @@ _最后更新: 2026-08-22 11:08 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+## 2026-08-28 变更记录
+- **系统全面检查与修复** ✅
+  - 清空系统crontab，统一使用OpenClaw cron
+  - 清理孤儿目录（scripts/, daily-review-assistant/）
+  - 清理重复日志文件（4个）
+  - Git提交162个skills/*/scripts/文件
+- **系统更新** ✅
+  - 12个系统包更新至最新
+  - Ubuntu 26.04.1 LTS，内核7.0.0-30-generic
+- **身份确认** ✅
+  - 名字：小米辣 🌶️🔥（不可随意更改）
+  - 仓库分离：origin + skills（双仓库模式）
+- **QMD数据库**：待检查索引状态
+
+_最后更新: 2026-08-28 18:20 HKT_
+
+## 2026-08-28 变更记录
+- **系统全面检查与修复** ✅
+  - 清空系统crontab，统一使用OpenClaw cron
+  - 清理孤儿目录（scripts/, daily-review-assistant/）
+  - 清理重复日志文件（4个）
+  - Git提交162个skills/*/scripts/文件
+- **系统更新** ✅
+  - 12个系统包更新至最新
+  - Ubuntu 26.04.1 LTS，内核7.0.0-30-generic
+- **身份确认** ✅
+  - 名字：小米辣 🌶️🔥（不可随意更改）
+  - 仓库分离：origin + skills（双仓库模式）
+- **QMD数据库**：34 chunks, 1 vec_chunk, 34 FTS, 1 source (74.2MB)
+
+_最后更新: 2026-08-28 18:25 HKT_
