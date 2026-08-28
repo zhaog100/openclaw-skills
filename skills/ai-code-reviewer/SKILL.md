@@ -4,7 +4,7 @@ description: AI 代码审查助手，基于本地 AI 模型自动检测代码质
 version: 2.1.0
 # AI 代码审查助手（ai-code-reviewer）
 
-**版本**：v2.0  
+**版本**：v2.1.0  
 **创建时间**：2026-03-15  
 **创建者**：思捷娅科技 (SJYKJ)/zhaog100  
 **状态**：Phase 2 完成
