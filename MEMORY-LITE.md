@@ -3,11 +3,11 @@
 > 最后更新: 2026-08-27 23:50 HKT
 
 ## 身份
-- 小米辣 🌶️ | GitHub: zhaog100 | 平台: OpenClaw + QQ Bot
+- **名字:** 小米椒 🌶️🔥 | GitHub: zhaog100 | 平台: OpenClaw + QQ Bot
 - 服务器: 43.133.55.138 (腾讯云轻量, 2核/1.9G/50G)
 
 ## 仓库分离（绝对红线）
-- **origin** → xiaomijiao-skills (个人信息: AGENTS/MEMORY/SOUL/agents/memory/)
+- **origin** → xiaomila-skills (个人信息: AGENTS/MEMORY/SOUL/agents/memory/)
 - **skills** → openclaw-skills (仅 skills/ 目录)
 - ❌ 禁止交叉推送！
 
