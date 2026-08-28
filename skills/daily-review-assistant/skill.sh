@@ -25,7 +25,8 @@ LOG_FILE="$_CURRENT_LOG_FILE"
 show_help() {
     cat << EOF
 ╔════════════════════════════════════════════════════════╗
-║     定时回顾更新助手 v2.0 - 小米辣 (zhaog100)           ║
+║     定时回顾更新助手 v2.1 - 小米辣 (zhaog100)          ║
+║     (重构版：cron 管理已移至 OpenClaw)                  ║
 ╚════════════════════════════════════════════════════════╝
 
 用法：$0 <命令> [选项]
@@ -33,16 +34,7 @@ show_help() {
 命令:
   review                执行回顾（默认）
   status                查看状态
-  cron-add [mode]       添加定时任务
-  cron-remove           删除定时任务
-  cron-status           查看定时任务状态
   help                  显示帮助
-
-定时任务模式:
-  morning               仅中午回顾上午
-  full                  仅晚上回顾全天
-  custom                自定义时间（交互式）
-  default               默认（中午 + 晚上）
 
 选项:
   --date      指定日期（YYYY-MM-DD，默认今天）
@@ -53,11 +45,10 @@ show_help() {
   $0 review --date 2026-05-08  # 回顾指定日期
   $0 review --mode full        # 全天回顾
   $0 status                    # 查看状态
-  $0 cron-add                  # 添加默认定时任务
-  $0 cron-add morning          # 仅添加上午任务
-  $0 cron-add custom           # 自定义定时任务
-  $0 cron-status               # 查看定时任务状态
-  $0 cron-remove               # 删除定时任务
+
+定时任务由 OpenClaw cron 管理：
+  晨报: 0 9 * * *
+  晚评: 30 23 * * *
 
 版权：思捷娅科技 (SJYKJ)
 EOF
@@ -1046,9 +1037,6 @@ main() {
     case "$command" in
         review) shift; do_review "$@" ;;
         status) show_status ;;
-        cron-add) shift; add_cron "$@" ;;
-        cron-remove) remove_cron ;;
-        cron-status) show_cron_status ;;
         help|--help|-h) show_help ;;
         *) log_error "未知命令：$command"; show_help; exit 1 ;;
     esac
