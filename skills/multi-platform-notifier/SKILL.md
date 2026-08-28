@@ -4,7 +4,7 @@ description: 多平台通知推送，支持企业微信/钉钉/飞书。
 version: 1.0.2
 # multi-platform-notifier - 多平台通知集成
 
-**版本**: v1.0  
+**版本**: 1.0.2
 **创建时间**: 2026-03-16  
 **创建者**: 思捷娅科技 (SJYKJ)/zhaog100  
 **状态**: Phase 1 完成
