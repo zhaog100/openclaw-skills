@@ -16,7 +16,7 @@
 
 | 内容类型 | 目标仓库 | 说明 |
 |----------|----------|------|
-| **个人信息/记忆/配置** | `origin` (xiaomijiao-skills) | AGENTS/MEMORY/SOUL/agents/memory/intel/proactivity/ 等 |
+| **个人信息/记忆/配置** | `origin` (xiaomila-skills) | AGENTS/MEMORY/SOUL/agents/memory/intel/proactivity/ 等 |
 | **技能文件** | `openclaw-skills` | skills/ 目录 |
 
 **🚨 严禁混淆：**
