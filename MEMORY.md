@@ -9,7 +9,7 @@
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
-| origin | github.com/zhaog100/xiaomijiao-skills | 个人信息仓库（AGENTS/MEMORY/SOUL/agents/memory/等） |
+| origin | github.com/zhaog100/xiaomila-skills | 个人信息仓库（AGENTS/MEMORY/SOUL/agents/memory/等） |
 | openclaw-skills | github.com/zhaog100/openclaw-skills | 技能仓库（仅 skills/ 目录） |
 
 **⚠️ 推送规则（绝对红线，不可违反）:**
@@ -24,8 +24,6 @@
 - ❌ 技能文件 → 不得推送到 origin
 
 **✅ 每次 push 前必须确认目标仓库，不可混淆！**
-
-_最后更新: 2026-08-24 14:50 CST_
 
 ## 服务器
 - **IP:** 43.133.55.138 (腾讯云轻量)
@@ -272,6 +270,64 @@ _最后更新: 2026-08-22 11:08 CST_
 **当前Tokens**：7446239 / 131072
 **当前模型**：agnes-2.5-flash
 **上下文摘要**：(no daily log for today)
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
+
+---
+
+## 🔄 会话切换标记（2026-08-28 14:04:55）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:qqbot:direct:8c21afd77b89ca793a2aac9a3abeea25
+**当前Tokens**：92473 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：
+- **#8039** (Rustchain): 36+ days open, BOUNTY #504 (27 RTC). mergeable: true. No review feedback.
+- **#8028** (Rustchain): 30+ days open, BOUNTY #16257. mergeable: true. No review feedback.
+- **#8025** (Rustchain): BOUNTY #16251 — owner Scottcjn noted first-mergeable was #8020. No action needed.
+- **Other tracked PRs**: No changes across Spectral-Finance/lux, SecureBananaLabs/bug-bounty, claude-builders-bounty repos.
+
+### Memory Log Entry
+- Bounty PR monitor: No state changes. Last check 2026-08-28T01:04:00Z.
+- Tracker updated.
+- No actions taken (no new reviews, merges, or closures).
+
+## 12:07 自动压缩检查
+- 上下文使用率：0%（正常）
+- MEMORY.md 大小：12,590B（略超10KB阈值，但因上下文使用率低，未触发压缩）
+- 日志：`logs/auto-compaction.log`
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
+
+---
+
+## 🔄 会话切换标记（2026-08-28 14:05:17）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:qqbot:direct:8c21afd77b89ca793a2aac9a3abeea25
+**当前Tokens**：92473 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：able: true. No review feedback.
+- **#8025** (Rustchain): BOUNTY #16251 — owner Scottcjn noted first-mergeable was #8020. No action needed.
+- **Other tracked PRs**: No changes across Spectral-Finance/lux, SecureBananaLabs/bug-bounty, claude-builders-bounty repos.
+
+### Memory Log Entry
+- Bounty PR monitor: No state changes. Last check 2026-08-28T01:04:00Z.
+- Tracker updated.
+- No actions taken (no new reviews, merges, or closures).
+
+## 12:07 自动压缩检查
+- 上下文使用率：0%（正常）
+- MEMORY.md 大小：12,590B（略超10KB阈值，但因上下文使用率低，未触发压缩）
+- 日志：`logs/auto-compaction.log`
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
