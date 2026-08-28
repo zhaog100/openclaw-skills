@@ -986,7 +986,7 @@ pause_projmgmt_and_daily_report() {
     
     # 2. 整理完成情况
     log_info "  📋 整理项目完成情况..."
-    local proj_log="$WORKSPACE/memory/$date.md"
+    local proj_log="$CFG_WORKSPACE/memory/$date.md"
     
     # 检查今日项目相关条目
     if [ -f "$proj_log" ]; then
