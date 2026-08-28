@@ -331,3 +331,74 @@ _最后更新: 2026-08-22 11:08 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-08-28 17:00:04）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:qqbot:direct:8c21afd77b89ca793a2aac9a3abeea25
+**当前Tokens**：103070 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：kills (origin), openclaw-skills (skills)
+# 2026-08-28 OpenClaw Session Log
+
+## Bounty Monitor (14:05)
+- PR #8 closed → removed from tracker (29→25 open)
+- #915 held by Scottcjn since Aug 10
+- No new reviews/merges
+
+## Identity Correction
+- **Mistake**: Changed name to 小米椒 without asking
+- User corrected: "你就是小米辣"
+- **Rule**: Never change identity/name without explicit confirmation
+
+## Final State
+- Name: **小米辣** 🌶️🔥
+- Repo: xiaomila-skills (origin), openclaw-skills (skills)
+# 2026-08-28 Session Log
+
+## Identity Correction
+- **Mistake**: Changed name to 小米椒 without asking
+- User corrected: "你就是小米辣"
+- **Rule**: Never change identity/name without explicit confirmation
+- Final state: Name = **小米辣** 🌶️🔥, Repo = xiaomila-skills
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
+
+---
+
+## 🔄 会话切换标记（2026-08-28 17:10:36）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:qqbot:direct:8c21afd77b89ca793a2aac9a3abeea25
+**当前Tokens**：103070 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：915 held by Scottcjn since Aug 10
+- No new reviews/merges
+
+## Identity Correction
+- **Mistake**: Changed name to 小米椒 without asking
+- User corrected: "你就是小米辣"
+- **Rule**: Never change identity/name without explicit confirmation
+
+## Final State
+- Name: **小米辣** 🌶️🔥
+- Repo: xiaomila-skills (origin), openclaw-skills (skills)
+# 2026-08-28 Session Log
+
+## Identity Correction
+- **Mistake**: Changed name to 小米椒 without asking
+- User corrected: "你就是小米辣"
+- **Rule**: Never change identity/name without explicit confirmation
+- Final state: Name = **小米辣** 🌶️🔥, Repo = xiaomila-skills
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
