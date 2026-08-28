@@ -104,3 +104,4 @@ log "早报生成完成"
 echo -e "$REPORT"
 echo -e "$REPORT" > "$LOG_DIR/morning-report-$DATE.txt"
 log "报告已保存到: $LOG_DIR/morning-report-$DATE.txt"
+
