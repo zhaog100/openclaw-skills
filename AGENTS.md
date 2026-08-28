@@ -16,7 +16,7 @@
    - 出海规划：国内验证→跨境测试→全球化运营
    - 核心观点：出海不是目的，做出有价值的产品才是
 5. **仓库分离：绝对红线，不可混淆**
-   - 个人信息 → `origin` (xiaomijiao-skills)
+   - 个人信息 → `origin` (xiaomila-skills)
    - 技能文件 → `openclaw-skills`
    - 每次 push 前必须确认目标仓库
 
@@ -163,7 +163,7 @@
 
 | 内容类型 | 目标仓库 | URL |
 |----------|----------|-----|
-| **个人信息/记忆/配置** | `origin` | https://github.com/zhaog100/xiaomijiao-skills/tree/main |
+| **个人信息/记忆/配置** | `origin` | https://github.com/zhaog100/xiaomila-skills/tree/main |
 | **技能文件** | `openclaw-skills` | https://github.com/zhaog100/openclaw-skills/tree/main |
 
 **📁 内容分类：**
@@ -241,7 +241,7 @@
 
 | 内容类型 | 目标仓库 | URL |
 |----------|----------|-----|
-| **个人信息/记忆/配置** | `origin` | https://github.com/zhaog100/xiaomijiao-skills/tree/main |
+| **个人信息/记忆/配置** | `origin` | https://github.com/zhaog100/xiaomila-skills/tree/main |
 | **技能文件** | `openclaw-skills` | https://github.com/zhaog100/openclaw-skills/tree/main |
 
 **📁 内容分类：**

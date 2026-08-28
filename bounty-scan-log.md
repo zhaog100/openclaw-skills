@@ -2,7 +2,7 @@
 ## Date: 2026-08-28 04:03 HKT (Cron run v2)
 
 ### Scan Configuration
-- **Scanner**: 小米辣 🌶️ (zhaog100)
+- **Scanner**: 小米椒 🌶️🔥 (zhaog100)
 - **Threshold**: ≥$10 USD / ≥10 RTC/LTD
 - **Auto-claim**: ≥$50 USD / ≥20 RTC/LTD
 - **Target Repos**: claude-builders-bounty, tscircuit, spectral-finance, capofficial
