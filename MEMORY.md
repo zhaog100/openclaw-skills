@@ -242,3 +242,22 @@ _最后更新: 2026-08-22 10:22 CST_
 - **系统状态**: 内存880Mi/1.9G(46%)，磁盘23G/50G(49%)，防火墙active ✅
 
 _最后更新: 2026-08-22 11:08 CST_
+
+---
+
+## 2026-09-01 系统全面检查
+
+- **系统资源**：内存1.1G/1.9G(58%)，磁盘25G/50G(52%)，负载2.73
+- **安全状态**：UFW active，SSH加固完成，无暴力破解
+- **内核**：6.8.0-138-generic 已生效
+- **OpenClaw**：Gateway运行中，6个cron任务全部ok
+- **Docker**：青龙面板运行中，healthy
+- **QMD数据库**：974 chunks, 1489 embeddings, 913 FTS, 116 sources
+
+### 待处理问题
+- 11个系统包可升级（containerd, libpam, perl等）
+- APT缓存1.4GB可清理
+- fwupd服务可禁用（云服务器无需固件更新）
+- Git未提交变更：beacon-skill删除、geopolitics_cache.json修改
+
+_最后更新: 2026-09-01 19:15 CST_
