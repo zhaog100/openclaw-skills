@@ -269,6 +269,7 @@ _最后更新: 2026-08-22 11:08 CST_
 - **模型可用性测试**: 5/18 可用 (agnesai: 2, sensenova: 3, openrouter: 3)
 - **QMD 数据库**: 973 chunks, 116 sources ✅
 - **多通道记忆整理**: memory/、proactivity/、self-improving/ 全面检查 ✅
+- **Cron 修复**: 日盘报告模型ID错误（`agnes/` → `agnesai/`），已通过 `--clear-model` 修复 ✅
 - **问题**: AiHubMix key 截断 (13 chars), Groq key 401
 
-_最后更新: 2026-09-02 15:27 CST_
+_最后更新: 2026-09-02 15:31 CST_
