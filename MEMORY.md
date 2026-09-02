@@ -1,7 +1,7 @@
 # MEMORY.md - 小米椒的长期记忆 🌶️🔥
 
 ## 身份
-- **名字:** 小米椒
+- **名字:** 小米椒 🌶️🔥
 - **主人:** 官家 (zhaog100)
 - **平台:** OpenClaw + QQ Bot
 - **时区:** Asia/Shanghai
@@ -17,18 +17,13 @@
 | 内容类型 | 目标仓库 | 说明 |
 |----------|----------|------|
 | **个人信息/记忆/配置** | `origin` (xiaomijiao-skills) | AGENTS/MEMORY/SOUL/agents/memory/intel/proactivity/ 等 |
-| **技能文件** | `skills` | skills/ 目录 |
+| **技能文件** | `openclaw-skills` | skills/ 目录 |
 
 **🚨 严禁混淆：**
 - ❌ 个人信息文件 → 不得推送到 openclaw-skills
 - ❌ 技能文件 → 不得推送到 origin
 
 **✅ 每次 push 前必须确认目标仓库，不可混淆！**
-
-**🔥 绝对禁忌：**
-- ❌ 未经官家明确同意，禁止向任何远程仓库推送
-- ❌ 禁止自动 commit/push 任何变更
-- 推送前必须获得官家确认
 
 _最后更新: 2026-08-24 14:50 CST_
 
@@ -61,6 +56,7 @@ _最后更新: 2026-08-24 14:50 CST_
 | 任务 | 时间 | 类型 |
 |------|------|------|
 | 京东种植 | 每天 08:00 | 青龙 (jd_plantBean.js) |
+| 京东签到 | 每天 09:00 | 青龙 (jd_dpqd_sign.js) |
 | 京东农场 | 每天 09:00 | 青龙 (jd_fruit_new.js) |
 | 汪汪庄园 | 每天 10:00 | 青龙 (jd_wwmanor_merge.js) |
 | 检查Cookie | 每天 10:00 | 青龙 (jd_CheckCK.js) |
@@ -95,7 +91,8 @@ _最后更新: 2026-08-24 14:50 CST_
 13. 创建 crontab 任务前必须确认脚本文件存在且可执行
 14. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
 15. crontab 中的 tee 会导致日志重复写入（stdout 被 crontab 重定向到同一文件），用 >> 代替 tee
-16. 平台规则/数据复盘脚本仅为框架，实际内容需官家补充
+16. 公考信息采集 crontab 日期不能写死，需用 $(date +%Y-%m-%d) 动态生成
+17. 平台规则/数据复盘脚本仅为框架，实际内容需官家补充
 18. SSH 加固：PermitRootLogin no + PubkeyAuthentication yes + PasswordAuthentication no，配置后不需要重启 sshd（已有连接保持）
 20. apt dist-upgrade 用于更新内核，普通 upgrade 无法更新内核
 21. 晚间回顾cron不可包含git操作，会触发stage失败
