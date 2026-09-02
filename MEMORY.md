@@ -17,13 +17,18 @@
 | 内容类型 | 目标仓库 | 说明 |
 |----------|----------|------|
 | **个人信息/记忆/配置** | `origin` (xiaomijiao-skills) | AGENTS/MEMORY/SOUL/agents/memory/intel/proactivity/ 等 |
-| **技能文件** | `openclaw-skills` | skills/ 目录 |
+| **技能文件** | `skills` | skills/ 目录 |
 
 **🚨 严禁混淆：**
 - ❌ 个人信息文件 → 不得推送到 openclaw-skills
 - ❌ 技能文件 → 不得推送到 origin
 
 **✅ 每次 push 前必须确认目标仓库，不可混淆！**
+
+**🔥 绝对禁忌：**
+- ❌ 未经官家明确同意，禁止向任何远程仓库推送
+- ❌ 禁止自动 commit/push 任何变更
+- 推送前必须获得官家确认
 
 _最后更新: 2026-08-24 14:50 CST_
 
