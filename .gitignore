@@ -2,7 +2,6 @@
 AGENTS.md
 MEMORY.md
 SOUL.md
-COMMS.md
 IDENTITY.md
 TOOLS.md
 USER.md
@@ -20,7 +19,6 @@ backup/
 
 # 媒体和脚本
 media/
-scripts/
 products/
 
 # 配置文件
