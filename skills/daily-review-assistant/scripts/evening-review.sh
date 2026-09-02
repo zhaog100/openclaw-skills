@@ -6,7 +6,7 @@
 # 注意：cron 管理已移至 OpenClaw cron，此脚本只负责执行
 # =============================================================================
 
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/home/ubuntu/.openclaw/workspace"
 LOG_DIR="$WORKSPACE/skills/daily-review-assistant/logs"
 DATE=$(date '+%Y-%m-%d')
 TIME=$(date '+%H:%M')

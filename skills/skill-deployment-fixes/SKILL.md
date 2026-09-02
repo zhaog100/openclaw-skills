@@ -76,6 +76,22 @@ bounty_scan.sh已更新为使用相对路径：
 # 正确: .env (相对路径)
 ```
 
+## 问题4：早报脚本WORKSPACE路径错误
+
+### 症状
+`morning-report.sh` 中 `WORKSPACE="/home/zhaog/.openclaw/workspace"` 与实际路径不符
+
+### 解决方案
+```bash
+# 修正路径
+WORKSPACE="/home/ubuntu/.openclaw/workspace"
+```
+
+### 早报结构自定义
+用户可通过编辑 `skills/daily-review-assistant/scripts/morning-report.sh` 自定义早报内容板块：
+- 删除某个板块：注释或删除对应的 #N 代码块
+- 调整板块顺序：修改 #N 注释编号即可
+
 ## Cron配置示例
 
 ```bash
