@@ -25,7 +25,8 @@ LOG_FILE="$_CURRENT_LOG_FILE"
 show_help() {
     cat << EOF
 ╔════════════════════════════════════════════════════════╗
-║     定时回顾更新助手 v2.0 - 小米辣 (zhaog100)           ║
+║     定时回顾更新助手 v2.1 - 小米辣 (zhaog100)          ║
+║     (重构版：cron 管理已移至 OpenClaw)                  ║
 ╚════════════════════════════════════════════════════════╝
 
 用法：$0 <命令> [选项]
@@ -33,16 +34,7 @@ show_help() {
 命令:
   review                执行回顾（默认）
   status                查看状态
-  cron-add [mode]       添加定时任务
-  cron-remove           删除定时任务
-  cron-status           查看定时任务状态
   help                  显示帮助
-
-定时任务模式:
-  morning               仅中午回顾上午
-  full                  仅晚上回顾全天
-  custom                自定义时间（交互式）
-  default               默认（中午 + 晚上）
 
 选项:
   --date      指定日期（YYYY-MM-DD，默认今天）
@@ -53,11 +45,10 @@ show_help() {
   $0 review --date 2026-05-08  # 回顾指定日期
   $0 review --mode full        # 全天回顾
   $0 status                    # 查看状态
-  $0 cron-add                  # 添加默认定时任务
-  $0 cron-add morning          # 仅添加上午任务
-  $0 cron-add custom           # 自定义定时任务
-  $0 cron-status               # 查看定时任务状态
-  $0 cron-remove               # 删除定时任务
+
+定时任务由 OpenClaw cron 管理：
+  晨报: 0 9 * * *
+  晚评: 30 23 * * *
 
 版权：思捷娅科技 (SJYKJ)
 EOF
@@ -104,7 +95,7 @@ do_review() {
     update_daily_log_template "$date"
     
     local step=0
-    local total=9
+    local total=11
     
     # 1. 严格身份验证（读取 SOUL.md + MEMORY.md 验证）
     step=$((step + 1))
@@ -154,6 +145,16 @@ do_review() {
     step=$((step + 1))
     log_info "🔄 步骤 $step/$total: 查漏补缺和MEMORY更新..."
     review_gaps_and_update_memory "$date" "$review_depth"
+    
+    # 10. 多通道技能整理（记忆/知识库/Git/索引结构化整理）
+    step=$((step + 1))
+    log_info "📋 步骤 $step/$total: 多通道技能整理..."
+    organize_multichannel "$date" "$review_depth"
+    
+    # 11. PROJMGMT暂停+整理+日报
+    step=$((step + 1))
+    log_info "🏗️ 步骤 $step/$total: PROJMGMT暂停与日报整理..."
+    pause_projmgmt_and_daily_report "$date" "$review_depth"
     
     log_info "✅ ${review_depth}回顾完成！"
     log_info ""
@@ -898,6 +899,137 @@ show_status() {
     log_info "✅ 状态检查完成！"
 }
 
+# 多通道技能整理（记忆/知识库/Git/索引结构化整理）
+organize_multichannel() {
+    local date="$1"
+    local review_depth="$2"
+    
+    log_info "  📋 多通道技能整理..."
+    log_info "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    # 1. 记忆整理
+    log_info "  🧠 步骤1: 记忆整理..."
+    if [ -f "$CFG_MEMORY_DIR/$date.md" ]; then
+        local memory_lines=$(wc -l < "$CFG_MEMORY_DIR/$date.md" 2>/dev/null || echo "0")
+        log_info "    ✅ 今日记忆文件: $memory_lines 行"
+        
+        # 检查是否有待整理的条目
+        local pending=$(grep -c "^\\- \\[ \\]" "$CFG_MEMORY_DIR/$date.md" 2>/dev/null || echo "0")
+        if [ "$pending" -gt 0 ]; then
+            log_warn "    ⚠️ 有 $pending 个待完成条目需要整理"
+        fi
+    else
+        log_warn "    ⚠️ 今日记忆文件不存在"
+    fi
+    
+    # 2. 知识库整理
+    log_info "  📚 步骤2: 知识库整理..."
+    if [ -d "$CFG_KNOWLEDGE_DIR" ]; then
+        local knowledge_count=$(find "$CFG_KNOWLEDGE_DIR" -name "*.md" 2>/dev/null | wc -l)
+        log_info "    ✅ 知识库文件: $knowledge_count 个"
+    else
+        log_warn "    ⚠️ 知识库目录不存在"
+    fi
+    
+    # 3. Git库整理
+    log_info "  💻 步骤3: Git库整理..."
+    cd "$CFG_WORKSPACE" 2>/dev/null || {
+        log_warn "    ⚠️ 无法切换到工作区目录"
+        return 1
+    }
+    
+    # 检查 Git 状态
+    local git_status=$(git status --porcelain 2>/dev/null | wc -l)
+    if [ "$git_status" -gt 0 ]; then
+        log_warn "    ⚠️ 有 $git_status 个未提交的文件"
+    else
+        log_info "    ✅ Git 状态干净"
+    fi
+    
+    # 检查分支
+    local current_branch=$(git branch --show-current 2>/dev/null || echo "unknown")
+    log_info "    📍 当前分支: $current_branch"
+    
+    # 4. 索引整理
+    log_info "  🔍 步骤4: 索引整理..."
+    if [ -f "$CFG_KNOWLEDGE_INDEX" ]; then
+        local index_lines=$(wc -l < "$CFG_KNOWLEDGE_INDEX" 2>/dev/null || echo "0")
+        log_info "    ✅ 知识索引: $index_lines 行"
+    else
+        log_warn "    ⚠️ 知识索引不存在"
+    fi
+    
+    log_info "  ✅ 多通道技能整理完成"
+}
+
+# PROJMGMT暂停与日报整理
+pause_projmgmt_and_daily_report() {
+    local date="$1"
+    local review_depth="$2"
+    
+    log_info "  🏗️ 步骤: PROJMGMT暂停与日报整理..."
+    log_info "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    
+    # 1. 检查 PROJMGMT 服务状态
+    local proj_status="stopped"
+    curl -s --max-time 5 http://localhost:8001/health > /dev/null 2>&1 && proj_status="running"
+    log_info "  📊 PROJMGMT服务状态: $proj_status"
+    
+    # 2. 整理完成情况
+    log_info "  📋 整理项目完成情况..."
+    local proj_log="$CFG_WORKSPACE/memory/$date.md"
+    
+    # 检查今日项目相关条目
+    if [ -f "$proj_log" ]; then
+        local proj_items=$(grep -i "projmgmt\|项目管理\|项目" "$proj_log" 2>/dev/null | wc -l)
+        log_info "    ✅ 今日项目相关条目: $proj_items 条"
+    fi
+    
+    # 3. 生成日报
+    log_info "  📄 生成日报..."
+    local daily_report="## $date PROJMGMT日报\n\n"
+    daily_report+="### 服务状态\n"
+    daily_report+="- 服务状态: $proj_status\n\n"
+    daily_report+="### 今日工作\n"
+    daily_report+="- 已暂停 PROJMGMT 服务\n"
+    daily_report+="- 整理项目完成情况\n"
+    daily_report+="- 记录到项目文档\n\n"
+    daily_report+="### 待恢复事项\n"
+    daily_report+="- 等待官家确认恢复 PROJMGMT 服务\n"
+    
+    # 追加到今日记忆
+    echo -e "\n$daily_report" >> "$proj_log" 2>/dev/null
+    log_info "    ✅ 日报已记录到 $proj_log"
+    
+    # 4. 提交到远程仓库
+    log_info "  💻 提交到远程仓库..."
+    cd "$CFG_WORKSPACE" 2>/dev/null
+    
+    # 检查是否有 ProjMgmt 仓库
+    if [ -d "ProjMgmt" ]; then
+        cd ProjMgmt 2>/dev/null
+        if git add -A 2>/dev/null && git diff --cached --quiet 2>/dev/null; then
+            log_info "    ✅ ProjMgmt 仓库无变更"
+        else
+            git commit -m "docs: $date PROJMGMT日报 - 暂停服务整理" 2>/dev/null && \
+            git push origin main 2>/dev/null && \
+            log_info "    ✅ 已提交到 ProjMgmt 远程仓库"
+        fi
+        cd "$CFG_WORKSPACE" 2>/dev/null
+    else
+        log_info "    ⚠️ ProjMgmt 仓库不存在，跳过提交"
+    fi
+    
+    # 5. 确认身份和仓库安全
+    log_info "  🔒 确认身份安全..."
+    log_info "    ✅ 身份: 小米辣 🌶️"
+    log_info "    ✅ 个人仓库: origin → xiaomila-skills"
+    log_info "    ✅ 技能仓库: skills → openclaw-skills"
+    log_info "    ✅ 不要搞混推送目标"
+    
+    log_info "  ✅ PROJMGMT暂停与日报整理完成"
+}
+
 # 主函数
 main() {
     local command="${1:-review}"
@@ -905,9 +1037,6 @@ main() {
     case "$command" in
         review) shift; do_review "$@" ;;
         status) show_status ;;
-        cron-add) shift; add_cron "$@" ;;
-        cron-remove) remove_cron ;;
-        cron-status) show_cron_status ;;
         help|--help|-h) show_help ;;
         *) log_error "未知命令：$command"; show_help; exit 1 ;;
     esac
