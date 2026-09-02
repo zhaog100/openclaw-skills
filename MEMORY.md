@@ -260,4 +260,14 @@ _最后更新: 2026-08-22 11:08 CST_
 - fwupd服务可禁用（云服务器无需固件更新）
 - Git未提交变更：beacon-skill删除、geopolitics_cache.json修改
 
-_最后更新: 2026-09-01 19:15 CST_
+---
+
+## 2026-09-02 变更记录
+- **Provider 配置更新**: 恢复 OpenRouter key (73 chars)
+- **SenseNova key 更新**: sk-8Kc7OwS...VpYe (35 chars)
+- **Groq provider 配置**: gsk_Jn...fyn5 (56 chars, 测试401)
+- **模型可用性测试**: 5/18 可用 (agnesai: 2, sensenova: 3, openrouter: 3)
+- **QMD 数据库**: 973 chunks, 116 sources ✅
+- **问题**: AiHubMix key 截断 (13 chars), Groq key 401
+
+_最后更新: 2026-09-02 13:42 CST_
