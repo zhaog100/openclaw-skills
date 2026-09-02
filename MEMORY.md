@@ -268,6 +268,7 @@ _最后更新: 2026-08-22 11:08 CST_
 - **Groq provider 配置**: gsk_Jn...fyn5 (56 chars, 测试401)
 - **模型可用性测试**: 5/18 可用 (agnesai: 2, sensenova: 3, openrouter: 3)
 - **QMD 数据库**: 973 chunks, 116 sources ✅
+- **多通道记忆整理**: memory/、proactivity/、self-improving/ 全面检查 ✅
 - **问题**: AiHubMix key 截断 (13 chars), Groq key 401
 
-_最后更新: 2026-09-02 13:42 CST_
+_最后更新: 2026-09-02 15:27 CST_
