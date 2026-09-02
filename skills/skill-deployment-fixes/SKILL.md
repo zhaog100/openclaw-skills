@@ -55,6 +55,27 @@ sed -i '2d' scripts/analyze-complexity.js
 4. [ ] 测试关键功能
 5. [ ] 记录到memory/YYYY-MM-DD.md
 
+## 问题3：github-bounty-hunter需要Token
+
+### 症状
+```
+ERROR: GITHUB_TOKEN not set and .env not found
+```
+
+### 解决方案
+创建.env文件：
+```bash
+# 在项目根目录
+echo "GITHUB_TOKEN=$(gh auth token)" > .env
+```
+
+### 脚本修改
+bounty_scan.sh已更新为使用相对路径：
+```bash
+# 错误: $HOME/.openclaw/workspace/.env
+# 正确: .env (相对路径)
+```
+
 ## Cron配置示例
 
 ```bash

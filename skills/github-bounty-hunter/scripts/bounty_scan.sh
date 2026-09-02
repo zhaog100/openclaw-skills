@@ -8,8 +8,8 @@
 TOKEN="${GITHUB_TOKEN:-}"
 
 # 加载 .env 文件（如果 TOKEN 未设置）
-if [ -z "$TOKEN" ] && [ -f "$HOME/.openclaw/workspace/.env" ]; then
-    TOKEN=$(grep '^GITHUB_TOKEN=' "$HOME/.openclaw/workspace/.env" | head -1 | cut -d= -f2-)
+if [ -z "$TOKEN" ] && [ -f ".env" ]; then
+    TOKEN=$(grep '^GITHUB_TOKEN=' ".env" | head -1 | cut -d= -f2-)
     export TOKEN
 fi
 
