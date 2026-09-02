@@ -35,6 +35,8 @@ openclaw-skills/
 *.log
 logs/
 data/
+.git-credentials
+
 
 # 新增忽略规则
 node_modules/
