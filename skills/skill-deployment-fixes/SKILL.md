@@ -117,6 +117,89 @@ qmd --version    # → v2.x.x
 - miliger-qmd-manager 技能首次部署
 - QMD CLI 不可用时排查
 
+## 问题6：脚本shebang顺序错误
+
+### 症状
+```
+/usr/bin/bash: /path/to/script: /usr/bin/bash: bad interpreter: No such file or directory
+```
+或
+```
+syntax error near unexpected token
+```
+
+### 原因
+文件第一行是注释/版权信息，shebang在第二行或更后。OS无法识别解释器。
+
+### 解决方案
+```bash
+# 错误：注释在前，shebang在后
+# Copyright (c) 2026
+#!/bin/bash
+
+# 正确：shebang必须第一行
+#!/bin/bash
+# Copyright (c) 2026
+```
+
+### 验证方法
+```bash
+head -1 script.sh  # 必须显示 #!/bin/bash 或 #!/usr/bin/env python3
+```
+
+### 已修复文件
+- `skills/context-manager-v2/scripts/config-loader.sh`
+- `skills/smart-memory-sync/scripts/smart-sync.py`
+- `skills/smart-model-switch/scripts/get-context-usage.sh`
+
+---
+
+## 问题7：jq返回空值导致 Illegal number
+
+### 症状
+```
+bash: [: Illegal number: 
+bash: line 120: [: : integer expression expected
+```
+
+### 原因
+jq查询JSON字段时，字段不存在或为null，返回空字符串，导致后续比较失败。
+
+### 解决方案
+```bash
+# 错误：无默认值
+local value=$(jq -r '.field' "$STATE_FILE")
+
+# 正确：提供默认值
+local value=$(jq -r '.field // 0' "$STATE_FILE")
+```
+
+### 适用场景
+- context-switch-monitor.sh 的 `.consecutive_hits` 查询
+- 任何jq读取JSON状态文件的场景
+
+---
+
+## 问题8：cron环境PATH拼接错误
+
+### 症状
+```
+/usr/bin/bash: /home/ubuntu/.openclaw/workspace/skills//usr/bin/bash: No such file or directory
+```
+
+### 原因
+Cron环境变量中PATH已包含`/usr/bin`，脚本内又拼接了完整路径。
+
+### 解决方案
+```bash
+# cron配置中使用绝对路径，不要重复拼接
+*/10 * * * * bash /home/ubuntu/.openclaw/workspace/scripts/seamless-switch.sh >> log 2>&1
+
+# 脚本内部避免 export PATH="$PATH:/usr/bin"
+```
+
+---
+
 ## Cron配置示例
 
 ```bash
