@@ -748,13 +748,13 @@ review_afternoon_plan() {
     fi
 }
 
-# 生成午间回顾摘要
+# 生成晨报摘要
 generate_morning_summary() {
     local date="$1"
     local daily_log="$CFG_MEMORY_DIR/$date.md"
     
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║  午间回顾摘要                                         ║"
+    log_info "║  晨报                                                  ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     
     # 上午任务完成情况
@@ -794,7 +794,7 @@ generate_morning_summary() {
     
     # 推送通知到QQ Bot
     if [ "$CFG_NOTIFY_QQBOT" = "true" ] && [ -n "$CFG_QQBOT_ID" ]; then
-        local summary="午间回顾 ☀️ | 上午任务: $completed_tasks/$morning_tasks | Git: $commits"
+        local summary="晨报 ☀️ | 上午任务: $completed_tasks/$morning_tasks | Git: $commits"
         log_info "📡 推送通知到QQ Bot: $summary"
     fi
 }
