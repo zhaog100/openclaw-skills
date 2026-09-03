@@ -5,7 +5,7 @@
 # =============================================================================
 # 版本：v2.0
 # 创建时间：2026-05-09
-# 创建者：小米辣 (zhaog100)
+# 创建者：小米椒 (zhaog100)
 # 用途：定时回顾今日工作，查漏补缺，更新记忆和知识库
 # 许可证：MIT License
 # 版权：Copyright (c) 2026 思捷娅科技 (SJYKJ)
@@ -25,7 +25,7 @@ LOG_FILE="$_CURRENT_LOG_FILE"
 show_help() {
     cat << EOF
 ╔════════════════════════════════════════════════════════╗
-║     定时回顾更新助手 v2.1 - 小米辣 (zhaog100)          ║
+║     定时回顾更新助手 v2.1 - 小米椒 (zhaog100)          ║
 ║     (重构版：cron 管理已移至 OpenClaw)                  ║
 ╚════════════════════════════════════════════════════════╝
 
@@ -84,11 +84,11 @@ do_review() {
     esac
     
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║  定时回顾更新助手 v2.0 - 小米辣 (zhaog100)              ║"
+    log_info "║  定时回顾更新助手 v2.0 - 小米椒 (zhaog100)              ║"
     log_info "╠════════════════════════════════════════════════════════╣"
     log_info "║  日期：$date"
     log_info "║  模式：午间/晚间 回顾 ($review_depth)"
-    log_info "║  身份：小米辣 🌶️ | GitHub: zhaog100"
+    log_info "║  身份：小米椒 🌶️ | GitHub: zhaog100"
     log_info "╚════════════════════════════════════════════════════════╝"
     
     # 更新今日日志模板
@@ -151,10 +151,10 @@ do_review() {
     log_info "📋 步骤 $step/$total: 多通道技能整理..."
     organize_multichannel "$date" "$review_depth"
     
-    # 11. PROJMGMT暂停+整理+日报
+    # 11. 已完全禁用：PROJMGMT日报生成
     step=$((step + 1))
-    log_info "🏗️ 步骤 $step/$total: PROJMGMT暂停与日报整理..."
-    pause_projmgmt_and_daily_report "$date" "$review_depth"
+    # log_info "🏗️ 步骤 $step/$total: PROJMGMT已禁用" 已禁用
+    # pause_projmgmt_and_daily_report "$date" "$review_depth" 已禁用
     
     log_info "✅ ${review_depth}回顾完成！"
     log_info ""
@@ -170,10 +170,10 @@ confirm_identity() {
     # 1. 验证 SOUL.md
     if [ -f "$CFG_WORKSPACE/SOUL.md" ]; then
         local soul_name=$(grep -E "^\- \*\*名字\*\*" "$CFG_WORKSPACE/SOUL.md" 2>/dev/null | head -1)
-        if echo "$soul_name" | grep -qi "小米辣"; then
+        if echo "$soul_name" | grep -qi "小米椒"; then
             log_info "  ✅ 身份验证通过：$soul_name"
         else
-            log_warn "  ⚠️ SOUL.md 中未找到 '小米辣' 名称"
+            log_warn "  ⚠️ SOUL.md 中未找到 '小米椒' 名称"
             errors=$((errors + 1))
         fi
     else
@@ -196,9 +196,9 @@ confirm_identity() {
     fi
     
     # 3. 输出基础信息
-    log_info "  ✅ 身份：小米辣 🌶️ | GitHub: zhaog100"
+    log_info "  ✅ 身份：小米椒 🌶️ | GitHub: zhaog100"
     log_info "  ✅ 工作区：$CFG_WORKSPACE"
-    log_info "  ✅ 远程仓库：origin → xiaomila-skills"
+    log_info "  ✅ 远程仓库：origin → xiaomijiao-skills"
     
     if [ $errors -gt 0 ]; then
         log_error "  ❌ 身份验证失败，请检查 SOUL.md 和 MEMORY.md"
@@ -220,9 +220,9 @@ check_remote_repos() {
     log_info "  📍 origin: $origin_url"
     log_info "  📍 skills: $skills_url"
     
-    # 2. 验证 origin 是否为 xiaomila-skills
-    if echo "$origin_url" | grep -qi "xiaomila-skills"; then
-        log_info "  ✅ origin 仓库配置正确：xiaomila-skills（不推送）"
+    # 2. 验证 origin 是否为 xiaomijiao-skills
+    if echo "$origin_url" | grep -qi "xiaomijiao-skills"; then
+        log_info "  ✅ origin 仓库配置正确：xiaomijiao-skills（不推送）"
     else
         log_warn "  ⚠️ origin 仓库可能不正确：$origin_url"
         errors=$((errors + 1))
@@ -444,8 +444,8 @@ update_daily_log_template() {
 # $date 工作记录
 
 ## 身份确认
-- **小米辣** 🌶️ | **GitHub**: zhaog100
-- **远程仓库**: origin → xiaomila-skills (zhaog100/xiaomila-skills)
+- **小米椒** 🌶️ | **GitHub**: zhaog100
+- **远程仓库**: origin → xiaomijiao-skills (zhaog100/xiaomijiao-skills)
 - **检查时间**: $(date '+%Y-%m-%d %H:%M')
 
 ## 今日完成
@@ -481,7 +481,7 @@ update_daily_log_template() {
 ---
 
 *更新时间：$(date '+%Y-%m-%d %H:%M')*
-*更新者：小米辣 (AI 助手)*
+*更新者：小米椒 (AI 助手)*
 EOF
         log_info "  ✅ 创建今日日志模板"
     fi
@@ -1011,8 +1011,8 @@ pause_projmgmt_and_daily_report() {
         if git add -A 2>/dev/null && git diff --cached --quiet 2>/dev/null; then
             log_info "    ✅ ProjMgmt 仓库无变更"
         else
-            git commit -m "docs: $date PROJMGMT日报 - 暂停服务整理" 2>/dev/null && \
-            git push origin main 2>/dev/null && \
+            # git commit已禁用: "docs: $date PROJMGMT日报" 2>/dev/null && \
+            # git push origin main 2>/dev/null && \
             log_info "    ✅ 已提交到 ProjMgmt 远程仓库"
         fi
         cd "$CFG_WORKSPACE" 2>/dev/null
@@ -1022,8 +1022,8 @@ pause_projmgmt_and_daily_report() {
     
     # 5. 确认身份和仓库安全
     log_info "  🔒 确认身份安全..."
-    log_info "    ✅ 身份: 小米辣 🌶️"
-    log_info "    ✅ 个人仓库: origin → xiaomila-skills"
+    log_info "    ✅ 身份: 小米椒 🌶️"
+    log_info "    ✅ 个人仓库: origin → xiaomijiao-skills"
     log_info "    ✅ 技能仓库: skills → openclaw-skills"
     log_info "    ✅ 不要搞混推送目标"
     

@@ -6,7 +6,7 @@
 set -e
 # 版本：v2.0
 # 创建时间：2026-05-09
-# 创建者：小米辣
+# 创建者：小米椒
 # 用途：检查记忆、知识、Git、PR、财务等全方位遗漏
 # 许可证：MIT License
 # 版权：Copyright (c) 2026 思捷娅科技 (SJYKJ)
@@ -23,7 +23,7 @@ analyze_all_gaps() {
     local date="$1"
     
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║  查漏补缺分析器 v2.0 - 小米辣                            ║"
+    log_info "║  查漏补缺分析器 v2.0 - 小米椒                            ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     
     local total_gaps=0
@@ -598,7 +598,7 @@ generate_comprehensive_report() {
     log_info "║  综合查漏补缺报告                                        ║"
     log_info "╠════════════════════════════════════════════════════════╣"
     log_info "║  日期：$date"
-    log_info "║  身份：小米辣 🌶️ | GitHub: $CFG_GITHUB_USERNAME"
+    log_info "║  身份：小米椒 🌶️ | GitHub: $CFG_GITHUB_USERNAME"
     log_info "╠════════════════════════════════════════════════════════╣"
     
     # 按严重程度排序

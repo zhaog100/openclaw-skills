@@ -7,7 +7,7 @@
 - 服务器: 43.133.55.138 (腾讯云轻量, 2核/1.9G/50G)
 
 ## 仓库分离（绝对红线）
-- **origin** → xiaomila-skills (个人信息: AGENTS/MEMORY/SOUL/agents/memory/)
+- **origin** → xiaomijiao-skills (个人信息: AGENTS/MEMORY/SOUL/agents/memory/)
 - **skills** → openclaw-skills (仅 skills/ 目录)
 - ❌ 禁止交叉推送！
 

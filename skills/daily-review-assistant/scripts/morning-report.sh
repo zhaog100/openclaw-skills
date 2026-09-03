@@ -12,7 +12,7 @@ LOG_FILE="$LOG_DIR/morning-report-$DATE.log"
 
 log() { echo "[$(date '+%H:%M:%S')] $1" | tee -a "$LOG_FILE"; }
 
-REPORT="🌅 **小米辣早报** — $DATE $TIME\n\n"
+REPORT="🌅 **小米椒早报** — $DATE $TIME\n\n"
 
 # 1. 系统状态
 log "检查系统状态..."
@@ -67,7 +67,7 @@ fi
 REPORT+="$TODO_SECTION\n"
 
 # 输出
-REPORT+="\n---\n*🌶️ 小米辣早报生成时间: $(date '+%Y-%m-%d %H:%M:%S')*\n"
+REPORT+="\n---\n*🌶️ 小米椒早报生成时间: $(date '+%Y-%m-%d %H:%M:%S')*\n"
 log "早报生成完成"
 echo -e "$REPORT"
 echo -e "$REPORT" > "$LOG_DIR/morning-report-$DATE.txt"

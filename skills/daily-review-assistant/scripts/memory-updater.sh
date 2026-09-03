@@ -6,7 +6,7 @@
 set -e
 # 版本：v2.0
 # 创建时间：2026-05-09
-# 创建者：小米辣
+# 创建者：小米椒
 # 用途：自动更新 MEMORY.md 和 daily log，智能提炼经验教训
 # 许可证：MIT License
 # 版权：Copyright (c) 2026 思捷娅科技 (SJYKJ)
@@ -30,8 +30,8 @@ update_daily_log() {
 # $date 工作记录
 
 ## 身份确认
-- **小米辣** 🌶️ | **GitHub**: $CFG_GITHUB_USERNAME
-- **远程仓库**: origin → ${GITHUB_USERNAME:-xiaomila}/skills
+- **小米椒** 🌶️ | **GitHub**: $CFG_GITHUB_USERNAME
+- **远程仓库**: origin → ${GITHUB_USERNAME:-xiaomijiao}/skills
 - **检查时间**: $(date '+%Y-%m-%d %H:%M')
 
 ## 今日完成
@@ -76,7 +76,7 @@ update_daily_log() {
 ---
 
 *更新时间：$(date '+%Y-%m-%d %H:%M')*
-*更新者：小米辣 (AI 助手)*
+*更新者：小米椒 (AI 助手)*
 EOF
         log_info "  ✅ 创建今日日志模板"
     else
@@ -385,7 +385,7 @@ main() {
     local date="${1:-$(date +%Y-%m-%d)}"
     
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║  记忆更新器 v2.0 - 小米辣                                ║"
+    log_info "║  记忆更新器 v2.0 - 小米椒                                ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     
     update_daily_log "$date"
