@@ -138,8 +138,7 @@ do_review() {
     
     # 8. QMD 向量更新
     step=$((step + 1))
-    log_info "🧠 步骤 $step/$total: QMD 向量更新..."
-    update_qmd "$date"
+    log_info "🧠 步骤 $step/$total: QMD 向量更新（跳过 - 未安装）"
     
     # 9. 查漏补缺和MEMORY.md更新
     step=$((step + 1))
