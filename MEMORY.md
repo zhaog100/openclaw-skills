@@ -1874,3 +1874,13 @@ _最后更新: 2026-09-03 17:17 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+## 2026-09-03 进一步修复
+
+### get-context-usage.sh 修复
+- 根因：openclaw status 输出是表格格式，非 JSON，旧正则匹配不到
+- 修复：改用 grep -oP 解析表格中的  模式
+- 验证：脚本返回 26%（与 openclaw status --deep 一致）✅
+
+_最后更新: 2026-09-03 20:17 CST_
