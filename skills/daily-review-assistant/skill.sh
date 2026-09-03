@@ -167,7 +167,7 @@ confirm_identity() {
     
     # 1. 验证 SOUL.md
     if [ -f "$CFG_WORKSPACE/SOUL.md" ]; then
-        local soul_name=$(grep -E "^\- \*\*名字\*\*" "$CFG_WORKSPACE/SOUL.md" 2>/dev/null | head -1)
+        local soul_name=$(grep "名字" "$CFG_WORKSPACE/SOUL.md" 2>/dev/null | head -1)
         if echo "$soul_name" | grep -qi "小米椒"; then
             log_info "  ✅ 身份验证通过：$soul_name"
         else
@@ -181,7 +181,7 @@ confirm_identity() {
     
     # 2. 验证 GitHub 用户名
     if [ -f "$CFG_WORKSPACE/MEMORY.md" ]; then
-        local memory_github=$(grep -oP 'GitHub[^:]*:\s*\K\w+' "$CFG_WORKSPACE/MEMORY.md" 2>/dev/null | head -1)
+        local memory_github=$(grep 'GitHub' "$CFG_WORKSPACE/MEMORY.md" 2>/dev/null | head -1 | awk -F'GitHub:' '{print $2}' | tr -d ' *')
         if [ "$memory_github" = "zhaog100" ]; then
             log_info "  ✅ GitHub 身份验证通过：$memory_github"
         else

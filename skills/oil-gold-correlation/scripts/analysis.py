@@ -95,7 +95,7 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
     results = {}
     # oil → gold
     try:
-        test_og = grangercausalitytests(df[["gold_ret", "wti_ret"]], maxlag=maxlag, verbose=False)
+        test_og = grangercausalitytests(df[["gold_ret", "wti_ret"]], maxlag=maxlag)
         pvals_og = [test_og[lag][0]["ssr_ftest"][1] for lag in range(1, maxlag + 1)]
         results["oil_causes_gold"] = {
             "min_pvalue": round(min(pvals_og), 6),
@@ -107,7 +107,7 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
 
     # gold → oil
     try:
-        test_go = grangercausalitytests(df[["wti_ret", "gold_ret"]], maxlag=maxlag, verbose=False)
+        test_go = grangercausalitytests(df[["wti_ret", "gold_ret"]], maxlag=maxlag)
         pvals_go = [test_go[lag][0]["ssr_ftest"][1] for lag in range(1, maxlag + 1)]
         results["gold_causes_oil"] = {
             "min_pvalue": round(min(pvals_go), 6),
