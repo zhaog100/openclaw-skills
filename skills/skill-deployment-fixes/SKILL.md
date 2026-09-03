@@ -92,6 +92,31 @@ WORKSPACE="/home/ubuntu/.openclaw/workspace"
 - 删除某个板块：注释或删除对应的 #N 代码块
 - 调整板块顺序：修改 #N 注释编号即可
 
+## 问题5：QMD 安装（@tobilu/qmd 而非 @tobi/qmd）
+
+### 症状
+- `npm install -g @tobi/qmd` → 404
+- `npm install -g qmd` → 装了个空壳 `qmd@0.0.0`，没有二进制
+- Skill 文档写的是 `bun install -g @tobi/qmd`，包名已变更
+
+### 正确安装
+```bash
+# 正确的包名（注意是 @tobilu，不是 @tobi）
+npm install -g @tobilu/qmd --force
+# 或首次安装不需要 --force
+npm install -g @tobilu/qmd
+```
+
+### 验证
+```bash
+which qmd        # → ~/.npm-global/bin/qmd
+qmd --version    # → v2.x.x
+```
+
+### 适用场景
+- miliger-qmd-manager 技能首次部署
+- QMD CLI 不可用时排查
+
 ## Cron配置示例
 
 ```bash

@@ -150,10 +150,9 @@ do_review() {
     log_info "📋 步骤 $step/$total: 多通道技能整理..."
     organize_multichannel "$date" "$review_depth"
     
-    # 11. 已完全禁用：PROJMGMT日报生成
-    step=$((step + 1))
-    # log_info "🏗️ 步骤 $step/$total: PROJMGMT已禁用" 已禁用
-    # pause_projmgmt_and_daily_report "$date" "$review_depth" 已禁用
+    # 11. PROJMGMT日报已删除
+    # step=$((step + 1))
+    # pause_projmgmt_and_daily_report 已移除
     
     log_info "✅ ${review_depth}回顾完成！"
     log_info ""
@@ -961,73 +960,8 @@ organize_multichannel() {
     log_info "  ✅ 多通道技能整理完成"
 }
 
-# PROJMGMT暂停与日报整理
-pause_projmgmt_and_daily_report() {
-    local date="$1"
-    local review_depth="$2"
-    
-    log_info "  🏗️ 步骤: PROJMGMT暂停与日报整理..."
-    log_info "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    
-    # 1. 检查 PROJMGMT 服务状态
-    local proj_status="stopped"
-    curl -s --max-time 5 http://localhost:8001/health > /dev/null 2>&1 && proj_status="running"
-    log_info "  📊 PROJMGMT服务状态: $proj_status"
-    
-    # 2. 整理完成情况
-    log_info "  📋 整理项目完成情况..."
-    local proj_log="$CFG_WORKSPACE/memory/$date.md"
-    
-    # 检查今日项目相关条目
-    if [ -f "$proj_log" ]; then
-        local proj_items=$(grep -i "projmgmt\|项目管理\|项目" "$proj_log" 2>/dev/null | wc -l)
-        log_info "    ✅ 今日项目相关条目: $proj_items 条"
-    fi
-    
-    # 3. 生成日报
-    log_info "  📄 生成日报..."
-    local daily_report="## $date PROJMGMT日报\n\n"
-    daily_report+="### 服务状态\n"
-    daily_report+="- 服务状态: $proj_status\n\n"
-    daily_report+="### 今日工作\n"
-    daily_report+="- 已暂停 PROJMGMT 服务\n"
-    daily_report+="- 整理项目完成情况\n"
-    daily_report+="- 记录到项目文档\n\n"
-    daily_report+="### 待恢复事项\n"
-    daily_report+="- 等待官家确认恢复 PROJMGMT 服务\n"
-    
-    # 追加到今日记忆
-    echo -e "\n$daily_report" >> "$proj_log" 2>/dev/null
-    log_info "    ✅ 日报已记录到 $proj_log"
-    
-    # 4. 提交到远程仓库
-    log_info "  💻 提交到远程仓库..."
-    cd "$CFG_WORKSPACE" 2>/dev/null
-    
-    # 检查是否有 ProjMgmt 仓库
-    if [ -d "ProjMgmt" ]; then
-        cd ProjMgmt 2>/dev/null
-        if git add -A 2>/dev/null && git diff --cached --quiet 2>/dev/null; then
-            log_info "    ✅ ProjMgmt 仓库无变更"
-        else
-            # git commit已禁用: "docs: $date PROJMGMT日报" 2>/dev/null && \
-            # git push origin main 2>/dev/null && \
-            log_info "    ✅ 已提交到 ProjMgmt 远程仓库"
-        fi
-        cd "$CFG_WORKSPACE" 2>/dev/null
-    else
-        log_info "    ⚠️ ProjMgmt 仓库不存在，跳过提交"
-    fi
-    
-    # 5. 确认身份和仓库安全
-    log_info "  🔒 确认身份安全..."
-    log_info "    ✅ 身份: 小米椒 🌶️"
-    log_info "    ✅ 个人仓库: origin → xiaomijiao-skills"
-    log_info "    ✅ 技能仓库: skills → openclaw-skills"
-    log_info "    ✅ 不要搞混推送目标"
-    
-    log_info "  ✅ PROJMGMT暂停与日报整理完成"
-}
+# PROJMGMT日报生成函数已删除（不再需要）
+# pause_projmgmt_and_daily_report() { ... }
 
 # 主函数
 main() {
