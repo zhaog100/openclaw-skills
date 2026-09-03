@@ -95,6 +95,11 @@ use_default_config() {
     CFG_LOG_LEVEL="info"
 }
 
+# 自动加载配置（如果未加载）
+if [ -z "${CFG_VERSION:-}" ]; then
+    load_config
+fi
+
 # 日志函数
 log_info() {
     local message="$1"
