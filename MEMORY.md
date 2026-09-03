@@ -1016,3 +1016,47 @@ _最后更新: 2026-09-02 15:31 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 14:50:08）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:main
+**当前Tokens**：107173 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：�需要PYTHONPATH
+
+### 待处理
+- [ ] 需要sudo权限创建numpy符号链接
+- [ ] 验证seamless-switch-cron下次执行是否正常
+
+
+## 📅 待办事项
+
+- [ ] 关注RTC付款周期（通常7-14天）
+- [ ] 检查Discord/Telegram通知
+- [ ] QMD embed继续监控（283/520，54%）
+- [ ] model-switch-monitor脚本修复
+- [ ] 修复oil-gold cron numpy路径
+
+
+
+**2026-09-03 14:20** - 上下文超70%，自动触发会话切换
+**2026-09-03 14:30** - 完成CSV修复任务
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
