@@ -639,3 +639,139 @@ _最后更新: 2026-09-02 15:31 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 13:10:08）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:main
+**当前Tokens**：133333 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 13:50:09）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:main
+**当前Tokens**：93258 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 14:00:09）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:main
+**当前Tokens**：92298 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：| 每2小时 | ✅ |
+
+
+## 📧 邮件功能配置（下午完成）
+
+### 已完成
+- ✅ Gmail IMAP 配置成功
+- ✅ 邮件读取脚本创建
+- ✅ 晨报脚本更新（添加邮件摘要功能）
+- ✅ config.json 启用 features.email_reading
+
+### 测试结果
+- 未读邮件: 653 封
+- paid 相关: 62 封（Bounty任务通知）
+- bounty 相关: 510 封
+- reward 相关: 17 封
+
+
+## 🪙 RTC 余额查询（今天）
+
+**钱包地址**: RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d
+**当前余额**: **0.0 RTC**
+**API端点**: `https://50.28.86.131/wallet/balance?address={wallet}`
+
+> 注：尚未收到任何付款，可能需要等待Bounty任务验收通过
+
+
+## 📅 待办事项
+
+- [ ] 检查Bounty任务完成情况
+- [ ] 关注RTC付款通知
+- [ ] QMD embed继续运行中（54%完成）
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
