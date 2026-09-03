@@ -115,7 +115,7 @@ main() {
     local target_model_key=$(cfg '.context_switch_strategy.rules[0].target_model' 'long-context')
     local target_model=$(cfg ".models.\"$target_model_key\".id" "$target_model_key")
 
-    local current_hits=$(jq -r '.consecutive_hits' "$STATE_FILE")
+    local current_hits=$(jq -r '.consecutive_hits // 0' "$STATE_FILE")
 
     if [ "$usage" -ge "$threshold" ]; then
         current_hits=$((current_hits + 1))

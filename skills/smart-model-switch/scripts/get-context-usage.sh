@@ -1,5 +1,5 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/bin/bash
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 # 获取当前上下文使用率

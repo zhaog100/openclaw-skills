@@ -1,9 +1,10 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/usr/bin/env python3
 """
 Smart Memory Sync - 主入口
 独立运行，不依赖外部模块导入
 """
+
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
 import sys
 import subprocess
