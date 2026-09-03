@@ -1826,3 +1826,51 @@ _最后更新: 2026-09-03 17:17 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 20:00:13）
+
+**触发原因**：上下文超过 85%
+**当前会话**：agent:main:main
+**当前Tokens**：121117 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：：❌
+- 防火墙：✅ 启用
+- 开放端口：22 (SSH), 18789 (OpenClaw)
+
+### 资源状态
+- 磁盘：12G/50G (26%)
+- 内存：972M/1.9G
+- CPU负载：0.21
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
