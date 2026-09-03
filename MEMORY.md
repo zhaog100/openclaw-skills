@@ -1884,3 +1884,32 @@ _最后更新: 2026-09-03 17:17 CST_
 - 验证：脚本返回 26%（与 openclaw status --deep 一致）✅
 
 _最后更新: 2026-09-03 20:17 CST_
+
+---
+
+## 🔄 会话切换标记（2026-09-03 20:20:12）
+
+**触发原因**：上下文超过 85%
+**当前会话**：agent:main:main
+**当前Tokens**：124384 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：json"
+                                    ↑
+                           在 cron 环境中 ~ 可能无法正确解析
+```
+
+**证据**:
+- `context-switch.log` 显示每分钟执行，但返回 0%
+- `model-switch-monitor.log` 为 0 bytes（脚本未正常写入）
+- lib.sh 的 resolve_path() 依赖 $HOME，cron 环境可能未设置
+
+### 待修复项
+- [x] 移除 get-context-usage.sh 对 lib.sh 的依赖 ✅ (20:17)
+- [x] 硬编码状态文件路径: `/home/ubuntu/.openclaw/status.json` ✅ (20:17)
+- [x] 发现 `openclaw status` 输出是表格格式，已改用正则解析 ✅ (20:17)
+- [x] 修复 context-switch-monitor.sh 调用 get-context-usage.sh ✅ (20:15)
+- [x] 验证：context-switch.log 现在返回 26% ✅ (20:10)
+- [ ] model-switch-monitor.log 需等到下次 cron 执行验证
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
