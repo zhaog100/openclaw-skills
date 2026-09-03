@@ -1627,3 +1627,34 @@ _最后更新: 2026-09-02 15:31 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 2026-09-03 变更记录
+
+### 系统安全加固
+- **SSH配置**: PermitRootLogin no, PasswordAuthentication no ✅
+- **防火墙**: ufw active，放行22/tcp, 18789/tcp ✅
+- **PATH清理**: 移除~/.bashrc和~/.profile重复定义 ✅
+
+### 定时任务修复
+- **shebang顺序**: config-loader.sh, smart-sync.py, get-context-usage.sh ✅
+- **jq空值处理**: context-switch-monitor.sh Illegal number修复 ✅
+- **测试结果**: 全部10条cron任务正常 ✅
+
+### Oil-gold分析
+- **1日Pearson**: r=-0.21, p=0.001 ✅ 显著负相关
+- **7日Pearson**: r=-0.85, p=0.065 ⚠️ 不显著（样本不足）
+- **协整检验**: 不存在长期均衡关系
+
+### 知识库更新
+- **knowledge/projmgmt/2026-09-03.md**: 今日项目日报
+- **memory/chat-2026-09-03.md**: QQ Bot对话记录
+- **QMD索引**: workspace集合已存在（520个文件）
+
+### RTC收入追踪
+- **待到账**: 555 RTC（Security Audit + Dev.to Article + AgentFolio + Auto-Award）
+- **钱包**: RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d
+- **当前余额**: 0.0 RTC
+
+_最后更新: 2026-09-03 17:17 CST_
