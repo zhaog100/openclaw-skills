@@ -27,8 +27,8 @@ version: 1.0.2
 ## 🚀 使用方式
 
 ```bash
-# 安装qmd
-bun install -g @tobi/qmd  # 或 npm install -g @tobi/qmd
+# 安装qmd（已验证：npm install -g @tobilu/qmd → qmd@2.8.3）
+npm install -g @tobilu/qmd  # 或 bun install -g @tobilu/qmd
 
 # 配置知识库
 qmd collection add ./knowledge/project-management --name pm
