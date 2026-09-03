@@ -1,11 +1,9 @@
 #!/bin/bash
-# =============================================================================
-# 晨报脚本 - 每日9点自动生成早报
-# =============================================================================
 WORKSPACE="/home/ubuntu/.openclaw/workspace"
 LOG_DIR="$WORKSPACE/skills/daily-review-assistant/logs"
 DATE=$(date '+%Y-%m-%d')
 TIME=$(date '+%H:%M')
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/morning-report-$DATE.log"
@@ -66,10 +64,29 @@ else
 fi
 REPORT+="$TODO_SECTION\n"
 
+# 4. 邮件摘要
+log "读取邮件..."
+EMAIL_SECTION="### 📧 邮件摘要\n"
+if [ -f "$WORKSPACE/skills/daily-review-assistant/.env" ]; then
+    source "$WORKSPACE/skills/daily-review-assistant/.env"
+    if [ -n "$GMAIL_USER" ] && [ -n "$GMAIL_APP_PASSWORD" ]; then
+        EMAIL_RESULT=$(GMAIL_USER="$GMAIL_USER" GMAIL_APP_PASSWORD="$GMAIL_APP_PASSWORD" python3 "$SCRIPT_DIR/email-reader.py" 5 2>/dev/null)
+        if [ -n "$EMAIL_RESULT" ]; then
+            EMAIL_SECTION+="$EMAIL_RESULT\n"
+        else
+            EMAIL_SECTION+="⚠️ 邮件读取失败\n"
+        fi
+    else
+        EMAIL_SECTION+="⚪ 未配置邮箱\n"
+    fi
+else
+    EMAIL_SECTION+="⚪ 未配置邮箱\n"
+fi
+REPORT+="$EMAIL_SECTION\n"
+
 # 输出
 REPORT+="\n---\n*🌶️ 小米椒早报生成时间: $(date '+%Y-%m-%d %H:%M:%S')*\n"
 log "早报生成完成"
 echo -e "$REPORT"
 echo -e "$REPORT" > "$LOG_DIR/morning-report-$DATE.txt"
 log "报告已保存到: $LOG_DIR/morning-report-$DATE.txt"
-
