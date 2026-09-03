@@ -775,3 +775,43 @@ _最后更新: 2026-09-02 15:31 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 14:20:09）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:main
+**当前Tokens**：101553 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：d 美盘 | 22:00 | ✅ |
+| 10 | github-bounty | 每2小时 | ✅ |
+
+
+## 💰 RTC收入明细
+
+### 已认领未到账（555 RTC）
+| 任务 | 仓库 | 金额 | 认领日期 |
+|------|------|------|----------|
+| Security Audit #2867 | Rustchain | 160 RTC | 已closed |
+| Dev.to Article | rustchain-bounties | 200 RTC | 已closed |
+| AgentFolio Beacon | rustchain-bounties | 175 RTC | 已closed |
+| Auto-Award RTC | rustchain-bounties | 20 RTC | 已closed |
+
+### 待验收Open PR
+| PR | 仓库 | 预计金额 |
+|----|------|----------|
+| #8053 | Rustchain | 25 RTC |
+| #8039 | Rustchain | 27 RTC |
+| #16554 | rustchain-bounties | - |
+| #9358 | rustchain-bounties | - |
+
+
+## 📅 待办事项
+
+- [ ] 关注RTC付款周期（通常7-14天）
+- [ ] 检查Discord/Telegram通知
+- [ ] QMD embed继续监控
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
