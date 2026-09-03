@@ -1,5 +1,5 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/bin/bash
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 # 上下文监控与模型切换脚本
