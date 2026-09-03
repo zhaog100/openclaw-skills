@@ -1,5 +1,5 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/bin/bash
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # 共享配置加载器
 # 所有脚本 source 此文件以获取统一配置
