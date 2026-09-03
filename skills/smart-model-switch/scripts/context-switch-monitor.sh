@@ -57,15 +57,9 @@ EOF
 }
 
 # 获取当前上下文使用率
+# 使用独立的 get-context-usage.sh 脚本确保一致性
 get_context_usage() {
-    local usage=0
-    if command -v openclaw &> /dev/null; then
-        usage=$(openclaw status 2>/dev/null | grep -oP 'Context:.*?\(\K[0-9]+' | head -1)
-    fi
-    if [ -z "$usage" ] || ! [[ "$usage" =~ ^[0-9]+$ ]]; then
-        usage=0
-    fi
-    echo "$usage"
+    bash "$(dirname "$0")/get-context-usage.sh"
 }
 
 # 检查是否在冷却期
