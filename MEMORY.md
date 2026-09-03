@@ -454,3 +454,38 @@ _最后更新: 2026-09-02 15:31 CST_
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-03 12:00:23）
+
+**触发原因**：上下文超过 70%
+**当前会话**：agent:main:main
+**当前Tokens**：119644 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：� 完成 | git commit -m "Smart sync: 2026-09-03 11:30" |
+| 确认IDENTITY.md/USER.md版本控制 | ✅ 完成 | 已在版本控制中 |
+| QMD首次embed | 🔄 进行中 | 96/310向量已嵌入（CPU模式约20分钟） |
+| 更新miliger-qmd-manager/SKILL.md | ✅ 完成 | 安装命令修正为 npm install -g @tobilu/qmd |
+
+**QMD状态**：
+- 已创建workspace collection（520个.md文件）
+- BM25关键词搜索已可用
+- 向量搜索嵌入进行中（CPU模式较慢）
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 70%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
