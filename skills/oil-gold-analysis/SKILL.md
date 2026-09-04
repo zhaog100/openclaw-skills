@@ -30,9 +30,17 @@ python3 skills/oil-gold-correlation/scripts/report_text.py
 输出保存到: `skills/oil-gold-correlation/reports/report_text_latest.txt`
 
 ### 3. 发送QQ通知
+**注意**：qqbot 插件 preload.cjs 有 bug，CLI 不支持 qqbot 频道。必须使用 Gateway REST API 发送：
+
 ```bash
-bash skills/oil-gold-correlation/scripts/send_qq.sh
+# 方法1：通过 Gateway REST API（推荐）
+python3 skills/oil-gold-correlation/scripts/send_qq_gw.py
+
+# 方法2：通过 cron wrapper（已集成）
+bash skills/oil-gold-correlation/scripts/run_report.sh
 ```
+
+send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），改用 send_qq_gw.py
 
 ## 正确Cron配置
 ```

@@ -24,10 +24,9 @@ fi
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 报告生成完成，准备发送..." >> "$LOG_FILE"
 
-# 发送QQ
+# 发送QQ（通过 Gateway REST API）
 if [ -f "$REPORT_FILE" ]; then
-    MESSAGE=$(cat "$REPORT_FILE")
-    openclaw message send --channel "QQ Bot default" --target "$QQ_TARGET" --message "$MESSAGE" >> "$LOG_FILE" 2>&1
+    python3 "$SCRIPT_DIR/send_qq_gw.py" "$REPORT_FILE" >> "$LOG_FILE" 2>&1
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] 报告已发送到QQ" >> "$LOG_FILE"
 else
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] 报告文件不存在: $REPORT_FILE" >> "$LOG_FILE"
