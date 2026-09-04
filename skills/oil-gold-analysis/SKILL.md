@@ -54,4 +54,5 @@ export PYTHONPATH="/home/ubuntu/.local/lib/python3.12/site-packages"
 ## 故障排查
 1. 日志为空 → 检查cron是否执行，查看 `/var/log/syslog`
 2. 报告未生成 → 确认 report_text.py 能独立运行
-3. QQ发送失败 → 检查 api.openclaw.ai:8080 连通性
+3. QQ发送失败 → openclaw message send CLI 不支持 qqbot 通道，需改用 send_qq_ws.py 或手动推送
+4. Gateway WebSocket 认证 → client.mode 必须为 "operator" 或 "backend"，需携带 device 信息
