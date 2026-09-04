@@ -3,10 +3,10 @@
   "thresholds": {
     "remind": 50,
     "auto_sync": 75,
-    "auto_switch": 85
+    "auto_switch": 90
   },
   "intervals": {
-    "check": 300,
+    "check": 900,
     "sync": 3600
   },
   "paths": {
@@ -22,7 +22,7 @@
       "skill": "context-manager"
     },
     "qmd": {
-      "enabled": true,
+      "enabled": false,
       "collection": "knowledge"
     },
     "git": {
