@@ -1,0 +1,16 @@
+{
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "timeout": 30000,
+  "wait_time": 3,
+  "output_format": "markdown",
+  "retry_count": 3,
+  "retry_delay": 5,
+  "pages": [
+    {
+      "name": "萤火燃天大赛",
+      "url": "https://my.feishu.cn/wiki/KAgYwc2ZjilN46kDX9wcJYaBnee",
+      "token": "${FEISHU_WIKI_TOKEN:="KAgYwc2ZjilN46kDX9wcJYaBnee"}",
+      "enabled": true
+    }
+  ]
+}

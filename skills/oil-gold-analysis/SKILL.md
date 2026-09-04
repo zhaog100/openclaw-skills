@@ -47,6 +47,11 @@ send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），改用 send_qq_gw.
 0 10 * * * cd /home/ubuntu/.openclaw/workspace && PYTHONPATH=/home/ubuntu/.local/lib/python3.12/site-packages python3 skills/oil-gold-correlation/scripts/report_text.py >> logs/oil-gold-report.log 2>&1 && bash skills/oil-gold-correlation/scripts/send_qq.sh
 ```
 
+## 定时任务时间说明
+- 早间报告：10:00
+- 午间报告：15:30
+- 晚间报告：23:00（用户期望22:30，需确认是否调整）
+
 ## 关键路径
 - 数据脚本: `skills/oil-gold-correlation/scripts/analysis.py`
 - 报告生成: `skills/oil-gold-correlation/scripts/report_text.py`
