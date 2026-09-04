@@ -4998,3 +4998,79 @@ crontab -l | sed 's|*/5 \* \* \* \*.*smart-memory-sync.*|# removed smart-memory-
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-04 14:00:09）
+
+**触发原因**：上下文超过 85%
+**当前会话**：agent:main:main
+**当前Tokens**：170374 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：
+
+# 添加新cron
+(crontab -l 2>/dev/null; echo "0,30 * * * * python3 /home/ubuntu/.openclaw/workspace/skills/smart-memory-sync/scripts/smart-sync.py") | crontab -
+(crontab -l 2>/dev/null; echo "0 */2 * * * bash /home/ubuntu/.openclaw/workspace/skills/context-manager-v2/scripts/context-monitor.sh") | crontab -
+```
+
+### 效果预估
+- 检查频率：每天288次 → 48次（减少83%）
+- 同步频率：每天24次 → 12次（减少50%）
+- 节省模型调用：约240次/天
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
+
+---
+
+## 🔄 会话切换标记（2026-09-04 14:10:10）
+
+**触发原因**：上下文超过 85%
+**当前会话**：agent:main:main
+**当前Tokens**：170416 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**：b -
+(crontab -l 2>/dev/null; echo "0 */2 * * * bash /home/ubuntu/.openclaw/workspace/skills/context-manager-v2/scripts/context-monitor.sh") | crontab -
+```
+
+### 效果预估
+- 检查频率：每天288次 → 48次（减少83%）
+- 同步频率：每天24次 → 12次（减少50%）
+- 节省模型调用：约240次/天
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
