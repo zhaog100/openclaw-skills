@@ -228,7 +228,7 @@ check_remote_repos() {
     
     # 3. 验证 skills 是否为 openclaw-skills
     if echo "$skills_url" | grep -qi "openclaw-skills"; then
-        log_info "  ✅ skills 仓库配置正确：openclaw-skills（可推送）"
+        log_info "  ✅ skills 仓库配置正确：openclaw-skills（不推送）"
     else
         log_warn "  ⚠️ skills 仓库可能不正确：$skills_url"
         errors=$((errors + 1))
@@ -245,8 +245,8 @@ check_remote_repos() {
         log_info "  ✅ Git 推送：已同步"
     fi
     
-    # 5. 安全检查：确保不会误推 origin
-    log_info "  🔒 安全警告：本任务只推送到 skills 仓库，不推送到 origin"
+    # 5. 安全检查：禁止推送到任何远程仓库
+    log_info "  🔒 安全警告：本任务禁止推送到任何远程仓库（origin + skills）"
     
     if [ $errors -gt 0 ]; then
         log_error "  ❌ 远程仓库安全检查失败"
