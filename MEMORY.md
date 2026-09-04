@@ -5074,3 +5074,46 @@ crontab -l | sed 's|*/5 \* \* \* \*.*smart-memory-sync.*|# removed smart-memory-
 **切换方式**：cron agentTurn 自动创建新会话
 
 ---
+
+---
+
+## 🔄 会话切换标记（2026-09-04 14:20:10）
+
+**触发原因**：上下文超过 85%
+**当前会话**：agent:main:main
+**当前Tokens**：170423 / 131072
+**当前模型**：agnes-2.5-flash
+**上下文摘要**： 效果预估
+- 检查频率：每天288次 → 48次（减少83%）
+- 同步频率：每天24次 → 12次（减少50%）
+- 节省模型调用：约240次/天
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+
+
+
+
+**触发原因**：上下文超过 85%
+**切换方式**：cron agentTurn 自动创建新会话
+**新会话**：自动加载 MEMORY.md + SOUL.md + AGENTS.md
+**切换方式**：cron agentTurn 自动创建新会话
+
+---
