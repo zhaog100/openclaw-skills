@@ -15,7 +15,7 @@ export PYTHONPATH=/home/ubuntu/.local/lib/python3.12/site-packages
 
 # 生成报告（带超时保护）
 cd "$SCRIPT_DIR"
-timeout 300 python3 report_text.py >> "$LOG_FILE" 2>&1
+timeout 600 python3 report_text.py >> "$LOG_FILE" 2>&1
 
 if [ $? -ne 0 ]; then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] 报告生成失败" >> "$LOG_FILE"
