@@ -4,6 +4,7 @@
 支持：自动获取 wiki 内容、定时爬取、内容导出
 
 版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+版本: v1.1.0
 """
 
 import os
@@ -13,7 +14,7 @@ import time
 import re
 import argparse
 from pathlib import Path
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 import logging
 from datetime import datetime

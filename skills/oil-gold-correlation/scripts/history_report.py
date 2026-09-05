@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+# 版本: v3.3 | 石油黄金白银相关性分析
 """
 历史走势增强版报告 — 在 v3.3 基础上增加：
 1. 历史区间统计（近期高低点、回撤幅度）

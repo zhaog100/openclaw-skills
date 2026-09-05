@@ -9,7 +9,7 @@
     {
       "name": "萤火燃天大赛",
       "url": "https://my.feishu.cn/wiki/KAgYwc2ZjilN46kDX9wcJYaBnee",
-      "token": "${FEISHU_WIKI_TOKEN:="KAgYwc2ZjilN46kDX9wcJYaBnee"}",
+      "token": "${FEISHU_WIKI_TOKEN}",
       "enabled": true
     }
   ]

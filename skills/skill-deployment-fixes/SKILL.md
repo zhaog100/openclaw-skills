@@ -70,9 +70,32 @@ value=$(jq -r '.field // 0' "$STATE_FILE")
 
 **Fix:** Use absolute paths in cron; do not prepend `/usr/bin` in scripts.
 
+## Problem 8: Cron log shows historical errors
+
+**Symptom:** Log file has `Bad substitution`, `source: not found`, or other errors at beginning, but task actually executed successfully.
+
+**Cause:** Log file contains old failed runs' errors; new successful runs append below.
+
+**Fix:**
+```bash
+# Don't grep for errors in full log
+# Instead, grep for specific date/time
+grep "2026-09-04 23:30" /path/to/log | grep "✅"
+
+# Check execution status by timestamp
+grep "2026-09-04 23:30" /path/to/log | tail -20
+```
+
+**Debug procedure:**
+1. Find execution timestamp in log
+2. Grep for that specific timestamp, not entire file
+3. Check if success markers (✅) exist after that timestamp
+4. Ignore errors before the successful execution
+
 ## Deployment checklist
 1. [ ] Python deps: headless where no GUI needed
 2. [ ] Shebang: line 1 only, no comments before it
 3. [ ] Cron paths: absolute, no PATH duplication
 4. [ ] Test critical function before relying on cron
 5. [ ] Record fix in memory/YYYY-MM-DD.md
+6. [ ] When debugging: grep by timestamp, not full log

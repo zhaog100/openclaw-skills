@@ -5,20 +5,22 @@
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
+版本: v3.3 | 石油黄金白银相关性分析
 """
 
 import sys
 import json
+import os
 import urllib.request
 import urllib.error
 import time
 from pathlib import Path
 
-# 配置
+# 配置 - 从环境变量读取敏感信息
 QQ_API_BASE = "https://api.sgroup.qq.com"
-APP_ID = "102845238"
-APP_SECRET = "ht6KYn3KbtCWqBXuIg5VwNpImGlHnKsR"
-TARGET_USER_ID = "C099848DC9A60BF60A7BE31626822790"
+APP_ID = os.environ.get("QQ_APP_ID", "")
+APP_SECRET = os.environ.get("QQ_APP_SECRET", "")
+TARGET_USER_ID = os.environ.get("QQ_TARGET_USER_ID", "")
 
 # Token 缓存
 _token_cache = None

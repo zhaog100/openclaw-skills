@@ -3,6 +3,7 @@
 # 用于 cron 定时任务
 #
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) - MIT License
+# 版本: v1.1.0
 
 set -e
 
