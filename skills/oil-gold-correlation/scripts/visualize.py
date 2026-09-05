@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 石油黄金可视化模块
@@ -108,7 +112,7 @@ def plot_analysis(period: str = "1y", window: int = 30, output: str = None):
         output = str(output_dir / "oil-gold-correlation.html")
 
     fig.write_html(output)
-    print(f"✅ 图表已保存: {output}")
+    logger.info(f"✅ 图表已保存: {output}")
 
     # 也输出文本摘要
     try:

@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 地缘政治分析模块 v3.3
@@ -357,14 +361,14 @@ def fetch_news_akshare():
 
         cn = sum(1 for n in unique if n.get("source","") in ("央视新闻","东方财富","上期所"))
         intl = len(unique) - cn
-        print(f"  📡 多渠道采集: {len(unique)}条（国内{cn} + 国际{intl}）")
+        logger.info(f"  📡 多渠道采集: {len(unique)}条（国内{cn} + 国际{intl}）")
 
         return unique
     except ImportError:
-        print("⚠️ akshare 未安装，无法自动采集新闻")
+        logger.info("⚠️ akshare 未安装，无法自动采集新闻")
         return []
     except Exception as e:
-        print(f"⚠️ 新闻采集异常: {e}")
+        logger.info(f"⚠️ 新闻采集异常: {e}")
         return []
 
 

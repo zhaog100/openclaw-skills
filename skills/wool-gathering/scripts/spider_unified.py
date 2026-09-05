@@ -1,5 +1,9 @@
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/usr/bin/env python3
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
+
 # -*- coding: utf-8 -*-
 """
 统一价格监控 - 集成京东和淘宝爬虫
@@ -118,17 +122,17 @@ class UnifiedPriceMonitor:
 
     def monitor_item(self, platform, item_id):
         """监控单个商品"""
-        print(f"🔍 监控商品: {platform} - {item_id}")
+        logger.info(f"🔍 监控商品: {platform} - {item_id}")
 
         result = self.get_price(platform, item_id)
 
         if result['success']:
             self.save_price(result)
-            print(f"✅ {result['title']}")
-            print(f"   价格: ¥{result['price']}")
-            print(f"   链接: {result['url']}")
+            logger.info(f"✅ {result['title']}")
+            logger.info(f"   价格: ¥{result['price']}")
+            logger.info(f"   链接: {result['url']}")
         else:
-            print(f"❌ 获取失败: {result['error']}")
+            logger.info(f"❌ 获取失败: {result['error']}")
 
         return result
 
@@ -139,7 +143,7 @@ class UnifiedPriceMonitor:
         Args:
             items: [{"platform": "jd", "item_id": "xxx"}, ...]
         """
-        print(f"\n🚀 批量监控 {len(items)} 个商品\n")
+        logger.info(f"\n🚀 批量监控 {len(items)} 个商品\n")
 
         results = []
         for item in items:
@@ -175,17 +179,17 @@ class UnifiedPriceMonitor:
         records = cursor.fetchall()
         conn.close()
 
-        print(f"\n📊 价格历史记录")
-        print("="*70)
+        logger.info(f"\n📊 价格历史记录")
+        logger.info("="*70)
 
         if not records:
-            print("暂无记录")
+            logger.info("暂无记录")
         else:
             for item_id, platform, title, price, timestamp in records:
                 date = timestamp.split()[0]
-                print(f"{date} [{platform:8}] {title[:30]:30} ¥{price:.2f}")
+                logger.info(f"{date} [{platform:8}] {title[:30]:30} ¥{price:.2f}")
 
-        print("="*70)
+        logger.info("="*70)
 
 
 def quick_test():
@@ -209,7 +213,7 @@ def quick_test():
     # 统计结果
     success_count = sum(1 for r in results if r['success'])
 
-    print(f"\n✅ 监控完成: {success_count}/{len(results)} 成功")
+    logger.info(f"\n✅ 监控完成: {success_count}/{len(results)} 成功")
 
 
 if __name__ == "__main__":

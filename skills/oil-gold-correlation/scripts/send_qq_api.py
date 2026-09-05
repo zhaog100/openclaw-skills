@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 通过 QQ 开放平台 API 发送消息
@@ -52,17 +56,17 @@ def get_access_token() -> str:
             if result.get("access_token"):
                 _token_cache = result["access_token"]
                 _token_expire = time.time() + result.get("expires_in", 7200) - 300
-                print(f"[INFO] 获取 token 成功，有效期 {result.get('expires_in', 'unknown')}s")
+                logger.info(f"[INFO] 获取 token 成功，有效期 {result.get('expires_in', 'unknown')}s")
                 return _token_cache
             else:
-                print(f"[ERROR] 获取 token 失败: {result}", file=sys.stderr)
+                logger.info(f"[ERROR] 获取 token 失败: {result}", file=sys.stderr)
                 return ""
     except urllib.error.HTTPError as e:
-        print(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
-        print(f"[ERROR] 响应: {e.read().decode('utf-8')}", file=sys.stderr)
+        logger.info(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
+        logger.info(f"[ERROR] 响应: {e.read().decode('utf-8')}", file=sys.stderr)
         return ""
     except Exception as e:
-        print(f"[ERROR] 获取 token 异常: {e}", file=sys.stderr)
+        logger.info(f"[ERROR] 获取 token 异常: {e}", file=sys.stderr)
         return ""
 
 
@@ -90,18 +94,18 @@ def send_c2c_message(access_token: str, message: str, user_id: str = TARGET_USER
         with urllib.request.urlopen(req, timeout=30) as resp:
             result = json.loads(resp.read().decode("utf-8"))
             if result.get("id"):
-                print(f"[INFO] 消息发送成功: id={result.get('id')}")
+                logger.info(f"[INFO] 消息发送成功: id={result.get('id')}")
                 return True
             else:
-                print(f"[ERROR] 发送失败: {result}", file=sys.stderr)
+                logger.info(f"[ERROR] 发送失败: {result}", file=sys.stderr)
                 return False
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8")
-        print(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
-        print(f"[ERROR] 响应: {body}", file=sys.stderr)
+        logger.info(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
+        logger.info(f"[ERROR] 响应: {body}", file=sys.stderr)
         return False
     except Exception as e:
-        print(f"[ERROR] 发送异常: {e}", file=sys.stderr)
+        logger.info(f"[ERROR] 发送异常: {e}", file=sys.stderr)
         return False
 
 
@@ -113,11 +117,11 @@ def main():
         with open(report_file, "r") as f:
             message = f.read().strip()
     except FileNotFoundError:
-        print(f"[ERROR] 报告文件不存在: {report_file}", file=sys.stderr)
+        logger.info(f"[ERROR] 报告文件不存在: {report_file}", file=sys.stderr)
         sys.exit(1)
 
     if not message:
-        print("[ERROR] 报告内容为空", file=sys.stderr)
+        logger.info("[ERROR] 报告内容为空", file=sys.stderr)
         sys.exit(1)
 
     # 获取 token 并发送

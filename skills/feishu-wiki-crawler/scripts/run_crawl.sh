@@ -2,7 +2,9 @@
 # 飞书 Wiki 自动爬取脚本
 # 用于 cron 定时任务
 #
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) - MIT License
+# Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# License: MIT
+# Author: 小米粒 (Xiaomili) - AI Agent
 # 版本: v1.1.0
 
 set -e

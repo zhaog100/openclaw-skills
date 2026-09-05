@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 Twelve Data 数据源
@@ -64,7 +68,7 @@ def fetch_td_timeseries(symbol, interval="1day", outputsize=90):
         data = resp.json()
 
         if "status" in data and data["status"] == "error":
-            print(f"  ⚠️ Twelve Data ({symbol}): {data.get('message', '未知错误')}")
+            logger.info(f"  ⚠️ Twelve Data ({symbol}): {data.get('message', '未知错误')}")
             return None
 
         values = data.get("values", [])
@@ -86,7 +90,7 @@ def fetch_td_timeseries(symbol, interval="1day", outputsize=90):
         return df if not df.empty else None
 
     except Exception as e:
-        print(f"  ⚠️ Twelve Data ({symbol}): {e}")
+        logger.info(f"  ⚠️ Twelve Data ({symbol}): {e}")
         return None
 
 

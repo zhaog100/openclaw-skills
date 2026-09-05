@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 石油黄金报告生成器 - 超时保护版 v3.3
@@ -18,7 +22,7 @@ REPORT_TIMEOUT = 300  # 5分钟超时
 
 def main():
     start = time.time()
-    print(f"[{time.strftime('%H:%M:%S')}] 开始生成报告（超时 {REPORT_TIMEOUT}s）...")
+    logger.info(f"[{time.strftime('%H:%M:%S')}] 开始生成报告（超时 {REPORT_TIMEOUT}s）...")
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
     script_path = os.path.join(script_dir, 'report_text.py')
@@ -31,14 +35,14 @@ def main():
             capture_output=False,
         )
         elapsed = time.time() - start
-        print(f"\n✅ 报告生成完成（{elapsed:.0f}s）")
+        logger.info(f"\n✅ 报告生成完成（{elapsed:.0f}s）")
         return result.returncode
     except subprocess.TimeoutExpired:
         elapsed = time.time() - start
-        print(f"\n⚠️ 报告生成超时（{elapsed:.0f}s > {REPORT_TIMEOUT}s），降级为缓存版")
+        logger.info(f"\n⚠️ 报告生成超时（{elapsed:.0f}s > {REPORT_TIMEOUT}s），降级为缓存版")
         return 1
     except Exception as e:
-        print(f"\n❌ 报告生成失败: {e}")
+        logger.info(f"\n❌ 报告生成失败: {e}")
         return 1
 
 if __name__ == '__main__':

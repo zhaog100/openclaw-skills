@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 通过 Gateway WebSocket API 发送 QQ 消息
@@ -19,7 +23,7 @@ from pathlib import Path
 try:
     import websockets
 except ImportError:
-    print("[ERROR] 需要安装 websockets: pip install websockets", file=sys.stderr)
+    logger.info("[ERROR] 需要安装 websockets: pip install websockets", file=sys.stderr)
     sys.exit(1)
 
 # 配置 - 从环境变量读取敏感信息
@@ -37,11 +41,11 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
             config = json.load(f)
         token = config.get("gateway", {}).get("auth", {}).get("token", "")
     except Exception as e:
-        print(f"[ERROR] 读取 token 失败: {e}", file=sys.stderr)
+        logger.info(f"[ERROR] 读取 token 失败: {e}", file=sys.stderr)
         return False
 
     if not token:
-        print("[ERROR] 无法获取 Gateway Token", file=sys.stderr)
+        logger.info("[ERROR] 无法获取 Gateway Token", file=sys.stderr)
         return False
 
     ws_url = f"ws://{GATEWAY_HOST}:{GATEWAY_PORT}/rpc"
@@ -65,13 +69,13 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
             
             try:
                 # 1. 等待 challenge
-                print("[INFO] 等待连接挑战...")
+                logger.info("[INFO] 等待连接挑战...")
                 while True:
                     msg = await asyncio.wait_for(request_queue.get(), timeout=10)
                     if msg.get("type") == "event" and msg.get("event") == "connect.challenge":
                         nonce = msg["payload"]["nonce"]
                         ts = msg["payload"]["ts"]
-                        print(f"[INFO] 收到 challenge: ts={ts}")
+                        logger.info(f"[INFO] 收到 challenge: ts={ts}")
                         break
                     # 忽略其他事件
 
@@ -101,7 +105,7 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                     }
                 }
                 await ws.send(json.dumps(connect_msg))
-                print("[INFO] 发送 connect 请求...")
+                logger.info("[INFO] 发送 connect 请求...")
 
                 # 3. 等待 connect 响应
                 connect_response = None
@@ -112,10 +116,10 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                         break
 
                 if not connect_response or not connect_response.get("ok"):
-                    print(f"[ERROR] 连接失败: {connect_response}", file=sys.stderr)
+                    logger.info(f"[ERROR] 连接失败: {connect_response}", file=sys.stderr)
                     return False
                 
-                print("[INFO] Gateway 连接成功")
+                logger.info("[INFO] Gateway 连接成功")
 
                 # 4. 发送消息到当前会话
                 send_id = str(uuid.uuid4())
@@ -129,7 +133,7 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                     }
                 }
                 await ws.send(json.dumps(send_msg))
-                print("[INFO] 发送消息请求...")
+                logger.info("[INFO] 发送消息请求...")
 
                 # 5. 等待发送响应
                 send_response = None
@@ -140,10 +144,10 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                         break
 
                 if send_response and send_response.get("ok"):
-                    print(f"[INFO] 消息已提交处理")
+                    logger.info(f"[INFO] 消息已提交处理")
                     return True
                 else:
-                    print(f"[ERROR] 发送失败: {send_response}", file=sys.stderr)
+                    logger.info(f"[ERROR] 发送失败: {send_response}", file=sys.stderr)
                     return False
 
             finally:
@@ -154,7 +158,7 @@ async def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                     pass
 
     except Exception as e:
-        print(f"[ERROR] WebSocket 异常: {e}", file=sys.stderr)
+        logger.info(f"[ERROR] WebSocket 异常: {e}", file=sys.stderr)
         import traceback
         traceback.print_exc()
         return False
@@ -167,11 +171,11 @@ def main():
         with open(report_file, "r") as f:
             message = f.read().strip()
     except FileNotFoundError:
-        print(f"[ERROR] 报告文件不存在: {report_file}", file=sys.stderr)
+        logger.info(f"[ERROR] 报告文件不存在: {report_file}", file=sys.stderr)
         sys.exit(1)
 
     if not message:
-        print("[ERROR] 报告内容为空", file=sys.stderr)
+        logger.info("[ERROR] 报告内容为空", file=sys.stderr)
         sys.exit(1)
 
     success = asyncio.run(send_via_gateway(message))

@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 FRED（美联储经济数据）数据源 v3.3
@@ -774,6 +778,6 @@ def format_commodity_signals(macro=None, sentiment=None, assessment=None):
 
 
 if __name__ == "__main__":
-    print("\n".join(format_macro_report()))
+    logger.info("\n".join(format_macro_report()))
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

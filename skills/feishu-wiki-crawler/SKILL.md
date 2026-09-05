@@ -104,4 +104,6 @@ sudo apt-get install -y libatk-bridge2.0-0 libcups2 libxcomposite1 libxdamage1 l
 
 ## 📄 许可证
 
-MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
+Author: 小米粒 (Xiaomili) - AI Agent

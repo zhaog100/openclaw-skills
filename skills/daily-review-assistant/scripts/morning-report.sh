@@ -126,3 +126,16 @@ log "早报生成完成"
 echo -e "$REPORT"
 echo -e "$REPORT" > "$LOG_DIR/morning-report-$DATE.txt"
 log "报告已保存到: $LOG_DIR/morning-report-$DATE.txt"
+
+# 推送QQ
+log "推送QQ消息..."
+QQ_TARGET="${QQ_TARGET_USER_ID:-C099848DC9A60BF60A7BE31626822790}"
+if [ -n "$QQ_TARGET" ]; then
+    # 使用openclaw message工具发送
+    openclaw message send \
+        --channel qqbot \
+        --target "$QQ_TARGET" \
+        --message "$REPORT" 2>&1 && \
+    log "QQ推送成功" || \
+    log "QQ推送失败"
+fi

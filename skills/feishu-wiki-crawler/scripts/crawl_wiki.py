@@ -3,9 +3,11 @@
 飞书 Wiki 自动爬取技能
 支持：自动获取 wiki 内容、定时爬取、内容导出
 
-版权：MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-版本: v1.1.0
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
+Author: 小米粒 (Xiaomili) - AI Agent
 """
+# 版本: v1.1.0
 
 import os
 import sys

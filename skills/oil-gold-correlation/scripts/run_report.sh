@@ -3,7 +3,7 @@
 REPORT_DIR="/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/reports"
 REPORT_FILE="${REPORT_DIR}/report_text_latest.txt"
 SCRIPT_DIR="/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts"
-QQ_TARGET="qqbot:c2c:C099848DC9A60BF60A7BE31626822790"
+QQ_TARGET="${QQ_TARGET_USER_ID:-qqbot:c2c:C099848DC9A60BF60A7BE31626822790}"
 LOG_FILE="/home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log"
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始生成石油黄金报告..." >> "$LOG_FILE"

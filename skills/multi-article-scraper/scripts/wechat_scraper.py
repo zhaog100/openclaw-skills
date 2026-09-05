@@ -1,5 +1,9 @@
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/usr/bin/env python3
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
+
 """
 微信文章爬取技能
 爬取微信公众号文章内容，支持 Cookie 登录验证
@@ -17,17 +21,17 @@ try:
     PLAYWRIGHT_AVAILABLE = True
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
-    print("⚠️  Playwright 未安装，请先安装：pip install playwright")
+    logger.info("⚠️  Playwright 未安装，请先安装：pip install playwright")
 
 def scrape_wechat_article(url, cookie=None, output_dir=None):
     """爬取微信文章内容"""
     
     if not PLAYWRIGHT_AVAILABLE:
-        print("❌ Playwright 未安装")
-        print("💡 建议手动保存文章内容到 memory/ 目录")
+        logger.info("❌ Playwright 未安装")
+        logger.info("💡 建议手动保存文章内容到 memory/ 目录")
         return None
     
-    print(f"📖 开始爬取：{url}")
+    logger.info(f"📖 开始爬取：{url}")
     
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=['--disable-blink-features=AutomationControlled'])
@@ -57,23 +61,23 @@ def scrape_wechat_article(url, cookie=None, output_dir=None):
                 output_file = Path(output_dir) / f"{title[:50]}.md"
                 with open(output_file, 'w', encoding='utf-8') as f:
                     f.write(md_content)
-                print(f"✅ 已保存到：{output_file}")
+                logger.info(f"✅ 已保存到：{output_file}")
             
-            print(f"\n✅ 爬取成功！标题：{title[:50]}...")
+            logger.info(f"\n✅ 爬取成功！标题：{title[:50]}...")
             return {'title': title, 'content': content, 'author': author, 'url': url}
             
         except PlaywrightTimeout as e:
-            print(f"❌ 爬取失败：超时 - 微信文章可能需要登录验证")
+            logger.info(f"❌ 爬取失败：超时 - 微信文章可能需要登录验证")
             return None
         except Exception as e:
-            print(f"❌ 爬取失败：{e}")
+            logger.info(f"❌ 爬取失败：{e}")
             return None
         finally:
             browser.close()
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("用法：python3 wechat_scraper.py <文章 URL> [--cookie <Cookie>] [--output <目录>]")
+        logger.info("用法：python3 wechat_scraper.py <文章 URL> [--cookie <Cookie>] [--output <目录>]")
         sys.exit(1)
     
     url = sys.argv[1]

@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 隐藏机遇扫描器
@@ -354,6 +358,6 @@ class OpportunityScanner:
 
 
 if __name__ == "__main__":
-    print("OpportunityScanner 模块 — 请通过 advisor.py 调用")
+    logger.info("OpportunityScanner 模块 — 请通过 advisor.py 调用")
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

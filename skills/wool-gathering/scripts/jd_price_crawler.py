@@ -4,6 +4,20 @@
 """
 京东价格爬虫
 支持通过API和网页解析获取价格
+
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+License: MIT
+Author: 小米粒 (Xiaomili) - AI Agent
+版本: v1.2.4
+"""
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
+
+# -*- coding: utf-8 -*-
+"""
+京东价格爬虫
+支持通过API和网页解析获取价格
 """
 
 import re
@@ -56,7 +70,7 @@ class JDPriceCrawler:
                     'timestamp': datetime.now().isoformat()
                 }
         except Exception as e:
-            print(f"⚠️ API获取价格失败: {e}")
+            logger.info(f"⚠️ API获取价格失败: {e}")
 
         return {'success': False, 'error': str(e)}
 
@@ -92,7 +106,7 @@ class JDPriceCrawler:
             }
 
         except Exception as e:
-            print(f"❌ 获取商品信息失败: {e}")
+            logger.info(f"❌ 获取商品信息失败: {e}")
             return {
                 'success': False,
                 'error': str(e),
@@ -110,20 +124,20 @@ class JDPriceCrawler:
             url = f"https://item.jd.com/{item_id}.html"
 
         if not item_id:
-            print(f"❌ 无效的商品ID或URL: {item_id_or_url}")
+            logger.info(f"❌ 无效的商品ID或URL: {item_id_or_url}")
             return {'success': False}
 
-        print(f"🔍 监控京东商品: {item_id}")
+        logger.info(f"🔍 监控京东商品: {item_id}")
 
         # 获取商品信息
         item_info = self.get_item_info(item_id)
 
         if item_info['success']:
-            print(f"✅ 商品: {item_info['title']}")
-            print(f"💰 价格: ¥{item_info['price']}")
-            print(f"🔗 链接: {item_info['url']}")
+            logger.info(f"✅ 商品: {item_info['title']}")
+            logger.info(f"💰 价格: ¥{item_info['price']}")
+            logger.info(f"🔗 链接: {item_info['url']}")
         else:
-            print(f"❌ 获取失败: {item_info.get('error')}")
+            logger.info(f"❌ 获取失败: {item_info.get('error')}")
 
         return item_info
 
@@ -141,7 +155,7 @@ def main():
     crawler = JDPriceCrawler()
 
     if args.loop:
-        print(f"🔄 开始持续监控，间隔 {args.interval} 秒")
+        logger.info(f"🔄 开始持续监控，间隔 {args.interval} 秒")
         while True:
             crawler.monitor(args.item)
             time.sleep(args.interval)
