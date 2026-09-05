@@ -33,15 +33,14 @@ if ! python3 -c "from playwright.sync_api import sync_playwright" 2>/dev/null; t
     exit 1
 fi
 
-# 运行爬取
-cd "$SKILL_DIR"
-# 从配置文件读取 token
-TOKEN=$(python3 -c "import json; print(json.load(open('$SKILL_DIR/config/wiki_crawler.json'))['pages'][0]['token'])" 2>/dev/null || echo "")
+# 从环境变量读取 token
+TOKEN="${FEISHU_WIKI_TOKEN:-}"
 if [ -z "$TOKEN" ]; then
-    echo "[$TIMESTAMP] 错误: 无法从配置读取 token" >> "$LOG_FILE"
+    echo "[$TIMESTAMP] 错误: 未设置 FEISHU_WIKI_TOKEN 环境变量" >> "$LOG_FILE"
     exit 1
 fi
 
+cd "$SKILL_DIR"
 python3 scripts/crawl_wiki.py --token "$TOKEN" --output "$OUTPUT_DIR" >> "$LOG_FILE" 2>&1
 
 echo "[$TIMESTAMP] 爬取完成" >> "$LOG_FILE"

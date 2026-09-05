@@ -13,8 +13,6 @@
 
 import sys
 import numpy as np
-import pandas as pd
-import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
