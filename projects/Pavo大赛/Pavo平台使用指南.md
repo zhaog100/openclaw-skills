@@ -54,7 +54,7 @@
 
 #### 场景1：焦土裂谷
 ```
-Chinese ink painting style, post-apocalyptic wasteland, cracked valley with dry earth, withered bones scattered everywhere, ancient broken flags in dust, dark smoke rising from ground, muted sepia and black tones, ink wash painting aesthetic, desolate atmosphere, dramatic lighting, cinematic composition, slow camera pan
+Chinese ink painting style, post-calamity valley after Heavenly Tribulation, cracked valley with dry earth, withered bones scattered everywhere, ancient broken flags in dust, dark smoke rising from ground, muted sepia and black tones, ink wash painting aesthetic, desolate atmosphere, dramatic lighting, cinematic composition, slow camera pan
 ```
 
 #### 场景2：萤华登场
@@ -76,7 +76,7 @@ Chinese ink painting style, giant shadow monster emerging from horizon, dark clo
 | 类型 | 关键词 |
 |------|--------|
 | 水墨风 | Chinese ink painting, ink wash, brush strokes, traditional Chinese art |
-| 末日感 | post-apocalyptic, wasteland, desolate, ruined, dystopian |
+| 天崩地裂氛围 | post-calamity, Heavenly Tribulation aftermath, desolate, ruined, ancient battlefield, dark atmosphere |
 | 动态 | slow camera pan, zoom in, dramatic lighting, cinematic |
 | 光影 | ethereal glow, luminous, contrast, silhouette, backlight |
 

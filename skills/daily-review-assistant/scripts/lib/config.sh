@@ -11,8 +11,16 @@
 # =============================================================================
 
 # 获取脚本所在目录的绝对路径
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+# 修复：当被 source 时，BASH_SOURCE[0] 指向被 source 的脚本
+# 需要通过父目录向上查找 SKILL_DIR
+if [ -n "${BASH_SOURCE[0]}" ]; then
+    _SCRIPT_SOURCE="${BASH_SOURCE[0]}"
+else
+    _SCRIPT_SOURCE="$0"
+fi
+_SCRIPT_DIR="$(cd "$(dirname "$_SCRIPT_SOURCE")" && pwd)"
+# 向上两级：scripts/lib → scripts → skill (daily-review-assistant)
+SKILL_DIR="$(cd "$_SCRIPT_DIR/../.." && pwd)"
 CONFIG_DIR="$SKILL_DIR/config"
 LOGS_DIR="$SKILL_DIR/logs"
 

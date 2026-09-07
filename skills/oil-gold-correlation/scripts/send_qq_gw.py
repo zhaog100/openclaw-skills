@@ -25,6 +25,15 @@ GATEWAY_PORT = 18789
 TOKEN_FILE = Path.home() / ".openclaw" / "openclaw.json"
 QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "")
 
+# 配置 logging
+class StderrHandler(logging.StreamHandler):
+    def __init__(self):
+        super().__init__(stream=sys.stderr)
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+stderr_handler = StderrHandler()
+logger.addHandler(stderr_handler)
 
 def get_gateway_token() -> str:
     """读取 Gateway Token"""
@@ -33,11 +42,11 @@ def get_gateway_token() -> str:
             config = json.load(f)
         token = config.get("gateway", {}).get("auth", {}).get("token", "")
         if not token:
-            logger.info("[ERROR] 无法获取 Gateway Token", file=sys.stderr)
+            logger.info("[ERROR] 无法获取 Gateway Token")
             return ""
         return token
     except Exception as e:
-        logger.info(f"[ERROR] 读取 token 失败: {e}", file=sys.stderr)
+        logger.info(f"[ERROR] 读取 token 失败: {e}")
         return ""
 
 
@@ -78,15 +87,15 @@ def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                 logger.info(f"[INFO] 消息发送成功")
                 return True
             else:
-                logger.info(f"[ERROR] 发送失败: {result}", file=sys.stderr)
+                logger.info(f"[ERROR] 发送失败: {result}")
                 return False
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8")
-        logger.info(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
-        logger.info(f"[ERROR] 响应: {body}", file=sys.stderr)
+        logger.info(f"[ERROR] HTTP {e.code}: {e.reason}")
+        logger.info(f"[ERROR] 响应: {body}")
         return False
     except Exception as e:
-        logger.info(f"[ERROR] 发送异常: {e}", file=sys.stderr)
+        logger.info(f"[ERROR] 发送异常: {e}")
         return False
 
 
@@ -98,11 +107,11 @@ def main():
         with open(report_file, "r") as f:
             message = f.read().strip()
     except FileNotFoundError:
-        logger.info(f"[ERROR] 报告文件不存在: {report_file}", file=sys.stderr)
+        logger.info(f"[ERROR] 报告文件不存在: {report_file}")
         sys.exit(1)
 
     if not message:
-        logger.info("[ERROR] 报告内容为空", file=sys.stderr)
+        logger.info("[ERROR] 报告内容为空")
         sys.exit(1)
 
     success = send_via_gateway(message)

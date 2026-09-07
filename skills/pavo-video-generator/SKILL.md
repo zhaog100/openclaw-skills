@@ -61,6 +61,24 @@ Chinese ink painting style, ink wash technique,
 - 词数 30-55词
 - 东方元素 100%符合
 
+### 6. 西方词汇扫描替换（文化一致性）
+当需要替换西方末日/废土词汇为东方神话概念时：
+```bash
+# 扫描所有文件中的西方词汇
+grep -rn "末日\|荒原\|post-apocalyptic\|wasteland\|apocalypse" projects/Pavo大赛/
+```
+**必须替换的词汇对照**：
+| 西方词汇 | 东方替换 |
+|---------|---------|
+| 末日 / 焦土末日 | 天崩地裂 / 封神劫 |
+| 荒原 / wasteland | 焦土 / scorched earth |
+| post-apocalyptic | post-calamity / Heavenly Tribulation |
+| apocalyptic | Heavenly Tribulation aftermath |
+**执行步骤**：
+1. 先用grep扫描所有受影响文件
+2. 逐个文件edit，每次替换后验证
+3. 最后再次grep确认无遗漏
+
 ---
 
 ## 📝 输出格式

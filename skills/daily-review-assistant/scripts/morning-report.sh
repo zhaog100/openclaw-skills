@@ -131,11 +131,8 @@ log "报告已保存到: $LOG_DIR/morning-report-$DATE.txt"
 log "推送QQ消息..."
 QQ_TARGET="${QQ_TARGET_USER_ID:-C099848DC9A60BF60A7BE31626822790}"
 if [ -n "$QQ_TARGET" ]; then
-    # 使用openclaw message工具发送
-    openclaw message send \
-        --channel qqbot \
-        --target "$QQ_TARGET" \
-        --message "$REPORT" 2>&1 && \
+    # 使用send_qq_msg.py发送QQ消息
+    python3 "$SCRIPT_DIR/send_qq_msg.py" "$REPORT" "$QQ_TARGET" 2>&1 && \
     log "QQ推送成功" || \
     log "QQ推送失败"
 fi

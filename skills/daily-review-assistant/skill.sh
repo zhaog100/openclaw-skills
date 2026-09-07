@@ -810,7 +810,9 @@ generate_execution_summary() {
     log_info "╚════════════════════════════════════════════════════════╝"
     
     # 任务统计
-    local tasks_completed=$(grep -c "^\- \[x\]" "$daily_log" 2>/dev/null || echo "0")
+    local tasks_completed
+    tasks_completed=$(grep -c "^\- \[x\]" "$daily_log" 2>/dev/null | tr -d '[:space:]') || tasks_completed=0
+    [ -z "$tasks_completed" ] && tasks_completed=0
     log_info "✅ 完成任务: $tasks_completed 个"
     
     # Git提交
@@ -822,16 +824,23 @@ generate_execution_summary() {
     log_info "📊 Open PRs: $open_prs 个"
     
     # 学习总结
-    local learning_notes=$(grep -c "📝 学习笔记" "$daily_log" 2>/dev/null || echo "0")
+    local learning_notes
+    learning_notes=$(grep -c "📝 学习笔记" "$daily_log" 2>/dev/null | tr -d '[:space:]') || learning_notes=0
+    [ -z "$learning_notes" ] && learning_notes=0
     log_info "🎓 学习笔记: $learning_notes 条"
     
     # 经验教训
-    local lessons=$(grep -c "💡 经验教训" "$daily_log" 2>/dev/null || echo "0")
+    local lessons
+    lessons=$(grep -c "💡 经验教训" "$daily_log" 2>/dev/null | tr -d '[:space:]') || lessons=0
+    [ -z "$lessons" ] && lessons=0
     log_info "💡 经验教训: $lessons 条"
     
     # 查漏补缺
     local gaps_found=0
-    [ -f "$_SCRIPTS_DIR/gap-analyzer.sh" ] && gaps_found=$(bash "$_SCRIPTS_DIR/gap-analyzer.sh" "$date" 2>/dev/null | grep -oP "发现 \K[0-9]+" || echo "0")
+    if [ -f "$_SCRIPTS_DIR/gap-analyzer.sh" ]; then
+        gaps_found=$(bash "$_SCRIPTS_DIR/gap-analyzer.sh" "$date" 2>/dev/null | grep -oP "发现 \K[0-9]+" | tr -d '[:space:]') || gaps_found=0
+        [ -z "$gaps_found" ] && gaps_found=0
+    fi
     log_info "🔍 发现遗漏: $gaps_found 个"
     
     log_info ""
@@ -841,7 +850,8 @@ generate_execution_summary() {
     if [ "$CFG_NOTIFY_QQBOT" = "true" ] && [ -n "$CFG_QQBOT_ID" ]; then
         local summary="今日回顾完成 ✅ | 任务: $tasks_completed | Git: $commits | PR: $open_prs | 遗漏: $gaps_found"
         log_info "📡 推送通知到QQ Bot: $summary"
-        # 这里添加实际的推送逻辑
+        # 调用Gateway API发送消息
+        python3 "$_SCRIPTS_DIR/send_qq_msg.py" "$summary" "$CFG_QQBOT_ID" >> "$_CURRENT_LOG_FILE" 2>&1 || log_warn "QQ推送失败"
     fi
 }
 
@@ -912,7 +922,9 @@ organize_multichannel() {
         log_info "    ✅ 今日记忆文件: $memory_lines 行"
         
         # 检查是否有待整理的条目
-        local pending=$(grep -c "^\\- \\[ \\]" "$CFG_MEMORY_DIR/$date.md" 2>/dev/null || echo "0")
+        local pending
+        pending=$(grep -c "^\\- \\[ \\]" "$CFG_MEMORY_DIR/$date.md" 2>/dev/null | tr -d '[:space:]') || pending=0
+        [ -z "$pending" ] && pending=0
         if [ "$pending" -gt 0 ]; then
             log_warn "    ⚠️ 有 $pending 个待完成条目需要整理"
         fi
