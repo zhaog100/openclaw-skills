@@ -42,9 +42,17 @@ bash skills/oil-gold-correlation/scripts/run_report.sh
 
 send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），改用 send_qq_gw.py
 
+**send_qq_gw.py 修复记录 (2026-09-08 21:30)**：
+- 问题：QQ_TARGET_USER_ID 环境变量未设置，导致 target 为空
+- 修复：第26行硬编码默认 target `C099848DC9A60BF60A7BE31626822790`
+- 同时修复 target 格式：从 `qqbot:c2c:{target}` 改为直接使用 `{target}`（open_id）
+- Gateway 要求 target 格式为 open_id，不要加 `qqbot:c2c:` 前缀
+
 ## 正确Cron配置
 ```
-0 10 * * * cd /home/ubuntu/.openclaw/workspace && PYTHONPATH=/home/ubuntu/.local/lib/python3.12/site-packages python3 skills/oil-gold-correlation/scripts/report_text.py >> logs/oil-gold-report.log 2>&1 && bash skills/oil-gold-correlation/scripts/send_qq.sh
+0 10 * * * /bin/bash /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/run_report.sh >> /home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log 2>&1
+30 15 * * * /bin/bash /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/run_report.sh >> /home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log 2>&1
+0 23 * * * /bin/bash /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/run_report.sh >> /home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log 2>&1
 ```
 
 ## 定时任务时间说明
