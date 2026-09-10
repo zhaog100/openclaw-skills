@@ -65,15 +65,47 @@ Author: 小米粒 (Xiaomili) - AI Agent
 - APP_SECRET：使用`os.environ.get("QQ_APP_SECRET")`
 - token：使用环境变量或配置文件占位符`${VAR_NAME}`
 
+## 前置：技能归属分类（2026-09-10新增）
+
+**原则**：只修改自己开发的技能，第三方技能不动。
+
+### 分类方法
+```bash
+# 方法1：查SKILL.md中的版权标记
+grep -r "思捷娅\|SJYKJ" <skill_dir>/SKILL.md
+
+# 方法2：查SKILL.md中的homepage字段（第三方来源标识）
+grep -i "homepage:" <skill_dir>/SKILL.md
+
+# 方法3：查Git历史作者
+git log --all --format="%an" -- "skills/<skill_name>/"
+```
+
+### 分类结果
+| 类型 | 标识 | 操作 |
+|------|------|------|
+| 自己开发 | 含 SJYKJ/思捷娅 版权 | ✅ 可修改 |
+| 第三方 | 含 homepage 字段 + 外部URL | ❌ 不动 |
+| 疑似自己但无版权 | 无版权标记但作者是zhaog100 | ⚠️ 需确认 |
+
+### 第三方技能清单（已知）
+- proactivity → https://clawic.com/skills/proactivity
+- self-improving → https://clawic.com/skills/self-improving
+- china-exam-info-core → https://www.openclaw.ai
+- miliger-qmd-manager → github.com/miliger/qmd-manager
+- moltbook-skill → github.com/voidborne-agent/moltbook-skill
+- notion/obsidian/playwright/summarize/tavily/weather → 第三方官方
+
 ## 执行步骤
-1. 读取技能目录结构
-2. 检查版权信息（grep -l 检查有版权，grep -L 检查无版权）
-3. 检查版本号（grep）
-4. 检查硬编码（grep）
-5. 检查命名规范（ls）
-6. 检查代码规范（grep print）
-7. 修复后重新检查（若使用修复脚本，脚本文件本身可能缺版权）
-8. 生成检查报告
+1. **分类技能**：判断是自己开发还是第三方（见上）
+2. 读取技能目录结构
+3. 检查版权信息（grep -l 检查有版权，grep -L 检查无版权）
+4. 检查版本号（grep）
+5. 检查硬编码（grep）
+6. 检查命名规范（ls）
+7. 检查代码规范（grep print）
+8. 修复后重新检查（若使用修复脚本，脚本文件本身可能缺版权）
+9. 生成检查报告
 
 ## 常见修复流程
 - print残留 → 使用Python脚本批量替换为logger.info()，脚本自身需补版权
