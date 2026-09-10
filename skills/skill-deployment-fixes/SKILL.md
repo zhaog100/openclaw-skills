@@ -133,3 +133,61 @@ bash /path/to/skill.sh review --mode full
 4. [ ] Test critical function before relying on cron
 5. [ ] Record fix in memory/YYYY-MM-DD.md
 6. [ ] When debugging: grep by timestamp, not full log
+
+---
+
+## Ollama 本地模型测试规范
+
+### Problem: Ollama 服务与模型状态
+
+**Symptom:** Gateway 重启后 `ollama list` 返回空列表
+
+**Fix:**
+```bash
+# 检查并重启 Ollama 服务
+pgrep -a ollama || ollama serve &>/dev/null &
+sleep 3
+ollama list
+```
+
+### Problem: 模型拉取失败（注册表无此模型）
+
+**Symptom:** `pulling manifest` 后报错 `file does not exist`
+
+**Fix:** 尝试标准变体名或换用 Qwen 系列（中文优化）
+```bash
+# phi-3-mini 不存在时，用 qwen 系列替代
+ollama pull qwen2.5:0.5b   # 最小中文模型
+ollama pull qwen2:0.5b     # 备选
+ollama pull tinyllama      # 英文轻量
+```
+
+### Problem: OOM Kill（内存不足）
+
+**Symptom:** 并行测试多个模型时系统卡死或进程被杀
+
+**Procedure:**
+1. 内存 ≤ 2GB 时，**必须串行**拉取/测试模型
+2. 测试前检查可用内存：`free -h | grep -E "Mem|Swap"`
+3. 单模型测试使用 timeout：`timeout 30 ollama run <model> "<prompt>"`
+4. 避免同时加载多个模型到内存
+
+### Problem: 小模型格式控制不稳定
+
+**Symptom:** 0.5B 模型输出 JSON 格式不符合预期
+
+**Fix:**
+- 增加示例数量（2-3个 few-shot 示例）
+- 使用思维链引导："请逐步思考，最后以 JSON 格式输出"
+- 降级期望：0.5B 模型适合对话，不适合严格格式控制
+- 需要稳定格式时升级到 1.5B+ 或使用云端 API
+
+### Model Selection Quick Reference
+
+| 内存可用 | 推荐模型 | 中文能力 | 适用场景 |
+|----------|----------|----------|----------|
+| ≤ 500MB | qwen2:0.5b | ⭐⭐⭐ | 边缘部署、简单问答 |
+| ≤ 600MB | qwen2.5:0.5b | ⭐⭐⭐⭐⭐ | 中文对话、内容生成 |
+| ≤ 1.2GB | tinyllama | ⭐ | 英文基础任务 |
+| ≤ 1.5GB | qwen2.5:1.5b | ⭐⭐⭐⭐⭐ | 代码、复杂推理 |
+| ≥ 8GB | qwen2.5:7b | ⭐⭐⭐⭐⭐ | 生产环境 |
