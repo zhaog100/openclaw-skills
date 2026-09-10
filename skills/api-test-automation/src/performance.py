@@ -133,7 +133,7 @@ class PerformanceTester:
         results = {}
         for concurrency in range(step, max_concurrency + 1, step):
             self.concurrency = concurrency
-            print(f"Testing with {concurrency} concurrent users...")
+            logger.info(f"Testing with {concurrency} concurrent users...")
             result = await self.run_load_test(scenario, total_requests=concurrency * step_duration)
             results[concurrency] = result
         return results

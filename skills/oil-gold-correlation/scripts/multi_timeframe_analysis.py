@@ -11,7 +11,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -707,7 +707,7 @@ def run_multi_timeframe_analysis(source="akshare"):
 
     mta_results = []
     for key in TIMEFRAME_SYMBOLS:
-        logger.info(f"  分析 {TIMEFRAME_SYMBOLS[key]['name']}...", end=" ", flush=True)
+        logger.info(f"  分析 {TIMEFRAME_SYMBOLS[key]['name']}...")
         try:
             result = multi_timeframe_resonance(key, source)
             if result:

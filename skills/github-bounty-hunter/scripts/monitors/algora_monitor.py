@@ -71,7 +71,7 @@ def log_message(message):
     """日志记录（可在信号处理中使用）"""
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     log_entry = f"[{timestamp}] {message}\n"
-    print(log_entry.strip())
+    logger.info(log_entry.strip())
     try:
         with open(LOG_FILE, 'a') as f:
             f.write(log_entry)

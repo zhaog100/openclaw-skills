@@ -130,7 +130,7 @@ class IntegrationManager:
                     os.rename(filepath, os.path.join(processed_dir, filename))
                     
                 except Exception as e:
-                    print(f"读取消息失败：{e}")
+                    logger.error(f"读取消息失败：{e}")
         
         return messages
     
@@ -239,7 +239,7 @@ if __name__ == "__main__":
     }
     
     filepath = manager.send_to_inbox(test_message)
-    print(f"✓ 消息已发送到 inbox: {filepath}")
+    logger.info(f"✓ 消息已发送到 inbox: {filepath}")
     
     # 测试评论生成
     test_issues = [
@@ -258,4 +258,4 @@ if __name__ == "__main__":
     ]
     
     comment = manager.generate_review_comment(test_issues, "test.py")
-    print(f"\n生成的评论:\n{comment}")
+    logger.info(f"\n生成的评论:\n{comment}")

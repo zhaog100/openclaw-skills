@@ -123,7 +123,7 @@ class StructuredMemoryExtractor:
             return json.loads(result)
             
         except Exception as e:
-            print(f"⚠️ LLM 提取失败：{e}")
+            logger.error(f"⚠️ LLM 提取失败：{e}")
             return self._rule_based_extract(content)
     
     def _rule_based_extract(self, content: str) -> Dict[str, Any]:
@@ -197,7 +197,7 @@ def main():
     insights = extractor.extract_from_part(args.input)
     extractor.save_to_db(insights)
     
-    print(f"✅ 提取完成：{args.input}")
+    logger.info(f"✅ 提取完成：{args.input}")
 
 if __name__ == '__main__':
     main()

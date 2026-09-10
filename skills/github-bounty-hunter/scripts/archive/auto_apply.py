@@ -28,7 +28,7 @@ class AutoApply:
     def apply_issue(self, repo_owner, repo_name, issue_number):
         """自动评论申请接单"""
         if not self.github_token:
-            print("⚠️  未设置 GITHUB_TOKEN，跳过自动接单")
+            logger.warning("⚠️  未设置 GITHUB_TOKEN，跳过自动接单")
             return False
         
         try:
@@ -42,22 +42,22 @@ class AutoApply:
             response = requests.post(url, headers=self.headers, json=data, timeout=30)
             
             if response.status_code == 201:
-                print(f"✅ 接单成功：{repo_owner}/{repo_name}#{issue_number}")
+                logger.info(f"✅ 接单成功：{repo_owner}/{repo_name}#{issue_number}")
                 return True
             else:
-                print(f"❌ 接单失败：{response.status_code}")
-                print(response.text)
+                logger.error(f"❌ 接单失败：{response.status_code}")
+                logger.info(response.text)
                 return False
                 
         except Exception as e:
-            print(f"❌ 异常：{e}")
+            logger.error(f"❌ 异常：{e}")
             return False
     
     def apply_algora(self, bounty_id):
         """Algora 平台自动接单"""
         algora_key = os.getenv('ALGORA_API_KEY', '')
         if not algora_key:
-            print("⚠️  未设置 ALGORA_API_KEY，跳过 Algora 接单")
+            logger.warning("⚠️  未设置 ALGORA_API_KEY，跳过 Algora 接单")
             return False
         
         try:
@@ -74,14 +74,14 @@ class AutoApply:
             response = requests.post(url, headers=headers, json=data, timeout=30)
             
             if response.status_code in [200, 201]:
-                print(f"✅ Algora 接单成功：{bounty_id}")
+                logger.info(f"✅ Algora 接单成功：{bounty_id}")
                 return True
             else:
-                print(f"❌ Algora 接单失败：{response.status_code}")
+                logger.error(f"❌ Algora 接单失败：{response.status_code}")
                 return False
                 
         except Exception as e:
-            print(f"❌ 异常：{e}")
+            logger.error(f"❌ 异常：{e}")
             return False
     
     def _generate_comment(self):
@@ -136,18 +136,18 @@ class AutoApply:
             with open(notify_file, 'w', encoding='utf-8') as f:
                 f.write(f"🦞 GitHub Bounty Hunter\n\n{message}")
             
-            print("✅ QQ 通知已准备（通过 OpenClaw 消息系统）")
+            logger.info("✅ QQ 通知已准备（通过 OpenClaw 消息系统）")
             return True
             
         except Exception as e:
-            print(f"❌ QQ 通知异常：{e}")
+            logger.error(f"❌ QQ 通知异常：{e}")
             return False
 
 if __name__ == "__main__":
     # 测试
     applier = AutoApply()
-    print("🦞 AutoApply 初始化完成")
-    print(f"💰 收款地址：{applier.payment_address}")
-    print("\n用法:")
-    print("  applier.apply_issue('owner', 'repo', 123)")
-    print("  applier.apply_algora('bounty_id')")
+    logger.info("🦞 AutoApply 初始化完成")
+    logger.info(f"💰 收款地址：{applier.payment_address}")
+    logger.info("\n用法:")
+    logger.info("  applier.apply_issue('owner', 'repo', 123)")
+    logger.info("  applier.apply_algora('bounty_id')")

@@ -72,11 +72,11 @@ def check_dependencies(required: list) -> tuple[bool, list]:
 
 def print_dependency_warning(missing: list) -> None:
     """Print warning about missing dependencies."""
-    print("⚠️  Missing dependencies:", file=sys.stderr)
+    logger.warning("⚠️  Missing dependencies:", file=sys.stderr)
     for cmd in missing:
-        print(f"  - {cmd}", file=sys.stderr)
-    print(file=sys.stderr)
-    print("Please install missing tools to use all features.", file=sys.stderr)
+        logger.info(f"  - {cmd}", file=sys.stderr)
+    logger.info(file=sys.stderr)
+    logger.info("Please install missing tools to use all features.", file=sys.stderr)
 
 
 # Exit codes for scripts
@@ -94,7 +94,7 @@ def safe_div(a: float, b: float, default: float = 0.0) -> float:
 
 if __name__ == "__main__":
     # Self-test
-    print("✅ _utils.py loaded successfully")
-    print(f"   Temp dir: {get_temp_dir()}")
-    print(f"   Workspace: {get_workspace_dir()}")
-    print(f"   Data dir: {get_data_dir()}")
+    logger.info("✅ _utils.py loaded successfully")
+    logger.info(f"   Temp dir: {get_temp_dir()}")
+    logger.info(f"   Workspace: {get_workspace_dir()}")
+    logger.info(f"   Data dir: {get_data_dir()}")

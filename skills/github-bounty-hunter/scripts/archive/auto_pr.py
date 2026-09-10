@@ -64,11 +64,11 @@ class AutoPR:
                 capture_output=True
             )
             
-            print(f"✅ 分支创建成功：{branch_name}")
+            logger.info(f"✅ 分支创建成功：{branch_name}")
             return work_dir
             
         except Exception as e:
-            print(f"❌ 创建分支失败：{e}")
+            logger.error(f"❌ 创建分支失败：{e}")
             return None
     
     def commit_changes(self, work_dir, message):
@@ -80,10 +80,10 @@ class AutoPR:
                 check=True,
                 capture_output=True
             )
-            print(f"✅ 代码提交成功")
+            logger.info(f"✅ 代码提交成功")
             return True
         except Exception as e:
-            print(f"❌ 提交失败：{e}")
+            logger.error(f"❌ 提交失败：{e}")
             return False
     
     def push_branch(self, work_dir, branch_name):
@@ -94,10 +94,10 @@ class AutoPR:
                 check=True,
                 capture_output=True
             )
-            print(f"✅ 分支推送成功")
+            logger.info(f"✅ 分支推送成功")
             return True
         except Exception as e:
-            print(f"❌ 推送失败：{e}")
+            logger.error(f"❌ 推送失败：{e}")
             return False
     
     def create_pr(self, repo_owner, repo_name, issue_number, title, body):
@@ -120,15 +120,15 @@ class AutoPR:
             
             if response.status_code == 201:
                 pr_url = response.json().get('html_url', '')
-                print(f"✅ PR 创建成功：{pr_url}")
+                logger.info(f"✅ PR 创建成功：{pr_url}")
                 return pr_url
             else:
-                print(f"❌ PR 创建失败：{response.status_code}")
-                print(response.text)
+                logger.error(f"❌ PR 创建失败：{response.status_code}")
+                logger.info(response.text)
                 return None
                 
         except Exception as e:
-            print(f"❌ 异常：{e}")
+            logger.error(f"❌ 异常：{e}")
             return None
     
     def link_issue(self, repo_owner, repo_name, issue_number, pr_number):
@@ -146,21 +146,21 @@ class AutoPR:
             )
             
             if response.status_code == 201:
-                print(f"✅ Issue 关联成功")
+                logger.info(f"✅ Issue 关联成功")
                 return True
             return False
             
         except Exception as e:
-            print(f"❌ 异常：{e}")
+            logger.error(f"❌ 异常：{e}")
             return False
     
     def full_workflow(self, repo_owner, repo_name, issue_number, code_changes, commit_msg):
         """完整 PR 工作流"""
-        print("=" * 60)
-        print(f"🚀 开始自动 PR 流程")
-        print(f"仓库：{repo_owner}/{repo_name}")
-        print(f"Issue: #{issue_number}")
-        print("=" * 60)
+        logger.info("=" * 60)
+        logger.info(f"🚀 开始自动 PR 流程")
+        logger.info(f"仓库：{repo_owner}/{repo_name}")
+        logger.info(f"Issue: #{issue_number}")
+        logger.info("=" * 60)
         
         # 1. 创建分支
         work_dir = self.create_branch(repo_owner, repo_name, issue_number)
@@ -208,5 +208,5 @@ class AutoPR:
 if __name__ == "__main__":
     # 测试
     pr = AutoPR()
-    print("🦞 AutoPR 初始化完成")
-    print(f"👤 GitHub 用户：{pr.username}")
+    logger.info("🦞 AutoPR 初始化完成")
+    logger.info(f"👤 GitHub 用户：{pr.username}")

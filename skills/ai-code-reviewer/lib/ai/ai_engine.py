@@ -99,7 +99,7 @@ class AIEngine:
             return {"issues": [], "suggestions": []}
             
         except Exception as e:
-            print(f"AI 分析失败：{e}")
+            logger.error(f"AI 分析失败：{e}")
             return {"issues": [], "suggestions": []}
     
     def generate_suggestion(self, issue: Dict, code: str) -> str:
@@ -215,7 +215,7 @@ if __name__ == "__main__":
     engine = AIEngine()
     
     if engine.check_ollama():
-        print("✓ Ollama 可用")
+        logger.info("Ollama 可用")
         
         test_code = """
 def calculate_sum(numbers):
@@ -227,9 +227,9 @@ def calculate_sum(numbers):
 # password = "admin123"  # <-- 硬编码密码示例（用于测试检测）
 """
         result = engine.analyze_code(test_code, "python")
-        print(f"发现问题：{len(result.get('issues', []))}")
-        print(f"改进建议：{len(result.get('suggestions', []))}")
+        logger.info(f"发现问题：{len(result.get('issues', []))}")
+        logger.info(f"改进建议：{len(result.get('suggestions', []))}")
     else:
-        print("✗ Ollama 不可用，请安装并启动 Ollama")
-        print("  安装：curl -fsSL https://ollama.com/install.sh | sh")
-        print("  启动：ollama serve")
+        logger.info("✗ Ollama 不可用，请安装并启动 Ollama")
+        logger.info("  安装：curl -fsSL https://ollama.com/install.sh | sh")
+        logger.info("  启动：ollama serve")

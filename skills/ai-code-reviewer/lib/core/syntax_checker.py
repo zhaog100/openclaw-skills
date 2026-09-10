@@ -75,17 +75,17 @@ if __name__ == '__main__':
     # 测试正确代码
     correct_code = '''
 def hello():
-    print("Hello, World!")
+    logger.info("Hello, World!")
 '''
     issues = checker.check(correct_code, 'test.py')
-    print(f"正确代码：{len(issues)} 个问题")
+    logger.info(f"正确代码：{len(issues)} 个问题")
     
     # 测试错误代码
     error_code = '''
 def hello(
-    print("Hello, World!")
+    logger.info("Hello, World!")
 '''
     issues = checker.check(error_code, 'test.py')
-    print(f"错误代码：{len(issues)} 个问题")
+    logger.error(f"错误代码：{len(issues)} 个问题")
     for issue in issues:
-        print(f"  - {issue['message']}")
+        logger.info(f"  - {issue['message']}")

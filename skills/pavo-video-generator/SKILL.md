@@ -1,6 +1,8 @@
 ---
 name: "pavo-video-generator"
 description: "Pavo大赛视频提示词生成技能，严格参照案例格式，确保东方神话风格"
+version: 1.1.0
+
 ---
 
 # 🎬 Pavo大赛视频提示词生成技能

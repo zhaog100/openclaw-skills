@@ -26,11 +26,11 @@ def get_gateway_token() -> str:
             config = json.load(f)
         token = config.get("gateway", {}).get("auth", {}).get("token", "")
         if not token:
-            print("[ERROR] 无法获取Gateway Token", file=sys.stderr)
+            logger.error("[ERROR] 无法获取Gateway Token", file=sys.stderr)
             return ""
         return token
     except Exception as e:
-        print(f"[ERROR] 读取token失败: {e}", file=sys.stderr)
+        logger.error(f"[ERROR] 读取token失败: {e}", file=sys.stderr)
         return ""
 
 
@@ -67,24 +67,24 @@ def send_qq_message(message: str, target_id: str) -> bool:
         with urllib.request.urlopen(req, timeout=30) as resp:
             result = json.loads(resp.read().decode("utf-8"))
             if result.get("ok") or "result" in result:
-                print(f"[INFO] 消息发送成功")
+                logger.info(f"[INFO] 消息发送成功")
                 return True
             else:
-                print(f"[ERROR] 发送失败: {result}", file=sys.stderr)
+                logger.error(f"[ERROR] 发送失败: {result}", file=sys.stderr)
                 return False
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8")
-        print(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
-        print(f"[ERROR] 响应: {body}", file=sys.stderr)
+        logger.error(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
+        logger.error(f"[ERROR] 响应: {body}", file=sys.stderr)
         return False
     except Exception as e:
-        print(f"[ERROR] 发送异常: {e}", file=sys.stderr)
+        logger.error(f"[ERROR] 发送异常: {e}", file=sys.stderr)
         return False
 
 
 def main():
     if len(sys.argv) < 3:
-        print("用法: send_qq_msg.py <消息> <QQ目标ID>", file=sys.stderr)
+        logger.info("用法: send_qq_msg.py <消息> <QQ目标ID>", file=sys.stderr)
         sys.exit(1)
 
     message = sys.argv[1]

@@ -1,6 +1,8 @@
 ---
 name: "skill-deployment-fixes"
 description: "Common deployment pitfalls for OpenClaw skills: OpenCV headless, shebang ordering, token config, path fixes, QMD install."
+version: 1.1.0
+
 ---
 
 # Skill Deployment Fixes
@@ -191,3 +193,26 @@ ollama pull tinyllama      # 英文轻量
 | ≤ 1.2GB | tinyllama | ⭐ | 英文基础任务 |
 | ≤ 1.5GB | qwen2.5:1.5b | ⭐⭐⭐⭐⭐ | 代码、复杂推理 |
 | ≥ 8GB | qwen2.5:7b | ⭐⭐⭐⭐⭐ | 生产环境 |
+
+---
+
+## Problem 10: logger.info()参数错误
+
+**Symptom:** `TypeError: Logger._log() got an unexpected keyword argument 'end'`
+
+**Cause:** `logger.info()` 误传了 `print()` 的参数 `end` 和 `flush`。
+
+**Fix:**
+```python
+# ❌ 错误：logger不支持end/flush参数
+logger.info("message", end="", flush=True)
+
+# ✅ 正确：直接调用
+logger.info("message")
+
+# 如需格式化输出，用f-string
+logger.info(f"分析 {name}...")
+```
+
+**教训:** logger和print是不同的API，迁移时需注意参数差异。
+

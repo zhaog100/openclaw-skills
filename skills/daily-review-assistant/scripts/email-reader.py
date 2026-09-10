@@ -52,12 +52,12 @@ def read_gmail(username, password, max_emails=10, full_content=False):
         
         status, messages = mail.search(None, "UNSEEN")
         if status != "OK":
-            print("❌ 无法搜索邮件")
+            logger.error("无法搜索邮件")
             return None
         
         email_ids = messages[0].split()
         if not email_ids:
-            print("📭 无未读邮件")
+            logger.info("无未读邮件")
             return []
         
         recent_ids = email_ids[-max_emails:][::-1]
@@ -92,7 +92,7 @@ def read_gmail(username, password, max_emails=10, full_content=False):
         mail.logout()
         return emails
     except Exception as e:
-        print(f"❌ 读取邮件失败: {e}")
+        logger.error(f"读取邮件失败: {e}")
         return None
 
 if __name__ == "__main__":
@@ -114,17 +114,17 @@ if __name__ == "__main__":
     full_content = "--full" in sys.argv
     
     if not username or not password:
-        print("❌ 缺少邮箱凭据")
+        logger.error("缺少邮箱凭据")
         sys.exit(1)
     
     emails = read_gmail(username, password, max_count, full_content)
     
     if emails:
-        print(f"\n**未读邮件**: {len(emails)} 封\n")
+        logger.info(f"\n**未读邮件**: {len(emails)} 封\n")
         for e in emails[:3]:
-            print(f"**{e['subject']}**")
-            print(f"- 发件人: {e['from']}")
-            print(f"- 时间: {e['date']}")
+            logger.info(f"**{e['subject']}**")
+            logger.info(f"- 发件人: {e['from']}")
+            logger.info(f"- 时间: {e['date']}")
             if full_content and e.get('body'):
-                print(f"\n**内容:**\n{e['body'][:400]}...")
-            print("---")
+                logger.info(f"\n**内容:**\n{e['body'][:400]}...")
+            logger.info("---")

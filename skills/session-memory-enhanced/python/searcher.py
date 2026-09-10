@@ -64,7 +64,7 @@ class SemanticSearcher:
             return response['data'][0]['embedding']
             
         except Exception as e:
-            print(f"⚠️ 获取查询向量失败：{e}")
+            logger.error(f"获取查询向量失败：{e}")
             return []
     
     def _load_vectors(self) -> List[Dict]:
@@ -119,10 +119,10 @@ def main():
     searcher = SemanticSearcher(args.db, args.agent, args.api_key)
     results = searcher.search(args.query, args.top_k)
     
-    print(f"🔍 找到 {len(results)} 个相关结果：")
+    logger.info(f"找到 {len(results)} 个相关结果")
     for i, result in enumerate(results, 1):
-        print(f"\n{i}. 相似度：{result['similarity']:.2f}")
-        print(f"   内容：{result['text'][:100]}...")
+        logger.info(f"\n{i}. 相似度：{result['similarity']:.2f}")
+        logger.info(f"   内容：{result['text'][:100]}...")
 
 if __name__ == '__main__':
     main()

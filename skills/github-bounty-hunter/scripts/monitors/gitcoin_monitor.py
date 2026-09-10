@@ -51,7 +51,7 @@ class GitcoinMonitor:
         variables = {"limit": limit}
         
         try:
-            print("📡 查询 Gitcoin Bounties...")
+            logger.info("📡 查询 Gitcoin Bounties...")
             response = requests.post(
                 self.api_url,
                 json={'query': query, 'variables': variables},
@@ -63,12 +63,12 @@ class GitcoinMonitor:
                 if 'data' in data and 'bounties' in data['data']:
                     return data['data']['bounties']
             else:
-                print(f"⚠️ API 返回状态码：{response.status_code}")
+                logger.warning(f"⚠️ API 返回状态码：{response.status_code}")
                 
             return []
             
         except Exception as e:
-            print(f"❌ 查询失败：{e}")
+            logger.error(f"❌ 查询失败：{e}")
             return []
     
     def filter_bounties(self, bounties, min_amount=10):
@@ -87,14 +87,14 @@ class GitcoinMonitor:
     
     def notify(self, bounty):
         """通知新 bounty"""
-        print("=" * 60)
-        print(f"🎯 发现新 Bounty！")
-        print(f"标题：{bounty.get('title', 'Unknown')}")
-        print(f"奖金：{bounty.get('tokenAmount', 0)} {bounty.get('tokenAddress', 'Unknown')}")
-        print(f"发布者：{bounty.get('issuer', {}).get('username', 'Unknown')}")
-        print(f"仓库：{bounty.get('repository', {}).get('url', 'Unknown')}")
-        print(f"创建：{bounty.get('createdAt', 'Unknown')}")
-        print("=" * 60)
+        logger.info("=" * 60)
+        logger.info(f"🎯 发现新 Bounty！")
+        logger.info(f"标题：{bounty.get('title', 'Unknown')}")
+        logger.info(f"奖金：{bounty.get('tokenAmount', 0)} {bounty.get('tokenAddress', 'Unknown')}")
+        logger.info(f"发布者：{bounty.get('issuer', {}).get('username', 'Unknown')}")
+        logger.info(f"仓库：{bounty.get('repository', {}).get('url', 'Unknown')}")
+        logger.info(f"创建：{bounty.get('createdAt', 'Unknown')}")
+        logger.info("=" * 60)
         
         # 写入通知文件
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -124,7 +124,7 @@ class GitcoinMonitor:
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
-        print(f"✅ 通知已保存：{notify_file}")
+        logger.info(f"✅ 通知已保存：{notify_file}")
     
     def save_state(self, bounties):
         """保存状态"""
@@ -136,29 +136,29 @@ class GitcoinMonitor:
     
     def run(self):
         """运行监控"""
-        print("🦞 Gitcoin Monitor 启动！")
-        print(f"📍 监控平台：Gitcoin")
-        print(f"⏰ 扫描频率：30 分钟")
-        print("=" * 60)
+        logger.info("🦞 Gitcoin Monitor 启动！")
+        logger.info(f"📍 监控平台：Gitcoin")
+        logger.info(f"⏰ 扫描频率：30 分钟")
+        logger.info("=" * 60)
         
         # 查询
         bounties = self.query_bounties(limit=20)
-        print(f"✅ 获取到 {len(bounties)} 个 Bounties")
+        logger.info(f"✅ 获取到 {len(bounties)} 个 Bounties")
         
         # 筛选
         suitable = self.filter_bounties(bounties, min_amount=10)
-        print(f"✅ 筛选出 {len(suitable)} 个适合的任务")
+        logger.info(f"✅ 筛选出 {len(suitable)} 个适合的任务")
         
         # 通知
         for bounty in suitable[:5]:  # 最多通知 5 个
             self.notify(bounty)
-            print()
+            logger.info()
         
         # 保存状态
         self.save_state(bounties)
         
-        print("🎉 扫描完成！")
-        print("⏳ 30 分钟后再次扫描...")
+        logger.info("🎉 扫描完成！")
+        logger.info("⏳ 30 分钟后再次扫描...")
 
 def search_gitcoin_github():
     """通过 GitHub 搜索 Gitcoin 相关 bounty（主要方式）"""
@@ -172,29 +172,29 @@ def search_gitcoin_github():
     query = 'gitcoin in:title,comments label:bounty is:issue is:open'
     url = f'https://api.github.com/search/issues?q={query}&sort=updated&order=desc&per_page=10'
     
-    print('📡 通过 GitHub 搜索 Gitcoin 任务...')
+    logger.info('📡 通过 GitHub 搜索 Gitcoin 任务...')
     response = requests.get(url, headers=headers, timeout=30)
     
     if response.status_code == 200:
         data = response.json()
         items = data.get('items', [])
-        print(f'✅ 找到 {len(items)} 个 Gitcoin 相关任务')
-        print()
+        logger.info(f'✅ 找到 {len(items)} 个 Gitcoin 相关任务')
+        logger.info()
         
         if items:
-            print('=== Gitcoin Bounty 任务（前 5 个）===')
-            print()
+            logger.info('=== Gitcoin Bounty 任务（前 5 个）===')
+            logger.info()
             for i, item in enumerate(items[:5], 1):
-                print(f'{i}. 📌 {item.get("title", "")[:60]}')
-                print(f'   仓库：{"/".join(item.get("repository_url", "").split("/")[-2:])}')
-                print(f'   链接：{item.get("html_url", "")}')
-                print(f'   更新：{item.get("updated_at", "")[:10]}')
-                print()
+                logger.info(f'{i}. 📌 {item.get("title", "")[:60]}')
+                logger.info(f'   仓库：{"/".join(item.get("repository_url", "").split("/")[-2:])}')
+                logger.info(f'   链接：{item.get("html_url", "")}')
+                logger.info(f'   更新：{item.get("updated_at", "")[:10]}')
+                logger.info()
         else:
-            print('⚠️  暂无 Gitcoin 相关任务')
+            logger.warning('⚠️  暂无 Gitcoin 相关任务')
     else:
-        print(f'❌ 搜索失败：{response.status_code}')
-        print(response.text[:300])
+        logger.error(f'❌ 搜索失败：{response.status_code}')
+        logger.info(response.text[:300])
 
 
 def search_gitcoin_github():
@@ -211,45 +211,45 @@ def search_gitcoin_github():
     query = 'gitcoin in:title,comments label:bounty is:issue is:open'
     url = f'https://api.github.com/search/issues?q={query}&sort=updated&order=desc&per_page=10'
     
-    print('📡 通过 GitHub 搜索 Gitcoin 任务...')
+    logger.info('📡 通过 GitHub 搜索 Gitcoin 任务...')
     response = requests.get(url, headers=headers, timeout=30)
     
     if response.status_code == 200:
         data = response.json()
         items = data.get('items', [])
-        print(f'✅ 找到 {len(items)} 个 Gitcoin 相关任务')
-        print()
+        logger.info(f'✅ 找到 {len(items)} 个 Gitcoin 相关任务')
+        logger.info()
         
         if items:
-            print('=== Gitcoin Bounty 任务（前 5 个）===')
-            print()
+            logger.info('=== Gitcoin Bounty 任务（前 5 个）===')
+            logger.info()
             for i, item in enumerate(items[:5], 1):
-                print(f'{i}. 📌 {item.get("title", "")[:60]}')
-                print(f'   仓库：{"/".join(item.get("repository_url", "").split("/")[-2:])}')
-                print(f'   链接：{item.get("html_url", "")}')
-                print(f'   更新：{item.get("updated_at", "")[:10]}')
-                print()
+                logger.info(f'{i}. 📌 {item.get("title", "")[:60]}')
+                logger.info(f'   仓库：{"/".join(item.get("repository_url", "").split("/")[-2:])}')
+                logger.info(f'   链接：{item.get("html_url", "")}')
+                logger.info(f'   更新：{item.get("updated_at", "")[:10]}')
+                logger.info()
         else:
-            print('⚠️  暂无 Gitcoin 相关任务')
+            logger.warning('⚠️  暂无 Gitcoin 相关任务')
     else:
-        print(f'❌ 搜索失败：{response.status_code}')
-        print(response.text[:300])
+        logger.error(f'❌ 搜索失败：{response.status_code}')
+        logger.info(response.text[:300])
 
 
 if __name__ == "__main__":
     # 优先使用 GitHub 搜索（不需要额外 API Key）
-    print("🦞 Gitcoin Monitor - GitHub 搜索模式")
-    print("=" * 60)
+    logger.info("🦞 Gitcoin Monitor - GitHub 搜索模式")
+    logger.info("=" * 60)
     search_gitcoin_github()
     
     # 如果配置了 Gitcoin API Key，再尝试 API 查询
     if os.getenv('GITCOIN_API_KEY'):
-        print()
-        print("=" * 60)
-        print("📡 尝试 Gitcoin API 查询...")
+        logger.info()
+        logger.info("=" * 60)
+        logger.info("📡 尝试 Gitcoin API 查询...")
         monitor = GitcoinMonitor()
         monitor.run()
     else:
-        print()
-        print("⚠️  未配置 GITCOIN_API_KEY，跳过 API 查询")
-        print("💡 提示：配置 API Key 可以获取更多 Gitcoin 专属任务")
+        logger.info()
+        logger.warning("⚠️  未配置 GITCOIN_API_KEY，跳过 API 查询")
+        logger.info("💡 提示：配置 API Key 可以获取更多 Gitcoin 专属任务")

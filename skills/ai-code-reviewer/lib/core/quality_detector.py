@@ -237,11 +237,11 @@ if __name__ == '__main__':
     import sys
     
     if len(sys.argv) < 2:
-        print("用法：python quality_detector.py <文件路径>")
+        logger.info("用法：python quality_detector.py <文件路径>")
         sys.exit(1)
     
     detector = CodeQualityDetector()
     results = detector.detect(sys.argv[1])
     
     # 输出 JSON 格式结果
-    print(json.dumps(results, indent=2, ensure_ascii=False))
+    logger.info(json.dumps(results, indent=2, ensure_ascii=False))

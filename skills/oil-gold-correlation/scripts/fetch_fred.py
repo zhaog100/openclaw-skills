@@ -4,7 +4,7 @@ logger = logging.getLogger(__name__)
 
 #!/usr/bin/env python3
 """
-FRED（美联储经济数据）数据源 v3.3
+FRED（美联储经济数据）数据源 v3.4
 美国官方宏观经济数据 + 美股市场全维度分析
 
 覆盖：

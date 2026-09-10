@@ -17,7 +17,7 @@ try:
     HAS_MCP = True
 except ImportError:
     HAS_MCP = False
-    print("⚠️  MCP 库未安装，使用兼容模式")
+    logger.warning("MCP 库未安装，使用兼容模式")
     # 简单的 MCP 兼容层
     class Server:
         def __init__(self, name: str):

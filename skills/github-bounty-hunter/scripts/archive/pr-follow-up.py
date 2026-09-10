@@ -155,7 +155,7 @@ def main():
                 for change in result["changes"]:
                     line = f"[{repo_short} #{issue}] {change}"
                     all_changes.append(line)
-                    print(line)
+                    logger.info(line)
             checked += 1
     
     # 保存更新后的 tracker
@@ -172,17 +172,17 @@ def main():
     closed_count = sum(1 for p in tracker["prs"] if p["status"] == "closed")
     blocked_count = sum(1 for p in tracker["prs"] if p["status"] == "blocked")
     
-    print(f"\n{'='*60}")
-    print(f"📊 PR 跟进摘要 | {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    print(f"  检查: {checked} | Open: {open_count} | Merged: {merged_count} | Closed: {closed_count} | Blocked: {blocked_count}")
-    print(f"  变化: {len(all_changes)}")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"📊 PR 跟进摘要 | {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    logger.info(f"  检查: {checked} | Open: {open_count} | Merged: {merged_count} | Closed: {closed_count} | Blocked: {blocked_count}")
+    logger.info(f"  变化: {len(all_changes)}")
     
     if all_changes:
-        print(f"\n📋 需要关注的变更:")
+        logger.info(f"\n📋 需要关注的变更:")
         for c in all_changes:
-            print(f"  • {c}")
+            logger.info(f"  • {c}")
     else:
-        print(f"\n✅ 无新变化")
+        logger.info(f"\n✅ 无新变化")
     
     return 0 if not all_changes or not notify_mode else 1
 

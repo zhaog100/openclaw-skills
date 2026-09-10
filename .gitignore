@@ -44,3 +44,6 @@ secrets/
 self-improving/
 reports/
 projects/萤火燃天/
+__pycache__/
+*.pyc
+*.pyo

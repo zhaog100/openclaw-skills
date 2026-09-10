@@ -4,13 +4,13 @@ logger = logging.getLogger(__name__)
 
 #!/usr/bin/env python3
 """
-石油黄金报告生成器 - 超时保护版 v3.3
+石油黄金报告生成器 - 超时保护版 v3.4
 包装 report_text.py，带超时保护和降级机制
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 
 import subprocess
 import sys

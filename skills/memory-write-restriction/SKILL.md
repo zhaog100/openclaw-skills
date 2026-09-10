@@ -1,6 +1,8 @@
 ---
 name: "memory-write-restriction"
 description: "记忆文件写入限制：只允许写memory/YYYY-MM-DD.md，MEMORY.md需手动或授权推送"
+version: 1.0.1
+
 ---
 
 # Memory Write Restriction - 记忆文件写入限制

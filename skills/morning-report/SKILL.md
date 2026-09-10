@@ -1,6 +1,8 @@
 ---
 name: "morning-report"
 description: "生成每日早报（系统状态+PR清单+Bounty进度+邮件+待办），通过QQ推送。含grep -c bug修复经验。"
+version: 1.1.0
+
 ---
 
 # 小米椒早报生成器

@@ -90,4 +90,4 @@ if __name__ == '__main__':
         owner, repo = parts[0], parts[1]
         number = sys.argv[2]
         valid, reason = check_bounty_validity(owner, repo, number)
-        print(f"{'✅' if valid else '❌'} {owner}/{repo}#{number}: {reason}")
+        logger.error(f"{'✅' if valid else '❌'} {owner}/{repo}#{number}: {reason}")

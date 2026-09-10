@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-版本: v3.3 | 石油黄金白银相关性分析
+版本: v3.4 | 石油黄金白银相关性分析
 """
 
 import sys

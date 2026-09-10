@@ -3,6 +3,8 @@ name: "skill-quality-check"
 description: "技能质量检查：版本号统一性、版权信息、硬编码敏感信息、命名规范、代码规范"
 author: 思捷娅科技 (SJYKJ)/zhaog100
 license: MIT
+version: 1.1.0
+
 ---
 
 # 技能质量检查

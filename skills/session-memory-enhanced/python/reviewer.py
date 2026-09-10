@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
     from openai import OpenAI
 except ImportError:
-    print("⚠️ openai 未安装，请运行：pip install openai")
+    logger.warning("⚠️ openai 未安装，请运行：pip install openai")
     sys.exit(1)
 
 
@@ -102,7 +102,7 @@ class MemoryReviewer:
             return result
             
         except Exception as e:
-            print(f"❌ AI 分析失败：{e}")
+            logger.error(f"❌ AI 分析失败：{e}")
             return {
                 "gaps": [],
                 "important_events": [],
@@ -148,7 +148,7 @@ class MemoryReviewer:
         with open(memory_file, 'a', encoding='utf-8') as f:
             f.write(supplement)
         
-        print(f"✅ 已补充 {len(supplement.split(chr(10)))} 行到 {memory_file}")
+        logger.info(f"✅ 已补充 {len(supplement.split(chr(10)))} 行到 {memory_file}")
     
     def save_review_report(self, output_file: str, review_result: dict):
         """
@@ -199,7 +199,7 @@ class MemoryReviewer:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(report)
         
-        print(f"✅ 审查报告已保存：{output_file}")
+        logger.info(f"✅ 审查报告已保存：{output_file}")
 
 
 def main():
@@ -214,7 +214,7 @@ def main():
     # 创建审查器
     reviewer = MemoryReviewer(api_key=args.api_key)
     
-    print(f"🔍 开始审查：{args.today_memory}")
+    logger.info(f"🔍 开始审查：{args.today_memory}")
     
     # 审查今天的记忆
     review_result = reviewer.review_today_memory(
@@ -228,11 +228,11 @@ def main():
     decisions_count = len(review_result['decisions'])
     lessons_count = len(review_result['lessons'])
     
-    print(f"📊 审查结果：")
-    print(f"   - 遗漏内容：{gaps_count} 项")
-    print(f"   - 重要事件：{events_count} 项")
-    print(f"   - 关键决策：{decisions_count} 项")
-    print(f"   - 教训/洞察：{lessons_count} 项")
+    logger.info(f"📊 审查结果：")
+    logger.info(f"   - 遗漏内容：{gaps_count} 项")
+    logger.info(f"   - 重要事件：{events_count} 项")
+    logger.info(f"   - 关键决策：{decisions_count} 项")
+    logger.info(f"   - 教训/洞察：{lessons_count} 项")
     
     # 如果有遗漏，补充到今天记忆
     if gaps_count > 0:
@@ -243,7 +243,7 @@ def main():
     if args.output:
         reviewer.save_review_report(args.output, review_result)
     
-    print("✅ 记忆审查完成")
+    logger.info("✅ 记忆审查完成")
 
 
 if __name__ == "__main__":

@@ -134,7 +134,7 @@ def generate_data_report(xhs_data, xianyu_data):
 
 def main():
     """主函数"""
-    print("=== 商贸数据复盘脚本 ===")
+    logger.info("=== 商贸数据复盘脚本 ===")
     
     # 模拟小红书笔记数据
     xhs_data = [
@@ -171,15 +171,15 @@ def main():
     report = generate_data_report(xhs_data, xianyu_data)
     
     # 输出报告
-    print(report)
+    logger.info(report)
     
     # 保存到intel目录
     report_file = INTEL_DIR / f"商贸数据复盘_{datetime.now().strftime('%Y%m%d')}.md"
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(f"# 小红书商贸数据复盘\n\n{report}")
     
-    print(f"报告已保存: {report_file}")
-    print("⚠️ 当前为模拟数据，实际应用中需要从平台获取真实数据")
+    logger.info(f"报告已保存: {report_file}")
+    logger.warning("⚠️ 当前为模拟数据，实际应用中需要从平台获取真实数据")
     
     return 0
 

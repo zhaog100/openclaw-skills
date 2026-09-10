@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 """
 历史走势分析报告 — 收集黄金石油近期走势数据，发现报告优化点
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 import sys
 import numpy as np
 import pandas as pd

@@ -121,7 +121,7 @@ def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_fi
             'per_page': strategy.get('per_page', 30)
         }
         
-        print(f"  📡 策略{i+1}/{len(SEARCH_STRATEGIES)}: {strategy['q'][:50]}...")
+        logger.info(f"  📡 策略{i+1}/{len(SEARCH_STRATEGIES)}: {strategy['q'][:50]}...")
         
         max_retries = 2
         for attempt in range(max_retries):
@@ -132,12 +132,12 @@ def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_fi
                     # Rate limited
                     reset = int(response.headers.get('X-RateLimit-Reset', 0))
                     wait = max(CONFIG.get('monitor', {}).get('rate_limit_wait', 60), reset - int(time.time()))
-                    print(f"  ⏳ 速率限制，等待 {wait} 秒...")
+                    logger.info(f"  ⏳ 速率限制，等待 {wait} 秒...")
                     time.sleep(wait)
                     continue
                 
                 if response.status_code == 422:
-                    print(f"  ⚠️ 查询语法错误，跳过")
+                    logger.error(f"  ⚠️ 查询语法错误，跳过")
                     break
                     
                 response.raise_for_status()
@@ -149,11 +149,11 @@ def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_fi
                         seen_urls.add(item['html_url'])
                         all_items.append(item)
                 
-                print(f"  ✅ 找到 {len(items)} 个结果")
+                logger.info(f"  ✅ 找到 {len(items)} 个结果")
                 break
                 
             except Exception as e:
-                print(f"  ❌ 策略{i+1}失败: {e}")
+                logger.error(f"  ❌ 策略{i+1}失败: {e}")
                 if attempt < max_retries - 1:
                     time.sleep(10)
         
@@ -170,7 +170,7 @@ def search_bounties(keywords=None, labels=None, min_reward=0, low_competition_fi
     # 按更新时间排序（最新在前）
     low_comp.sort(key=lambda x: x.get('updated_at', ''), reverse=True)
     
-    print(f"  📊 去重后共 {len(all_items)} 个任务，低竞争 {len(low_comp)} 个")
+    logger.info(f"  📊 去重后共 {len(all_items)} 个任务，低竞争 {len(low_comp)} 个")
     
     return {
         'total_count': len(low_comp),
@@ -186,7 +186,7 @@ def save_tasks(tasks):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(tasks, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ 已保存 {tasks.get('total_count', 0)} 个任务到 {filename}")
+    logger.info(f"✅ 已保存 {tasks.get('total_count', 0)} 个任务到 {filename}")
     return filename
 
 def calculate_priority_score(issue):
@@ -271,18 +271,18 @@ def display_tasks(tasks):
     items = tasks.get('items', [])
     
     if not items:
-        print("❌ 没有找到符合条件的任务")
+        logger.error("❌ 没有找到符合条件的任务")
         return
     
-    print(f"\n{'='*80}")
-    print(f"📋 找到 {len(items)} 个潜在任务")
-    print(f"{'='*80}\n")
+    logger.info(f"\n{'='*80}")
+    logger.info(f"📋 找到 {len(items)} 个潜在任务")
+    logger.info(f"{'='*80}\n")
     
     for i, item in enumerate(items[:20], 1):  # 只显示前 20 个
-        print(f"{i}. {item.get('title', '无标题')}")
-        print(f"   仓库：{item.get('repository_url', '').replace('https://api.github.com/repos/', '')}")
-        print(f"   创建时间：{item.get('created_at', '未知')}")
-        print(f"   链接：{item.get('html_url', '')}")
+        logger.info(f"{i}. {item.get('title', '无标题')}")
+        logger.info(f"   仓库：{item.get('repository_url', '').replace('https://api.github.com/repos/', '')}")
+        logger.info(f"   创建时间：{item.get('created_at', '未知')}")
+        logger.info(f"   链接：{item.get('html_url', '')}")
         
         # 尝试从正文中提取奖励信息
         body = item.get('body') or ''
@@ -291,25 +291,25 @@ def display_tasks(tasks):
             import re
             money = re.findall(r'\$[\d,]+', body)
             if money:
-                print(f"   奖励：{', '.join(money)}")
+                logger.info(f"   奖励：{', '.join(money)}")
         
-        print()
+        logger.info()
 
 def main():
     """主函数"""
     global GITHUB_TOKEN
     
-    print("="*80)
-    print("🦞 GitHub Bounty Hunter - 监控任务")
-    print("="*80)
-    print()
+    logger.info("="*80)
+    logger.info("🦞 GitHub Bounty Hunter - 监控任务")
+    logger.info("="*80)
+    logger.info()
     
     # 检查 Token
     if not GITHUB_TOKEN:
-        print("⚠️  未设置 GITHUB_TOKEN")
-        print("请设置环境变量：export GITHUB_TOKEN='your_token'")
-        print("或使用 gh CLI 授权：gh auth login")
-        print()
+        logger.warning("⚠️  未设置 GITHUB_TOKEN")
+        logger.info("请设置环境变量：export GITHUB_TOKEN='your_token'")
+        logger.info("或使用 gh CLI 授权：gh auth login")
+        logger.info()
         # 尝试使用 gh CLI 获取 token
         import subprocess
         try:
@@ -320,16 +320,16 @@ def main():
             )
             if result.returncode == 0:
                 GITHUB_TOKEN = result.stdout.strip()
-                print("✅ 已通过 gh CLI 获取 Token")
+                logger.info("✅ 已通过 gh CLI 获取 Token")
             else:
-                print("❌ 无法获取 Token，请先登录 GitHub")
+                logger.error("❌ 无法获取 Token，请先登录 GitHub")
                 return
         except FileNotFoundError:
-            print("❌ 未安装 gh CLI，请先安装：sudo apt install gh")
+            logger.error("❌ 未安装 gh CLI，请先安装：sudo apt install gh")
             return
     
     # 搜索任务
-    print("🔍 正在搜索 bounty 任务...")
+    logger.info("🔍 正在搜索 bounty 任务...")
     tasks = search_bounties()
     
     if tasks:
@@ -339,11 +339,11 @@ def main():
         # 显示任务
         display_tasks(tasks)
         
-        print("="*80)
-        print("✅ 监控完成！")
-        print("="*80)
+        logger.info("="*80)
+        logger.info("✅ 监控完成！")
+        logger.info("="*80)
     else:
-        print("❌ 监控失败")
+        logger.error("❌ 监控失败")
     
     # 检查Gmail付款通知
     check_gmail_payments()
@@ -352,13 +352,13 @@ def check_gmail_payments():
     """检查Gmail中的bounty付款邮件"""
     import subprocess
     
-    print()
-    print("📧 检查Gmail付款通知...")
+    logger.info()
+    logger.info("📧 检查Gmail付款通知...")
     
     gmail_config = CONFIG.get('gmail', {})
     script = os.path.expanduser('~/.openclaw/workspace/scripts/check_gmail_payments.sh')
     if not os.path.exists(script):
-        print("  ⚠️ Gmail检查脚本不存在，跳过")
+        logger.warning("  ⚠️ Gmail检查脚本不存在，跳过")
         return
     
     try:
@@ -379,14 +379,14 @@ def check_gmail_payments():
             keywords = gmail_config.get('check_keywords', ['payment', 'bounty', 'paid'])
             for line in output.split('\n'):
                 if any(kw in line.lower() for kw in keywords):
-                    print(f"  {line}")
+                    logger.info(f"  {line}")
         else:
-            print("  ✅ 无新付款通知")
+            logger.info("  ✅ 无新付款通知")
             
     except subprocess.TimeoutExpired:
-        print("  ⚠️ Gmail检查超时")
+        logger.warning("  ⚠️ Gmail检查超时")
     except Exception as e:
-        print(f"  ⚠️ Gmail检查失败: {e}")
+        logger.error(f"  ⚠️ Gmail检查失败: {e}")
 
 if __name__ == '__main__':
     main()

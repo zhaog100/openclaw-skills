@@ -4,12 +4,12 @@ logger = logging.getLogger(__name__)
 
 #!/usr/bin/env python3
 """
-石油黄金投资参考 - 纯文本报告生成器 v3.3
+石油黄金投资参考 - 纯文本报告生成器 v3.4
 优化：信号灯颜色更清晰 + 趋势箭头文字化 + 信息密度精简
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
-版本: v3.3 | 石油黄金白银相关性分析
+版本: v3.4 | 石油黄金白银相关性分析
 """
 
 import sys

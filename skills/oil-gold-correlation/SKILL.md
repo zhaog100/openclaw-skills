@@ -3,14 +3,14 @@
 ---
 name: oil-gold-correlation
 石油黄金白银实时相关性分析。多数据源交叉验证 + 隐藏机遇扫描 + 智能建议引擎。
-version: 3.3.0
+version: 3.4.0
 author: 小米辣 🌶️
-lessons_updated: 2026-04-24
+lessons_updated: 2026-09-10
 ---
 
-# 石油黄金白银相关性分析 v3.3
+# 石油黄金白银相关性分析 v3.4
 
-多数据源交叉验证，发现隐藏投资机遇。
+多数据源交叉验证 + 多周期共振分析 + 隐藏机遇扫描 + 智能建议引擎。
 
 ## 触发词
 
@@ -66,7 +66,15 @@ consensus = mgr.consensus(data)           # 多源加权共识价
 validation = mgr.cross_validate(data)     # 交叉验证
 ```
 
-### 5. 隐藏机遇扫描
+### 5. 多周期共振分析（v3.4 新增）
+
+```bash
+python3 scripts/multi_timeframe_analysis.py
+```
+
+四周期趋势共振分析（1周/1月/半年/1年），输出品种强弱对比和共振强度评分。
+
+### 6. 隐藏机遇扫描
 
 ```python
 from scripts.opportunity_scanner import OpportunityScanner
@@ -204,6 +212,7 @@ export TWELVE_DATA_API_KEY=your_key
 | v3.3 | 04-14 | bug 修复验证通过 |
 | v3.3 | 04-13~16 | 多数据源架构 + 隐藏机遇扫描器 + 地缘评分优化 |
 | v3.3 | 04-24 | 经验教训文档化 + 纯文本报告 v2.1 |
+| v3.4 | 2026-09-10 | 修复 logger.info() 误传参数 Bug + 新增多周期共振分析 |
 | v3.3 | 04-24 | **白银集成** - 支持沪银AG0期货，三资产分析
 
 ### 六、定时推送时间（按市场开收盘）
@@ -226,7 +235,16 @@ export TWELVE_DATA_API_KEY=your_key
 4. 布油/美元暂未接入（可扩展）
 5. 部分 cron 任务偶发超时（180s timeout）
 
-### 八、部署经验
+### 九、Logger 使用规范
+
+- **问题**：v3.4 发现 `logger.info()` 误传 `end` 和 `flush` 参数导致 `TypeError`
+- **原因**：`end` 和 `flush` 是 `print()` 的参数，不是 `logging.Logger` 的参数
+- **修复**：移除所有 `logger.info(..., end=" ", flush=True)` 中的 `end` 和 `flush`
+- **规范**：
+  - 需要换行控制 → 使用 `print()` 或 `logger.info()` 默认行为
+  - 不需要额外参数 → `logger.info("消息")`
+
+### 十、部署经验
 
 - **GitHub 更新**：从 `feat/github-marketing` 分支拉取，更新前备份旧版
 - **依赖安装**：`pip3 install -r requirements.txt`（yfinance/pandas/numpy/scipy/plotly/statsmodels/akshare/requests）

@@ -39,32 +39,32 @@ class ReplitMonitor:
         url = f'https://api.github.com/search/issues?q={self.github_query}&sort=updated&order=desc&per_page=10'
         
         try:
-            print('📡 通过 GitHub 搜索 Replit 任务...')
+            logger.info('📡 通过 GitHub 搜索 Replit 任务...')
             response = requests.get(url, headers=headers, timeout=30)
             
             if response.status_code == 200:
                 data = response.json()
                 issues = data.get('items', [])
-                print(f'✅ 找到 {len(issues)} 个 Replit 相关任务')
+                logger.info(f'✅ 找到 {len(issues)} 个 Replit 相关任务')
                 return issues
             else:
-                print(f'⚠️ API 返回状态码：{response.status_code}')
+                logger.warning(f'⚠️ API 返回状态码：{response.status_code}')
                 return []
                 
         except Exception as e:
-            print(f'❌ 搜索失败：{e}')
+            logger.error(f'❌ 搜索失败：{e}')
             return []
     
     def notify(self, issue):
         """通知新任务"""
-        print("=" * 60)
-        print(f"🎯 Replit 新任务！")
-        print(f"标题：{issue.get('title', 'Unknown')[:60]}")
+        logger.info("=" * 60)
+        logger.info(f"🎯 Replit 新任务！")
+        logger.info(f"标题：{issue.get('title', 'Unknown')[:60]}")
         repo_url = issue.get('repository_url', '')
         if repo_url:
-            print(f"仓库：{'/'.join(repo_url.split('/')[-2:])}")
-        print(f"链接：{issue.get('html_url', '')}")
-        print(f"更新：{issue.get('updated_at', '')[:10]}")
+            logger.info(f"仓库：{'/'.join(repo_url.split('/')[-2:])}")
+        logger.info(f"链接：{issue.get('html_url', '')}")
+        logger.info(f"更新：{issue.get('updated_at', '')[:10]}")
         
         # 尝试提取奖金
         body = issue.get('body', '')
@@ -72,11 +72,11 @@ class ReplitMonitor:
         money_match = re.search(r'[\$](\d+(,\d{3})*(\.\d+)?)', body)
         if money_match:
             amount = money_match.group(1)
-            print(f"奖金：${amount}")
+            logger.info(f"奖金：${amount}")
         else:
-            print("奖金：面议")
+            logger.info("奖金：面议")
         
-        print("=" * 60)
+        logger.info("=" * 60)
         
         # 保存通知
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -105,37 +105,37 @@ class ReplitMonitor:
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
-        print(f"✅ 通知已保存：{notify_file}")
+        logger.info(f"✅ 通知已保存：{notify_file}")
     
     def run(self):
         """运行监控"""
-        print("🦞 Replit Monitor 启动！")
-        print("📍 监控平台：Replit Bounties")
-        print("💰 快速现金流（$50-$500/任务）")
-        print("=" * 60)
+        logger.info("🦞 Replit Monitor 启动！")
+        logger.info("📍 监控平台：Replit Bounties")
+        logger.info("💰 快速现金流（$50-$500/任务）")
+        logger.info("=" * 60)
         
         token = os.getenv('GITHUB_TOKEN', '')
         if not token:
-            print("❌ GITHUB_TOKEN 未配置")
+            logger.error("❌ GITHUB_TOKEN 未配置")
             return
         
         # GitHub 搜索
         issues = self.search_github(token)
-        print()
+        logger.info()
         
         if issues:
-            print('=== 最新任务（前 5 个）===')
-            print()
+            logger.info('=== 最新任务（前 5 个）===')
+            logger.info()
             for issue in issues[:5]:
                 self.notify(issue)
-                print()
+                logger.info()
         else:
-            print('⚠️  暂无 Replit 任务')
-            print()
-            print('💡 建议：')
-            print('1. 访问官网：https://replit.com/bounties')
-            print('2. 快速现金流，适合练手')
-            print('3. 奖金范围：$50-$500')
+            logger.warning('⚠️  暂无 Replit 任务')
+            logger.info()
+            logger.info('💡 建议：')
+            logger.info('1. 访问官网：https://replit.com/bounties')
+            logger.info('2. 快速现金流，适合练手')
+            logger.info('3. 奖金范围：$50-$500')
 
 if __name__ == "__main__":
     monitor = ReplitMonitor()

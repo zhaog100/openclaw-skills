@@ -74,7 +74,7 @@ def supplier_comparison_template(suppliers_data):
 
 def main():
     """主函数"""
-    print("=== 1688供应商选品脚本 ===")
+    logger.info("=== 1688供应商选品脚本 ===")
     
     # 模拟供应商数据(实际应用中需要从1688 API获取)
     suppliers_data = [
@@ -108,15 +108,15 @@ def main():
     report = supplier_comparison_template(suppliers_data)
     
     # 输出报告
-    print(report)
+    logger.info(report)
     
     # 保存到intel目录
     report_file = "/root/.openclaw/workspace/intel/1688-供应商对比报告.md"
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(f"# 1688供应商对比报告\n\n{report}")
     
-    print(f"报告已保存: {report_file}")
-    print("⚠️ 当前为模拟数据，实际应用中需要从1688 API获取供应商信息")
+    logger.info(f"报告已保存: {report_file}")
+    logger.warning("⚠️ 当前为模拟数据，实际应用中需要从1688 API获取供应商信息")
     
     return 0
 

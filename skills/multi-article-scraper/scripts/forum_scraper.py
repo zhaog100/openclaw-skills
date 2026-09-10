@@ -20,7 +20,7 @@ try:
     REQUESTS_AVAILABLE = True
 except ImportError:
     REQUESTS_AVAILABLE = False
-    print("⚠️  requests 未安装，请先安装：pip install requests")
+    logger.warning("⚠️  requests 未安装，请先安装：pip install requests")
 
 # 论坛 API 配置
 FORUMS = {
@@ -48,7 +48,7 @@ FORUMS = {
 def search_dev_to(query, tags='ai', per_page=10):
     """搜索 Dev.to 文章"""
     if not REQUESTS_AVAILABLE:
-        print("❌ requests 未安装")
+        logger.error("❌ requests 未安装")
         return []
     
     url = FORUMS['devto']['api_url']
@@ -62,19 +62,19 @@ def search_dev_to(query, tags='ai', per_page=10):
         response = requests.get(url, params=params, timeout=10)
         if response.status_code == 200:
             articles = response.json()
-            print(f"✅ 找到 {len(articles)} 篇 Dev.to 文章")
+            logger.info(f"✅ 找到 {len(articles)} 篇 Dev.to 文章")
             return articles
         else:
-            print(f"❌ API 错误：{response.status_code}")
+            logger.error(f"❌ API 错误：{response.status_code}")
             return []
     except Exception as e:
-        print(f"❌ 错误：{e}")
+        logger.error(f"❌ 错误：{e}")
         return []
 
 def search_hacker_news(query, per_page=10):
     """搜索 Hacker News 文章"""
     if not REQUESTS_AVAILABLE:
-        print("❌ requests 未安装")
+        logger.error("❌ requests 未安装")
         return []
     
     url = FORUMS['hackernews']['api_url']
@@ -88,13 +88,13 @@ def search_hacker_news(query, per_page=10):
         if response.status_code == 200:
             data = response.json()
             articles = data.get('hits', [])
-            print(f"✅ 找到 {len(articles)} 个 Hacker News 讨论")
+            logger.info(f"✅ 找到 {len(articles)} 个 Hacker News 讨论")
             return articles
         else:
-            print(f"❌ API 错误：{response.status_code}")
+            logger.error(f"❌ API 错误：{response.status_code}")
             return []
     except Exception as e:
-        print(f"❌ 错误：{e}")
+        logger.error(f"❌ 错误：{e}")
         return []
 
 def save_articles(articles, forum, output_dir='./forum-articles'):
@@ -110,10 +110,10 @@ def save_articles(articles, forum, output_dir='./forum-articles'):
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ 已保存到：{json_file}")
+    logger.info(f"✅ 已保存到：{json_file}")
     
     # 打印摘要
-    print(f"\n📋 文章摘要:")
+    logger.info(f"\n📋 文章摘要:")
     for i, article in enumerate(articles[:5], 1):
         if forum == 'devto':
             title = article.get('title', '无标题')
@@ -126,11 +126,11 @@ def save_articles(articles, forum, output_dir='./forum-articles'):
             url = article.get('url', '')
             tags = article.get('tags', [])
         
-        print(f"{i}. {title[:60]}...")
-        print(f"   作者：{author}")
-        print(f"   链接：{url}")
-        print(f"   标签：{tags}")
-        print()
+        logger.info(f"{i}. {title[:60]}...")
+        logger.info(f"   作者：{author}")
+        logger.info(f"   链接：{url}")
+        logger.info(f"   标签：{tags}")
+        logger.info()
     
     return json_file
 
@@ -145,15 +145,15 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
-    print(f"🔍 搜索关键词：{args.query}")
-    print(f"🌐 论坛：{args.forum}")
-    print(f"📁 输出目录：{args.output}")
-    print()
+    logger.info(f"🔍 搜索关键词：{args.query}")
+    logger.info(f"🌐 论坛：{args.forum}")
+    logger.info(f"📁 输出目录：{args.output}")
+    logger.info()
     
     all_articles = {}
     
     if args.forum in ['devto', 'all']:
-        print("\n📌 搜索 Dev.to...")
+        logger.info("\n📌 搜索 Dev.to...")
         articles = search_dev_to(args.query, tags='ai', per_page=args.limit)
         if articles:
             all_articles['devto'] = articles
@@ -161,10 +161,10 @@ if __name__ == '__main__':
         time.sleep(random.uniform(1, 2))
     
     if args.forum in ['hackernews', 'all']:
-        print("\n📌 搜索 Hacker News...")
+        logger.info("\n📌 搜索 Hacker News...")
         articles = search_hacker_news(args.query, per_page=args.limit)
         if articles:
             all_articles['hackernews'] = articles
             save_articles(articles, 'hackernews', args.output)
     
-    print(f"\n✅ 论坛冲浪完成！共找到 {sum(len(v) for v in all_articles.values())} 篇文章")
+    logger.info(f"\n✅ 论坛冲浪完成！共找到 {sum(len(v) for v in all_articles.values())} 篇文章")

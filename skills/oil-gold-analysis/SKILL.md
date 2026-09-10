@@ -1,6 +1,8 @@
 ---
 name: "oil-gold-analysis"
 description: "石油黄金分析：运行analysis.py+report_text.py生成报告，send_qq.sh推送QQ。触发：用户询问或cron定时。"
+version: 1.1.0
+
 ---
 
 # 石油黄金分析技能

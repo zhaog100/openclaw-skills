@@ -154,7 +154,7 @@ class PaymentChecker:
             if result.returncode == 0:
                 return json.loads(result.stdout)
         except Exception as e:
-            print(f"⚠️ 获取 Issue 失败: {e}", file=sys.stderr)
+            logger.error(f"⚠️ 获取 Issue 失败: {e}", file=sys.stderr)
         return None
 
     def _fetch_comments(self, owner_repo: str, issue_number: str) -> list:
@@ -472,8 +472,8 @@ class PaymentChecker:
 def main():
     """主函数"""
     if len(sys.argv) < 2:
-        print("用法: python3 payment_checker.py <owner/repo> <issue_number>")
-        print("      python3 payment_checker.py --scan-results <file>")
+        logger.info("用法: python3 payment_checker.py <owner/repo> <issue_number>")
+        logger.info("      python3 payment_checker.py --scan-results <file>")
         sys.exit(1)
 
     checker = PaymentChecker()
@@ -487,13 +487,13 @@ def main():
         # 提取 issue URLs
         issues = re.findall(r"(https://github\.com/([^/]+/[^/]+)/issues/(\d+))", content)
         for url, owner_repo, issue_num in issues:
-            print(f"\n{'='*60}")
-            print(f"检查 {owner_repo}#{issue_num}")
-            print(f"{'='*60}")
+            logger.info(f"\n{'='*60}")
+            logger.info(f"检查 {owner_repo}#{issue_num}")
+            logger.info(f"{'='*60}")
 
             info = checker.check_issue_payment(owner_repo, issue_num)
             report = checker.format_report(info, owner_repo, issue_num)
-            print(report)
+            logger.info(report)
 
     else:
         # 单个 Issue 检查
@@ -502,7 +502,7 @@ def main():
 
         info = checker.check_issue_payment(owner_repo, issue_number)
         report = checker.format_report(info, owner_repo, issue_number)
-        print(report)
+        logger.info(report)
 
         # 如果不支持，退出码 1
         if info.type == PaymentType.UNKNOWN:
