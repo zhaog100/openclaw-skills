@@ -6,7 +6,7 @@ version: 1.2.0
 
 # AI 确定性控制工具（ai-deterministic-control）
 
-**版本**: v1.2.0  
+**版本**: v1.3.0  
 **作者**: 思捷娅科技 (SJYKJ)/zhaog100  
 **许可**: MIT License  
 
@@ -18,8 +18,11 @@ version: 1.2.0
 
 ### 核心能力
 - **参数管理**: temperature / top_p / seed 精确控制
-- **场景预设**: 6 个内置预设（代码生成、配置生成、对话、创意写作、数据分析、翻译）
+- **场景预设**: 9 个内置预设（代码生成/中文代码/配置/对话/创意写作/中文创意/数据分析/翻译/运维）
+- **L0-L4 确定性等级**: 自动检测任务类型，推荐最优等级
+- **中英双语关键词**: 支持中英文混合输入的任务分类
 - **一致性检查**: Levenshtein 编辑距离 + TF-IDF 语义相似度，综合评分告警
+- **中文分词**: 中英文混合文本正确分词
 - **监控引擎**: 滑动窗口趋势分析 + Z-score 异常检测
 - **模型桥接**: 自动备份 → 注入参数 → JSON 验证 → 失败恢复
 
@@ -55,11 +58,14 @@ detcontrol reset --all
 | 预设 | Temperature | 说明 |
 |------|------------|------|
 | code_generation | 0.1 | 代码/SQL/正则生成 |
+| code_generation_zh | 0.1 | 中文代码生成（含中文注释） |
 | config_generation | 0.2 | JSON/YAML 配置文件 |
 | data_analysis | 0.15 | 数据分析报告 |
 | translation | 0.1 | 翻译任务 |
 | conversation | 0.5 | 日常对话 |
 | creative_writing | 0.8 | 创意写作/头脑风暴 |
+| creative_writing_zh | 0.8 | 中文创意写作 |
+| ops_task | 0.1 | 运维/工程任务 |
 
 ---
 

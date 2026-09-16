@@ -11,7 +11,8 @@ BASE_TEMPLATE = """你是一个高确定性输出引擎。请遵循以下规则�
 2. 使用一致的格式和风格
 3. 如果有多种可能的输出，选择最常见/标准的方式
 4. 不要使用"我认为"、"可能"、"也许"等不确定词汇
-5. 保持输出简洁、结构化"""
+5. 保持输出简洁、结构化
+6. 对中文内容用中文回答，对英文内容用英文回答"""
 
 # 任务特定模板
 _TASK_TEMPLATES: Dict[str, str] = {
@@ -61,6 +62,31 @@ _TASK_TEMPLATES: Dict[str, str] = {
 - 使用目标语言的标准表达
 - 专业术语保持一致
 - 保持原文的语气和风格""",
+
+    "creative_writing_zh": """{base}
+
+针对中文创意写作任务：
+- 使用中文表达，文风流畅自然
+- 允许适度发散，但保持主题一致
+- 使用丰富的词汇和句式
+- 控制篇幅在合理范围内""",
+
+    "code_generation_zh": """{base}
+
+针对中文语境下的代码生成任务：
+- 优先使用标准库和常见模式
+- 变量命名使用 snake_case
+- 注释使用中文
+- 确保代码可运行，无语法错误
+- 使用一致的缩进（4空格）""",
+
+    "ops_task": """{base}
+
+针对运维/工程任务（脚本/部署/配置）：
+- 使用标准命令和最佳实践
+- 输出可执行的命令或脚本
+- 包含必要的错误处理
+- 不添加冗余解释""",
 }
 
 # 自定义模板注册表
@@ -93,12 +119,15 @@ def list_task_types() -> Dict[str, str]:
         {task_type: description} 字典
     """
     descriptions = {
-        "code_generation": "代码生成",
+        "code_generation": "代码生成（通用）",
         "config_generation": "配置生成",
         "conversation": "常规对话",
         "creative_writing": "创意写作",
         "data_analysis": "数据分析",
         "translation": "翻译任务",
+        "creative_writing_zh": "中文创意写作",
+        "code_generation_zh": "中文代码生成（含注释）",
+        "ops_task": "运维/工程任务",
     }
     # 合并自定义模板
     result = dict(descriptions)

@@ -58,13 +58,28 @@ _LEVELS = {
     },
 }
 
-# 自动检测关键词映射
+# 自动检测关键词映射（中英双语）
 _TASK_KEYWORDS = {
-    "L0": ["brainstorm", "creative", "story", "poem", "imagin", "fiction", "art"],
-    "L1": ["chat", "discuss", "explain", "summarize", "rewrite", "paraphrase", "opinion"],
-    "L2": ["code", "function", "program", "algorithm", "translate", "translation", "analyze"],
-    "L3": ["config", "json", "yaml", "api", "schema", "test case", "extract", "format"],
-    "L4": ["math", "calculate", "formula", "exact", "precise", "safety", "security", "regex"],
+    "L0": [
+        "brainstorm", "creative", "story", "poem", "imagin", "fiction", "art",
+        "头脑风暴", "创意", "故事", "诗", "想象", "虚构", "艺术", "写小说", "写故事",
+    ],
+    "L1": [
+        "chat", "discuss", "explain", "summarize", "rewrite", "paraphrase", "opinion",
+        "聊天", "讨论", "解释", "总结", "改写", "复述", "观点", "介绍", "说明",
+    ],
+    "L2": [
+        "code", "function", "program", "algorithm", "translate", "translation", "analyze",
+        "代码", "函数", "程序", "算法", "翻译", "分析", "写代码", "写函数", "python", "脚本",
+    ],
+    "L3": [
+        "config", "json", "yaml", "api", "schema", "test case", "extract", "format",
+        "配置", "json", "yaml", "api", "schema", "测试用例", "提取", "格式化",
+    ],
+    "L4": [
+        "math", "calculate", "formula", "exact", "precise", "safety", "security", "regex",
+        "数学", "计算", "公式", "精确", "严格", "安全", "regex", "正则", "验算",
+    ],
 }
 
 
