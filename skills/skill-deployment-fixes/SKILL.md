@@ -1,8 +1,6 @@
 ---
 name: "skill-deployment-fixes"
 description: "Common deployment pitfalls for OpenClaw skills: OpenCV headless, shebang ordering, token config, path fixes, QMD install."
-version: 1.1.0
-
 ---
 
 # Skill Deployment Fixes
@@ -215,4 +213,160 @@ logger.info(f"分析 {name}...")
 ```
 
 **教训:** logger和print是不同的API，迁移时需注意参数差异。
+
+---
+
+## Problem 11: gh auth login fails due to GITHUB_TOKEN env var
+
+**Symptom:**
+```
+The value of the GITHUB_TOKEN environment variable is being used for authentication.
+To have GitHub CLI store credentials instead, first clear the value from the environment.
+```
+
+**Cause:** `.bashrc` auto-exports `GITHUB_TOKEN` from `.env` file, blocking interactive login.
+
+**Fix:**
+```bash
+# 1. Clear the env var first
+unset GITHUB_TOKEN
+
+# 2. Then run login
+gh auth login -h github.com
+```
+
+---
+
+## Problem 12: Token invalid after updating .env but not git credentials
+
+**Symptom:** `gh auth status` shows "✓ Logged in" but `git push` returns "Invalid username or token"
+
+**Cause:** Git credentials file (`~/.git-credentials`) still has old token.
+
+**Fix:**
+```bash
+# Update .git-credentials with new token
+echo "https://<username>:<new_token>@github.com" > ~/.git-credentials
+git config credential.helper store
+```
+
+---
+
+## Problem 13: Git remote URL cached with old token
+
+**Symptom:** Push fails even after updating credentials
+
+**Fix:**
+```bash
+# Update remote URL to use new token
+git remote set-url origin https://<username>:<new_token>@github.com/<owner>/<repo>.git
+```
+
+---
+
+## Problem 14: Repository divergence (local vs remote commits)
+
+**Symptom:** `error: failed to push some refs to ... Updates were rejected because the tip of your current branch is behind`
+
+**Cause:** Remote has commits not in local (or vice versa), causing non-fast-forward error.
+
+**Fix:**
+```bash
+# Fetch and rebase local commits on top of remote
+git fetch origin
+git rebase origin/main
+
+# Then push
+git push origin main
+```
+
+---
+
+## Problem 15: Multi-repo workspace sync strategy
+
+**Context:** Workspace has two branches pointing to different GitHub repos:
+- `main` → `xiaomijiao-skills` (技能仓库)
+- `master` → `openclaw-skills` (个人信息仓库)
+
+**Sync procedure:**
+```bash
+# Only sync skills repo (main branch)
+git push origin main
+
+# Personal repo (master/skills) stays as-is per user instruction
+# Do NOT automatically sync master branch
+```
+
+**User directive:** "值更新技能仓库，不要更新个人信息仓库" - Only update skills repo, leave personal repo unchanged.
+
+**Key point:** When token expires:
+1. Generate new token at https://github.com/settings/tokens
+2. Update `~/.openclaw/workspace/.env`
+3. Update `~/.git-credentials`
+4. Update git remote URLs if needed
+5. `unset GITHUB_TOKEN` before running `gh auth login`
+6. Push only `main` branch (skills repo)
+
+---
+
+## Problem 16: OpenClaw cron tasks missing despite script existence
+
+**Symptom:** Script exists and is correct, but reports never get generated/pushed on schedule. User reports "报告没收到".
+
+**Root cause:** OpenClaw automations (cron) are separate from system crontab and from MEMORY.md records. Having a script ≠ having a scheduled task.
+
+**Diagnostic procedure:**
+```bash
+# 1. Check OpenClaw automations (NOT system crontab)
+openclaw cron list --json
+
+# 2. Check system crontab separately
+crontab -l
+
+# 3. Verify task execution status
+openclaw cron list --json | python3 -c "
+import json, sys, datetime
+data = json.load(sys.stdin)
+for c in data.get('jobs', []):
+    name = c.get('name','')
+    expr = c.get('schedule',{}).get('expr','N/A')
+    state = c.get('state',{})
+    last = state.get('lastRunAtMs','')
+    st = state.get('lastRunStatus','')
+    dt = datetime.datetime.fromtimestamp(int(last)/1000).strftime('%m-%d %H:%M') if last else 'never'
+    print(f'{name}: schedule={expr} last={dt} status={st}')
+"
+```
+
+**Fix: Create OpenClaw cron task**
+```bash
+# For command-based tasks (like oil-gold analysis)
+openclaw cron add --cron "0 10 * * *" \
+  --name "oil-gold-morning" \
+  --command "sh -lc '/path/to/script.sh'" \
+  --announce
+
+# For agent-turn tasks (like daily review)
+openclaw cron add --cron "5 23 * * *" \
+  --name "daily-review-evening" \
+  --message "执行每日回顾：运行 skill.sh review --mode full，生成今日工作总结并推送QQ"
+```
+
+**Verification:**
+```bash
+# Check next run time
+openclaw cron list --json | python3 -c "
+import json, sys, datetime
+data = json.load(sys.stdin)
+for c in data.get('jobs', []):
+    name = c.get('name','')
+    state = c.get('state',{})
+    next_run = state.get('nextRunAtMs','')
+    if next_run:
+        dt = datetime.datetime.fromtimestamp(int(next_run)/1000).strftime('%Y-%m-%d %H:%M')
+        print(f'{name}: next={dt}')
+"
+```
+
+**Key insight:** OpenClaw 2026.8+ uses its own automation system (`openclaw cron`). System crontab is separate. Scripts can be perfect but if no OpenClaw cron task is configured, nothing runs automatically. Always verify with `openclaw cron list` after deployment.
 

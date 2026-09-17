@@ -10,9 +10,14 @@ License: MIT
 import sys
 import json
 import os
+import logging
 import urllib.request
 import urllib.error
 from pathlib import Path
+
+# 配置日志
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 GATEWAY_HOST = "127.0.0.1"
 GATEWAY_PORT = 18789

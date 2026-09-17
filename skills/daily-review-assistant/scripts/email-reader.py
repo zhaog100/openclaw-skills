@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
+import logging
 import imaplib
 import email
 from email.header import decode_header
 import sys
 import os
+
+# 配置日志（INFO→stdout，ERROR→stderr）
+_logging_fmt = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+_logging_fh_stdout = logging.StreamHandler(sys.stdout)
+_logging_fh_stdout.setFormatter(_logging_fmt)
+_logging_fh_stderr = logging.StreamHandler(sys.stderr)
+_logging_fh_stderr.setFormatter(_logging_fmt)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(_logging_fh_stdout)
+logger.addHandler(_logging_fh_stderr)
 
 def decode_subject(subject):
     if subject:
@@ -120,11 +132,11 @@ if __name__ == "__main__":
     emails = read_gmail(username, password, max_count, full_content)
     
     if emails:
-        logger.info(f"\n**未读邮件**: {len(emails)} 封\n")
+        print(f"\n**未读邮件**: {len(emails)} 封\n")
         for e in emails[:3]:
-            logger.info(f"**{e['subject']}**")
-            logger.info(f"- 发件人: {e['from']}")
-            logger.info(f"- 时间: {e['date']}")
+            print(f"**{e['subject']}**")
+            print(f"- 发件人: {e['from']}")
+            print(f"- 时间: {e['date']}")
             if full_content and e.get('body'):
-                logger.info(f"\n**内容:**\n{e['body'][:400]}...")
-            logger.info("---")
+                print(f"\n**内容:**\n{e['body'][:400]}...")
+            print("---")

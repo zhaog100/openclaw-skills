@@ -281,6 +281,12 @@ _最后更新: 2026-09-02 15:31 CST_
 
 #### 技术经验
 
+### 2026-09-16 技术经验
+
+
+### 2026-09-15 技术经验
+
+
 ### 2026-09-04 技术经验
 
 
@@ -363,7 +369,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：91241 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�.gitignore中排除，由OpenClaw自行管理
+**上下文摘要**：�.gitignore中排除，由OpenClaw自行管理
 - [~] QMD首次embed（后台运行中，已重启，正在重新嵌入310文件）
   *注意：之前embed过程被中断，索引已重置，重新启动中*
 - [x] 更新miliger-qmd-manager/SKILL.md → 安装命令已修正为npm install -g @tobilu/qmd
@@ -398,7 +404,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：119356 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：��后台持续运行（重启后重新计算，CPU模式）
+**上下文摘要**：��后台持续运行（重启后重新计算，CPU模式）
 - BM25搜索已可用
 - 模型：embeddinggemma-300M-Q8_0.gguf（319MB）
 - **注意**：CPU模式embed极慢，建议有GPU时重新embed
@@ -466,7 +472,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：119644 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：� 完成 | git commit -m "Smart sync: 2026-09-03 11:30" |
+**上下文摘要**：� 完成 | git commit -m "Smart sync: 2026-09-03 11:30" |
 | 确认IDENTITY.md/USER.md版本控制 | ✅ 完成 | 已在版本控制中 |
 | QMD首次embed | 🔄 进行中 | 96/310向量已嵌入（CPU模式约20分钟） |
 | 更新miliger-qmd-manager/SKILL.md | ✅ 完成 | 安装命令修正为 npm install -g @tobilu/qmd |
@@ -909,7 +915,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：89933 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：��复
+**上下文摘要**：��复
 
 
 ## 🔧 CSV修复记录
@@ -950,7 +956,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：89933 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�复记录
+**上下文摘要**：�复记录
 
 **2026-09-03 14:40** - Cron任务修复
 
@@ -1028,7 +1034,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：107173 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�需要PYTHONPATH
+**上下文摘要**：�需要PYTHONPATH
 
 ### 待处理
 - [ ] 需要sudo权限创建numpy符号链接
@@ -1114,7 +1120,7 @@ _最后更新: 2026-09-02 15:31 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：136384 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�修复
+**上下文摘要**：�修复
 - [ ] 修复oil-gold cron numpy路径
 
 
@@ -1710,7 +1716,7 @@ _最后更新: 2026-09-03 17:17 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：92901 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�复
+**上下文摘要**：�复
 | 项目 | 状态 | 详情 |
 |------|------|------|
 | SSH PermitRootLogin | ✅ 修复 | yes → no |
@@ -1750,7 +1756,7 @@ _最后更新: 2026-09-03 17:17 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：92901 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：��墙ufw | ✅ 启用 | 放行22/tcp, 18789/tcp |
+**上下文摘要**：��墙ufw | ✅ 启用 | 放行22/tcp, 18789/tcp |
 | PATH重复 | ✅ 清理 | 移除~/.bashrc和~/.profile重复项 |
 | npm缓存 | ✅ 清理 | 释放空间 |
 | 临时备份 | ✅ 删除 | openclaw.json.bak |
@@ -1925,7 +1931,7 @@ _最后更新: 2026-09-03 20:17 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：124915 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：��示每分钟执行，但返回 0%
+**上下文摘要**：��示每分钟执行，但返回 0%
 - `model-switch-monitor.log` 为 0 bytes（脚本未正常写入）
 - lib.sh 的 resolve_path() 依赖 $HOME，cron 环境可能未设置
 
@@ -1955,7 +1961,7 @@ _最后更新: 2026-09-03 20:17 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：108991 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�能未设置
+**上下文摘要**：�能未设置
 
 ### 待修复项
 - [x] 移除 get-context-usage.sh 对 lib.sh 的依赖 ✅ (20:17)
@@ -2031,7 +2037,7 @@ _最后更新: 2026-09-03 20:17 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：127319 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：�，日志为空
+**上下文摘要**：�，日志为空
 - [x] 手动生成最新报告并发送到 QQ ✅
 - [x] 修复 send_qq.sh 路径错误
 - [ ] 需更新 cron 配置以运行完整报告脚本
@@ -4872,7 +4878,7 @@ _最后更新: 2026-09-03 20:17 CST_
 **当前会话**：agent:main:main
 **当前Tokens**：118739 / 131072
 **当前模型**：agnes-2.5-flash
-**上下文摘要**：��报）
+**上下文摘要**：��报）
 - 保留23:30每日回顾任务
 - 石油黄金推送时间：10:00/15:30/23:00
 
@@ -5372,3 +5378,37 @@ crontab -l | sed 's|*/5 \* \* \* \*.*smart-memory-sync.*|# removed smart-memory-
 
 #### 流程优化
 
+
+*最后更新：2026-09-11 23:49 HKT*
+
+### 2026-09-11 重要经验
+
+#### 技术经验
+
+#### 项目经验
+
+#### 流程优化
+
+
+## Promoted From Short-Term Memory (2026-09-14)
+
+<!-- openclaw-memory-promotion:memory:claim:a0163f825c2a -->
+- 身份确认: **远程仓库**: origin → xiaomijiao-skills (zhaog100/xiaomijiao-skills) [score=0.833 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:5-5] <!-- trigger: xiaomijiao-skills, zhaog100/xiaomijiao-skills, 身份 --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:6c563d407b68 -->
+- 身份确认: **小米椒** 🌶️ | **GitHub**: zhaog100 [score=0.823 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:4-4] <!-- trigger: 身份, 确认, 小米 --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:db211e4824bd -->
+- 待收款项目: **Git 提交**: 个 [score=0.794 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:37-37] <!-- trigger: 收款, 项目, git --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:8069b4d3a329 -->
+- 财务状态: **Bounty PRs**: 0 个 [score=0.762 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:11-11] <!-- trigger: 财务, 状态, bounty --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:9f948db1798c -->
+- 待收款项目: **完成任务**: 个 [score=0.762 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:38-38] <!-- trigger: 收款, 项目, 完成 --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:aaf23c2dc735 -->
+- 财务状态: **待收款**: 待统计 [score=0.762 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:12-12] <!-- trigger: 财务, 状态, 收款 --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:4e46cfbffb12 -->
+- PR状态: **Open PRs**: 0 个 [score=0.752 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:17-17] <!-- trigger: 状态, open, prs --> <!-- importance: 8 -->
+<!-- openclaw-memory-promotion:memory:claim:8b8de61c7703 -->
+- PR状态: **Merged PRs**: 0 个 [score=0.752 signals=5 recalls=0 avg=0.620 source=memory/2026-09-12.md:18-18] <!-- trigger: 状态, merged, prs --> <!-- importance: 8 -->
+
+*最后更新：2026-09-15 23:30 HKT*
+
+*最后更新：2026-09-16 23:30 HKT*
