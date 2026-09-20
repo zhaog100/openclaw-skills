@@ -1,0 +1,12 @@
+{
+  "version": "4.0.0",
+  "flushIdleSeconds": 1800,
+  "maxMessagesPerPart": 60,
+  "features": {
+    "structuredExtraction": false,
+    "vectorSearch": false,
+    "aiSummary": true,
+    "gitBackup": true,
+    "qmdUpdate": true
+  }
+}

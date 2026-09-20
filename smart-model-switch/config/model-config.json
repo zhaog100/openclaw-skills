@@ -1,0 +1,43 @@
+{
+  "version": "2.1.0",
+  "primary": {
+    "model": "custom-apihub-agnes-ai-com/agnes-2.5-flash",
+    "alias": "agnes"
+  },
+  "fallbacks": [
+    {
+      "model": "sensenova/glm-5.2",
+      "alias": "sensenova",
+      "reason": "免费备用，1M上下文"
+    },
+    {
+      "model": "custom-apihub-agnes-ai-com/agnes-image-2.5-flash",
+      "alias": "agnes-image",
+      "reason": "图片备用"
+    },
+    {
+      "model": "openrouter/nvidia/nemotron-3.5-lightning:free",
+      "alias": "openrouter",
+      "reason": "免费备用，1M上下文"
+    }
+  ],
+  "rules": {
+    "forceFlash": ["你好", "谢谢", "再见", "感谢"],
+    "forceCoding": ["代码", "写代码", "帮我写", "function", "class", "import"],
+    "forceVision": ["图片", "图像", "视频", "看图"],
+    "forceComplex": ["架构", "设计", "分析", "评估", "review"]
+  },
+  "freeModels": [
+    "custom-apihub-agnes-ai-com/agnes-2.5-flash",
+    "custom-apihub-agnes-ai-com/agnes-image-2.5-flash",
+    "custom-apihub-agnes-ai-com/agnes-video-v2.0",
+    "sensenova/sensenova-6.8-flash-lite",
+    "sensenova/glm-5.2",
+    "sensenova/deepseek-v4-flash",
+    "openrouter/nvidia/nemotron-3.5-lightning:free",
+    "openrouter/minimax/minimax-m3:free",
+    "openrouter/inclusionai/ling-3.0-flash-fin:free",
+    "openrouter/liquid/lfm-2.5-2.6b:free",
+    "openrouter/openrouter/free"
+  ]
+}
