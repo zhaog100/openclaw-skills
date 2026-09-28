@@ -182,7 +182,7 @@ async def get_status() -> Dict[str, Any]:
     """获取Context Manager状态"""
     return {
         "framework": "openclaw",
-        "version": "2.7.0",
+        "version": "2.9.0",
         "threshold": 70,
         "cooldown": 3600,
         "mcp_enabled": True

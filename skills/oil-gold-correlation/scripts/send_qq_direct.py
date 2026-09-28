@@ -75,7 +75,7 @@ async def send_message(message: str) -> bool:
                     "maxProtocol": 4,
                     "client": {
                         "id": "cli",
-                        "version": "1.0.0",
+                        "version": "3.5.0",
                         "platform": "linux",
                         "mode": "operator"
                     },

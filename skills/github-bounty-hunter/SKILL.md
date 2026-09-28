@@ -1,11 +1,12 @@
 ---
 name: github-bounty-hunter
-description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v8.0 新增 RustChain 付款确认 + secondary rate limit 策略（2026-08-03）"
-version: 8.0.0
+description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v8.1 新增已合并 PR 催款 + 开放 PR 催审双轨跟进策略（2026-09-28）"
+version: 8.1.0
 author: 思捷娅科技 (SJYKJ)/zhaog100
+lessons_updated: 2026-09-28
 ---
 
-# GitHub Bounty Hunter v8.0.0
+# GitHub Bounty Hunter v8.1
 
 自动化 GitHub 赏金/Grant 接单、开发、提交 PR + 工作区结构化管理。
 
@@ -897,6 +898,54 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 ---
 
 ## 🧠 经验教训库 (持续更新)
+
+### 2026-09-28 RustChain 双轨跟进策略 ⭐⭐⭐
+
+#### 已合并 PR 催款 + 开放 PR 催审双轨策略
+
+RustChain 仓库（Scottcjn/Rustchain）存在两类未完结 PR：
+- **已合并待付款**：Security Audit #2867 PoC (160 RTC)、Genesis Race & Integer Overflow (150 RTC)、Prometheus Metrics Exporter (27 RTC) 等，总计 ~337 RTC
+- **开放待审核**：Silicon Obituary Generator (#8053, 25 RTC, open 34+天)、Prometheus Metrics Exporter (#8039, 27 RTC, open 33+天)
+
+**双轨 Issue 策略**：
+
+| 轨道 | 用途 | 示例 |
+|------|------|------|
+| 催款 Issue | 针对已合并未付款 PR，附合并时间 + PR 链接 | Issue #8512 "Payment Claim Request — 6 Merged PRs (≈337 RTC)" |
+| 催审 Issue | 针对开放无审核 PR，附开放天数 + 审核建议 | Issue #8511 "Review Request: PR #8053 & #8039" |
+
+**14 天超时规则**：
+- 创建 Issue 后，14 天内 maintainer 无回复 → 关闭原 Issue，重新提交新 Issue（避免被忽略）
+- 已合并 PR：关闭催款 Issue → 重新创建，附新证据
+- 开放 PR：关闭催审 Issue → 重新创建，标注已开放天数
+
+**催款 Issue 模板要点**：
+- 标题：`[Payment Claim] Merged PRs Total ~XXX RTC — [repo]`
+- 正文：逐 PR 列出（PR号/标题/合并日期/RTC金额），附证据（截图/API 响应）
+- 附钱包地址（仅在此 Issue 中提供）
+
+**催审 Issue 模板要点**：
+- 标题：`[Review Request] PR #XXXX & #YYYY — Open X days, no activity`
+- 正文：每个 PR 一段说明（做了什么、为什么重要、已开放天数）
+- @maintainer 请求审核
+
+#### GitHub 监控脚本经验
+
+- **payment_checker.py**：检查 BTC/USDT/RTC 到账，调用 RTC gateway API
+- **check_balance.py**：钱包余额 + 交易历史，用于确认付款
+- **二次限速处理**：HTTP 403 + `retry-after: 10` → 等 10-15 分钟，不要死循环重试
+- **Issue 创建规范**：标题带 [标签]，正文附 PR 链接 + 金额 + 证据
+
+#### 平台评估更新（2026-09）
+
+| 平台 | 状态 | 备注 |
+|------|------|------|
+| RustChain (Scottcjn) | P2⚠️ | 合并多但付款延迟，需双轨跟进 |
+| UbiquityOS | P0✅ | 唯一已验证付款 |
+| homelab-stack | 死亡❌ | 42 PR 0 merged |
+
+---
+
 
 ### 2026-08-03 实战经验
 

@@ -1,8 +1,6 @@
 ---
 name: "morning-report"
 description: "生成每日早报（系统状态+PR清单+Bounty进度+邮件+待办），通过QQ推送。含grep -c bug修复经验。"
-version: 1.1.0
-
 ---
 
 # 小米椒早报生成器
@@ -61,6 +59,36 @@ PENDING=$(grep '^pattern' file | wc -l | tr -d ' ')
 - 脚本：`skills/daily-review-assistant/scripts/morning-report.sh`
 - 日志：`skills/daily-review-assistant/logs/morning-report-YYYY-MM-DD.txt`
 - 配置：`skills/daily-review-assistant/.env`（邮箱凭据）
+
+## 🐛 Bug修复记录
+
+### Problem: email-reader.py 邮件读取失败
+**Symptom:** 早报显示"⚠️ 邮件读取失败"，但脚本手动执行正常
+**Root cause:** `email-reader.py` 用 `logging` 输出到 stderr，bash `$()` 只捕获 stdout，`2>/dev/null` 全部吞掉
+**Fix:** 
+```python
+# ❌ 错误：logging默认到stderr，被$()吞掉
+logger.info(f"**未读邮件**: {len(emails)} 封")
+
+# ✅ 正确：print到stdout
+print(f"**未读邮件**: {len(emails)} 封")
+
+# 或者用双Handler分离日志
+_logging_fh_stdout = logging.StreamHandler(sys.stdout)
+_logging_fh_stderr = logging.StreamHandler(sys.stderr)
+logger.addHandler(_logging_fh_stdout)
+logger.addHandler(_logging_fh_stderr)
+```
+
+### Problem: send_qq_msg.py QQ推送失败
+**Symptom:** `NameError: name 'logger' is not defined`
+**Root cause:** 缺少 `import logging`
+**Fix:**
+```python
+import logging  # 必须添加
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+```
 
 ## 🚀 使用方法
 ```bash

@@ -1,5 +1,5 @@
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
-version: 1.2.0
+version: 2.0.0
 # api-test-automation v1.2.0
 
 API 自动化测试技能 — MVP v1.0

@@ -47,3 +47,4 @@ projects/萤火燃天/
 __pycache__/
 *.pyc
 *.pyo
+terminal-ocr/venv/
