@@ -214,6 +214,26 @@ export TWELVE_DATA_API_KEY=your_key
 | v3.3 | 04-24 | 经验教训文档化 + 纯文本报告 v2.1 |
 | v3.4 | 2026-09-10 | 修复 logger.info() 误传参数 Bug + 新增多周期共振分析 |
 | v3.5 | 2026-09-28 | 清理 advisor.py 残留 logger.info(end/flush) 参数（4处），完整报告跑通验证 |
+
+### 八、2026-09-28 使用情况复盘
+
+**数据获取**：akshare 3 个主力品种全部拉通（AU0 4560行 / AG0 3501行 / SC0 2065行），yfinance 仍不可用（腾讯云 IP 限速）。
+
+**报告结果**：
+- 沪金 ¥927.66（50分 观望）— 技术面偏空
+- 沪银 ¥15661.0（41分 观望）— 需求利空
+- 地缘风险 50/50（中）
+- 三品种共振：黄金/白银 30%（低），原油 15%（低）
+
+**踩坑记录**：
+1. **logger 参数残留**：v3.4 声称修复了 `logger.info(end/flush)` bug，但实际有 4 处残留（line 867/894/901/1505）。v3.5 用正则 `re.sub` 批量清理。**教训：修复类 PR 必须 grep 全仓库确认无残留**
+2. **akshare 卡死**：首次跑 `futures_zh_daily_sina` 无超时时会挂住（网络抖动），必须加 `timeout 40` 外层限制
+3. **报告耗时**：完整 advisor.py --days 3 约 90 秒（数据采集 30s + 分析 60s）
+
+**经验总结**：
+- 测试数据获取时逐个品种用 `timeout 40` 包裹，避免一个卡住拖累全局
+- 修复 logger bug 后用 `grep -n "logger\.info\(.*, end=.*"` 复查确认 0 残留
+- 油金 skill 更新后必须 `git commit` + `git push origin main`（远程仓库 `zhaog100/xiaomijiao-skills`）
 | v3.3 | 04-24 | **白银集成** - 支持沪银AG0期货，三资产分析
 
 ### 六、定时推送时间（按市场开收盘）
