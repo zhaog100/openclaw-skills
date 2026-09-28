@@ -48,3 +48,4 @@ __pycache__/
 *.pyc
 *.pyo
 terminal-ocr/venv/
+skills/economic-outlook/cache/
