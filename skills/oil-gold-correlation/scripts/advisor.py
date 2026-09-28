@@ -864,7 +864,7 @@ def generate_daily_report(days=3):
     # --- 阶段1: akshare 国内品种（CNY，最稳定）---
     ak_names = {k: v for k, v in INSTRUMENTS.items() if v.get("source") == "akshare"}
     for name, info in ak_names.items():
-        logger.info(f"  [akshare] 获取 {name}...", end=" ", flush=True)
+        logger.info(f"  [akshare] 获取 {name}...")
         try:
             ak_key = info.get("ak_key", "")
             df = _fetch_akshare_single(ak_key, "90d")
@@ -891,14 +891,14 @@ def generate_daily_report(days=3):
         yf_symbols = {k: v["symbol"] for k, v in yf_names.items()}
         unique_syms = list(set(yf_symbols.values()))
 
-        logger.info("  [yfinance] 批量下载国际品种...", flush=True)
+        logger.info("  [yfinance] 批量下载国际品种...")
         batch_3mo = batch_download(unique_syms, period="3mo", interval="1d")
         time.sleep(1)
         batch_1y = batch_download(unique_syms, period="1y", interval="1d")
 
         for name, info in yf_names.items():
             sym = info["symbol"]
-            logger.info(f"  [yfinance] 分析 {name}...", end=" ", flush=True)
+            logger.info(f"  [yfinance] 分析 {name}...")
             try:
                 sr = analyze_short_term(sym, days, batch_data=batch_3mo)
                 if sr:
@@ -1502,7 +1502,7 @@ def run_advisor_akshare(days=3):
 
     results = {}
     for name in INSTRUMENTS:
-        logger.info(f"  分析 {name}...", end=" ", flush=True)
+        logger.info(f"  分析 {name}...")
         try:
             r = _analyze_instrument(name, period="90d", horizon=days)
             if r:
