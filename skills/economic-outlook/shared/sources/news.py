@@ -47,8 +47,22 @@ SOURCES = {
     "统计局": {"url": "https://www.stats.gov.cn/", "type": "data", "desc": "社零/失业率→补招聘指数"},
     "上交所": {"url": "https://www.sse.com.cn/", "type": "data", "desc": "股票/ETF资金流→补东财被挡"},
     "外汇局": {"url": "https://www.safe.gov.cn/", "type": "data", "desc": "汇率/外储→补人民币维度"},
+    "金融监管总局": {"url": "https://www.nfra.gov.cn/", "type": "data", "desc": "贷款/信用（门户占位）"},
     # === 大宗数据 ===
     "上海有色": {"url": "https://www.shmet.com/", "type": "commodity", "desc": "金属大宗价格"},
+    # === 海外央行/数据（交叉验证美联储/外需）===
+    "美联储官网": {"url": "https://www.federalreserve.gov/", "type": "policy", "desc": "美联储利率/外需"},
+    "IMF": {"url": "https://www.imf.org/", "type": "data", "desc": "全球经济数据"},
+    "世界银行": {"url": "https://www.worldbank.org/", "type": "data", "desc": "发展/经济数据"},
+    # === 财经媒体补充（多源交叉，更多视角）===
+    "第一财经": {"url": "https://www.yicai.com/", "type": "news", "desc": "财经要闻"},
+    "经济日报": {"url": "http://www.ce.cn/", "type": "news", "desc": "官方财经"},
+    "澎湃财经": {"url": "https://www.thepaper.cn/channel_26934.htm", "type": "news", "desc": "财经时政"},
+    "界面新闻": {"url": "https://www.jiemian.com/", "type": "news", "desc": "财经"},
+    "中国基金报": {"url": "https://www.chnfund.com/", "type": "news", "desc": "基金/资管"},
+    "证券时报": {"url": "https://www.stcn.com/", "type": "news", "desc": "证券"},
+    # === 研报（占位，能采多少采多少，不通降级）===
+    "东方财富研报": {"url": "https://data.eastmoney.com/report/", "type": "research", "desc": "研报（占位）"},
 }
 
 # 政策/经济关键词（用于从快讯里筛出与经济决策相关的条目）
