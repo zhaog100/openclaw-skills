@@ -1,20 +1,25 @@
-# 数据源统一封装（PRD §15）— 迁移时改这里
+# 数据源统一封装（PRD §15 + 真实采集文档）— 迁移时改这里
 sources:
-  - name: stats_gov
+  # 官方源（shared/sources/ 适配器）
+  - name: nbs
     type: official
-    base_url: "https://data.stats.gov.cn"
+    base_url: "https://data.stats.gov.cn/dg/website/publicrelease/web/external"
+    auth: none
     indicators: ["gdp", "cpi", "ppi", "社零", "固投", "失业率"]
   - name: customs
     type: official
-    base_url: "http://www.customs.gov.cn"
-    indicators: ["出口", "进口"]
-  - name: pbc
+    base_url: "http://stats.customs.gov.cn"
+    auth: cookie
+    indicators: ["出口", "出口_美国", "出口_欧盟"]
+  - name: pboc
     type: official
-    base_url: "http://www.pbc.gov.cn"
-    indicators: ["m1", "m2", "社融", "lpr", "shibor"]
+    base_url: "https://www.pbc.gov.cn"
+    auth: none
+    indicators: ["社融", "m1", "m2"]
+  # 本机主力（免费稳定）
   - name: akshare
     type: third_party
-    note: "当前本机主力数据源（免费）"
+    note: "当前本机主力数据源"
     indicators: ["gdp", "cpi", "ppi", "pmi", "m2", "社融", "出口", "进口",
                  "社零", "固投", "地产", "失业率", "lpr", "国债", "外汇储备",
                  "gold", "silver", "美国pmi", "美国cpi"]
@@ -25,5 +30,13 @@ sources:
     indicators: ["行业景气", "估值", "资金流"]
   - name: recruitment
     type: third_party
-    api_key: "${RECRUIT_API_KEY}"
+    api_key: "${RECRUITMENT_API_KEY}"
     indicators: ["招聘岗位", "薪资"]
+
+# 采集参数
+collection:
+  retry: 3
+  timeout: 30
+  sleep_between: 0.5
+  default_start: "202001"
+  default_end: "202609"

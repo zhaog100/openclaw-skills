@@ -3,12 +3,12 @@
 ---
 name: economic-outlook
 description: "经济形势综合分析：多源宏观数据 + 政策引擎 + 多维评分 + 半年/1年/2年三情景预测。周报推送 QQ。"
-version: 3.2.0
+version: 3.3.0
 author: 小米椒 🌶️
 lessons_updated: 2026-09-28
 ---
 
-# 经济形势综合分析 v3.2（完整对齐 PRD V2.0 目录结构 + 1+N 架构）
+# 经济形势综合分析 v3.3（PRD V2.0 + 官方源真实采集适配器层）
 
 综合国内宏观 + 货币政策 + 房地产 + 网络经济 + 金银价格，输出未来 半年/1年/2年 经济形势三情景预测。
 
@@ -265,3 +265,30 @@ economic-outlook/
 - 合规 `filter_output` 递归过滤（yaml 规则驱动）✅
 - 缓存 `cache_get/cache_set`（官方数据发布后更新一次）✅
 - 3 个测试全 PASS ✅
+
+
+## v3.3 官方源真实采集（接国家统计局/海关/央行）
+
+新增 `shared/sources/` 适配器包（适配器模式，官方源不可用时优雅降级 akshare）：
+
+```
+shared/sources/
+├── __init__.py    # 统一出口 SourceRouter（指标→适配器路由，失败返回空）
+├── base.py        # BaseAdapter + DataPoint（统一数据点格式）
+├── nbs.py         # 国家统计局（新版 V2.0 API，UUID cid 待填充）
+├── customs.py     # 海关总署（模拟表单，Cookie，412 容错）
+└── pboc.py        # 央行（社融三级跳 xls；M2 走 akshare 代理）
+```
+
+**设计要点**（按官家采集文档）：
+- 每个官方源独立适配器，统一输出 `list[DataPoint]`，`core/data_loader` 不感知底层差异
+- `config/sources.yaml` 配置指标走哪个适配器 + 采集参数（retry/timeout/sleep）
+- 礼貌采集：`_sleep(0.5)` + 3 次重试
+- **降级策略**：官方源（cid 未填/412/结构变动）失败 → 返回空，主流程仍走 akshare 21 源
+
+**现状（如实）**：
+- NBS：`PRESET_CIDS` 的 cid/indicatorId 是 UUID 占位，需实际调 `queryIndexTreeAsync` 后填入 `config`（时间分片指标要多个 cid 拼接）
+- 海关：`stats.customs.gov.cn` 实测返回 412（反爬），需真实 Cookie/代理才能拿到数
+- 央行：社融三级跳代码已实现，M2 走 akshare 代理稳定
+
+`tests/test_sources.py` 验证适配器不崩（PASS）。
