@@ -106,7 +106,67 @@ def show_meta():
     return data
 
 
+def collect_realtime_policy() -> dict:
+    """多源并行采集当天政策/经济事件（新华社/金十/华尔街见闻/新浪/公众号/官方/大宗）。
+
+    返回: {events: [{text, sources, confidence}], coverage, collected, failed}
+    单个源失败不影响整体，去重交叉验证。
+    """
+    try:
+        from shared.sources.news import collect_all, format_report
+    except Exception as e:
+        logging.warning(f"多源采集器不可用: {e}")
+        return {"events": [], "coverage": "0", "error": str(e)}
+
+    result = collect_all()
+    events = []
+    for ev in result.get("events", []):
+        events.append({
+            "title": ev.get("text", ""),
+            "date": result.get("date", ""),
+            "category": "实时政策",
+            "direction": "+",
+            "source": "/".join(ev.get("sources", [])[:3]),
+            "confidence": ev.get("confidence", "single"),
+            "keywords": ev.get("keywords", []),
+        })
+    return {
+        "events": events,
+        "coverage": result.get("coverage", "?"),
+        "collected": result.get("collected", []),
+        "failed": result.get("failed", {}),
+        "cross_verified": result.get("stats", {}).get("cross_verified", 0),
+    }
+
+
+def append_realtime_events(max_events: int = 20) -> dict:
+    """把多源采集的当天事件去重后追加进 policy_timeline.json（动态化）。"""
+    data = ensure_meta()
+    rt = collect_realtime_policy()
+    if rt.get("error"):
+        return {"skipped": True, "reason": rt["error"]}
+
+    events = data.get("events", [])
+    existing = {e.get("title", "") for e in events}
+    added = 0
+    for ev in rt.get("events", [])[:max_events]:
+        if ev["title"] in existing:
+            continue
+        events.append(ev)
+        existing.add(ev["title"])
+        added += 1
+
+    data["last_updated"] = datetime.now().strftime("%Y-%m-%d")
+    data["realtime_sources"] = rt.get("collected", [])
+    data["realtime_coverage"] = rt.get("coverage", "?")
+    with open(POLICY_FILE, "w") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    return {"added": added, "total": len(events),
+            "coverage": rt.get("coverage"), "cross_verified": rt.get("cross_verified", 0)}
+
+
 if __name__ == "__main__":
+
     if len(sys.argv) > 1 and sys.argv[1] == "--fetch":
         update_policy_timeline(force_note="每月自动抓取（拉不到则保持原事件，仅刷新元信息）")
     else:

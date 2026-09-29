@@ -85,6 +85,23 @@ def generate_weekly_report() -> str:
         conflicts.extend(o.get("conflicts", []))
     risk_block = "\n".join(f"  ⚠️ {c}" for c in conflicts) if conflicts else "  无显著冲突"
 
+    # 今日重大政策事件（多源实时采集）
+    policy_block = ""
+    try:
+        import policy_updater
+        rt = policy_updater.collect_realtime_policy()
+        evs = rt.get("events", [])
+        if evs:
+            top = [e for e in evs if e.get("confidence") == "high"] or evs
+            lines = []
+            for e in top[:8]:
+                conf = "多源✓" if e.get("confidence") == "high" else "单源"
+                lines.append(f"  · {e.get('title','')[:40]}（{e.get('source','?')}，{conf}）")
+            policy_block = ("\n├── 今日重大政策事件（多源实时）:\n" + "\n".join(lines)
+                           + f"\n  覆盖 {rt.get('coverage','?')}")
+    except Exception:
+        policy_block = "\n├── 今日重大政策事件: 多源采集不可用（跳过）"
+
     text = f"""【宏观周报】{datetime.now().strftime('%Y-%m-%d')}
 ├── 状态向量: {state_vec}
 ├── 信号层:
@@ -96,6 +113,7 @@ def generate_weekly_report() -> str:
 {out_block}
 └── 风险提示:
 {risk_block}
+{policy_block}
 
 ⚠️ 宏观信号参考，不构成投资建议/商业决策。
 """
