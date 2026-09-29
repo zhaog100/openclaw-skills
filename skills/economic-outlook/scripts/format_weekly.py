@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "signals"))
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 
 
-def generate_weekly() -> str:
+def generate_weekly_report() -> str:
     """生成 3.5 固定格式周报。"""
     from signals.aggregator import SignalAggregator
     from signals.comprehensive_output import generate_comprehensive_report
@@ -39,14 +39,15 @@ def generate_weekly() -> str:
     signals = rep["signals"]
     outcomes = rep["outcomes"]
 
-    # 状态向量（从画像取关键指标）
-    cpi = profile.get("_cpi", "N/A")
-    pmi = profile.get("_pmi", "N/A")
-    credit = profile.get("_credit_impulse", "N/A")
-    spread = profile.get("_spread_10y", "N/A")
-    export = profile.get("_export_yoy", "N/A")
-    policy = profile.get("_policy_score", "N/A")
-    state_vec = f"GDP 4.6 | CPI {cpi}% | M1 4.0 | PMI {pmi} | 出口 {export}% | 利差 {spread}% | 信用脉冲 {credit}"
+    # 状态向量（文档 D.2：GDP/CPI 双年对比 + 8Q 情景）
+    state_vec = ""
+    try:
+        from core.state_vector import build_state_vector
+        sv = build_state_vector()
+        gdp = sv.get("gdp", sv.get("dimensions", {}).get("gdp", {}))
+        state_vec = f"综合评分 {sv.get('total_score', 'N/A')}/100 | 8季度预测 Q1-Q8 | horizon 8Q"
+    except Exception:
+        state_vec = f"CPI {profile.get('_cpi', 'N/A')}% | PMI {profile.get('_pmi', 'N/A')} | 出口 {profile.get('_export_yoy', 'N/A')}% | 利差 {profile.get('_spread_10y', 'N/A')}% | 信用脉冲 {profile.get('_credit_impulse', 'N/A')}"
 
     # 信号层（8 个方向 + 强度）
     sig_lines = []
@@ -54,18 +55,21 @@ def generate_weekly() -> str:
         sig_lines.append(f"  {v['name']}: {v['summary']}")
     sig_block = "\n".join(sig_lines)
 
-    # 历史类比
-    bm = analogy["best_match"]
-    sm = analogy.get("second_match") or {}
-    analogy_line = f"当前最像 [{bm['anchor']}]（{bm['match_rate']:.0%} 匹配）→ {bm['outcome']}"
-    if sm.get("anchor"):
-        analogy_line += f"\n  次相似: [{sm['anchor']}]（{sm['match_rate']:.0%}）"
+    # 历史类比（新引擎：A-E 锚点 + 余弦相似度 + 后续资产）
+    raw = analogy.get("raw", {})
+    bm = raw.get("best_match", analogy["best_match"])
+    sm = (raw.get("all_matches", [])[1]) if len(raw.get("all_matches", [])) > 1 else None
+    ret = bm.get("subsequent_returns", {})
+    analogy_line = f"当前最像 锚点{bm.get('code', bm.get('anchor', '?'))}（相似度 {bm.get('similarity', bm.get('match_rate', 0)):.0%}，历史区间 {bm.get('historical_period', '?')}）"
+    analogy_line += f"\n  后续参考: 周期{ret.get('stock_cyclical', 0):+.1%} 防御{ret.get('stock_defensive', 0):+.1%} 债券{ret.get('bond', 0):+.1%} 大宗{ret.get('commodity', 0):+.1%} 人民币{ret.get('rmb', 0):+.1%}"
+    if sm:
+        analogy_line += f"\n  次相似: 锚点{sm.get('code', '?')}（{sm.get('similarity', 0):.0%}）"
 
-    # 触发器（4 场景）
+    # 触发器（4 场景，仓位量化）
     trig_lines = []
     for k in ["加仓", "减仓", "切换", "观望"]:
         a = actions.get(k, {})
-        trig_lines.append(f"  {a.get('status', '?')} {k}: {a.get('condition', '')} → {a.get('action', '')}")
+        trig_lines.append(f"  {a.get('status', '?')} {k}: {a.get('condition', '')} → {a.get('action', '')}（仓位 {a.get('position_change', 0):+d}% → {a.get('target_position', 60):.0f}%）")
     trig_block = "\n".join(trig_lines)
 
     # 决策出口（6 出口评分）
@@ -99,7 +103,7 @@ def generate_weekly() -> str:
 
 
 def main():
-    print(generate_weekly())
+    print(generate_weekly_report())
 
 
 if __name__ == "__main__":

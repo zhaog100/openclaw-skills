@@ -45,13 +45,13 @@ def route(query, force=None):
     modules = {'macro': state}
 
     if 'stock' in valid:
-        modules['stock'] = comp.filter_result(stock.map(state), 'stock')
+        modules['stock'] = comp.filter_result(stock.map_stock(), 'stock')
     if 'fund' in valid:
-        modules['fund'] = comp.filter_result(fund.map(state), 'fund')
+        modules['fund'] = comp.filter_result(fund.map_fund(), 'fund')
     if 'startup' in valid:
-        modules['startup'] = comp.filter_result(startup.map(state), 'startup')
+        modules['startup'] = comp.filter_result(startup.map_startup(), 'startup')
     if 'employment' in valid:
-        modules['employment'] = comp.filter_result(employment.map(state), 'employment')
+        modules['employment'] = comp.filter_result(employment.map_employment(), 'employment')
 
     import shared.formatters as fmt
     lines = [f"📊 宏观经济（综合 {state.get('total_score')} 分，8季度: "

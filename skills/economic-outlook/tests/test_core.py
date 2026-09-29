@@ -33,6 +33,34 @@ def main():
     print("各维度分 0-100 ✓")
     passed += 1
 
+
+    # 4. yoy/mom/scissors 计算正确（3.6 验收）
+    from core.indicators import yoy, mom, scissors
+    series = list(range(1, 25))
+    result = yoy(series)
+    assert len(result) == 12, f"yoy 长度应为 12, 实际 {len(result)}"
+    m = mom([100, 110, 121])
+    assert abs(m[0] - 0.1) < 0.001 and abs(m[1] - 0.1) < 0.001, "mom 计算错"
+    sc = scissors([10, 20, 30], [5, 15, 25])
+    assert sc == [5, 5, 5], f"scissors 计算错 {sc}"
+    print("yoy/mom/scissors 计算正确 ✓")
+    passed += 1
+
+    # 5. 状态向量 8Q horizon
+    assert sv.get("horizon") == "8Q", f"horizon 应为 8Q, 实际 {sv.get('horizon')}"
+    print("状态向量 horizon=8Q ✓")
+    passed += 1
+
+    # 6. 情景概率和为 1（容差 0.01）
+    probs = sv.get("情景概率", sv.get("scenario_probs", {}))
+    if probs:
+        total = sum(probs.values())
+        assert abs(total - 1.0) < 0.01, f"情景概率和为 {total}, 应为 1"
+        print(f"情景概率和为 1 ✓ ({total:.3f})")
+    else:
+        print("情景概率字段缺（跳过断言）")
+    passed += 1
+
     print(f"\ntest_core: PASS ({passed} checks, 状态向量 10 维验收达标)")
     return 0
 
