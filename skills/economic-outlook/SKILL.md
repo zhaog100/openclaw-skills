@@ -3,12 +3,12 @@
 ---
 name: economic-outlook
 description: "经济形势综合分析：多源宏观数据 + 政策引擎 + 多维评分 + 半年/1年/2年三情景预测。周报推送 QQ。"
-version: 3.0.0
+version: 3.1.0
 author: 小米椒 🌶️
 lessons_updated: 2026-09-28
 ---
 
-# 经济形势综合分析 v3.0（1+N 架构，对齐 PRD V2.0）
+# 经济形势综合分析 v3.1（1+N 架构，对齐 PRD V2.0）
 
 综合国内宏观 + 货币政策 + 房地产 + 网络经济 + 金银价格，输出未来 半年/1年/2年 经济形势三情景预测。
 
@@ -44,7 +44,7 @@ lessons_updated: 2026-09-28
 | 外部平衡 | 外汇储备 | `macro_china_fx_reserves_yearly` | 132 |
 | 金融条件 | 10年期国债收益率 | `bond_china_yield` | 738 |
 
-**v2.0 说明（按 PRD V1.0 扩展）**：数据源 15 → 19，维度 8 → 10，预测 horizon 3（半年/1年/2年）→ **8 个季度**。
+**v2.0 说明（按 PRD V1.0 扩展）**：数据源 15 → 21（含美国 PMI/CPI 外需领先指标），维度 8 → 10，预测 horizon 3（半年/1年/2年）→ **8 个季度**。
 
 **政策数据**：`data/policy_timeline.json`（建国以来核心政策节点人工整理，官家可补充）
 
@@ -210,13 +210,17 @@ python3 scripts/retail_price_on_demand.py --category 食品类  # 指定类
 - `config/thresholds.json` + `config/model_params.json` — 配置外置（迁移只改这里）
 - `requirements.txt` — 依赖声明
 
-### 调用方式（单入口）
+### 调用方式（单入口，flag 强制触发映射模块）
 ```bash
-python3 entry.py "未来经济走势"            # 纯宏观
-python3 entry.py "股市和行业怎么看" --stock
-python3 entry.py "适合创业吗" --startup
-python3 entry.py "什么行业好就业" --employment
+python3 entry.py "未来经济走势"                # 纯宏观
+python3 entry.py "股市和行业怎么看" --stock     # 强制股票映射
+python3 entry.py "适合创业吗" --startup          # 强制创业映射
+python3 entry.py "什么行业好就业" --employment  # 强制就业映射
+# flag 可与 query 关键词叠加，合规过滤始终生效
 ```
+
+**意图路由说明**：`--flag` 通过 `force` 参数直接指定映射模块，与 query 关键词（宏观/股票/基金/创业/就业）合并命中；
+"行业"等词已收窄为"行业景气/行业配置"避免误判。
 
 ### 合规边界（PRD §10）
 - 股票：不推个股、不给买卖点

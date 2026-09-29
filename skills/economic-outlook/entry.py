@@ -9,11 +9,12 @@ sys.path.insert(0, BASE_DIR)
 
 from router import route
 
+VALID_FLAGS = {'stock', 'fund', 'startup', 'employment'}
+
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    flags = [a for a in sys.argv[1:] if a.startswith('--')]
+    flags = set(a.lstrip('-') for a in sys.argv[1:] if a.startswith('--'))
     query = " ".join(args) if args else "未来经济走势"
-    for f in flags:
-        query += " " + f.lstrip('-').replace('_', '')
-    r = route(query)
+    force = flags & VALID_FLAGS  # flag 强制触发对应映射模块
+    r = route(query, force=force)
     print(r['text'])

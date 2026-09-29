@@ -13,10 +13,10 @@ import stock, fund, startup, employment
 import compliance as comp
 
 INTENTS = {
-    'stock': [r'股票', r'股市', r'行业', r'景气', r'板块', r'个股'],
-    'fund': [r'基金', r'债', r'配置', r'股债'],
-    'startup': [r'创业', r'融资', r'机会'],
-    'employment': [r'就业', r'求职', r'招聘', r'薪资', r'岗位'],
+    'stock': [r'股票', r'股市', r'板块', r'个股', r'景气', r'行业配置', r'行业景气'],
+    'fund': [r'基金', r'股债', r'资产配置', r'债配'],
+    'startup': [r'创业', r'融资', r'投资方向'],
+    'employment': [r'就业', r'求职', r'招聘', r'薪资', r'岗位', r'行业好就业', r'哪个行业.*就业'],
     'macro': [r'经济', r'宏观', r'GDP', r'CPI', r'预测', r'走势', r'形势'],
 }
 
@@ -29,21 +29,24 @@ def detect_intents(query):
     return hits
 
 
-def route(query):
+def route(query, force=None):
     """
     路由入口：返回 { 'state': 宏观向量, 'modules': {意图: 合规过滤后结果}, 'text': 纯文本 }
+    force: 显式指定要触发的映射模块集合（来自 CLI flag），与 query 关键词合并
     """
-    intents = detect_intents(query) or {'macro'}
+    intents = set(force or set()) | (detect_intents(query) & set(INTENTS))
+    # 映射模块白名单（macro 不是映射模块，状态向量始终返回）
+    valid = intents & {'stock', 'fund', 'startup', 'employment'}
     state = state_vector.build_state_vector()
     modules = {'macro': state}
 
-    if 'stock' in intents:
+    if 'stock' in valid:
         modules['stock'] = comp.filter_result(stock.map(state), 'stock')
-    if 'fund' in intents:
+    if 'fund' in valid:
         modules['fund'] = comp.filter_result(fund.map(state), 'fund')
-    if 'startup' in intents:
+    if 'startup' in valid:
         modules['startup'] = comp.filter_result(startup.map(state), 'startup')
-    if 'employment' in intents:
+    if 'employment' in valid:
         modules['employment'] = comp.filter_result(employment.map(state), 'employment')
 
     import shared.formatters as fmt

@@ -234,6 +234,28 @@ def fetch_bond_yield():
     return df
 
 
+def fetch_usa_pmi():
+    """美国 ISM 制造业 PMI（外需领先指标）"""
+    c = _load_cache('usa_pmi')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_usa_pmi()
+    _save_cache('usa_pmi', df)
+    return df
+
+
+def fetch_usa_cpi():
+    """美国 CPI 同比（外部金融条件）"""
+    c = _load_cache('usa_cpi')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_usa_cpi_yoy()
+    _save_cache('usa_cpi', df)
+    return df
+
+
 def fetch_all(timeout=180):
     """拉取全部数据源（带超时保护），返回 dict"""
     import concurrent.futures
@@ -247,6 +269,7 @@ def fetch_all(timeout=180):
         'retail': fetch_retail, 'insurance': fetch_insurance,
         'exports': fetch_exports, 'imports': fetch_imports,
         'fx_reserves': fetch_fx_reserves, 'bond_yield': fetch_bond_yield,
+        'usa_pmi': fetch_usa_pmi, 'usa_cpi': fetch_usa_cpi,
     }
     result = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
