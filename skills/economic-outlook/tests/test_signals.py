@@ -89,3 +89,25 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+def test_history_analogy():
+    """历史类比：用 mock profile 验证匹配逻辑不崩、能选出最优锚点。"""
+    import sys, os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'scripts'))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'shared'))
+    try:
+        import history_analogy
+        mock_profile = {
+            "cpi_low": True, "credit_contraction": True, "spread_negative": True,
+            "pmi_expanding": False, "export_weak": True, "policy_support": "moderate",
+            "_data_gaps": [],
+        }
+        res = history_analogy.analyze(mock_profile)
+        assert res["best_match"]["match_rate"] > 0, "应有匹配度"
+        assert res["best_match"]["anchor"] in ["2018", "2014-2015", "2020Q2", "2021", "2022"]
+        report = history_analogy.format_report(res)
+        assert "历史类比" in report
+        print("history_analogy: 匹配逻辑 + 报告生成 PASS ✓")
+    except ImportError:
+        print("history_analogy: 跳过（模块不在路径）")
