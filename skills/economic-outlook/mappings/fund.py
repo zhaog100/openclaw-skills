@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+经济分析 Skill — 基金映射（股债性价比，合规不推具体基金）
+
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 """基金映射（FR-13 资产配置）：股债性价比参考，合规不推具体基金"""
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

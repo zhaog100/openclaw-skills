@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+经济分析 Skill — 创业映射（行业/时机评分，不承诺成功）
+
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 """创业映射（FR-14 机会评分）：行业/时机参考，合规不承诺成功"""
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

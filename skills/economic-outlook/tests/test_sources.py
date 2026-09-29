@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+经济分析 Skill — 数据源适配器测试
+
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 """数据源适配器测试（PRD 文档 §十一）"""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

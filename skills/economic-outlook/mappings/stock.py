@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+经济分析 Skill — 股票映射（行业景气/风格，合规不推个股）
+
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 """股票映射（FR-12 行业景气）：宏观状态 → 行业景气/风格参考，合规不推个股"""
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

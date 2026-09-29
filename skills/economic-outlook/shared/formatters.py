@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+经济分析 Skill — 输出格式化（映射结果转纯文本）
+
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 """输出格式化（FR-07/FR-09）：把映射结果转纯文本"""
 
 

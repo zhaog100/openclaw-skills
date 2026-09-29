@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+经济分析 Skill — 意图路由（关键词识别 宏观/股票/基金/创业/就业）
+
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 """意图路由（PRD §7）：关键词识别 宏观/股票/基金/创业/就业，并行调用映射模块"""
 import os, sys, re, logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
