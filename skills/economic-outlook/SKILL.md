@@ -3,7 +3,7 @@
 ---
 name: economic-outlook
 description: "经济形势综合分析：多源宏观数据 + 政策引擎 + 多维评分 + 半年/1年/2年三情景预测。周报推送 QQ。"
-version: 1.0.0
+version: 1.1.0
 author: 小米椒 🌶️
 lessons_updated: 2026-09-28
 ---
@@ -32,6 +32,11 @@ lessons_updated: 2026-09-28
 | 利率 | SHIBOR | `macro_china_shibor_all` | 2376 |
 | 利率 | LPR（货币政策核心） | `macro_china_lpr` | 1576 |
 | 房地产 | 商品房销售/房价 | `macro_china_real_estate` | 326 |
+| 房价 | 70城新房/二手房指数 | `macro_china_new_house_price` | 376 |
+| 就业 | 城镇调查失业率 | `macro_china_urban_unemployment` | 306 |
+| 消费 | 社零 | `macro_china_consumer_goods_retail` | 209 |
+| 社保 | 社保基金收支 | `macro_china_insurance_income` | 265 |
+| 城镇消费 | CPI 城市分项（城镇消费价格指数） | `macro_china_cpi`（城市-同比列） | 224 |
 | 金银 | 沪金 AU0 | `futures_zh_daily_sina` | 4561 |
 | 金银 | 沪银 AG0 | `futures_zh_daily_sina` | 3502 |
 
@@ -54,16 +59,18 @@ economic-outlook/
 └── cache/                      # 数据缓存 + 报告输出
 ```
 
-## 六维加权评分
+## 八维加权评分（v1.1）
 
 | 维度 | 权重 | 逻辑 |
 |------|------|------|
-| 货币流动性 | 25% | M2 增速 + LPR 降息方向 |
-| 景气 | 20% | PMI 水平 + 近 3 月趋势 |
-| 房地产 | 15% | 商品房销售 + 房价 1 年涨跌幅 |
-| 通胀 | 15% | CPI/PPI（温和通胀最优，通缩/过热扣分） |
-| 金银信号 | 10% | 沪金/沪银 60 日趋势（避险/通胀预期） |
+| 货币流动性 | 20% | M2 增速 + LPR 降息方向 |
+| 景气 | 15% | PMI 水平 + 近 3 月趋势 |
+| 房地产 | 15% | 70城房价指数 + 商品房销售 |
+| 通胀 | 12% | CPI/PPI（温和通胀最优，通缩/过热扣分） |
+| 金银信号 | 8% | 沪金/沪银 60 日趋势（避险/通胀预期） |
 | 政策 | 15% | 政策事件情绪 + 时间衰减 |
+| 就业 | 10% | 城镇调查失业率（≤5% 健康，>7% 承压） |
+| 消费 | 5% | 社零累计同比 + 城镇消费价格指数 |
 
 ## 预测逻辑（半年/1年/2年）
 

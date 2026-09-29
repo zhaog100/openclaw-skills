@@ -61,6 +61,53 @@ def _latest_silver(data):
     return {}
 
 
+def _latest_unemployment(data):
+    un = data.get('unemployment')
+    if un is not None and len(un):
+        try:
+            row = un[un['value'].notna()].iloc[-1] if 'value' in un.columns else un.iloc[-1]
+            return {'val': row.get('value', row.iloc[2])}
+        except Exception:
+            pass
+    return {}
+
+
+def _latest_retail(data):
+    r = data.get('retail')
+    if r is not None and len(r):
+        # 数据倒序，最新在 head
+        row = r.iloc[0]
+        yoy = row.get('累计-同比增长')
+        if yoy is None:
+            yoy = row.get('同比增长')
+        return {'yoy': yoy}
+    return {}
+
+
+def _latest_urban_cpi(data):
+    """城镇消费价格指数（CPI 城市-同比）"""
+    cpi = data.get('cpi')
+    if cpi is not None and len(cpi) and '城市-同比增长' in cpi.columns:
+        return {'yoy': cpi.iloc[0].get('城市-同比增长', None),
+                'month': str(cpi.iloc[0].get('月份', ''))[:10]}
+    return {}
+
+
+def _latest_house(data):
+    hp = data.get('house_price')
+    if hp is not None and len(hp):
+        try:
+            latest_month = hp['日期'].max()
+            latest = hp[hp['日期'] == latest_month]
+            return {
+                'new_yoy': latest['新建商品住宅价格指数-同比'].mean() if '新建商品住宅价格指数-同比' in latest.columns else None,
+                'month': str(latest_month)[:7],
+            }
+        except Exception:
+            return {}
+    return {}
+
+
 def generate_report(push=True):
     """生成完整报告，返回纯文本"""
     t0 = datetime.now()
@@ -72,7 +119,7 @@ def generate_report(push=True):
     # 2. 政策分析
     policy = policy_engine.analyze_policy()
 
-    # 3. 多维评分
+    # 3. 多维评分（8 维度）
     scores = macro_model.compute_macro_scores(data, policy['score'])
 
     # 4. 预测
@@ -90,9 +137,11 @@ def generate_report(push=True):
     lines.append("【各维度评分】")
     dim_names = {'liquidity': '🏦 货币流动性', 'sentiment': '📈 景气',
                  'real_estate': '🏠 房地产', 'inflation': '💰 通胀',
-                 'gold_silver': '🥇 金银信号', 'policy': '📜 政策'}
+                 'gold_silver': '🥇 金银信号', 'policy': '📜 政策',
+                 'employment': '👥 就业', 'consumption': '🛒 消费'}
     for k, name in dim_names.items():
-        lines.append(f"  {name} {scores[k]:>3} {_bar(scores[k])}")
+        if k in scores:
+            lines.append(f"  {name} {scores[k]:>3} {_bar(scores[k])}")
 
     # 关键数据
     cpi = _latest_cpi(data)
@@ -107,6 +156,26 @@ def generate_report(push=True):
         pmi_v = pmi['val']
         state = '扩张' if pmi_v >= 50 else '收缩'
         lines.append(f"  📈 制造业 PMI {pmi_v}（{state}）")
+    un = _latest_unemployment(data)
+    if un:
+        try:
+            uv = float(un['val'])
+            label = '健康' if uv <= 5 else ('偏高' if uv <= 7 else '承压')
+            lines.append(f"  👥 城镇调查失业率 {uv}%（{label}）")
+        except Exception:
+            pass
+    ret = _latest_retail(data)
+    if ret.get('yoy') is not None:
+        lines.append(f"  🛒 社零累计同比增长 {ret['yoy']}%")
+    uc = _latest_urban_cpi(data)
+    if uc.get('yoy') is not None:
+        lines.append(f"  🏙️ 城镇消费价格(CPI)同比 {uc['yoy']}%（{uc.get('month','')}）")
+    hp = _latest_house(data)
+    if hp.get('new_yoy') is not None:
+        try:
+            lines.append(f"  🏠 70城新房价格指数同比 {float(hp['new_yoy']):.1f}（{hp.get('month','')}，100=持平）")
+        except Exception:
+            pass
     if gold:
         lines.append(f"  🥇 沪金 {gold['price']}（60日 {gold['chg_60d']:+.1f}%）")
     if silver:

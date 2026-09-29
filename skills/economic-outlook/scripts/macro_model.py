@@ -104,8 +104,33 @@ def score_sentiment(data):
 
 
 def score_real_estate(data):
-    """房地产（商品房销售 + 房价指数）→ 0-100"""
+    """房地产（商品房销售 + 70城房价 + 房价指数）→ 0-100"""
     score = 50
+    # 1) 70城新房价格同比
+    hp = data.get('house_price')
+    if hp is not None and len(hp):
+        # 取最新月份，算全国平均（指数 100 为持平，<100 下跌，>100 上涨）
+        try:
+            latest_month = hp['日期'].max()
+            latest = hp[hp['日期'] == latest_month]
+        except Exception:
+            latest = hp.tail(70)
+        for col in ['新建商品住宅价格指数-同比', '二手住宅价格指数-同比']:
+            if col in latest.columns:
+                avg_v = latest[col].mean()  # 全国 70 城平均
+                v = avg_v
+                if pd.notna(v):
+                    v = float(v)
+                    # 指数 100 = 持平，>101 上涨，<99 下跌
+                    if v > 101:
+                        score = max(score, 70)
+                    elif v >= 99:
+                        score = max(score, 50)
+                    elif v >= 97:
+                        score = min(score, 40)
+                    else:
+                        score = min(score, 25)
+    # 2) 商品房销售指数
     re_df = data.get('real_estate')
     if re_df is not None and len(re_df) > 13:
         # macro_china_real_estate 有 '近1年涨跌幅' 列
@@ -172,11 +197,76 @@ def score_gold_silver(data):
     return max(0, min(100, score))
 
 
+def score_employment(data):
+    """就业（城镇调查失业率）→ 0-100"""
+    score = 50
+    un = data.get('unemployment')
+    if un is not None and len(un):
+        # 最新值
+        try:
+            latest = un[un['value'].notna()].iloc[-1]['value'] if 'value' in un.columns else un.iloc[-1].iloc[2]
+            latest = float(latest)
+            # 5.5% 以下健康，6-7 一般，>7 偏弱，>8 承压
+            if latest <= 5.0:
+                score = 80
+            elif latest <= 5.5:
+                score = 68
+            elif latest <= 6.0:
+                score = 55
+            elif latest <= 7.0:
+                score = 38
+            elif latest <= 8.0:
+                score = 22
+            else:
+                score = 10
+        except Exception:
+            pass
+    return max(0, min(100, score))
+
+
+def score_consumption(data):
+    """消费（社零同比 + 城镇消费价格指数）→ 0-100"""
+    score = 50
+    retail = data.get('retail')
+    if retail is not None and len(retail):
+        row = retail.iloc[0]  # 数据倒序，最新在 head
+        for col in ['累计-同比增长', '同比增长']:
+            if col in retail.columns:
+                v = row.get(col)
+                if pd.notna(v):
+                    v = float(v)
+                    if v > 8:
+                        score = 80
+                    elif v > 5:
+                        score = 70
+                    elif v > 3:
+                        score = 60
+                    elif v > 0:
+                        score = 45
+                    elif v > -3:
+                        score = 30
+                    else:
+                        score = 15
+                    break
+    # 城镇消费价格指数（CPI 城市分项）加权修正
+    cpi = data.get('cpi')
+    if cpi is not None and len(cpi) and '城市-同比增长' in cpi.columns:
+        u_yoy = cpi.iloc[0].get('城市-同比增长')
+        if pd.notna(u_yoy):
+            u_yoy = float(u_yoy)
+            # 城镇消费价格 1-3% 温和偏暖
+            if 1 <= u_yoy <= 3:
+                score = (score + 15) // 2 + 5
+            elif u_yoy < 0:
+                score = max(10, score - 10)  # 通缩
+    return max(0, min(100, score))
+
+
 def compute_macro_scores(data, policy_score=0):
     """
-    计算全部维度评分
-    返回: dict { 'liquidity': int, 'sentiment': int, 'real_estate': int,
-                 'inflation': int, 'gold_silver': int, 'policy': int, 'total': int }
+    计算全部维度评分（8 维度）
+    返回: dict { 'liquidity','sentiment','real_estate','inflation',
+                 'gold_silver','policy','employment','consumption', 'total' }
     """
     scores = {
         'liquidity': score_liquidity(data),
@@ -184,11 +274,14 @@ def compute_macro_scores(data, policy_score=0):
         'real_estate': score_real_estate(data),
         'inflation': score_inflation(data),
         'gold_silver': score_gold_silver(data),
-        'policy': max(0, min(100, (policy_score + 100) // 2))  # -100~100 → 0~100
+        'policy': max(0, min(100, (policy_score + 100) // 2)),
+        'employment': score_employment(data),
+        'consumption': score_consumption(data),
     }
-    # 加权综合：货币25%、景气20%、地产15%、通胀15%、金银10%、政策15%
-    weights = {'liquidity': 0.25, 'sentiment': 0.20, 'real_estate': 0.15,
-               'inflation': 0.15, 'gold_silver': 0.10, 'policy': 0.15}
+    # 加权综合：货币20%、景气15%、地产15%、通胀12%、金银8%、政策15%、就业10%、消费5%
+    weights = {'liquidity': 0.20, 'sentiment': 0.15, 'real_estate': 0.15,
+               'inflation': 0.12, 'gold_silver': 0.08, 'policy': 0.15,
+               'employment': 0.10, 'consumption': 0.05}
     total = sum(scores[k] * w for k, w in weights.items())
     scores['total'] = round(total)
     return scores

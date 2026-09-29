@@ -161,6 +161,50 @@ def fetch_silver():
     return df
 
 
+
+def fetch_unemployment():
+    """城镇调查失业率"""
+    c = _load_cache('unemployment')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_urban_unemployment()
+    _save_cache('unemployment', df)
+    return df
+
+
+def fetch_house_price():
+    """70城房价指数（新房/二手）"""
+    c = _load_cache('house_price')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_new_house_price()
+    _save_cache('house_price', df)
+    return df
+
+
+def fetch_retail():
+    """社会消费品零售（消费）"""
+    c = _load_cache('retail')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_consumer_goods_retail()
+    _save_cache('retail', df)
+    return df
+
+
+def fetch_insurance():
+    """社保基金收支"""
+    c = _load_cache('insurance')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_insurance_income()
+    _save_cache('insurance', df)
+    return df
+
 def fetch_all(timeout=120):
     """拉取全部数据源（带超时保护），返回 dict"""
     import concurrent.futures
@@ -170,23 +214,19 @@ def fetch_all(timeout=120):
         'm2': fetch_m2, 'gdp': fetch_gdp, 'shrzgm': fetch_shrzgm,
         'shibor': fetch_shibor, 'lpr': fetch_lpr,
         'real_estate': fetch_real_estate, 'gold': fetch_gold, 'silver': fetch_silver,
+        'unemployment': fetch_unemployment, 'house_price': fetch_house_price,
+        'retail': fetch_retail, 'insurance': fetch_insurance,
     }
     result = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
         futs = {ex.submit(fn): name for name, fn in fetchers.items()}
         for fut in concurrent.futures.as_completed(futs, timeout=timeout):
             name = futs[fut]
             try:
                 result[name] = fut.result()
-                logger.info(f"✅ {name}: {len(result[name])} 行")
+                logger.info(f"OK {name}: {len(result[name])} rows")
             except Exception as e:
-                logger.warning(f"❌ {name}: {str(e)[:60]}")
+                logger.warning(f"FAIL {name}: {str(e)[:60]}")
                 result[name] = None
     logger.info(f"采集完成 {len([v for v in result.values() if v is not None])}/{len(fetchers)}，耗时 {time.time()-t0:.1f}s")
     return result
-
-
-if __name__ == '__main__':
-    data = fetch_all()
-    for k, v in data.items():
-        print(f"{k}: {len(v)} 行" if v is not None else f"{k}: FAILED")
