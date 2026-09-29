@@ -3,12 +3,12 @@
 ---
 name: economic-outlook
 description: "经济形势综合分析：多源宏观数据 + 政策引擎 + 多维评分 + 半年/1年/2年三情景预测。周报推送 QQ。"
-version: 3.1.0
+version: 3.2.0
 author: 小米椒 🌶️
 lessons_updated: 2026-09-28
 ---
 
-# 经济形势综合分析 v3.1（1+N 架构，对齐 PRD V2.0）
+# 经济形势综合分析 v3.2（完整对齐 PRD V2.0 目录结构 + 1+N 架构）
 
 综合国内宏观 + 货币政策 + 房地产 + 网络经济 + 金银价格，输出未来 半年/1年/2年 经济形势三情景预测。
 
@@ -236,3 +236,32 @@ python3 entry.py "什么行业好就业" --employment  # 强制就业映射
 - **MVP（P0）**：核心引擎 + 股票(行业景气) + 就业(热度排名) + 入口路由 + 合规 + 回测 → ✅ 已交付
 - **P1**：基金映射、创业映射、情景模拟、告警系统 → ✅ 代码已备好（stock/employment 为 P0，fund/startup 为 P1，均已实现）
 - **P2**：区域/城市/技能细分、NL 问答、另类数据 → ⏳ 未做
+
+
+## v3.2 对齐 PRD V2.0 完整目录结构（§一）
+
+```
+economic-outlook/
+├── SKILL.md / entry.py / router.py        # 统一入口 + 意图路由
+├── core/                                  # 1 核心引擎（只做宏观预测）
+│   ├── data_loader.py   indicators.py   nowcast.py
+│   ├── forecast.py      scenarios.py     state_vector.py
+├── mappings/                              # N 映射模块（只读状态向量）
+│   ├── stock.py  fund.py  startup.py  employment.py
+├── shared/                                # 共享层
+│   ├── sources.py   cache.py   compliance.py   formatters.py
+├── config/                                # 配置外置（迁移只改这里）
+│   ├── sources.yaml  thresholds.yaml  compliance.yaml  model_params.yaml
+├── tests/                                 # test_core / test_mappings / test_router
+├── scripts/                               # 数据+分析+回测+报告（akshare 21 源）
+├── requirements.txt
+└── README.md
+```
+
+**API 对齐 PRD §三/§四**：
+- `from entry import run; r = run("..."); print(r["summary"])` ✅
+- `route(query, force)` 返回含 `summary/disclaimer/intents` ✅
+- 映射模块 `map(state)` 只读核心状态向量 ✅
+- 合规 `filter_output` 递归过滤（yaml 规则驱动）✅
+- 缓存 `cache_get/cache_set`（官方数据发布后更新一次）✅
+- 3 个测试全 PASS ✅

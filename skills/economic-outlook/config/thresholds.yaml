@@ -1,0 +1,13 @@
+# 告警阈值（PRD §19）— 迁移时改这里
+alerts:
+  m1_turn: 0.5
+  ppi_turn: 0.3
+  cpi_max: 3.0
+  cpi_min: -1.0
+  unemployment_max: 7.0
+  retail_min: -5.0
+  exports_min: -10.0
+  pmi_min: 45.0
+  gdp_min: 3.0
+  m2_min: 5.0
+  m2_max: 12.0

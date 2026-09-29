@@ -31,11 +31,10 @@ def detect_intents(query):
 
 def route(query, force=None):
     """
-    路由入口：返回 { 'state': 宏观向量, 'modules': {意图: 合规过滤后结果}, 'text': 纯文本 }
-    force: 显式指定要触发的映射模块集合（来自 CLI flag），与 query 关键词合并
+    路由入口（PRD V2.0 §4）：返回含 summary/disclaimer 的 dict
+    force: 显式映射模块集合（CLI flag），与 query 关键词合并
     """
     intents = set(force or set()) | (detect_intents(query) & set(INTENTS))
-    # 映射模块白名单（macro 不是映射模块，状态向量始终返回）
     valid = intents & {'stock', 'fund', 'startup', 'employment'}
     state = state_vector.build_state_vector()
     modules = {'macro': state}
@@ -50,9 +49,10 @@ def route(query, force=None):
         modules['employment'] = comp.filter_result(employment.map(state), 'employment')
 
     import shared.formatters as fmt
-    lines = [f"📊 宏观经济（综合 {state.get('total_score')} 分）",
+    lines = [f"📊 宏观经济（综合 {state.get('total_score')} 分，8季度: "
+             f"{state.get('forecast_q', {}).get('Q1', 'N/A')}→{state.get('forecast_q', {}).get('Q8', 'N/A')}）",
              f"  驱动: {'、'.join(state.get('drivers', [])[:5])}",
-             ""]
+             f"  情景概率: {state.get('scenario_prob', {})}", ""]
     if 'stock' in modules:
         lines.append(fmt.stock_report(modules['stock']))
     if 'fund' in modules:
@@ -61,8 +61,14 @@ def route(query, force=None):
         lines.append(fmt.startup_report(modules['startup']))
     if 'employment' in modules:
         lines.append(fmt.employment_report(modules['employment']))
-    lines.append("\n⚠️ 仅供参考，不构成投资建议/商业决策依据。")
-    return {'state': state, 'modules': modules, 'text': "\n".join(lines)}
+    summary = "\n".join(lines)
+    result = {
+        'state': state, 'modules': modules, 'text': summary,
+        'summary': summary,
+        'disclaimer': comp.DISCLAIMER,
+        'intents': sorted(valid | {'macro'}),
+    }
+    return result
 
 
 if __name__ == '__main__':

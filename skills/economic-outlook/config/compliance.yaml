@@ -1,0 +1,11 @@
+# 合规规则（PRD §17/§19）— 迁移时改这里
+stock:
+  forbidden: ["买入", "卖出", "满仓", "清仓", "抄底", "逃顶", "割肉", "涨停", "跌停"]
+  forbid_stock_code: true
+fund:
+  forbidden: ["必涨", "稳赚", "保本", "推荐基金"]
+  forbid_fund_code: true
+startup:
+  forbidden: ["保证成功", "稳赚", "必赚"]
+employment:
+  forbidden: ["保证录用", "保证薪资", "包分配"]
