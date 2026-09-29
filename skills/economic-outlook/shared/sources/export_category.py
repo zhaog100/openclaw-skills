@@ -23,6 +23,12 @@ class ExportCategoryAdapter(BaseAdapter):
 
     name = "export_category"
 
+
+    def fetch(self, indicator: str = "", **kwargs):
+        """抽象契约实现：返回空列表（本适配器走专用方法）。"""
+        from .base import DataPoint
+        return []
+
     def fetch_summary(self) -> pd.DataFrame:
         """获取海关进出口汇总。"""
         try:

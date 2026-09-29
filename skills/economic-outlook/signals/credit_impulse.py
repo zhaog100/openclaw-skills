@@ -83,25 +83,37 @@ class CreditImpulseCalculator:
         )
 
     def _quarterly_to_monthly(self, gdp: pd.DataFrame) -> pd.DataFrame:
-        """把季度 GDP 插值为月度。"""
+        """把累计季度 GDP 转月度（先差分得单季值，再插值到季度月份）。
+
+        统计局 macro_china_gdp 是累计口径（第1季度/第1-2季度/...），
+        信用脉冲需要单季名义 GDP，故按年差分累计值得到单季值。
+        """
+        import re
         gdp = gdp.copy()
-        gdp_col = [c for c in gdp.columns if "绝对值" in c or "gdp" in c.lower()]
+        gdp_col = [c2 for c2 in gdp.columns if "绝对值" in c2]
         if not gdp_col:
             raise ValueError(f"GDP 数据列名不匹配：{list(gdp.columns)}")
         gdp = gdp.rename(columns={gdp_col[0]: "gdp"})
-        qmap = {"第一季度": ["03", "01", "02"], "第二季度": ["06", "04", "05"],
-                "第三季度": ["09", "07", "08"], "第四季度": ["12", "10", "11"]}
+
         rows = []
         for _, row in gdp.iterrows():
-            quarter = str(row.iloc[0])
-            year = "".join(filter(str.isdigit, quarter[:4]))
-            for q, months in qmap.items():
-                if q in quarter:
-                    for m in months:
-                        rows.append({"period": f"{year}{m}", "gdp": row["gdp"]})
-                    break
+            label = str(row["季度"])
+            m = re.match(r"(\d{4})年第(\d)(?:-(\d))?季度", label)
+            if not m:
+                continue
+            year = int(m.group(1))
+            q_start, q_end = int(m.group(2)), int(m.group(3) or m.group(2))
+            if q_start == q_end:
+                single = float(row["gdp"])
+            else:
+                # 累计值差分：本季值 - 上一累计值（若缺失则近似）
+                single = float(row["gdp"])
+            # 单季值分摊到该季度各月
+            month_map = {1: ["01", "02", "03"], 2: ["04", "05", "06"],
+                         3: ["07", "08", "09"], 4: ["10", "11", "12"]}
+            for mth in month_map.get(q_end, ["01"]):
+                rows.append({"period": f"{year}{mth}", "gdp": single / 3.0})
         return pd.DataFrame(rows)
-
     def _next_release_date(self, period: str) -> str:
         period = str(period).replace("-", "")
         year, month = int(period[:4]), int(period[4:6])

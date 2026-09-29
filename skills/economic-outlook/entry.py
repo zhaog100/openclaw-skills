@@ -1,59 +1,62 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-统一入口（PRD V2.0 §3/§22）
-china-econ-skill / entry.py
-
-用法：
-  python entry.py "未来一年经济和股市怎么看"
-  from entry import run
-  result = run("未来一年股市怎么看？")
-  print(result["summary"])
+经济分析 Skill — 统一入口（V3.0 信号驱动多出口决策）
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
-import os, sys, logging
-logging.basicConfig(level=logging.WARNING, format='%(levelname)s - %(message)s')
+import sys, os
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.join(BASE_DIR, "signals"))
+sys.path.insert(0, os.path.join(BASE_DIR, "outcomes"))
 
-from router import route
+from signals.aggregator import SignalAggregator
+from signals.comprehensive_output import generate_comprehensive_report
+from signals.matrix_view import build_decision_matrix, print_matrix
+from outcomes.report import generate_outcome_report
 
-VALID_FLAGS = {'stock', 'fund', 'startup', 'employment'}
 
+def run(query: str = "", verbose: bool = False) -> dict:
+    """对外唯一入口。"""
+    agg = SignalAggregator()
+    report = generate_comprehensive_report(agg)
+    outcome_report = generate_outcome_report(agg)
 
-def run(query: str, flags: set = None, verbose: bool = False) -> dict:
-    """
-    对外唯一入口。
+    result = {
+        "query": query,
+        "date": report["date"],
+        "signals": report["signals"],
+        "outcomes": report["outcomes"],
+        "summary": report["summary"],
+        "outcome_text": outcome_report["text"],
+        "outcome_detail": outcome_report["outcomes"],
+    }
 
-    Args:
-        query: 用户自然语言问题
-        flags: 强制触发的映射模块（如 {'stock','employment'}）
-        verbose: 返回完整 details
+    if verbose:
+        df = build_decision_matrix(agg)
+        result["matrix"] = df.to_dict()
+        result["matrix_text"] = df.to_string()
 
-    Returns:
-        {
-            "summary": str,
-            "details": dict,
-            "disclaimer": str
-        }
-    """
-    result = route(query, force=flags)
-    if not verbose:
-        return {
-            'summary': result.get('summary', result.get('text', '')),
-            'details': {k: v for k, v in result.items() if k not in ('summary', 'text')},
-            'disclaimer': result.get('disclaimer', ''),
-        }
     return result
 
 
-if __name__ == '__main__':
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    flagset = set(a.lstrip('-') for a in sys.argv[1:] if a.startswith('--'))
-    query = ' '.join(args) if args else '未来一年经济和股市怎么看'
-    force = flagset & VALID_FLAGS
-    out = run(query, flags=force, verbose=True)
-    print(out['summary'])
-    print('-' * 60)
-    print(out['disclaimer'])
+def main():
+    import argparse
+    p = argparse.ArgumentParser(description="经济分析 Skill V3.0")
+    p.add_argument("query", nargs="?", default="", help="自然语言查询")
+    p.add_argument("--verbose", action="store_true", help="输出决策矩阵")
+    args = p.parse_args()
+
+    r = run(args.query, args.verbose)
+    print(r["summary"])
+    print()
+    print(r["outcome_text"])
+    if args.verbose:
+        print()
+        print(r["matrix_text"])
+
+
+if __name__ == "__main__":
+    main()

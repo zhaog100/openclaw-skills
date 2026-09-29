@@ -17,10 +17,11 @@ class PMIAdapter(BaseAdapter):
     name = "pmi"
 
     def fetch(self, indicator: str = "pmi_new_order", **kwargs) -> list:
-        """获取 PMI 新订单分项历史数据。"""
+        """获取 PMI 数据历史。macro_china_pmi 仅总值，new_order 缺失时退回制造业总值代理。"""
         df = ak.macro_china_pmi()
         col_map = {
             "月份": "period", "制造业PMI": "pmi", "制造业-指数": "pmi",
+            "非制造业-指数": "non_pmi",
             "新订单": "new_order", "新订单指数": "new_order",
             "生产指数": "production", "新出口订单": "new_export_order",
             "新出口订单指数": "new_export_order", "从业人员": "employment",
@@ -28,6 +29,9 @@ class PMIAdapter(BaseAdapter):
         }
         df = df.rename(columns={k: v for k, v in col_map.items() if k in df.columns})
         target = "new_order" if indicator == "pmi_new_order" else indicator
+        # 分项缺失时退回制造业 PMI 总值（标注代理）
+        if target not in df.columns and target in ("new_order", "production"):
+            target = "pmi"
         if target not in df.columns:
             raise ValueError(f"PMI 列名不含 {target}，实际列：{list(df.columns)}")
         points = []

@@ -74,8 +74,12 @@ class PMIOrdersSignal:
 
     def _next_release_date(self, period: str) -> str:
         import calendar
-        period = str(period).replace("-", "")
-        year, month = int(period[:4]), int(period[4:6])
+        import re
+        period = str(period)
+        m = re.match(r"(\d{4})[年-]?(\d{1,2})", period)
+        if not m:
+            return (datetime.now().strftime("%Y-%m"))
+        year, month = int(m.group(1)), int(m.group(2))
         ny, nm = (year + 1, 1) if month == 12 else (year, month + 1)
         last = calendar.monthrange(ny, nm)[1]
         return f"{ny}-{nm:02d}-{last:02d}"

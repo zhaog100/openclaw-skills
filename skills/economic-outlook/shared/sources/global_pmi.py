@@ -15,23 +15,29 @@ class GlobalPMIAdapter(BaseAdapter):
 
     name = "global_pmi"
 
+
+    def fetch(self, indicator: str = "", **kwargs):
+        """抽象契约实现：返回空列表（本适配器走专用方法）。"""
+        from .base import DataPoint
+        return []
+
     def fetch_global_pmi(self) -> pd.DataFrame:
-        """获取全球/美国制造业 PMI。优先 global，退回美国 ISM。"""
-        try:
-            df = ak.macro_global_pmi()
-            if not df.empty:
-                df = df.rename(columns={"日期": "date", "全球制造业PMI": "global_pmi"})
+        """获取全球/美国制造业 PMI。优先 global，退回美国 ISM（今值列）。"""
+        for fn, val_col in [("macro_global_pmi", "全球制造业PMI"), ("macro_usa_pmi", "今值")]:
+            try:
+                df = getattr(ak, fn)()
+                if df.empty:
+                    continue
+                if "日期" not in df.columns or val_col not in df.columns:
+                    # 列名不匹配，跳过试下一个
+                    continue
+                df = df.rename(columns={"日期": "date", val_col: "global_pmi"})
+                df = df.dropna(subset=["global_pmi"])
                 df["date"] = pd.to_datetime(df["date"])
                 return df.sort_values("date")
-        except Exception:
-            pass
-        try:
-            df = ak.macro_usa_pmi()
-            df = df.rename(columns={"商品": "item", "日期": "date", "今值": "global_pmi"})
-            df["date"] = pd.to_datetime(df["date"])
-            return df.sort_values("date")
-        except Exception:
-            return pd.DataFrame()
+            except Exception:
+                continue
+        return pd.DataFrame()
 
     def fetch_us_pmi(self) -> pd.DataFrame:
         """获取美国制造业 PMI。"""

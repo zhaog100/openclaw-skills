@@ -31,6 +31,12 @@ class DomesticRetailAdapter(BaseAdapter):
 
     name = "domestic_retail"
 
+
+    def fetch(self, indicator: str = "", **kwargs):
+        """抽象契约实现：返回空列表（本适配器走专用方法）。"""
+        from .base import DataPoint
+        return []
+
     def fetch_total(self) -> pd.DataFrame:
         """获取社零总额。"""
         try:

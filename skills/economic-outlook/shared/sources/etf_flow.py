@@ -31,6 +31,12 @@ class ETFFlowAdapter(BaseAdapter):
 
     name = "etf_flow"
 
+
+    def fetch(self, indicator: str = "", **kwargs):
+        """抽象契约实现：返回空列表（本适配器走专用方法）。"""
+        from .base import DataPoint
+        return []
+
     def fetch_etf_scale(self, etf_code: str, start: str = "20200101") -> pd.DataFrame:
         """获取单只 ETF 行情（用成交额近似资金流）。"""
         try:

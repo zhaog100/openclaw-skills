@@ -15,6 +15,12 @@ class CreditAdapter(BaseAdapter):
 
     name = "credit"
 
+
+    def fetch(self, indicator: str = "", **kwargs):
+        """抽象契约实现：返回空列表（本适配器走专用方法）。"""
+        from .base import DataPoint
+        return []
+
     def fetch_social_financing(self) -> pd.DataFrame:
         """社融增量月度数据。"""
         df = ak.macro_china_shrzgm()
