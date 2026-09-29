@@ -39,10 +39,14 @@ SOURCES = {
     # === 微信公众号（mp.weixin 直采正文，实测可通）===
     "公众号_财联社PSL": {"url": "https://mp.weixin.qq.com/s/0B572tdHZtZwUngmQCGLUQ", "type": "weixin", "desc": "央行PSL降息"},
     "公众号_人民网房贷": {"url": "https://mp.weixin.qq.com/s/XaWwCGAZ-skQ1sCEMBpsFw", "type": "weixin", "desc": "10月房贷贴息"},
-    # === 官方政策 ===
-    "央行官网": {"url": "https://www.pbc.gov.cn/", "type": "policy", "desc": "央行政策"},
-    "发改委": {"url": "https://www.ndrc.gov.cn/", "type": "policy", "desc": "发改委政策"},
+    # === 官方政策/数据源（直采，不靠快讯转述）===
+    "央行官网": {"url": "https://www.pbc.gov.cn/", "type": "policy", "desc": "PSL/降准/货币政策"},
+    "发改委": {"url": "https://www.ndrc.gov.cn/", "type": "policy", "desc": "十五五/产业政策"},
     "国务院": {"url": "https://www.gov.cn/zhengce/zuixin.htm", "type": "policy", "desc": "国务院政策"},
+    # === 官方数据源（补降级洞的免费替代）===
+    "统计局": {"url": "https://www.stats.gov.cn/", "type": "data", "desc": "社零/失业率→补招聘指数"},
+    "上交所": {"url": "https://www.sse.com.cn/", "type": "data", "desc": "股票/ETF资金流→补东财被挡"},
+    "外汇局": {"url": "https://www.safe.gov.cn/", "type": "data", "desc": "汇率/外储→补人民币维度"},
     # === 大宗数据 ===
     "上海有色": {"url": "https://www.shmet.com/", "type": "commodity", "desc": "金属大宗价格"},
 }
