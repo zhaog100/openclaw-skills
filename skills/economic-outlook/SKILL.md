@@ -3,12 +3,12 @@
 ---
 name: economic-outlook
 description: "经济形势综合分析：多源宏观数据 + 政策引擎 + 多维评分 + 半年/1年/2年三情景预测。周报推送 QQ。"
-version: 2.1.0
+version: 3.0.0
 author: 小米椒 🌶️
 lessons_updated: 2026-09-28
 ---
 
-# 经济形势综合分析 v2.1
+# 经济形势综合分析 v3.0（1+N 架构，对齐 PRD V2.0）
 
 综合国内宏观 + 货币政策 + 房地产 + 网络经济 + 金银价格，输出未来 半年/1年/2年 经济形势三情景预测。
 
@@ -192,3 +192,43 @@ python3 scripts/retail_price_on_demand.py --category 食品类  # 指定类
 - CPI 平均绝对误差 0.412pct（要求 <0.5pct）✅
 
 ## 按需接口（慢，不进自动周报）
+
+
+## v3.0 架构（对齐 PRD V2.0：单文件夹 + 1 核心 + N 映射）
+
+```
+用户输入 → entry.py（统一入口）→ router.py（意图路由）
+          ├── core（宏观引擎）→ 宏观状态向量
+          └── mappings（4 映射）→ 合规过滤 → 聚合输出
+```
+
+### 目录
+- `core/state_vector.py` — 宏观状态向量（PRD §5.5 schema）
+- `mappings/{stock,fund,startup,employment}.py` — 4 个决策映射（只读状态向量，不重预测宏观）
+- `shared/compliance.py` — 合规过滤（个股/买卖点/基金推荐/收益承诺）
+- `shared/formatters.py` — 输出格式化
+- `config/thresholds.json` + `config/model_params.json` — 配置外置（迁移只改这里）
+- `requirements.txt` — 依赖声明
+
+### 调用方式（单入口）
+```bash
+python3 entry.py "未来经济走势"            # 纯宏观
+python3 entry.py "股市和行业怎么看" --stock
+python3 entry.py "适合创业吗" --startup
+python3 entry.py "什么行业好就业" --employment
+```
+
+### 合规边界（PRD §10）
+- 股票：不推个股、不给买卖点
+- 基金：不推具体基金、不承诺收益（需持牌机构）
+- 创业：不承诺成功/收益
+- 就业：不承诺薪资/录用
+
+### 迁移性（PRD §16 清单）
+✅ 入口明确（entry.py/SKILL.md）✅ 依赖声明（requirements.txt）✅ 配置外置（config/）
+✅ 缓存可重建 ✅ 核心 schema 固定 ✅ 映射不硬编码核心 ✅ 合规集中 ✅ 无绝对路径 ✅ 版本号明确
+
+### PRD V2.0 阶段对照
+- **MVP（P0）**：核心引擎 + 股票(行业景气) + 就业(热度排名) + 入口路由 + 合规 + 回测 → ✅ 已交付
+- **P1**：基金映射、创业映射、情景模拟、告警系统 → ✅ 代码已备好（stock/employment 为 P0，fund/startup 为 P1，均已实现）
+- **P2**：区域/城市/技能细分、NL 问答、另类数据 → ⏳ 未做

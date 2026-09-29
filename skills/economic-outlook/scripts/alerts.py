@@ -1,24 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-告警引擎（FR-08，PRD §9）
-经济分析 Skill - 输出层
-
-功能：
-- 关键指标突破阈值时输出告警
-- 阈值可配置（config.json）
-
-版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-"""
+"""告警引擎（FR-08，PRD §9）：P0 指标阈值突破检测，阈值从 config/thresholds.json 读取（迁移只改配置）
+版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)"""
 import os, json, logging
-
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CONFIG_FILE = os.path.join(BASE_DIR, 'config.json')
+CONFIG_FILE = os.path.join(BASE_DIR, 'config', 'thresholds.json')
 
-# 默认阈值（PRD P0 指标）
 DEFAULT_THRESHOLDS = {
     'cpi_yoy': {'min': -1.0, 'max': 3.0, 'desc': 'CPI 同比（温和区间）'},
     'ppi_yoy': {'min': -5.0, 'max': 5.0, 'desc': 'PPI 同比'},
@@ -32,27 +22,22 @@ DEFAULT_THRESHOLDS = {
 
 
 def load_thresholds():
-    """从 config.json 读取（若存在），否则用默认"""
+    import json as _json
+    merged = {k: dict(v) for k, v in DEFAULT_THRESHOLDS.items()}
     if os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, encoding='utf-8') as f:
-                cfg = json.load(f)
-            th = cfg.get('thresholds', {})
-            for k, v in DEFAULT_THRESHOLDS.items():
-                if k in th:
-                    th[k] = {**DEFAULT_THRESHOLDS[k], **th[k]}
-            return th
+                cfg = _json.load(f)
+            th = cfg.get('thresholds', cfg)
+            for k, v in th.items():
+                if isinstance(v, dict):
+                    merged.setdefault(k, {}).update(v)
         except Exception:
             pass
-    return dict(DEFAULT_THRESHOLDS)
+    return merged
 
 
 def check_alerts(metrics, thresholds=None):
-    """
-    检查告警
-    metrics: dict { 'cpi_yoy': float, 'unemployment': float, ... }
-    返回: list of { 'metric','value','threshold','type','desc' }
-    """
     th = thresholds or load_thresholds()
     alerts = []
     for key, rule in th.items():
@@ -64,20 +49,13 @@ def check_alerts(metrics, thresholds=None):
         except Exception:
             continue
         if rule.get('max') is not None and val > rule['max']:
-            alerts.append({
-                'metric': key, 'value': val, 'threshold': rule['max'],
-                'type': '高于上限', 'desc': rule.get('desc', key)
-            })
+            alerts.append({'metric': key, 'value': val, 'threshold': rule['max'], 'type': '高于上限', 'desc': rule.get('desc', key)})
         if rule.get('min') is not None and val < rule['min']:
-            alerts.append({
-                'metric': key, 'value': val, 'threshold': rule['min'],
-                'type': '低于下限', 'desc': rule.get('desc', key)
-            })
+            alerts.append({'metric': key, 'value': val, 'threshold': rule['min'], 'type': '低于下限', 'desc': rule.get('desc', key)})
     return alerts
 
 
 def format_alerts(alerts):
-    """告警转纯文本"""
     if not alerts:
         return "🟢 无告警：所有 P0 指标均在正常区间"
     lines = [f"🚨 触发 {len(alerts)} 项告警："]
@@ -87,7 +65,6 @@ def format_alerts(alerts):
 
 
 def metrics_from_data(data):
-    """从 fetch_macro 的 data 提取告警用指标"""
     import pandas as pd
     m = {}
     cpi = data.get('cpi')
@@ -139,5 +116,4 @@ if __name__ == '__main__':
     for k, v in m.items():
         print(f"  {k}: {v}")
     print("\n=== 告警 ===")
-    alerts = check_alerts(m)
-    print(format_alerts(alerts))
+    print(format_alerts(check_alerts(m)))

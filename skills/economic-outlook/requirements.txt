@@ -1,0 +1,4 @@
+akshare>=1.18.0
+pandas>=2.0
+numpy
+requests
