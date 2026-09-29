@@ -11,9 +11,25 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 
-OUTCOMES = ["stock", "fund", "startup", "employment", "commodity", "overseas"]
+def _load_config():
+    """从 config/signals.yaml 加载信号配置（缺失返回 None，用内置默认）。"""
+    import os
+    try:
+        import yaml
+        cfg_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "signals.yaml")
+        if os.path.exists(cfg_path):
+            with open(cfg_path) as f:
+                return yaml.safe_load(f) or {}
+    except Exception:
+        pass
+    return {}
 
-SIGNAL_WEIGHTS = {
+
+_SCFG = _load_config()
+
+OUTCOMES = _SCFG.get("outcomes", ["stock", "fund", "startup", "employment", "commodity", "overseas"])
+
+_DEFAULT_SIGNAL_WEIGHTS = {
     "pmi_orders": {"stock": 0.20, "fund": 0.15, "startup": 0.05, "employment": 0.10, "commodity": 0.20, "overseas": 0.05},
     "etf_flow": {"stock": 0.20, "fund": 0.20, "startup": 0.00, "employment": 0.00, "commodity": 0.00, "overseas": 0.00},
     "recruitment": {"stock": 0.05, "fund": 0.00, "startup": 0.20, "employment": 0.35, "commodity": 0.00, "overseas": 0.00},
@@ -24,12 +40,14 @@ SIGNAL_WEIGHTS = {
     "domestic_category": {"stock": 0.10, "fund": 0.20, "startup": 0.25, "employment": 0.20, "commodity": 0.15, "overseas": 0.15},
 }
 
-DIRECTION_SCORE = {
+SIGNAL_WEIGHTS = _SCFG.get("signal_weights", _DEFAULT_SIGNAL_WEIGHTS)
+_DEFAULT_DIRECTIONS = {
     "bullish": 1, "bearish": -1, "neutral": 0,
     "bullish_cyclical": 1, "bearish_cyclical": -1,
     "expanding": 1, "contracting": -1,
     "high": 1, "low": -1,
 }
+DIRECTION_SCORE = _SCFG.get("direction_score", _DEFAULT_DIRECTIONS)
 
 
 @dataclass
@@ -209,9 +227,11 @@ class SignalAggregator:
             directions.append(dscore)
 
         score = max(-1, min(1, weighted_score / total_weight))
-        if score > 0.15:
+        bull_th = _SCFG.get("decision", {}).get("bullish_threshold", 0.15)
+        bear_th = _SCFG.get("decision", {}).get("bearish_threshold", -0.15)
+        if score > bull_th:
             direction = "bullish"
-        elif score < -0.15:
+        elif score < bear_th:
             direction = "bearish"
         else:
             direction = "neutral"

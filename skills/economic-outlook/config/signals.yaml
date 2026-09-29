@@ -1,0 +1,93 @@
+# 经济分析 Skill V3.0 — 信号层配置
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+# 说明: 信号权重/方向映射/回测参数外置于此，代码内置默认值作 fallback
+
+# === 出口定义 ===
+outcomes:
+  - stock
+  - fund
+  - startup
+  - employment
+  - commodity
+  - overseas
+
+# === 8 信号 → 6 出口 权重矩阵（文档 §1.4）===
+# 每行是信号，值为该信号对各出口的权重
+signal_weights:
+  pmi_orders:      {stock: 0.20, fund: 0.15, startup: 0.05, employment: 0.10, commodity: 0.20, overseas: 0.05}
+  etf_flow:        {stock: 0.20, fund: 0.20, startup: 0.00, employment: 0.00, commodity: 0.00, overseas: 0.00}
+  recruitment:     {stock: 0.05, fund: 0.00, startup: 0.20, employment: 0.35, commodity: 0.00, overseas: 0.00}
+  credit_impulse:  {stock: 0.15, fund: 0.20, startup: 0.15, employment: 0.05, commodity: 0.20, overseas: 0.10}
+  china_us_spread: {stock: 0.10, fund: 0.15, startup: 0.05, employment: 0.00, commodity: 0.00, overseas: 0.30}
+  global_pmi:      {stock: 0.10, fund: 0.05, startup: 0.05, employment: 0.05, commodity: 0.30, overseas: 0.25}
+  export_category: {stock: 0.10, fund: 0.05, startup: 0.25, employment: 0.25, commodity: 0.15, overseas: 0.15}
+  domestic_category: {stock: 0.10, fund: 0.20, startup: 0.25, employment: 0.20, commodity: 0.15, overseas: 0.15}
+
+# === 方向 → 分值映射（看多+1 中性0 看空-1）===
+direction_score:
+  bullish: 1
+  bearish: -1
+  neutral: 0
+  bullish_cyclical: 1
+  bearish_cyclical: -1
+  expanding: 1
+  contracting: -1
+  high: 1
+  low: -1
+
+# === 决策阈值 ===
+decision:
+  bullish_threshold: 0.15    # 评分 > 此值 → 看多
+  bearish_threshold: -0.15   # 评分 < 此值 → 看空
+  strong_threshold: 0.5      # |评分| > 此值 → "强"
+  medium_threshold: 0.25     # |评分| > 此值 → "中等"
+
+# === 各信号回测参数（文档各 §回测）===
+backtest:
+  pmi:
+    lookback_months: 120
+    etf_code: "512400"
+    min_win_rate: 0.60       # 胜率目标
+    min_annual_diff: 0.08    # 多空年化差目标
+  credit_impulse:
+    lookback_months: 120
+    etf_code: "512400"
+    min_win_rate: 0.58
+  etf_flow:
+    lookback_weeks: 52
+    forward_weeks: 1
+    quantile_threshold: 0.20
+  china_us_spread:
+    lookback_years: 3
+    forward_days: 20
+    high_pct: 0.8
+    low_pct: 0.2
+  global_pmi:
+    etf_code: "512400"
+    forward_months: 2
+    lookback_months: 120
+  recruitment:
+    min_overlap_months: 12
+
+# === 官方源数据边界（诚实标注，本机拉不到的走占位/降级）===
+data_boundaries:
+  export_category:
+    status: placeholder
+    reason: "海关分品类 412 反爬，本机拉不到"
+    fallback: "占位基线 + 出口总额同比兜底"
+  domestic_category:
+    status: placeholder
+    reason: "统计局社零分项无免费接口"
+    fallback: "占位基线 + 社零总额兜底"
+  recruitment:
+    status: degraded
+    reason: "招聘平台 API 需商业合作"
+    fallback: "PMI 从业人员指数 + 财新工资指数替代"
+  etf_flow:
+    status: unstable
+    reason: "东财 ETF 接口间歇 502"
+    fallback: "失败降级 neutral，不崩主流程"
+  global_pmi:
+    status: substituted
+    reason: "Markit 全球PMI 无免费源"
+    fallback: "美国 ISM Markit PMI (macro_usa_pmi) 替代"
