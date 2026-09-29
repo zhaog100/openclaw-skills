@@ -4,8 +4,8 @@
 宏观经济多维模型
 经济分析 Skill - 分析层
 
-计算 6 大维度评分（0-100），输出综合经济形势评分。
-维度：货币流动性、景气、地产、通胀、政策、金银信号
+计算 11 大维度评分（0-100），输出综合经济形势评分。
+维度：货币流动性、景气、地产、通胀、政策、金银信号、就业、消费、外需、金融条件
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
@@ -262,6 +262,60 @@ def score_consumption(data):
     return max(0, min(100, score))
 
 
+
+
+def score_exports(data):
+    """外需（出口同比 + 进口同比）→ 0-100"""
+    score = 50
+    exp = data.get('exports')
+    imp = data.get('imports')
+    if exp is not None and len(exp):
+        # macro_china_exports_yoy 列：商品/日期/今值/预测值/前值，最新在尾部
+        vals = exp['今值'].dropna()
+        if len(vals):
+            v = float(vals.iloc[-1])
+            if v > 8:
+                score = 80
+            elif v > 4:
+                score = 70
+            elif v > 0:
+                score = 58
+            elif v > -4:
+                score = 42
+            else:
+                score = 25
+    return max(0, min(100, score))
+
+
+def score_financial_conditions(data):
+    """金融条件（10年期国债收益率 + 外汇储备变动）→ 0-100"""
+    score = 50
+    by = data.get('bond_yield')
+    if by is not None and len(by):
+        # 10年期国债：低利率 = 宽松环境
+        try:
+            recent = by[by['债券剩余期限'] == '10年'] if '债券剩余期限' in by.columns else by
+            if len(recent):
+                col = recent.columns[1]
+                v = float(recent[col].dropna().iloc[-1])
+                if v < 2.0:
+                    score += 12  # 宽松
+                elif v < 2.5:
+                    score += 5
+                elif v > 3.5:
+                    score -= 8
+        except Exception:
+            pass
+    fx = data.get('fx_reserves')
+    if fx is not None and len(fx) > 3:
+        vals = fx['今值'].dropna()
+        if len(vals) >= 2:
+            chg = float(vals.iloc[-1]) - float(vals.iloc[-3])
+            if chg < -200:  # 大幅流出
+                score -= 5
+    return max(0, min(100, score))
+
+
 def compute_macro_scores(data, policy_score=0):
     """
     计算全部维度评分（8 维度）
@@ -277,11 +331,13 @@ def compute_macro_scores(data, policy_score=0):
         'policy': max(0, min(100, (policy_score + 100) // 2)),
         'employment': score_employment(data),
         'consumption': score_consumption(data),
+        'exports': score_exports(data),
+        'financial': score_financial_conditions(data),
     }
-    # 加权综合：货币20%、景气15%、地产15%、通胀12%、金银8%、政策15%、就业10%、消费5%
-    weights = {'liquidity': 0.20, 'sentiment': 0.15, 'real_estate': 0.15,
-               'inflation': 0.12, 'gold_silver': 0.08, 'policy': 0.15,
-               'employment': 0.10, 'consumption': 0.05}
+    # 加权综合（10 维度）：货币18%、景气15%、地产13%、通胀10%、金银6%、政策15%、就业10%、消费5%、外需6%、金融1%…
+    weights = {'liquidity': 0.18, 'sentiment': 0.15, 'real_estate': 0.13,
+               'inflation': 0.10, 'gold_silver': 0.06, 'policy': 0.15,
+               'employment': 0.10, 'consumption': 0.05, 'exports': 0.06, 'financial': 0.02}
     total = sum(scores[k] * w for k, w in weights.items())
     scores['total'] = round(total)
     return scores

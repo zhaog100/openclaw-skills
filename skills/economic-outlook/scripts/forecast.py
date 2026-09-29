@@ -15,7 +15,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # 各 horizon 的衰减系数（政策影响随时间衰减）
-HORIZON_DECAY = {'半年': 1.0, '1年': 0.75, '2年': 0.5}
+# v2.0 对齐 PRD：未来 8 个季度（2 年）
+HORIZON_DECAY = {'Q1': 0.95, 'Q2': 0.90, 'Q3': 0.85, 'Q4': 0.80,
+                 'Q5': 0.75, 'Q6': 0.70, 'Q7': 0.65, 'Q8': 0.60}
 
 
 def _score_to_label(score):
@@ -43,13 +45,8 @@ def _direction_hint(score):
 
 def forecast_horizons(scores, policy_recent_events, now=None):
     """
-    对 半年/1年/2年 三个 horizon 做三情景推演
-    scores: compute_macro_scores 返回的 dict
-    policy_recent_events: 近 12 个月重大政策事件 list
-    返回: {
-        '半年': {'optimistic': {...}, 'base': {...}, 'pessimistic': {...}, 'verdict': str},
-        ...
-    }
+    对 8 个季度（未来 2 年）做三情景推演（PRD V1.0 要求）
+    每个季度输出：基准/乐观/悲观 + 分领域方向
     """
     now = now or datetime.now()
     total = scores.get('total', 50)
@@ -57,6 +54,8 @@ def forecast_horizons(scores, policy_recent_events, now=None):
     sentiment = scores.get('sentiment', 50)
     real_estate = scores.get('real_estate', 50)
     policy_score = scores.get('policy', 50)
+    exports = scores.get('exports', 50)
+    financial = scores.get('financial', 50)
 
     # 政策事件冲击（近期重大事件加成/减成）
     policy_impact = 0
@@ -83,12 +82,13 @@ def forecast_horizons(scores, policy_recent_events, now=None):
         # 悲观：基准 -20（外部冲击/政策不及预期）
         pessimistic = max(0, min(100, base - 20))
 
-        # 分领域方向
+        # 分领域方向（含外需 + 金融条件）
         sector_dirs = {
             '房地产': _direction_hint(real_estate),
-            '货币/金融': _direction_hint(liquidity),
+            '货币/金融': _direction_hint((liquidity + financial) // 2),
             '新经济/科技': _direction_hint(max(0, min(100, (sentiment + policy_score) // 2))),
             '消费': _direction_hint((sentiment + scores.get('inflation', 50)) // 2),
+            '外需/出口': _direction_hint(exports),
         }
 
         results[horizon] = {
@@ -110,6 +110,16 @@ def _summary_verdict(horizon_data):
     return f"{base['label']}为主（基准{base['score']}分），乐观可到{op['score']}，悲观探底{pes['score']}"
 
 
+def summary_8q(results):
+    """8 季度一句话摘要（用于周报顶部）"""
+    q_labels = []
+    for q in ['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8']:
+        if q in results:
+            b = results[q]['base']
+            q_labels.append(f"{q}:{b['score']}")
+    return "  ".join(q_labels)
+
+
 if __name__ == '__main__':
     import sys, os
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -119,8 +129,9 @@ if __name__ == '__main__':
     policy = policy_engine.analyze_policy()
     scores = macro_model.compute_macro_scores(data, policy['score'])
     result = forecast_horizons(scores, policy['recent_events'])
-    for h in ['半年', '1年', '2年']:
+    for h in HORIZON_DECAY:
         print(f"\n=== {h} ===")
         print(f"  基准: {result[h]['base']['score']} ({result[h]['base']['label']})")
         print(f"  乐观: {result[h]['optimistic']['score']} | 悲观: {result[h]['pessimistic']['score']}")
-        print(f"  房地产: {result[h]['base']['dirs']['房地产']} | 金融: {result[h]['base']['dirs']['货币/金融']}")
+        print(f"  房地产: {result[h]['base']['dirs']['房地产']} | 外需: {result[h]['base']['dirs']['外需/出口']}")
+    print(f"\n摘要: {summary_8q(result)}")

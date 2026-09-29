@@ -138,7 +138,8 @@ def generate_report(push=True):
     dim_names = {'liquidity': '🏦 货币流动性', 'sentiment': '📈 景气',
                  'real_estate': '🏠 房地产', 'inflation': '💰 通胀',
                  'gold_silver': '🥇 金银信号', 'policy': '📜 政策',
-                 'employment': '👥 就业', 'consumption': '🛒 消费'}
+                 'employment': '👥 就业', 'consumption': '🛒 消费',
+                 'exports': '📦 外需', 'financial': '💹 金融条件'}
     for k, name in dim_names.items():
         if k in scores:
             lines.append(f"  {name} {scores[k]:>3} {_bar(scores[k])}")
@@ -191,16 +192,16 @@ def generate_report(push=True):
     else:
         lines.append("  （近 12 月无重大政策事件记录）")
 
-    # 三 horizon 预测
-    for h in ['半年', '1年', '2年']:
-        hd = fc[h]
-        b = hd['base']
-        lines.append("")
-        lines.append(f"【{h}预测】")
-        lines.append(f"  基准：{b['score']}（{b['label']}）")
-        lines.append(f"  乐观：{hd['optimistic']['score']} | 悲观：{hd['pessimistic']['score']}")
-        lines.append(f"  房地产：{b['dirs'].get('房地产','')} | 金融：{b['dirs'].get('货币/金融','')}")
-        lines.append(f"  新经济：{b['dirs'].get('新经济/科技','')} | 消费：{b['dirs'].get('消费','')}")
+    # 8 季度预测（PRD 要求未来 8 个季度）
+    lines.append("")
+    lines.append("【未来 8 季度预测】")
+    for q in ['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8']:
+        if q in fc:
+            hd = fc[q]
+            b = hd['base']
+            lines.append(f"  {q}: 基准{b['score']}({b['label']}) | 乐观{hd['optimistic']['score']} 悲观{hd['pessimistic']['score']}")
+    b8 = fc['Q8']['base']
+    lines.append(f"  末季方向: 地产{b8['dirs'].get('房地产','')} | 金融{b8['dirs'].get('货币/金融','')} | 外需{b8['dirs'].get('外需/出口','')} | 消费{b8['dirs'].get('消费','')}")
 
     lines.append("")
     lines.append("⚠️ 仅供参考，不构成投资建议。数据基于 akshare，T-1 时效。")

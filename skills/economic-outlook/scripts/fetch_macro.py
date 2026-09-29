@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济数据多源采集器
+经济数据多源采集器（v2.0）
 经济分析 Skill - 数据采集层
 
-采集维度：
-- 国内宏观：CPI/PPI/PMI/M2/GDP/社融/SHIBOR/LPR
-- 房地产：商品房销售/房价指数
-- 金银：沪金AU0/沪银AG0 期货
+v2.0 新增（按 PRD P0）：
+- 出口同比/进口同比（海关）
+- 外汇储备
+- 10年期国债收益率
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
@@ -41,7 +41,6 @@ def _save_cache(name, data):
 
 
 def fetch_cpi():
-    """CPI 月度数据"""
     c = _load_cache('cpi')
     if c is not None:
         return c
@@ -52,7 +51,6 @@ def fetch_cpi():
 
 
 def fetch_ppi():
-    """PPI 月度数据"""
     c = _load_cache('ppi')
     if c is not None:
         return c
@@ -63,7 +61,6 @@ def fetch_ppi():
 
 
 def fetch_pmi():
-    """制造业 PMI"""
     c = _load_cache('pmi')
     if c is not None:
         return c
@@ -74,7 +71,6 @@ def fetch_pmi():
 
 
 def fetch_m2():
-    """M2 货币供应"""
     c = _load_cache('m2')
     if c is not None:
         return c
@@ -85,7 +81,6 @@ def fetch_m2():
 
 
 def fetch_gdp():
-    """GDP 季度数据"""
     c = _load_cache('gdp')
     if c is not None:
         return c
@@ -96,7 +91,6 @@ def fetch_gdp():
 
 
 def fetch_shrzgm():
-    """社融"""
     c = _load_cache('shrzgm')
     if c is not None:
         return c
@@ -107,7 +101,6 @@ def fetch_shrzgm():
 
 
 def fetch_shibor():
-    """SHIBOR 利率"""
     c = _load_cache('shibor')
     if c is not None:
         return c
@@ -118,7 +111,6 @@ def fetch_shibor():
 
 
 def fetch_lpr():
-    """LPR 利率（货币政策核心）"""
     c = _load_cache('lpr')
     if c is not None:
         return c
@@ -129,7 +121,6 @@ def fetch_lpr():
 
 
 def fetch_real_estate():
-    """房地产商品房销售/房价指数"""
     c = _load_cache('real_estate')
     if c is not None:
         return c
@@ -140,7 +131,6 @@ def fetch_real_estate():
 
 
 def fetch_gold():
-    """沪金期货 AU0"""
     c = _load_cache('gold')
     if c is not None:
         return c
@@ -151,7 +141,6 @@ def fetch_gold():
 
 
 def fetch_silver():
-    """沪银期货 AG0"""
     c = _load_cache('silver')
     if c is not None:
         return c
@@ -161,9 +150,7 @@ def fetch_silver():
     return df
 
 
-
 def fetch_unemployment():
-    """城镇调查失业率"""
     c = _load_cache('unemployment')
     if c is not None:
         return c
@@ -174,7 +161,6 @@ def fetch_unemployment():
 
 
 def fetch_house_price():
-    """70城房价指数（新房/二手）"""
     c = _load_cache('house_price')
     if c is not None:
         return c
@@ -185,7 +171,6 @@ def fetch_house_price():
 
 
 def fetch_retail():
-    """社会消费品零售（消费）"""
     c = _load_cache('retail')
     if c is not None:
         return c
@@ -196,7 +181,6 @@ def fetch_retail():
 
 
 def fetch_insurance():
-    """社保基金收支"""
     c = _load_cache('insurance')
     if c is not None:
         return c
@@ -205,7 +189,52 @@ def fetch_insurance():
     _save_cache('insurance', df)
     return df
 
-def fetch_all(timeout=120):
+
+def fetch_exports():
+    """出口同比（海关）"""
+    c = _load_cache('exports')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_exports_yoy()
+    _save_cache('exports', df)
+    return df
+
+
+def fetch_imports():
+    """进口同比（海关）"""
+    c = _load_cache('imports')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_imports_yoy()
+    _save_cache('imports', df)
+    return df
+
+
+def fetch_fx_reserves():
+    """外汇储备（月度）"""
+    c = _load_cache('fx_reserves')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.macro_china_fx_reserves_yearly()
+    _save_cache('fx_reserves', df)
+    return df
+
+
+def fetch_bond_yield():
+    """10年期国债收益率"""
+    c = _load_cache('bond_yield')
+    if c is not None:
+        return c
+    import akshare as ak
+    df = ak.bond_china_yield()
+    _save_cache('bond_yield', df)
+    return df
+
+
+def fetch_all(timeout=180):
     """拉取全部数据源（带超时保护），返回 dict"""
     import concurrent.futures
     t0 = time.time()
@@ -216,6 +245,8 @@ def fetch_all(timeout=120):
         'real_estate': fetch_real_estate, 'gold': fetch_gold, 'silver': fetch_silver,
         'unemployment': fetch_unemployment, 'house_price': fetch_house_price,
         'retail': fetch_retail, 'insurance': fetch_insurance,
+        'exports': fetch_exports, 'imports': fetch_imports,
+        'fx_reserves': fetch_fx_reserves, 'bond_yield': fetch_bond_yield,
     }
     result = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
@@ -228,5 +259,12 @@ def fetch_all(timeout=120):
             except Exception as e:
                 logger.warning(f"FAIL {name}: {str(e)[:60]}")
                 result[name] = None
-    logger.info(f"采集完成 {len([v for v in result.values() if v is not None])}/{len(fetchers)}，耗时 {time.time()-t0:.1f}s")
+    ok = len([v for v in result.values() if v is not None])
+    logger.info(f"采集完成 {ok}/{len(fetchers)}，耗时 {time.time()-t0:.1f}s")
     return result
+
+
+if __name__ == '__main__':
+    data = fetch_all()
+    for k, v in data.items():
+        print(f"{k}: {len(v)} 行" if v is not None else f"{k}: FAILED")
