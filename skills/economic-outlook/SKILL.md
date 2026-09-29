@@ -136,3 +136,18 @@ python3 scripts/policy_engine.py
 ---
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+
+## 按需接口（慢，不进自动周报）
+
+**零售价格指数** `macro_china_retail_price_index`：需循环 137 个类目，耗时 2-3 分钟，
+不纳入每周一自动周报（避免卡死 cron）。需要时用：
+
+```bash
+python3 scripts/retail_price_on_demand.py                # 全量
+python3 scripts/retail_price_on_demand.py --category 食品类  # 指定类
+```
+结果缓存 24h（`cache/retail_price.pkl`）。
+
+**⚠️ 2026-09-29 状态**：数据源 `quotes.sina.cn` 对本机 IP 持续限速/ReadTimeout，
+该指标当前拿不到。脚本已加 15s 超时 + 部分降级 + 优雅失败，不会卡死周报。
+新浪源恢复后重跑即可。
