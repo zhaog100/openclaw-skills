@@ -1,4 +1,6 @@
 # 数据源统一封装（PRD §15 + 真实采集文档）— 迁移时改这里
+# 经济分析 Skill V3.0 — 配置文件
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 sources:
   # 官方源（shared/sources/ 适配器）
   - name: nbs
