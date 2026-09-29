@@ -72,10 +72,19 @@ class GlobalPMICalculator:
         period = str(latest.get("date", latest.get("period", "")))
         period = period[:7] if "T" in period or " " in period else period[:7]
 
+        # 上周/上月值（供触发器 cross_50 穿越判定用）
+        prev_value = 0.0
+        if len(gpmi) > 1:
+            try:
+                prev_value = float(gpmi.iloc[-2][target])
+            except Exception:
+                prev_value = 0.0
+
         return GlobalPMISignal(
             period=period,
             global_pmi=round(pmi_value, 1),
             china_export_order=round(export_val, 1),
+            prev_global_pmi=round(prev_value, 1),
             direction=direction,
             strength=round(strength, 2),
             export_chain_signal=self._export_signal(direction),
