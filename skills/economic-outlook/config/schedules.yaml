@@ -1,0 +1,13 @@
+# 经济分析 Skill V3.1 — 定时任务定义
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+daily_report:
+  workflow: quick_query
+  cron: daily
+  time: "08:00"
+  output: data/reports/daily/
+weekly_report:
+  workflow: full_report
+  cron: weekly
+  day: monday
+  time: "09:00"
+  output: data/reports/weekly/

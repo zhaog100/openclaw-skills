@@ -26,6 +26,7 @@ class GlobalPMISignal:
     overseas_signal: str
     valid_until: str
     invalidation: str
+    prev_global_pmi: float = 0.0
     time_horizon: str = "medium"
     affected_outcomes: list = field(default_factory=lambda: ["stock", "commodity", "overseas"])
 
@@ -45,7 +46,7 @@ class GlobalPMICalculator:
         if gpmi.empty:
             return self._placeholder_signal()
 
-        val_col = [c for c in gpmi.columns if "pmi" in c.lower() and c != "global_pmi" is False]
+        val_col = [c for c in gpmi.columns if "pmi" in c.lower()]
         target = "global_pmi" if "global_pmi" in gpmi.columns else val_col[0]
         latest = gpmi.iloc[-1]
         pmi_value = float(latest[target])
