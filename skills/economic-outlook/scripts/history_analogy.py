@@ -20,100 +20,86 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'scripts'))
 # 一、历史锚点库（人工整理，每个锚点含特征画像 + 后续走向 + 结构启示）
 # ============================================================
 HISTORY_ANCHORS = [
+    # ===== 3.1 五个锚点定义（信号组合 → 历史区间 → 走向）=====
     {
-        "name": "2018",
-        "label": "中美利差倒挂 + 低通胀 + 信用走弱 + 外需转弱但制造韧性",
+        "id": "A",
+        "name": "信用扩张 + 外需改善",
+        "label": "信用脉冲上行 + 全球PMI>50",
+        "anchor_period": "2016Q1 / 2019Q1",
         "features": {
-            "cpi_low": True,          # CPI 低位
-            "credit_contraction": True,  # 信用脉冲收缩
-            "spread_negative": True,     # 中美利差倒挂
-            "pmi_expanding": False,      # 制造偏弱
-            "export_weak": True,         # 外需转弱
-            "policy_support": "moderate", # 政策温和对冲
+            "cpi_low": True, "credit_contraction": False, "spread_negative": False,
+            "pmi_expanding": True, "export_weak": False, "policy_support": "moderate",
         },
-        "outcome": "弱复苏 + 结构分化",
-        "path": "2018 下半年经济承压，出口链/科技/高端制造扛旗，地产/传统消费偏弱；2019 靠降准+棚改企稳",
+        "outcome": "强复苏（信用+外需双驱动）",
+        "path": "信用扩张叠加外需改善，总量+结构齐升，权益上行、周期盈利回暖",
         "structure": {
-            "overweight": ["科技", "出口链", "高端制造", "半导体"],
-            "underweight": ["地产链", "传统消费", "劳动密集出口"],
+            "overweight": ["周期", "金融", "出口链", "高端制造"],
+            "underweight": ["防御", "债券"],
         },
-        "match_keywords": ["利差倒挂", "低通胀", "信用收缩", "外需弱"],
     },
     {
-        "name": "2014-2015",
-        "label": "低通胀 + 制造景气 + 政策宽松托底",
+        "id": "B",
+        "name": "信用收缩 + 外需走弱",
+        "label": "信用脉冲下行 + 全球PMI<50",
+        "anchor_period": "2018 / 2022",
         "features": {
-            "cpi_low": True,
-            "credit_contraction": False,   # 信用扩张
-            "spread_negative": False,
-            "pmi_expanding": True,
-            "export_weak": False,
-            "policy_support": "aggressive", # 强刺激（棚改/一带一路）
+            "cpi_low": True, "credit_contraction": True, "spread_negative": True,
+            "pmi_expanding": False, "export_weak": True, "policy_support": "moderate",
         },
-        "outcome": "强复苏（信用脉冲转正 → PPI转正 → 盈利上行）",
-        "path": "2014 货币宽松 + 棚改货币化，2015 PPI 触底转正、工业利润回暖，权益上行",
+        "outcome": "弱复苏 + 结构分化",
+        "path": "总量承压，科技/出海链扛旗，地产/传统消费偏弱，靠政策托底企稳",
+        "structure": {
+            "overweight": ["科技", "出海链", "半导体"],
+            "underweight": ["地产链", "传统消费", "劳动密集出口"],
+        },
+    },
+    {
+        "id": "C",
+        "name": "信用扩张 + 内需疲弱",
+        "label": "信用脉冲上行 + 社零<均值",
+        "anchor_period": "2014-2015",
+        "features": {
+            "cpi_low": True, "credit_contraction": False, "spread_negative": False,
+            "pmi_expanding": True, "export_weak": False, "policy_support": "aggressive",
+        },
+        "outcome": "信用驱动强复苏（PPI 转正、盈利上行）",
+        "path": "货币宽松+棚改货币化，社零虽弱但信用扩张带动工业利润、权益上行",
         "structure": {
             "overweight": ["周期", "金融", "基建", "地产链"],
             "underweight": ["防御", "债券"],
         },
-        "match_keywords": ["低通胀", "制造景气", "政策强刺激", "信用扩张"],
     },
     {
-        "name": "2020Q2",
-        "label": "外需急跌 + 内需冻结 + 低通胀（冲击型）",
+        "id": "D",
+        "name": "政策强刺激",
+        "label": "专项债 + 特别国债超额落地",
+        "anchor_period": "2020Q2 / 2023",
         "features": {
-            "cpi_low": True,
-            "credit_contraction": True,
-            "spread_negative": False,
-            "pmi_expanding": False,
-            "export_weak": True,
-            "policy_support": "aggressive",  # 强刺激对冲
+            "cpi_low": True, "credit_contraction": False, "spread_negative": False,
+            "pmi_expanding": True, "export_weak": False, "policy_support": "aggressive",
         },
-        "outcome": "急跌后 V 型反转（强刺激托底）",
-        "path": "2020Q2 经济急跌，Q3 靠财政+货币强刺激 V 型反转，外需后段超预期",
+        "outcome": "政策托底强复苏（V 型反转）",
+        "path": "财政+货币双发力，专项债/特别国债落地，经济急跌后 V 型反转",
         "structure": {
-            "overweight": ["科技", "新能源", "出口链(后段)", "消费(服务)"],
-            "underweight": ["传统制造", "地产链"],
+            "overweight": ["科技", "新能源", "基建链", "消费(服务)"],
+            "underweight": ["传统制造", "地产链(后段)"],
         },
-        "match_keywords": ["外需急跌", "内需冻结", "低通胀", "强刺激"],
     },
     {
-        "name": "2021",
-        "label": "通胀回升 + 信用高位 + 外需强",
+        "id": "E",
+        "name": "外部冲击",
+        "label": "VIX>30 或 中美利差极端倒挂",
+        "anchor_period": "2020Q2(冲击) / 2025",
         "features": {
-            "cpi_low": False,
-            "credit_contraction": False,
-            "spread_negative": False,
-            "pmi_expanding": True,
-            "export_weak": False,
-            "policy_support": "moderate",
+            "cpi_low": True, "credit_contraction": True, "spread_negative": True,
+            "pmi_expanding": False, "export_weak": True, "policy_support": "aggressive",
         },
-        "outcome": "过热 → 供给约束 + 大宗商品牛",
-        "path": "2021 通胀回升、PPI 走高，外需强 + 大宗商品上行，2022 信用退坡后转弱",
+        "outcome": "冲击型急跌 + 强对冲（避险+科技双主线）",
+        "path": "外部冲击 + 利差极端，短期急跌，避险(黄金)与科技出海双主线，后段强刺激托底",
         "structure": {
-            "overweight": ["资源", "周期", "出口链"],
-            "underweight": ["成长(估值), 地产"],
+            "overweight": ["黄金", "科技", "出海链", "防御(黄金/短债)"],
+            "underweight": ["传统周期", "地产链", "外需依赖"],
         },
-        "match_keywords": ["通胀回升", "信用扩张", "外需强", "制造景气"],
-    },
-    {
-        "name": "2022",
-        "label": "外需下行 + 地产拖累 + 通胀分化",
-        "features": {
-            "cpi_low": True,
-            "credit_contraction": True,
-            "spread_negative": True,     # 中美利差倒挂
-            "pmi_expanding": False,
-            "export_weak": True,
-            "policy_support": "moderate",
-        },
-        "outcome": "总量走弱 + 结构分化（科技出海扛旗）",
-        "path": "2022 地产销售走弱、外需下行、利差倒挂，但新能源/出海链结构性强",
-        "structure": {
-            "overweight": ["出海链", "新能源", "科技"],
-            "underweight": ["地产链", "传统消费", "周期"],
-        },
-        "match_keywords": ["利差倒挂", "外需下行", "地产拖累", "信用收缩"],
     },
 ]
 

@@ -10,30 +10,30 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core.state_vector import build_state_vector
 from mappings import stock, fund, startup, employment
+from mappings.stock import map_stock
+from mappings.fund import map_fund
+from mappings.startup import map_startup
+from mappings.employment import map_employment
 
 
 def test_stock_map():
-    s = build_state_vector()
-    r = stock.map(s)
-    assert "cycle_position" in r and "hot_sectors" in r
+    r = map_stock()
+    assert r["outcome"] == "stock" and "disclaimer" in r
 
 
 def test_employment_map():
-    s = build_state_vector()
-    r = employment.map(s)
-    assert "industry_heat" in r and "city_ranking" in r
+    r = map_employment()
+    assert r["outcome"] == "employment" and "hot_industries" in r
 
 
 def test_fund_map():
-    s = build_state_vector()
-    r = fund.map(s)
-    assert "equity_vs_bond" in r
+    r = map_fund()
+    assert r["outcome"] == "fund" and "equity_bias" in r
 
 
 def test_startup_map():
-    s = build_state_vector()
-    r = startup.map(s)
-    assert "industry_opportunity" in r
+    r = map_startup()
+    assert r["outcome"] == "startup" and "hot_directions" in r
 
 
 if __name__ == "__main__":

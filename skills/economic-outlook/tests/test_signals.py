@@ -133,3 +133,18 @@ def test_triggers():
         print("triggers: 锚点切换 + 4 场景清单 PASS ✓")
     except ImportError:
         print("triggers: 跳过（模块不在路径）")
+
+def test_signals_no_exception():
+    """3.6 验收: 8 个信号计算不抛异常（数据源拉不到时降级 neutral 不崩）。"""
+    import sys, os
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for p in [base, os.path.join(base,'shared'), os.path.join(base,'signals'), os.path.join(base,'scripts')]:
+        if p not in sys.path: sys.path.insert(0, p)
+    from signals.aggregator import SignalAggregator
+    agg = SignalAggregator()
+    results = agg.collect_all()  # 内部已 try/except 降级，不崩
+    assert len(results) == 8, f"应采集 8 信号，实际 {len(results)}"
+    for k, v in results.items():
+        assert v.direction in ("bullish","bearish","neutral","bullish_cyclical","bearish_cyclical","expanding","contracting","high","low")
+        assert 0 <= v.strength <= 1, f"{k} 强度越界 {v.strength}"
+    print(f"8 信号计算不崩 ✓ (3.6 验收: 全降级不抛异常)")

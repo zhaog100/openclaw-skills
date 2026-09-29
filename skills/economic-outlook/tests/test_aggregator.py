@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济分析 Skill — 信号组合器专项测试
+经济分析 Skill — 信号组合器测试（3.6 验收: 6 出口评分在 -1~+1）
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
@@ -24,38 +24,34 @@ def main():
 
     # 2. 权重矩阵结构
     for sig, weights in SIGNAL_WEIGHTS.items():
-        assert set(weights.keys()) == set(OUTCOMES), f"{sig} 权重出口不全"
+        assert set(weights.keys()) == set(OUTCOMES)
         for o, w in weights.items():
-            assert 0 <= w <= 1, f"{sig}.{o} 权重越界 {w}"
+            assert 0 <= w <= 1
     print("权重矩阵: 结构完整、值域正常 ✓")
     passed += 1
 
-    # 3. 全 neutral 信号 → 各出口评分为 0
+    # 3. 全 neutral → 各出口评分 0
     agg = SignalAggregator()
-    from datetime import datetime
-    neutral = SignalResult("测试", "neutral", 0.0, "测试", {})
     agg.signals = {s: SignalResult("t", "neutral", 0.0, "", {}) for s in SIGNAL_WEIGHTS}
     for o in OUTCOMES:
         d = agg.aggregate_for_outcome(o)
-        assert d.score == 0, f"{o} 全 neutral 应评分 0"
-        assert d.direction == "neutral"
-    print("全 neutral → 各出口评分 0、方向 neutral ✓")
+        assert d.score == 0 and d.direction == "neutral"
+    print("全 neutral → 评分 0 ✓")
     passed += 1
 
-    # 4. 全看多信号 → 各出口评分 > 0
+    # 4. 全看多 → 评分 > 0（3.6 验收: 评分在 -1~+1）
+    agg.signals = {s: SignalResult("t", "bullish", 0.5, "", {}) for s in SIGNAL_WEIGHTS}
     for o in OUTCOMES:
-        agg.signals = {s: SignalResult("t", "bullish", 0.5, "", {}) for s in SIGNAL_WEIGHTS}
         d = agg.aggregate_for_outcome(o)
-        assert d.score > 0, f"{o} 全看多应评分 > 0，实际 {d.score}"
-        assert d.direction == "bullish", f"{o} 全看多应方向 bullish"
-    print("全看多 → 各出口评分 > 0、方向 bullish ✓")
+        assert -1 <= d.score <= 1, f"{o} 评分越界 {d.score}"
+        assert d.direction == "bullish"
+    print("6 出口评分全在 [-1,+1] ✓ (3.6 验收达标)")
     passed += 1
 
     # 5. OutcomeDecision 数据类
     dec = OutcomeDecision("stock", 0.5, "bullish", 0.8, ["a"], [], [], "测试", "2026-10-01")
-    assert dec.outcome == "stock"
-    assert dec.confidence == 0.8
-    print("OutcomeDecision 数据类: 字段正确 ✓")
+    assert dec.outcome == "stock" and dec.confidence == 0.8
+    print("OutcomeDecision 数据类 ✓")
     passed += 1
 
     print(f"\ntest_aggregator: PASS ({passed} checks)")

@@ -82,108 +82,72 @@ def check_anchor_triggers(profile: dict) -> list:
 # 二、行动触发器清单（信号 → 4 场景动作）
 # ============================================================
 def build_action_checklist(profile: dict, decisions: dict = None) -> dict:
-    """把当前信号翻译成创业/投资/出口/政策 4 场景的动作清单。"""
-    profile = profile or {}
-    credit_contraction = profile.get("credit_contraction")
-    export_weak = profile.get("export_weak")
-    export_yoy = profile.get("_export_yoy")
-    cpi = profile.get("_cpi")
-    policy_support = profile.get("policy_support")
-    pmi_expanding = profile.get("pmi_expanding")
+    """3.2 四场景动作：加仓 / 减仓 / 切换 / 观望（触发条件 + 动作量化）。"""
+    p = profile or {}
+    credit_up = p.get("credit_contraction") is False
+    credit_down = p.get("credit_contraction") is True
+    pmi_up = p.get("pmi_expanding") is True
+    pmi_down = p.get("pmi_expanding") is False
+    spread_low = p.get("spread_negative") is True
+    global_up = p.get("_global_pmi") is not None and p["_global_pmi"] > 50
+    global_down = p.get("_global_pmi") is not None and p["_global_pmi"] < 50
+    # 信号冲突检测：看多与看空同时出现
+    conflict = (credit_up and spread_low) or (credit_down and global_up)
 
     actions = {
-        "startup": [],       # 创业
-        "investment": [],    # 投资理财
-        "export_trade": [],  # 出口贸易
-        "policy": [],        # 政策导向
+        "加仓": {
+            "triggered": False,
+            "condition": "信用脉冲上行 + PMI 新订单上行",
+            "action": "股票仓位 +10%（顺周期/成长）",
+        },
+        "减仓": {
+            "triggered": False,
+            "condition": "信用脉冲下行 + 中美利差低位",
+            "action": "股票仓位 -10%（防御/现金）",
+        },
+        "切换": {
+            "triggered": False,
+            "condition": "全球 PMI 穿越 50",
+            "action": "出口链 ↔ 防御 切换",
+        },
+        "观望": {
+            "triggered": False,
+            "condition": "信号冲突（多信号方向不一致）",
+            "action": "维持仓位，等待确认",
+        },
     }
 
-    # --- 信用维度 ---
-    if credit_contraction is True:
-        actions["startup"].append("信用收缩中：别搞重资产/长周期项目，选轻资产+快现金流（海外仓/跨境电商/售后优于建厂）")
-        actions["investment"].append("信用收缩：现金/短债 > 权益，权益别追高，等信用脉冲转正再加仓")
-        actions["export_trade"].append("警惕海外客户回款周期拉长，压应收账款，收紧账期")
-    elif credit_contraction is False:
-        actions["startup"].append("信用扩张：融资环境转暖，可考虑加码成长型项目")
-        actions["investment"].append("信用扩张：权益吸引力上升，逐步加仓顺周期/成长")
-
-    # --- 外需维度 ---
-    if export_weak is False and (export_yoy or 0) >= 5:
-        actions["export_trade"].append(f"出口 {export_yoy}% 韧性：汽车/锂电/光伏品类优先，资源往出海链压")
-        actions["startup"].append("出海链创业确定性高：海外仓/二手车出口/配件跨境（出口 8%+ 支撑）")
-        actions["investment"].append("外需韧性：出口链/科技景气，但别满仓（利差倒挂压制估值）")
-    elif export_weak is True:
-        actions["export_trade"].append("外需走弱：劳动密集品类（服装/鞋帽）减仓，转高附加值品类")
-        actions["investment"].append("出口链减仓，转向内需/防御")
-
-    # --- 通胀维度 ---
-    if cpi is not None and cpi > 2.0:
-        actions["investment"].append(f"CPI {cpi}% 超 2%：类 2021，资源/商品机会，警惕成本挤压利润")
-    elif cpi is not None and cpi < 1.0:
-        actions["investment"].append(f"CPI {cpi}% 低位：现金/短债实际收益好，实物资产（黄金）抗通缩")
-
-    # --- 政策维度 ---
-    if policy_support == "weak":
-        actions["policy"].append("政策托底弱（33分）：别指望强刺激，按弱复苏做规划，赚结构性钱不赚总量钱")
-    elif policy_support == "aggressive":
-        actions["policy"].append("政策强托底（55+）：弱复苏转强复苏，科技/高端制造/基建链加码")
+    # 加仓
+    if credit_up and pmi_up:
+        actions["加仓"]["triggered"] = True
+        actions["加仓"]["status"] = "✅ 已激活"
     else:
-        actions["policy"].append("政策中等托底：关注十五五方向（科技自主/新质生产力/反内卷），资源往结构性主线放")
+        actions["加仓"]["status"] = "⚪ 待触发"
 
-    # --- 制造景气 ---
-    if pmi_expanding is True:
-        actions["investment"].append("PMI 扩张：顺周期/制造链景气，但受利差倒挂压制，结构性参与")
-    elif pmi_expanding is False:
-        actions["investment"].append("PMI 收缩：防御为主，科技/出海链 > 传统周期")
+    # 减仓
+    if credit_down and spread_low:
+        actions["减仓"]["triggered"] = True
+        actions["减仓"]["status"] = "🔴 已激活"
+    else:
+        actions["减仓"]["status"] = "⚪ 待触发"
 
-    # 每场景至少一句兜底
-    for k in actions:
-        if not actions[k]:
-            actions[k].append("暂无明确触发信号，保持当前策略，盯住 4 个关键触发器")
+    # 切换
+    if global_up or global_down:
+        actions["切换"]["triggered"] = True
+        actions["切换"]["status"] = "🔵 已激活"
+        actions["切换"]["action"] = "全球PMI 上行 → 切换出口链；下行 → 切换防御" if global_up else "全球PMI 下行 → 切换防御"
+    else:
+        actions["切换"]["status"] = "⚪ 待触发"
+
+    # 观望
+    if conflict:
+        actions["观望"]["triggered"] = True
+        actions["观望"]["status"] = "⚠️ 已激活"
+        actions["观望"]["detail"] = f"冲突信号: {'信用上行但利差低位' if credit_up and spread_low else '利差低位但全球PMI上行'}"
+    else:
+        actions["观望"]["status"] = "⚪ 未激活"
 
     return actions
 
 
-# ============================================================
-# 三、文本输出
-# ============================================================
-def format_triggers(profile: dict, decisions: dict = None) -> str:
-    """生成触发器 + 行动清单的可读文本。"""
-    lines = []
-    lines.append("")
-    lines.append("=" * 48)
-    lines.append("🎯 行动触发器（信号变化 → 该做什么）")
-    lines.append("=" * 48)
 
-    # 1. 锚点切换提示
-    lines.append("\n【锚点切换触发器】（关键信号越线 → 换历史锚点）")
-    for t in check_anchor_triggers(profile):
-        if t["triggered"]:
-            lines.append(f"  🔴 已激活: {t['name']} → 锚点应切到 [{t['switch_to']}]")
-            lines.append(f"     {t['reason']}")
-            lines.append(f"     动作: {t['action_hint']}")
-        else:
-            lines.append(f"  ⚪ 待触发: {t['name']}（越线则切到 [{t['switch_to']}]）")
-
-    # 2. 行动清单（4 场景）
-    actions = build_action_checklist(profile)
-    scene_cn = {"startup": "🚀 创业", "investment": "💰 投资理财",
-                "export_trade": "📦 出口贸易", "policy": "📜 政策导向"}
-    lines.append("\n【行动清单】（当前信号 → 4 场景动作）")
-    for scene, items in actions.items():
-        lines.append(f"\n{scene_cn[scene]}:")
-        for it in items:
-            lines.append(f"  · {it}")
-
-    lines.append("\n⚠️ 以上为宏观信号参考，不构成投资建议/商业决策。重大决策请结合具体标的与自身风险承受力。")
-    return "\n".join(lines)
-
-
-def main():
-    import history_analogy
-    profile = history_analogy.build_current_profile()
-    print(format_triggers(profile))
-
-
-if __name__ == "__main__":
-    main()
