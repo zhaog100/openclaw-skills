@@ -16,6 +16,9 @@ fi
 # 追加历史类比分析（当前画像 → 最像哪一年 → 结构启示）
 timeout 120 python3 scripts/history_analogy.py >> cache/decision_report.txt 2>/dev/null || true
 
+# 追加行动触发器（信号变化 → 该做什么）
+timeout 120 python3 scripts/triggers.py >> cache/decision_report.txt 2>/dev/null || true
+
 # 截断过长内容（QQ 推送友好）
 head -c 4800 cache/decision_report.txt
 echo ""

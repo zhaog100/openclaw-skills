@@ -111,3 +111,25 @@ def test_history_analogy():
         print("history_analogy: 匹配逻辑 + 报告生成 PASS ✓")
     except ImportError:
         print("history_analogy: 跳过（模块不在路径）")
+
+def test_triggers():
+    """行动触发器：mock profile 验证锚点切换 + 4 场景清单不崩。"""
+    import sys, os
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sys.path.insert(0, base); sys.path.insert(0, os.path.join(base, 'shared')); sys.path.insert(0, os.path.join(base, 'scripts'))
+    try:
+        import triggers
+        mock = {"cpi_low": True, "credit_contraction": True, "spread_negative": True,
+                "pmi_expanding": False, "export_weak": False, "policy_support": "weak",
+                "_export_yoy": 8.7, "_cpi": 0.8}
+        checks = triggers.check_anchor_triggers(mock)
+        assert len(checks) == 4, "应有 4 个锚点触发器"
+        acts = triggers.build_action_checklist(mock)
+        assert set(acts.keys()) == {"startup", "investment", "export_trade", "policy"}
+        for k in acts:
+            assert len(acts[k]) > 0, f"{k} 场景应有动作"
+        txt = triggers.format_triggers(mock)
+        assert "行动触发器" in txt
+        print("triggers: 锚点切换 + 4 场景清单 PASS ✓")
+    except ImportError:
+        print("triggers: 跳过（模块不在路径）")
