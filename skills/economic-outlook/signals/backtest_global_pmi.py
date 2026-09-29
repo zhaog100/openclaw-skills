@@ -8,7 +8,7 @@
 import pandas as pd
 import numpy as np
 from shared.sources.global_pmi import GlobalPMIAdapter
-from shared.sources.sector_returns import fetch_sector_returns
+from shared.sources.sector_returns import fetch_sector_returns, fetch_sector_returns_sw
 
 
 def backtest_global_pmi(etf_code: str = "512400", forward_months: int = 2, lookback_months: int = 120) -> dict:
@@ -18,7 +18,7 @@ def backtest_global_pmi(etf_code: str = "512400", forward_months: int = 2, lookb
     if gpmi.empty:
         return {"error": "全球PMI数据为空"}
 
-    df = fetch_sector_returns(etf_code, start="20170101")
+    df = fetch_sector_returns_sw("801050", start="20100101")
     if df.empty:
         return {"error": "出口链收益数据为空"}
     excess = df["excess_return"]

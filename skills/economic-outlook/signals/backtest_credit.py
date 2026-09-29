@@ -8,7 +8,7 @@
 import pandas as pd
 import numpy as np
 from shared.sources.credit import CreditAdapter
-from shared.sources.sector_returns import fetch_sector_returns
+from shared.sources.sector_returns import fetch_sector_returns, fetch_sector_returns_sw
 
 
 def backtest_credit_impulse(etf_code: str = "512400", start: str = "20170101", lookback_months: int = 120) -> dict:
@@ -28,7 +28,7 @@ def backtest_credit_impulse(etf_code: str = "512400", start: str = "20170101", l
     merged["credit_impulse"] = merged["credit_to_gdp"] - merged["credit_to_gdp"].shift(12)
     merged = merged.dropna(subset=["credit_impulse"])
 
-    df = fetch_sector_returns(etf_code, start=start)
+    df = fetch_sector_returns_sw("801050", start="20100101")
     if df.empty:
         return {"error": "周期板块收益数据为空"}
     excess = df["excess_return"]

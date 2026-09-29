@@ -58,3 +58,36 @@ def fetch_sector_returns(etf_code: str = "512400", start: str = "20170101", end:
     df["excess_return"] = df["etf_return"] - df["hs300_return"]
     df["etf_code"] = etf_code
     return df
+
+
+def fetch_sw_monthly(sw_code: str = "801050", start: str = "20100101", end: str = None) -> pd.Series:
+    """获取申万行业指数月度收益（主源，绕开东财）。"""
+    if end is None:
+        end = datetime.now().strftime("%Y%m%d")
+    try:
+        df = ak.index_hist_sw(symbol=sw_code, period="month")
+        df = df.rename(columns={"日期": "date", "收盘": "close"})
+        df["date"] = pd.to_datetime(df["date"])
+        df = df[(df["date"] >= pd.to_datetime(start)) & (df["date"] <= pd.to_datetime(end))]
+        df["year_month"] = df["date"].dt.strftime("%Y%m")
+        df = df.drop_duplicates(subset=["date"])
+        returns = df.set_index("year_month")["close"].pct_change().dropna()
+        returns.name = f"sw_{sw_code}"
+        return returns
+    except Exception:
+        return pd.Series(dtype=float)
+
+
+def fetch_sector_returns_sw(sw_code: str = "801050", start: str = "20100101", end: str = None) -> pd.DataFrame:
+    """板块超额收益（申万行业指数 - 沪深300），东财挂了也能跑。"""
+    if end is None:
+        end = datetime.now().strftime("%Y%m%d")
+    sw_ret = fetch_sw_monthly(sw_code, start, end)
+    hs300_ret = fetch_hs300_monthly(start, end)
+    if sw_ret.empty:
+        return pd.DataFrame()
+    hs300_aligned = hs300_ret.reindex(sw_ret.index)
+    df = pd.DataFrame({"sw_return": sw_ret, "hs300_return": hs300_aligned}).dropna()
+    df["excess_return"] = df["sw_return"] - df["hs300_return"]
+    df["source"] = f"sw_{sw_code}"
+    return df
