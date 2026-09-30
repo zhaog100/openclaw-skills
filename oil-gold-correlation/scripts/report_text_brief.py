@@ -1,11 +1,16 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
-石油黄金投资参考 - 精简版 v3.3
+石油黄金投资参考 - 精简版 v3.4
 定位：一页纸快速扫一眼，30秒看完
 只保留：信号灯 + 仪表盘 + 操作建议 + 结论
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
+版本: v3.4 | 石油黄金白银相关性分析
 """
 
 import sys
@@ -64,7 +69,7 @@ def fetch_data(ak_key, period="90d"):
             with open(cache_file, 'wb') as f: pickle.dump(df, f)
         return df
     except Exception as e:
-        print(f"[fetch_data] {ak_key} 失败: {e}")
+        logger.info(f"[fetch_data] {ak_key} 失败: {e}")
         return None
 
 def get_entry_exit(result, geo_risk=0):
@@ -238,14 +243,14 @@ def generate_brief_report():
     lines.append(f'>> ⚠️ 仅供参考，不构成投资建议')
 
     report = '\n'.join(lines)
-    print(report)
+    logger.info(report)
 
     from config import REPORT_DIR, ensure_dirs
     ensure_dirs()
     brief_path = REPORT_DIR / "oil-gold-report-brief.txt"
     with open(brief_path, 'w') as f:
         f.write(report)
-    print(f'\n已保存: {brief_path}')
+    logger.info(f'\n已保存: {brief_path}')
     return report
 
 if __name__ == '__main__':

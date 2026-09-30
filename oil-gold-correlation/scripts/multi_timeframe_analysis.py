@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 多周期共振分析模块 — 黄金/白银/石油
@@ -7,7 +11,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -134,7 +138,7 @@ def _fetch_akshare_single(ak_key, period="1y"):
 
         return df
     except Exception as e:
-        print(f"  ⚠️ akshare {ak_key}({period}) 失败: {e}")
+        logger.info(f"  ⚠️ akshare {ak_key}({period}) 失败: {e}")
         return None
 
 
@@ -179,7 +183,7 @@ def _fetch_yfinance_single(symbol, period="1y"):
 
         return df
     except Exception as e:
-        print(f"  ⚠️ yfinance {symbol}({period}) 失败: {e}")
+        logger.info(f"  ⚠️ yfinance {symbol}({period}) 失败: {e}")
         return None
 
 
@@ -699,21 +703,21 @@ def run_multi_timeframe_analysis(source="akshare"):
     运行完整的多周期共振分析
     返回: (mta_results, report_lines)
     """
-    print("🔍 开始多周期共振分析...")
+    logger.info("🔍 开始多周期共振分析...")
 
     mta_results = []
     for key in TIMEFRAME_SYMBOLS:
-        print(f"  分析 {TIMEFRAME_SYMBOLS[key]['name']}...", end=" ", flush=True)
+        logger.info(f"  分析 {TIMEFRAME_SYMBOLS[key]['name']}...")
         try:
             result = multi_timeframe_resonance(key, source)
             if result:
                 mta_results.append(result)
                 res = result["resonance"]
-                print(f"✅ {res['direction']}({res['strength']}%)")
+                logger.info(f"✅ {res['direction']}({res['strength']}%)")
             else:
-                print("❌ 数据不足")
+                logger.info("❌ 数据不足")
         except Exception as e:
-            print(f"❌ {e}")
+            logger.info(f"❌ {e}")
 
     # 生成报告
     report_lines = format_mta_report(mta_results)
@@ -724,9 +728,9 @@ def run_multi_timeframe_analysis(source="akshare"):
 if __name__ == "__main__":
     results, lines = run_multi_timeframe_analysis()
     for line in lines:
-        print(line)
+        logger.info(line)
 
-    print(f"\n✅ 分析完成 | {len(results)}个品种 | "
+    logger.info(f"\n✅ 分析完成 | {len(results)}个品种 | "
           f"{sum(1 for r in results if r and r['resonance']['strength'] >= 60)}个强共振信号")
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

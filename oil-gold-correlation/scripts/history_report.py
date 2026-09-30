@@ -1,7 +1,12 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+# 版本: v3.4 | 石油黄金白银相关性分析
 """
-历史走势增强版报告 — 在 v3.3 基础上增加：
+历史走势增强版报告 — 在 v3.4 基础上增加：
 1. 历史区间统计（近期高低点、回撤幅度）
 2. 波动率对比（哪个品种更颠簸）
 3. 趋势强度量化（MA偏离度）
@@ -12,8 +17,6 @@
 
 import sys
 import numpy as np
-import pandas as pd
-import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
@@ -68,7 +71,7 @@ def fetch_data(ak_key, period="90d"):
             with open(cache_file, 'wb') as f: pickle.dump(df, f)
         return df
     except Exception as e:
-        print(f"[fetch_data] {ak_key} 失败: {e}")
+        logger.info(f"[fetch_data] {ak_key} 失败: {e}")
         return None
 
 def get_tech_summary(result):
@@ -454,13 +457,13 @@ def generate_history_report():
     lines.append(f'>> ⚠️ 仅供参考，不构成投资建议')
 
     full = '\n'.join(lines)
-    print(full)
+    logger.info(full)
 
     from config import REPORT_TEXT, ensure_dirs
     ensure_dirs()
     with open(REPORT_TEXT, 'w') as f:
         f.write(full)
-    print(f'\n已保存: {REPORT_TEXT}')
+    logger.info(f'\n已保存: {REPORT_TEXT}')
 
 if __name__ == '__main__':
     generate_history_report()

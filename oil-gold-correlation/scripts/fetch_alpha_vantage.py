@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 Alpha Vantage 数据源
@@ -7,7 +11,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 
 import os
 import time
@@ -59,7 +63,7 @@ def fetch_av_daily(symbol, period="90d"):
         if "Time Series (Daily)" not in data:
             # 可能是限流或无效 key
             note = data.get("Note", data.get("Error Message", "未知错误"))
-            print(f"  ⚠️ Alpha Vantage ({symbol}): {note}")
+            logger.info(f"  ⚠️ Alpha Vantage ({symbol}): {note}")
             return None
 
         ts = data["Time Series (Daily)"]
@@ -80,7 +84,7 @@ def fetch_av_daily(symbol, period="90d"):
         return df if not df.empty else None
 
     except Exception as e:
-        print(f"  ⚠️ Alpha Vantage ({symbol}): {e}")
+        logger.info(f"  ⚠️ Alpha Vantage ({symbol}): {e}")
         return None
 
 

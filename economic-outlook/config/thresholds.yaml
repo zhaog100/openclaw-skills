@@ -1,0 +1,15 @@
+# 告警阈值（PRD §19）— 迁移时改这里
+# 经济分析 Skill V3.0 — 配置文件
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+alerts:
+  m1_turn: 0.5
+  ppi_turn: 0.3
+  cpi_max: 3.0
+  cpi_min: -1.0
+  unemployment_max: 7.0
+  retail_min: -5.0
+  exports_min: -10.0
+  pmi_min: 45.0
+  gdp_min: 3.0
+  m2_min: 5.0
+  m2_max: 12.0

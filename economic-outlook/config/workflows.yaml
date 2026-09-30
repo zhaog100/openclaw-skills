@@ -1,0 +1,33 @@
+# 经济分析 Skill V3.1 — 工作流定义（DAG）
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+workflows:
+  quick_query:
+    description: "快速查询，只跑核心信号"
+    timeout_seconds: 30
+    nodes:
+      - {skill: macro_state}
+      - {skill: pmi_orders, parallel_group: signals}
+      - {skill: credit_impulse, parallel_group: signals}
+      - {skill: china_us_spread, parallel_group: signals}
+      - {skill: trigger_engine, depends_on: [pmi_orders, credit_impulse, china_us_spread]}
+    output: trigger_engine
+  stock_query:
+    description: "股票专用查询"
+    timeout_seconds: 60
+    nodes:
+      - {skill: macro_state}
+      - {skill: pmi_orders, parallel_group: signals}
+      - {skill: credit_impulse, parallel_group: signals}
+      - {skill: etf_flow, parallel_group: signals, optional: true}
+      - {skill: china_us_spread, parallel_group: signals}
+      - {skill: stock_outcome, depends_on: [pmi_orders, credit_impulse, etf_flow, china_us_spread]}
+    output: stock_outcome
+  employment_query:
+    description: "就业专用查询"
+    timeout_seconds: 60
+    nodes:
+      - {skill: recruitment, parallel_group: signals, optional: true}
+      - {skill: export_category, parallel_group: signals, optional: true}
+      - {skill: domestic_category, parallel_group: signals, optional: true}
+      - {skill: employment_outcome, depends_on: [recruitment, export_category, domestic_category]}
+    output: employment_outcome

@@ -1,0 +1,10 @@
+{
+  "cpi_yoy":  {"min": -1.0, "max": 3.0},
+  "ppi_yoy":  {"min": -5.0, "max": 5.0},
+  "unemployment": {"min": null, "max": 7.0},
+  "retail_yoy": {"min": -5.0, "max": null},
+  "exports_yoy": {"min": -10.0, "max": null},
+  "pmi": {"min": 45.0, "max": null},
+  "gdp_yoy": {"min": 3.0, "max": null},
+  "m2_yoy": {"min": 5.0, "max": 12.0}
+}

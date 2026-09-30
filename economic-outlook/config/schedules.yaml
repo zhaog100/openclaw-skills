@@ -1,0 +1,26 @@
+# 经济分析 Skill V3.1 — 定时任务定义
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+daily_report:
+  workflow: quick_query
+  cron: daily
+  time: "08:00"
+  output: data/reports/daily/
+daily_report_v2:
+  workflow: full_report
+  cron: daily
+  time: "10:00"
+  output: data/reports/daily/
+  note: 经济形势日报，每天10:00推送（2026-09-30 官家定）
+
+
+# ============ 石油黄金推送（归门面调度器统一管理，时间不变）============
+# 石油黄金每日 4 次推送保持原样：早盘10:00 / 日盘15:00 / 晚盘21:00 / 美盘22:00
+oil_gold_push:
+  skill: oil_gold
+  push_times:
+    - {name: 早盘, cron: "0 10 * * *"}
+    - {name: 日盘, cron: "0 15 * * *"}
+    - {name: 晚盘, cron: "0 21 * * *"}
+    - {name: 美盘, cron: "0 22 * * *"}
+  channel: qqbot
+  note: 时间不变，推送目标固定到官家 QQ（2026-09-30）
