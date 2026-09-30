@@ -31,3 +31,10 @@ workflows:
       - {skill: domestic_category, parallel_group: signals, optional: true}
       - {skill: employment_outcome, depends_on: [recruitment, export_category, domestic_category]}
     output: employment_outcome
+
+  oil_gold_query:
+    description: "石油黄金相关性分析+门面统一推送"
+    timeout_seconds: 600
+    nodes:
+      - {skill: oil_gold}
+    output: oil_gold

@@ -67,7 +67,34 @@ class OilGoldSkill(BaseSkill):
         else:
             out["report_text"] = "未生成（需先跑 report_text.py）"
 
-        # 3. cron 推送说明
+        # 3. 生成报告文本（复用石油黄金 report_text.py，失败隔离）
+        try:
+            spec2 = importlib.util.spec_from_file_location(
+                "oil_report", os.path.join(scripts, "report_text.py"))
+            rep_mod = importlib.util.module_from_spec(spec2)
+            spec2.loader.exec_module(rep_mod)
+            rep_mod.main() if hasattr(rep_mod, "main") else None
+        except Exception as e:
+            out["report_text"] = f"生成失败: {str(e)[:60]}"
+            out["correlation"]["status"] = out.get("correlation", {}).get("status", "degraded")
+
+        # 4. QQ 推送（门面统一推送：走 send_qq_gw.py，open_id 从 context/env 读）
+        target = context.get("qq_target_user_id") or os.environ.get("QQ_TARGET_USER_ID", "")
         out["push"] = {"channel": "qqbot", "method": "send_qq_gw.py (Gateway REST)",
-                       "note": "cron 每日 4 次，门面调度器可接管"}
+                       "unified": True}
+        if target and os.path.exists(out["report_text_path"]):
+            try:
+                import subprocess, os as _os
+                env = dict(_os.environ)
+                env["QQ_TARGET_USER_ID"] = target
+                r = subprocess.run(["python3", os.path.join(scripts, "send_qq_gw.py"), out["report_text_path"]],
+                                   env=env, timeout=120, capture_output=True, text=True)
+                out["push"]["sent"] = r.returncode == 0
+                out["push"]["note"] = "门面统一推送成功" if r.returncode == 0 else f"推送异常: {r.stderr[:60]}"
+            except Exception as e:
+                out["push"]["sent"] = False
+                out["push"]["note"] = f"推送失败: {str(e)[:60]}"
+        else:
+            out["push"]["sent"] = False
+            out["push"]["note"] = "无 open_id 目标或报告未生成，跳过推送（不硬编码）"
         return out
