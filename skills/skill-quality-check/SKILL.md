@@ -3,8 +3,6 @@ name: "skill-quality-check"
 description: "技能质量检查：版本号统一性、版权信息、硬编码敏感信息、命名规范、代码规范"
 author: 思捷娅科技 (SJYKJ)/zhaog100
 license: MIT
-version: 1.1.0
-
 ---
 
 # 技能质量检查
@@ -22,6 +20,7 @@ version: 1.1.0
 grep -r "Copyright" <skill_dir> --include="*.py" --include="*.sh" --include="*.md"
 ```
 要求：所有文件均有 `MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)`
+- 检查范围必须包含 `config/*.yaml`（yaml 用注释式 `# 版权` 头）和 README.md（Markdown 尾注），不只查 .py/.sh/.md；yaml 补完版权后逐文件 `yaml.safe_load` 验证语法未破坏
 
 ### 2. 版本号统一性
 检查所有Python文件版本号：
@@ -112,6 +111,14 @@ git log --all --format="%an" -- "skills/<skill_name>/"
 - 版权缺失 → grep -L 找出无版权文件，使用edit添加版权块
 - 版本不一致 → grep "^# 版本" 找出差异，统一修订版（patch版本）
 
+## 批量审查执行方法（2026-09-28新增）
+单个技能逐项 grep 可行；40 个技能全量审查时按以下流程：
+1. 先定位自研技能范围（前置分类），再写一个 Python 审计脚本一次性跑全部维度（版权/版本/脱敏/硬编码/print/logging/命名），不要逐技能手敲 grep。
+2. Python 审计脚本直接读文件、正则匹配、分类输出；避免在 shell 里写 `$( ... )` 嵌套 + 单引号混用的复杂脚本——本次 4 次因 shell 转义/括号语法报错才改用 Python 脚本，多耗了 4+ 轮。
+3. 脱敏检查必须同时验证 gitignore 状态：`git check-ignore <path>` 确认命中路径不会入库；发现的未忽略目录（如 venv/）立即加入 .gitignore 并复验。
+4. 版本号对齐规则：子模块脚本（send_qq_*.py 等）版本跟随主 SKILL.md 版本；主版本以 SKILL.md 的 `version:` 字段为准，冲突时升级滞后方。
+5. 修复后统一一次 commit + push（zhaog100/xiaomijiao-skills main 分支），commit message 列明各修复项。
+
 ## 输出格式
 ```
 === <skill_name> 技能检查报告 ===
@@ -123,3 +130,40 @@ git log --all --format="%an" -- "skills/<skill_name>/"
 
 修复建议：...
 ```
+
+
+## 📤 按技能粒度推送（2026-09-30 新增）
+
+**远端技能仓 `zhaog100/openclaw-skills` 是扁平结构（根目录一个 skill 一个目录），本地 workspace 是 `skills/<name>/` 带前缀。直接整仓 push 会推歪目录，必须按 skill 粒度推。**
+
+### 推送前 3 步（防丢原则：只多不少）
+```bash
+# 1. 浅 clone 远端做 diff（不影响本地仓）
+git clone --depth 1 https://github.com/zhaog100/openclaw-skills.git /tmp/oc-push
+# 2. 文件级 diff，确认远端无"本地没有的独有内容"（本地应是超集）
+cd /tmp/oc-push/<skill> && find . -type f | grep -vE "__pycache__|/cache/|/reports/" | sort > /tmp/remote.txt
+cd <workspace>/skills/<skill> && find . -type f | grep -vE "__pycache__|/cache/|/reports/|backup-" | sort > /tmp/local.txt
+comm -23 /tmp/remote.txt /tmp/local.txt   # 远端有本地没有 = 会丢的东西，必须保留
+# 3. 拷贝进 clone、保留远端独有（如历史 reports）、清临时目录、commit + push
+git checkout HEAD -- <远端独有目录>/   # 保留
+rm -rf <本地临时 backup 目录>/
+git add -A && git commit -m "..." && git push origin main
+```
+
+### 判定"新增还是更新"
+- 远端该 skill 目录 **404 不存在** → **新增**（整个目录推上去）
+- 远端 **已存在** → **更新**（覆盖代码，但保留远端独有历史产物如 reports/）
+- 待推清单里**不得有删除项（D）**——有 D 说明会删远端历史，违反"只多不少"
+
+### 凭证脱敏（推公开仓前必查）
+- 检查待推的 config/*.json 是否含真实 token/open_id/手机号（应只有 `${VAR}` 占位符）
+- `git check-ignore` 确认 cache/reports/.env/pickle 不会入库
+- open_id 不得写死默认值，走环境变量/config，缺失要**明确报错**不静默兜底
+
+## 📡 多源采集原则（2026-09-30 新增，官家定，永久）
+
+**数据源只能多不能少、不能限制。信息源包括不限于网站、公众号、官方、研报等所有合理渠道。源越多交叉验证越充分，结论越接近真实。**
+- 单源会滞后 + 视角单一 → 多源并行 + 交叉验证；≥2 独立源一致 = high 置信，单源标"待确认"
+- 新渠道一律"加"不"删"，不通的源占位保留（失败隔离，单源挂不影响整体）
+- JS 渲染源（财联社/东财快讯）纯 requests 抓不到正文 → 用能直接返回文本的源（新华社/金十/公众号 mp.weixin 直采）替代，不硬凑
+- 数据源失败一律降级占位，**禁止硬造数据**，主流程不崩
