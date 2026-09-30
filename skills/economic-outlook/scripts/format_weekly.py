@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济分析 Skill V3.0 — 周报固定格式（3.5）
+经济分析 Skill V3.1 — 周报固定格式（3.5）
 
 按 官家 给定模板输出：
 【宏观周报】YYYY-MM-DD

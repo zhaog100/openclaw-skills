@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济分析 Skill V3.0 — 政策时间线更新器
+经济分析 Skill V3.1 — 政策时间线更新器
 
 每月从 国务院/发改委/央行官网 抓取新政，追加到 data/policy_timeline.json。
 拉不到时如实标注"最后更新日期"和"覆盖范围"，不硬造。

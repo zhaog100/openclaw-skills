@@ -1,4 +1,4 @@
-# oil-gold-us-adapter.sh
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)# 技能: oil-gold-correlation/oil-gold-us-adapter# oil-gold-us-adapter.sh
 # 自动判断美股夏/冬令时，动态调整推送时间
 # 夏令时(3月第2周日~11月第1周日): 美股21:30开盘 → cron 23:00直接推送
 # 冬令时(11月第1周日~3月第2周日): 美股22:30开盘 → 需延迟到00:00推送

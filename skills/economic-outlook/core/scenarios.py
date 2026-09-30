@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-情景分析（FR-05/FR-16，PRD V2.0 §7）
+情景分析（FR-05/FR-16，PRD V3.1 §7）
 core/scenarios.py
 
 基于政策、外需、地产三变量组合生成情景概率 + 驱动因子。

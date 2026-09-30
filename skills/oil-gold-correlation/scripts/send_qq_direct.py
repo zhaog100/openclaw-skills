@@ -133,7 +133,7 @@ async def send_message(message: str) -> bool:
 
 
 def main():
-    report_file = sys.argv[1] if len(sys.argv) > 1 else "/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/reports/report_text_latest.txt"
+    report_file = sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).parent.parent / "reports" / "report_text_latest.txt")
 
     try:
         with open(report_file, "r") as f:

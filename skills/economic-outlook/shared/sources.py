@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-数据源统一封装（PRD V2.0 §15）
+数据源统一封装（PRD V3.1 §15）
 shared/sources.py
 
 所有模块通过这里取数，不直接 import fetch_macro。

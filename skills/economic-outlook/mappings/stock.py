@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济分析 Skill — 股票映射（V3.4 降级为 alias，内部调用 outcomes/stock.py）
+经济分析 Skill — 股票映射（V3.1 降级为 alias，内部调用 outcomes/stock.py）
 
-V3.4: mappings/ 作为轻量旧接口保留，outcomes/ 为完整决策出口。
+V3.1: mappings/ 作为轻量旧接口保留，outcomes/ 为完整决策出口。
 本文件内部转发到 outcomes.stock，避免双份逻辑漂移。
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

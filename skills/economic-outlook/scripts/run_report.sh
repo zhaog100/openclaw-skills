@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 经济分析一键入口
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)# 技能: economic-outlook/scripts/run_report# 经济分析一键入口
 # 用法: ./run_report.sh [push]  (push 则输出推送用报告文本)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"

@@ -1,8 +1,6 @@
 ---
 name: "oil-gold-analysis"
 description: "石油黄金分析：运行analysis.py+report_text.py生成报告，send_qq.sh推送QQ。触发：用户询问或cron定时。"
-version: 1.1.0
-
 ---
 
 # 石油黄金分析技能
@@ -79,3 +77,16 @@ export PYTHONPATH="/home/ubuntu/.local/lib/python3.12/site-packages"
 2. 报告未生成 → 确认 report_text.py 能独立运行
 3. QQ发送失败 → openclaw message send CLI 不支持 qqbot 通道，需改用 send_qq_ws.py 或手动推送
 4. Gateway WebSocket 认证 → client.mode 必须为 "operator" 或 "backend"，需携带 device 信息
+
+## 数据源受限环境（腾讯云）排障（2026-09-29）
+官方数据源（NBS/海关/央行/东财行情/新浪 retail）在本机多为"接口本身被墙/风控"而非代码 bug，按此顺序判别，避免空盯或误改代码：
+1. 先分层探活：主站可通（`curl -o /dev/null -w '%{http_code}'` 得 200）但数据子域返回 `HTTP 000`/412/RemoteDisconnected，即该子域被限，**不是断网**——其它 akshare 源（如 macro_usa_pmi）能拉通即可佐证。
+2. 官方源拉不到时**一律走降级**：宏观 21 个 akshare 源兜底、出口品类/国内品类/招聘走占位+总额兜底、信号层捕获异常降级 neutral，主流程不崩、周报照常出。
+3. 别为此改代码或加代理硬拉：换国内网络/代理后官方源自动生效，代码零改动。排障结论按此记录即可。
+4. 测试/全链路验证被官方源超时时，用 mock 信号（不联网）快速验逻辑不崩，再跑全量测试；别因超时误判为逻辑错。
+
+## 定时推送与门面集成（2026-09-30）
+
+- **每日 4 次推送时间不变**：早盘 10:00 / 日盘 15:00 / 晚盘 21:00 / 美盘 22:00，各自是一个 openclaw cron 任务（名字 `oil-gold-morning/daily/evening/us`，实际路径 `skills/oil-gold-correlation/scripts/run_report.sh`，非系统 crontab）。改动前先 `openclaw cron list` 核对这 4 个任务。
+- **推送目标必须固定**：delivery 的 channel 用 `qqbot`、to 用 `qqbot:c2c:C099848DC9A60BF60A7BE31626822790`。若任务是 `channel=last`，`openclaw cron list` 会显示 `will fail-closed`（静默失败、用户收不到）；用 `openclaw cron edit <id> --channel qqbot --to qqbot:c2c:<open_id>` 修复。修完以 list 不再出现 fail-closed 为准。
+- **门面集成**：本 skill 已作为 economic-outlook 门面平台的微技能 `skills/oil_gold`（第 19 个）挂入，`orchestrator/registry.py` 自动发现；配置登记在 `skills/economic-outlook/config/schedules.yaml` 的 `oil_gold_push`。推送时间调整只改 openclaw cron，保持 schedules.yaml 与实际 cron 一致。

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-指标计算（FR-03，PRD V2.0 §9）
+指标计算（FR-03，PRD V3.1 §9）
 core/indicators.py
 
 同比/环比/剪刀差/扩散指数。复用 scripts/features.py 的真实计算。

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-简单文件缓存（PRD V2.0 §16）
+简单文件缓存（PRD V3.1 §16）
 shared/cache.py
 
 官方数据发布后更新一次，其余时间读缓存。

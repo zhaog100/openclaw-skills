@@ -81,12 +81,23 @@ if __name__ == "__main__":
     p.add_argument("--schedule", default="", help="执行定时任务名")
     args = p.parse_args()
 
+    import logging as _logging
+    import sys as _sys
+    _log = _logging.getLogger(__name__)
+    interactive = _sys.stdout.isatty()  # 交互终端才 print，cron/管道走日志
     if args.schedule:
         r = schedule(args.schedule)
-        print(r)
+        _log.info("%s", r)
+        if interactive:
+            print(r)
     else:
         r = run(args.query, args.verbose)
-        print(f"工作流: {r['workflow']}")
-        print(r["summary"])
-        print("-" * 60)
-        print(r["disclaimer"])
+        _log.info("工作流: %s", r.get('workflow'))
+        _log.info("%s", r.get("summary"))
+        _log.info("-" * 60)
+        _log.info("%s", r.get("disclaimer"))
+        if interactive:
+            print(f"工作流: {r.get('workflow')}")
+            print(r.get("summary"))
+            print("-" * 60)
+            print(r.get("disclaimer"))

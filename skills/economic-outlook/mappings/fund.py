@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济分析 Skill — 基金映射（V3.4 降级为 alias，内部调用 outcomes/fund.py）
+经济分析 Skill — 基金映射（V3.1 降级为 alias，内部调用 outcomes/fund.py）
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """

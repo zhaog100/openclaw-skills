@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-经济分析 Skill — 统一入口（V3.0 信号驱动多出口决策）
+经济分析 Skill — 统一入口（V3.1 信号驱动多出口决策）
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
@@ -44,7 +44,7 @@ def run(query: str = "", verbose: bool = False) -> dict:
 
 def main():
     import argparse
-    p = argparse.ArgumentParser(description="经济分析 Skill V3.0")
+    p = argparse.ArgumentParser(description="经济分析 Skill V3.1")
     p.add_argument("query", nargs="?", default="", help="自然语言查询")
     p.add_argument("--verbose", action="store_true", help="输出决策矩阵")
     args = p.parse_args()

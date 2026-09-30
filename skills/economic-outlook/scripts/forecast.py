@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 # 各 horizon 的衰减系数（政策影响随时间衰减）
-# v2.0 对齐 PRD：未来 8 个季度（2 年）
+# v3.1 对齐 PRD：未来 8 个季度（2 年）
 HORIZON_DECAY = {'Q1': 0.95, 'Q2': 0.90, 'Q3': 0.85, 'Q4': 0.80,
                  'Q5': 0.75, 'Q6': 0.70, 'Q7': 0.65, 'Q8': 0.60}
 
@@ -45,7 +45,7 @@ def _direction_hint(score):
 
 def forecast_horizons(scores, policy_recent_events, now=None):
     """
-    对 8 个季度（未来 2 年）做三情景推演（PRD V1.0 要求）
+    对 8 个季度（未来 2 年）做三情景推演（PRD V3.1 要求）
     每个季度输出：基准/乐观/悲观 + 分领域方向
     """
     now = now or datetime.now()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-合规过滤（FR-18，PRD V2.0 §17/§19）
+合规过滤（FR-18，PRD V3.1 §17/§19）
 shared/compliance.py
 
 从 config/compliance.yaml 读规则（缺省用内置），强制过滤个股/买卖点/基金推荐/收益承诺。

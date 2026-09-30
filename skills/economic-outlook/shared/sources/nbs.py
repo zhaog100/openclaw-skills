@@ -1,4 +1,4 @@
-"""国家统计局数据适配器（新版 V2.0 API）— cid 需实际运行填充。
+"""国家统计局数据适配器（新版 V3.1 API）— cid 需实际运行填充。
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)"""
 import json
 import requests

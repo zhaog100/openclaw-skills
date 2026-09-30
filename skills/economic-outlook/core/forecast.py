@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-预测引擎（FR-04，PRD V2.0 §6）
+预测引擎（FR-04，PRD V3.1 §6）
 core/forecast.py
 
 输出未来 8 季度基准/乐观/悲观 + 年度指标预测。

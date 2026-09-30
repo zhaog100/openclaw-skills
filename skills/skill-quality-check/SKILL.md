@@ -48,6 +48,7 @@ grep -rn "api_key\|secret\|token\|password\|APP_ID\|APP_SECRET" <skill_dir>/scri
 - 使用 `logging` 模块，不得有 `print()` 残留
 - 检查：`grep -n "print(" <skill_dir>/scripts/*.py`
 - 如果存在print残留，使用Python脚本批量替换为logger.info()
+- **入口脚本同样受查**：门面/CLI 入口（entry.py 等）的 print 也违规；修复时用 `sys.stdout.isatty()` 判定——交互终端才 print，管道/cron/非交互场景一律走 logging
 
 ### 6. 版权格式（2026-09-05新增）
 - 所有技能文件必须使用统一MIT版权格式：

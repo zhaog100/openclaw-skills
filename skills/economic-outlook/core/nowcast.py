@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-高频 Nowcasting（PRD V2.0 §10）
+高频 Nowcasting（PRD V3.1 §10）
 core/nowcast.py
 
 用可用高频代理（社融 M1/PMI/出口动量）对当前季度 GDP 做 nowcast。

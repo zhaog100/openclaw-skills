@@ -8,9 +8,10 @@ License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
 import re
+import os
 from pathlib import Path
 
-SKILL_DIR = Path("/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts")
+SKILL_DIR = Path(os.environ.get("OIL_GOLD_SKILL_DIR", Path(__file__).parent.resolve()))
 
 FILES = [
     "advisor.py", "analysis.py", "analyze_history.py", "fetch_data.py",

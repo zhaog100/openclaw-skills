@@ -8,9 +8,10 @@ License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
 import re
+import os
 from pathlib import Path
 
-SKILL_DIR = Path("/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts")
+SKILL_DIR = Path(os.environ.get("OIL_GOLD_SKILL_DIR", Path(__file__).parent.resolve()))
 
 # 需要修复的文件列表
 FILES = [

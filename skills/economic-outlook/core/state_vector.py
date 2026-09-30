@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-宏观状态向量（PRD V2.0 §5.5）
+宏观状态向量（PRD V3.1 §5.5）
 core 层最终输出 schema，供 mappings 模块消费
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

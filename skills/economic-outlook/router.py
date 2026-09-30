@@ -36,7 +36,7 @@ def detect_intents(query):
 
 def route(query, force=None):
     """
-    路由入口（PRD V2.0 §4）：返回含 summary/disclaimer 的 dict
+    路由入口（PRD V3.1 §4）：返回含 summary/disclaimer 的 dict
     force: 显式映射模块集合（CLI flag），与 query 关键词合并
     """
     intents = set(force or set()) | (detect_intents(query) & set(INTENTS))

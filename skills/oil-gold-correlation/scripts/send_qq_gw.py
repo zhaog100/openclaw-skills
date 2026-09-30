@@ -23,7 +23,17 @@ from pathlib import Path
 GATEWAY_HOST = "127.0.0.1"
 GATEWAY_PORT = 18789
 TOKEN_FILE = Path.home() / ".openclaw" / "openclaw.json"
-QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "C099848DC9A60BF60A7BE31626822790")
+QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "").strip()
+if not QQ_TARGET:
+    # 无环境变量则从 config 读，仍空则报错（不硬编码 open_id 进公开仓库）
+    try:
+        import json
+        with open(os.path.join(os.path.dirname(__file__), "..", "..", "..", "config", "oil_gold.json")) as cf:
+            QQ_TARGET = json.load(cf).get("qq_target_user_id", "")
+    except Exception:
+        pass
+    if not QQ_TARGET:
+        raise SystemExit("[ERROR] QQ_TARGET_USER_ID 未设置（环境变量或 config/oil_gold.json），拒绝推送")
 
 # 配置 logging
 class StderrHandler(logging.StreamHandler):
@@ -100,7 +110,7 @@ def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
 
 
 def main():
-    report_file = sys.argv[1] if len(sys.argv) > 1 else "/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/reports/report_text_latest.txt"
+    report_file = sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).parent.parent / "reports" / "report_text_latest.txt")
 
     # 读取报告
     try:

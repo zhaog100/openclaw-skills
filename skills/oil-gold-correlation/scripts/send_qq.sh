@@ -1,9 +1,13 @@
 #!/bin/bash
-# 发送QQ消息脚本 - 使用OpenClaw message工具
-# 报告路径: /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/reports/report_text_latest.txt
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)# 技能: oil-gold-correlation/scripts/send_qq# 发送QQ消息脚本 - 使用OpenClaw message工具
+# 报告路径: 相对定位 reports/（不写死绝对路径）
 
-REPORT_FILE="${1:-/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/reports/report_text_latest.txt}"
-QQ_TARGET="${QQ_TARGET_USER_ID:-C099848DC9A60BF60A7BE31626822790}"
+REPORT_FILE="${1:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/reports/report_text_latest.txt}"
+if [ -z "$QQ_TARGET_USER_ID" ]; then
+  echo "[ERROR] QQ_TARGET_USER_ID 未设置，拒绝推送（不硬编码 open_id）" >&2
+  exit 1
+fi
+QQ_TARGET="$QQ_TARGET_USER_ID"
 
 if [ -f "$REPORT_FILE" ]; then
     MESSAGE=$(cat "$REPORT_FILE")
