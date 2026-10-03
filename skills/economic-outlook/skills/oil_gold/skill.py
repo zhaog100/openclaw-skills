@@ -61,22 +61,32 @@ class OilGoldSkill(BaseSkill):
             out["correlation"] = {"status": "degraded", "error": str(e)[:80]}
             out["success"] = True  # 失败隔离：单项降级不判整体失败
 
-        # 2. 报告文本（若已生成则带上路径）
-        if os.path.exists(out["report_text_path"]):
-            out["report_text"] = "已生成"
-        else:
-            out["report_text"] = "未生成（需先跑 report_text.py）"
+        # 2. 报告文本生成路径（默认走子进程跑 report_text.py 落盘，最稳）
+        out["report_text"] = "未生成"
+        out["report_generated"] = False
 
-        # 3. 生成报告文本（复用石油黄金 report_text.py，失败隔离）
+        # 3. 生成报告文本：用子进程独立跑 report_text.py（它内部自拉数据+写盘），失败隔离
+        #    比 import 调 main() 更稳——主模块依赖 sys.argv/相对路径，子进程等价于老 cron 链路
         try:
-            spec2 = importlib.util.spec_from_file_location(
-                "oil_report", os.path.join(scripts, "report_text.py"))
-            rep_mod = importlib.util.module_from_spec(spec2)
-            spec2.loader.exec_module(rep_mod)
-            rep_mod.main() if hasattr(rep_mod, "main") else None
+            import subprocess, os as _os
+            env = dict(_os.environ)
+            env.setdefault("PYTHONPATH",
+                           "/home/ubuntu/.local/lib/python3.12/site-packages")
+            rep_proc = subprocess.run(
+                ["python3", os.path.join(scripts, "report_text.py")],
+                cwd=scripts, env=env, timeout=600,
+                capture_output=True, text=True)
+            if rep_proc.returncode == 0 and os.path.exists(out["report_text_path"]):
+                out["report_text"] = "已生成"
+                out["report_generated"] = True
+            else:
+                out["report_text"] = f"生成失败(rc={rep_proc.returncode}): {rep_proc.stderr[:80]}"
         except Exception as e:
-            out["report_text"] = f"生成失败: {str(e)[:60]}"
-            out["correlation"]["status"] = out.get("correlation", {}).get("status", "degraded")
+            out["report_text"] = f"生成异常: {str(e)[:80]}"
+        # 降级：若本次没生成但旧报告文件在，仍可推旧报告（标注陈旧）
+        if not out["report_generated"] and os.path.exists(out["report_text_path"]):
+            out["report_stale"] = True
+            out["report_text"] = out.get("report_text", "") + "（推送旧报告，陈旧）"
 
         # 4. QQ 推送（门面统一推送：走 send_qq_gw.py，open_id 从 context/env 读）
         target = context.get("qq_target_user_id") or os.environ.get("QQ_TARGET_USER_ID", "")

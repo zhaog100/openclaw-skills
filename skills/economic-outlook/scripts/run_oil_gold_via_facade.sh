@@ -5,10 +5,14 @@
 set -u
 WS="$HOME/.openclaw/workspace"
 EO="$WS/skills/economic-outlook"
-export PYTHONPATH="$WS/skills/economic-outlook/shared:$WS/skills/economic-outlook/signals:$WS/skills/economic-outlook/outcomes"
+CLOG="$WS/logs/oil-gold-report-cron.log"
+# 补全 report_text.py 子进程运行环境（等价老 run_report.sh）：PYTHONPATH site-packages + HOME
+export HOME="${HOME:-$HOME}"
+export PYTHONPATH="$HOME/.local/lib/python3.12/site-packages"
+export OIL_GOLD_SKILL_DIR="$WS/skills/oil-gold-correlation"
 cd "$EO"
-python3 - <<'PY' 2>/dev/null
-import sys, os, logging
+python3 - <<'PY' 2>&1 | tee -a "$HOME/.openclaw/workspace/logs/oil-gold-report-cron.log"
+import sys, os, logging, json, time
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
 sys.path.insert(0, os.getcwd()); sys.path.insert(0, 'shared')
@@ -16,9 +20,15 @@ from orchestrator.registry import get_registry
 reg = get_registry()
 ctx = {'qq_target_user_id': os.environ.get('QQ_TARGET_USER_ID','')}
 r = reg.get('oil_gold').execute(ctx)
-# 只记日志，不向 stdout 输出技术状态（避免刷到 QQ 提醒）
+# 静默：不向 QQ 输出技术状态；但把结果写进 cron 可见日志，漏推可查
 if not r.success:
     log.error('oil_gold 失败: %s', r.error)
 else:
-    log.info('oil_gold 门面调度完成, push=%s', r.data.get('push', {}))
+    push = r.data.get('push', {})
+    gen = r.data.get('report_generated', False)
+    stale = r.data.get('report_stale', False)
+    if push.get('sent'):
+        log.info('oil_gold 门面调度完成, 报告%s%s, 推送成功', '新' if gen else '旧', '(陈旧)' if stale else '')
+    else:
+        log.error('oil_gold 漏推: 推送未成功, 原因=%s', push.get('note','未知'))
 PY
