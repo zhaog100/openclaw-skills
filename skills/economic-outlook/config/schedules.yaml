@@ -24,3 +24,24 @@ oil_gold_push:
     - {name: 美盘, cron: "0 22 * * *"}
   channel: qqbot
   note: 时间不变，推送目标固定到官家 QQ（2026-09-30）
+
+# ============ 低频高价值报告（按数据频率分层，走门面调度器统一推送）============
+# 原则：每天看"变的东西"、每周看"决策的东西"、每月看"慢变量的东西"，信息不重复不刷屏
+stock_weekly:
+  workflow: stock_query
+  cron: weekly
+  day: monday
+  time: "10:00"
+  note: 股票周决策（8信号+仓位触发器），每周1次（2026-10-05 官家定）
+full_weekly:
+  workflow: full_report
+  cron: weekly
+  day: sunday
+  time: "20:00"
+  note: 全量决策周报（六出口+历史类比+触发器全量），每周1次
+employment_monthly:
+  workflow: employment_query
+  cron: monthly
+  day: 1
+  time: "09:00"
+  note: 就业专项（招聘指数+出口品类+就业出口），每月1日1次
