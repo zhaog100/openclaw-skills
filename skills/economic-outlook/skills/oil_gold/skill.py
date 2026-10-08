@@ -71,7 +71,7 @@ class OilGoldSkill(BaseSkill):
             import subprocess, os as _os
             env = dict(_os.environ)
             env.setdefault("PYTHONPATH",
-                           "/home/ubuntu/.local/lib/python3.12/site-packages")
+                           _os.path.join(_os.environ.get("HOME", ""), ".local/lib/python3.12/site-packages"))
             rep_proc = subprocess.run(
                 ["python3", os.path.join(scripts, "report_text.py")],
                 cwd=scripts, env=env, timeout=600,

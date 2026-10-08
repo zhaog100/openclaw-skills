@@ -1,5 +1,6 @@
 #!/bin/bash
-WORKSPACE="/home/ubuntu/.openclaw/workspace"
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+WORKSPACE="${OPENCLAW_WORKSPACE:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)}"
 LOG_DIR="$WORKSPACE/skills/daily-review-assistant/logs"
 DATE=$(date '+%Y-%m-%d')
 TIME=$(date '+%H:%M')
@@ -129,7 +130,11 @@ log "报告已保存到: $LOG_DIR/morning-report-$DATE.txt"
 
 # 推送QQ
 log "推送QQ消息..."
-QQ_TARGET="${QQ_TARGET_USER_ID:-C099848DC9A60BF60A7BE31626822790}"
+if [ -z "${QQ_TARGET_USER_ID:-}" ]; then
+  echo "[WARN] QQ_TARGET_USER_ID 未设置，跳过推送（不硬编码 open_id）" >&2
+  exit 0
+fi
+QQ_TARGET="$QQ_TARGET_USER_ID"
 if [ -n "$QQ_TARGET" ]; then
     # 使用send_qq_msg.py发送QQ消息
     python3 "$SCRIPT_DIR/send_qq_msg.py" "$REPORT" "$QQ_TARGET" 2>&1 && \

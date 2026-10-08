@@ -1,4 +1,5 @@
 #!/bin/bash
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 # AI集成脚本（静默版）
 # 功能：完整引用处理流程，仅在需要时输出

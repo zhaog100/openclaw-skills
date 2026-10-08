@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+"""版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)"""
 #!/usr/bin/env python3
 import logging
 import imaplib
@@ -108,7 +110,7 @@ def read_gmail(username, password, max_emails=10, full_content=False):
         return None
 
 if __name__ == "__main__":
-    env_file = "/home/ubuntu/.openclaw/workspace/skills/daily-review-assistant/.env"
+    env_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "skills", "daily-review-assistant", ".env")
     
     username = ""
     password = ""

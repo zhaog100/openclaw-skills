@@ -1,4 +1,5 @@
 #!/bin/bash
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # =============================================================================
 # 晚间回顾脚本 - 被 crontab 调用（每日 23:30）
 # =============================================================================
@@ -6,7 +7,7 @@
 # 注意：cron 管理已移至 OpenClaw cron，此脚本只负责执行
 # =============================================================================
 
-WORKSPACE="/home/ubuntu/.openclaw/workspace"
+WORKSPACE="${OPENCLAW_WORKSPACE:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)}"
 LOG_DIR="$WORKSPACE/skills/daily-review-assistant/logs"
 DATE=$(date '+%Y-%m-%d')
 TIME=$(date '+%H:%M')

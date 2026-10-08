@@ -6,14 +6,14 @@
 # 功能：监控上下文使用率，连续2次超过阈值时自动切换到长上下文模型
 
 # 环境修复（cron）
-export HOME="/home/ubuntu"
+export HOME="${HOME:-$HOME}"
 export PATH="/usr/bin:/bin:/usr/local/bin:/usr/sbin:/sbin:$HOME/.npm-global/bin"
 
 # 硬编码路径（避免cron环境PATH问题）
-SCRIPT_DIR="/home/ubuntu/.openclaw/workspace/skills/smart-model-switch/scripts"
-DATA_DIR="/home/ubuntu/.openclaw/workspace/skills/smart-model-switch/data"
-LOG_DIR="/home/ubuntu/.openclaw/workspace/logs"
-CONFIG_FILE="/home/ubuntu/.openclaw/workspace/skills/smart-model-switch/config.json"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" \&\& pwd)"
+DATA_DIR="$(cd "$SCRIPT_DIR/.." \&\& pwd)/data"
+LOG_DIR="$(cd "$DATA_DIR/../.." \&\& pwd)/logs"
+CONFIG_FILE="$(cd "$SCRIPT_DIR/.." \&\& pwd)/config.json"
 
 STATE_FILE="$DATA_DIR/context-state.json"
 LOG_FILE="$LOG_DIR/context-switch.log"

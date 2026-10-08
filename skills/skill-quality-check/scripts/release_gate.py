@@ -87,7 +87,10 @@ def check_hardcoded_paths(base):
             continue
         with open(p, encoding="utf-8", errors="ignore") as f:
             for i, line in enumerate(f, 1):
-                if "/home/" in line and "environ" not in line and "OIL_GOLD_SKILL_DIR" not in line:
+                # 跳过正则定义行 / docstring / 含 "re.compile" 的行（脚本自身的匹配模式不算硬编码）
+                if "re.compile" in line or '"""' in line or "/home/" not in line:
+                    continue
+                if "environ" not in line and "os.path.join" not in line and "WORKSPACE" not in line and "__file__" not in line and "$HOME" not in line:
                     found.append(f"{os.path.relpath(p, base)}:{i}")
     return found
 

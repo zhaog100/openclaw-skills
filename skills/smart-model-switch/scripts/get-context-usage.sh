@@ -6,7 +6,7 @@
 # 功能：调用openclaw命令获取上下文信息，提取使用率
 
 # 环境修复（cron）
-export HOME="${HOME:-/home/ubuntu}"
+export HOME="${HOME:-$HOME}"
 export PATH="/usr/bin:/bin:/usr/local/bin:$HOME/.npm-global/bin"
 
 # 方法1：调用openclaw status命令解析表格
@@ -31,7 +31,7 @@ if command -v openclaw &> /dev/null; then
 fi
 
 # 方法2：尝试从SQLite读取（不推荐，可能有并发问题）
-SQLITE_FILE="/home/ubuntu/.openclaw/agents/main/agent/openclaw-agent.sqlite"
+SQLITE_FILE="${OPENCLAW_AGENT_SQLITE:-$HOME/.openclaw/agents/main/agent/openclaw-agent.sqlite}"
 if [ -f "$SQLITE_FILE" ] && command -v sqlite3 &> /dev/null; then
     # 注意：OpenClaw可能锁定数据库，这里只做最后尝试
     usage=$(sqlite3 "$SQLITE_FILE" "SELECT totalTokens FROM sessions WHERE is_active = 1 LIMIT 1;" 2>/dev/null)

@@ -1,4 +1,5 @@
 #!/bin/bash
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 # 微信公众号自动化登录脚本（使用 xvfb）
 echo "🔐 开始自动化登录微信公众号..."

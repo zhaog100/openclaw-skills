@@ -10,7 +10,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORKSPACE="/home/ubuntu/.openclaw/workspace"
+WORKSPACE="${OPENCLAW_WORKSPACE:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)}"
 SKILL_DIR="$WORKSPACE/skills/feishu-wiki-crawler"
 LOG_DIR="$SKILL_DIR/logs"
 OUTPUT_DIR="$SKILL_DIR/output"
