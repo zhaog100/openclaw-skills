@@ -181,7 +181,7 @@ def main():
             p = os.path.join(WORKSPACE, "skills", d)
             if os.path.isdir(p) and os.path.exists(os.path.join(p, "SKILL.md")):
                 if only_self:
-                    with open(p+"SKILL.md",encoding="utf-8",errors="ignore") as sf:
+                    with open(os.path.join(p, "SKILL.md"), encoding="utf-8", errors="ignore") as sf:
                         if not re.search(r"思捷娅|SJYKJ", sf.read()):
                             continue
                 targets.append(p)

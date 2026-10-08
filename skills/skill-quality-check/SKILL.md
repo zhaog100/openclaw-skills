@@ -96,6 +96,17 @@ git log --all --format="%an" -- "skills/<skill_name>/"
 - moltbook-skill → github.com/voidborne-agent/moltbook-skill
 - notion/obsidian/playwright/summarize/tavily/weather → 第三方官方
 
+## 自动化关卡（2026-09-30 落地，官家定：发布检查不能靠人记得发指令）
+
+把 7 项 review 挂成自动关卡，不依赖手动触发：
+
+1. **`scripts/release_gate.py` 是唯一检查器**（Python，一次性跑全维度；已建好，改检测项只改这个文件，不要另写 shell 审计脚本）。
+   - 分级退出码：**硬漏洞 = 脱敏(open_id/token)/硬编码绝对路径/版权缺失** → exit 1 挡 push；**软问题 = print 残留/版本号不一致/命名不规范** → 只告警不挡。
+   - print 残留判定时这些放行不算违规：报告/格式输出类文件（report/format/brief/card）、`legacy` 留档、`signals/` 与 `scripts/` 下的输出脚本、`isatty`/`interactive` 门控块内的 print、`fix_print*` 修复脚本本身。
+   - 支持 `--self-developed`（只查含 SJYKJ/思捷娅版权的自研 skill，第三方不牵连）。
+2. **git pre-push hook**：只检查**本次 push 涉及文件所属的 skill**（从 `git diff --name-only origin/main..HEAD` 提取 `skills/<name>`），**不要扫全仓**——扫全仓会被没改过的第三方/无关 skill 的既有版权缺失挡住本次 push。
+3. **每周体检 cron**：周一 9:00 跑 `release_gate.py --self-developed` 扫全仓，硬问题清单推 QQ（全过则报"本周通过"）。
+
 ## 执行步骤
 1. **分类技能**：判断是自己开发还是第三方（见上）
 2. 读取技能目录结构
@@ -160,6 +171,25 @@ git add -A && git commit -m "..." && git push origin main
 - 检查待推的 config/*.json 是否含真实 token/open_id/手机号（应只有 `${VAR}` 占位符）
 - `git check-ignore` 确认 cache/reports/.env/pickle 不会入库
 - open_id 不得写死默认值，走环境变量/config，缺失要**明确报错**不静默兜底
+
+### 脱敏改动必须同步调用方注入（2026-09-30 踩坑沉淀）
+去硬编码 open_id/secret 是"代码侧去硬编码 + 调用方注入替代值"两件事，只做一半即线上故障：
+1. 代码改成"读环境变量 `QQ_TARGET_USER_ID`，缺失即拒绝执行"后，立即给每个调用方注入该变量：
+   - openclaw cron automation：`openclaw cron edit <id> --command-env "QQ_TARGET_USER_ID=<id>"`（`--command-argv` 必须是 JSON 数组字符串，如 `'["bash","/path/script.sh"]'`；argv 写成空格分隔会报 "must be a JSON array of strings"）
+   - CI/shell：env 文件或 export 段
+2. 注入后**手动带 env 跑一次全链路**确认 `exit=0`，再算脱敏完成；只验证代码侧不验调用方必踩坑（实例：4 个 cron 未注入 → 定时任务 exit 1 静默不推送）。
+3. command 型 automation 的"推送"若由脚本内部走 Gateway REST 完成，cron 层 `lastDeliveryStatus=not-delivered` 是正常（announce 无内容可发），以脚本日志为准，别误判为推送失败。
+4. **静默化后必须保留可观测失败信号**：为"不向 QQ 刷技术状态"而清空 cron 入口脚本 stdout 后，失败/漏推会变成双重静默——`status=ok` + `not-delivered` 都读不出真问题，可连续数天无人察觉。因此入口脚本静默时必须把结果写日志（失败记 ERROR），且每次排查"没收到推送"先查**报告产物文件 mtime**与脚本日志是否当日更新，而非只看 cron 状态（status=ok 只证明命令跑完，不证明生成/推送成功）。
+5. **门面调度器接管既有 skill 定时任务时，必须让微技能真跑产物生成（子进程独立执行生成脚本并落盘），不得依赖"旧产物文件已存在"作旁路**；旁路会让任务 status=ok 但产物停滞（实例：切门面调度器后 4 天 report mtime 停在旧值、报告未重新生成也未推送）。切换后首个触发点前，手动带 env 实跑一次并确认产物 mtime 推进。
+
+## 📅 定时报告接入门面调度器（2026-10-05 沉淀）
+
+给门面/调度器加"定时出报告"时，**登记配置 ≠ 生效**——必须把三件都做全并各验一次：
+1. `config/schedules.yaml` 登记任务（workflow 名 + cron 频率）
+2. `openclaw cron add` 真正建 job：`--command-argv '["bash","..."]'`（JSON 数组串）或 agentTurn message 调 `entry.py --schedule <workflow名>`；`--channel qqbot --to <open_id>` 固定推送目标（别走 `last`，会 fail-closed 静默失败）
+3. **实跑一次 `entry.py --schedule <workflow名>` 确认出报告**（exit=0）再算接完
+
+高频数据（日更指标/行情）才配 daily；决策类/慢变量类按数据频率分层 weekly/monthly，避免 QQ 重复刷屏——频率由底层数据更新节奏定，不是越多越好。
 
 ## 📡 多源采集原则（2026-09-30 新增，官家定，永久）
 
