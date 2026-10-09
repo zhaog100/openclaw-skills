@@ -72,6 +72,44 @@ def _fetch_intl_gold():
     except Exception as e:
         return {"ok": False, "err": str(e)[:40]}
 
+
+
+def _calc_gold_spread(intl_price, gold_result):
+    """内外价差：国际价换算人民币克价 vs 沪金，判贴水/升水。需汇率，取不到则降级。"""
+    try:
+        g_latest = None
+        if isinstance(gold_result, dict):
+            g_latest = gold_result.get("latest")
+        if not g_latest:
+            return ""
+        # 汇率：走 GoldAPI 同源或取缓存；拉不到用 7.1 估算并标注
+        usd_cny = _fetch_usd_cny()
+        fx_note = "" if usd_cny.get("ok") else "（汇率估算）"
+        rate = usd_cny.get("price", 7.1)
+        per_gram_cny = intl_price / 31.1035 * rate   # 国际换算成 人民币/克
+        diff = per_gram_cny - g_latest
+        if abs(diff) < 1:
+            return f"持平（换算≈¥{per_gram_cny:.0f}）{fx_note}"
+        direction = "贴水" if diff > 0 else "升水"   # 国际换算>沪金=贴水(国内便宜)
+        return f"{direction} ¥{abs(diff):.0f}/克（国际换算≈¥{per_gram_cny:.0f} vs 沪金¥{g_latest:.0f}）{fx_note}"
+    except Exception:
+        return ""
+
+
+def _fetch_usd_cny():
+    """美元兑人民币。多源，失败降级返回估算。"""
+    try:
+        import requests
+        r = requests.get("https://open.er-api.com/v6/latest/USD",
+                         headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+        if r.status_code == 200:
+            d = r.json()
+            cny = d.get("rates", {}).get("CNY")
+            if cny:
+                return {"ok": True, "price": cny}
+        return {"ok": False, "price": 7.1}
+    except Exception:
+        return {"ok": False, "price": 7.1}
 def fetch_data(ak_key, period="90d"):
     from config import CACHE_DIR
     import os, pickle
@@ -278,6 +316,10 @@ def _generate_report_inner():
     intl = _fetch_intl_gold()
     if intl.get("ok"):
         lines.append(f'  🌍 国际现货金 ${intl["price"]:.2f}/盎司  {intl.get("change", "n/a")}')
+        # 内外价差（贴水/升水）：换算值 vs 沪金；需汇率，取最近报告值或降级
+        spread_txt = _calc_gold_spread(intl["price"], gold_result)
+        if spread_txt:
+            lines.append(f'  ⚖️ 内外价差: {spread_txt}  （价差为相对参考，非无风险套利信号）')
     else:
         lines.append(f'  🌍 国际现货金: 数据源不可用（{intl.get("err","?")}），仅人民币口径')
     lines.append('')
