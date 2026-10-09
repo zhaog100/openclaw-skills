@@ -52,6 +52,26 @@ def trend_arrow(score, rsi=50):
     elif score <= 35 and rsi <= 30: return '看跌📉⚠️'
     else: return '震荡➡️'
 
+
+
+def _fetch_intl_gold():
+    """国际现货金（美元/盎司）第二口径。GoldAPI 优先，失败降级，不硬造。"""
+    import json
+    try:
+        import requests
+        r = requests.get("https://api.gold-api.com/price/XAU",
+                         headers={"User-Agent": "Mozilla/5.0 Chrome/120"}, timeout=12)
+        if r.status_code == 200:
+            d = r.json()
+            price = d.get("price")
+            chg = d.get("change") or d.get("changePercentage")
+            chg_txt = f" 日{chg:+.2f}%" if isinstance(chg, (int, float)) else ""
+            return {"ok": True, "price": price, "change": chg_txt,
+                    "source": "GoldAPI", "updatedAt": d.get("updatedAt", "")}
+        return {"ok": False, "err": f"HTTP {r.status_code}"}
+    except Exception as e:
+        return {"ok": False, "err": str(e)[:40]}
+
 def fetch_data(ak_key, period="90d"):
     from config import CACHE_DIR
     import os, pickle
@@ -254,6 +274,12 @@ def _generate_report_inner():
                 lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}/克  (缓存)')
         except Exception as e:
             lines.append(f'  {label} 错误: {e}')
+    # 国际美元金价（第二口径，与人民币沪金对比；失败降级不硬造）
+    intl = _fetch_intl_gold()
+    if intl.get("ok"):
+        lines.append(f'  🌍 国际现货金 ${intl["price"]:.2f}/盎司  {intl.get("change", "n/a")}')
+    else:
+        lines.append(f'  🌍 国际现货金: 数据源不可用（{intl.get("err","?")}），仅人民币口径')
     lines.append('')
 
     # ========== 仪表盘（趋势箭头文字化） ==========
