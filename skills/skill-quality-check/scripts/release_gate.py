@@ -215,7 +215,13 @@ def main():
                     print(f"   - {item}")
                 if len(v) > 5:
                     print(f"   ... 共 {len(v)} 处")
-    print(f"\n结论: {'✅ 通过，可发布' if all_clean else '❌ 硬问题需修复（脱敏/硬编码/版权），print/版本/命名仅告警'}")
+    # 实时计数：扫了多少个自研 skill、硬问题命中几个（不读缓存，每次重扫）
+    hit_skills = [os.path.basename(b.rstrip("/")) for b in targets
+                  if run(b)[2] > 0]
+    print(f"\n结论: {'✅ 通过，可发布' if all_clean else '❌ 硬问题需修复（脱敏/硬编码/版权），print/版本/命名仅告警'}"
+          f"（共扫 {len(targets)} 个自研 skill，硬问题命中 {len(hit_skills)} 个）")
+    if hit_skills:
+        print(f"命中清单: {', '.join(hit_skills)}")
     return 0 if all_clean else 1
 
 
