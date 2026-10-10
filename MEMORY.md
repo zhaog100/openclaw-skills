@@ -7,6 +7,30 @@
 - **平台:** OpenClaw + QQ Bot
 - **时区:** Asia/Shanghai
 
+## 📌 当前稳定状态（2026-10-10 整理，最新）
+
+**系统**: 内核 6.8.0-146 已生效，OpenClaw 2026.8.2（官家定不动），可升级包 0
+
+**定时任务全景（全走统一门户/门面调度器）:**
+- 每天 10:00 经济形势日报 | 每天石油黄金 4 次（10/15/21/22 点）
+- 每周一 10:00 股票周决策 | 每周日 20:00 全量决策周报 | 每月 1 日 09:00 就业专项
+- 原则：每天看"变的东西"、每周看"决策的"、每月看"慢变量"，信息不重复不刷屏
+
+**经济分析门面平台 V3.1（economic-outlook）:**
+- 门面模式：entry.py 单入口 + orchestrator + 19 个微技能（含 oil_gold 石油黄金适配器）
+- 多源采集：25 源 8 渠道（网站/公众号/官方/海外/大宗/研报），源只加不减，失败隔离
+- 双口径金价：国际美元（GoldAPI）+ 国内人民币（沪金）+ 内外价差（贴水/升水，标"非无风险套利"）
+
+**质量关卡（skill-quality-check）:**
+- release_gate.py 7 项 review，分级：脱敏/硬编码/版权挡 push，print/版本/命名仅告警
+- git pre-push hook（只扫本次涉及 skill）+ 每周体检 cron
+- 68 个自研 skill 全过 0 命中；经验沉淀在 rules/experience.md（17 条）
+
+**核心设计原则（官家定）:**
+- 数据源只多不少、不限制；多源并行 + 交叉验证；失败降级不硬造数据
+- 代码零硬编码（open_id/secret 走环境变量/config，缺失明确报错）
+
+
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
@@ -91,6 +115,15 @@ _最后更新: 2026-08-24 14:50 CST_
 7. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
 8. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
 9. LongCat Flash 系列模型已下线不可用，统一使用 agnes-2.0-flash
+- **主力模型升级（2026-09-28）**：Agnes 2.5 Flash → **Agnes 3.0 Flash**（512K 上下文，原 128K）
+  - 主力：`custom-apihub-agnes-ai-com/agnes-3.0-flash`（alias: `agnes`）
+  - Fallback 链：3.0-flash → 2.5-flash(aliases: agnes-2.5) → 2.0-flash(aliases: dev) → 2.5-pro → 2.5-pro-alpha → 2.5-pro-beta
+  - 企业密约 Key（`wk-` 前缀，无过期）：Base URL `https://apihub.agnes-ai.com/v1`，鉴权 `Bearer <key>`
+  - 教训：`wk-` Key 在 shell curl 里直接拼会因转义误报 Invalid token，需用变量引用或 OpenClaw models test 验证
+- **验证教训（2026-09-28）**：验证 API 连通性绝不能用 shell 手拼 curl（`wk-` 前缀 Key 会被 shell 转义搞乱，必现误报 Invalid token/401）。正确方法：
+  1. 用 `session_status` 确认当前会话实际在用的模型和 Auth（`api-key (custom-apihub-...:default)`）
+  2. 网关走 OpenClaw 内部 auth store（`auth_profile_store`），不直接读 openclaw.json 的 apiKey 字段
+  3. 只要当前会话能正常跑在目标模型上，就是通的——别被 curl 误报带偏
 13. 创建 crontab 任务前必须确认脚本文件存在且可执行
 14. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
 15. crontab 中的 tee 会导致日志重复写入（stdout 被 crontab 重定向到同一文件），用 >> 代替 tee
@@ -280,6 +313,9 @@ _最后更新: 2026-09-02 15:31 CST_
 ### 2026-09-03 重要经验
 
 #### 技术经验
+
+### 2026-09-22 技术经验
+
 
 ### 2026-09-16 技术经验
 
@@ -5412,3 +5448,5 @@ crontab -l | sed 's|*/5 \* \* \* \*.*smart-memory-sync.*|# removed smart-memory-
 *最后更新：2026-09-15 23:30 HKT*
 
 *最后更新：2026-09-16 23:30 HKT*
+
+*最后更新：2026-09-23 23:30 HKT*
