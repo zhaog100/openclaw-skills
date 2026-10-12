@@ -819,9 +819,18 @@ generate_execution_summary() {
     local commits=$(cd "$CFG_WORKSPACE" && git log --since="$date 00:00" --until="$date 23:59" --oneline 2>/dev/null | wc -l)
     log_info "💻 Git提交: $commits 个"
     
-    # PR状态
-    local open_prs=$(cd "$CFG_WORKSPACE" && gh pr list --author zhaog100 --state open 2>/dev/null | wc -l)
-    log_info "📊 Open PRs: $open_prs 个"
+    # PR状态（C: 切到新统一台账 pr_status.csv，不再走老 gh 口径）
+    local pr_ledger="$(cd "$CFG_WORKSPACE" && pwd)/skills/github-bounty-hunter/data/pr_status.csv"
+    local open_prs=0
+    if [ -f "$pr_ledger" ]; then
+        open_prs=$(awk -F, 'NR>1 && $3=="open"{c++} END{print c+0}' "$pr_ledger")
+        local merged_prs=$(awk -F, 'NR>1 && $3=="merged"{c++} END{print c+0}' "$pr_ledger")
+        local total_prs=$(awk -F, 'NR>1{c++} END{print c}' "$pr_ledger")
+        log_info "📊 PR台账(全口径): 共 $total_prs 条 | open $open_prs / merged $merged_prs"
+    else
+        open_prs=$(cd "$CFG_WORKSPACE" && gh pr list --author zhaog100 --state open 2>/dev/null | wc -l)
+        log_info "📊 Open PRs: $open_prs 个（台账缺失，回退 gh）"
+    fi
     
     # 学习总结
     local learning_notes
@@ -838,7 +847,7 @@ generate_execution_summary() {
     # 查漏补缺
     local gaps_found=0
     if [ -f "$_SCRIPTS_DIR/gap-analyzer.sh" ]; then
-        gaps_found=$(bash "$_SCRIPTS_DIR/gap-analyzer.sh" "$date" 2>/dev/null | grep -oP "发现 \K[0-9]+" | tr -d '[:space:]') || gaps_found=0
+        gaps_found=$(bash "$_SCRIPTS_DIR/gap-analyzer.sh" "$date" 2>/dev/null | grep -oP '发现 \d+ 个问题' | grep -oP '\d+' | awk '{s+=$1} END{print s+0}') || gaps_found=0
         [ -z "$gaps_found" ] && gaps_found=0
     fi
     log_info "🔍 发现遗漏: $gaps_found 个"
@@ -846,12 +855,20 @@ generate_execution_summary() {
     log_info ""
     log_info "📊 总体评价: $([ "$gaps_found" -eq 0 ] && echo "🟢 优秀" || [ "$gaps_found" -lt 3 ] && echo "🟡 良好" || echo "🔴 需改进")"
     
-    # 推送通知到QQ Bot
-    if [ "$CFG_NOTIFY_QQBOT" = "true" ] && [ -n "$CFG_QQBOT_ID" ]; then
-        local summary="今日回顾完成 ✅ | 任务: $tasks_completed | Git: $commits | PR: $open_prs | 遗漏: $gaps_found"
-        log_info "📡 推送通知到QQ Bot: $summary"
-        # 调用Gateway API发送消息
-        python3 "$_SCRIPTS_DIR/send_qq_msg.py" "$summary" "$CFG_QQBOT_ID" >> "$_CURRENT_LOG_FILE" 2>&1 || log_warn "QQ推送失败"
+    # 推送通知到QQ Bot（B: 干净摘要 + 从 .env 读 open_id，不硬编码）
+    local qq_id="${CFG_QQBOT_ID:-}"
+    if [ -z "$qq_id" ] && [ -f "$_SCRIPTS_DIR/../.env" ]; then
+        qq_id=$(grep -E '^QQ_TARGET_USER_ID=' "$_SCRIPTS_DIR/../.env" 2>/dev/null | cut -d= -f2- | tr -d ' "')
+    fi
+    if [ -n "$qq_id" ]; then
+        local rating="$([ "$gaps_found" -eq 0 ] && echo "🟢 优秀" || [ "$gaps_found" -lt 3 ] && echo "🟡 良好" || echo "🔴 需改进")"
+        local merged_cnt=0
+        [ -f "$pr_ledger" ] && merged_cnt=$(awk -F, 'NR>1 && $3=="merged"{c++} END{print c+0}' "$pr_ledger")
+        local summary="🌙 小米椒晚报 — $date\n整体评价: $rating\n完成 $tasks_completed 项任务 / Git 提交 $commits 次 / 遗漏 $gaps_found 个\nPR台账: open $open_prs / merged $merged_cnt\n*生成 $(date '+%H:%M')*"
+        log_info "📡 推送晚报摘要到QQ Bot"
+        python3 "$_SCRIPTS_DIR/send_qq_msg.py" "$summary" "$qq_id" >> "$_CURRENT_LOG_FILE" 2>&1 || log_warn "QQ推送失败"
+    else
+        log_warn "QQ_TARGET_USER_ID 未设置，晚报跳过推送（不硬编码 open_id）"
     fi
 }
 
