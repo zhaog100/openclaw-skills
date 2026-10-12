@@ -107,4 +107,46 @@ class OilGoldSkill(BaseSkill):
         else:
             out["push"]["sent"] = False
             out["push"]["note"] = "无 open_id 目标或报告未生成，跳过推送（不硬编码）"
+
+        # 5. 区间盯价提醒（context 传 gold_watch 才触发，避免每次跑都推）
+        watch = context.get("gold_watch")
+        if watch and target:
+            out["price_alert"] = _gold_price_alert(watch, out)
         return out
+
+
+def _gold_price_alert(watch: dict, out: dict) -> dict:
+    """区间盯价：沪金触到 watch 里设的支撑/止损/阻力才生成提醒（不触发不推）。
+
+    watch 结构: {support, stop_loss, resistance, last_alert_key}
+    返回 {triggered, reason, price, msg}
+    """
+    # 当前沪金价：从报告文本或 out 里取
+    price = None
+    import re
+    rpt = out.get("report_text_path") or ""
+    if rpt and os.path.exists(rpt):
+        with open(rpt, encoding="utf-8", errors="ignore") as f:
+            m = re.search(r"黄金 ¥([0-9,.]+)", f.read())
+            if m:
+                price = float(m.group(1).replace(",", ""))
+    if price is None:
+        return {"triggered": False, "reason": "无实时金价，跳过提醒"}
+
+    alerts = []
+    if watch.get("support") and price <= float(watch["support"]):
+        alerts.append(f"沪金 {price:.0f} 跌到支撑 {watch['support']}，可分批买入区间下沿")
+    if watch.get("stop_loss") and price <= float(watch["stop_loss"]):
+        alerts.append(f"🔴 沪金 {price:.0f} 破止损 {watch['stop_loss']}，按纪律全撤")
+    if watch.get("resistance") and price >= float(watch["resistance"]):
+        alerts.append(f"沪金 {price:.0f} 到阻力 {watch['resistance']}，可分批卖出")
+
+    # 去重：同一次触发的 key 不重复推（last_alert_key 由调用方存）
+    key = "|".join(sorted([a[:6] for a in alerts])) or "none"
+    if alerts and key == watch.get("last_alert_key"):
+        return {"triggered": False, "reason": "同类提醒已发过，去重跳过", "price": price}
+    if alerts:
+        return {"triggered": True, "price": price, "alert_key": key,
+                "msg": "🥇 黄金盯价提醒\n" + "\n".join(alerts) +
+                       "\n（区间参考，非投资建议）"}
+    return {"triggered": False, "reason": "未触支撑/止损/阻力", "price": price, "alert_key": key}
