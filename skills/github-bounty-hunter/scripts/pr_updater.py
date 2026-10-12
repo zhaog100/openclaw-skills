@@ -90,13 +90,48 @@ def main():
     except Exception as e:
         print(f"  search PR 失败: {str(e)[:50]}")
 
-    # 写 CSV
+    # 写 CSV（合并去重: 读现有台账，同 (仓库,PR) 用新数据覆盖，旧的独有行保留）
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
+    HEADER = ["PR编号", "仓库", "状态", "标题", "创建时间", "更新时间", "关闭时间", "合并时间", "评论数", "标签", "金额", "付款地址", "付款状态", "PR链接", "来源"]
+
+    # 读旧台账（如果存在）
+    existing = {}
+    if os.path.exists(a.out):
+        for er in csv.DictReader(open(a.out)):
+            key = (er.get("仓库", ""), str(er.get("PR编号", "")))
+            existing[key] = er
+
+    # 新数据映射为统一 schema
+    def _map(r):
+        st = r["state"]
+        merged_at = r.get("merged_at", "")
+        return {
+            "PR编号": r.get("pr", ""),
+            "仓库": r.get("repo", ""),
+            "状态": st,
+            "标题": r.get("title", ""),
+            "创建时间": r.get("created", ""),
+            "更新时间": r.get("updated", ""),
+            "关闭时间": merged_at if st in ("merged", "closed") else "",
+            "合并时间": merged_at,
+            "评论数": "", "标签": "", "金额": "", "付款地址": "", "付款状态": "",
+            "PR链接": f"https://github.com/{r.get('repo','')}/pull/{r.get('pr','')}" if r.get("pr") else "",
+            "来源": "pr_updater-daily",
+        }
+
+    new_mapped = [_map(r) for r in rows]
+    new_by_key = {(r["仓库"], str(r["PR编号"])): r for r in new_mapped}
+
+    # 合并: 新覆盖旧
+    for key, r in new_by_key.items():
+        existing[key] = r
+    final = sorted(existing.values(), key=lambda r: (r.get("仓库", ""), r.get("状态", ""), r.get("PR编号", "")))
+
     with open(a.out, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["repo", "pr", "state", "title", "created", "updated", "merged_at"])
+        w = csv.DictWriter(f, fieldnames=HEADER, extrasaction="ignore")
         w.writeheader()
-        w.writerows(sorted(rows, key=lambda r: (r["repo"], -(r["pr"] or 0))))
-    print(f"✅ 已刷新 PR 台账: {a.out}（{len(rows)} 条 PR）")
+        w.writerows(final)
+    print(f"✅ 已刷新 PR 台账: {a.out}（本次扫描 {len(rows)} 条，合并后共 {len(final)} 条）")
 
 if __name__ == "__main__":
     main()
