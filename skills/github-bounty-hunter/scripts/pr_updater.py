@@ -90,7 +90,14 @@ def main():
     except Exception as e:
         print(f"  search PR 失败: {str(e)[:50]}")
 
-    # 写 CSV（合并去重: 读现有台账，同 (仓库,PR) 用新数据覆盖，旧的独有行保留）
+    # 读旧台账（如果存在，用于异动对比）
+    prev = {}
+    if os.path.exists(a.out):
+        for er in csv.DictReader(open(a.out)):
+            key = (er.get("仓库", ""), str(er.get("PR编号", "")))
+            prev[key] = er
+
+    # 写 CSV（合并去重: 新数据覆盖旧条目，旧独有行保留）
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     HEADER = ["PR编号", "仓库", "状态", "标题", "创建时间", "更新时间", "关闭时间", "合并时间", "评论数", "标签", "金额", "付款地址", "付款状态", "PR链接", "来源"]
 
@@ -132,6 +139,29 @@ def main():
         w.writeheader()
         w.writerows(final)
     print(f"✅ 已刷新 PR 台账: {a.out}（本次扫描 {len(rows)} 条，合并后共 {len(final)} 条）")
+
+    # 异动检测: 对比合并前后状态变化，写入异动日志
+    changes = []
+    for r in final:
+        key = (r.get("仓库", ""), str(r.get("PR编号", "")))
+        old = prev.get(key)
+        if old and old.get("状态") != r.get("状态"):
+            changes.append(f"  {key[0]} #{key[1]}: {old.get('状态')} → {r.get('状态')} | {r.get('标题','')[:40]}")
+        elif old is None:
+            changes.append(f"  {key[0]} #{key[1]}: 新增 {r.get('状态')} | {r.get('标题','')[:40]}")
+
+    change_log = os.path.join(os.path.dirname(a.out), "pr_changes.log")
+    with open(change_log, "a") as f:
+        f.write(f"\n=== {time.strftime('%Y-%m-%d %H:%M')} ===\n")
+        for c in changes:
+            f.write(c + "\n")
+
+    if changes:
+        print(f"📢 异动 {len(changes)} 条:")
+        for c in changes[:20]:
+            print(c)
+    else:
+        print("无状态变化（open PR 数量不变，无 merge/close）")
 
 if __name__ == "__main__":
     main()
