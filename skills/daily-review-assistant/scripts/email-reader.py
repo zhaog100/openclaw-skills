@@ -103,6 +103,17 @@ def read_gmail(username, password, max_emails=10, full_content=False):
                         
                         emails.append(email_data)
         
+        # 标记为已读（避免下次早报重读同一批未读邮件）
+        marked = 0
+        for eid in recent_ids:
+            try:
+                mail.store(eid, '+FLAGS', '(\Seen)')
+                marked += 1
+            except Exception as e:
+                logger.warning(f"标记已读失败 id={eid}: {e}")
+        if marked:
+            logger.info(f"已标记 {marked} 封邮件为已读")
+        
         mail.logout()
         return emails
     except Exception as e:
