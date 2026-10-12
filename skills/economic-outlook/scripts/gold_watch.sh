@@ -13,8 +13,26 @@ sys.path.insert(0, os.getcwd()); sys.path.insert(0, 'shared')
 import logging; logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("gold_watch")
 
-# 区间配置（可改这里；支撑893/止损870/阻力975 来自今早报告）
-WATCH = {"support": 893, "stop_loss": 870, "resistance": 975}
+# 区间配置（动态读今早报告里的最新支撑/阻力位，不写死；止损按现价动态算）
+import re as _re
+_rpt = os.path.join(os.getcwd(), "..", "oil-gold-correlation", "reports", "report_text_latest.txt")
+WATCH = {"support": None, "stop_loss": None, "resistance": None}
+if os.path.exists(_rpt):
+    with open(_rpt, encoding="utf-8", errors="ignore") as _f:
+        _txt = _f.read()
+    # 取"黄金"那段的支撑/阻力（报告里第一个 支撑位/阻力位 是黄金）
+    m_s = _re.search(r"支撑位:\s*¥?([0-9,.]+)", _txt)
+    m_r = _re.search(r"阻力位:\s*¥?([0-9,.]+)", _txt)
+    if m_s: WATCH["support"] = float(m_s.group(1).replace(",", ""))
+    if m_r: WATCH["resistance"] = float(m_r.group(1).replace(",", ""))
+    # 当前沪金价（取报告里 黄金 ¥XXX）
+    m_p = _re.search(r"黄金 ¥([0-9,.]+)", _txt)
+    if m_p: WATCH["_price"] = float(m_p.group(1).replace(",", ""))
+# 止损：按支撑位下方 2.5% 动态算（支撑破了才算破位）；没读到则跳过止损
+if WATCH.get("support"):
+    WATCH["stop_loss"] = round(WATCH["support"] * 0.975, 2)
+else:
+    log.warning("报告未读到支撑/阻力位，本次盯价仅按能读到的项")
 
 spec = importlib.util.spec_from_file_location("og", "skills/oil_gold/skill.py")
 og = importlib.util.module_from_spec(spec); spec.loader.exec_module(og)
