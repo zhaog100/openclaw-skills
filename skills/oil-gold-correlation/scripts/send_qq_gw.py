@@ -23,7 +23,7 @@ from pathlib import Path
 GATEWAY_HOST = "127.0.0.1"
 GATEWAY_PORT = 18789
 TOKEN_FILE = Path.home() / ".openclaw" / "openclaw.json"
-QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "C099848DC9A60BF60A7BE31626822790")
+QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "${QQ_OPEN_ID:-unset}")
 
 # 配置 logging
 class StderrHandler(logging.StreamHandler):
