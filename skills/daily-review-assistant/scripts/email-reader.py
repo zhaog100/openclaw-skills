@@ -107,7 +107,7 @@ def read_gmail(username, password, max_emails=10, full_content=False):
         marked = 0
         for eid in recent_ids:
             try:
-                mail.store(eid, '+FLAGS', '(\Seen)')
+                mail.store(eid, '+FLAGS', r'(' + chr(92) + 'Seen)')
                 marked += 1
             except Exception as e:
                 logger.warning(f"标记已读失败 id={eid}: {e}")
