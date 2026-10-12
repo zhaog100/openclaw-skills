@@ -564,9 +564,9 @@ check_memory_quality() {
         score=$((score + 2))
     fi
     
-    # 检查内容分类
+    # 检查内容分类（接受中文/英文章节标题，不硬卡英文字母开头）
     local categories
-    categories=$(grep -c "^## [A-Za-z]" "$memory_file" 2>/dev/null | tr -d '\n' || echo "0")
+    categories=$(grep -cE "^## +[^#]" "$memory_file" 2>/dev/null | tr -d '\n' || echo "0")
     categories=${categories:-0}
     if [ "$categories" -gt 5 ]; then
         score=$((score + 2))

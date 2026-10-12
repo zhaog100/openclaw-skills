@@ -1,9 +1,23 @@
+# -*- coding: utf-8 -*-
+"""版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)"""
 #!/usr/bin/env python3
+import logging
 import imaplib
 import email
 from email.header import decode_header
 import sys
 import os
+
+# 配置日志（INFO→stdout，ERROR→stderr）
+_logging_fmt = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+_logging_fh_stdout = logging.StreamHandler(sys.stdout)
+_logging_fh_stdout.setFormatter(_logging_fmt)
+_logging_fh_stderr = logging.StreamHandler(sys.stderr)
+_logging_fh_stderr.setFormatter(_logging_fmt)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(_logging_fh_stdout)
+logger.addHandler(_logging_fh_stderr)
 
 def decode_subject(subject):
     if subject:
@@ -89,6 +103,17 @@ def read_gmail(username, password, max_emails=10, full_content=False):
                         
                         emails.append(email_data)
         
+        # 标记为已读（避免下次早报重读同一批未读邮件）
+        marked = 0
+        for eid in recent_ids:
+            try:
+                mail.store(eid, '+FLAGS', r'(' + chr(92) + 'Seen)')
+                marked += 1
+            except Exception as e:
+                logger.warning(f"标记已读失败 id={eid}: {e}")
+        if marked:
+            logger.info(f"已标记 {marked} 封邮件为已读")
+        
         mail.logout()
         return emails
     except Exception as e:
@@ -96,7 +121,7 @@ def read_gmail(username, password, max_emails=10, full_content=False):
         return None
 
 if __name__ == "__main__":
-    env_file = "/home/ubuntu/.openclaw/workspace/skills/daily-review-assistant/.env"
+    env_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "skills", "daily-review-assistant", ".env")
     
     username = ""
     password = ""
@@ -120,11 +145,11 @@ if __name__ == "__main__":
     emails = read_gmail(username, password, max_count, full_content)
     
     if emails:
-        logger.info(f"\n**未读邮件**: {len(emails)} 封\n")
+        print(f"\n**未读邮件**: {len(emails)} 封\n")
         for e in emails[:3]:
-            logger.info(f"**{e['subject']}**")
-            logger.info(f"- 发件人: {e['from']}")
-            logger.info(f"- 时间: {e['date']}")
+            print(f"**{e['subject']}**")
+            print(f"- 发件人: {e['from']}")
+            print(f"- 时间: {e['date']}")
             if full_content and e.get('body'):
-                logger.info(f"\n**内容:**\n{e['body'][:400]}...")
-            logger.info("---")
+                print(f"\n**内容:**\n{e['body'][:400]}...")
+            print("---")

@@ -22,6 +22,60 @@ version: 1.1.0
 ---
 
 ## 🚀 快速开始
+## ⚙️ 可配置项（review.conf，改配置不碰代码）
+
+统一入口 `review.sh` + 配置 `review.conf`，想关哪项改一行即可，**不用动脚本**。
+
+### 文件位置
+```
+daily-review-assistant/
+├── review.sh          # 统一入口: morning / evening / all
+├── review.conf       # 可配置开关（改这里）
+├── skill.sh          # 7 步回顾核心（晚报调用）
+└── scripts/
+    ├── morning-report.sh   # 早报（各 section 按 conf 开关）
+    ├── evening-review.sh   # 晚报（按 conf 开关）
+    └── send_qq_msg.py      # QQ 推送（走 Gateway 代理）
+```
+
+### 配置项说明
+
+| 配置键 | 默认 | 作用 |
+|--------|------|------|
+| `SECTION_SYSTEM` | true | 早报·🖥️ 系统运行状态（内存/负载/磁盘/安全/更新数） |
+| `SECTION_PR_LIST` | true | 早报·📋 PR 清单维护（open PR 列表） |
+| `SECTION_PR_BOUNTY` | true | 早报·💰 PR 催款进度（已合并 bounty + 待收款数） |
+| `SECTION_EMAIL` | true | 早报·📧 邮件摘要（读 Gmail + 标已读；未配邮箱自动降级占位） |
+| `SECTION_MEMORY_MAINT` | true | 早报·🧠 记忆自动维护（建当日日志骨架 + 刷 MEMORY.md mtime） |
+| `SECTION_TODO` | true | 早报·📌 今日待办（统计当日日志待办） |
+| `EVENING_FULL_REVIEW` | true | 晚报·跑 skill.sh 完整 7 步回顾（false=只推摘要不跑回顾） |
+| `EVENING_QQ_PUSH` | true | 晚报·末尾推 QQ 干净摘要 |
+| `PUSH_QQ` | true | 推送总开关（false=只落日志、不推 QQ） |
+| `PR_LEDGER_PATH` | 全口径台账路径 | 早晚报共用的 PR 数据源（pr_status.csv，219 条） |
+
+### 常用改法（举例）
+
+```bash
+cd skills/daily-review-assistant
+# 早报去掉啰嗦的系统状态段
+sed -i 's/^SECTION_SYSTEM=true/SECTION_SYSTEM=false/' review.conf
+# 没配邮箱，关掉邮件段（脚本也会自动降级占位，双保险）
+sed -i 's/^SECTION_EMAIL=true/SECTION_EMAIL=false/' review.conf
+# 某天不想被打扰，只落日志不推 QQ
+sed -i 's/^PUSH_QQ=true/PUSH_QQ=false/' review.conf
+# 晚报太重，只要摘要不要 7 步完整回顾
+sed -i 's/^EVENING_FULL_REVIEW=true/EVENING_FULL_REVIEW=false/' review.conf
+```
+
+改完**即时生效**（每次跑读一次 conf），无需重启。
+
+### 推送机制说明
+
+- 推送走 `send_qq_msg.py` → Gateway REST API（127.0.0.1:18789），**不直连、不硬编码 open_id**
+- QQ open_id 从本目录 `.env` 的 `QQ_TARGET_USER_ID` 读（已配 `C099...790`）
+- 未配置 open_id 时**明确报错跳过**（不静默兜底、不硬编码）
+
+
 
 ### 安装
 
