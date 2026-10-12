@@ -3,6 +3,8 @@
 """
 技能发布前质量关卡 — 7 项 review 自动扫描（git hook / cron 体检共用）
 
+独立可配置版：拷贝到任何机器改 1 行环境变量即可用。
+
 用法:
   python3 release_gate.py <skill_dir> [...]   # 检查指定 skill 目录
   python3 release_gate.py --all              # 扫 workspace 全部自研 skill
@@ -10,17 +12,38 @@
 7 项: 版权头 / 版本号一致 / 脱敏(open_id/token) / 硬编码绝对路径 / 命名规范 / 代码规范(print残留) / 归属分类
 退出码: 0=全过 1=有问题(输出问题清单)
 
+=== 可配置项（环境变量，都有默认值，不配置=保持原行为）===
+  RG_WORKSPACE            根目录（含 skills/ 子目录），默认=脚本往上4级
+  RG_SELF_MARKERS         自研判定字样，逗号分隔，默认"思捷娅,SJYKJ"
+  RG_OPENID_REGEX         open_id 脱敏正则，默认含 C099848...
+  RG_ABS_PATH_REGEX       硬编码路径正则，默认 /home/\\w+/\\S+
+  RG_TOKEN_REGEX          token 脱敏正则，默认 ghp_/sk-/AKIA
+  RG_IGNORE_DIRS          忽略目录，逗号分隔，默认 __pycache__,cache,reports,...
+  RG_HARD_ITEMS           硬挡项（挡push），逗号分隔，默认 脱敏嫌疑,硬编码路径,版权缺失
+  RG_SOFT_ITEMS           仅告警项，逗号分隔，默认 版本号不一致,命名不规范,print残留
+
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
-import os, re, sys, fnmatch
+import os, re, sys
 
-WORKSPACE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# ===== 可配置（环境变量可覆盖，默认=本机 OpenClaw 行为）=====
+def _env(name, default):
+    return os.environ.get(name, default)
 
-OPENID_PAT = re.compile(r'\bC099848[A-F0-9]{24}\b|\bC099848DC9A60BF60A7BE31626822790\b')
-ABS_PATH_PAT = re.compile(r'/home/\w+/\S+')
-TOKEN_PAT = re.compile(r'ghp_[A-Za-z0-9]{16,}|sk-[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}')
+_DEFAULT_WORKSPACE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+WORKSPACE = _env("RG_WORKSPACE", _DEFAULT_WORKSPACE)
+SELF_MARKERS = _env("RG_SELF_MARKERS", "思捷娅,SJYKJ").split(",")
+OPENID_PAT = re.compile(_env("RG_OPENID_REGEX", r'\bC099848[A-F0-9]{24}\b'))
+ABS_PATH_PAT = re.compile(_env("RG_ABS_PATH_REGEX", r'/home/\w+/\S+'))
+TOKEN_PAT = re.compile(_env("RG_TOKEN_REGEX", r'ghp_[A-Za-z0-9]{16,}|sk-[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}'))
+IGNORE_DIRS = set(_env("RG_IGNORE_DIRS",
+                       "__pycache__,cache,reports,backup-remote-merge,node_modules,venv,.git").split(","))
+HARD_ITEMS = set(_env("RG_HARD_ITEMS", "脱敏嫌疑,硬编码路径,版权缺失").split(","))
+SOFT_ITEMS = set(_env("RG_SOFT_ITEMS", "版本号不一致,命名不规范,print残留").split(","))
 
-IGNORE_DIRS = {"__pycache__", "cache", "reports", "backup-remote-merge", "node_modules", "venv", ".git"}
+# 版权头判定的字样（跟着自研标记走，异地部署改 SELF_MARKERS 即可）
+_COPYRIGHT_OK = re.compile("|".join(map(re.escape, ["MIT License", "Copyright"] + SELF_MARKERS)))
+_SELF_RE = re.compile("|".join(map(re.escape, SELF_MARKERS)))
 
 
 def iter_code_files(base):
@@ -38,10 +61,10 @@ def check_copyright(base):
         if not fn.endswith((".py", ".sh")):
             continue
         if fn == "__init__.py" and os.path.getsize(p) < 10:
-            continue  # 空 init 跳过
+            continue
         with open(p, encoding="utf-8", errors="ignore") as f:
             head = f.read(2000)
-        if not re.search(r"思捷娅|SJYKJ|MIT License|Copyright", head):
+        if not _COPYRIGHT_OK.search(head):
             bad.append(os.path.relpath(p, base))
     return bad
 
@@ -62,7 +85,7 @@ def check_version(base):
 
 
 def check_secrets(base):
-    """3. 脱敏（open_id/token/手机号 硬编码）"""
+    """3. 脱敏（open_id/token 硬编码）"""
     found = []
     for p, fn in iter_code_files(base):
         if not fn.endswith((".py", ".json", ".sh")):
@@ -71,7 +94,6 @@ def check_secrets(base):
             content = f.read()
         for pat, label in [(OPENID_PAT, "open_id"), (TOKEN_PAT, "token")]:
             for m in pat.finditer(content):
-                # 变量引用/环境变量占位 不算
                 ctx = content[max(0, m.start()-40):m.end()]
                 if "environ" in ctx or "${" in ctx or "os.environ.get" in content:
                     line_n = content[:m.start()].count("\n") + 1
@@ -80,17 +102,20 @@ def check_secrets(base):
 
 
 def check_hardcoded_paths(base):
-    """4. 硬编码绝对路径 /home/xxx"""
+    """4. 硬编码绝对路径（默认 /home/xxx，可配 RG_ABS_PATH_REGEX）"""
     found = []
     for p, fn in iter_code_files(base):
         if not fn.endswith((".py", ".sh")):
             continue
         with open(p, encoding="utf-8", errors="ignore") as f:
             for i, line in enumerate(f, 1):
-                # 跳过正则定义行 / docstring / 含 "re.compile" 的行（脚本自身的匹配模式不算硬编码）
-                if "re.compile" in line or '"""' in line or "/home/" not in line:
+                if "re.compile" in line or '"""' in line:
                     continue
-                if "environ" not in line and "os.path.join" not in line and "WORKSPACE" not in line and "__file__" not in line and "$HOME" not in line:
+                if not ABS_PATH_PAT.search(line):
+                    continue
+                if ("environ" not in line and "os.path.join" not in line
+                        and "WORKSPACE" not in line and "__file__" not in line
+                        and "$HOME" not in line and "RG_ABS_PATH" not in line):
                     found.append(f"{os.path.relpath(p, base)}:{i}")
     return found
 
@@ -107,31 +132,20 @@ def check_naming(base):
 
 
 def check_print(base):
-    """6. 代码规范（主流程裸 print 残留 → 告警；报告文本输出类 print → 放行不误报）。
-
-    放行规则：路径含 report/ 或 文件名含 report/format/print 说明是"报告输出"，print 是本职。
-    只挡：signals/、orchestrator/、skills/*/ 主流程、门面 entry 里的裸 print（非 isatty 门控）。
-    """
+    """6. 代码规范（主流程裸 print 残留 → 告警；报告文本输出类 print → 放行）"""
     found = []
     for p, fn in iter_code_files(base):
         if not fn.endswith(".py"):
             continue
         rel = os.path.relpath(p, base)
-        # 报告/输出类文件 print 是本职，放行
         if any(k in fn for k in ["report", "format", "print", "brief", "card"]):
             continue
-        # 修复脚本里 print 计数正常，放行
-        if "fix_print" in rel:
-            continue
-        # 已废弃的 legacy 入口、signals/scripts 输出层放行（print 是本职输出）
-        if "legacy" in rel:
+        if "fix_print" in rel or "legacy" in rel:
             continue
         if "/signals/" in rel or rel.startswith("signals/"):
             continue
         if "/scripts/" in rel or rel.startswith("scripts/"):
-            continue  # scripts/ 多为报告/辅助输出，print 放行
-        # CLI 门控输出（interactive 块里的 print）放行
-        prev_lines = []  # 粗略：本行前面 3 行内有 interactive/isatty 则放行
+            continue
         with open(p, encoding="utf-8", errors="ignore") as f:
             lines = f.readlines()
         for i, line in enumerate(lines, 1):
@@ -139,7 +153,6 @@ def check_print(base):
                 continue
             if "isatty" in line:
                 continue
-            # 看前 3 行是否 interactive 门控
             ctx = "".join(lines[max(0, i-4):i-1])
             if "interactive" in ctx or "isatty" in ctx:
                 continue
@@ -148,11 +161,11 @@ def check_print(base):
 
 
 def check_ownership(base):
-    """7. 归属分类（含 SJYKJ/思捷娅 才算自研可改）"""
+    """7. 归属分类（含自研标记才算 self，可配 RG_SELF_MARKERS）"""
     sk = os.path.join(base, "SKILL.md")
     if os.path.exists(sk):
         with open(sk, encoding="utf-8", errors="ignore") as f:
-            return "self" if re.search(r"思捷娅|SJYKJ", f.read()) else "third-party"
+            return "self" if _SELF_RE.search(f.read()) else "third-party"
     return "unknown"
 
 
@@ -165,27 +178,29 @@ def run(base):
     issues["命名不规范"] = check_naming(base)
     issues["print残留"] = check_print(base)
     own = check_ownership(base)
-    HARD = ["脱敏嫌疑", "硬编码路径", "版权缺失"]   # 这些不过 → 挡 push
-    SOFT = ["版本号不一致", "命名不规范", "print残留"]  # 这些只告警，不挡
-    hard_prob = {k: v for k, v in issues.items() if k in HARD and (v if isinstance(v, list) else len(v))}
-    soft_prob = {k: v for k, v in issues.items() if k in SOFT and (v if isinstance(v, list) else len(v))}
+    hard_prob = {k: v for k, v in issues.items() if k in HARD_ITEMS and (v if isinstance(v, list) else len(v))}
+    soft_prob = {k: v for k, v in issues.items() if k in SOFT_ITEMS and (v if isinstance(v, list) else len(v))}
     return {"hard": hard_prob, "soft": soft_prob}, own, sum(len(v) for v in hard_prob.values())
 
 
 def main():
     if len(sys.argv) < 2:
-        print("用法: release_gate.py <skill_dir>... | --all"); return 2
+        print("用法: release_gate.py <skill_dir>... | --all  (可配 RG_* 环境变量)"); return 2
     args = sys.argv[1:]
     only_self = "--self-developed" in args
     args = [a for a in args if a != "--self-developed"]
     targets = []
     if not args or args == ["--all"]:
-        for d in sorted(os.listdir(os.path.join(WORKSPACE, "skills"))):
-            p = os.path.join(WORKSPACE, "skills", d)
+        skills_root = os.path.join(WORKSPACE, "skills")
+        if not os.path.isdir(skills_root):
+            print(f"⚠️ skills 根目录不存在: {skills_root}（设 RG_WORKSPACE 或传 skill_dir）")
+            return 2
+        for d in sorted(os.listdir(skills_root)):
+            p = os.path.join(skills_root, d)
             if os.path.isdir(p) and os.path.exists(os.path.join(p, "SKILL.md")):
                 if only_self:
                     with open(os.path.join(p, "SKILL.md"), encoding="utf-8", errors="ignore") as sf:
-                        if not re.search(r"思捷娅|SJYKJ", sf.read()):
+                        if not _SELF_RE.search(sf.read()):
                             continue
                 targets.append(p)
     else:
@@ -215,7 +230,6 @@ def main():
                     print(f"   - {item}")
                 if len(v) > 5:
                     print(f"   ... 共 {len(v)} 处")
-    # 实时计数：扫了多少个自研 skill、硬问题命中几个（不读缓存，每次重扫）
     hit_skills = [os.path.basename(b.rstrip("/")) for b in targets
                   if run(b)[2] > 0]
     print(f"\n结论: {'✅ 通过，可发布' if all_clean else '❌ 硬问题需修复（脱敏/硬编码/版权），print/版本/命名仅告警'}"
