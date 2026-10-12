@@ -163,5 +163,24 @@ def main():
     else:
         print("无状态变化（open PR 数量不变，无 merge/close）")
 
+    # 清理 30 天前的异动日志（防文件无限增长）
+    if os.path.exists(change_log):
+        cutoff = time.time() - 30 * 86400
+        lines = open(change_log).readlines()
+        new_lines, cur_ts = [], time.time()
+        for l in lines:
+            if l.startswith("=== "):
+                ts_str = l.strip().split("===")[1].strip()
+                try:
+                    cur_ts = time.mktime(time.strptime(ts_str, "%Y-%m-%d %H:%M"))
+                except ValueError:
+                    cur_ts = time.time()
+            if cur_ts >= cutoff:
+                new_lines.append(l)
+        open(change_log, "w").writelines(new_lines)
+        removed = len(lines) - len(new_lines)
+        if removed > 0:
+            print(f"🧹 清理 {removed} 行 30 天前日志")
+
 if __name__ == "__main__":
     main()
