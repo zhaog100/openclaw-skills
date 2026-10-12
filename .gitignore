@@ -49,3 +49,4 @@ __pycache__/
 *.pyo
 terminal-ocr/venv/
 skills/economic-outlook/cache/
+ghp_*
