@@ -11,6 +11,7 @@ export HOME="${HOME:-$HOME}"
 export PYTHONPATH="$HOME/.local/lib/python3.12/site-packages"
 export OIL_GOLD_SKILL_DIR="$WS/skills/oil-gold-correlation"
 cd "$EO"
+export OIL_GOLD_BRIEF="1"  # 精简报告（OIL_GOLD_BRIEF=0 恢复完整版）
 python3 - <<'PY' 1>"$HOME/.openclaw/workspace/logs/oil-gold-report-cron.log" 2>&1
 import sys, os, logging, json, time
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

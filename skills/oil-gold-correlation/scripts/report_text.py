@@ -548,11 +548,27 @@ def _generate_report_inner():
     full = '\n'.join(lines)
     logger.info(full)
 
+    # 精简模式（OIL_GOLD_BRIEF=1）：按"段"白名单裁剪，只保留 头部+信号灯+行情+操作建议+结论+免责
+    import os
+    if os.environ.get('OIL_GOLD_BRIEF') == '1':
+        # 段白名单（只保留这些"段标题"开头的段）
+        keep_sections = ['📊 石油黄金', '📡 信号灯', '>> 📊 行情数据', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+        out, in_keep = [], False
+        for line in lines:
+            s = line.strip()
+            # 段边界：以 '>>' 或 框线顶部 开头的行视为新段
+            if s.startswith('>>') or s.startswith('📊 石油黄金') or s.startswith('┌') or s.startswith('📡'):
+                in_keep = any((m in s) or (m in line) for m in keep_sections)
+            if in_keep:
+                out.append(line)
+        # 去掉多余空行
+        full = re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip() + '\n'
+
     from config import REPORT_TEXT, ensure_dirs
     ensure_dirs()
     with open(REPORT_TEXT, 'w') as f:
         f.write(full)
-    logger.info(f'\n已保存: {REPORT_TEXT}')
+    logger.info(f'\n已保存: {REPORT_TEXT}（{"精简" if os.environ.get("OIL_GOLD_BRIEF")=="1" else "完整"}）')
 
 if __name__ == '__main__':
     generate_report()
