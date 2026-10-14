@@ -552,13 +552,15 @@ def _generate_report_inner():
     import os
     if os.environ.get('OIL_GOLD_BRIEF') == '1':
         # 段白名单（只保留这些"段标题"开头的段）
-        keep_sections = ['📊 石油黄金', '📡 信号灯', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+        keep_sections = ['📊 石油黄金', '>> 📊 行情数据', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
         out, in_keep = [], False
         for line in lines:
             s = line.strip()
-            # 段边界：以 '>>' 或 框线顶部 开头的行视为新段
-            if s.startswith('>>') or s.startswith('📊 石油黄金') or s.startswith('┌') or s.startswith('📡'):
+            # 段边界：'>>' 段标题；⚠️ 框线(┌)会连带引入信号灯框，必须显式排除
+            if s.startswith('>>') or s.startswith('📊 石油黄金'):
                 in_keep = any((m in s) or (m in line) for m in keep_sections)
+            elif s.startswith('┌') or s.startswith('└') or s.startswith('📡'):
+                in_keep = False
             if in_keep:
                 out.append(line)
         # 去掉多余空行
