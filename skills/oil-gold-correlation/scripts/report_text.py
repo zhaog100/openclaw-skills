@@ -74,6 +74,19 @@ def _fetch_intl_gold():
 
 
 
+def _fetch_etf_gold_wave():
+    """拉 518880 黄金ETF 现价 + 20日区间，用于波段参考；失败返回 None（不硬造）"""
+    import akshare as ak
+    try:
+        df = ak.fund_etf_hist_em(symbol="518880", period="daily", adjust="")
+        close = df['收盘'].astype(float)
+        cur = close.iloc[-1]
+        lo = close.tail(20).min()
+        hi = close.tail(20).max()
+        return {"cur": round(cur, 3), "lo": round(lo, 3), "hi": round(hi, 3)}
+    except Exception:
+        return None
+
 def _calc_gold_spread(intl_price, gold_result):
     """内外价差：国际价换算人民币克价 vs 沪金，判贴水/升水。需汇率，取不到则降级。"""
     try:
@@ -304,12 +317,14 @@ def _generate_report_inner():
                 change_1d = df['Close'].pct_change().iloc[-1] * 100
                 change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
                 change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
-                lines.append(f'  {label} ¥{latest:,.0f}/克'
+                unit = '/千克' if key == 'silver' else '/克'
+                lines.append(f'  {label} ¥{latest:,.0f}{unit}'
                              f'  日{change_1d:+.2f}%'
                              f'  30日{change_30d:+.1f}%'
                              f'  年初至今{change_ytd:+.1f}%')
             else:
-                lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}/克  (缓存)')
+                unit = '/千克' if key == 'silver' else '/克'
+                lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}{unit}  (缓存)')
         except Exception as e:
             lines.append(f'  {label} 错误: {e}')
     # 国际美元金价（第二口径，与人民币沪金对比；失败降级不硬造）
@@ -322,6 +337,20 @@ def _generate_report_inner():
             lines.append(f'  ⚖️ 内外价差: {spread_txt}  （价差为相对参考，非无风险套利信号）')
     else:
         lines.append(f'  🌍 国际现货金: 数据源不可用（{intl.get("err","?")}），仅人民币口径')
+    # 波段参考：518880 黄金ETF（动态拉，失败降级占位不硬造）
+    wave = _fetch_etf_gold_wave()
+    if wave:
+        lines.append('')
+        lines.append('>> 📈 波段参考（518880 黄金ETF）')
+        lines.append(f'  现价 ¥{wave["cur"]}  20日区间 ¥{wave["lo"]}~¥{wave["hi"]}')
+        buy_lo = wave["lo"] + 0.05
+        stop = round(wave["lo"] - 0.10, 2)
+        tgt1 = round(wave["lo"] + (wave["hi"] - wave["lo"]) * 0.5, 2)
+        tgt2 = wave["hi"]
+        lines.append(f'  买入区 ¥{buy_lo:.2f}  止损 ¥{stop}  目标 ¥{tgt1}/¥{tgt2}')
+    else:
+        lines.append('')
+        lines.append('>> 📈 波段参考（518880）: ETF 数据源暂不可用')
     lines.append('')
 
     # ========== 仪表盘（趋势箭头文字化） ==========
@@ -339,8 +368,7 @@ def _generate_report_inner():
             arrow = trend_arrow(score, rsi)
             lines.append(f'  {label} {price}  {v_emoji}{verdict}  {arrow}')
             lines.append(f'    {bar} {score}/100  RSI={rsi:.0f}  信号{sig}')
-        else:
-            lines.append(f'  {label} 数据不足')
+        # else: 数据不足时整行剔除，不留空壳
     lines.append('')
 
     # ========== 波动率对比 ==========
@@ -521,7 +549,7 @@ def _generate_report_inner():
 
     # 优先检查回避品种数量，避免"可考虑"掩盖"回避"信号
     if avoid_count >= 2:
-        conclusion = '多品种偏弱，强烈建议观望，等信号灯转正。'
+        conclusion = '多品种偏弱，强烈建议观望，等评分回升、信号转多。'
     elif avoid_count == 1 and buy_count >= 2:
         # 有回避品种但其他两个可考虑 → 不能笼统说"偏强"
         conclusion = '个别品种有支撑，但存在回避品种，轻仓试探，严控仓位。'
@@ -552,7 +580,7 @@ def _generate_report_inner():
     import os
     if os.environ.get('OIL_GOLD_BRIEF') == '1':
         # 段白名单（只保留这些"段标题"开头的段）
-        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📈 波段参考', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
         out, in_keep = [], False
         for line in lines:
             s = line.strip()
