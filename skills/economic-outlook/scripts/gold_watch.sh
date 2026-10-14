@@ -60,10 +60,14 @@ if alert.get("triggered"):
         msg = alert.get("msg", "") + f"\n（{now} 沪金 {price:.0f}）"
         env = dict(os.environ); env["QQ_TARGET_USER_ID"] = target
         # 门面统一推送（方案A）：盯价消息写临时文件，复用门面 send_qq_gw.py（Gateway REST）
+        # 路径走环境变量/相对定位，不硬编码绝对路径（合规关卡）
         import tempfile, os as _os
-        gw = _os.path.expanduser("~/.openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py")
-        if not _os.path.exists(gw):
-            gw = "/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py"
+        gw_env = _os.environ.get("OIL_GOLD_SKILL_DIR", "")
+        gw = _os.path.join(gw_env, "scripts", "send_qq_gw.py") if gw_env else ""
+        if not gw or not _os.path.exists(gw):
+            # fallback: 从本脚本位置上溯定位（scripts/ → economic-outlook → skills → 兄弟目录 oil-gold-correlation）
+            _base = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))  # skills/economic-outlook
+            gw = _os.path.join(_os.path.dirname(_base), "oil-gold-correlation", "scripts", "send_qq_gw.py")
         _tmp = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
         _tmp.write(msg + "\n\n⚠️ 区间参考，不构成投资建议"); _tmp.close()
         r = subprocess.run(["python3", gw, _tmp.name], env=env, timeout=120, capture_output=True)
