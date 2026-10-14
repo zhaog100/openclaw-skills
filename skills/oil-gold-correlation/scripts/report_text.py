@@ -552,7 +552,7 @@ def _generate_report_inner():
     import os
     if os.environ.get('OIL_GOLD_BRIEF') == '1':
         # 段白名单（只保留这些"段标题"开头的段）
-        keep_sections = ['📊 石油黄金', '>> 📊 行情数据', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
         out, in_keep = [], False
         for line in lines:
             s = line.strip()
