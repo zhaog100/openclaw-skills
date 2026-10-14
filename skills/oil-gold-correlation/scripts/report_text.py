@@ -15,6 +15,7 @@ License: MIT
 import sys
 from pathlib import Path
 from datetime import datetime
+import re
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -576,23 +577,31 @@ def _generate_report_inner():
     full = '\n'.join(lines)
     logger.info(full)
 
-    # 精简模式（OIL_GOLD_BRIEF=1）：按"段"白名单裁剪，只保留 头部+信号灯+行情+操作建议+结论+免责
+    # 精简模式（OIL_GOLD_BRIEF=1）：按"段"白名单裁剪；波段参考拉取失败则回退完整版（不硬造数据）
     import os
     if os.environ.get('OIL_GOLD_BRIEF') == '1':
-        # 段白名单（只保留这些"段标题"开头的段）
-        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📈 波段参考', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
-        out, in_keep = [], False
+        # 波段参考拉取成功才出精简版，失败则保留完整版（容错）
+        wave_ok = False
         for line in lines:
-            s = line.strip()
-            # 段边界：'>>' 段标题；⚠️ 框线(┌)会连带引入信号灯框，必须显式排除
-            if s.startswith('>>') or s.startswith('📊 石油黄金'):
-                in_keep = any((m in s) or (m in line) for m in keep_sections)
-            elif s.startswith('┌') or s.startswith('└') or s.startswith('📡'):
-                in_keep = False
-            if in_keep:
-                out.append(line)
-        # 去掉多余空行
-        full = re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip() + '\n'
+            if '>> 📈 波段参考' in line and '暂不可用' not in line:
+                wave_ok = True
+                break
+        if wave_ok:
+            keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📈 波段参考', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+            out, in_keep = [], False
+            for line in lines:
+                s = line.strip()
+                if s.startswith('>>') or s.startswith('📊 石油黄金'):
+                    in_keep = any((m in s) or (m in line) for m in keep_sections)
+                elif s.startswith('┌') or s.startswith('└') or s.startswith('📡'):
+                    in_keep = False
+                if in_keep:
+                    out.append(line)
+            full = re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip() + '\n'
+            logger.info('OIL_GOLD_BRIEF=1 且波段参考可用 → 输出精简版')
+        else:
+            logger.info('OIL_GOLD_BRIEF=1 但波段参考不可用 → 回退完整版（容错）')
+            # full 保持原样（完整版）
 
     from config import REPORT_TEXT, ensure_dirs
     ensure_dirs()
