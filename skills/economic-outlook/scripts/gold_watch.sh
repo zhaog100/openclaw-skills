@@ -59,7 +59,17 @@ if alert.get("triggered"):
         import subprocess
         msg = alert.get("msg", "") + f"\n（{now} 沪金 {price:.0f}）"
         env = dict(os.environ); env["QQ_TARGET_USER_ID"] = target
-        subprocess.run(["python3", "scripts/gold_watch_send.py", msg], env=env, timeout=120, capture_output=True)
+        # 门面统一推送（方案A）：盯价消息写临时文件，复用门面 send_qq_gw.py（Gateway REST）
+        import tempfile, os as _os
+        gw = _os.path.expanduser("~/.openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py")
+        if not _os.path.exists(gw):
+            gw = "/home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py"
+        _tmp = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
+        _tmp.write(msg + "\n\n⚠️ 区间参考，不构成投资建议"); _tmp.close()
+        r = subprocess.run(["python3", gw, _tmp.name], env=env, timeout=120, capture_output=True)
+        _os.unlink(_tmp.name)
+        if r.returncode != 0:
+            log.warning("门面推送失败: %s", r.stderr[:80] if r.stderr else "?")
         # 记 key 去重
         os.makedirs("data", exist_ok=True)
         json.dump({"last_alert_key": alert.get("alert_key",""), "at": now}, open(state_f,"w"))
