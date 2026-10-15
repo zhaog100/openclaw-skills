@@ -369,7 +369,9 @@ def _generate_report_inner():
             arrow = trend_arrow(score, rsi)
             lines.append(f'  {label} {price}  {v_emoji}{verdict}  {arrow}')
             lines.append(f'    {bar} {score}/100  RSI={rsi:.0f}  信号{sig}')
-        # else: 数据不足时整行剔除，不留空壳
+        else:
+            # 数据不足：保留占位行（避免某品种突然从仪表盘消失，官家 2026-10-15 要求）
+            lines.append(f'  {label} 数据源暂不可用（本轮拉取失败，下轮重试）')
     lines.append('')
 
     # ========== 波动率对比 ==========
@@ -491,7 +493,13 @@ def _generate_report_inner():
     lines.append('')
     lines.append('  单黄金分批节奏（只配黄金）:')
     lines.append('    30% 现价先上  →  40% 跌一段补  →  30% 低位重仓捡')
-    lines.append('    （越跌越敢加；盯价到 880/860 自动提醒，≥900 别追）')
+    lines.append('    （越跌越敢加；盯价按 20日/60日 行情动态算买点卖点，自动推送）')
+    lines.append('')
+    lines.append('  黄金实物+波段配置（官家 1w 方案，2026-10-15 定版）:')
+    lines.append('    实物打底 7000（国泰A 000218）: 3:4:3 分批买入，长期拿不卖')
+    lines.append('    波段进取 3000（国泰C）: 只低位进，按卖点分三档兑现')
+    lines.append('      卖点目标1 减1/3 / 目标2 再减1/3 / 目标3 清掉')
+    lines.append('    买点/卖点每次按 20日/60日 高低动态滚动（盯价 cron 自动推，不写死）')
     lines.append('')
 
     # ========== 历史阶段定位（精简：一句话） ==========
