@@ -477,13 +477,13 @@ def _generate_report_inner():
     if gold_adj >= 60 and oil_score < 40:
         ratio = '5:2:3（黄金防守为主）'
     elif gold_adj >= 60 and oil_score >= 40:
-        ratio = '4:3:3（均衡偏防守）'
+        ratio = '3:4:3（黄金打底+波段，跌有实物托底）'
     elif gold_adj < 40 and oil_score >= 50:
         ratio = '3:2:5（原油偏强）'
     elif gold_adj < 40 and oil_score < 40:
         ratio = '5:3:2（黄金防守为主）'
     else:
-        ratio = '4:3:3（均衡配置）'
+        ratio = '3:4:3（黄金打底+波段，跌有实物托底）'
 
     lines.append(f'  组合建议：黄金:白银:原油 = {ratio}')
     lines.append('')
