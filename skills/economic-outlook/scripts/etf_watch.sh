@@ -53,18 +53,27 @@ no_chase = tmap.get(dyn.get("no_chase", "hi20"), hi1)
 
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
-# 判定（买卖双向，动态价）
+# 信号→基金操作对照表（从配置读，每次推信号附具体动作）
+action_map = w.get("action_map", {})
+fund_a = w.get("fund", {}).get("A", "000218")
+fund_c = w.get("fund", {}).get("C", "004253")
+
+# 判定（买卖双向，动态价 + 基金操作）
 msgs = []
 sell_hit = [s for s in sell_pts if cur >= s]
 if sell_hit:
     top = max(sell_hit)
     idx = sell_pts.index(top)
-    verb = "清掉" if idx >= 2 else f"减 1/{len(sell_pts)-idx}"
-    msgs.append(f"🎯 沪金现货 ¥{cur:.0f}/克，达目标{idx+1}(¥{top:.0f})，波段仓可{verb}")
+    verb = "清掉" if idx >= len(sell_pts)-1 else f"减 1/{len(sell_pts)-idx}"
+    # 匹配 action_map 里对应的卖点动作
+    sell_action = action_map.get(f"sell_{round(top)}", f"赎回国泰C {fund_c} 波段仓（{verb}）")
+    msgs.append(f"🎯 沪金现货 ¥{cur:.0f}/克，达卖点(¥{top:.0f})，波段仓可{verb}\n  → {sell_action}")
 if cur <= buy2:
-    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到补仓点(¥{buy2:.0f})，波段仓可补 / 实物仓低位重仓")
+    buy_action = action_map.get(f"buy_{round(buy2)}", f"申购国泰A {fund_a} 第3笔 3000元（打底仓30%）")
+    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到补仓点(¥{buy2:.0f})\n  → {buy_action}")
 elif cur <= buy1:
-    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到第一买点(¥{buy1:.0f})，波段仓可进首笔 / 实物仓可加")
+    buy_action = action_map.get(f"buy_{round(buy1)}", f"申购国泰A {fund_a} 第2笔 4000元（打底仓40%）")
+    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到第一买点(¥{buy1:.0f})\n  → {buy_action}")
 elif cur >= no_chase:
     msgs.append(f"⚠️ 沪金现货 ¥{cur:.0f}/克，到 20日高(¥{no_chase:.0f})，高位别追、别新建波段仓")
 
@@ -73,12 +82,17 @@ if not msgs:
     # 区间内未触发：推摘要（当前价 + 动态区间 + 离各档距离 + 今天该干啥）
     d_buy1 = cur - buy1
     d_sell1 = sell_pts[0] - cur
+    # 摘要也带"到价该干啥"提示（从 action_map 取）
+    buy_hint = action_map.get(f"buy_{round(buy1)}", "申购国泰A（打底仓）")
+    sell_hint = action_map.get(f"sell_{round(sell_pts[0])}", "赎回国泰C（波段仓）")
     summary = (
         f"📊 黄金盯价摘要（{now}）\n"
         f"沪金现货 ¥{cur:.0f}/克，区间内未触发\n"
         f"  离买点1(¥{buy1:.0f}) 还差 {d_buy1:.0f} 元\n"
         f"  离卖点1(¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
-        f"  今天: 区间内持有，到价才动"
+        f"  今天: 区间内持有，到价才动\n"
+        f"  到买点 → {buy_hint}\n"
+        f"  到卖点 → {sell_hint}"
     )
     sell_str = "/".join(f"{s:.0f}" for s in sell_pts)
     print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克 | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_str} 别追 {no_chase:.0f}")
