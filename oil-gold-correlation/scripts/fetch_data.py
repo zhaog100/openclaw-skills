@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 石油黄金数据获取模块
@@ -7,7 +11,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 
 import argparse
 import json
@@ -88,7 +92,7 @@ def fetch_akshare(period="1y", interval="1d"):
             try:
                 df = ak.futures_main_sina(symbol=info["symbol"], start_date=start_date, end_date=end_date)
                 if df is None or df.empty:
-                    print(f"  ⚠️ {info['name']}({info['symbol']}) 数据为空")
+                    logger.info(f"  ⚠️ {info['name']}({info['symbol']}) 数据为空")
                     continue
 
                 # akshare 列名：日期/开盘价/最高价/最低价/收盘价/成交量/持仓量
@@ -136,7 +140,7 @@ def fetch_akshare(period="1y", interval="1d"):
                 }
 
             except Exception as e:
-                print(f"  ⚠️ akshare {info['name']}({info['symbol']}) 获取失败: {e}")
+                logger.info(f"  ⚠️ akshare {info['name']}({info['symbol']}) 获取失败: {e}")
 
             except Exception:
                 pass  # socket timeout handled by global default
@@ -188,7 +192,7 @@ def fetch_yfinance(period="1y", interval="1d"):
                 if attempt == 0:
                     time.sleep(2)
                 else:
-                    print(f"  ⚠️ {symbol} Ticker.history() 失败: {e}")
+                    logger.info(f"  ⚠️ {symbol} Ticker.history() 失败: {e}")
 
     if result and len(result) == len(YFINANCE_SYMBOLS):
         return result
@@ -207,7 +211,7 @@ def fetch_yfinance(period="1y", interval="1d"):
                     if parsed and parsed["close"]:
                         result[name] = parsed
         except Exception as e:
-            print(f"  ⚠️ yf.download() fallback 失败: {e}")
+            logger.info(f"  ⚠️ yf.download() fallback 失败: {e}")
 
     return result
 
@@ -216,11 +220,11 @@ def fetch_data(period="1y", interval="1d"):
     """获取黄金和原油历史数据，优先 akshare → 失败则 fallback yfinance → 缓存"""
     cached = read_cache(period, interval)
     if cached:
-        print(f"[缓存] 使用缓存数据（{period}，{interval}）")
+        logger.info(f"[缓存] 使用缓存数据（{period}，{interval}）")
         return cached
 
     # 尝试 akshare
-    print(f"[akshare] 获取数据（{period}，{interval}）...")
+    logger.info(f"[akshare] 获取数据（{period}，{interval}）...")
     try:
         result = fetch_akshare(period, interval)
         has_data = any(d.get("close") for d in result.values())
@@ -234,19 +238,19 @@ def fetch_data(period="1y", interval="1d"):
                     prev = d["close"][-2] if len(d["close"]) > 1 else latest
                     change = ((latest - prev) / prev) * 100 if prev else 0
                     cur = d.get('currency', 'CNY')
-                    print(f"  {name.upper():>6} ({d['symbol']})"
+                    logger.info(f"  {name.upper():>6} ({d['symbol']})"
                           f": ¥{latest:,.2f} ({change:+.2f}%)"
                           f" | {len(d['dates'])} 条记录 [{cur}]")
             return result
         else:
-            print("  ⚠️ akshare 数据为空，尝试 yfinance...")
+            logger.info("  ⚠️ akshare 数据为空，尝试 yfinance...")
     except ImportError:
-        print("  ⚠️ akshare 未安装，尝试 yfinance...")
+        logger.info("  ⚠️ akshare 未安装，尝试 yfinance...")
     except Exception as e:
-        print(f"  ⚠️ akshare 失败: {e}，尝试 yfinance...")
+        logger.info(f"  ⚠️ akshare 失败: {e}，尝试 yfinance...")
 
     # 降级到 yfinance
-    print(f"[yfinance] 获取数据（{period}，{interval}）...")
+    logger.info(f"[yfinance] 获取数据（{period}，{interval}）...")
     result = fetch_yfinance(period, interval)
     has_data = any(d.get("close") for d in result.values())
     if has_data:
@@ -256,13 +260,13 @@ def fetch_data(period="1y", interval="1d"):
                 latest = d["close"][-1]
                 prev = d["close"][-2] if len(d["close"]) > 1 else latest
                 change = ((latest - prev) / prev) * 100 if prev else 0
-                print(f"  {name.upper():>6} ({d['symbol']})"
+                logger.info(f"  {name.upper():>6} ({d['symbol']})"
                       f": ${latest:,2f} ({change:+.2f}%)"
                       f" | {len(d['dates'])} 条记录 [USD]")
         return result
 
     # 全部失败，返回空结构
-    print("❌ 所有数据源均失败")
+    logger.info("❌ 所有数据源均失败")
     all_symbols = {**AKSHARE_SYMBOLS, **{"brent": {"symbol": "BZ=F"}}}
     return {name: {"symbol": info.get("symbol", ""), "dates": [], "close": [], "open": [],
                    "high": [], "low": [], "volume": [], "currency": "N/A"}
@@ -281,10 +285,10 @@ if __name__ == "__main__":
     data = fetch_data(args.period, args.interval)
 
     if not data or not any(d.get("close") for d in data.values()):
-        print("❌ 未获取到数据")
+        logger.info("❌ 未获取到数据")
         sys.exit(1)
 
     total = sum(len(d["dates"]) for d in data.values())
-    print(f"\n✅ 数据获取完成：{len(data)} 个品种，{total} 条记录")
+    logger.info(f"\n✅ 数据获取完成：{len(data)} 个品种，{total} 条记录")
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

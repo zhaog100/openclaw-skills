@@ -44,7 +44,7 @@ send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），改用 send_qq_gw.
 
 **send_qq_gw.py 修复记录 (2026-09-08 21:30)**：
 - 问题：QQ_TARGET_USER_ID 环境变量未设置，导致 target 为空
-- 修复：第26行硬编码默认 target `C099848DC9A60BF60A7BE31626822790`
+- 修复：第26行硬编码默认 target `${QQ_OPEN_ID:-unset}`
 - 同时修复 target 格式：从 `qqbot:c2c:{target}` 改为直接使用 `{target}`（open_id）
 - Gateway 要求 target 格式为 open_id，不要加 `qqbot:c2c:` 前缀
 

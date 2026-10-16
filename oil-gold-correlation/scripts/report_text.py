@@ -1,10 +1,15 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
-石油黄金投资参考 - 纯文本报告生成器 v3.3
+石油黄金投资参考 - 纯文本报告生成器 v3.4
 优化：信号灯颜色更清晰 + 趋势箭头文字化 + 信息密度精简
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
+版本: v3.4 | 石油黄金白银相关性分析
 """
 
 import sys
@@ -64,7 +69,7 @@ def fetch_data(ak_key, period="90d"):
             with open(cache_file, 'wb') as f: pickle.dump(df, f)
         return df
     except Exception as e:
-        print(f"[fetch_data] {ak_key} 失败: {e}")
+        logger.info(f"[fetch_data] {ak_key} 失败: {e}")
         return None
 
 def get_tech_summary(result):
@@ -179,7 +184,7 @@ def generate_report():
     try:
         _generate_report_inner()
     except ReportTimeout:
-        print("\n⚠️ 报告生成超时，输出缓存数据...")
+        logger.info("\n⚠️ 报告生成超时，输出缓存数据...")
         _generate_report_cached()
     finally:
         signal.alarm(0)
@@ -473,13 +478,13 @@ def _generate_report_inner():
     lines.append(f'>> ⚠️ 仅供参考，不构成投资建议')
 
     full = '\n'.join(lines)
-    print(full)
+    logger.info(full)
 
     from config import REPORT_TEXT, ensure_dirs
     ensure_dirs()
     with open(REPORT_TEXT, 'w') as f:
         f.write(full)
-    print(f'\n已保存: {REPORT_TEXT}')
+    logger.info(f'\n已保存: {REPORT_TEXT}')
 
 if __name__ == '__main__':
     generate_report()

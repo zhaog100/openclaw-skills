@@ -65,7 +65,7 @@ Author: 小米粒 (Xiaomili) - AI Agent
 ❌ **禁止**
 ```python
 APP_SECRET = "your_secret_key"
-QQ_TARGET = "C099848DC9A60BF60A7BE31626822790"
+QQ_TARGET = "${QQ_OPEN_ID:-unset}"
 TOKEN = "xxx"
 ```
 

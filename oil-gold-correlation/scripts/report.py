@@ -1,3 +1,7 @@
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 #!/usr/bin/env python3
 """
 石油黄金分析报告生成器
@@ -7,7 +11,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.3 | 石油黄金白银相关性分析
+# 版本: v3.4 | 石油黄金白银相关性分析
 
 import argparse
 import sys
@@ -106,7 +110,7 @@ Granger 因果检验和 Engle-Granger 协整检验。
 市场状况变化可能导致相关性发生结构性变化。
 """
 
-    print(report)
+    logger.info(report)
     return report
 
 

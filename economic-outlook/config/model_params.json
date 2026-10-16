@@ -1,0 +1,12 @@
+{
+  "horizon_quarters": 8,
+  "decay_q1": 0.95,
+  "decay_q8": 0.60,
+  "optimistic_delta": 15,
+  "pessimistic_delta": 20,
+  "weights": {
+    "liquidity": 0.18, "sentiment": 0.15, "real_estate": 0.13,
+    "inflation": 0.10, "gold_silver": 0.06, "policy": 0.15,
+    "employment": 0.10, "consumption": 0.05, "exports": 0.06, "financial": 0.02
+  }
+}
