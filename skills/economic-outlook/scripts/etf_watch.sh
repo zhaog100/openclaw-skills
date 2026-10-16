@@ -35,17 +35,22 @@ except Exception:
     sys.exit(0)
 
 cur = close.iloc[-1]
+# 银行加价（中行客户买入价 - 沪金现货基准价），建议价 = 沪金现货 + 银行加价
+bank_premium = w.get("bank_premium", 21)
 lb1 = dyn.get("lookback_1", 20)
 lb2 = dyn.get("lookback_2", 60)
 lo1, hi1 = close.tail(lb1).min(), close.tail(lb1).max()
 lo2, hi2 = close.tail(lb2).min(), close.tail(lb2).max()
 mid1 = (lo1 + hi1) / 2
 
-# 动态买点/卖点
+# 动态买点/卖点（沪金现货口径，建议价=沪金现货+银行加价，两者都输出）
 off1 = dyn.get("band1_offset", 5)
 off2 = dyn.get("band2_offset", 5)
 buy1 = lo1 - off1
 buy2 = lo2 - off2
+# 建议价（银行口径）= 沪金现货价 + 银行加价
+buy1_bank = buy1 + bank_premium
+buy2_bank = buy2 + bank_premium
 targets = dyn.get("targets", ["mid20", "hi20", "hi60"])
 tmap = {"mid20": mid1, "hi20": hi1, "hi60": hi2}
 sell_pts = [tmap[t] for t in targets if t in tmap]
@@ -69,11 +74,11 @@ if sell_hit:
     sell_action = action_map.get(f"sell_{round(top)}", f"赎回国泰C {fund_c} 波段仓（{verb}）")
     msgs.append(f"🎯 沪金现货 ¥{cur:.0f}/克，达卖点(¥{top:.0f})，波段仓可{verb}\n  → {sell_action}")
 if cur <= buy2:
-    buy_action = action_map.get(f"buy_{round(buy2)}", f"申购国泰A {fund_a} 第3笔 3000元（打底仓30%）")
-    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到补仓点(¥{buy2:.0f})\n  → {buy_action}")
+    buy_action = action_map.get(f"buy_{round(buy2)}", f"申购国泰A {fund_a} 第3笔（打底仓30%）")
+    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到补仓点\n  沪金现货 ¥{buy2:.0f} → 建议买入价 ¥{buy2_bank:.0f}（含银行加价{bank_premium}）\n  → {buy_action}")
 elif cur <= buy1:
-    buy_action = action_map.get(f"buy_{round(buy1)}", f"申购国泰A {fund_a} 第2笔 4000元（打底仓40%）")
-    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到第一买点(¥{buy1:.0f})\n  → {buy_action}")
+    buy_action = action_map.get(f"buy_{round(buy1)}", f"申购国泰A {fund_a} 第2笔（打底仓40%）")
+    msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到第一买点\n  沪金现货 ¥{buy1:.0f} → 建议买入价 ¥{buy1_bank:.0f}（含银行加价{bank_premium}）\n  → {buy_action}")
 elif cur >= no_chase:
     msgs.append(f"⚠️ 沪金现货 ¥{cur:.0f}/克，到 20日高(¥{no_chase:.0f})，高位别追、别新建波段仓")
 
@@ -85,14 +90,15 @@ if not msgs:
     # 摘要也带"到价该干啥"提示（从 action_map 取）
     buy_hint = action_map.get(f"buy_{round(buy1)}", "申购国泰A（打底仓）")
     sell_hint = action_map.get(f"sell_{round(sell_pts[0])}", "赎回国泰C（波段仓）")
+    # 建议买入价（银行口径）= 沪金现货 + 银行加价
     summary = (
         f"📊 黄金盯价摘要（{now}）\n"
         f"沪金现货 ¥{cur:.0f}/克，区间内未触发\n"
-        f"  离买点1(¥{buy1:.0f}) 还差 {d_buy1:.0f} 元\n"
-        f"  离卖点1(¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
+        f"  离买点1(沪金¥{buy1:.0f}/建议¥{buy1_bank:.0f}) 还差 {d_buy1:.0f} 元\n"
+        f"  离卖点1(沪金¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
         f"  今天: 区间内持有，到价才动\n"
-        f"  到买点 → {buy_hint}\n"
-        f"  到卖点 → {sell_hint}"
+        f"  到买点 → 沪金¥{buy1:.0f}=建议¥{buy1_bank:.0f}(含银行加价{bank_premium})，{buy_hint}\n"
+        f"  到卖点 → 沪金¥{sell_pts[0]:.0f}，{sell_hint}"
     )
     sell_str = "/".join(f"{s:.0f}" for s in sell_pts)
     print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克 | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_str} 别追 {no_chase:.0f}")
