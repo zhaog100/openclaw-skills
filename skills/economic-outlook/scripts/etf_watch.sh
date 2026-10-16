@@ -68,11 +68,38 @@ elif cur <= buy1:
 elif cur >= no_chase:
     msgs.append(f"⚠️ 沪金现货 ¥{cur:.0f}/克，到 20日高(¥{no_chase:.0f})，高位别追、别新建波段仓")
 
+# ---- 每日必推盯价摘要（官家 2026-10-16 定：没触发也推当日摘要，触发则推操作指令）----
 if not msgs:
+    # 区间内未触发：推摘要（当前价 + 动态区间 + 离各档距离 + 今天该干啥）
+    d_buy1 = cur - buy1
+    d_sell1 = sell_pts[0] - cur
+    summary = (
+        f"📊 黄金盯价摘要（{now}）\n"
+        f"沪金现货 ¥{cur:.0f}/克，区间内未触发\n"
+        f"  离买点1(¥{buy1:.0f}) 还差 {d_buy1:.0f} 元\n"
+        f"  离卖点1(¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
+        f"  今天: 区间内持有，到价才动"
+    )
     print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克 | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_pts[0]:.0f}/{sell_pts[1]:.0f}/{sell_pts[2]:.0f} 别追 {no_chase:.0f}")
+    target = os.environ.get("QQ_TARGET_USER_ID", "")
+    if not target:
+        print("SUMMARY_NO_TARGET")
+        sys.exit(0)
+    gw = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "oil-gold-correlation", "scripts", "send_qq_gw.py")
+    if not os.path.exists(gw):
+        gw = os.path.expanduser("~/.openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py")
+    gw = os.path.abspath(gw)
+    tmp = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
+    tmp.write(summary + "\n\n⚠️ 仅供参考，不构成投资建议"); tmp.close()
+    r = subprocess.run(["python3", gw, tmp.name], env=dict(os.environ), timeout=120, capture_output=True)
+    os.unlink(tmp.name)
+    if r.returncode == 0:
+        print(f"SUMMARY_PUSHED: 区间内未触发，摘要已推")
+    else:
+        print(f"SUMMARY_PUSH_FAILED: {r.stderr[:80] if r.stderr else '?'}")
     sys.exit(0)
 
-# 去重
+# 触发了 → 去重（同价不重复推操作指令）
 state_f = "data/gold_watch_state.json"
 last_key = ""
 if os.path.exists(state_f):
