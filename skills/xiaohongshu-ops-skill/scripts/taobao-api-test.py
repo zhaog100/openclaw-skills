@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # -*- coding: utf-8 -*-
 """
 淘宝 API 测试脚本

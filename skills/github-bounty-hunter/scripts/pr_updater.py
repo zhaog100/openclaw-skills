@@ -14,7 +14,9 @@ def _token() -> str:
     env_tok = os.environ.get("GITHUB_TOKEN", "")
     if env_tok and len(env_tok) == 40:
         return env_tok
-    for p in ["/home/ubuntu/.openclaw/workspace/.env",
+    # 相对定位（脚本在 skills/github-bounty-hunter/scripts/ → 上溯 2 层到 skills/ → 再上溯 1 层到 workspace/.env）
+    _here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    for p in [os.path.join(_here, ".env"),
               os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")]:
         if os.path.exists(p):
             for l in open(p):
