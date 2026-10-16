@@ -26,7 +26,7 @@ for name in TARGETS.strip().split():
     if name not in repos:
         print(f"[{name}] 未知 remote，跳过"); continue
     repo = repos[name]
-    url = f"https://zhaog100:***}@github.com/{repo}.git"
+    url = "https://zhaog100:" + TOK + "@github.com/" + repo + ".git"
     subprocess.run(["git", "remote", "set-url", name, url], capture_output=True)
     r = subprocess.run(["git", "push", name, "main"], capture_output=True, text=True, timeout=90)
     print(f"[{name}] push {'✅ OK' if r.returncode==0 else '❌ '+r.stderr.strip()[:150]}")
