@@ -80,7 +80,8 @@ if not msgs:
         f"  离卖点1(¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
         f"  今天: 区间内持有，到价才动"
     )
-    print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克 | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_pts[0]:.0f}/{sell_pts[1]:.0f}/{sell_pts[2]:.0f} 别追 {no_chase:.0f}")
+    sell_str = "/".join(f"{s:.0f}" for s in sell_pts)
+    print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克 | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_str} 别追 {no_chase:.0f}")
     target = os.environ.get("QQ_TARGET_USER_ID", "")
     if not target:
         print("SUMMARY_NO_TARGET")
@@ -114,7 +115,8 @@ if not target:
     print("TRIGGERED_NO_TARGET")
     sys.exit(0)
 
-msg = "\n".join(msgs) + f"\n（{now} 沪金现货 ¥{cur:.0f}/克，动态区间: 买 {buy1:.0f}/{buy2:.0f} 卖 {sell_pts[0]:.0f}/{sell_pts[1]:.0f}/{sell_pts[2]:.0f}）"
+sell_str2 = "/".join(f"{s:.0f}" for s in sell_pts)
+msg = "\n".join(msgs) + f"\n（{now} 沪金现货 ¥{cur:.0f}/克，动态区间: 买 {buy1:.0f}/{buy2:.0f} 卖 {sell_str2}）"
 gw = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "oil-gold-correlation", "scripts", "send_qq_gw.py")
 if not os.path.exists(gw):
     gw = os.path.expanduser("~/.openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py")
