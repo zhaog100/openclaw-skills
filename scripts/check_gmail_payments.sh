@@ -68,8 +68,10 @@ try:
             if uid_list:
                 for uid in uid_list:
                     try:
-                        mail.uid('store', uid, '(FLAGS +\\Seen)', None)
-                        marked_read += 1
+                        # Gmail 稳定写法: +FLAGS (\Seen) 前缀式（不能用 (FLAGS +\Seen) 后缀式，Gmail 报 BAD）
+                        st, _res = mail.uid('store', uid, '+FLAGS (\\Seen)', None)
+                        if st == 'OK':
+                            marked_read += 1
                     except Exception:
                         pass
     
