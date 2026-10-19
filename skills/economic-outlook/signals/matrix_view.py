@@ -35,7 +35,5 @@ def print_matrix(df: pd.DataFrame):
     outcome_cn = {"stock": "股票", "fund": "基金", "startup": "创业",
                   "employment": "就业", "commodity": "大宗", "overseas": "海外配置"}
     df_cn = df.rename(columns=outcome_cn)
-    print("\n决策矩阵（信号 × 出口）")
-    print("=" * 80)
-    print(df_cn.to_string())
-    print("=" * 80)
+    # 不 print：函数返回报表文本供调用方，避免被 import 时刷屏
+    return "\n决策矩阵（信号 × 出口）\n" + "=" * 80 + "\n" + df_cn.to_string() + "\n" + "=" * 80

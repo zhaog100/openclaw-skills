@@ -42,8 +42,7 @@ class ContextMonitor:
 
         with open(self.log_path, 'a', encoding='utf-8') as f:
             f.write(log_line + '\n')
-
-        print(log_line)
+        # 不 print：trigger 被 import/定时触发时该静默，日志已写文件（B方案清真残留）
 
     def get_context_usage(self):
         """获取上下文使用率"""
