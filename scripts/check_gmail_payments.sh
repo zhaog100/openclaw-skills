@@ -55,6 +55,24 @@ try:
                     if subj not in found:
                         found.append(str(subj))
     
+    # 官家要求: 把 INBOX 全部未读邮件标已读（不只付款关键词，所有 UNSEEN）
+    marked_read = 0
+    s_un, un_msgs = mail.search(None, 'UNSEEN')
+    if s_un == 'OK' and un_msgs and un_msgs[0]:
+        # imaplib search 返回 bytes，split 出来是 bytes，要 decode 成 str 才能批量拼
+        unseen_ids = [x.decode() if isinstance(x, bytes) else x for x in un_msgs[0].split()]
+        if unseen_ids:
+            # 逐封标已读（用 UID 更稳，避免 sequence 偏移）
+            s_uid, uid_msgs = mail.uid('search', None, 'UNSEEN')
+            uid_list = [x.decode() if isinstance(x, bytes) else x for x in (uid_msgs[0].split() if s_uid == 'OK' and uid_msgs and uid_msgs[0] else [])]
+            if uid_list:
+                for uid in uid_list:
+                    try:
+                        mail.uid('store', uid, '(FLAGS +\\Seen)', None)
+                        marked_read += 1
+                    except Exception:
+                        pass
+    
     mail.logout()
     
     if not found:
@@ -63,6 +81,8 @@ try:
         print(f"📬 找到 {len(found)} 封付款相关邮件：")
         for i, subj in enumerate(found[-5:], 1):
             print(f"{i}. {subj[:80]}")
+    if marked_read:
+        print(f"📖 已将 {marked_read} 封未读邮件全部标为已读")
 except Exception as e:
     print(f"⚠️ 检查失败: {e}")
 PYEOF
