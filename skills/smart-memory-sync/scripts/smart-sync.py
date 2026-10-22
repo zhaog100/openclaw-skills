@@ -1,11 +1,18 @@
+<<<<<<< HEAD
+=======
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+>>>>>>> skills/main
 #!/usr/bin/env python3
 """
 Smart Memory Sync - 主入口
 独立运行，不依赖外部模块导入
 """
 
+<<<<<<< HEAD
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 
+=======
+>>>>>>> skills/main
 import sys
 import subprocess
 import time
@@ -47,7 +54,11 @@ class SmartMemorySync:
         with open(self.log_path, 'a', encoding='utf-8') as f:
             f.write(log_line + '\n')
 
+<<<<<<< HEAD
         logger.info(log_line)
+=======
+        print(log_line)
+>>>>>>> skills/main
 
     def get_context_usage(self):
         """获取上下文使用率"""
@@ -222,6 +233,7 @@ class SmartMemorySync:
         """显示状态"""
         usage, total, context, model = self.get_context_usage()
 
+<<<<<<< HEAD
         logger.info("📊 Smart Memory Sync 状态")
         logger.info("=" * 50)
         logger.info(f"上下文: {usage:.1f}% ({total}/{context})")
@@ -229,6 +241,15 @@ class SmartMemorySync:
         logger.info(f"阈值: 提醒{self.threshold_remind}% | 同步{self.threshold_sync}% | 切换{self.threshold_switch}%")
         logger.info(f"检查间隔: {self.check_interval}秒")
         logger.info(f"冷却期: {self.cooldown}秒")
+=======
+        print(f"📊 Smart Memory Sync 状态")
+        print(f"=" * 50)
+        print(f"上下文: {usage:.1f}% ({total}/{context})")
+        print(f"模型: {model}")
+        print(f"阈值: 提醒{self.threshold_remind}% | 同步{self.threshold_sync}% | 切换{self.threshold_switch}%")
+        print(f"检查间隔: {self.check_interval}秒")
+        print(f"冷却期: {self.cooldown}秒")
+>>>>>>> skills/main
 
 
 def main():

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+=======
+>>>>>>> skills/main
 # -*- coding: utf-8 -*-
 """
 产品素材管理脚本
@@ -39,7 +42,11 @@ def pack_assets(product_name):
     product_dir = ASSETS_DIR / f"product-01-{product_name}"
     
     if not product_dir.exists():
+<<<<<<< HEAD
         logger.warning(f"产品目录不存在: {product_dir}")
+=======
+        print(f"⚠️ 产品目录不存在: {product_dir}")
+>>>>>>> skills/main
         return None
     
     # 查找所有图片文件
@@ -48,11 +55,19 @@ def pack_assets(product_name):
         image_files.extend(product_dir.rglob(ext))
     
     if not image_files:
+<<<<<<< HEAD
         logger.warning(f"未找到图片文件: {product_dir}")
         return None
     
     # 输出素材清单
     logger.info(f"产品素材清单（{product_name}）")
+=======
+        print(f"⚠️ 未找到图片文件: {product_dir}")
+        return None
+    
+    # 输出素材清单
+    print(f"=== 产品素材清单（{product_name}）===")
+>>>>>>> skills/main
     
     # 分类统计
     cover_count = len(list((product_dir / 'cover-images').glob('*')))
@@ -60,6 +75,7 @@ def pack_assets(product_name):
     real_count = len(list((product_dir / 'real-shot').glob('*')))
     review_count = len(list((product_dir / 'user-reviews').glob('*')))
     
+<<<<<<< HEAD
     logger.info(f"封面图: {cover_count}个")
     logger.info(f"详情图: {detail_count}个")
     logger.info(f"实拍图: {real_count}个")
@@ -69,6 +85,17 @@ def pack_assets(product_name):
     # 推荐使用
     if cover_count > 0 and detail_count > 0:
         logger.info(f"\n推荐使用: 最新封面图 + 1-2张详情图")
+=======
+    print(f"封面图: {cover_count}个")
+    print(f"详情图: {detail_count}个")
+    print(f"实拍图: {real_count}个")
+    print(f"买家秀: {review_count}个")
+    print(f"总计: {len(image_files)}个")
+    
+    # 推荐使用
+    if cover_count > 0 and detail_count > 0:
+        print(f"\n推荐使用: 最新封面图 + 1-2张详情图")
+>>>>>>> skills/main
     
     return len(image_files)
 
@@ -77,10 +104,17 @@ def list_assets(product_name):
     product_dir = ASSETS_DIR / f"product-01-{product_name}"
     
     if not product_dir.exists():
+<<<<<<< HEAD
         logger.warning(f"产品目录不存在: {product_dir}")
         return None
     
     logger.info(f"=== 产品素材（{product_name}）===")
+=======
+        print(f"⚠️ 产品目录不存在: {product_dir}")
+        return None
+    
+    print(f"=== 产品素材（{product_name}）===")
+>>>>>>> skills/main
     
     # 分类列出
     subdirs = ['cover-images', 'detail-images', 'real-shot', 'user-reviews']
@@ -89,37 +123,63 @@ def list_assets(product_name):
         dir_path = product_dir / subdir
         if dir_path.exists():
             files = list(dir_path.glob('*'))
+<<<<<<< HEAD
             logger.info(f"\n{subdir}/")
             for f in files[:5]:  # 只显示前5个
                 logger.info(f"  {f.name}")
             if len(files) > 5:
                 logger.info(f"  ...（共{len(files)}个文件）")
+=======
+            print(f"\n{subdir}/")
+            for f in files[:5]:  # 只显示前5个
+                print(f"  {f.name}")
+            if len(files) > 5:
+                print(f"  ...（共{len(files)}个文件）")
+>>>>>>> skills/main
     
     return True
 
 def main():
     """主函数"""
+<<<<<<< HEAD
     logger.info("=== 产品素材管理脚本 ===")
     
     if len(sys.argv) < 2:
         logger.info("用法: python3 scripts/asset-manager.py --action <action> --product <product>")
         logger.info("action: create|pack|list")
         logger.info("product: steam-eye-mask|neck-massager|herbal-tea")
+=======
+    print("=== 产品素材管理脚本 ===")
+    
+    if len(sys.argv) < 2:
+        print("用法: python3 scripts/asset-manager.py --action <action> --product <product>")
+        print("action: create|pack|list")
+        print("product: steam-eye-mask|neck-massager|herbal-tea")
+>>>>>>> skills/main
         return 1
     
     action = sys.argv[1]
     if action != '--action':
+<<<<<<< HEAD
         logger.error("❌ 错误参数")
+=======
+        print("❌ 错误参数")
+>>>>>>> skills/main
         return 1
     
     action_value = sys.argv[2]
     if sys.argv[3] != '--product':
+<<<<<<< HEAD
         logger.error("❌ 错误参数")
+=======
+        print("❌ 错误参数")
+>>>>>>> skills/main
         return 1
     
     product_name = sys.argv[4]
     
     if action_value == 'create':
+<<<<<<< HEAD
         logger.info(f"创建素材目录结构: {product_name}")
         product_dir, created_dirs = create_asset_structure(product_name)
         logger.info(f"✅ 已创建: {product_dir}")
@@ -137,6 +197,25 @@ def main():
     
     else:
         logger.error(f"❌ 未知操作: {action_value}")
+=======
+        print(f"创建素材目录结构: {product_name}")
+        product_dir, created_dirs = create_asset_structure(product_name)
+        print(f"✅ 已创建: {product_dir}")
+        print(f"子目录: {len(created_dirs)}个")
+    
+    elif action_value == 'pack':
+        print(f"打包素材: {product_name}")
+        count = pack_assets(product_name)
+        if count:
+            print(f"✅ 共{count}个文件")
+    
+    elif action_value == 'list':
+        print(f"列出素材: {product_name}")
+        list_assets(product_name)
+    
+    else:
+        print(f"❌ 未知操作: {action_value}")
+>>>>>>> skills/main
         return 1
     
     return 0

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+=======
+>>>>>>> skills/main
 # -*- coding: utf-8 -*-
 """
 AI封面图生成脚本
@@ -23,7 +26,11 @@ def load_template():
         with open(TEMPLATE_FILE, 'r', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
+<<<<<<< HEAD
         logger.warning(f"⚠️ 模板文件不存在: {TEMPLATE_FILE}")
+=======
+        print(f"⚠️ 模板文件不存在: {TEMPLATE_FILE}")
+>>>>>>> skills/main
         return None
 
 def generate_cover_prompt(product_name, main_title, sub_title, price_tag):
@@ -70,9 +77,15 @@ def create_assets_dir(product_name):
 
 def main():
     """主函数"""
+<<<<<<< HEAD
     logger.info("=== AI封面图生成脚本 ===")
     logger.info(f"技能目录: {SKILL_DIR}")
     logger.info(f"模板文件: {TEMPLATE_FILE}")
+=======
+    print("=== AI封面图生成脚本 ===")
+    print(f"技能目录: {SKILL_DIR}")
+    print(f"模板文件: {TEMPLATE_FILE}")
+>>>>>>> skills/main
     
     # 1. 读取模板
     template = load_template()
@@ -82,6 +95,7 @@ def main():
     # 2. 提取产品信息
     product_name, main_title, sub_title, price_tag = get_product_info(template)
     
+<<<<<<< HEAD
     logger.info(f"产品: {product_name}")
     logger.info(f"主标题: {main_title}")
     logger.info(f"副标题: {sub_title}")
@@ -90,6 +104,16 @@ def main():
     # 3. 创建素材目录
     cover_dir = create_assets_dir(product_name)
     logger.info(f"输出目录: {cover_dir}")
+=======
+    print(f"产品: {product_name}")
+    print(f"主标题: {main_title}")
+    print(f"副标题: {sub_title}")
+    print(f"标签: {price_tag}")
+    
+    # 3. 创建素材目录
+    cover_dir = create_assets_dir(product_name)
+    print(f"输出目录: {cover_dir}")
+>>>>>>> skills/main
     
     # 4. 生成提示词
     prompt = generate_cover_prompt(product_name, main_title, sub_title, price_tag)
@@ -99,9 +123,15 @@ def main():
     with open(prompt_file, 'w', encoding='utf-8') as f:
         f.write(prompt)
     
+<<<<<<< HEAD
     logger.info(f"提示词已生成: {prompt_file}")
     logger.warning("⚠️ 封面图生成需要通过 OpenClaw image_generate 工具调用")
     logger.info("请使用: image_generate --prompt @cover-prompt.txt --size 1080x1920")
+=======
+    print(f"提示词已生成: {prompt_file}")
+    print("⚠️ 封面图生成需要通过 OpenClaw image_generate 工具调用")
+    print("请使用: image_generate --prompt @cover-prompt.txt --size 1080x1920")
+>>>>>>> skills/main
     
     return 0
 

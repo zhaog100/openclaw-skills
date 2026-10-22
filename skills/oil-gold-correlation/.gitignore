@@ -12,4 +12,7 @@ output_part1.txt
 output_part2.txt
 *.tar.gz
 *.gz
+<<<<<<< HEAD
 cache/
+=======
+>>>>>>> skills/main

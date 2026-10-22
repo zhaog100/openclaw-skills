@@ -3,6 +3,7 @@
 ---
 name: oil-gold-correlation
 石油黄金白银实时相关性分析。多数据源交叉验证 + 隐藏机遇扫描 + 智能建议引擎。
+<<<<<<< HEAD
 version: 3.5.0
 author: 小米辣 🌶️
 lessons_updated: 2026-09-28
@@ -11,6 +12,16 @@ lessons_updated: 2026-09-28
 # 石油黄金白银相关性分析 v3.5
 
 多数据源交叉验证 + 多周期共振分析 + 隐藏机遇扫描 + 智能建议引擎。
+=======
+version: 3.3.0
+author: 小米辣 🌶️
+lessons_updated: 2026-04-24
+---
+
+# 石油黄金白银相关性分析 v3.3
+
+多数据源交叉验证，发现隐藏投资机遇。
+>>>>>>> skills/main
 
 ## 触发词
 
@@ -66,6 +77,7 @@ consensus = mgr.consensus(data)           # 多源加权共识价
 validation = mgr.cross_validate(data)     # 交叉验证
 ```
 
+<<<<<<< HEAD
 ### 5. 多周期共振分析（v3.4 新增）
 
 ```bash
@@ -75,6 +87,9 @@ python3 scripts/multi_timeframe_analysis.py
 四周期趋势共振分析（1周/1月/半年/1年），输出品种强弱对比和共振强度评分。
 
 ### 6. 隐藏机遇扫描
+=======
+### 5. 隐藏机遇扫描
+>>>>>>> skills/main
 
 ```python
 from scripts.opportunity_scanner import OpportunityScanner
@@ -182,7 +197,11 @@ export TWELVE_DATA_API_KEY=your_key
 - cron prompt 不要用 `cd &&` 复合命令，用绝对路径
 - isolated session **不继承 agent 模型配置**，需指定可用模型
 - 不同 QQ Bot（不同 appId）看到同一用户的 **openid 不同**！
+<<<<<<< HEAD
   - default bot: 走环境变量 QQ_TARGET_USER_ID 注入（本仓不硬编码 open_id）
+=======
+  - default bot: `C099848DC9A60BF60A7BE31626822790`
+>>>>>>> skills/main
   - bot2: `E7331F9772A02575890BBE94E788248A`
   - 每个 bot 的 cron 必须用对应的 openid
 
@@ -212,6 +231,7 @@ export TWELVE_DATA_API_KEY=your_key
 | v3.3 | 04-14 | bug 修复验证通过 |
 | v3.3 | 04-13~16 | 多数据源架构 + 隐藏机遇扫描器 + 地缘评分优化 |
 | v3.3 | 04-24 | 经验教训文档化 + 纯文本报告 v2.1 |
+<<<<<<< HEAD
 | v3.4 | 2026-09-10 | 修复 logger.info() 误传参数 Bug + 新增多周期共振分析 |
 | v3.5 | 2026-09-28 | 清理 advisor.py 残留 logger.info(end/flush) 参数（4处），完整报告跑通验证 |
 
@@ -234,6 +254,8 @@ export TWELVE_DATA_API_KEY=your_key
 - 测试数据获取时逐个品种用 `timeout 40` 包裹，避免一个卡住拖累全局
 - 修复 logger bug 后用 `grep -n "logger\.info\(.*, end=.*"` 复查确认 0 残留
 - 油金 skill 更新后必须 `git commit` + `git push origin main`（远程仓库 `zhaog100/xiaomijiao-skills`）
+=======
+>>>>>>> skills/main
 | v3.3 | 04-24 | **白银集成** - 支持沪银AG0期货，三资产分析
 
 ### 六、定时推送时间（按市场开收盘）
@@ -256,6 +278,7 @@ export TWELVE_DATA_API_KEY=your_key
 4. 布油/美元暂未接入（可扩展）
 5. 部分 cron 任务偶发超时（180s timeout）
 
+<<<<<<< HEAD
 ### 九、Logger 使用规范
 
 - **问题**：v3.4 发现 `logger.info()` 误传 `end` 和 `flush` 参数导致 `TypeError`
@@ -266,6 +289,9 @@ export TWELVE_DATA_API_KEY=your_key
   - 不需要额外参数 → `logger.info("消息")`
 
 ### 十、部署经验
+=======
+### 八、部署经验
+>>>>>>> skills/main
 
 - **GitHub 更新**：从 `feat/github-marketing` 分支拉取，更新前备份旧版
 - **依赖安装**：`pip3 install -r requirements.txt`（yfinance/pandas/numpy/scipy/plotly/statsmodels/akshare/requests）

@@ -52,12 +52,17 @@ class SuperteamMonitor:
                     issues = data.get('items', [])
                     all_issues.extend(issues)
             except Exception as e:
+<<<<<<< HEAD
                 logger.error(f"⚠️ {org} 搜索失败：{e}")
+=======
+                print(f"⚠️ {org} 搜索失败：{e}")
+>>>>>>> skills/main
         
         return all_issues
     
     def notify(self, issue):
         """通知新任务"""
+<<<<<<< HEAD
         logger.info("=" * 60)
         logger.info(f"🎯 Superteam 新任务！")
         logger.info(f"标题：{issue.get('title', 'Unknown')[:60]}")
@@ -65,6 +70,15 @@ class SuperteamMonitor:
         logger.info(f"链接：{issue.get('html_url', '')}")
         logger.info(f"更新：{issue.get('updated_at', '')[:10]}")
         logger.info("=" * 60)
+=======
+        print("=" * 60)
+        print(f"🎯 Superteam 新任务！")
+        print(f"标题：{issue.get('title', 'Unknown')[:60]}")
+        print(f"仓库：{'/'.join(issue.get('repository_url', '').split('/')[-2:])}")
+        print(f"链接：{issue.get('html_url', '')}")
+        print(f"更新：{issue.get('updated_at', '')[:10]}")
+        print("=" * 60)
+>>>>>>> skills/main
         
         # 保存通知
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -93,6 +107,7 @@ class SuperteamMonitor:
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
+<<<<<<< HEAD
         logger.info(f"✅ 通知已保存：{notify_file}")
     
     def run(self):
@@ -104,10 +119,24 @@ class SuperteamMonitor:
         token = os.getenv('GITHUB_TOKEN', '')
         if not token:
             logger.error("❌ GITHUB_TOKEN 未配置")
+=======
+        print(f"✅ 通知已保存：{notify_file}")
+    
+    def run(self):
+        """运行监控"""
+        print("🦞 Superteam Monitor 启动！")
+        print("📍 监控平台：Superteam Earn")
+        print("=" * 60)
+        
+        token = os.getenv('GITHUB_TOKEN', '')
+        if not token:
+            print("❌ GITHUB_TOKEN 未配置")
+>>>>>>> skills/main
             return
         
         # GitHub 搜索
         issues = self.search_github(token)
+<<<<<<< HEAD
         logger.info(f"✅ 找到 {len(issues)} 个 Superteam 任务")
         logger.info()
         
@@ -124,6 +153,24 @@ class SuperteamMonitor:
             logger.info('1. 访问官网：https://superteam.fi/earn')
             logger.info('2. 加入 Discord：https://discord.gg/superteam')
             logger.info('3. 关注 Twitter：@SuperteamDAO')
+=======
+        print(f"✅ 找到 {len(issues)} 个 Superteam 任务")
+        print()
+        
+        if issues:
+            print('=== 最新任务（前 5 个）===')
+            print()
+            for issue in issues[:5]:
+                self.notify(issue)
+                print()
+        else:
+            print('⚠️  暂无 Superteam 任务')
+            print()
+            print('💡 建议：')
+            print('1. 访问官网：https://superteam.fi/earn')
+            print('2. 加入 Discord：https://discord.gg/superteam')
+            print('3. 关注 Twitter：@SuperteamDAO')
+>>>>>>> skills/main
 
 if __name__ == "__main__":
     monitor = SuperteamMonitor()

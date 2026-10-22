@@ -2,7 +2,11 @@
 name: multi-article-scraper
 description: 多平台文章爬取技能 - 支持微信/小红书/抖音/知乎等平台
 author: 思捷娅科技 (SJYKJ)/zhaog100
+<<<<<<< HEAD
 version: 2.0.1
+=======
+version: 2.0.0
+>>>>>>> skills/main
 ---
 
 # 多平台文章爬取技能

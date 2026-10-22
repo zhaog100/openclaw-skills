@@ -1,5 +1,8 @@
 #!/bin/bash
+<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+=======
+>>>>>>> skills/main
 
 # 测试脚本
 # 功能：测试引用检测和提取功能

@@ -90,4 +90,8 @@ if __name__ == '__main__':
         owner, repo = parts[0], parts[1]
         number = sys.argv[2]
         valid, reason = check_bounty_validity(owner, repo, number)
+<<<<<<< HEAD
         logger.error(f"{'✅' if valid else '❌'} {owner}/{repo}#{number}: {reason}")
+=======
+        print(f"{'✅' if valid else '❌'} {owner}/{repo}#{number}: {reason}")
+>>>>>>> skills/main

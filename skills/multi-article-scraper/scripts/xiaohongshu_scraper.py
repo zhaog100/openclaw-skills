@@ -20,7 +20,11 @@ try:
     PLAYWRIGHT_AVAILABLE = True
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
+<<<<<<< HEAD
     logger.warning("Playwright 未安装，请先安装：pip install playwright")
+=======
+    print("⚠️  Playwright 未安装，请先安装：pip install playwright")
+>>>>>>> skills/main
 
 def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
     """
@@ -36,6 +40,7 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
     """
     
     if not PLAYWRIGHT_AVAILABLE:
+<<<<<<< HEAD
         logger.error("Playwright 未安装")
         return None
     
@@ -50,6 +55,22 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
         logger.info("   3. 按 F12 打开开发者工具")
         logger.info("   4. 找到 Cookie 中的 xhs_token 等关键值")
         logger.info("   5. 使用 --cookie 参数传入")
+=======
+        print("❌ Playwright 未安装")
+        return None
+    
+    print(f"📱 开始爬取小红书笔记：{note_url}")
+    
+    # 检查是否需要登录
+    if not cookie:
+        print("⚠️  小红书需要登录 Cookie！")
+        print("💡 获取 Cookie 方法:")
+        print("   1. 打开小红书网页版 https://www.xiaohongshu.com")
+        print("   2. 登录账号")
+        print("   3. 按 F12 打开开发者工具")
+        print("   4. 找到 Cookie 中的 xhs_token 等关键值")
+        print("   5. 使用 --cookie 参数传入")
+>>>>>>> skills/main
         return None
     
     with sync_playwright() as p:
@@ -74,7 +95,11 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
         
         try:
             # 访问笔记
+<<<<<<< HEAD
             logger.info("🌐 访问页面...")
+=======
+            print("🌐 访问页面...")
+>>>>>>> skills/main
             page.goto(note_url, wait_until='domcontentloaded', timeout=30000)
             
             # 随机等待
@@ -82,26 +107,46 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
             
             # 检查是否登录
             if page.query_selector('.login-btn'):
+<<<<<<< HEAD
                 logger.error("❌ 未登录或 Cookie 失效，请先登录！")
                 return None
             
             # 提取标题
             logger.info("📝 提取标题...")
+=======
+                print("❌ 未登录或 Cookie 失效，请先登录！")
+                return None
+            
+            # 提取标题
+            print("📝 提取标题...")
+>>>>>>> skills/main
             title_elem = page.query_selector('.title') or page.query_selector('h1')
             title = title_elem.inner_text().strip() if title_elem else "无标题"
             
             # 提取作者
+<<<<<<< HEAD
             logger.info("✍️  提取作者...")
+=======
+            print("✍️  提取作者...")
+>>>>>>> skills/main
             author_elem = page.query_selector('.author-name') or page.query_selector('.username')
             author = author_elem.inner_text().strip() if author_elem else "未知"
             
             # 提取内容
+<<<<<<< HEAD
             logger.info("📄 提取内容...")
+=======
+            print("📄 提取内容...")
+>>>>>>> skills/main
             content_elem = page.query_selector('.desc') or page.query_selector('.content')
             content = content_elem.inner_text().strip() if content_elem else "无内容"
             
             # 提取点赞数
+<<<<<<< HEAD
             logger.info("👍 提取点赞数...")
+=======
+            print("👍 提取点赞数...")
+>>>>>>> skills/main
             likes_elem = page.query_selector('.like-count') or page.query_selector('[class*="like"]')
             likes = likes_elem.inner_text().strip() if likes_elem else "0"
             
@@ -129,7 +174,11 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
                 with open(output_file, 'w', encoding='utf-8') as f:
                     f.write(md_content)
                 
+<<<<<<< HEAD
                 logger.info(f"✅ 已保存到：{output_file}")
+=======
+                print(f"✅ 已保存到：{output_file}")
+>>>>>>> skills/main
                 
                 # 保存为 JSON
                 data = {
@@ -145,7 +194,11 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
                 with open(json_file, 'w', encoding='utf-8') as f:
                     json.dump(data, f, ensure_ascii=False, indent=2)
                 
+<<<<<<< HEAD
                 logger.info(f"✅ 已保存到：{json_file}")
+=======
+                print(f"✅ 已保存到：{json_file}")
+>>>>>>> skills/main
             
             result = {
                 'title': title,
@@ -156,19 +209,34 @@ def scrape_xiaohongshu(note_url, cookie=None, output_dir='./xiaohongshu-notes'):
                 'url': note_url
             }
             
+<<<<<<< HEAD
             logger.info(f"\n✅ 爬取成功！")
             logger.info(f"   标题：{title[:50]}...")
             logger.info(f"   作者：{author}")
             logger.info(f"   点赞：{likes}")
             logger.info(f"   内容长度：{len(content)} 字符")
+=======
+            print(f"\n✅ 爬取成功！")
+            print(f"   标题：{title[:50]}...")
+            print(f"   作者：{author}")
+            print(f"   点赞：{likes}")
+            print(f"   内容长度：{len(content)} 字符")
+>>>>>>> skills/main
             
             return result
             
         except PlaywrightTimeout as e:
+<<<<<<< HEAD
             logger.error(f"❌ 爬取失败：超时 - {e}")
             return None
         except Exception as e:
             logger.error(f"❌ 爬取失败：{e}")
+=======
+            print(f"❌ 爬取失败：超时 - {e}")
+            return None
+        except Exception as e:
+            print(f"❌ 爬取失败：{e}")
+>>>>>>> skills/main
             return None
         finally:
             browser.close()

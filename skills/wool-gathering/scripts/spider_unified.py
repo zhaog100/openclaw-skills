@@ -1,9 +1,12 @@
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/usr/bin/env python3
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
+=======
+>>>>>>> skills/main
 # -*- coding: utf-8 -*-
 """
 统一价格监控 - 集成京东和淘宝爬虫
@@ -122,17 +125,29 @@ class UnifiedPriceMonitor:
 
     def monitor_item(self, platform, item_id):
         """监控单个商品"""
+<<<<<<< HEAD
         logger.info(f"🔍 监控商品: {platform} - {item_id}")
+=======
+        print(f"🔍 监控商品: {platform} - {item_id}")
+>>>>>>> skills/main
 
         result = self.get_price(platform, item_id)
 
         if result['success']:
             self.save_price(result)
+<<<<<<< HEAD
             logger.info(f"✅ {result['title']}")
             logger.info(f"   价格: ¥{result['price']}")
             logger.info(f"   链接: {result['url']}")
         else:
             logger.info(f"❌ 获取失败: {result['error']}")
+=======
+            print(f"✅ {result['title']}")
+            print(f"   价格: ¥{result['price']}")
+            print(f"   链接: {result['url']}")
+        else:
+            print(f"❌ 获取失败: {result['error']}")
+>>>>>>> skills/main
 
         return result
 
@@ -143,7 +158,11 @@ class UnifiedPriceMonitor:
         Args:
             items: [{"platform": "jd", "item_id": "xxx"}, ...]
         """
+<<<<<<< HEAD
         logger.info(f"\n🚀 批量监控 {len(items)} 个商品\n")
+=======
+        print(f"\n🚀 批量监控 {len(items)} 个商品\n")
+>>>>>>> skills/main
 
         results = []
         for item in items:
@@ -179,6 +198,7 @@ class UnifiedPriceMonitor:
         records = cursor.fetchall()
         conn.close()
 
+<<<<<<< HEAD
         logger.info(f"\n📊 价格历史记录")
         logger.info("="*70)
 
@@ -190,6 +210,19 @@ class UnifiedPriceMonitor:
                 logger.info(f"{date} [{platform:8}] {title[:30]:30} ¥{price:.2f}")
 
         logger.info("="*70)
+=======
+        print(f"\n📊 价格历史记录")
+        print("="*70)
+
+        if not records:
+            print("暂无记录")
+        else:
+            for item_id, platform, title, price, timestamp in records:
+                date = timestamp.split()[0]
+                print(f"{date} [{platform:8}] {title[:30]:30} ¥{price:.2f}")
+
+        print("="*70)
+>>>>>>> skills/main
 
 
 def quick_test():
@@ -213,7 +246,11 @@ def quick_test():
     # 统计结果
     success_count = sum(1 for r in results if r['success'])
 
+<<<<<<< HEAD
     logger.info(f"\n✅ 监控完成: {success_count}/{len(results)} 成功")
+=======
+    print(f"\n✅ 监控完成: {success_count}/{len(results)} 成功")
+>>>>>>> skills/main
 
 
 if __name__ == "__main__":

@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
 """测试石油黄金报告模板 v3.4"""
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+"""测试石油黄金报告模板 v3.3"""
+>>>>>>> skills/main
 
 from datetime import datetime
 
@@ -104,7 +109,14 @@ lines2.append('结论: 消费信心57极低，避险利多黄金但技术面偏�
 lines2.append("")
 lines2.append('⚠️ 仅供参考，不构成投资建议')
 
+<<<<<<< HEAD
 logger.info("=== PART 1 ===")
 logger.info("\n".join(lines1))
 logger.info("\n=== PART 2 ===")
 logger.info("\n".join(lines2))
+=======
+print("=== PART 1 ===")
+print("\n".join(lines1))
+print("\n=== PART 2 ===")
+print("\n".join(lines2))
+>>>>>>> skills/main

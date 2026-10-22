@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -5,13 +6,22 @@ logger = logging.getLogger(__name__)
 #!/usr/bin/env python3
 """
 石油黄金投资建议模块 v3.4
+=======
+#!/usr/bin/env python3
+"""
+石油黄金投资建议模块 v3.3
+>>>>>>> skills/main
 短期（1天~1周）为主 + 中长期（1月~6月）补充
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -73,10 +83,17 @@ def batch_download(symbols, period="3mo", interval="1d", max_retries=3):
             except Exception as e:
                 if attempt < max_retries - 1:
                     wait = 3 * (attempt + 1)
+<<<<<<< HEAD
                     logger.info(f"[重试] 批量下载第{attempt+1}次失败，{wait}秒后重试...")
                     time.sleep(wait)
                 else:
                     logger.info(f"❌ 批量下载失败: {e}")
+=======
+                    print(f"[重试] 批量下载第{attempt+1}次失败，{wait}秒后重试...")
+                    time.sleep(wait)
+                else:
+                    print(f"❌ 批量下载失败: {e}")
+>>>>>>> skills/main
                     return pd.DataFrame()
     finally:
         socket.setdefaulttimeout(old_timeout)
@@ -490,7 +507,11 @@ def calc_ichimoku_signal(high, low, close):
     }
 
 
+<<<<<<< HEAD
 # ==================== v3.4 智能建议引擎 ====================
+=======
+# ==================== v3.3 智能建议引擎 ====================
+>>>>>>> skills/main
 
 def calc_dynamic_weights(macd_result, boll, atr, price):
     """根据市场环境动态调整指标权重"""
@@ -662,7 +683,11 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     fib = calc_fibonacci(float(high.tail(30).max()), float(low.tail(30).min()), price)
     sr = calc_support_resistance(close, high, low, boll["upper"], boll["lower"], price)
 
+<<<<<<< HEAD
     # === v3.4 增强指标 ===
+=======
+    # === v3.3 增强指标 ===
+>>>>>>> skills/main
     adx_val, adx_regime = calc_adx(high, low, close)
     williams_r, wr_signal = calc_williams_r(high, low, close)
     ichimoku = calc_ichimoku_signal(high, low, close)
@@ -706,7 +731,11 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         score += fib["score_impact"]
         signals.append(f"Fib区间: {fib['zone']}")
 
+<<<<<<< HEAD
     # === v3.4 ADX 趋势强度加权 ===
+=======
+    # === v3.3 ADX 趋势强度加权 ===
+>>>>>>> skills/main
     if adx_val > 50:
         # 强趋势：趋势指标权重加大
         if macd["signal"] in ("金叉↗", "多头"):
@@ -724,7 +753,11 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         elif rsi > 70:
             score -= 5
 
+<<<<<<< HEAD
     # === v3.4 Williams %R 交叉验证 ===
+=======
+    # === v3.3 Williams %R 交叉验证 ===
+>>>>>>> skills/main
     if wr_signal == "超买" and rsi > 65:
         score -= 8  # 双超买确认，加空
         signals.append(f"W%R={williams_r}+RSI={rsi:.0f}双超卖")
@@ -736,7 +769,11 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     elif wr_signal == "超卖" and rsi > 50:
         signals.append(f"W%R超卖但RSI未确认→分歧")
 
+<<<<<<< HEAD
     # === v3.4 一目均衡表 ===
+=======
+    # === v3.3 一目均衡表 ===
+>>>>>>> skills/main
     if ichimoku:
         score += ichimoku["score_impact"]
         signals.append(f"一目: {ichimoku['trend']}")
@@ -845,13 +882,21 @@ def analyze_medium_long_term(symbol, batch_data=None):
 # ==================== 每日推送报告 ====================
 
 def generate_daily_report(days=3):
+<<<<<<< HEAD
     """v3.4 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
+=======
+    """v3.3 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
+>>>>>>> skills/main
     horizon = f"{days}天"
     now = datetime.now()
     lines = []
 
     lines.append("=" * 50)
+<<<<<<< HEAD
     lines.append("💰 石油黄金每日投资参考 v3.4")
+=======
+    lines.append("💰 石油黄金每日投资参考 v3.3")
+>>>>>>> skills/main
     lines.append(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{horizon} + 中长期")
 
     # ━━━ 数据获取：多源 + 永不失败 ━━━
@@ -864,7 +909,11 @@ def generate_daily_report(days=3):
     # --- 阶段1: akshare 国内品种（CNY，最稳定）---
     ak_names = {k: v for k, v in INSTRUMENTS.items() if v.get("source") == "akshare"}
     for name, info in ak_names.items():
+<<<<<<< HEAD
         logger.info(f"  [akshare] 获取 {name}...")
+=======
+        print(f"  [akshare] 获取 {name}...", end=" ", flush=True)
+>>>>>>> skills/main
         try:
             ak_key = info.get("ak_key", "")
             df = _fetch_akshare_single(ak_key, "90d")
@@ -875,6 +924,7 @@ def generate_daily_report(days=3):
                     short_results[name] = sr
                     currencies.add(info["currency"])
                     source_report.append(f"✅ {name}({info['symbol']}) [{info['currency']}]")
+<<<<<<< HEAD
                     logger.info(f"✅ {info['currency']}{sr['price']:,.2f} ({sr['change_1d']:+.2f}%)")
                 else:
                     logger.info("分析失败")
@@ -882,6 +932,15 @@ def generate_daily_report(days=3):
                 logger.info("数据不足")
         except Exception as e:
             logger.info(f"失败: {e}")
+=======
+                    print(f"✅ {info['currency']}{sr['price']:,.2f} ({sr['change_1d']:+.2f}%)")
+                else:
+                    print("分析失败")
+            else:
+                print("数据不足")
+        except Exception as e:
+            print(f"失败: {e}")
+>>>>>>> skills/main
 
     # --- 阶段2: yfinance 国际品种（USD，可能被限流）---
     yf_available = _check_yfinance()
@@ -891,14 +950,22 @@ def generate_daily_report(days=3):
         yf_symbols = {k: v["symbol"] for k, v in yf_names.items()}
         unique_syms = list(set(yf_symbols.values()))
 
+<<<<<<< HEAD
         logger.info("  [yfinance] 批量下载国际品种...")
+=======
+        print("  [yfinance] 批量下载国际品种...", flush=True)
+>>>>>>> skills/main
         batch_3mo = batch_download(unique_syms, period="3mo", interval="1d")
         time.sleep(1)
         batch_1y = batch_download(unique_syms, period="1y", interval="1d")
 
         for name, info in yf_names.items():
             sym = info["symbol"]
+<<<<<<< HEAD
             logger.info(f"  [yfinance] 分析 {name}...")
+=======
+            print(f"  [yfinance] 分析 {name}...", end=" ", flush=True)
+>>>>>>> skills/main
             try:
                 sr = analyze_short_term(sym, days, batch_data=batch_3mo)
                 if sr:
@@ -910,12 +977,21 @@ def generate_daily_report(days=3):
                     lr = analyze_medium_long_term(sym, batch_data=batch_1y)
                     if lr:
                         long_results[name] = {**info, **lr}
+<<<<<<< HEAD
                     logger.info(f"${sr['price']:,.2f} ({sr['change_1d']:+.2f}%) {sr['advice']}")
                 else:
                     logger.info("数据不足")
                     source_report.append(f"⚠️ {name}({sym}) 数据不足")
             except Exception as e:
                 logger.info(f"失败: {e}")
+=======
+                    print(f"${sr['price']:,.2f} ({sr['change_1d']:+.2f}%) {sr['advice']}")
+                else:
+                    print("数据不足")
+                    source_report.append(f"⚠️ {name}({sym}) 数据不足")
+            except Exception as e:
+                print(f"失败: {e}")
+>>>>>>> skills/main
                 source_report.append(f"❌ {name}({sym}) 失败")
     else:
         for name in yf_names:
@@ -929,7 +1005,11 @@ def generate_daily_report(days=3):
         lines.append("  • yfinance 被限流")
         lines.append("  • 建议稍后重试")
         report = "\n".join(lines)
+<<<<<<< HEAD
         logger.info(report)
+=======
+        print(report)
+>>>>>>> skills/main
         return report
 
     currency_str = "/".join(sorted(currencies)) if currencies else "N/A"
@@ -1047,7 +1127,11 @@ def generate_daily_report(days=3):
 
     # ━━━ 六、综合投资建议 ━━━
     lines.append(f"\n{'━' * 50}")
+<<<<<<< HEAD
     lines.append("🎯 六、综合投资建议（智能引擎 v3.4）")
+=======
+    lines.append("🎯 六、综合投资建议（智能引擎 v3.3）")
+>>>>>>> skills/main
     lines.append(f"{'━' * 50}")
 
     asset_groups = [("🥇 黄金", gold_dict, 0.3), ("🥈 白银", silver_dict, 0.25), ("🛢️ 原油", oil_dict, 0.2)]
@@ -1150,7 +1234,11 @@ def generate_daily_report(days=3):
         opp_impact = scanner.get_total_score_impact()
 
         lines.append(f"\n{'━' * 50}")
+<<<<<<< HEAD
         lines.append("🔍 七、隐藏机遇扫描（v3.4）")
+=======
+        lines.append("🔍 七、隐藏机遇扫描（v3.3）")
+>>>>>>> skills/main
         lines.append(f"{'━' * 50}")
         for ol in opp_lines:
             lines.append(ol)
@@ -1166,10 +1254,17 @@ def generate_daily_report(days=3):
     lines.append("  • 技术分析+地缘分析仅供参考，不构成投资建议")
     lines.append("  • 期货有杠杆风险，新手从ETF开始")
     lines.append("  • 单品种仓位 ≤ 10%，总仓位 ≤ 30%")
+<<<<<<< HEAD
     lines.append("  • v3.4: 多源交叉验证 + 隐藏机遇扫描")
 
     report = "\n".join(lines)
     logger.info(report)
+=======
+    lines.append("  • v3.3: 多源交叉验证 + 隐藏机遇扫描")
+
+    report = "\n".join(lines)
+    print(report)
+>>>>>>> skills/main
     return report
 
 
@@ -1378,7 +1473,11 @@ def _analyze_instrument(name, period="90d", horizon=3):
     except Exception as e:
         sr_data = None
 
+<<<<<<< HEAD
     # === v3.4 增强指标 ===
+=======
+    # === v3.3 增强指标 ===
+>>>>>>> skills/main
     adx_val, adx_regime = calc_adx(high, low, close)
     williams_r, wr_signal = calc_williams_r(high, low, close)
     ichimoku = calc_ichimoku_signal(high, low, close)
@@ -1433,7 +1532,11 @@ def _analyze_instrument(name, period="90d", horizon=3):
             if divergence == "底背离": score += 10; signals.append("OBV底背离（看涨）")
             elif divergence == "顶背离": score -= 10; signals.append("OBV顶背离（看跌）")
 
+<<<<<<< HEAD
     # === v3.4 ADX 趋势强度加权 ===
+=======
+    # === v3.3 ADX 趋势强度加权 ===
+>>>>>>> skills/main
     if adx_val > 50:
         if macd_data and isinstance(macd_data, dict):
             sig = macd_data.get("signal", "")
@@ -1444,13 +1547,21 @@ def _analyze_instrument(name, period="90d", horizon=3):
         if rsi < 30: score += 5
         elif rsi > 70: score -= 5
 
+<<<<<<< HEAD
     # === v3.4 Williams %R 交叉验证 ===
+=======
+    # === v3.3 Williams %R 交叉验证 ===
+>>>>>>> skills/main
     if wr_signal == "超买" and rsi > 65:
         score -= 6; signals.append(f"W%R={williams_r}+RSI双超买")
     elif wr_signal == "超卖" and rsi < 35:
         score += 6; signals.append(f"W%R={williams_r}+RSI双超卖")
 
+<<<<<<< HEAD
     # === v3.4 一目均衡表 ===
+=======
+    # === v3.3 一目均衡表 ===
+>>>>>>> skills/main
     if ichimoku:
         score += ichimoku["score_impact"]
         signals.append(f"一目: {ichimoku['trend']}")
@@ -1495,6 +1606,7 @@ def run_advisor_akshare(days=3):
     """使用 akshare 数据源的完整投资建议（替代主函数）"""
     now = datetime.now()
 
+<<<<<<< HEAD
     logger.info("=" * 50)
     logger.info(f"💰 石油黄金每日投资参考")
     logger.info(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{days}天")
@@ -1503,11 +1615,22 @@ def run_advisor_akshare(days=3):
     results = {}
     for name in INSTRUMENTS:
         logger.info(f"  分析 {name}...")
+=======
+    print("=" * 50)
+    print(f"💰 石油黄金每日投资参考")
+    print(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{days}天")
+    print("=" * 50)
+
+    results = {}
+    for name in INSTRUMENTS:
+        print(f"  分析 {name}...", end=" ", flush=True)
+>>>>>>> skills/main
         try:
             r = _analyze_instrument(name, period="90d", horizon=days)
             if r:
                 results[name] = r
                 trend = "看多" if r["score"] > 60 else "看空" if r["score"] < 40 else "中性"
+<<<<<<< HEAD
                 logger.info(f"✅ {trend}({r['score']}分) {r['currency']}{r['latest']}")
             else:
                 logger.info("❌ 数据不足")
@@ -1516,12 +1639,23 @@ def run_advisor_akshare(days=3):
 
     if not results:
         logger.info("\n❌ 未获取到有效数据")
+=======
+                print(f"✅ {trend}({r['score']}分) {r['currency']}{r['latest']}")
+            else:
+                print("❌ 数据不足")
+        except Exception as e:
+            print(f"❌ {e}")
+
+    if not results:
+        print("\n❌ 未获取到有效数据")
+>>>>>>> skills/main
         return
 
     # Generate report for each instrument
     for name, r in results.items():
         cur = r.get("currency", "CNY")
         sym = cur == "CNY" and "¥" or "$"
+<<<<<<< HEAD
         logger.info(f"\n{'━' * 50}")
         logger.info(f"📊 {name} 分析报告")
         logger.info(f"{'━' * 50}")
@@ -1544,10 +1678,35 @@ def run_advisor_akshare(days=3):
             else:
                 dif, dea, hist = m
                 logger.info(f"  MACD: DIF={dif:.2f} DEA={dea:.2f} HIST={hist:.2f}")
+=======
+        print(f"\n{'━' * 50}")
+        print(f"📊 {name} 分析报告")
+        print(f"{'━' * 50}")
+        print(f"  当前价: {sym}{r['latest']}")
+        if r.get("rsi"):
+            print(f"  RSI(14): {r['rsi']}")
+        if r.get("atr"):
+            print(f"  ATR(14): {r['atr']}")
+        if r.get("kdj"):
+            kdj = r["kdj"]
+            if isinstance(kdj, dict):
+                print(f"  KDJ: K={kdj['K']:.1f} D={kdj['D']:.1f} J={kdj['J']:.1f} ({kdj.get('signal','')})")
+            else:
+                k, d = kdj
+                print(f"  KDJ: K={k:.1f} D={d:.1f}")
+        if r.get("macd"):
+            m = r["macd"]
+            if isinstance(m, dict):
+                print(f"  MACD: DIF={m['dif']:.2f} DEA={m['dea']:.2f} HIST={m['macd']:.2f} ({m.get('signal','')})")
+            else:
+                dif, dea, hist = m
+                print(f"  MACD: DIF={dif:.2f} DEA={dea:.2f} HIST={hist:.2f}")
+>>>>>>> skills/main
         if r.get("boll"):
             b = r["boll"]
             if isinstance(b, dict):
                 pos = b.get('position', '')
+<<<<<<< HEAD
                 logger.info(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f}"
                       f" / {sym}{b['upper']:.2f} ({pos})")
             else:
@@ -1585,6 +1744,45 @@ def run_advisor_akshare(days=3):
         if r.get("ma_system") and isinstance(r["ma_system"], dict):
             ms = r["ma_system"]
             logger.info(f"  均线系统: {ms.get('trend', '')}")
+=======
+                print(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f}"
+                      f" / {sym}{b['upper']:.2f} ({pos})")
+            else:
+                lo, mid, hi = b
+                print(f"  布林带: {sym}{lo:.2f} / {sym}{mid:.2f} / {sym}{hi:.2f}")
+        if r.get("fib"):
+            print(f"  Fibonacci 回撤位:")
+            for level, price in r["fib"].items():
+                print(f"    {level}: {sym}{price:.2f}")
+        if r.get("sr"):
+            print(f"  支撑/阻力:")
+            for k2, v in r["sr"].items():
+                if isinstance(v, (int, float)):
+                    print(f"    {k2}: {sym}{v:.2f}")
+                elif isinstance(v, list):
+                    for vv in v:
+                        if isinstance(vv, (int, float)):
+                            print(f"    {k2}: {sym}{vv:.2f}")
+        if r.get("changes"):
+            print(f"  涨跌幅:")
+            for k2, v in r["changes"].items():
+                arrow = "📈" if v > 0 else "📉" if v < 0 else "➡️"
+                print(f"    {arrow} {k2}: {v:+.2f}%")
+        if r.get("signals"):
+            print(f"  信号: {', '.join(r['signals'])}")
+
+        # v3.3 增强指标
+        if r.get("adx_regime"):
+            print(f"  ADX: {r.get('adx', '?')} ({r['adx_regime']})")
+        if r.get("wr_signal"):
+            print(f"  Williams %R: {r.get('williams_r', '?')} ({r['wr_signal']})")
+        if r.get("ichimoku"):
+            ich = r["ichimoku"]
+            print(f"  一目均衡: {ich['trend']} | {ich['tk_signal']}")
+        if r.get("ma_system") and isinstance(r["ma_system"], dict):
+            ms = r["ma_system"]
+            print(f"  均线系统: {ms.get('trend', '')}")
+>>>>>>> skills/main
 
         # 技术面评分
         score = r["score"]
@@ -1598,7 +1796,11 @@ def run_advisor_akshare(days=3):
             advice = "🟡 谨慎偏空"
         else:
             advice = "🔴 偏空（考虑做空或回避）"
+<<<<<<< HEAD
         logger.info(f"  技术面: {score}/100 {advice}")
+=======
+        print(f"  技术面: {score}/100 {advice}")
+>>>>>>> skills/main
 
     # 收集技术面评分
     tech_scores = {name: r["score"] for name, r in results.items()}
@@ -1610,9 +1812,15 @@ def run_advisor_akshare(days=3):
         from geopolitics import generate_geopolitical_section
         geo_lines, risk_score = generate_geopolitical_section()
         for line in geo_lines:
+<<<<<<< HEAD
             logger.info(line)
     except Exception as e:
         logger.info(f"  ⚠️ 国际形势不可用: {e}")
+=======
+            print(line)
+    except Exception as e:
+        print(f"  ⚠️ 国际形势不可用: {e}")
+>>>>>>> skills/main
 
     # ━━━ FRED 宏观数据 ━━━
     macro_data = {}
@@ -1627,9 +1835,15 @@ def run_advisor_akshare(days=3):
         macro_data["sentiment"] = analyze_valuation_sentiment()
         macro_data["assessment"] = market_comprehensive_assessment()
         for line in format_macro_report():
+<<<<<<< HEAD
             logger.info(line)
     except Exception as e:
         logger.info(f"  ⚠️ FRED 宏观数据不可用: {e}")
+=======
+            print(line)
+    except Exception as e:
+        print(f"  ⚠️ FRED 宏观数据不可用: {e}")
+>>>>>>> skills/main
 
     # ━━━ 多周期共振分析 ━━━
     mta_results = []
@@ -1638,9 +1852,15 @@ def run_advisor_akshare(days=3):
         from multi_timeframe_analysis import run_multi_timeframe_analysis
         mta_results, mta_lines = run_multi_timeframe_analysis(source="akshare")
         for line in mta_lines:
+<<<<<<< HEAD
             logger.info(line)
     except Exception as e:
         logger.info(f"  ⚠️ 多周期共振分析不可用: {e}")
+=======
+            print(line)
+    except Exception as e:
+        print(f"  ⚠️ 多周期共振分析不可用: {e}")
+>>>>>>> skills/main
 
     # ━━━ 最终建议 ━━━
     _print_final_recommendation(results, tech_scores, risk_score, macro_data, mta_results)
@@ -1663,9 +1883,15 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
     market_score = assessment.get("score", 50)
     geo_base = risk_score if risk_score else 10
     
+<<<<<<< HEAD
     logger.info(f"\n{'━' * 50}")
     logger.info(f"📊 投资决策仪表盘")
     logger.info(f"{'━' * 50}")
+=======
+    print(f"\n{'━' * 50}")
+    print(f"📊 投资决策仪表盘")
+    print(f"{'━' * 50}")
+>>>>>>> skills/main
     
     details = []  # 止损止盈详情
     
@@ -1730,9 +1956,15 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
             else:
                 bar += "⬜"
         
+<<<<<<< HEAD
         logger.info(f"\n  {icon} {short_name} {sym}{r['latest']}  【{grade}】")
         logger.info(f"  {bar} {final_score:.0f}/100")
         logger.info(f"  技术面{tech} 宏观面{macro_combined:.0f} 信号灯{macro_signal:+d} 地缘{geo_base}/50")
+=======
+        print(f"\n  {icon} {short_name} {sym}{r['latest']}  【{grade}】")
+        print(f"  {bar} {final_score:.0f}/100")
+        print(f"  技术面{tech} 宏观面{macro_combined:.0f} 信号灯{macro_signal:+d} 地缘{geo_base}/50")
+>>>>>>> skills/main
         
         # 止损止盈
         if final_score >= 60 and r.get("atr"):
@@ -1748,6 +1980,7 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
     
     # 止损止盈详情
     if details:
+<<<<<<< HEAD
         logger.info(f"\n  {'─' * 46}")
         for d in details:
             logger.info(d)
@@ -1756,6 +1989,16 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
     logger.info(f"\n{'━' * 50}")
     logger.info(f"📌 最终购买建议")
     logger.info(f"{'━' * 50}")
+=======
+        print(f"\n  {'─' * 46}")
+        for d in details:
+            print(d)
+    
+    # ━━━ 最终购买建议 ━━━
+    print(f"\n{'━' * 50}")
+    print(f"📌 最终购买建议")
+    print(f"{'━' * 50}")
+>>>>>>> skills/main
     for name, r in results.items():
         is_gold = "黄金" in name or "gold" in name.lower() or "au" in name.lower() or "沪金" in name
         is_oil = "原油" in name or "oil" in name.lower() or "sc" in name.lower() or "沪油" in name
@@ -1792,8 +2035,13 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
         else:
             buy_action = "🚫 强烈回避"
         
+<<<<<<< HEAD
         logger.info(f"\n  {icon} {short_name}（{sym}{r['latest']}）")
         logger.info(f"  {buy_action}")
+=======
+        print(f"\n  {icon} {short_name}（{sym}{r['latest']}）")
+        print(f"  {buy_action}")
+>>>>>>> skills/main
         
         # 给出具体理由
         reasons = []
@@ -1821,7 +2069,11 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
                 reasons.append("消费信心低→需求利空")
         
         if reasons:
+<<<<<<< HEAD
             logger.info(f"  理由：{'，'.join(reasons)}")
+=======
+            print(f"  理由：{'，'.join(reasons)}")
+>>>>>>> skills/main
     
     # 风险提示
     alerts = []
@@ -1837,10 +2089,17 @@ def _print_final_recommendation(results, tech_scores, risk_score, macro_data, mt
     if rr and rr["value"] > 2:
         alerts.append(f"实际利率{rr['value']:.1f}%")
     if alerts:
+<<<<<<< HEAD
         logger.info(f"\n  ⚠️ {' | '.join(alerts)}")
     
     logger.info(f"\n  ⚠️ 仅供参考，不构成投资建议")
     logger.info(f"{'━' * 50}")
+=======
+        print(f"\n  ⚠️ {' | '.join(alerts)}")
+    
+    print(f"\n  ⚠️ 仅供参考，不构成投资建议")
+    print(f"{'━' * 50}")
+>>>>>>> skills/main
     
     # ━━━ 报告总结 ━━━
     _print_summary(results, tech_scores, risk_score, macro_data, commodity_signals, geo_base, market_score)
@@ -1906,6 +2165,7 @@ def _calc_commodity_signal_scores(macro_indicators, sentiment_indicators):
 
 def _print_summary(results, tech_scores, risk_score, macro_data, commodity_signals, geo_base, market_score):
     """报告总结：5大板块 + 最终结论"""
+<<<<<<< HEAD
     logger.info(f"\n{'━' * 50}")
     logger.info(f"📋 报告总结")
     logger.info(f"{'━' * 50}")
@@ -1916,6 +2176,18 @@ def _print_summary(results, tech_scores, risk_score, macro_data, commodity_signa
     logger.info(f"  4. ✅ 投资决策仪表盘（进度条+四维评分）")
     logger.info(f"  5. ✅ 最终购买建议（明确买不买+理由）")
     logger.info(f"  {'─' * 46}")
+=======
+    print(f"\n{'━' * 50}")
+    print(f"📋 报告总结")
+    print(f"{'━' * 50}")
+    
+    print(f"  1. ✅ 技术面分析（RSI/MACD/KDJ/布林带/支撑阻力）")
+    print(f"  2. ✅ 国际形势（地缘风险{geo_base}/50）")
+    print(f"  3. ✅ 美国宏观数据（3大指数+12项指标+信号灯）")
+    print(f"  4. ✅ 投资决策仪表盘（进度条+四维评分）")
+    print(f"  5. ✅ 最终购买建议（明确买不买+理由）")
+    print(f"  {'─' * 46}")
+>>>>>>> skills/main
     
     conclusions = []
     for name, r in results.items():
@@ -1954,8 +2226,13 @@ def _print_summary(results, tech_scores, risk_score, macro_data, commodity_signa
         
         conclusions.append(f"{icon}{short}{final_score:.0f}分{action}")
     
+<<<<<<< HEAD
     logger.info(f"  结论：{'，'.join(conclusions)}")
     logger.info(f"{'━' * 50}")
+=======
+    print(f"  结论：{'，'.join(conclusions)}")
+    print(f"{'━' * 50}")
+>>>>>>> skills/main
 
 
 if __name__ == "__main__":

@@ -182,7 +182,11 @@ export TWELVE_DATA_API_KEY=your_key
 - cron prompt 不要用 `cd &&` 复合命令，用绝对路径
 - isolated session **不继承 agent 模型配置**，需指定可用模型
 - 不同 QQ Bot（不同 appId）看到同一用户的 **openid 不同**！
+<<<<<<< HEAD
   - default bot: `${QQ_OPEN_ID:-unset}`
+=======
+  - default bot: `C099848DC9A60BF60A7BE31626822790`
+>>>>>>> skills/main
   - bot2: `E7331F9772A02575890BBE94E788248A`
   - 每个 bot 的 cron 必须用对应的 openid
 

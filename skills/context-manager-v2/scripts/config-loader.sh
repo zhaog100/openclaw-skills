@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 #!/bin/bash
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 # 版本：v2.9.0
+=======
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+# 版本：v2.9.0
+#!/bin/bash
+>>>>>>> skills/main
 # config-loader.sh - 从 config.json 加载配置（环境变量优先）
 # 用法: source "$SKILL_DIR/scripts/config-loader.sh"
 

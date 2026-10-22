@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -5,17 +6,28 @@ logger = logging.getLogger(__name__)
 #!/usr/bin/env python3
 """
 石油黄金投资参考 - 纯文本报告生成器 v3.4
+=======
+#!/usr/bin/env python3
+"""
+石油黄金投资参考 - 纯文本报告生成器 v3.3
+>>>>>>> skills/main
 优化：信号灯颜色更清晰 + 趋势箭头文字化 + 信息密度精简
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
+<<<<<<< HEAD
 版本: v3.4 | 石油黄金白银相关性分析
+=======
+>>>>>>> skills/main
 """
 
 import sys
 from pathlib import Path
 from datetime import datetime
+<<<<<<< HEAD
 import re
+=======
+>>>>>>> skills/main
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -53,6 +65,7 @@ def trend_arrow(score, rsi=50):
     elif score <= 35 and rsi <= 30: return '看跌📉⚠️'
     else: return '震荡➡️'
 
+<<<<<<< HEAD
 
 
 def _fetch_intl_gold():
@@ -124,6 +137,8 @@ def _fetch_usd_cny():
         return {"ok": False, "price": 7.1}
     except Exception:
         return {"ok": False, "price": 7.1}
+=======
+>>>>>>> skills/main
 def fetch_data(ak_key, period="90d"):
     from config import CACHE_DIR
     import os, pickle
@@ -141,7 +156,11 @@ def fetch_data(ak_key, period="90d"):
             with open(cache_file, 'wb') as f: pickle.dump(df, f)
         return df
     except Exception as e:
+<<<<<<< HEAD
         logger.info(f"[fetch_data] {ak_key} 失败: {e}")
+=======
+        print(f"[fetch_data] {ak_key} 失败: {e}")
+>>>>>>> skills/main
         return None
 
 def get_tech_summary(result):
@@ -256,7 +275,11 @@ def generate_report():
     try:
         _generate_report_inner()
     except ReportTimeout:
+<<<<<<< HEAD
         logger.info("\n⚠️ 报告生成超时，输出缓存数据...")
+=======
+        print("\n⚠️ 报告生成超时，输出缓存数据...")
+>>>>>>> skills/main
         _generate_report_cached()
     finally:
         signal.alarm(0)
@@ -318,12 +341,17 @@ def _generate_report_inner():
                 change_1d = df['Close'].pct_change().iloc[-1] * 100
                 change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
                 change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
+<<<<<<< HEAD
                 unit = '/千克' if key == 'silver' else '/克'
                 lines.append(f'  {label} ¥{latest:,.0f}{unit}'
+=======
+                lines.append(f'  {label} ¥{latest:,.0f}/克'
+>>>>>>> skills/main
                              f'  日{change_1d:+.2f}%'
                              f'  30日{change_30d:+.1f}%'
                              f'  年初至今{change_ytd:+.1f}%')
             else:
+<<<<<<< HEAD
                 unit = '/千克' if key == 'silver' else '/克'
                 lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}{unit}  (缓存)')
         except Exception as e:
@@ -352,6 +380,11 @@ def _generate_report_inner():
     else:
         lines.append('')
         lines.append('>> 📈 波段参考（518880）: ETF 数据源暂不可用')
+=======
+                lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}/克  (缓存)')
+        except Exception as e:
+            lines.append(f'  {label} 错误: {e}')
+>>>>>>> skills/main
     lines.append('')
 
     # ========== 仪表盘（趋势箭头文字化） ==========
@@ -370,8 +403,12 @@ def _generate_report_inner():
             lines.append(f'  {label} {price}  {v_emoji}{verdict}  {arrow}')
             lines.append(f'    {bar} {score}/100  RSI={rsi:.0f}  信号{sig}')
         else:
+<<<<<<< HEAD
             # 数据不足：保留占位行（避免某品种突然从仪表盘消失，官家 2026-10-15 要求）
             lines.append(f'  {label} 数据源暂不可用（本轮拉取失败，下轮重试）')
+=======
+            lines.append(f'  {label} 数据不足')
+>>>>>>> skills/main
     lines.append('')
 
     # ========== 波动率对比 ==========
@@ -479,12 +516,17 @@ def _generate_report_inner():
     if gold_adj >= 60 and oil_score < 40:
         ratio = '5:2:3（黄金防守为主）'
     elif gold_adj >= 60 and oil_score >= 40:
+<<<<<<< HEAD
         ratio = '3:4:3（黄金打底+波段，跌有实物托底）'
+=======
+        ratio = '4:3:3（均衡偏防守）'
+>>>>>>> skills/main
     elif gold_adj < 40 and oil_score >= 50:
         ratio = '3:2:5（原油偏强）'
     elif gold_adj < 40 and oil_score < 40:
         ratio = '5:3:2（黄金防守为主）'
     else:
+<<<<<<< HEAD
         ratio = '3:4:3（黄金打底+波段，跌有实物托底）'
 
     lines.append(f'  组合建议（三品种）：黄金:白银:原油 = {ratio}')
@@ -500,6 +542,11 @@ def _generate_report_inner():
     lines.append('    波段进取 3000（国泰C）: 只低位进，按卖点分三档兑现')
     lines.append('      卖点目标1 减1/3 / 目标2 再减1/3 / 目标3 清掉')
     lines.append('    买点/卖点每次按 20日/60日 高低动态滚动（盯价 cron 自动推，不写死）')
+=======
+        ratio = '4:3:3（均衡配置）'
+
+    lines.append(f'  组合建议：黄金:白银:原油 = {ratio}')
+>>>>>>> skills/main
     lines.append('')
 
     # ========== 历史阶段定位（精简：一句话） ==========
@@ -564,7 +611,11 @@ def _generate_report_inner():
 
     # 优先检查回避品种数量，避免"可考虑"掩盖"回避"信号
     if avoid_count >= 2:
+<<<<<<< HEAD
         conclusion = '多品种偏弱，强烈建议观望，等评分回升、信号转多。'
+=======
+        conclusion = '多品种偏弱，强烈建议观望，等信号灯转正。'
+>>>>>>> skills/main
     elif avoid_count == 1 and buy_count >= 2:
         # 有回避品种但其他两个可考虑 → 不能笼统说"偏强"
         conclusion = '个别品种有支撑，但存在回避品种，轻仓试探，严控仓位。'
@@ -589,6 +640,7 @@ def _generate_report_inner():
     lines.append(f'>> ⚠️ 仅供参考，不构成投资建议')
 
     full = '\n'.join(lines)
+<<<<<<< HEAD
     logger.info(full)
 
     # 精简模式（OIL_GOLD_BRIEF=1）：按"段"白名单裁剪，波段参考拉不到就降级占位行、仍出精简版（方案A）
@@ -606,12 +658,19 @@ def _generate_report_inner():
                 out.append(line)
         full = re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip() + '\n'
         logger.info('OIL_GOLD_BRIEF=1 → 输出精简版（波段参考不可用则占位行，不回退完整版）')
+=======
+    print(full)
+>>>>>>> skills/main
 
     from config import REPORT_TEXT, ensure_dirs
     ensure_dirs()
     with open(REPORT_TEXT, 'w') as f:
         f.write(full)
+<<<<<<< HEAD
     logger.info(f'\n已保存: {REPORT_TEXT}（{"精简" if os.environ.get("OIL_GOLD_BRIEF")=="1" else "完整"}）')
+=======
+    print(f'\n已保存: {REPORT_TEXT}')
+>>>>>>> skills/main
 
 if __name__ == '__main__':
     generate_report()

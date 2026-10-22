@@ -64,7 +64,11 @@ class VectorEmbedder:
             return embeddings
             
         except Exception as e:
+<<<<<<< HEAD
             logger.error(f"⚠️ 生成嵌入失败：{e}")
+=======
+            print(f"⚠️ 生成嵌入失败：{e}")
+>>>>>>> skills/main
             return []
     
     def save_to_db(self, texts: List[str], embeddings: List[List[float]]):
@@ -106,7 +110,11 @@ class VectorEmbedder:
             embeddings = self.generate_embeddings(texts)
             if embeddings:
                 self.save_to_db(texts, embeddings)
+<<<<<<< HEAD
                 logger.info(f"✅ 生成 {len(embeddings)} 个向量嵌入")
+=======
+                print(f"✅ 生成 {len(embeddings)} 个向量嵌入")
+>>>>>>> skills/main
 
 def main():
     parser = argparse.ArgumentParser(description='向量嵌入器')
@@ -120,7 +128,11 @@ def main():
     embedder = VectorEmbedder(args.output, args.agent, args.api_key)
     embedder.embed_part_file(args.input)
     
+<<<<<<< HEAD
     logger.info(f"✅ 嵌入完成：{args.input}")
+=======
+    print(f"✅ 嵌入完成：{args.input}")
+>>>>>>> skills/main
 
 if __name__ == '__main__':
     main()

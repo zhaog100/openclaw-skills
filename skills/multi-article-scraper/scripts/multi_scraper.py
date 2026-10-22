@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Copyright
 # 版本: v2.0.1 | 多平台文章爬取技能 (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 #!/usr/bin/env python3
@@ -5,6 +6,10 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
+=======
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+#!/usr/bin/env python3
+>>>>>>> skills/main
 """
 多平台文章爬取技能
 支持微信/小红书/抖音/知乎/简书等平台
@@ -26,7 +31,11 @@ try:
     PLAYWRIGHT_AVAILABLE = True
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
+<<<<<<< HEAD
     logger.info("⚠️  Playwright 未安装，请先安装：pip install playwright")
+=======
+    print("⚠️  Playwright 未安装，请先安装：pip install playwright")
+>>>>>>> skills/main
 
 # 平台配置
 PLATFORMS = {
@@ -113,7 +122,11 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
     """
     
     if not PLAYWRIGHT_AVAILABLE:
+<<<<<<< HEAD
         logger.info("❌ Playwright 未安装")
+=======
+        print("❌ Playwright 未安装")
+>>>>>>> skills/main
         return None
     
     # 自动检测平台
@@ -124,8 +137,13 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
     platform_name = platform_config['name']
     selectors = platform_config['selectors']
     
+<<<<<<< HEAD
     logger.info(f"📖 开始爬取：{url}")
     logger.info(f"🌐 平台：{platform_name}")
+=======
+    print(f"📖 开始爬取：{url}")
+    print(f"🌐 平台：{platform_name}")
+>>>>>>> skills/main
     
     with sync_playwright() as p:
         # 启动浏览器（VPS无图形界面，使用headless）
@@ -150,29 +168,49 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
         
         try:
             # 访问文章
+<<<<<<< HEAD
             logger.info(f"🌐 访问页面...")
+=======
+            print(f"🌐 访问页面...")
+>>>>>>> skills/main
             page.goto(url, wait_until='domcontentloaded', timeout=60000)
             
             # 随机等待（模拟真实用户）
             time.sleep(random.uniform(2, 5))
             
             # 提取标题
+<<<<<<< HEAD
             logger.info("📝 提取标题...")
+=======
+            print("📝 提取标题...")
+>>>>>>> skills/main
             title_elem = page.query_selector(selectors['title'])
             title = title_elem.inner_text().strip() if title_elem else "无标题"
             
             # 提取作者
+<<<<<<< HEAD
             logger.info("✍️  提取作者...")
+=======
+            print("✍️  提取作者...")
+>>>>>>> skills/main
             author_elem = page.query_selector(selectors['author'])
             author = author_elem.inner_text().strip() if author_elem else "未知"
             
             # 提取发布时间
+<<<<<<< HEAD
             logger.info("📅 提取发布时间...")
+=======
+            print("📅 提取发布时间...")
+>>>>>>> skills/main
             date_elem = page.query_selector(selectors['publish_date'])
             publish_date = date_elem.inner_text().strip() if date_elem else datetime.now().strftime('%Y-%m-%d')
             
             # 提取内容
+<<<<<<< HEAD
             logger.info("📄 提取内容...")
+=======
+            print("📄 提取内容...")
+>>>>>>> skills/main
             content_elem = page.query_selector(selectors['content'])
             content = content_elem.inner_text().strip() if content_elem else "无内容"
             
@@ -190,7 +228,11 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
                 elif output_format == 'csv':
                     save_as_csv(output_path, filename, title, author, publish_date, platform_name, url, content)
                 
+<<<<<<< HEAD
                 logger.info(f"✅ 已保存到：{output_path / filename}.{output_format}")
+=======
+                print(f"✅ 已保存到：{output_path / filename}.{output_format}")
+>>>>>>> skills/main
             
             result = {
                 'title': title,
@@ -201,19 +243,34 @@ def scrape_article(url, platform=None, cookie=None, output_dir=None, output_form
                 'url': url
             }
             
+<<<<<<< HEAD
             logger.info(f"\n✅ 爬取成功！")
             logger.info(f"   标题：{title[:50]}...")
             logger.info(f"   作者：{author}")
             logger.info(f"   平台：{platform_name}")
             logger.info(f"   内容长度：{len(content)} 字符")
+=======
+            print(f"\n✅ 爬取成功！")
+            print(f"   标题：{title[:50]}...")
+            print(f"   作者：{author}")
+            print(f"   平台：{platform_name}")
+            print(f"   内容长度：{len(content)} 字符")
+>>>>>>> skills/main
             
             return result
             
         except PlaywrightTimeout as e:
+<<<<<<< HEAD
             logger.info(f"❌ 爬取失败：超时 - {e}")
             return None
         except Exception as e:
             logger.info(f"❌ 爬取失败：{e}")
+=======
+            print(f"❌ 爬取失败：超时 - {e}")
+            return None
+        except Exception as e:
+            print(f"❌ 爬取失败：{e}")
+>>>>>>> skills/main
             return None
         finally:
             browser.close()
@@ -260,11 +317,19 @@ def scrape_batch(urls_file, output_dir, output_format='md', delay=3):
     with open(urls_file, 'r', encoding='utf-8') as f:
         urls = [line.strip() for line in f if line.strip() and not line.startswith('#')]
     
+<<<<<<< HEAD
     logger.info(f"📋 找到 {len(urls)} 个 URL")
     
     results = []
     for i, url in enumerate(urls, 1):
         logger.info(f"\n[{i}/{len(urls)}] 爬取中...")
+=======
+    print(f"📋 找到 {len(urls)} 个 URL")
+    
+    results = []
+    for i, url in enumerate(urls, 1):
+        print(f"\n[{i}/{len(urls)}] 爬取中...")
+>>>>>>> skills/main
         result = scrape_article(url, output_dir=output_dir, output_format=output_format)
         if result:
             results.append(result)
@@ -272,10 +337,17 @@ def scrape_batch(urls_file, output_dir, output_format='md', delay=3):
         # 随机延迟
         if i < len(urls):
             delay_time = random.uniform(delay, delay + 2)
+<<<<<<< HEAD
             logger.info(f"⏳ 等待 {delay_time:.1f} 秒...")
             time.sleep(delay_time)
     
     logger.info(f"\n✅ 批量爬取完成！成功 {len(results)}/{len(urls)} 篇")
+=======
+            print(f"⏳ 等待 {delay_time:.1f} 秒...")
+            time.sleep(delay_time)
+    
+    print(f"\n✅ 批量爬取完成！成功 {len(results)}/{len(urls)} 篇")
+>>>>>>> skills/main
     return results
 
 if __name__ == '__main__':
@@ -298,17 +370,29 @@ if __name__ == '__main__':
         scrape_article(args.url, args.platform, args.cookie, args.output, args.format)
     else:
         parser.print_help()
+<<<<<<< HEAD
         logger.info("\n示例:")
         logger.info("  python3 multi_scraper.py https://mp.weixin.qq.com/s/xxx")
         logger.info("  python3 multi_scraper.py --batch urls.txt --output articles/")
         logger.info("  python3 multi_scraper.py --platform xiaohongshu https://www.xiaohongshu.com/xxx")
+=======
+        print("\n示例:")
+        print("  python3 multi_scraper.py https://mp.weixin.qq.com/s/xxx")
+        print("  python3 multi_scraper.py --batch urls.txt --output articles/")
+        print("  python3 multi_scraper.py --platform xiaohongshu https://www.xiaohongshu.com/xxx")
+>>>>>>> skills/main
         sys.exit(1)
 
 
 def scrape_forum(forum, query, output_dir='./forum-articles', limit=10):
     """爬取论坛文章"""
+<<<<<<< HEAD
     logger.info(f"📰 论坛冲浪：{forum}")
     logger.info(f"🔍 搜索关键词：{query}")
+=======
+    print(f"📰 论坛冲浪：{forum}")
+    print(f"🔍 搜索关键词：{query}")
+>>>>>>> skills/main
     
     # 调用论坛爬取脚本
     import subprocess
@@ -326,7 +410,11 @@ def scrape_forum(forum, query, output_dir='./forum-articles', limit=10):
 
 def scrape_xiaohongshu(note_url, cookie, output_dir='./xiaohongshu-notes'):
     """爬取小红书笔记"""
+<<<<<<< HEAD
     logger.info(f"📱 爬取小红书笔记：{note_url}")
+=======
+    print(f"📱 爬取小红书笔记：{note_url}")
+>>>>>>> skills/main
     
     import subprocess
     result = subprocess.run([

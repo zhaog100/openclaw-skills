@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 #!/bin/bash
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+=======
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+#!/bin/bash
+>>>>>>> skills/main
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 # 上下文监控与模型切换脚本
 # 功能：监控上下文使用率，连续2次超过阈值时自动切换到长上下文模型
 
+<<<<<<< HEAD
 # 环境修复（cron）
 export HOME="${HOME:-$HOME}"
 export PATH="/usr/bin:/bin:/usr/local/bin:/usr/sbin:/sbin:$HOME/.npm-global/bin"
@@ -14,10 +20,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" \&\& pwd)"
 DATA_DIR="$(cd "$SCRIPT_DIR/.." \&\& pwd)/data"
 LOG_DIR="$(cd "$DATA_DIR/../.." \&\& pwd)/logs"
 CONFIG_FILE="$(cd "$SCRIPT_DIR/.." \&\& pwd)/config.json"
+=======
+source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
+>>>>>>> skills/main
 
 STATE_FILE="$DATA_DIR/context-state.json"
 LOG_FILE="$LOG_DIR/context-switch.log"
 
+<<<<<<< HEAD
 # 检查依赖
 for cmd in bash jq python3; do
     if ! command -v "$cmd" &> /dev/null; then
@@ -26,11 +36,14 @@ for cmd in bash jq python3; do
     fi
 done
 
+=======
+>>>>>>> skills/main
 # 日志函数
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
+<<<<<<< HEAD
 # 从JSON读取配置
 cfg() {
     local filter="$1"
@@ -40,6 +53,8 @@ cfg() {
     echo "${result:-$default}"
 }
 
+=======
+>>>>>>> skills/main
 # 初始化状态文件
 init_state() {
     if [ ! -f "$STATE_FILE" ]; then
@@ -57,13 +72,23 @@ EOF
 }
 
 # 获取当前上下文使用率
+<<<<<<< HEAD
 # 使用独立的 get-context-usage.sh 脚本确保一致性
 get_context_usage() {
     bash "$(dirname "$0")/get-context-usage.sh"
+=======
+get_context_usage() {
+    local usage=$("$SCRIPT_DIR/get-context-usage.sh" 2>/dev/null)
+    if [ -z "$usage" ] || ! [[ "$usage" =~ ^[0-9]+$ ]]; then
+        usage=0
+    fi
+    echo "$usage"
+>>>>>>> skills/main
 }
 
 # 检查是否在冷却期
 is_in_cooldown() {
+<<<<<<< HEAD
     local cooldown_until
     cooldown_until=$(jq -r '.cooldown_until // empty' "$STATE_FILE" 2>/dev/null)
     if [ -z "$cooldown_until" ] || [ "$cooldown_until" = "null" ]; then
@@ -74,6 +99,15 @@ is_in_cooldown() {
     local cooldown_ts
     cooldown_ts=$(date -d "$cooldown_until" +%s 2>/dev/null || echo 0)
     if [ "$now" -lt "$cooldown_ts" ]; then
+=======
+    local cooldown_until=$(jq -r '.cooldown_until // empty' "$STATE_FILE")
+    if [ -z "$cooldown_until" ] || [ "$cooldown_until" = "null" ]; then
+        return 1
+    fi
+    local now=$(date +%s)
+    local cooldown_ts=$(date -d "$cooldown_until" +%s 2>/dev/null || echo 0)
+    if [ $now -lt $cooldown_ts ]; then
+>>>>>>> skills/main
         return 0
     else
         return 1
@@ -84,8 +118,12 @@ is_in_cooldown() {
 update_state() {
     local hits=$1
     local model=$2
+<<<<<<< HEAD
     local temp_file
     temp_file=$(mktemp)
+=======
+    local temp_file=$(mktemp)
+>>>>>>> skills/main
     jq --arg hits "$hits" \
        --arg model "$model" \
        --arg now "$(date -Iseconds)" \
@@ -98,6 +136,7 @@ update_state() {
 # 执行模型切换
 switch_model() {
     local target_model=$1
+<<<<<<< HEAD
     local current_model
     current_model=$(jq -r '.current_model' "$STATE_FILE")
     log "切换模型：$current_model → $target_model"
@@ -114,6 +153,17 @@ switch_model() {
 
     local temp_file
     temp_file=$(mktemp)
+=======
+    local current_model=$(jq -r '.current_model' "$STATE_FILE")
+    log "切换模型：$current_model → $target_model"
+
+    "$SCRIPT_DIR/switch-model.sh" "$target_model" >> "$LOG_FILE" 2>&1
+
+    local cooldown_minutes=$(cfg '.context_switch_strategy.cooldown.duration_minutes' 10)
+    local cooldown_until=$(date -d "+$cooldown_minutes minutes" -Iseconds)
+
+    local temp_file=$(mktemp)
+>>>>>>> skills/main
     jq --arg model "$target_model" \
        --arg switch_time "$(date -Iseconds)" \
        --arg cooldown "$cooldown_until" \
@@ -124,12 +174,19 @@ switch_model() {
     mv "$temp_file" "$STATE_FILE"
     log "模型切换完成，冷却期至 $cooldown_until"
 
+<<<<<<< HEAD
     local notification_enabled
     notification_enabled=$(cfg '.context_switch_strategy.notification.enabled' 'false')
     if [ "$notification_enabled" = "true" ]; then
         local notification_msg
         notification_msg=$(cfg '.context_switch_strategy.notification.message')
         log "通知: $notification_msg"
+=======
+    local notification_enabled=$(cfg '.context_switch_strategy.notification.enabled' false)
+    if [ "$notification_enabled" = "true" ]; then
+        local notification_msg=$(cfg '.context_switch_strategy.notification.message')
+        echo "✅ $notification_msg"
+>>>>>>> skills/main
     fi
 }
 
@@ -142,6 +199,7 @@ main() {
         exit 0
     fi
 
+<<<<<<< HEAD
     local usage
     usage=$(get_context_usage)
     log "当前上下文使用率：${usage}%"
@@ -161,6 +219,21 @@ main() {
     if [ "$usage" -ge "$threshold" ]; then
         current_hits=$((current_hits + 1))
         log "超过阈值（${usage}% >= ${threshold}%），连续命中次数：$current_hits"
+=======
+    local usage=$(get_context_usage)
+    log "当前上下文使用率：${usage}%"
+
+    local threshold=$(cfg '.context_switch_strategy.rules[0].threshold' 85)
+    local consecutive_hits_required=$(cfg '.context_switch_strategy.rules[0].consecutive_hits' 2)
+    local target_model_key=$(cfg '.context_switch_strategy.rules[0].target_model' 'long-context')
+    local target_model=$(cfg ".models.\"$target_model_key\".id" "$target_model_key")
+
+    local current_hits=$(jq -r '.consecutive_hits' "$STATE_FILE")
+
+    if [ "$usage" -ge "$threshold" ]; then
+        current_hits=$((current_hits + 1))
+        log "超过阈值（$usage% >= $threshold%），连续命中次数：$current_hits"
+>>>>>>> skills/main
         update_state "$current_hits" "$(jq -r '.current_model' "$STATE_FILE")"
 
         if [ "$current_hits" -ge "$consecutive_hits_required" ]; then

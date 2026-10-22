@@ -183,4 +183,8 @@ if __name__ == '__main__':
     suggestions = generator.generate_suggestions(test_issues)
     
     # 输出结果
+<<<<<<< HEAD
     logger.info(json.dumps(suggestions, indent=2, ensure_ascii=False))
+=======
+    print(json.dumps(suggestions, indent=2, ensure_ascii=False))
+>>>>>>> skills/main

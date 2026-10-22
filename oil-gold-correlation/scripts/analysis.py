@@ -11,7 +11,11 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 
 import argparse
 import json
@@ -168,9 +172,15 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
 
     # 1. Pearson
     p = pearson_corr(df)
+<<<<<<< HEAD
     logger.info(f"\n--- Pearson 相关系数 ---")
     logger.info(f"  result = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
     logger.info(f"  解读: {interpret_correlation(p['pearson_r'])}")
+=======
+    print(f"\n--- Pearson 相关系数 ---")
+    print(f"  result = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
+    print(f"  解读: {interpret_correlation(p['pearson_r'])}")
+>>>>>>> skills/main
 
     # 2. Spearman
     s = spearman_corr(df)
@@ -203,7 +213,11 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
             logger.info(f"  {direction}: ⚠️ {result['error']}")
         else:
             sig = '✅' if result['significant'] else '❌'
+<<<<<<< HEAD
             logger.info(f"  {direction}: period={result['min_pvalue']}"
+=======
+            print(f"  {direction}: period={result['min_pvalue']}"
+>>>>>>> skills/main
                   f" (lag={result['best_lag']}) {sig}")
 
     # 6. 协整
@@ -212,8 +226,13 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     if "error" in ci:
         logger.info(f"  ⚠️ {ci['error']}")
     else:
+<<<<<<< HEAD
         logger.info(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
         logger.info(f"  结论: {ci['interpretation']}")
+=======
+        print(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
+        print(f"  结论: {ci['interpretation']}")
+>>>>>>> skills/main
 
     return {
         "pearson": p,

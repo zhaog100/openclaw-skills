@@ -1,5 +1,8 @@
 #!/bin/bash
+<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+=======
+>>>>>>> skills/main
 
 # 引用前文内容读取技能 - 安装脚本
 

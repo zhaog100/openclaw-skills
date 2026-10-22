@@ -56,7 +56,11 @@ class StateManager:
         }
         self.state['tasks'].append(task)
         self.save()
+<<<<<<< HEAD
         logger.info(f"✅ 任务已添加：{task_id}")
+=======
+        print(f"✅ 任务已添加：{task_id}")
+>>>>>>> skills/main
         return task
     
     def update_status(self, task_id, new_status, details=None):
@@ -81,9 +85,15 @@ class StateManager:
                 self.state['events'].append(event)
                 
                 self.save()
+<<<<<<< HEAD
                 logger.info(f"✅ 状态已更新：{task_id} ({old_status} → {new_status})")
                 return True
         logger.error(f"❌ 任务未找到：{task_id}")
+=======
+                print(f"✅ 状态已更新：{task_id} ({old_status} → {new_status})")
+                return True
+        print(f"❌ 任务未找到：{task_id}")
+>>>>>>> skills/main
         return False
     
     def add_event(self, task_id, event_type, details=None):
@@ -98,7 +108,11 @@ class StateManager:
                 task['events'].append(event)
                 self.state['events'].append(event)
                 self.save()
+<<<<<<< HEAD
                 logger.info(f"✅ 事件已记录：{event_type}")
+=======
+                print(f"✅ 事件已记录：{event_type}")
+>>>>>>> skills/main
                 return True
         return False
     
@@ -165,5 +179,10 @@ class StateManager:
 if __name__ == "__main__":
     # 测试
     sm = StateManager()
+<<<<<<< HEAD
     logger.info("🦞 StateManager 初始化完成")
     logger.info(f"📊 当前统计：{sm.get_stats()}")
+=======
+    print("🦞 StateManager 初始化完成")
+    print(f"📊 当前统计：{sm.get_stats()}")
+>>>>>>> skills/main

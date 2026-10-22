@@ -4,7 +4,10 @@ logger = logging.getLogger(__name__)
 
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+>>>>>>> skills/main
 """
 历史走势增强版报告 — 在 v3.4 基础上增加：
 1. 历史区间统计（近期高低点、回撤幅度）
@@ -17,6 +20,11 @@ logger = logging.getLogger(__name__)
 
 import sys
 import numpy as np
+<<<<<<< HEAD
+=======
+import pandas as pd
+import pandas as pd
+>>>>>>> skills/main
 from pathlib import Path
 from datetime import datetime
 

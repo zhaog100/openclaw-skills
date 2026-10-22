@@ -7,13 +7,21 @@
 - 服务器: 43.133.55.138 (腾讯云轻量, 2核/1.9G/50G)
 
 ## 仓库分离（绝对红线）
+<<<<<<< HEAD
 - **origin** → xiaomijiao-skills (个人信息: AGENTS/MEMORY/SOUL/agents/memory/)
+=======
+- **origin** → xiaomila-skills (个人信息: AGENTS/MEMORY/SOUL/agents/memory/)
+>>>>>>> skills/main
 - **skills** → openclaw-skills (仅 skills/ 目录)
 - ❌ 禁止交叉推送！
 
 ## 今日状态
 - 系统维护完成 ✅ | 内核升级 6.8.0-138 ✅
 - Git仓库整合完成 ✅ | QMD索引正常 ✅
+<<<<<<< HEAD
+=======
+- PROJMGMT暂停（服务运行中，日报已记录）
+>>>>>>> skills/main
 
 ## 待办优先级
 - 🔴 P0: 小红书首篇笔记发布（数码科技方向）

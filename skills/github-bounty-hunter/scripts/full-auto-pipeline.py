@@ -35,7 +35,11 @@ def log(message):
     """记录日志"""
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     log_msg = f"[{timestamp}] {message}"
+<<<<<<< HEAD
     logger.info(log_msg)
+=======
+    print(log_msg)
+>>>>>>> skills/main
     with open(LOG_FILE, 'a') as f:
         f.write(log_msg + '\n')
 
@@ -394,7 +398,11 @@ def fix_issue():
     Auto-implemented fix for the reported issue.
     \"\"\"
     # TODO: Implement the actual fix
+<<<<<<< HEAD
     logger.info("Fix implemented for: {title}")
+=======
+    print("Fix implemented for: {title}")
+>>>>>>> skills/main
     return True
 
 if __name__ == '__main__':

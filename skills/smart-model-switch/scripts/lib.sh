@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 #!/bin/bash
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+=======
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+#!/bin/bash
+>>>>>>> skills/main
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # 共享配置加载器
 # 所有脚本 source 此文件以获取统一配置
@@ -12,11 +17,15 @@ CONFIG_FILE="${SMART_MODEL_SWITCH_CONFIG:-$SKILL_DIR/config.json}"
 # 从 config.json 读取值，支持环境变量覆盖
 # 用法: cfg <jq_filter> [env_var_name]
 # 如果 env_var_name 对应的环境变量存在则返回它，否则从 config.json 读取
+<<<<<<< HEAD
 # 注意：env_var_name 必须是合法 bash 变量名（不能含连字符）
+=======
+>>>>>>> skills/main
 cfg() {
     local filter="$1"
     local env_name="${2:-}"
     
+<<<<<<< HEAD
     # 检查 env_name 是否为合法变量名（只含字母、数字、下划线）
     if [ -n "$env_name" ] && [[ "$env_name" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
         local env_val="${!env_name:-}"
@@ -24,6 +33,11 @@ cfg() {
             echo "$env_val"
             return
         fi
+=======
+    if [ -n "$env_name" ] && [ -n "${!env_name}" ]; then
+        echo "${!env_name}"
+        return
+>>>>>>> skills/main
     fi
     
     jq -r "$filter" "$CONFIG_FILE" 2>/dev/null
@@ -45,8 +59,14 @@ resolve_path() {
 # 常用路径（带环境变量覆盖）
 DATA_DIR="${SMART_MODEL_SWITCH_DATA_DIR:-$(resolve_path "$(cfg '.paths.data_dir' 'SMART_MODEL_SWITCH_DATA_DIR')")}"
 LOG_DIR="${SMART_MODEL_SWITCH_LOG_DIR:-$(resolve_path "$(cfg '.paths.log_dir' 'SMART_MODEL_SWITCH_LOG_DIR')")}"
+<<<<<<< HEAD
 OPENCLAW_CONFIG_FILE="${OPENCLAW_CONFIG:-$(resolve_path "$(cfg '.paths.openclaw_config' 'OPENCLAW_CONFIG')")}"
 OPENCLAW_STATUS_FILE="${OPENCLAW_STATUS:-$(resolve_path "$(cfg '.paths.openclaw_status' 'OPENCLAW_STATUS')")}"
 MODEL_SWITCH_REQ_DIR="${SMART_MODEL_SWITCH_REQ_DIR:-$(resolve_path "$(cfg '.paths.model_switch_requests' 'SMART_MODEL_SWITCH_REQ_DIR')")}"
+=======
+OPENCLAW_CONFIG_FILE="${OPENCLAW_CONFIG:-$(resolve_path "$(cfg '.paths.openclaw_config')")}"
+OPENCLAW_STATUS_FILE="${OPENCLAW_STATUS:-$(resolve_path "$(cfg '.paths.openclaw_status')")}"
+MODEL_SWITCH_REQ_DIR="${SMART_MODEL_SWITCH_REQ_DIR:-$(resolve_path "$(cfg '.paths.model_switch_requests')")}"
+>>>>>>> skills/main
 
 mkdir -p "$DATA_DIR" "$LOG_DIR" 2>/dev/null

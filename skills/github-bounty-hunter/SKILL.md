@@ -1,5 +1,6 @@
 ---
 name: github-bounty-hunter
+<<<<<<< HEAD
 description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v8.1 新增已合并 PR 催款 + 开放 PR 催审双轨跟进策略（2026-09-28）"
 version: 8.1.0
 author: 思捷娅科技 (SJYKJ)/zhaog100
@@ -7,6 +8,14 @@ lessons_updated: 2026-09-28
 ---
 
 # GitHub Bounty Hunter v8.1
+=======
+description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v8.0 新增 RustChain 付款确认 + secondary rate limit 策略（2026-08-03）"
+version: 8.0.0
+author: 思捷娅科技 (SJYKJ)/zhaog100
+---
+
+# GitHub Bounty Hunter v8.0.0
+>>>>>>> skills/main
 
 自动化 GitHub 赏金/Grant 接单、开发、提交 PR + 工作区结构化管理。
 
@@ -899,6 +908,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ## 🧠 经验教训库 (持续更新)
 
+<<<<<<< HEAD
 ### 2026-09-28 RustChain 双轨跟进策略 ⭐⭐⭐
 
 #### 已合并 PR 催款 + 开放 PR 催审双轨策略
@@ -947,6 +957,8 @@ RustChain 仓库（Scottcjn/Rustchain）存在两类未完结 PR：
 ---
 
 
+=======
+>>>>>>> skills/main
 ### 2026-08-03 实战经验
 
 #### RustChain 付款确认

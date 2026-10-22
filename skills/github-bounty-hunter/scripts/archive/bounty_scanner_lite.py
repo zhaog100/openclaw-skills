@@ -30,7 +30,11 @@ HEADERS = {'Authorization': f'token {GITHUB_TOKEN}', 'Accept': 'application/vnd.
 
 def log(msg):
     ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+<<<<<<< HEAD
     logger.info(f"[{ts}] {msg}", flush=True)
+=======
+    print(f"[{ts}] {msg}", flush=True)
+>>>>>>> skills/main
 
 def acquire_lock():
     lock = open('/tmp/bounty-scanner-lite.lock', 'w')

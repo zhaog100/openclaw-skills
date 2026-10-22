@@ -4,6 +4,7 @@
 """
 京东价格爬虫
 支持通过API和网页解析获取价格
+<<<<<<< HEAD
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
@@ -18,6 +19,8 @@ logger = logging.getLogger(__name__)
 """
 京东价格爬虫
 支持通过API和网页解析获取价格
+=======
+>>>>>>> skills/main
 """
 
 import re
@@ -70,7 +73,11 @@ class JDPriceCrawler:
                     'timestamp': datetime.now().isoformat()
                 }
         except Exception as e:
+<<<<<<< HEAD
             logger.info(f"⚠️ API获取价格失败: {e}")
+=======
+            print(f"⚠️ API获取价格失败: {e}")
+>>>>>>> skills/main
 
         return {'success': False, 'error': str(e)}
 
@@ -106,7 +113,11 @@ class JDPriceCrawler:
             }
 
         except Exception as e:
+<<<<<<< HEAD
             logger.info(f"❌ 获取商品信息失败: {e}")
+=======
+            print(f"❌ 获取商品信息失败: {e}")
+>>>>>>> skills/main
             return {
                 'success': False,
                 'error': str(e),
@@ -124,20 +135,35 @@ class JDPriceCrawler:
             url = f"https://item.jd.com/{item_id}.html"
 
         if not item_id:
+<<<<<<< HEAD
             logger.info(f"❌ 无效的商品ID或URL: {item_id_or_url}")
             return {'success': False}
 
         logger.info(f"🔍 监控京东商品: {item_id}")
+=======
+            print(f"❌ 无效的商品ID或URL: {item_id_or_url}")
+            return {'success': False}
+
+        print(f"🔍 监控京东商品: {item_id}")
+>>>>>>> skills/main
 
         # 获取商品信息
         item_info = self.get_item_info(item_id)
 
         if item_info['success']:
+<<<<<<< HEAD
             logger.info(f"✅ 商品: {item_info['title']}")
             logger.info(f"💰 价格: ¥{item_info['price']}")
             logger.info(f"🔗 链接: {item_info['url']}")
         else:
             logger.info(f"❌ 获取失败: {item_info.get('error')}")
+=======
+            print(f"✅ 商品: {item_info['title']}")
+            print(f"💰 价格: ¥{item_info['price']}")
+            print(f"🔗 链接: {item_info['url']}")
+        else:
+            print(f"❌ 获取失败: {item_info.get('error')}")
+>>>>>>> skills/main
 
         return item_info
 
@@ -155,7 +181,11 @@ def main():
     crawler = JDPriceCrawler()
 
     if args.loop:
+<<<<<<< HEAD
         logger.info(f"🔄 开始持续监控，间隔 {args.interval} 秒")
+=======
+        print(f"🔄 开始持续监控，间隔 {args.interval} 秒")
+>>>>>>> skills/main
         while True:
             crawler.monitor(args.item)
             time.sleep(args.interval)

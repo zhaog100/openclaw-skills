@@ -37,12 +37,17 @@ class AlgoraMonitor:
         url = f'https://api.github.com/search/issues?q={self.github_query}&sort=updated&order=desc&per_page=10'
         
         try:
+<<<<<<< HEAD
             logger.info('通过 GitHub 搜索 Algora 任务...')
+=======
+            print('📡 通过 GitHub 搜索 Algora 任务...')
+>>>>>>> skills/main
             response = requests.get(url, headers=headers, timeout=30)
             
             if response.status_code == 200:
                 data = response.json()
                 issues = data.get('items', [])
+<<<<<<< HEAD
                 logger.info(f'找到 {len(issues)} 个 Algora 相关任务')
                 return issues
             else:
@@ -50,23 +55,41 @@ class AlgoraMonitor:
                 return []
         except Exception as e:
             logger.error(f'❌ 搜索失败：{e}')
+=======
+                print(f'✅ 找到 {len(issues)} 个 Algora 相关任务')
+                return issues
+            else:
+                print(f'⚠️ API 返回：{response.status_code}')
+                return []
+        except Exception as e:
+            print(f'❌ 搜索失败：{e}')
+>>>>>>> skills/main
             return []
     
     def query_api(self):
         """通过 Algora API 查询（需要认证）"""
         if not self.api_key:
+<<<<<<< HEAD
             logger.warning('⚠️  ALGORA_API_KEY 未配置，跳过 API 查询')
+=======
+            print('⚠️  ALGORA_API_KEY 未配置，跳过 API 查询')
+>>>>>>> skills/main
             return []
         
         headers = {'Authorization': f'Bearer {self.api_key}'}
         
         try:
+<<<<<<< HEAD
             logger.info('📡 通过 Algora API 查询...')
+=======
+            print('📡 通过 Algora API 查询...')
+>>>>>>> skills/main
             response = requests.get(self.api_url, headers=headers, timeout=30)
             
             if response.status_code == 200:
                 data = response.json()
                 bounties = data.get('bounties', [])
+<<<<<<< HEAD
                 logger.info(f'✅ 找到 {len(bounties)} 个 Algora 任务')
                 return bounties
             else:
@@ -74,6 +97,15 @@ class AlgoraMonitor:
                 return []
         except Exception as e:
             logger.error(f'❌ API 查询失败：{e}')
+=======
+                print(f'✅ 找到 {len(bounties)} 个 Algora 任务')
+                return bounties
+            else:
+                print(f'⚠️ API 返回：{response.status_code}')
+                return []
+        except Exception as e:
+            print(f'❌ API 查询失败：{e}')
+>>>>>>> skills/main
             return []
     
     def notify(self, item, source='GitHub'):
@@ -90,6 +122,7 @@ class AlgoraMonitor:
         if money_match:
             amount = money_match.group(1)
         
+<<<<<<< HEAD
         logger.info("=" * 60)
         logger.info(f"🎯 Algora 新任务！[{source}]")
         logger.info(f"标题：{title}")
@@ -97,6 +130,15 @@ class AlgoraMonitor:
         logger.info(f"链接：{url}")
         logger.info(f"更新：{updated}")
         logger.info("=" * 60)
+=======
+        print("=" * 60)
+        print(f"🎯 Algora 新任务！[{source}]")
+        print(f"标题：{title}")
+        print(f"奖金：${amount}")
+        print(f"链接：{url}")
+        print(f"更新：{updated}")
+        print("=" * 60)
+>>>>>>> skills/main
         
         # 保存通知
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -126,6 +168,7 @@ class AlgoraMonitor:
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
+<<<<<<< HEAD
         logger.info(f"✅ 通知已保存：{notify_file}")
     
     def run(self):
@@ -138,15 +181,37 @@ class AlgoraMonitor:
         token = os.getenv('GITHUB_TOKEN', '')
         if not token:
             logger.error("❌ GITHUB_TOKEN 未配置")
+=======
+        print(f"✅ 通知已保存：{notify_file}")
+    
+    def run(self):
+        """运行监控"""
+        print("🦞 Algora Monitor v2 启动！")
+        print("📍 监控平台：Algora.io")
+        print("💰 高价值任务（$500-$10000）")
+        print("=" * 60)
+        
+        token = os.getenv('GITHUB_TOKEN', '')
+        if not token:
+            print("❌ GITHUB_TOKEN 未配置")
+>>>>>>> skills/main
             return
         
         # GitHub 搜索
         issues = self.search_github(token)
+<<<<<<< HEAD
         logger.info()
         
         # API 查询
         api_bounties = self.query_api()
         logger.info()
+=======
+        print()
+        
+        # API 查询
+        api_bounties = self.query_api()
+        print()
+>>>>>>> skills/main
         
         all_items = []
         for issue in issues:
@@ -155,6 +220,7 @@ class AlgoraMonitor:
             all_items.append((bounty, 'API'))
         
         if all_items:
+<<<<<<< HEAD
             logger.info('=== 最新任务（前 5 个）===')
             logger.info()
             for item, source in all_items[:5]:
@@ -167,6 +233,20 @@ class AlgoraMonitor:
             logger.info('1. 访问官网：https://algora.io')
             logger.info('2. 配置 ALGORA_API_KEY 获取专属任务')
             logger.info('3. 高价值任务，值得重点关注')
+=======
+            print('=== 最新任务（前 5 个）===')
+            print()
+            for item, source in all_items[:5]:
+                self.notify(item, source)
+                print()
+        else:
+            print('⚠️  暂无 Algora 任务')
+            print()
+            print('💡 建议：')
+            print('1. 访问官网：https://algora.io')
+            print('2. 配置 ALGORA_API_KEY 获取专属任务')
+            print('3. 高价值任务，值得重点关注')
+>>>>>>> skills/main
 
 if __name__ == "__main__":
     monitor = AlgoraMonitor()

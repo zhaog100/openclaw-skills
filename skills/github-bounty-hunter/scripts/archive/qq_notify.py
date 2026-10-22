@@ -33,7 +33,11 @@ class QQNotifier:
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(message)
         
+<<<<<<< HEAD
         logger.info(f"✅ QQ 通知已发送：{notify_file}")
+=======
+        print(f"✅ QQ 通知已发送：{notify_file}")
+>>>>>>> skills/main
         return str(notify_file)
     
     def _format_message(self, title, content, priority):
@@ -139,12 +143,20 @@ class QQNotifier:
         for f in self.notify_dir.glob('notify_*.md'):
             if now - f.stat().st_mtime > days * 86400:
                 f.unlink()
+<<<<<<< HEAD
         logger.info(f"✅ 已清理{days}天前的通知")
+=======
+        print(f"✅ 已清理{days}天前的通知")
+>>>>>>> skills/main
 
 if __name__ == "__main__":
     # 测试
     notifier = QQNotifier()
+<<<<<<< HEAD
     logger.info("🦞 QQNotifier 初始化完成")
+=======
+    print("🦞 QQNotifier 初始化完成")
+>>>>>>> skills/main
     
     # 测试通知
     test_task = {

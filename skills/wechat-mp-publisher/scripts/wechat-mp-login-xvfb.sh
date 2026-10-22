@@ -1,5 +1,8 @@
 #!/bin/bash
+<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+=======
+>>>>>>> skills/main
 
 # 微信公众号登录脚本（使用 xvfb 虚拟显示）
 echo "🔐 开始登录微信公众号后台..."

@@ -20,7 +20,11 @@ try:
     REQUESTS_AVAILABLE = True
 except ImportError:
     REQUESTS_AVAILABLE = False
+<<<<<<< HEAD
     logger.warning("⚠️  requests 未安装，请先安装：pip install requests")
+=======
+    print("⚠️  requests 未安装，请先安装：pip install requests")
+>>>>>>> skills/main
 
 # 论坛 API 配置
 FORUMS = {
@@ -48,7 +52,11 @@ FORUMS = {
 def search_dev_to(query, tags='ai', per_page=10):
     """搜索 Dev.to 文章"""
     if not REQUESTS_AVAILABLE:
+<<<<<<< HEAD
         logger.error("❌ requests 未安装")
+=======
+        print("❌ requests 未安装")
+>>>>>>> skills/main
         return []
     
     url = FORUMS['devto']['api_url']
@@ -62,6 +70,7 @@ def search_dev_to(query, tags='ai', per_page=10):
         response = requests.get(url, params=params, timeout=10)
         if response.status_code == 200:
             articles = response.json()
+<<<<<<< HEAD
             logger.info(f"✅ 找到 {len(articles)} 篇 Dev.to 文章")
             return articles
         else:
@@ -69,12 +78,25 @@ def search_dev_to(query, tags='ai', per_page=10):
             return []
     except Exception as e:
         logger.error(f"❌ 错误：{e}")
+=======
+            print(f"✅ 找到 {len(articles)} 篇 Dev.to 文章")
+            return articles
+        else:
+            print(f"❌ API 错误：{response.status_code}")
+            return []
+    except Exception as e:
+        print(f"❌ 错误：{e}")
+>>>>>>> skills/main
         return []
 
 def search_hacker_news(query, per_page=10):
     """搜索 Hacker News 文章"""
     if not REQUESTS_AVAILABLE:
+<<<<<<< HEAD
         logger.error("❌ requests 未安装")
+=======
+        print("❌ requests 未安装")
+>>>>>>> skills/main
         return []
     
     url = FORUMS['hackernews']['api_url']
@@ -88,6 +110,7 @@ def search_hacker_news(query, per_page=10):
         if response.status_code == 200:
             data = response.json()
             articles = data.get('hits', [])
+<<<<<<< HEAD
             logger.info(f"✅ 找到 {len(articles)} 个 Hacker News 讨论")
             return articles
         else:
@@ -95,6 +118,15 @@ def search_hacker_news(query, per_page=10):
             return []
     except Exception as e:
         logger.error(f"❌ 错误：{e}")
+=======
+            print(f"✅ 找到 {len(articles)} 个 Hacker News 讨论")
+            return articles
+        else:
+            print(f"❌ API 错误：{response.status_code}")
+            return []
+    except Exception as e:
+        print(f"❌ 错误：{e}")
+>>>>>>> skills/main
         return []
 
 def save_articles(articles, forum, output_dir='./forum-articles'):
@@ -110,10 +142,17 @@ def save_articles(articles, forum, output_dir='./forum-articles'):
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
     
+<<<<<<< HEAD
     logger.info(f"✅ 已保存到：{json_file}")
     
     # 打印摘要
     logger.info(f"\n📋 文章摘要:")
+=======
+    print(f"✅ 已保存到：{json_file}")
+    
+    # 打印摘要
+    print(f"\n📋 文章摘要:")
+>>>>>>> skills/main
     for i, article in enumerate(articles[:5], 1):
         if forum == 'devto':
             title = article.get('title', '无标题')
@@ -126,11 +165,19 @@ def save_articles(articles, forum, output_dir='./forum-articles'):
             url = article.get('url', '')
             tags = article.get('tags', [])
         
+<<<<<<< HEAD
         logger.info(f"{i}. {title[:60]}...")
         logger.info(f"   作者：{author}")
         logger.info(f"   链接：{url}")
         logger.info(f"   标签：{tags}")
         logger.info()
+=======
+        print(f"{i}. {title[:60]}...")
+        print(f"   作者：{author}")
+        print(f"   链接：{url}")
+        print(f"   标签：{tags}")
+        print()
+>>>>>>> skills/main
     
     return json_file
 
@@ -145,15 +192,26 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
+<<<<<<< HEAD
     logger.info(f"🔍 搜索关键词：{args.query}")
     logger.info(f"🌐 论坛：{args.forum}")
     logger.info(f"📁 输出目录：{args.output}")
     logger.info()
+=======
+    print(f"🔍 搜索关键词：{args.query}")
+    print(f"🌐 论坛：{args.forum}")
+    print(f"📁 输出目录：{args.output}")
+    print()
+>>>>>>> skills/main
     
     all_articles = {}
     
     if args.forum in ['devto', 'all']:
+<<<<<<< HEAD
         logger.info("\n📌 搜索 Dev.to...")
+=======
+        print("\n📌 搜索 Dev.to...")
+>>>>>>> skills/main
         articles = search_dev_to(args.query, tags='ai', per_page=args.limit)
         if articles:
             all_articles['devto'] = articles
@@ -161,10 +219,18 @@ if __name__ == '__main__':
         time.sleep(random.uniform(1, 2))
     
     if args.forum in ['hackernews', 'all']:
+<<<<<<< HEAD
         logger.info("\n📌 搜索 Hacker News...")
+=======
+        print("\n📌 搜索 Hacker News...")
+>>>>>>> skills/main
         articles = search_hacker_news(args.query, per_page=args.limit)
         if articles:
             all_articles['hackernews'] = articles
             save_articles(articles, 'hackernews', args.output)
     
+<<<<<<< HEAD
     logger.info(f"\n✅ 论坛冲浪完成！共找到 {sum(len(v) for v in all_articles.values())} 篇文章")
+=======
+    print(f"\n✅ 论坛冲浪完成！共找到 {sum(len(v) for v in all_articles.values())} 篇文章")
+>>>>>>> skills/main

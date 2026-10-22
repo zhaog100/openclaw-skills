@@ -151,7 +151,11 @@ class ChinaExamInfo:
                             continue
                     return raw.decode('utf-8', errors='ignore')
         except Exception as e:
+<<<<<<< HEAD
             logger.error(f"获取失败 {url}: {e}")
+=======
+            print(f"获取失败 {url}: {e}", file=sys.stderr)
+>>>>>>> skills/main
             return None
 
     def detect_region(self, title):
@@ -433,10 +437,17 @@ class ChinaExamInfo:
 
         for page in range(1, max_pages + 1):
             url = base_url if page == 1 else f'{base_url}index_{page}.html'
+<<<<<<< HEAD
             logger.info(f"国企列表页: {url}")
             html_content = self.fetch_url(url)
             if not html_content:
                 logger.warning(f"获取失败，跳过 {url}")
+=======
+            print(f"国企列表页: {url}", file=sys.stderr)
+            html_content = self.fetch_url(url)
+            if not html_content:
+                print(f"  → 获取失败，跳过", file=sys.stderr)
+>>>>>>> skills/main
                 continue
 
             # 使用正则逐条提取，避免HTMLParser跨标签合并
@@ -459,7 +470,11 @@ class ChinaExamInfo:
 
             time.sleep(1)  # 礼貌延迟
 
+<<<<<<< HEAD
         logger.info(f"  → 共提取 {len(all_items)} 条原始数据", file=sys.stderr)
+=======
+        print(f"  → 共提取 {len(all_items)} 条原始数据", file=sys.stderr)
+>>>>>>> skills/main
 
         # 标题截断：高顿标题包含摘要描述，只保留核心部分
         for item in all_items:
@@ -499,7 +514,11 @@ class ChinaExamInfo:
             if re.match(r'^(国企|央企|招聘|求职|考试)', title) and '202' not in title[:20]:
                 continue
             quality_filtered.append(item)
+<<<<<<< HEAD
         logger.info(f"  → 噪声过滤后 {len(quality_filtered)} 条", file=sys.stderr)
+=======
+        print(f"  → 噪声过滤后 {len(quality_filtered)} 条", file=sys.stderr)
+>>>>>>> skills/main
 
         # 跨条拼接检测：标题中出现多个"202X年" → 截断
         clean_items = []
@@ -546,7 +565,11 @@ class ChinaExamInfo:
             else:
                 seen_orgs[org_key] = len(deduped)
                 deduped.append(item)
+<<<<<<< HEAD
         logger.info(f"  → 去重后 {len(deduped)} 条", file=sys.stderr)
+=======
+        print(f"  → 去重后 {len(deduped)} 条", file=sys.stderr)
+>>>>>>> skills/main
 
         # 地区过滤（state-owned 保留所有）
         if target_regions:
@@ -630,7 +653,11 @@ class ChinaExamInfo:
             results.append(item)
 
         # --- 数据源1: 编制招聘网-成都国企 ---
+<<<<<<< HEAD
         logger.info("  → 编制招聘网-成都国企...", file=sys.stderr)
+=======
+        print("  → 编制招聘网-成都国企...", file=sys.stderr)
+>>>>>>> skills/main
         try:
             url = 'https://www.bianzhia.com/zt/gqchengdu/'
             content = self.fetch_url(url)
@@ -670,12 +697,21 @@ class ChinaExamInfo:
                         'publish_date': pub_date,
                         'source': '编制招聘网-成都国企',
                     })
+<<<<<<< HEAD
                 logger.info(f"    → 编制招聘网-成都: {len(results)} 条", file=sys.stderr)
         except Exception as e:
             logger.error(f"  ⚠️ 编制招聘网-成都国企抓取失败: {e}", file=sys.stderr)
 
         # --- 数据源2: 编制招聘网-四川国企 ---
         logger.info("  → 编制招聘网-四川国企...", file=sys.stderr)
+=======
+                print(f"    → 编制招聘网-成都: {len(results)} 条", file=sys.stderr)
+        except Exception as e:
+            print(f"  ⚠️ 编制招聘网-成都国企抓取失败: {e}", file=sys.stderr)
+
+        # --- 数据源2: 编制招聘网-四川国企 ---
+        print("  → 编制招聘网-四川国企...", file=sys.stderr)
+>>>>>>> skills/main
         try:
             url = 'https://www.bianzhia.com/zt/gqsichuan/'
             content = self.fetch_url(url)
@@ -724,12 +760,21 @@ class ChinaExamInfo:
                         'publish_date': pub_date,
                         'source': '编制招聘网-四川国企',
                     })
+<<<<<<< HEAD
                 logger.info(f"    → 编制招聘网-四川: {len(results)} 条（累计）", file=sys.stderr)
         except Exception as e:
             logger.error(f"  ⚠️ 编制招聘网-四川国企抓取失败: {e}", file=sys.stderr)
 
         # --- 数据源3: 腾讯新闻成都国企汇总（补充）---
         logger.info("  → 腾讯新闻成都国企...", file=sys.stderr)
+=======
+                print(f"    → 编制招聘网-四川: {len(results)} 条（累计）", file=sys.stderr)
+        except Exception as e:
+            print(f"  ⚠️ 编制招聘网-四川国企抓取失败: {e}", file=sys.stderr)
+
+        # --- 数据源3: 腾讯新闻成都国企汇总（补充）---
+        print("  → 腾讯新闻成都国企...", file=sys.stderr)
+>>>>>>> skills/main
         try:
             url = 'https://news.qq.com/rain/a/20260604A00FTF00'
             content = self.fetch_url(url)
@@ -751,12 +796,21 @@ class ChinaExamInfo:
                             'deadline': None,
                             'source': '腾讯新闻-成都国企',
                         })
+<<<<<<< HEAD
                 logger.info(f"    → 腾讯新闻: {len(results)} 条（累计）", file=sys.stderr)
         except Exception as e:
             logger.error(f"  ⚠️ 腾讯新闻抓取失败: {e}", file=sys.stderr)
 
         # --- 数据源4: 高顿国企招聘网（补充）---
         logger.info("  → 高顿国企招聘网...", file=sys.stderr)
+=======
+                print(f"    → 腾讯新闻: {len(results)} 条（累计）", file=sys.stderr)
+        except Exception as e:
+            print(f"  ⚠️ 腾讯新闻抓取失败: {e}", file=sys.stderr)
+
+        # --- 数据源4: 高顿国企招聘网（补充）---
+        print("  → 高顿国企招聘网...", file=sys.stderr)
+>>>>>>> skills/main
         try:
             base_url = 'https://www.gwy.com/gqzp/qtgq/'
             content = self.fetch_url(base_url)
@@ -796,9 +850,15 @@ class ChinaExamInfo:
                         'deadline': None,
                         'source': '高顿-四川国企',
                     })
+<<<<<<< HEAD
                 logger.info(f"    → 高顿: {len(results)} 条（累计）", file=sys.stderr)
         except Exception as e:
             logger.error(f"  ⚠️ 高顿抓取失败: {e}", file=sys.stderr)
+=======
+                print(f"    → 高顿: {len(results)} 条（累计）", file=sys.stderr)
+        except Exception as e:
+            print(f"  ⚠️ 高顿抓取失败: {e}", file=sys.stderr)
+>>>>>>> skills/main
 
         # --- 后处理：清理简称 + 最终过滤 ---
         # 简称映射表
@@ -815,7 +875,11 @@ class ChinaExamInfo:
                     r['org'] = full_name
                     break
 
+<<<<<<< HEAD
         logger.info(f"  → 四川国企央企采集: {len(results)} 条（去重+过滤后）", file=sys.stderr)
+=======
+        print(f"  → 四川国企央企采集: {len(results)} 条（去重+过滤后）", file=sys.stderr)
+>>>>>>> skills/main
         return results
 
     def fetch_soe_detail(self, url, title):
@@ -939,7 +1003,11 @@ class ChinaExamInfo:
         if need_soe and (no_region_filter or 'state-owned' in (target_regions or [])):
             soe_items = self.fetch_sc_soe()
             soe_items = [i for i in soe_items if self._is_recent(i.get('title', ''), i.get('publish_date', ''))]
+<<<<<<< HEAD
             logger.info(f"  → 国企央企 {len(soe_items)} 条（去重+过滤后）", file=sys.stderr)
+=======
+            print(f"  → 国企央企 {len(soe_items)} 条（去重+过滤后）", file=sys.stderr)
+>>>>>>> skills/main
 
             for item in soe_items:
                 exam = self._build_soe_exam(item)
@@ -950,7 +1018,11 @@ class ChinaExamInfo:
             if fetch_details and soe_items:
                 detail_count = min(len(soe_items), 3)
                 for i, item in enumerate(soe_items[:detail_count]):
+<<<<<<< HEAD
                     logger.info(f"  国企详情 {i+1}/{detail_count}: {item['title'][:40]}...", file=sys.stderr)
+=======
+                    print(f"  国企详情 {i+1}/{detail_count}: {item['title'][:40]}...", file=sys.stderr)
+>>>>>>> skills/main
                     detail = self.fetch_soe_detail(item['url'], item['title'])
                     for exam in all_exams:
                         if exam.get('exam_name') == item['title']:
@@ -1017,7 +1089,11 @@ class ChinaExamInfo:
 
     def _process_listing(self, url, source_type, target_regions, results, fetch_details=True, max_detail=3, ssl_retry=1):
         """处理列表页 → 过滤 → （可选）抓详情"""
+<<<<<<< HEAD
         logger.info(f"列表页: {url}", file=sys.stderr)
+=======
+        print(f"列表页: {url}", file=sys.stderr)
+>>>>>>> skills/main
         html_content = None
 
         for attempt in range(ssl_retry):
@@ -1025,11 +1101,19 @@ class ChinaExamInfo:
             if html_content:
                 break
             if attempt < ssl_retry - 1:
+<<<<<<< HEAD
                 logger.info(f"  重试({attempt+1})...", file=sys.stderr)
                 time.sleep(2)
 
         if not html_content:
             logger.error(f"  → 失败", file=sys.stderr)
+=======
+                print(f"  重试({attempt+1})...", file=sys.stderr)
+                time.sleep(2)
+
+        if not html_content:
+            print(f"  → 失败", file=sys.stderr)
+>>>>>>> skills/main
             return
 
         # 提取条目
@@ -1038,7 +1122,11 @@ class ChinaExamInfo:
         # 过滤2024年之前
         items = [i for i in items if self._is_recent(i['title'], '')]
 
+<<<<<<< HEAD
         logger.info(f"  → {len(items)} 条（列表页过滤后）", file=sys.stderr)
+=======
+        print(f"  → {len(items)} 条（列表页过滤后）", file=sys.stderr)
+>>>>>>> skills/main
 
         # 构建考试信息（列表页级别）
         for item in items:
@@ -1050,7 +1138,11 @@ class ChinaExamInfo:
         if fetch_details and items:
             detail_count = min(len(items), max_detail)
             for i, item in enumerate(items[:detail_count]):
+<<<<<<< HEAD
                 logger.info(f"  详情 {i+1}/{detail_count}: {item['title'][:40]}...", file=sys.stderr)
+=======
+                print(f"  详情 {i+1}/{detail_count}: {item['title'][:40]}...", file=sys.stderr)
+>>>>>>> skills/main
                 detail = self.fetch_detail(item['url'], item['title'])
 
                 # 将详情信息附加到对应的exam
@@ -1432,9 +1524,15 @@ def main():
     if args.save:
         with open(args.save, 'w', encoding='utf-8') as f:
             f.write(out)
+<<<<<<< HEAD
         logger.info(f'已保存: {args.save}', file=sys.stderr)
     else:
         logger.info(out)
+=======
+        print(f'已保存: {args.save}', file=sys.stderr)
+    else:
+        print(out)
+>>>>>>> skills/main
 
 
 if __name__ == '__main__':

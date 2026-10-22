@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+=======
+>>>>>>> skills/main
 #!/usr/bin/env python3
 """
 多数据源管理器
@@ -11,7 +14,11 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -66,7 +73,11 @@ class MultiSourceManager:
             except Exception:
                 src.available = False
             status = "✅" if src.available else "❌"
+<<<<<<< HEAD
             logger.info(f"  {status} 数据源 {name} ({src.currency}): {'可用' if src.available else '不可用'}")
+=======
+            print(f"  {status} 数据源 {name} ({src.currency}): {'可用' if src.available else '不可用'}")
+>>>>>>> skills/main
         self._availability_checked = True
 
     def fetch(self, instrument, period="90d"):
@@ -97,7 +108,11 @@ class MultiSourceManager:
                 if df is not None and not df.empty:
                     results[src.name] = df
             except Exception as e:
+<<<<<<< HEAD
                 logger.info(f"  ⚠️ {src.name}({instrument}): {e}")
+=======
+                print(f"  ⚠️ {src.name}({instrument}): {e}")
+>>>>>>> skills/main
 
         self.cache[cache_key] = results
         return results
@@ -221,7 +236,11 @@ def create_default_manager():
             "usd_index": "DX-Y.NYB", "gold_etf": "GLD", "silver_futures": "SI=F",
         })
     except ImportError:
+<<<<<<< HEAD
         logger.info("  ⚠️ yfinance 未安装，跳过")
+=======
+        print("  ⚠️ yfinance 未安装，跳过")
+>>>>>>> skills/main
 
     # 2. akshare（国内品种，CNY）
     try:
@@ -264,7 +283,11 @@ def create_default_manager():
             "gold_domestic": "AU0", "oil_domestic": "SC0",
         })
     except ImportError:
+<<<<<<< HEAD
         logger.info("  ⚠️ akshare 未安装，跳过")
+=======
+        print("  ⚠️ akshare 未安装，跳过")
+>>>>>>> skills/main
 
     # 3. Alpha Vantage（需 API Key）
     try:
@@ -314,6 +337,7 @@ if __name__ == "__main__":
         data = mgr.fetch(inst, "30d")
         if data:
             best, src = mgr.fetch_best(inst, "30d")
+<<<<<<< HEAD
             logger.info(f"\n  {inst}: {len(data)} 个源, 最佳={src}, {len(best)} 条记录")
             validation = mgr.cross_validate(data)
             if validation["anomalies"]:
@@ -321,5 +345,14 @@ if __name__ == "__main__":
             cons = mgr.consensus(data)
             if cons:
                 logger.info(f"  共识价: {cons['price']} ({cons['sources']} 源)")
+=======
+            print(f"\n  {inst}: {len(data)} 个源, 最佳={src}, {len(best)} 条记录")
+            validation = mgr.cross_validate(data)
+            if validation["anomalies"]:
+                print(f"  ⚠️ 异常: {validation['anomalies']}")
+            cons = mgr.consensus(data)
+            if cons:
+                print(f"  共识价: {cons['price']} ({cons['sources']} 源)")
+>>>>>>> skills/main
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

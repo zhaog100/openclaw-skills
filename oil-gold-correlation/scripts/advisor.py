@@ -11,7 +11,11 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -1548,7 +1552,11 @@ def run_advisor_akshare(days=3):
             b = r["boll"]
             if isinstance(b, dict):
                 pos = b.get('position', '')
+<<<<<<< HEAD
                 logger.info(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f}"
+=======
+                print(f"  布林带: {sym}{b['lower']:.2f} / {sym}{b['middle']:.2f}"
+>>>>>>> skills/main
                       f" / {sym}{b['upper']:.2f} ({pos})")
             else:
                 lo, mid, hi = b

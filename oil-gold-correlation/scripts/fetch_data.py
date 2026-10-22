@@ -11,7 +11,11 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 
 import argparse
 import json
@@ -238,7 +242,11 @@ def fetch_data(period="1y", interval="1d"):
                     prev = d["close"][-2] if len(d["close"]) > 1 else latest
                     change = ((latest - prev) / prev) * 100 if prev else 0
                     cur = d.get('currency', 'CNY')
+<<<<<<< HEAD
                     logger.info(f"  {name.upper():>6} ({d['symbol']})"
+=======
+                    print(f"  {name.upper():>6} ({d['symbol']})"
+>>>>>>> skills/main
                           f": ¥{latest:,.2f} ({change:+.2f}%)"
                           f" | {len(d['dates'])} 条记录 [{cur}]")
             return result
@@ -260,7 +268,11 @@ def fetch_data(period="1y", interval="1d"):
                 latest = d["close"][-1]
                 prev = d["close"][-2] if len(d["close"]) > 1 else latest
                 change = ((latest - prev) / prev) * 100 if prev else 0
+<<<<<<< HEAD
                 logger.info(f"  {name.upper():>6} ({d['symbol']})"
+=======
+                print(f"  {name.upper():>6} ({d['symbol']})"
+>>>>>>> skills/main
                       f": ${latest:,2f} ({change:+.2f}%)"
                       f" | {len(d['dates'])} 条记录 [USD]")
         return result

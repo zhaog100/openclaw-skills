@@ -5,7 +5,11 @@
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
+<<<<<<< HEAD
 版本: v3.4 | 石油黄金白银相关性分析
+=======
+版本: v1.0.0
+>>>>>>> skills/main
 """
 
 # ─── FRED API ───────────────────────────────────────────────

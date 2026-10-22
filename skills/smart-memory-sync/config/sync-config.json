@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "version": "1.1.0",
   "thresholds": {
     "remind": 50,
@@ -8,6 +9,17 @@
   "intervals": {
     "check": 1800,
     "sync": 7200
+=======
+  "version": "1.0.0",
+  "thresholds": {
+    "remind": 50,
+    "auto_sync": 75,
+    "auto_switch": 85
+  },
+  "intervals": {
+    "check": 300,
+    "sync": 3600
+>>>>>>> skills/main
   },
   "paths": {
     "memory": "~/.openclaw/workspace/MEMORY.md",
@@ -22,7 +34,11 @@
       "skill": "context-manager"
     },
     "qmd": {
+<<<<<<< HEAD
       "enabled": false,
+=======
+      "enabled": true,
+>>>>>>> skills/main
       "collection": "knowledge"
     },
     "git": {
@@ -37,6 +53,7 @@
     }
   },
   "patterns": {
+<<<<<<< HEAD
     "decision": [
       "确定",
       "决定",
@@ -72,3 +89,12 @@
     ]
   }
 }
+=======
+    "decision": ["确定", "决定", "选择", "约定", "共识"],
+    "task": ["待办", "需要", "要做", "完成", "任务"],
+    "preference": ["喜欢", "习惯", "偏好", "倾向"],
+    "issue": ["问题", "错误", "失败", "bug"],
+    "milestone": ["完成", "成功", "发布", "上线", "里程碑"]
+  }
+}
+>>>>>>> skills/main

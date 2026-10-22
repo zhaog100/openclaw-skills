@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
+=======
+>>>>>>> skills/main
 # -*- coding: utf-8 -*-
 """
 商贸数据复盘脚本
@@ -135,7 +138,11 @@ def generate_data_report(xhs_data, xianyu_data):
 
 def main():
     """主函数"""
+<<<<<<< HEAD
     logger.info("=== 商贸数据复盘脚本 ===")
+=======
+    print("=== 商贸数据复盘脚本 ===")
+>>>>>>> skills/main
     
     # 模拟小红书笔记数据
     xhs_data = [
@@ -172,15 +179,24 @@ def main():
     report = generate_data_report(xhs_data, xianyu_data)
     
     # 输出报告
+<<<<<<< HEAD
     logger.info(report)
+=======
+    print(report)
+>>>>>>> skills/main
     
     # 保存到intel目录
     report_file = INTEL_DIR / f"商贸数据复盘_{datetime.now().strftime('%Y%m%d')}.md"
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(f"# 小红书商贸数据复盘\n\n{report}")
     
+<<<<<<< HEAD
     logger.info(f"报告已保存: {report_file}")
     logger.warning("⚠️ 当前为模拟数据，实际应用中需要从平台获取真实数据")
+=======
+    print(f"报告已保存: {report_file}")
+    print("⚠️ 当前为模拟数据，实际应用中需要从平台获取真实数据")
+>>>>>>> skills/main
     
     return 0
 

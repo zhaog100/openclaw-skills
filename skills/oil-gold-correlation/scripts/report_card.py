@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -5,13 +6,22 @@ logger = logging.getLogger(__name__)
 #!/usr/bin/env python3
 """
 石油黄金报告卡片模块 v3.4
+=======
+#!/usr/bin/env python3
+"""
+石油黄金报告卡片模块 v3.3
+>>>>>>> skills/main
 大间距防手机重叠
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -306,7 +316,11 @@ def draw_report(results, tech_scores, risk_score):
     from PIL import Image
     img = Image.open(png_path).convert('RGB')
     img.save(jpg_path, 'JPEG', quality=90)
+<<<<<<< HEAD
     logger.info(f'JPG: {jpg_path}')
+=======
+    print(f'JPG: {jpg_path}')
+>>>>>>> skills/main
     return jpg_path
 
 # === Data ===

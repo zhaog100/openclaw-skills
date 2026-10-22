@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+=======
+>>>>>>> skills/main
 #!/usr/bin/env python3
 """
 石油黄金可视化模块
@@ -11,7 +14,11 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
+<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
+=======
+# 版本: v3.3 | 石油黄金白银相关性分析
+>>>>>>> skills/main
 
 import argparse
 import sys
@@ -112,7 +119,11 @@ def plot_analysis(period: str = "1y", window: int = 30, output: str = None):
         output = str(output_dir / "oil-gold-correlation.html")
 
     fig.write_html(output)
+<<<<<<< HEAD
     logger.info(f"✅ 图表已保存: {output}")
+=======
+    print(f"✅ 图表已保存: {output}")
+>>>>>>> skills/main
 
     # 也输出文本摘要
     try:

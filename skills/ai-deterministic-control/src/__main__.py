@@ -31,7 +31,11 @@ def cmd_set(args):
     if not result:
         cfg = cm.get_config()
         result = {"status": "ok", "current": cfg.to_dict()}
+<<<<<<< HEAD
     logger.info(json.dumps(result, ensure_ascii=False, indent=2))
+=======
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+>>>>>>> skills/main
 
 
 def cmd_check(args):
@@ -43,7 +47,11 @@ def cmd_check(args):
         return "[mock] deterministic output for: " + prompt_text[:20]
 
     report = checker.check(prompt, mock_sampler, n_samples=args.samples)
+<<<<<<< HEAD
     logger.info(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+=======
+    print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+>>>>>>> skills/main
 
     # Record to monitor
     try:
@@ -55,29 +63,47 @@ def cmd_check(args):
 
 def cmd_report(args):
     monitor = MonitorEngine()
+<<<<<<< HEAD
     logger.info(monitor.generate_report(fmt=args.format, days=args.days))
+=======
+    print(monitor.generate_report(fmt=args.format, days=args.days))
+>>>>>>> skills/main
 
 
 def cmd_preset(args):
     cm = ConfigManager()
     if args.action == "list":
+<<<<<<< HEAD
         logger.info(json.dumps(cm.list_presets(), ensure_ascii=False, indent=2))
     elif args.action == "apply":
         result = cm.apply_preset(args.name)
         logger.info(json.dumps(result, ensure_ascii=False, indent=2))
+=======
+        print(json.dumps(cm.list_presets(), ensure_ascii=False, indent=2))
+    elif args.action == "apply":
+        result = cm.apply_preset(args.name)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+>>>>>>> skills/main
         # Signal file
         if result.get("status") == "ok":
             _write_signal(cm)
     elif args.action == "create":
+<<<<<<< HEAD
         logger.info(json.dumps({"status": "error", "message": "custom preset creation not supported yet"}, ensure_ascii=False))
     else:
         logger.info(json.dumps({"status": "error", "message": "use: list | apply <name>"}))
+=======
+        print(json.dumps({"status": "error", "message": "custom preset creation not supported yet"}, ensure_ascii=False))
+    else:
+        print(json.dumps({"status": "error", "message": "use: list | apply <name>"}))
+>>>>>>> skills/main
 
 
 def cmd_monitor(args):
     monitor = MonitorEngine()
     if args.action == "status":
         trend = monitor.analyze_trend()
+<<<<<<< HEAD
         logger.info(json.dumps(trend.to_dict(), ensure_ascii=False, indent=2))
     elif args.action == "trend":
         trend = monitor.analyze_trend(args.days)
@@ -87,6 +113,17 @@ def cmd_monitor(args):
         logger.info(json.dumps({"anomalies": anomalies, "count": len(anomalies)}, ensure_ascii=False, indent=2))
     else:
         logger.info(json.dumps({"status": "error", "message": "use: status | trend | anomalies"}))
+=======
+        print(json.dumps(trend.to_dict(), ensure_ascii=False, indent=2))
+    elif args.action == "trend":
+        trend = monitor.analyze_trend(args.days)
+        print(json.dumps(trend.to_dict(), ensure_ascii=False, indent=2))
+    elif args.action == "anomalies":
+        anomalies = [a.to_dict() for a in monitor.detect_anomalies()]
+        print(json.dumps({"anomalies": anomalies, "count": len(anomalies)}, ensure_ascii=False, indent=2))
+    else:
+        print(json.dumps({"status": "error", "message": "use: status | trend | anomalies"}))
+>>>>>>> skills/main
 
 
 def cmd_inject(args):
@@ -97,7 +134,11 @@ def cmd_inject(args):
         result = bridge.inject_model_params(args.model, config)
     else:
         result = bridge.inject_params(config, dry_run=args.dry_run)
+<<<<<<< HEAD
     logger.info(json.dumps({"status": "ok", "injected": config.to_dict()}, ensure_ascii=False, indent=2))
+=======
+    print(json.dumps({"status": "ok", "injected": config.to_dict()}, ensure_ascii=False, indent=2))
+>>>>>>> skills/main
 
 
 def cmd_reset(args):
@@ -117,9 +158,15 @@ def cmd_reset(args):
             targets = None
     try:
         result = bridge.reset_params(targets)
+<<<<<<< HEAD
         logger.info(json.dumps({"status": "ok", "message": "params reset"}, ensure_ascii=False, indent=2))
     except Exception as e:
         logger.info(json.dumps({"status": "error", "message": str(e)}, ensure_ascii=False))
+=======
+        print(json.dumps({"status": "ok", "message": "params reset"}, ensure_ascii=False, indent=2))
+    except Exception as e:
+        print(json.dumps({"status": "error", "message": str(e)}, ensure_ascii=False))
+>>>>>>> skills/main
 
 
 def _write_signal(cm):

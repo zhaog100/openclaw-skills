@@ -237,11 +237,19 @@ if __name__ == '__main__':
     import sys
     
     if len(sys.argv) < 2:
+<<<<<<< HEAD
         logger.info("用法：python quality_detector.py <文件路径>")
+=======
+        print("用法：python quality_detector.py <文件路径>")
+>>>>>>> skills/main
         sys.exit(1)
     
     detector = CodeQualityDetector()
     results = detector.detect(sys.argv[1])
     
     # 输出 JSON 格式结果
+<<<<<<< HEAD
     logger.info(json.dumps(results, indent=2, ensure_ascii=False))
+=======
+    print(json.dumps(results, indent=2, ensure_ascii=False))
+>>>>>>> skills/main

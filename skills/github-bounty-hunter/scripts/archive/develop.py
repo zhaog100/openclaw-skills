@@ -20,10 +20,17 @@ def clone_repo(repo_url, task_id):
     project_dir = WORK_DIR / f'task-{task_id}'
     
     if project_dir.exists():
+<<<<<<< HEAD
         logger.info(f"✅ 项目已存在：{project_dir}")
         return project_dir
     
     logger.info(f"📥 克隆仓库：{repo_url}")
+=======
+        print(f"✅ 项目已存在：{project_dir}")
+        return project_dir
+    
+    print(f"📥 克隆仓库：{repo_url}")
+>>>>>>> skills/main
     subprocess.run(['git', 'clone', repo_url, str(project_dir)], check=True)
     
     return project_dir
@@ -32,7 +39,11 @@ def create_branch(project_dir, task_id):
     """创建开发分支"""
     branch_name = f'bounty-task-{task_id}'
     
+<<<<<<< HEAD
     logger.info(f"🌿 创建分支：{branch_name}")
+=======
+    print(f"🌿 创建分支：{branch_name}")
+>>>>>>> skills/main
     subprocess.run(
         ['git', 'checkout', '-b', branch_name],
         cwd=project_dir,
@@ -52,38 +63,62 @@ def generate_code(task_description, project_dir):
     - 文件操作封装
     - AI 代理调用接口
     """
+<<<<<<< HEAD
     logger.info("🤖 正在分析任务需求...")
     logger.info(f"📝 任务描述：{task_description[:200]}...")
     logger.info("📋 框架就绪，等待 AI 代理执行实际代码生成...")
     logger.info("✅ 代码生成框架初始化完成")
+=======
+    print("🤖 正在分析任务需求...")
+    print(f"📝 任务描述：{task_description[:200]}...")
+    print("📋 框架就绪，等待 AI 代理执行实际代码生成...")
+    print("✅ 代码生成框架初始化完成")
+>>>>>>> skills/main
     return True
 
 def run_tests(project_dir):
     """运行测试"""
+<<<<<<< HEAD
     logger.info("🧪 运行测试...")
+=======
+    print("🧪 运行测试...")
+>>>>>>> skills/main
     
     # 检查是否有测试
     test_dirs = ['test', 'tests', 'spec', 'specs']
     has_tests = any((project_dir / d).exists() for d in test_dirs)
     
     if not has_tests:
+<<<<<<< HEAD
         logger.warning("⚠️  未找到测试目录")
+=======
+        print("⚠️  未找到测试目录")
+>>>>>>> skills/main
         return True
     
     # 尝试运行测试
     try:
         # 检查 package.json (Node.js)
         if (project_dir / 'package.json').exists():
+<<<<<<< HEAD
             logger.info("📦 Node.js 项目")
+=======
+            print("📦 Node.js 项目")
+>>>>>>> skills/main
             subprocess.run(['npm', 'test'], cwd=project_dir, check=True)
         
         # 检查 requirements.txt (Python)
         elif (project_dir / 'requirements.txt').exists():
+<<<<<<< HEAD
             logger.info("🐍 Python 项目")
+=======
+            print("🐍 Python 项目")
+>>>>>>> skills/main
             subprocess.run(['python', '-m', 'pytest'], cwd=project_dir, check=True)
         
         # 检查 go.mod (Go)
         elif (project_dir / 'go.mod').exists():
+<<<<<<< HEAD
             logger.info("🔧 Go 项目")
             subprocess.run(['go', 'test', './...'], cwd=project_dir, check=True)
         
@@ -96,11 +131,29 @@ def run_tests(project_dir):
         
     except subprocess.CalledProcessError as e:
         logger.error(f"❌ 测试失败：{e}")
+=======
+            print("🔧 Go 项目")
+            subprocess.run(['go', 'test', './...'], cwd=project_dir, check=True)
+        
+        else:
+            print("⚠️  未知项目类型，跳过测试")
+            return True
+        
+        print("✅ 测试通过")
+        return True
+        
+    except subprocess.CalledProcessError as e:
+        print(f"❌ 测试失败：{e}")
+>>>>>>> skills/main
         return False
 
 def commit_changes(project_dir, task_id, message):
     """提交更改"""
+<<<<<<< HEAD
     logger.info("💾 提交更改...")
+=======
+    print("💾 提交更改...")
+>>>>>>> skills/main
     
     # 添加所有更改
     subprocess.run(['git', 'add', '-A'], cwd=project_dir, check=True)
@@ -114,7 +167,11 @@ def commit_changes(project_dir, task_id, message):
     )
     
     if not result.stdout.strip():
+<<<<<<< HEAD
         logger.warning("⚠️  没有更改需要提交")
+=======
+        print("⚠️  没有更改需要提交")
+>>>>>>> skills/main
         return False
     
     # 提交
@@ -125,12 +182,20 @@ def commit_changes(project_dir, task_id, message):
         check=True
     )
     
+<<<<<<< HEAD
     logger.info("✅ 提交完成")
+=======
+    print("✅ 提交完成")
+>>>>>>> skills/main
     return True
 
 def create_pr(project_dir, task_id, title, description):
     """创建 Pull Request"""
+<<<<<<< HEAD
     logger.info("🚀 创建 Pull Request...")
+=======
+    print("🚀 创建 Pull Request...")
+>>>>>>> skills/main
     
     # 使用 gh CLI 创建 PR
     try:
@@ -143,11 +208,19 @@ def create_pr(project_dir, task_id, title, description):
         
         subprocess.run(cmd, cwd=project_dir, check=True)
         
+<<<<<<< HEAD
         logger.info("✅ PR 创建成功")
         return True
         
     except subprocess.CalledProcessError as e:
         logger.error(f"❌ PR 创建失败：{e}")
+=======
+        print("✅ PR 创建成功")
+        return True
+        
+    except subprocess.CalledProcessError as e:
+        print(f"❌ PR 创建失败：{e}")
+>>>>>>> skills/main
         return False
 
 def develop_task(task):
@@ -157,10 +230,17 @@ def develop_task(task):
     title = task.get('title')
     description = task.get('body', '')
     
+<<<<<<< HEAD
     logger.info("="*80)
     logger.info(f"🦞 开发任务 #{task_id}: {title}")
     logger.info("="*80)
     logger.info()
+=======
+    print("="*80)
+    print(f"🦞 开发任务 #{task_id}: {title}")
+    print("="*80)
+    print()
+>>>>>>> skills/main
     
     # 1. 克隆仓库
     project_dir = clone_repo(repo_url, task_id)
@@ -173,14 +253,22 @@ def develop_task(task):
     
     # 4. 运行测试
     if not run_tests(project_dir):
+<<<<<<< HEAD
         logger.error("⚠️  测试失败，需要手动修复")
+=======
+        print("⚠️  测试失败，需要手动修复")
+>>>>>>> skills/main
     
     # 5. 提交更改
     commit_message = f"实现任务 #{task_id}: {title}"
     commit_changes(project_dir, task_id, commit_message)
     
     # 6. 推送分支
+<<<<<<< HEAD
     logger.info("📤 推送分支...")
+=======
+    print("📤 推送分支...")
+>>>>>>> skills/main
     subprocess.run(
         ['git', 'push', '-u', 'origin', branch],
         cwd=project_dir,
@@ -205,6 +293,7 @@ This PR addresses bounty task #{task_id}.
 """
     create_pr(project_dir, task_id, pr_title, pr_description)
     
+<<<<<<< HEAD
     logger.info()
     logger.info("="*80)
     logger.info("✅ 任务开发完成！")
@@ -221,6 +310,24 @@ def main():
     logger.warning("⚠️  请先运行监控脚本：python scripts/monitor.py")
     logger.info("然后选择要开发的任务 ID")
     logger.info()
+=======
+    print()
+    print("="*80)
+    print("✅ 任务开发完成！")
+    print("="*80)
+
+def main():
+    """主函数"""
+    print("="*80)
+    print("🦞 GitHub Bounty Hunter - 开发任务")
+    print("="*80)
+    print()
+    
+    # TODO: 从监控结果中选择任务
+    print("⚠️  请先运行监控脚本：python scripts/monitor.py")
+    print("然后选择要开发的任务 ID")
+    print()
+>>>>>>> skills/main
     
     # 示例任务
     sample_task = {

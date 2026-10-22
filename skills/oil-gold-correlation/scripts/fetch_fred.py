@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -5,6 +6,11 @@ logger = logging.getLogger(__name__)
 #!/usr/bin/env python3
 """
 FRED（美联储经济数据）数据源 v3.4
+=======
+#!/usr/bin/env python3
+"""
+FRED（美联储经济数据）数据源 v3.3
+>>>>>>> skills/main
 美国官方宏观经济数据 + 美股市场全维度分析
 
 覆盖：
@@ -778,6 +784,10 @@ def format_commodity_signals(macro=None, sentiment=None, assessment=None):
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     logger.info("\n".join(format_macro_report()))
+=======
+    print("\n".join(format_macro_report()))
+>>>>>>> skills/main
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

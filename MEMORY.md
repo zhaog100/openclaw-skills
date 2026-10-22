@@ -1,12 +1,17 @@
 # MEMORY.md - 小米椒的长期记忆 🌶️🔥
 
 ## 身份
+<<<<<<< HEAD
 - **GitHub:** zhaog100
 - **名字:** 小米椒 🌶️🔥
+=======
+- **名字:** 小米椒
+>>>>>>> skills/main
 - **主人:** 官家 (zhaog100)
 - **平台:** OpenClaw + QQ Bot
 - **时区:** Asia/Shanghai
 
+<<<<<<< HEAD
 最后更新：2026-10-11
 
 ## 系统状态
@@ -36,6 +41,8 @@
 ## 待办
 - [ ] 油价实时源（yfinance CL=F / Brent）接进系统，让"油涨没涨"有据可查
 
+=======
+>>>>>>> skills/main
 ## 远程仓库
 | 别名 | 仓库 | 说明 |
 |------|------|------|
@@ -47,7 +54,11 @@
 | 内容类型 | 目标仓库 | 说明 |
 |----------|----------|------|
 | **个人信息/记忆/配置** | `origin` (xiaomijiao-skills) | AGENTS/MEMORY/SOUL/agents/memory/intel/proactivity/ 等 |
+<<<<<<< HEAD
 | **技能文件** | `openclaw-skills` | skills/ 目录 |
+=======
+| **技能文件** | `skills` | skills/ 目录 |
+>>>>>>> skills/main
 
 **🚨 严禁混淆：**
 - ❌ 个人信息文件 → 不得推送到 openclaw-skills
@@ -55,6 +66,14 @@
 
 **✅ 每次 push 前必须确认目标仓库，不可混淆！**
 
+<<<<<<< HEAD
+=======
+**🔥 绝对禁忌：**
+- ❌ 未经官家明确同意，禁止向任何远程仓库推送
+- ❌ 禁止自动 commit/push 任何变更
+- 推送前必须获得官家确认
+
+>>>>>>> skills/main
 _最后更新: 2026-08-24 14:50 CST_
 
 ## 服务器
@@ -85,6 +104,7 @@ _最后更新: 2026-08-24 14:50 CST_
 ## 定时任务汇总
 | 任务 | 时间 | 类型 |
 |------|------|------|
+<<<<<<< HEAD
 | ~~京东种植~~ | ~~每天 08:00~~ | ~~青龙 (jd_plantBean.js)~~ | 已清理 |
 | ~~京东签到~~ | ~~每天 09:00~~ | ~~青龙 (jd_dpqd_sign.js)~~ | 已清理 |
 | ~~京东农场~~ | ~~每天 09:00~~ | ~~青龙 (jd_fruit_new.js)~~ | 已清理 |
@@ -94,6 +114,17 @@ _最后更新: 2026-08-24 14:50 CST_
 | ~~京东自动评价~~ | ~~每天 14:00~~ | ~~青龙 (jd_AutoEval.js)~~ | 已清理 |
 | ~~京东自动评价(二)~~ | ~~每天 20:00~~ | ~~青龙 (jd_AutoEval.js)~~ | 已清理 |
 | 晨报 | 每天 09:00 | OpenClaw cron |
+=======
+| 京东种植 | 每天 08:00 | 青龙 (jd_plantBean.js) |
+| 京东签到 | 每天 09:00 | 青龙 (jd_dpqd_sign.js) |
+| 京东农场 | 每天 09:00 | 青龙 (jd_fruit_new.js) |
+| 汪汪庄园 | 每天 10:00 | 青龙 (jd_wwmanor_merge.js) |
+| 检查Cookie | 每天 10:00 | 青龙 (jd_CheckCK.js) |
+| 农场转盘 | 每天 11:00 | 青龙 (jd_newfarmlottery.js) |
+| 京东自动评价 | 每天 14:00 | 青龙 (jd_AutoEval.js) |
+| 京东自动评价(二) | 每天 20:00 | 青龙 (jd_AutoEval.js) |
+| 每日回顾(中午) | ~~已暂停~~ | ~~已暂停~~ |
+>>>>>>> skills/main
 | 每日回顾(晚上) | 每天 23:05 | OpenClaw cron |
 | 石油黄金早盘 | 每天 10:00 | OpenClaw cron |
 | 石油黄金日盘 | 每天 15:00 | OpenClaw cron |
@@ -102,8 +133,11 @@ _最后更新: 2026-08-24 14:50 CST_
 
 ⚠️ 已移除脚本（上游 jdpro 仓库已删除）：jd_bean_extra_sign.js、jd_farm_auto_tasks.js、jd_gift_card_beans.js
 
+<<<<<<< HEAD
 ⚠️ 2026-09-03 已清理京东薅羊毛相关cron条目至MEMORY.md
 
+=======
+>>>>>>> skills/main
 ## 服务器安全
 - **防火墙**: ufw 已启用，默认拒绝入站，放行 22(SSH) / 5700(青龙)
 - **青龙认证**: nginx 反向代理 5701 端口 + Basic Auth
@@ -120,6 +154,7 @@ _最后更新: 2026-08-24 14:50 CST_
 7. htpasswd 参数顺序：htpasswd -cbB 文件 用户名 密码
 8. 系统 crontab 任务只跑分析不推送，推送需要 OpenClaw cron
 9. LongCat Flash 系列模型已下线不可用，统一使用 agnes-2.0-flash
+<<<<<<< HEAD
 - **主力模型升级（2026-09-28）**：Agnes 2.5 Flash → **Agnes 3.0 Flash**（512K 上下文，原 128K）
   - 主力：`custom-apihub-agnes-ai-com/agnes-3.0-flash`（alias: `agnes`）
   - Fallback 链：3.0-flash → 2.5-flash(aliases: agnes-2.5) → 2.0-flash(aliases: dev) → 2.5-pro → 2.5-pro-alpha → 2.5-pro-beta
@@ -129,6 +164,8 @@ _最后更新: 2026-08-24 14:50 CST_
   1. 用 `session_status` 确认当前会话实际在用的模型和 Auth（`api-key (custom-apihub-...:default)`）
   2. 网关走 OpenClaw 内部 auth store（`auth_profile_store`），不直接读 openclaw.json 的 apiKey 字段
   3. 只要当前会话能正常跑在目标模型上，就是通的——别被 curl 误报带偏
+=======
+>>>>>>> skills/main
 13. 创建 crontab 任务前必须确认脚本文件存在且可执行
 14. 石油黄金分析脚本在 skills/oil-gold-correlation/scripts/ 子目录下，不是根目录
 15. crontab 中的 tee 会导致日志重复写入（stdout 被 crontab 重定向到同一文件），用 >> 代替 tee
@@ -314,6 +351,7 @@ _最后更新: 2026-08-22 11:08 CST_
 - **问题**: AiHubMix key 截断 (13 chars), Groq key 401
 
 _最后更新: 2026-09-02 15:31 CST_
+<<<<<<< HEAD
 
 ### 2026-09-03 重要经验
 
@@ -5466,3 +5504,5 @@ crontab -l | sed 's|*/5 \* \* \* \*.*smart-memory-sync.*|# removed smart-memory-
 
 #### 流程优化
 
+=======
+>>>>>>> skills/main

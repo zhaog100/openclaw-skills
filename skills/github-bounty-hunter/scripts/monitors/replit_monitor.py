@@ -39,12 +39,17 @@ class ReplitMonitor:
         url = f'https://api.github.com/search/issues?q={self.github_query}&sort=updated&order=desc&per_page=10'
         
         try:
+<<<<<<< HEAD
             logger.info('📡 通过 GitHub 搜索 Replit 任务...')
+=======
+            print('📡 通过 GitHub 搜索 Replit 任务...')
+>>>>>>> skills/main
             response = requests.get(url, headers=headers, timeout=30)
             
             if response.status_code == 200:
                 data = response.json()
                 issues = data.get('items', [])
+<<<<<<< HEAD
                 logger.info(f'✅ 找到 {len(issues)} 个 Replit 相关任务')
                 return issues
             else:
@@ -53,10 +58,21 @@ class ReplitMonitor:
                 
         except Exception as e:
             logger.error(f'❌ 搜索失败：{e}')
+=======
+                print(f'✅ 找到 {len(issues)} 个 Replit 相关任务')
+                return issues
+            else:
+                print(f'⚠️ API 返回状态码：{response.status_code}')
+                return []
+                
+        except Exception as e:
+            print(f'❌ 搜索失败：{e}')
+>>>>>>> skills/main
             return []
     
     def notify(self, issue):
         """通知新任务"""
+<<<<<<< HEAD
         logger.info("=" * 60)
         logger.info(f"🎯 Replit 新任务！")
         logger.info(f"标题：{issue.get('title', 'Unknown')[:60]}")
@@ -65,6 +81,16 @@ class ReplitMonitor:
             logger.info(f"仓库：{'/'.join(repo_url.split('/')[-2:])}")
         logger.info(f"链接：{issue.get('html_url', '')}")
         logger.info(f"更新：{issue.get('updated_at', '')[:10]}")
+=======
+        print("=" * 60)
+        print(f"🎯 Replit 新任务！")
+        print(f"标题：{issue.get('title', 'Unknown')[:60]}")
+        repo_url = issue.get('repository_url', '')
+        if repo_url:
+            print(f"仓库：{'/'.join(repo_url.split('/')[-2:])}")
+        print(f"链接：{issue.get('html_url', '')}")
+        print(f"更新：{issue.get('updated_at', '')[:10]}")
+>>>>>>> skills/main
         
         # 尝试提取奖金
         body = issue.get('body', '')
@@ -72,11 +98,19 @@ class ReplitMonitor:
         money_match = re.search(r'[\$](\d+(,\d{3})*(\.\d+)?)', body)
         if money_match:
             amount = money_match.group(1)
+<<<<<<< HEAD
             logger.info(f"奖金：${amount}")
         else:
             logger.info("奖金：面议")
         
         logger.info("=" * 60)
+=======
+            print(f"奖金：${amount}")
+        else:
+            print("奖金：面议")
+        
+        print("=" * 60)
+>>>>>>> skills/main
         
         # 保存通知
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -105,6 +139,7 @@ class ReplitMonitor:
         with open(notify_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
+<<<<<<< HEAD
         logger.info(f"✅ 通知已保存：{notify_file}")
     
     def run(self):
@@ -117,10 +152,25 @@ class ReplitMonitor:
         token = os.getenv('GITHUB_TOKEN', '')
         if not token:
             logger.error("❌ GITHUB_TOKEN 未配置")
+=======
+        print(f"✅ 通知已保存：{notify_file}")
+    
+    def run(self):
+        """运行监控"""
+        print("🦞 Replit Monitor 启动！")
+        print("📍 监控平台：Replit Bounties")
+        print("💰 快速现金流（$50-$500/任务）")
+        print("=" * 60)
+        
+        token = os.getenv('GITHUB_TOKEN', '')
+        if not token:
+            print("❌ GITHUB_TOKEN 未配置")
+>>>>>>> skills/main
             return
         
         # GitHub 搜索
         issues = self.search_github(token)
+<<<<<<< HEAD
         logger.info()
         
         if issues:
@@ -136,6 +186,23 @@ class ReplitMonitor:
             logger.info('1. 访问官网：https://replit.com/bounties')
             logger.info('2. 快速现金流，适合练手')
             logger.info('3. 奖金范围：$50-$500')
+=======
+        print()
+        
+        if issues:
+            print('=== 最新任务（前 5 个）===')
+            print()
+            for issue in issues[:5]:
+                self.notify(issue)
+                print()
+        else:
+            print('⚠️  暂无 Replit 任务')
+            print()
+            print('💡 建议：')
+            print('1. 访问官网：https://replit.com/bounties')
+            print('2. 快速现金流，适合练手')
+            print('3. 奖金范围：$50-$500')
+>>>>>>> skills/main
 
 if __name__ == "__main__":
     monitor = ReplitMonitor()

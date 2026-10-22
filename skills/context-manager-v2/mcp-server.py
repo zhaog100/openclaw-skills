@@ -17,7 +17,11 @@ try:
     HAS_MCP = True
 except ImportError:
     HAS_MCP = False
+<<<<<<< HEAD
     logger.warning("MCP 库未安装，使用兼容模式")
+=======
+    print("⚠️  MCP 库未安装，使用兼容模式")
+>>>>>>> skills/main
     # 简单的 MCP 兼容层
     class Server:
         def __init__(self, name: str):
@@ -182,7 +186,11 @@ async def get_status() -> Dict[str, Any]:
     """获取Context Manager状态"""
     return {
         "framework": "openclaw",
+<<<<<<< HEAD
         "version": "2.9.0",
+=======
+        "version": "2.7.0",
+>>>>>>> skills/main
         "threshold": 70,
         "cooldown": 3600,
         "mcp_enabled": True

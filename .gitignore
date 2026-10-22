@@ -44,6 +44,7 @@ secrets/
 self-improving/
 reports/
 projects/萤火燃天/
+<<<<<<< HEAD
 __pycache__/
 *.pyc
 *.pyo
@@ -54,3 +55,5 @@ venv/
 /cache/
 /data/
 .trash-backup-*/
+=======
+>>>>>>> skills/main
