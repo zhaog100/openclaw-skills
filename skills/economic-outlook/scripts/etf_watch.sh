@@ -48,6 +48,9 @@ off1 = dyn.get("band1_offset", 5)
 off2 = dyn.get("band2_offset", 5)
 buy1 = lo1 - off1
 buy2 = lo2 - off2
+# 买点重合/倒挂保护: 第2档必须严格低于第1档，否则往下挪 5
+if buy2 >= buy1:
+    buy2 = buy1 - 5
 # 建议价（银行口径）= 沪金现货价 + 银行加价
 buy1_bank = buy1 + bank_premium
 buy2_bank = buy2 + bank_premium
@@ -81,6 +84,13 @@ elif cur <= buy1:
     msgs.append(f"🟢 沪金现货 ¥{cur:.0f}/克，跌到第一买点\n  沪金现货 ¥{buy1:.0f} → 建议买入价 ¥{buy1_bank:.0f}（含银行加价{bank_premium}）\n  → {buy_action}")
 elif cur >= no_chase:
     msgs.append(f"⚠️ 沪金现货 ¥{cur:.0f}/克，到 20日高(¥{no_chase:.0f})，高位别追、别新建波段仓")
+
+# WATCH_QUIET=1: 盘中高频轮询模式——未触发静默不推(不刷屏)，只有突破买卖点才推
+# 默认(未设): 每日 3 次模式——未触发也推摘要
+WATCH_QUIET = os.environ.get("WATCH_QUIET", "") == "1"
+if not msgs and WATCH_QUIET:
+    print(f"QUIET-OK（{now}）沪金现货 ¥{cur:.0f}/克 区间内未触发（盘中轮询静默）")
+    sys.exit(0)
 
 # ---- 每日必推盯价摘要（官家 2026-10-16 定：没触发也推当日摘要，触发则推操作指令）----
 if not msgs:

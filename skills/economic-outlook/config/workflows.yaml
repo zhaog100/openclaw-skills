@@ -38,3 +38,11 @@ workflows:
     nodes:
       - {skill: oil_gold}
     output: oil_gold
+
+  gold_watch:
+    description: "黄金实时盯价: 拉价算买卖点(signal)→判到价生成申购/赎回操作(outcome)→门面推送"
+    timeout_seconds: 60
+    nodes:
+      - {skill: gold_watch_signal}
+      - {skill: gold_watch_outcome, depends_on: [gold_watch_signal]}
+    output: gold_watch_outcome

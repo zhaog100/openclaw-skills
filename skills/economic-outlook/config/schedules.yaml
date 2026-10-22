@@ -45,3 +45,22 @@ employment_monthly:
   day: 1
   time: "09:00"
   note: 就业专项（招聘指数+出口品类+就业出口），每月1日1次
+
+# ============ 黄金盯价(官家 10-22 定: 按门面统一架构, 信号+出口 2 技能, 频率走调度器) ============
+# 官家实盘: 中行积存金 成本903/点差16.6/回本线919.6, 动态买卖点
+# 三层都调同一个 gold_watch workflow, 只 cron 频率不同:
+gold_watch_minute:
+  workflow: gold_watch
+  cron: "1min"
+  time: "盘中每分钟(交易日 9:30-14:45)"
+  note: 官家10-22③ 分钟级实时预警, 破关键档才推(技能内静默逻辑)
+gold_watch_15min:
+  workflow: gold_watch
+  cron: "15min"
+  time: "盘中每15分钟(交易日 9:30-14:45)"
+  note: 官家10-22② 15min轮询兜底
+gold_watch_daily:
+  workflow: gold_watch
+  cron: daily
+  time: "10:30,12:30,14:30"
+  note: 每日盯价摘要(保留官家10-16定的每日必推)

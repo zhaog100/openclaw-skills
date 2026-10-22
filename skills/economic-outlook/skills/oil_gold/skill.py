@@ -108,9 +108,11 @@ class OilGoldSkill(BaseSkill):
             out["push"]["sent"] = False
             out["push"]["note"] = "无 open_id 目标或报告未生成，跳过推送（不硬编码）"
 
-        # 5. 区间盯价提醒（context 传 gold_watch 才触发，避免每次跑都推）
+        # 5. [退役 官家10-22] 旧 _gold_price_alert(读 support/resistance 固定档) 由
+        #    gold_watch_signal + gold_watch_outcome 两个 BaseSkill 取代(动态买卖点/回本线/点差, 走门面)
+        #    保留本调用作降级兜底: 仅当显式传旧 gold_watch 且无新技能时才走
         watch = context.get("gold_watch")
-        if watch and target:
+        if watch and target and not self._new_gold_watch_available():
             out["price_alert"] = _gold_price_alert(watch, out)
         return out
 
