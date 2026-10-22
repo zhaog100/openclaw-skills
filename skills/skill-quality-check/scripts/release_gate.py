@@ -226,10 +226,14 @@ def main():
         if soft:
             for k, v in soft.items():
                 print(f"【仅告警·{k}】{len(v)} 处（不挡 push）:")
-                for item in v[:5]:
-                    print(f"   - {item}")
-                if len(v) > 5:
-                    print(f"   ... 共 {len(v)} 处")
+                items = list(v.items()) if isinstance(v, dict) else list(v)
+                for item in items[:5]:
+                    if isinstance(item, tuple):
+                        print(f"   - {item[0]}: {item[1]}")
+                    else:
+                        print(f"   - {item}")
+                if len(items) > 5:
+                    print(f"   ... 共 {len(items)} 处")
     hit_skills = [os.path.basename(b.rstrip("/")) for b in targets
                   if run(b)[2] > 0]
     print(f"\n结论: {'✅ 通过，可发布' if all_clean else '❌ 硬问题需修复（脱敏/硬编码/版权），print/版本/命名仅告警'}"
