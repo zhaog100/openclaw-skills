@@ -1,4 +1,5 @@
 #!/bin/bash
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 # Gmail付款监控定时任务脚本
 LOG_FILE="$HOME/.openclaw/workspace/logs/gmail_payment_check.log"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始检查Gmail付款..." >> "$LOG_FILE"

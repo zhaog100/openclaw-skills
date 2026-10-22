@@ -4,7 +4,7 @@
 # 用法: bash scripts/git_push.sh [skills|origin|双推]
 # 从 .env 读 GITHUB_TOKEN（Python 逐行字符串读，不经 shell 截取 → 不再截断末尾字符）
 set -u
-cd /home/ubuntu/.openclaw/workspace
+cd "$HOME/.openclaw/workspace"
 TARGETS="${1:-skills origin}"
 
 python3 - "$TARGETS" <<'PYEOF'

@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
 批量修复爬取技能print残留问题
 将print()替换为logger.info()，并添加logging导入
 """
+import os
 import re
 from pathlib import Path
 
 # 需要修复的文件
 FILES = [
-    "/home/ubuntu/.openclaw/workspace/skills/multi-article-scraper/scripts/wechat_scraper.py",
-    "/home/ubuntu/.openclaw/workspace/skills/multi-article-scraper/scripts/multi_scraper.py",
-    "/home/ubuntu/.openclaw/workspace/skills/wool-gathering/scripts/jd_price_crawler.py",
-    "/home/ubuntu/.openclaw/workspace/skills/wool-gathering/scripts/spider_unified.py",
+    "$HOME/.openclaw/workspace/skills/multi-article-scraper/scripts/wechat_scraper.py",
+    "$HOME/.openclaw/workspace/skills/multi-article-scraper/scripts/multi_scraper.py",
+    "$HOME/.openclaw/workspace/skills/wool-gathering/scripts/jd_price_crawler.py",
+    "$HOME/.openclaw/workspace/skills/wool-gathering/scripts/spider_unified.py",
 ]
 
 def fix_file(filepath):

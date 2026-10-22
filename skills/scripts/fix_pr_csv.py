@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """修复PR清单CSV的付款字段"""
 
 import csv
 import os
 
-CSV_PATH = "/home/ubuntu/.openclaw/workspace/PR清单_全量.csv"
+CSV_PATH = os.path.join(os.path.expanduser("~/.openclaw/workspace"), "PR清单_全量.csv")
 WALLET = "RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d"
 
 # 读取CSV
