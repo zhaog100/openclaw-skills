@@ -5506,3 +5506,17 @@ crontab -l | sed 's|*/5 \* \* \* \*.*smart-memory-sync.*|# removed smart-memory-
 
 =======
 >>>>>>> skills/main
+
+## Promoted From Short-Term Memory (2026-10-23)
+
+<!-- openclaw-memory-promotion:memory:claim:0ecce15d0040 -->
+- 待收款项目: **工作时长**: 小时 [score=0.826 signals=5 recalls=0 avg=0.620 source=memory/2026-10-09.md:36-36] <!-- trigger: 收款, 项目, 工作 --> <!-- importance: 8 -->
+
+## 黄金盯价·总原则（官家 10-23 定，详见 MEMORY-GOLD.md）
+- P1 基准价=实盘成交价优先：au0 国内沪金(akshare) 主源 + 中行 boc_spot 校准锚 + XAUUSD 折算兜底（国际金折合约虚高 50 元，禁作基准）
+- P2 全自动零手动：官家不截图不报价；拉不到静默占位，绝不让官家喂价
+- P3 均线恒动态：买卖点滚 20/60 日真实高低点+offset，永不写死（旧静态档会过期）
+- P4 源地图+降级链：au0→boc_spot→XAUUSD，任一挂自动降级不整瘫；银行积存金价无公开 API
+- P5 走门面统一架构：gold_watch_signal+gold_watch_outcome 两微技能+workflow DAG+调度器，改在 skill 层不打 cron 补丁
+- 锁定参数：cost 903 / spread 16.6 / breakeven 919.6；国泰 A 000218(打底) + C 004253(波段)
+- 口径铁律：盯价跟行情锚(au0)算破档，银行成交价=锚+点差，各行(民生/浙商/广发/中行)都跟 au0 走
