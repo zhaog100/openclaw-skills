@@ -15,12 +15,25 @@
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
-import os, json, urllib.request
+import os, json, urllib.request, statistics
 from skills.base import BaseSkill
 
 FX = 7.10            # USD/CNY 粗估(国际金→沪金口径换算)
 G_PER_OZ = 31.1035   # 克/盎司
-REST_XAU = "https://api.gold-api.com/price/XAU"   # 免费 REST 兜底源
+REST_XAU = "https://api.gold-api.com/price/XAU"   # 免费 REST 兜底源(国际金, 仅作参考)
+
+
+def _fetch_au0(n_days=120):
+    """拉国内沪金 AU0 主连日线(akshare, 各银行积存金的行情锚, 贴实盘)。
+    返回 (close, high, low) 最近 n_days 日列表, 失败返回 None。"""
+    try:
+        import akshare as ak
+        r = ak.futures_main_sina("AU0")
+        r.columns = [c.lower() for c in r.columns]
+        r = r.sort_values("日期").tail(n_days)
+        return (r["收盘价"].tolist(), r["最高价"].tolist(), r["最低价"].tolist())
+    except Exception:
+        return None
 
 
 class GoldWatchSignalSkill(BaseSkill):
@@ -60,24 +73,57 @@ class GoldWatchSignalSkill(BaseSkill):
         spread = cfg.get("spread", 16.6)
         breakeven = cfg.get("breakeven", round(cost + spread, 1))
 
-        xau, src = self._fetch_xau()
-        out = {"success": True, "source": src or "unavailable",
-               "xauusd": xau, "cost_basis": cost, "spread": spread,
-               "breakeven": breakeven}
-
-        if xau is None:
-            out["success"] = False
-            out["error"] = "XAUUSD 拉取失败(REST/WS 均不可用), 本轮不用过期价"
-            return out
-
-        # 国际金→沪金基准价(元/克)
-        out["sh_equiv"] = round(xau * FX / G_PER_OZ, 2)
-
-        # 动态买卖点(读 config 的 dynamic 算法; 无则用当前固定档兜底)
+        xau, xau_src = self._fetch_xau()
+        au0 = _fetch_au0()
         dyn = cfg.get("dynamic", {})
-        targets = dyn.get("targets", ["mid20", "hi20", "hi60"])
-        # 动态档依赖行情高低点, 信号层只透传"用哪几档", 实际价位由 context 或 outcome 层算
-        out["targets"] = targets
+        out = {"cost_basis": cost, "spread": spread, "breakeven": breakeven, "xauusd": xau}
+
+        # 价格源优先级(官家 10-23 三连质疑后定): ① 国内沪金 AU0(自动、贴实盘、各行行情锚)
+        #              ② 中行实盘价 boc_spot(校准锚, 官家截图喂) ③ 国际 XAUUSD 折算(仅兜底)
+        off1 = dyn.get("band1_offset", 5)
+        off2 = dyn.get("band2_offset", 5)
+        lb1 = int(dyn.get("lookback_1", 20))
+        lb2 = int(dyn.get("lookback_2", 60))
+        use_au0 = bool(au0 and len(au0[0]) >= lb2)
+        if use_au0:
+            close, high, low = au0
+            c_last = close[-1]
+            hi1, lo1 = max(high[-lb1:]), min(low[-lb1:])
+            hi2, lo2 = max(high[-lb2:]), min(low[-lb2:])
+            mid1 = statistics.median(close[-lb1:])
+            out.update({
+                "success": True, "source": "au0", "price_basis": "国内沪金AU0(自动,各银行积存金行情锚)",
+                "sh_equiv": round(c_last, 2), "au0_last": round(c_last, 2),
+                "dyn_buy1": round(lo1 - off1, 2),   # 买点一档 = 近lb1日最低-偏移
+                "dyn_buy2": round(lo2 - off2, 2),   # 买点二档 = 近lb2日最低-偏移
+                "dyn_sell1": round(hi1, 2),         # 卖点一档 = 近lb1日最高
+                "dyn_sell2": round(hi2, 2),         # 卖点二档 = 近lb2日最高
+                "dyn_hi1": round(hi1, 2), "dyn_lo1": round(lo1, 2),
+                "dyn_hi2": round(hi2, 2), "dyn_lo2": round(lo2, 2),
+                "dyn_mid1": round(mid1, 2),
+                "au0_date": "".join([str(x)[:10] for x in [None] if False]) or close and "",
+            })
+            out.pop("au0_date", None)
+        else:
+            # AU0 拉不到 → 退回实盘价/国际金折算, 动态均线退化为 config 固定档
+            boc = cfg.get("boc_spot") or {}
+            if boc.get("buy"):
+                out.update({"success": True, "source": "boc_spot", "price_basis": "中行实盘客户买入价(AU0不可用)",
+                            "sh_equiv": float(boc["buy"]), "boc_buy": boc["buy"], "boc_ts": boc.get("ts", "")})
+            elif xau is not None:
+                out.update({"success": True, "source": xau_src or "rest", "price_basis": "XAUUSD折算(AU0/实盘均不可用,近似)",
+                            "sh_equiv": round(xau * FX / G_PER_OZ, 2)})
+            else:
+                out.update({"success": False, "source": "unavailable", "price_basis": "无可用源",
+                            "error": "AU0/实盘价/国际金 均不可用, 本轮不用过期价"})
+                return out
+            # 退级: 动态档算不出, 用 config 里现有固定档(若没有则无动态档, 仅提示)
+            out.setdefault("dyn_buy1", cfg.get("buy1"))
+            out.setdefault("dyn_buy2", cfg.get("buy2"))
+            out.setdefault("dyn_sell1", cfg.get("sell1"))
+            out.setdefault("dyn_sell2", cfg.get("sell2"))
+
+        out["targets"] = dyn.get("targets", ["hi20", "hi60"])
         out["min_target"] = cfg.get("breakeven", breakeven)  # 卖点须 ≥ 回本线
         out["bank_premium"] = cfg.get("bank_premium", 21)
         return out

@@ -50,14 +50,26 @@ class GoldWatchOutcomeSkill(BaseSkill):
         xau = sig.get("xauusd")
         if not xau:
             return {"triggered": False, "reason": "无实时金价, 静默", "xauusd": None}
-        sh = sig.get("sh_equiv", round(xau * FX / G_PER_OZ, 2))
+        # 基准价对齐 signal 层: 有实盘价(中行客户买入价)就用它, 否则退回 sh_equiv(XAUUSD 折算)
+        sh = sig.get("boc_buy") or sig.get("sh_equiv", round(xau * FX / G_PER_OZ, 2))
+        price_basis = sig.get("price_basis", "boc_spot" if sig.get("boc_buy") else "xau_conv")
 
         # 动态买卖点(读 signal 透传的 target 结构 + 当前行情高低点)
         # 简化: 用当前 sh 附近的固定档位(903 成本/919.6 回本线对应), 精确动态值由 signal 算
-        buy1 = cfg.get("buy1", 882)
-        buy2 = cfg.get("buy2", 877)
-        sell1 = cfg.get("sell1", 951)
-        sell2 = cfg.get("sell2", 1007)
+        # 动态均线档: 优先用 signal 层算出的动态档(dyn_buy1/2/dyn_sell1/2, 滚 20/60 日高低点)
+        #            signal 拉不到 au0 才退回 config 固定档兜底
+        buy1 = sig.get("dyn_buy1") or cfg.get("buy1", 882)
+        buy2 = sig.get("dyn_buy2") or cfg.get("buy2", 877)
+        sell1 = sig.get("dyn_sell1") or cfg.get("sell1", 951)
+        sell2 = sig.get("dyn_sell2") or cfg.get("sell2", 1007)
+        tier_mode = "dynamic" if sig.get("dyn_buy1") else "fixed"
+        if sig.get("sh_equiv"):
+            sh = sig["sh_equiv"]
+        else:
+            sh = sig.get("boc_buy") or sig.get("au0_last") or (xau * FX / G_PER_OZ if xau else None)
+            tier_mode = "fixed"
+        if sh is None:
+            return {"triggered": False, "reason": "无可用金价(signal 未出基准价), 静默", "xauusd": xau}
 
         msgs, triggered = [], False
         if sh <= buy2:
@@ -70,7 +82,9 @@ class GoldWatchOutcomeSkill(BaseSkill):
             msgs.append(f"⚡️ 沪金≈¥{sh:.0f}/克, 到卖点{sell1} → 赎回 {fund.get('C','国泰C')} 减1/3"); triggered = True
 
         out = {"triggered": triggered, "sh_equiv": sh, "cost_basis": cost,
-               "breakeven": breakeven, "spread": spread}
+               "breakeven": breakeven, "spread": spread, "tier_mode": tier_mode,
+               "dyn": {"buy1": buy1, "buy2": buy2, "sell1": sell1, "sell2": sell2},
+               "source": sig.get("source"), "price_basis": sig.get("price_basis")}
         if not triggered:
             out["reason"] = f"沪金 {sh:.0f} 区间内未触发(成本{cost}/回本线{breakeven}), 静默"
             return out
