@@ -76,6 +76,25 @@ def _fetch_realtime_spot() -> dict:
         return {}
 
 
+def _fetch_realtime_multisource() -> dict:
+    """多源降级链(官家10-24: 源要多, 全挂才降级): PAXG Binance(稳主) → gold-api → jijinhao。
+    全挂返回 {}(调用方退 au0 日线 + 标'盘中滞后'), 绝不拿旧缓存冒充实时。
+    复用 shared/realtime_price_chain 模块; 拿不到该模块则退回单源 _fetch_realtime_spot。"""
+    try:
+        import os, json as _json, sys
+        _shared = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "shared")
+        if _shared not in sys.path:
+            sys.path.insert(0, _shared)
+        from realtime_price_chain import get_realtime_gold
+        r = get_realtime_gold()
+        if r.get("ok") and r.get("usd"):
+            return {"spot_usd": r["usd"], "ts": r.get("ts", ""), "src": r.get("src", "multisource")}
+    except Exception:
+        pass
+    # 兜底单源
+    return _fetch_realtime_spot()
+
+
 class GoldWatchSignalSkill(BaseSkill):
     name = "gold_watch_signal"
     description = "黄金实时盯价信号: 拉 XAUUSD/沪金价→折算沪金基准价+动态买卖点+回本线(纯计算不推送)"
@@ -133,7 +152,7 @@ class GoldWatchSignalSkill(BaseSkill):
             mid1 = statistics.median(close[-lb1:])
             # 口径铁律(官家10-24): 推给官家的买卖基准 = au0 国内沪金(贴实盘), 国际金实时价只作盘中参考
             # 均线档永远 au0 日线算; 实时国际金价 vs au0 折算交叉验证, 差>30元报警
-            rt = _fetch_realtime_spot()
+            rt = _fetch_realtime_multisource()
             base = round(c_last, 2)
             if rt.get("spot_usd"):
                 sh_conv = round(rt["spot_usd"] * FX / G_PER_OZ, 2)  # 国际金折沪金(仅参考)
