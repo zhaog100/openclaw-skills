@@ -101,9 +101,41 @@ class GoldWatchSignalSkill(BaseSkill):
                 "dyn_hi1": round(hi1, 2), "dyn_lo1": round(lo1, 2),
                 "dyn_hi2": round(hi2, 2), "dyn_lo2": round(lo2, 2),
                 "dyn_mid1": round(mid1, 2),
-                "au0_date": "".join([str(x)[:10] for x in [None] if False]) or close and "",
             })
-            out.pop("au0_date", None)
+            # 趋势过滤器(官家 10-24 要求: 均线要分析出"在跌", 不只给档位)
+            # MA20 斜率(近段 vs 前段) + RSI14 + 现价 vs 20日低点 → 输出 trend_state
+            ma20_now = statistics.mean(close[-lb1:]) if len(close) >= lb1 else None
+            ma20_prev = statistics.mean(close[-2*lb1:-lb1]) if len(close) >= 2*lb1 else None
+            slope = (ma20_now - ma20_prev) if (ma20_now is not None and ma20_prev is not None) else 0.0
+            # RSI14
+            n = 14
+            if len(close) > n:
+                gains = [max(close[i]-close[i-1], 0) for i in range(len(close)-n, len(close))]
+                losses = [max(close[i-1]-close[i], 0) for i in range(len(close)-n, len(close))]
+                _g, _l = statistics.mean(gains), statistics.mean(losses)
+                rsi14 = 100.0 if _l == 0 else 100 - 100/(1 + _g/_l)
+            else:
+                rsi14 = None
+            last_c = close[-1]
+            dist_lo1 = round(last_c - lo1, 2)
+            # 趋势判定: 跌势=MA20斜率<-2 且 RSI14<45; 涨势=斜率>+2; 否则横盘
+            if slope < -2 and (rsi14 is None or rsi14 < 45):
+                trend_state = "downtrend"
+            elif slope > 2:
+                trend_state = "uptrend"
+            else:
+                trend_state = "sideways"
+            out.update({
+                "trend_state": trend_state,
+                "trend": {
+                    "ma20_now": round(ma20_now, 2) if ma20_now is not None else None,
+                    "ma20_prev": round(ma20_prev, 2) if ma20_prev is not None else None,
+                    "ma20_slope": round(slope, 2),
+                    "rsi14": round(rsi14, 1) if rsi14 is not None else None,
+                    "dist_to_lo1": dist_lo1,
+                    "note": "跌势=MA20斜率<-2且RSI<45; 买点触发在跌势中需官家确认防半山腰",
+                },
+            })
         else:
             # AU0 拉不到 → 退回实盘价/国际金折算, 动态均线退化为 config 固定档
             boc = cfg.get("boc_spot") or {}

@@ -72,10 +72,16 @@ class GoldWatchOutcomeSkill(BaseSkill):
             return {"triggered": False, "reason": "无可用金价(signal 未出基准价), 静默", "xauusd": xau}
 
         msgs, triggered = [], False
+        trend_state = sig.get("trend_state", "sideways")
+        # 趋势过滤器(官家 10-24): 跌势中破档=防半山腰, 文案升级需官家确认
+        def _buy_tag(buy_ref, amt_desc):
+            if trend_state == "downtrend":
+                return f"⚠️ 沪金≈¥{sh:.0f}/克, 破{buy_ref}买点(跌势中,MA20斜率下行/RSI弱势,防半山腰) → 申购 {fund.get('A','国泰A')} {amt_desc} 需官家确认"
+            return f"⚡️ 沪金≈¥{sh:.0f}/克, 破{buy_ref}买点 → 申购 {fund.get('A','国泰A')} {amt_desc}"
         if sh <= buy2:
-            msgs.append(f"⚡️ 沪金≈¥{sh:.0f}/克, 破第3笔买点{buy2} → 申购 {fund.get('A','国泰A')} 第3笔(低位重仓30%)"); triggered = True
+            msgs.append(_buy_tag("第3笔", "第3笔(低位重仓30%)")); triggered = True
         elif sh <= buy1:
-            msgs.append(f"⚡️ 沪金≈¥{sh:.0f}/克, 破第2笔买点{buy1} → 申购 {fund.get('A','国泰A')} 第2笔(40%)"); triggered = True
+            msgs.append(_buy_tag("第2笔", "第2笔(40%)")); triggered = True
         elif sh >= sell2:
             msgs.append(f"⚡️ 沪金≈¥{sh:.0f}/克, 到卖点{sell2} → 赎回 {fund.get('C','国泰C')} 波段仓(清掉)"); triggered = True
         elif sh >= sell1:
@@ -84,9 +90,12 @@ class GoldWatchOutcomeSkill(BaseSkill):
         out = {"triggered": triggered, "sh_equiv": sh, "cost_basis": cost,
                "breakeven": breakeven, "spread": spread, "tier_mode": tier_mode,
                "dyn": {"buy1": buy1, "buy2": buy2, "sell1": sell1, "sell2": sell2},
+               "trend_state": trend_state,
                "source": sig.get("source"), "price_basis": sig.get("price_basis")}
         if not triggered:
-            out["reason"] = f"沪金 {sh:.0f} 区间内未触发(成本{cost}/回本线{breakeven}), 静默"
+            trend_note = "(跌势中,防半山腰)" if trend_state == "downtrend" else ""
+            out["reason"] = (f"沪金 {sh:.0f} 未破买点二档 {buy2} 也未到卖点一档 {sell1}"
+                             f"{trend_note} (成本{cost}/回本线{breakeven}), 静默")
             return out
 
         # 推门面 send_qq_gw.py (open_id 走 env)
