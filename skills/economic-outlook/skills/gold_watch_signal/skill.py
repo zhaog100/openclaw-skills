@@ -20,7 +20,10 @@ from skills.base import BaseSkill
 
 FX = 7.10            # USD/CNY 粗估(国际金→沪金口径换算)
 G_PER_OZ = 31.1035   # 克/盎司
-REST_XAU = "https://api.gold-api.com/price/XAU"   # 免费 REST 兜底源(国际金, 仅作参考)
+REST_XAU = "https://api.gold-api.com/price/XAU"   # 国际金实时源(gold-api, 稳定, 分钟级刷新)
+# 口径铁律(官家10-24三连质疑后钉死): 国际金实时价只作"盘中分钟级趋势参考",
+#   推给官家的买卖基准价 = au0 国内沪金(贴实盘864~880), 国际金折算沪金(~918)比实盘虚高~40元, 禁作基准
+#   两者交叉验证: 实时折算价 vs au0日线 差>30元 → 报警(源异常或汇率漂移)
 
 
 def _fetch_au0(n_days=120):
@@ -34,6 +37,43 @@ def _fetch_au0(n_days=120):
         return (r["收盘价"].tolist(), r["最高价"].tolist(), r["最低价"].tolist())
     except Exception:
         return None
+
+# 盘中实时源(官家 10-24 发的金投网 jijinhao 实时接口, 分钟级):
+#   sQuoteCenter/realTime.htm?code=JO_92233 返回 var hq_str="现货黄金,最新价,昨收,高,低,..."
+#   JO_92233 = 现货黄金(美元/盎司), 再按 FX/G_PER_OZ 折沪金口径。au0 日线只用于算 20/60 日均线档。
+JH_REALTIME_URL = "https://api.jijinhao.com/sQuoteCenter/realTime.htm?code=JO_92233"
+
+
+def _fetch_realtime_spot() -> dict:
+    """拉国际现货金 XAUUSD 实时价(美元/盎司, 分钟级)。主 gold-api(REST JSON, 稳), 备 jijinhao。
+    口径: 仅作盘中分钟级趋势参考, 非推给官家的买卖基准(基准=au0国内沪金)。"""
+    import re
+    # 主源: gold-api REST JSON(实测稳定, 有 updatedAt 时间戳)
+    try:
+        req = urllib.request.Request(REST_XAU, headers={"User-Agent": "Mozilla/5.0"})
+        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        spot = d.get("price")
+        if spot:
+            return {"spot_usd": float(spot), "ts": d.get("updatedAt", ""), "src": "gold-api"}
+    except Exception:
+        pass
+    # 备源: 金投网 jijinhao hq_str(可能返空, 降级)
+    try:
+        req = urllib.request.Request(
+            JH_REALTIME_URL,
+            headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"},
+        )
+        raw = urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        m = re.search(r'hq_str\s*=\s*"([^"]+)"', raw)
+        if not m:
+            return {}
+        f = m.group(1).split(",")
+        spot = float(f[2]) if len(f) > 2 else None
+        if not spot:
+            return {}
+        return {"spot_usd": spot, "ts": "", "src": "jijinhao"}
+    except Exception:
+        return {}
 
 
 class GoldWatchSignalSkill(BaseSkill):
@@ -91,9 +131,36 @@ class GoldWatchSignalSkill(BaseSkill):
             hi1, lo1 = max(high[-lb1:]), min(low[-lb1:])
             hi2, lo2 = max(high[-lb2:]), min(low[-lb2:])
             mid1 = statistics.median(close[-lb1:])
+            # 口径铁律(官家10-24): 推给官家的买卖基准 = au0 国内沪金(贴实盘), 国际金实时价只作盘中参考
+            # 均线档永远 au0 日线算; 实时国际金价 vs au0 折算交叉验证, 差>30元报警
+            rt = _fetch_realtime_spot()
+            base = round(c_last, 2)
+            if rt.get("spot_usd"):
+                sh_conv = round(rt["spot_usd"] * FX / G_PER_OZ, 2)  # 国际金折沪金(仅参考)
+                out.update({
+                    "success": True, "source": "au0_base+intl_ref",
+                    "price_basis": "基准=国内沪金AU0(贴实盘), 国际金实时仅盘中分钟级参考",
+                    "sh_equiv": base,
+                    "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_conv,
+                                       "ts": rt.get("ts", ""), "src": rt.get("src")},
+                    "au0_last": base,
+                })
+                # 交叉验证: 国际金折算沪金 vs au0 实盘口径, 差>30 说明源异常/汇率漂移
+                diff = abs(sh_conv - base)
+                if diff > 30:
+                    out["cross_check"] = {"diff": round(diff, 1), "alert": True,
+                                          "note": f"国际金折算{sh_conv} vs au0{base} 差{diff:.0f}元>30, 源异常或汇率漂移, 基准仍以au0为准"}
+                else:
+                    out["cross_check"] = {"diff": round(diff, 1), "alert": False}
+            else:
+                out.update({
+                    "success": True, "source": "au0",
+                    "price_basis": "国内沪金AU0日线(国际金实时源不可用, 退收盘)",
+                    "sh_equiv": base, "au0_last": base,
+                    "warn": "国际金实时源不可用, 本轮仅au0日线(盘中滞后)",
+                })
+            # 均线档(永远 au0 日线算) + 原 update 里的档位字段保留
             out.update({
-                "success": True, "source": "au0", "price_basis": "国内沪金AU0(自动,各银行积存金行情锚)",
-                "sh_equiv": round(c_last, 2), "au0_last": round(c_last, 2),
                 "dyn_buy1": round(lo1 - off1, 2),   # 买点一档 = 近lb1日最低-偏移
                 "dyn_buy2": round(lo2 - off2, 2),   # 买点二档 = 近lb2日最低-偏移
                 "dyn_sell1": round(hi1, 2),         # 卖点一档 = 近lb1日最高
