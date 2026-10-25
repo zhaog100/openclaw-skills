@@ -137,6 +137,13 @@ class GoldWatchSignalSkill(BaseSkill):
         dyn = cfg.get("dynamic", {})
         out = {"cost_basis": cost, "spread": spread, "breakeven": breakeven, "xauusd": xau}
 
+        # 双源口径(官家 10-25 拍板 1+2, "实时+准确, 不截图"):
+        #   ① 主基准 = 国际金实时(PAXG/gold-api, 7x24 在动) 折上海金口径
+        #   ② au0 沪金日线 = 均线/动态档参考(算 20/60 日高低点用)
+        #   推给官家的 sh_equiv = ①实时折算价(有①用①, ①挂退 au0 收盘②)
+        rt = _fetch_realtime_multisource()
+        sh_rt = round(rt["spot_usd"] * FX / G_PER_OZ, 2) if rt.get("spot_usd") else None
+
         # 价格源优先级(官家 10-23 三连质疑后定): ① 国内沪金 AU0(自动、贴实盘、各行行情锚)
         #              ② 中行实盘价 boc_spot(校准锚, 官家截图喂) ③ 国际 XAUUSD 折算(仅兜底)
         off1 = dyn.get("band1_offset", 5)
@@ -152,31 +159,31 @@ class GoldWatchSignalSkill(BaseSkill):
             mid1 = statistics.median(close[-lb1:])
             # 口径铁律(官家10-24): 推给官家的买卖基准 = au0 国内沪金(贴实盘), 国际金实时价只作盘中参考
             # 均线档永远 au0 日线算; 实时国际金价 vs au0 折算交叉验证, 差>30元报警
-            rt = _fetch_realtime_multisource()
-            base = round(c_last, 2)
+            # 双源: sh_equiv = 国际金实时折算(①主), au0 收盘(②参考)
+            base = sh_rt if sh_rt else round(c_last, 2)
             if rt.get("spot_usd"):
-                sh_conv = round(rt["spot_usd"] * FX / G_PER_OZ, 2)  # 国际金折沪金(仅参考)
                 out.update({
-                    "success": True, "source": "au0_base+intl_ref",
-                    "price_basis": "基准=国内沪金AU0(贴实盘), 国际金实时仅盘中分钟级参考",
+                    "success": True, "source": "intl_realtime_base+au0_ref",
+                    "price_basis": "基准=国际金实时折上海金(7x24), au0沪金日线作均线参考",
                     "sh_equiv": base,
-                    "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_conv,
+                    "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
                                        "ts": rt.get("ts", ""), "src": rt.get("src")},
-                    "au0_last": base,
+                    "au0_last": round(c_last, 2),
+                    "au0_note": "au0为周五收盘(周末不更新), 均线档仍按au0日线算",
                 })
-                # 交叉验证: 国际金折算沪金 vs au0 实盘口径, 差>30 说明源异常/汇率漂移
-                diff = abs(sh_conv - base)
+                # 交叉验证: 国际金折算 vs au0 收盘, 差>30 提示口径/汇率漂移(仅提示不改基准)
+                diff = abs(sh_rt - round(c_last, 2))
                 if diff > 30:
                     out["cross_check"] = {"diff": round(diff, 1), "alert": True,
-                                          "note": f"国际金折算{sh_conv} vs au0{base} 差{diff:.0f}元>30, 源异常或汇率漂移, 基准仍以au0为准"}
+                                          "note": f"国际金折算{sh_rt} vs au0收盘{round(c_last,2)} 差{diff:.0f}元, 口径/汇率漂移提示"}
                 else:
                     out["cross_check"] = {"diff": round(diff, 1), "alert": False}
             else:
                 out.update({
                     "success": True, "source": "au0",
-                    "price_basis": "国内沪金AU0日线(国际金实时源不可用, 退收盘)",
-                    "sh_equiv": base, "au0_last": base,
-                    "warn": "国际金实时源不可用, 本轮仅au0日线(盘中滞后)",
+                    "price_basis": "国际金实时源不可用, 退au0沪金日线(周末=周五收盘)",
+                    "sh_equiv": round(c_last, 2), "au0_last": round(c_last, 2),
+                    "warn": "国际金实时源不可用, 本轮为au0日线价",
                 })
             # 均线档(永远 au0 日线算) + 原 update 里的档位字段保留
             out.update({
