@@ -159,17 +159,17 @@ class GoldWatchSignalSkill(BaseSkill):
             mid1 = statistics.median(close[-lb1:])
             # 口径铁律(官家10-24): 推给官家的买卖基准 = au0 国内沪金(贴实盘), 国际金实时价只作盘中参考
             # 均线档永远 au0 日线算; 实时国际金价 vs au0 折算交叉验证, 差>30元报警
-            # 双源: sh_equiv = 国际金实时折算(①主), au0 收盘(②参考)
-            base = sh_rt if sh_rt else round(c_last, 2)
+            # C 双轨(官家 10-26 18:48 拍板): 主基准=au0 沪金(贴官家 UI 862 实盘口径), 国际金实时留作盘中参考
+            base = round(c_last, 2)
             if rt.get("spot_usd"):
                 out.update({
-                    "success": True, "source": "国际金实时+沪金参考",
-                    "price_basis": "基准=国际金实时折上海金(7x24), au0沪金日线作均线参考",
+                    "success": True, "source": "沪金基准+国际金盘中参考",
+                    "price_basis": "基准=沪金au0(贴官家UI实盘862), 国际金实时(7x24)仅作盘中参考",
                     "sh_equiv": base,
                     "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
                                        "ts": rt.get("ts", ""), "src": rt.get("src")},
                     "au0_last": round(c_last, 2),
-                    "au0_note": "au0为周五收盘(周末不更新), 均线档仍按au0日线算",
+                    "au0_note": "基准=au0沪金日线(官家UI口径), 国际金实时价只作盘中参考",
                 })
                 # 交叉验证: 国际金折算 vs au0 收盘, 差>30 提示口径/汇率漂移(仅提示不改基准)
                 diff = abs(sh_rt - round(c_last, 2))
@@ -181,27 +181,20 @@ class GoldWatchSignalSkill(BaseSkill):
             else:
                 out.update({
                     "success": True, "source": "沪金日线",
-                    "price_basis": "国际金实时源不可用, 退au0沪金日线(周末=周五收盘)",
+                    "price_basis": "国际金实时源不可用, 基准=au0沪金日线(周末=周五收盘)",
                     "sh_equiv": round(c_last, 2), "au0_last": round(c_last, 2),
-                    "warn": "国际金实时源不可用, 本轮为au0日线价",
+                    "warn": "国际金实时源不可用, 本轮国际金参考缺失, 基准仍为au0",
                 })
-            # 均线档(永远 au0 日线算) + 原 update 里的档位字段保留
-            # 1+2 双源: 档位也切国际金实时口径(和现价同一口, 消除 ~47 元基差)
-            # 档位 = 国际金实时价 + (au0 高低点相对 au0 收盘的偏移), 结构仍用 au0 日线 20/60 日高低点
-            base_rt = sh_rt if sh_rt else round(c_last, 2)
-            au0_rel_lo1 = lo1 - c_last
-            au0_rel_hi1 = hi1 - c_last
-            au0_rel_lo2 = lo2 - c_last
-            au0_rel_hi2 = hi2 - c_last
+            # C 双轨: 档位=au0 沪金日线算(和基准同口径, 贴官家 UI 862), 国际金实时只作盘中参考
             out.update({
-                "dyn_buy1": round(base_rt + au0_rel_lo1 - off1, 2),   # 买点一档 = 实时基准+近lb1日最低偏移-偏移量
-                "dyn_buy2": round(base_rt + au0_rel_lo2 - off2, 2),   # 买点二档 = 实时基准+近lb2日最低偏移-偏移量
-                "dyn_sell1": round(base_rt + au0_rel_hi1, 2),        # 卖点一档 = 实时基准+近lb1日最高偏移
-                "dyn_sell2": round(base_rt + au0_rel_hi2, 2),        # 卖点二档 = 实时基准+近lb2日最高偏移
-                "dyn_hi1": round(base_rt + au0_rel_hi1, 2), "dyn_lo1": round(base_rt + au0_rel_lo1, 2),
-                "dyn_hi2": round(base_rt + au0_rel_hi2, 2), "dyn_lo2": round(base_rt + au0_rel_lo2, 2),
-                "dyn_mid1": round(base_rt + (mid1 - c_last), 2),
-                "dyn_note": "档位=国际金实时价+au0 20/60日高低偏移(与现价同口径, 消除基差)",
+                "dyn_buy1": round(lo1 - off1, 2),   # 买点一档 = au0近lb1日最低-偏移
+                "dyn_buy2": round(lo2 - off2, 2),   # 买点二档 = au0近lb2日最低-偏移
+                "dyn_sell1": round(hi1, 2),         # 卖点一档 = au0近lb1日最高
+                "dyn_sell2": round(hi2, 2),         # 卖点二档 = au0近lb2日最高
+                "dyn_hi1": round(hi1, 2), "dyn_lo1": round(lo1, 2),
+                "dyn_hi2": round(hi2, 2), "dyn_lo2": round(lo2, 2),
+                "dyn_mid1": round(mid1, 2),
+                "dyn_note": "档位=au0沪金20/60日高低(贴官家UI实盘口径), 国际金实时作盘中参考",
             })
             # 趋势过滤器(官家 10-24 要求: 均线要分析出"在跌", 不只给档位)
             # MA20 斜率(近段 vs 前段) + RSI14 + 现价 vs 20日低点 → 输出 trend_state
