@@ -38,6 +38,24 @@ def _fetch_au0(n_days=120):
     except Exception:
         return None
 
+def _fetch_au0_realtime() -> dict:
+    """东财 113.AUM(沪金主连)实时价(官家 10-26 给的正确 secid, 贴 UI 实盘 862)。
+    盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
+    try:
+        url = ("https://push2.eastmoney.com/api/qt/stock/get"
+               "?secid=113.AUM&fields=f43,f57,f58,f86")
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        data = d.get("data") or {}
+        f43 = data.get("f43")
+        if not f43:
+            return {}
+        # f43 通常 ×100 或 ×1000, 沪金 862.58 → 86258/100
+        price = f43 / 100.0 if f43 > 10000 else f43
+        return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au0"}
+    except Exception:
+        return {}
+
 # 盘中实时源(官家 10-24 发的金投网 jijinhao 实时接口, 分钟级):
 #   sQuoteCenter/realTime.htm?code=JO_92233 返回 var hq_str="现货黄金,最新价,昨收,高,低,..."
 #   JO_92233 = 现货黄金(美元/盎司), 再按 FX/G_PER_OZ 折沪金口径。au0 日线只用于算 20/60 日均线档。
@@ -134,6 +152,7 @@ class GoldWatchSignalSkill(BaseSkill):
 
         xau, xau_src = self._fetch_xau()
         au0 = _fetch_au0()
+        au0_rt = _fetch_au0_realtime()
         dyn = cfg.get("dynamic", {})
         out = {"cost_basis": cost, "spread": spread, "breakeven": breakeven, "xauusd": xau}
 
@@ -159,31 +178,34 @@ class GoldWatchSignalSkill(BaseSkill):
             mid1 = statistics.median(close[-lb1:])
             # 口径铁律(官家10-24): 推给官家的买卖基准 = au0 国内沪金(贴实盘), 国际金实时价只作盘中参考
             # 均线档永远 au0 日线算; 实时国际金价 vs au0 折算交叉验证, 差>30元报警
-            # C 双轨(官家 10-26 18:48 拍板): 主基准=au0 沪金(贴官家 UI 862 实盘口径), 国际金实时留作盘中参考
-            base = round(c_last, 2)
+            # C 双轨: 基准 = au0 沪金(官家 UI 862 实盘口径)
+            # 盘中优先东财 113.AUM 实时价(分钟级在跳), 全挂退 au0 日线(周五收盘)
+            base = round(au0_rt["price"], 2) if au0_rt.get("price") else round(c_last, 2)
             if rt.get("spot_usd"):
                 out.update({
                     "success": True, "source": "沪金基准+国际金盘中参考",
-                    "price_basis": "基准=沪金au0(贴官家UI实盘862), 国际金实时(7x24)仅作盘中参考",
+                    "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
                     "sh_equiv": base,
+                    "au0_realtime": au0_rt.get("price"),
+                    "au0_realtime_src": au0_rt.get("src", "au0_daily"),
                     "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
                                        "ts": rt.get("ts", ""), "src": rt.get("src")},
                     "au0_last": round(c_last, 2),
-                    "au0_note": "基准=au0沪金日线(官家UI口径), 国际金实时价只作盘中参考",
+                    "au0_note": "盘中基准=东财113.AUM沪金主连实时(贴官家UI 862); 周末退au0日线周五收盘",
                 })
-                # 交叉验证: 国际金折算 vs au0 收盘, 差>30 提示口径/汇率漂移(仅提示不改基准)
-                diff = abs(sh_rt - round(c_last, 2))
+                # 交叉验证: 国际金折算 vs 沪金实时, 差>30 提示口径/汇率漂移(仅提示不改基准)
+                diff = abs(sh_rt - base)
                 if diff > 30:
                     out["cross_check"] = {"diff": round(diff, 1), "alert": True,
-                                          "note": f"国际金折算{sh_rt} vs au0收盘{round(c_last,2)} 差{diff:.0f}元, 口径/汇率漂移提示"}
+                                          "note": f"国际金折算{sh_rt} vs 沪金实时{base} 差{diff:.0f}元, 口径/汇率漂移提示"}
                 else:
                     out["cross_check"] = {"diff": round(diff, 1), "alert": False}
             else:
                 out.update({
                     "success": True, "source": "沪金日线",
-                    "price_basis": "国际金实时源不可用, 基准=au0沪金日线(周末=周五收盘)",
-                    "sh_equiv": round(c_last, 2), "au0_last": round(c_last, 2),
-                    "warn": "国际金实时源不可用, 本轮国际金参考缺失, 基准仍为au0",
+                    "price_basis": "国际金实时源不可用, 基准=沪金au0(盘中=东财AUM, 周末=au0周五收盘)",
+                    "sh_equiv": base, "au0_last": round(c_last, 2),
+                    "warn": "国际金实时源不可用, 国际金盘中参考缺失, 基准仍为沪金",
                 })
             # C 双轨: 档位=au0 沪金日线算(和基准同口径, 贴官家 UI 862), 国际金实时只作盘中参考
             out.update({

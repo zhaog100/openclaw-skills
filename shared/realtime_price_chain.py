@@ -54,6 +54,8 @@ def _fetch_goldapi():
 
 def _fetch_jijinhao():
     try:
+        # 金投网 jijinhao: 参数名必须是 codes=(复数), 值用 JO_92233(官家10-26验证)
+        # sQuoteCenter hq_str 格式优先, 不行退 quoteCenter/realTime?codes= 的 JSON
         raw = _get("https://api.jijinhao.com/sQuoteCenter/realTime.htm?code=***",
                    headers={"Referer": "https://m.cngold.org/"})
         m = re.search(r'hq_str\s*=\s*"([^"]+)"', raw)
@@ -62,6 +64,12 @@ def _fetch_jijinhao():
             p = float(f[2]) if len(f) > 2 and f[2] else None
             if p:
                 return {"usd": p, "src": "jijinhao", "ts": ""}
+        # 备用: quoteCenter/realTime.htm?codes=JO_92233 (官家10-26验证, 返 JSON quote_json)
+        raw2 = _get("https://api.jijinhao.com/quoteCenter/realTime.htm?codes=JO_92233",
+                    headers={"Referer": "https://m.cngold.org/"})
+        q = re.search(r'"q2"\s*:\s*([\d.]+)', raw2)
+        if q:
+            return {"usd": float(q.group(1)), "src": "jijinhao", "ts": ""}
     except Exception:
         pass
     return None
