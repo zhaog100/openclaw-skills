@@ -186,14 +186,22 @@ class GoldWatchSignalSkill(BaseSkill):
                     "warn": "国际金实时源不可用, 本轮为au0日线价",
                 })
             # 均线档(永远 au0 日线算) + 原 update 里的档位字段保留
+            # 1+2 双源: 档位也切国际金实时口径(和现价同一口, 消除 ~47 元基差)
+            # 档位 = 国际金实时价 + (au0 高低点相对 au0 收盘的偏移), 结构仍用 au0 日线 20/60 日高低点
+            base_rt = sh_rt if sh_rt else round(c_last, 2)
+            au0_rel_lo1 = lo1 - c_last
+            au0_rel_hi1 = hi1 - c_last
+            au0_rel_lo2 = lo2 - c_last
+            au0_rel_hi2 = hi2 - c_last
             out.update({
-                "dyn_buy1": round(lo1 - off1, 2),   # 买点一档 = 近lb1日最低-偏移
-                "dyn_buy2": round(lo2 - off2, 2),   # 买点二档 = 近lb2日最低-偏移
-                "dyn_sell1": round(hi1, 2),         # 卖点一档 = 近lb1日最高
-                "dyn_sell2": round(hi2, 2),         # 卖点二档 = 近lb2日最高
-                "dyn_hi1": round(hi1, 2), "dyn_lo1": round(lo1, 2),
-                "dyn_hi2": round(hi2, 2), "dyn_lo2": round(lo2, 2),
-                "dyn_mid1": round(mid1, 2),
+                "dyn_buy1": round(base_rt + au0_rel_lo1 - off1, 2),   # 买点一档 = 实时基准+近lb1日最低偏移-偏移量
+                "dyn_buy2": round(base_rt + au0_rel_lo2 - off2, 2),   # 买点二档 = 实时基准+近lb2日最低偏移-偏移量
+                "dyn_sell1": round(base_rt + au0_rel_hi1, 2),        # 卖点一档 = 实时基准+近lb1日最高偏移
+                "dyn_sell2": round(base_rt + au0_rel_hi2, 2),        # 卖点二档 = 实时基准+近lb2日最高偏移
+                "dyn_hi1": round(base_rt + au0_rel_hi1, 2), "dyn_lo1": round(base_rt + au0_rel_lo1, 2),
+                "dyn_hi2": round(base_rt + au0_rel_hi2, 2), "dyn_lo2": round(base_rt + au0_rel_lo2, 2),
+                "dyn_mid1": round(base_rt + (mid1 - c_last), 2),
+                "dyn_note": "档位=国际金实时价+au0 20/60日高低偏移(与现价同口径, 消除基差)",
             })
             # 趋势过滤器(官家 10-24 要求: 均线要分析出"在跌", 不只给档位)
             # MA20 斜率(近段 vs 前段) + RSI14 + 现价 vs 20日低点 → 输出 trend_state
