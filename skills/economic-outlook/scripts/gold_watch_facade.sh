@@ -19,5 +19,6 @@ if r.get("errors"):
 if trig:
     print(f"TRIGGERED: {final.get('alerts')} push={final.get('push')}")
 else:
-    print(f"QUIET-OK: {final.get('reason')}")
+    # 官家10-26"不破档别推": 静默时不输出文案, 避免 cron 把 QUIET 行推给官家; 状态可查数据文件
+    import sys as _s; _s.exit(0)
 PY

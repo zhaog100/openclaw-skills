@@ -49,9 +49,10 @@ if o.get("triggered"):
     json.dump({"last_alert_key": key, "at": now}, open(state_f, "w"))
     print("TRIGGERED")
 else:
-    # 静默: 不推, 只记状态
+    # 静默: 真静默(官家10-26'不破档别推') → 不输出文案, 只记状态, cron 不推
     key = f"silent_{price}_{agm}"
     os.makedirs("data", exist_ok=True)
     json.dump({"last_alert_key": key, "at": now, "reason": o.get("reason")}, open(state_f, "w"))
-    print("SILENT", o.get("reason"))
+    # 故意不打 stdout(避免 cron 把静默行当文案推给官家); 状态已写 state 文件可查
+    sys.exit(0)
 PY
