@@ -1,5 +1,5 @@
 import logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 #!/usr/bin/env python3
@@ -35,15 +35,12 @@ if not QQ_TARGET:
     if not QQ_TARGET:
         raise SystemExit("[ERROR] QQ_TARGET_USER_ID 未设置（环境变量或 config/oil_gold.json），拒绝推送")
 
-# 配置 logging
-class StderrHandler(logging.StreamHandler):
-    def __init__(self):
-        super().__init__(stream=sys.stderr)
-
+# 配置 logging: 静默, 不往 stdout/stderr 打(避免 cron 抓日志当文案推给官家)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-stderr_handler = StderrHandler()
-logger.addHandler(stderr_handler)
+logger.setLevel(logging.CRITICAL)
+import logging as _lg
+logger.addHandler(_lg.NullHandler())
+logger.propagate = False
 
 def get_gateway_token() -> str:
     """读取 Gateway Token"""
@@ -94,7 +91,7 @@ def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
         with urllib.request.urlopen(req, timeout=30) as resp:
             result = json.loads(resp.read().decode("utf-8"))
             if result.get("ok") or "result" in result:
-                logger.info(f"[INFO] 消息发送成功")
+                logger.debug("消息发送成功")
                 return True
             else:
                 logger.info(f"[ERROR] 发送失败: {result}")
