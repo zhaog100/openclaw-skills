@@ -39,8 +39,9 @@ def _fetch_au0(n_days=120):
         return None
 
 def _fetch_au0_realtime() -> dict:
-    """东财 113.AUM(沪金主连)实时价(官家 10-26 给的正确 secid, 贴 UI 实盘 862)。
+    """沪金主连实时价降级链(官家 10-26: 东财AUM主 + 金投网实时备 + 七河PW渲染 + au0日线兜底, 贴 UI 实盘 862)。
     盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
+    # ① 主源: 东财 113.AUM(沪金主连, 官家 gold.eastmoney.com 页的 secid, 862.58)
     try:
         url = ("https://push2.eastmoney.com/api/qt/stock/get"
                "?secid=113.AUM&fields=f43,f57,f58,f86")
@@ -48,11 +49,159 @@ def _fetch_au0_realtime() -> dict:
         d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
         data = d.get("data") or {}
         f43 = data.get("f43")
-        if not f43:
+        if f43:
+            price = f43 / 100.0 if f43 > 10000 else f43
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au0"}
+    except Exception:
+        pass
+    # ② 备源: 金投网 jijinhao 实时 code(官家 m.cngold.org/quote/gjs/ 页, JO_283972=858.77 实时在跳, 贴现货口径)
+    r = _fetch_au0_jijinhao()
+    if r:
+        return r
+    # ③ 备源: 七河期货 shfe-aum(PW 渲染, 官家 m.quheqihuo.com 页, 东财挂时用)
+    r = _fetch_au0_quhe()
+    if r:
+        return r
+    # ④ 兜底: au0 akshare 日线(全挂时用, 周末=周五收盘)
+    au0 = _fetch_au0(2)
+    if au0:
+        return {"price": round(au0[0][-1], 2), "ts": "", "src": "au0_daily"}
+    return {}
+
+
+def _fetch_au0_jijinhao() -> dict:
+    """金投网 jijinhao 沪金/上海金实时 code(官家 10-26 给的 m.cngold.org/quote/gjs/ 页)。
+    从页面 JS 里扒真实 code: JO_283972(858.77 实时在跳) → 现货口径, JO_9753(863.38 贴UI) 备。
+    返回 {price, ts, src} 或 {}。"""
+    try:
+        import urllib.request as _ur, re as _re
+        # 先抓页面里的 code(认真分析, 不猜): 列表页 quote/gjs/ 的 JO_ code
+        base = "https://m.cngold.org/quote/gjs/"
+        req = _ur.Request(base, headers={"User-Agent": "Mozilla/5.0"})
+        page = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        codes = sorted(set(_re.findall(r'JO_\d{4,6}', page)))
+        if not codes:
             return {}
-        # f43 通常 ×100 或 ×1000, 沪金 862.58 → 86258/100
-        price = f43 / 100.0 if f43 > 10000 else f43
-        return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au0"}
+        # 批量拉价格
+        url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
+        req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
+        raw = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        # 取 8xx 元/克(沪金/上海金口径)的 code, 优先实时(时间戳最近的)
+        best = None
+        for m in _re.finditer(r'"(JO_\d{4,6})"\s*:\s*\{(.{0,400})', raw):
+            code, seg = m.group(1), m.group(2)
+            q2 = _re.search(r'"q2"\s*:\s*([\d.]+)', seg)
+            tm = _re.search(r'"time"\s*:\s*(\d+)', seg)
+            if q2:
+                val = float(q2.group(1))
+                if 800 < val < 950:  # 沪金/上海金 口径区间
+                    ts_int = int(tm.group(1)) if tm else 0
+                    cand = {"price": round(val, 2), "ts": ts_int, "src": "jijinhao", "code": code}
+                    if best is None or ts_int > best["ts"]:
+                        best = cand
+        if best:
+            return best
+    except Exception:
+        pass
+    return {}
+
+
+
+
+def _fetch_agm_realtime() -> dict:
+    """沪银主连实时价降级链(官家 10-26: 东财AGM主 + 金投网jijinhao备 + au1日线兜底, 类比黄金链)。
+    单位: 元/千克(沪银口径)。盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
+    # ① 主源: 东财 113.AGM(沪银主连)
+    try:
+        url = ("https://push2.eastmoney.com/api/qt/stock/get"
+               "?secid=113.AGM&fields=f43,f57,f58,f86")
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        data = d.get("data") or {}
+        f43 = data.get("f43")
+        if f43:
+            price = f43 / 100.0 if f43 > 10000 else f43
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_agm"}
+    except Exception:
+        pass
+    # ② 备源: 金投网 jijinhao 沪银 code(JO_9754=13021 元/千克 一带, 从 quote/gjs/ 页扒)
+    import urllib.request as _ur, re as _re
+    try:
+        req = _ur.Request("https://m.cngold.org/quote/gjs/", headers={"User-Agent": "Mozilla/5.0"})
+        page = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        codes = sorted(set(_re.findall(r'JO_\d{4,6}', page)))
+        url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
+        req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
+        raw = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        best = None
+        for m in _re.finditer(r'"(JO_\d{4,6})"\s*:\s*\{(.{0,400})', raw):
+            seg = m.group(2)
+            q2 = _re.search(r'"q2"\s*:\s*([\d.]+)', seg)
+            tm = _re.search(r'"time"\s*:\s*(\d+)', seg)
+            if q2:
+                val = float(q2.group(1))
+                if 10000 < val < 15000:  # 沪银 元/千克 区间
+                    ts_int = int(tm.group(1)) if tm else 0
+                    cand = {"price": round(val, 2), "ts": ts_int, "src": "jijinhao_silver"}
+                    if best is None or ts_int > best.get("ts", 0):
+                        best = cand
+        if best:
+            return best
+    except Exception:
+        pass
+    # ③ 兜底: au1 akshare 日线(全挂时, 周末=周五收盘)
+    try:
+        import akshare as ak
+        r = ak.futures_main_sina("AG0")
+        r.columns = [c.lower() for c in r.columns]
+        r = r.sort_values("日期")
+        return {"price": round(float(r.iloc[-1]["收盘价"]), 2), "ts": "", "src": "ag0_daily"}
+    except Exception:
+        pass
+    return {}
+
+
+def _fetch_intl_silver() -> dict:
+    """国际银 XAGUSD 实时价(gold-api XAG, 盘中参考, 类比黄金 gold-api XAU)。
+    返回 {usd, ts, src} 或 {}。"""
+    try:
+        req = urllib.request.Request("https://api.gold-api.com/price/XAG", headers={"User-Agent": "Mozilla/5.0"})
+        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        p = d.get("price")
+        if p:
+            return {"usd": float(p), "ts": d.get("updatedAt", ""), "src": "gold-api-XAG"}
+    except Exception:
+        pass
+    return {}
+
+def _fetch_au0_quhe() -> dict:
+    """七河期货 shfe-aum(沪金主力)PW 渲染取价, 东财 AUM 的备源。返回 {price, ts, src} 或 {}。"""
+    try:
+        import asyncio, re as _re
+        from playwright.async_api import async_playwright
+
+        async def _run():
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(headless=True, args=["--no-sandbox"])
+                ctx = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36")
+                page = await ctx.new_page()
+                await page.goto("https://m.quheqihuo.com/quote/shfe-aum.html",
+                                 wait_until="domcontentloaded", timeout=30000)
+                await page.wait_for_timeout(5000)
+                text = await page.inner_text("body")
+                await browser.close()
+                return text
+
+        text = asyncio.run(_run())
+        # 七河页面: "沪金最新价格" 段, 862.xx 一带数字; 取最接近 860 的数(沪金主连口径)
+        nums = [float(x) for x in _re.findall(r'\b8[0-9]{2}\.[0-9]{2}\b', text)]
+        if not nums:
+            return {}
+        # 沪金主连最新价常是"最新价"后的数, 取 850~880 区间里最大(最新)的
+        cands = [x for x in nums if 840 <= x <= 900]
+        if not cands:
+            return {}
+        return {"price": round(max(cands), 2), "ts": "", "src": "quheqihuo_shfe_aum"}
     except Exception:
         return {}
 
@@ -153,6 +302,8 @@ class GoldWatchSignalSkill(BaseSkill):
         xau, xau_src = self._fetch_xau()
         au0 = _fetch_au0()
         au0_rt = _fetch_au0_realtime()
+        agm_rt = _fetch_agm_realtime()      # 官家 10-26: 白银也接进来(东财AGM主 + 金投网备 + au1日线兜底)
+        intl_ag = _fetch_intl_silver()      # 国际银 XAG 盘中参考(类比黄金 gold-api XAU)
         dyn = cfg.get("dynamic", {})
         out = {"cost_basis": cost, "spread": spread, "breakeven": breakeven, "xauusd": xau}
 
@@ -187,6 +338,10 @@ class GoldWatchSignalSkill(BaseSkill):
                     "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
                     "sh_equiv": base,
                     "au0_realtime": au0_rt.get("price"),
+                    "au0_realtime_src": au0_rt.get("src", ""),
+                    "agm_realtime": agm_rt.get("price"),
+                    "agm_realtime_src": agm_rt.get("src", ""),
+                    "intl_silver": intl_ag,
                     "au0_realtime_src": au0_rt.get("src", "au0_daily"),
                     "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
                                        "ts": rt.get("ts", ""), "src": rt.get("src")},
