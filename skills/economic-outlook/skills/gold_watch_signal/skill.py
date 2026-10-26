@@ -163,7 +163,7 @@ class GoldWatchSignalSkill(BaseSkill):
             base = sh_rt if sh_rt else round(c_last, 2)
             if rt.get("spot_usd"):
                 out.update({
-                    "success": True, "source": "intl_realtime_base+au0_ref",
+                    "success": True, "source": "国际金实时+沪金参考",
                     "price_basis": "基准=国际金实时折上海金(7x24), au0沪金日线作均线参考",
                     "sh_equiv": base,
                     "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
@@ -180,7 +180,7 @@ class GoldWatchSignalSkill(BaseSkill):
                     out["cross_check"] = {"diff": round(diff, 1), "alert": False}
             else:
                 out.update({
-                    "success": True, "source": "au0",
+                    "success": True, "source": "沪金日线",
                     "price_basis": "国际金实时源不可用, 退au0沪金日线(周末=周五收盘)",
                     "sh_equiv": round(c_last, 2), "au0_last": round(c_last, 2),
                     "warn": "国际金实时源不可用, 本轮为au0日线价",
@@ -213,11 +213,11 @@ class GoldWatchSignalSkill(BaseSkill):
             dist_lo1 = round(last_c - lo1, 2)
             # 趋势判定: 跌势=MA20斜率<-2 且 RSI14<45; 涨势=斜率>+2; 否则横盘
             if slope < -2 and (rsi14 is None or rsi14 < 45):
-                trend_state = "downtrend"
+                trend_state = "跌势"
             elif slope > 2:
-                trend_state = "uptrend"
+                trend_state = "涨势"
             else:
-                trend_state = "sideways"
+                trend_state = "横盘"
             out.update({
                 "trend_state": trend_state,
                 "trend": {

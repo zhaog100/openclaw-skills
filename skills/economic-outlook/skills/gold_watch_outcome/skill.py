@@ -72,10 +72,10 @@ class GoldWatchOutcomeSkill(BaseSkill):
             return {"triggered": False, "reason": "无可用金价(signal 未出基准价), 静默", "xauusd": xau}
 
         msgs, triggered = [], False
-        trend_state = sig.get("trend_state", "sideways")
+        trend_state = sig.get("trend_state", "横盘")
         # 趋势过滤器(官家 10-24): 跌势中破档=防半山腰, 文案升级需官家确认
         def _buy_tag(buy_ref, amt_desc):
-            if trend_state == "downtrend":
+            if trend_state in ("跌势", "downtrend"):
                 return f"⚠️ 沪金≈¥{sh:.0f}/克, 破{buy_ref}买点(跌势中,MA20斜率下行/RSI弱势,防半山腰) → 申购 {fund.get('A','国泰A')} {amt_desc} 需官家确认"
             return f"⚡️ 沪金≈¥{sh:.0f}/克, 破{buy_ref}买点 → 申购 {fund.get('A','国泰A')} {amt_desc}"
         if sh <= buy2:
@@ -93,7 +93,7 @@ class GoldWatchOutcomeSkill(BaseSkill):
                "trend_state": trend_state,
                "source": sig.get("source"), "price_basis": sig.get("price_basis")}
         if not triggered:
-            trend_note = "(跌势中,防半山腰)" if trend_state == "downtrend" else ""
+            trend_note = "(跌势中,防半山腰)" if trend_state in ("跌势", "downtrend") else ""
             out["reason"] = (f"沪金 {sh:.0f} 未破买点二档 {buy2} 也未到卖点一档 {sell1}"
                              f"{trend_note} (成本{cost}/回本线{breakeven}), 静默")
             return out
