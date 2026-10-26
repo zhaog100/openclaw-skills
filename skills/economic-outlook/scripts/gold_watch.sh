@@ -34,9 +34,14 @@ if WATCH.get("support"):
 else:
     log.warning("报告未读到支撑/阻力位，本次盯价仅按能读到的项")
 
-spec = importlib.util.spec_from_file_location("og", "skills/oil_gold/skill.py")
-og = importlib.util.module_from_spec(spec); spec.loader.exec_module(og)
-out = {"report_text_path": os.path.join(os.getcwd(), "..", "oil-gold-correlation", "reports", "report_text_latest.txt")}
+# 官家 10-26: 全部以新链路为准 → 东财 AUM/AGM + gold_watch_signal + gold_watch_outcome(含白银)
+from skills.gold_watch_signal.skill import GoldWatchSignalSkill
+from skills.gold_watch_outcome.skill import GoldWatchOutcomeSkill
+sig = GoldWatchSignalSkill().execute({}).data
+out = GoldWatchOutcomeSkill().execute({"gold_watch_signal": sig}).data
+price = sig.get("sh_equiv") or out.get("sh_equiv")
+agm = sig.get("agm_realtime", "")
+now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
 # 读上次的去重 key
 last_key = ""
@@ -47,17 +52,14 @@ if os.path.exists(state_f):
     except Exception:
         last_key = ""
 
-alert = og._gold_price_alert({**WATCH, "last_alert_key": last_key}, out)
-price = alert.get("price")
-now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-
-if alert.get("triggered"):
+if out.get("triggered"):
     # 触发才推
+    alerts = out.get("alerts") or [out.get("reason", "")]
     target = os.environ.get("QQ_TARGET_USER_ID", "")
-    log.info("🔔 触发: %s | %s", now, alert.get("msg"))
+    log.info("🔔 触发: %s | %s", now, out.get("reason"))
     if target:
         import subprocess
-        msg = alert.get("msg", "") + f"\n（{now} 沪金 {price:.0f}）"
+        msg = "🔔 黄金盯价提醒\n" + "\n".join(alerts) + f"\n（{now} 沪金 {price} / 沪银 {agm} 元/千克, 源:{sig.get('au0_realtime_src','')}）"
         env = dict(os.environ); env["QQ_TARGET_USER_ID"] = target
         # 门面统一推送（方案A）：盯价消息写临时文件，复用门面 send_qq_gw.py（Gateway REST）
         # 路径走环境变量/相对定位，不硬编码绝对路径（合规关卡）
@@ -65,8 +67,7 @@ if alert.get("triggered"):
         gw_env = _os.environ.get("OIL_GOLD_SKILL_DIR", "")
         gw = _os.path.join(gw_env, "scripts", "send_qq_gw.py") if gw_env else ""
         if not gw or not _os.path.exists(gw):
-            # fallback: 从本脚本位置上溯定位（scripts/ → economic-outlook → skills → 兄弟目录 oil-gold-correlation）
-            _base = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))  # skills/economic-outlook
+            _base = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
             gw = _os.path.join(_os.path.dirname(_base), "oil-gold-correlation", "scripts", "send_qq_gw.py")
         _tmp = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
         _tmp.write(msg + "\n\n⚠️ 区间参考，不构成投资建议"); _tmp.close()
@@ -74,9 +75,9 @@ if alert.get("triggered"):
         _os.unlink(_tmp.name)
         if r.returncode != 0:
             log.warning("门面推送失败: %s", r.stderr[:80] if r.stderr else "?")
-        # 记 key 去重
+        key = f"trig_{out.get('trigger_type','')}_{price}_{agm}"
         os.makedirs("data", exist_ok=True)
-        json.dump({"last_alert_key": alert.get("alert_key",""), "at": now}, open(state_f,"w"))
+        json.dump({"last_alert_key": key, "at": now}, open(state_f, "w"))
         print("TRIGGERED")
     else:
         print("TRIGGERED_NO_TARGET")

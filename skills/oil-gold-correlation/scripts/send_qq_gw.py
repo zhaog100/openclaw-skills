@@ -1,6 +1,10 @@
 import logging
-logging.basicConfig(level=logging.WARNING)
+# 彻底静默: 不打 stdout/stderr(避免 cron 抓日志尾巴当文案推给官家, 官家10-26)
+logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.CRITICAL)
+logger.addHandler(logging.NullHandler())
+logger.propagate = False
 
 #!/usr/bin/env python3
 """
@@ -49,11 +53,11 @@ def get_gateway_token() -> str:
             config = json.load(f)
         token = config.get("gateway", {}).get("auth", {}).get("token", "")
         if not token:
-            logger.info("[ERROR] 无法获取 Gateway Token")
+            print("[ERROR] 无法获取 Gateway Token", file=sys.stderr)
             return ""
         return token
     except Exception as e:
-        logger.info(f"[ERROR] 读取 token 失败: {e}")
+        print(f"[ERROR] 读取 token 失败: {e}", file=sys.stderr)
         return ""
 
 
@@ -94,15 +98,15 @@ def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
                 logger.debug("消息发送成功")
                 return True
             else:
-                logger.info(f"[ERROR] 发送失败: {result}")
+                print(f"[ERROR] 发送失败: {result}", file=sys.stderr)
                 return False
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8")
-        logger.info(f"[ERROR] HTTP {e.code}: {e.reason}")
-        logger.info(f"[ERROR] 响应: {body}")
+        print(f"[ERROR] HTTP {e.code}: {e.reason}", file=sys.stderr)
+        print(f"[ERROR] 响应: {body[:200]}", file=sys.stderr)
         return False
     except Exception as e:
-        logger.info(f"[ERROR] 发送异常: {e}")
+        print(f"[ERROR] 发送异常: {e}", file=sys.stderr)
         return False
 
 
@@ -114,11 +118,11 @@ def main():
         with open(report_file, "r") as f:
             message = f.read().strip()
     except FileNotFoundError:
-        logger.info(f"[ERROR] 报告文件不存在: {report_file}")
+        print(f"[ERROR] 报告文件不存在: {report_file}", file=sys.stderr)
         sys.exit(1)
 
     if not message:
-        logger.info("[ERROR] 报告内容为空")
+        print("[ERROR] 报告内容为空", file=sys.stderr)
         sys.exit(1)
 
     success = send_via_gateway(message)
