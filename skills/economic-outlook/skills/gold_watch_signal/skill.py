@@ -46,7 +46,7 @@ def _fetch_au0_realtime() -> dict:
         url = ("https://push2.eastmoney.com/api/qt/stock/get"
                "?secid=113.AUM&fields=f43,f57,f58,f86")
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
         data = d.get("data") or {}
         f43 = data.get("f43")
         if f43:
@@ -78,14 +78,14 @@ def _fetch_au0_jijinhao() -> dict:
         # 先抓页面里的 code(认真分析, 不猜): 列表页 quote/gjs/ 的 JO_ code
         base = "https://m.cngold.org/quote/gjs/"
         req = _ur.Request(base, headers={"User-Agent": "Mozilla/5.0"})
-        page = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        page = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         codes = sorted(set(_re.findall(r'JO_\d{4,6}', page)))
         if not codes:
             return {}
         # 批量拉价格
         url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
         req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
-        raw = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        raw = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         # 取 8xx 元/克(沪金/上海金口径)的 code, 优先实时(时间戳最近的)
         best = None
         for m in _re.finditer(r'"(JO_\d{4,6})"\s*:\s*\{(.{0,400})', raw):
@@ -116,7 +116,7 @@ def _fetch_agm_realtime() -> dict:
         url = ("https://push2.eastmoney.com/api/qt/stock/get"
                "?secid=113.AGM&fields=f43,f57,f58,f86")
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
         data = d.get("data") or {}
         f43 = data.get("f43")
         if f43:
@@ -128,11 +128,11 @@ def _fetch_agm_realtime() -> dict:
     import urllib.request as _ur, re as _re
     try:
         req = _ur.Request("https://m.cngold.org/quote/gjs/", headers={"User-Agent": "Mozilla/5.0"})
-        page = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        page = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         codes = sorted(set(_re.findall(r'JO_\d{4,6}', page)))
         url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
         req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
-        raw = _ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        raw = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         best = None
         for m in _re.finditer(r'"(JO_\d{4,6})"\s*:\s*\{(.{0,400})', raw):
             seg = m.group(2)
@@ -166,7 +166,7 @@ def _fetch_intl_silver() -> dict:
     返回 {usd, ts, src} 或 {}。"""
     try:
         req = urllib.request.Request("https://api.gold-api.com/price/XAG", headers={"User-Agent": "Mozilla/5.0"})
-        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
         p = d.get("price")
         if p:
             return {"usd": float(p), "ts": d.get("updatedAt", ""), "src": "gold-api-XAG"}
@@ -186,8 +186,8 @@ def _fetch_au0_quhe() -> dict:
                 ctx = await browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36")
                 page = await ctx.new_page()
                 await page.goto("https://m.quheqihuo.com/quote/shfe-aum.html",
-                                 wait_until="domcontentloaded", timeout=30000)
-                await page.wait_for_timeout(5000)
+                                 wait_until="domcontentloaded", timeout=15000)
+                await page.wait_for_timeout(3000)
                 text = await page.inner_text("body")
                 await browser.close()
                 return text
@@ -218,7 +218,7 @@ def _fetch_realtime_spot() -> dict:
     # 主源: gold-api REST JSON(实测稳定, 有 updatedAt 时间戳)
     try:
         req = urllib.request.Request(REST_XAU, headers={"User-Agent": "Mozilla/5.0"})
-        d = json.loads(urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
         spot = d.get("price")
         if spot:
             return {"spot_usd": float(spot), "ts": d.get("updatedAt", ""), "src": "gold-api"}
@@ -230,7 +230,7 @@ def _fetch_realtime_spot() -> dict:
             JH_REALTIME_URL,
             headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"},
         )
-        raw = urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+        raw = urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         m = re.search(r'hq_str\s*=\s*"([^"]+)"', raw)
         if not m:
             return {}
@@ -288,7 +288,7 @@ class GoldWatchSignalSkill(BaseSkill):
             # 骨架留口, 不硬造拉不通的 WS(当前无稳定免费 tick 源)
             pass
         try:
-            r = urllib.request.urlopen(REST_XAU, timeout=10)
+            r = urllib.request.urlopen(REST_XAU, timeout=6)
             return float(json.loads(r.read()).get("price", 0)), "rest"
         except Exception:
             return None, None

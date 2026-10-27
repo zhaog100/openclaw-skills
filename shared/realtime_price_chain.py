@@ -22,7 +22,7 @@ G_PER_OZ = 31.1035
 UA = {"User-Agent": "Mozilla/5.0"}
 
 
-def _get(url, headers=None, timeout=8):
+def _get(url, headers=None, timeout=6):
     h = dict(UA)
     if headers:
         h.update(headers)
