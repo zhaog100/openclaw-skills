@@ -91,16 +91,18 @@ def _fetch_live_price(key, fallback_result):
             change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
             change_1d = df['Close'].pct_change().iloc[-1] * 100
             if live:
-                # 日涨跌: 实时价 vs akshare前一日收盘。
-                # akshare白银Close单位=元/千克(13040), 东财AGM=130.24(元/千克÷100) → 东财×100对齐
-                # 沪金: 两边都是元/克量级(864), 直接比
+                # 日涨跌: 实时价 vs akshare前一日收盘(同量级)。
+                # 白银: akshare白银Close=元/千克(12763), 东财AGM f43=13164→÷100=131.64 是"元/克"量级
+                #       → 东财白银×100 对齐到元/千克再比(131.64×100≈13164 元/千克, 贴上期所12999)
+                # 沪金: 东财AUM f43=8xxxx÷100=864.x 是"元/克", akshare黄金Close=元/克量级, 直接比
                 prev = df['Close'].iloc[-2] if len(df) >= 2 else latest
                 if key == "silver":
-                    live_cmp = live * 100.0   # 130.24→13024, 和akshare 13040同量级
+                    live_cmp = live * 100.0   # 东财AGM 元/克 ×100 → 元/千克, 和 akshare 白银(元/千克)同量级
+                    latest = live_cmp          # 报告显 元/千克(贴上期所12999, 官家10-27纠错)
                     change_1d = (live_cmp / prev - 1) * 100
                 else:
                     change_1d = (live / prev - 1) * 100
-                latest = live
+                    latest = live
                 tag = "实时(东财)"
             else:
                 tag = "日线"
@@ -417,7 +419,8 @@ def _generate_report_inner():
             score = result.get('score', 50)
             rsi = result.get('rsi', 50) or 50
             verdict, v_emoji = score_verdict(score)
-            price = f'¥{result.get("latest", 0):,.0f}'
+            _lp = _fetch_live_price(key, result)[0]  # 官家10-27: 仪表盘和行情段同一口(东财实时优先), 不再各取各的
+            price = f'¥{_lp:,.0f}'
             sig = result.get('macd', {}).get('signal', '+0') if isinstance(result.get('macd'), dict) else '+0'
             bar = score_to_bar(score)
             arrow = trend_arrow(score, rsi)

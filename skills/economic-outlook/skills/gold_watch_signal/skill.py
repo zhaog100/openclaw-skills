@@ -39,9 +39,27 @@ def _fetch_au0(n_days=120):
         return None
 
 def _fetch_au0_realtime() -> dict:
-    """沪金主连实时价降级链(官家 10-26: 东财AUM主 + 金投网实时备 + 七河PW渲染 + au0日线兜底, 贴 UI 实盘 862)。
-    盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
-    # ① 主源: 东财 113.AUM(沪金2710, 官家10-27拍板锚主力, 贴中行卖出价862.62/曲合网沪金主力863.64口径)
+    """沪金现货实时价降级链(官家10-27拍板'期货不对,要现货'):
+    ① 金投网 jijinhao 现货(实时在跳, 贴官家实盘上海金862~865) ② 东财113.AUM(期货主连, 降为参考)
+    ③ 七河PW渲染 ④ au0日线兜底。盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
+    # ① 主源: 东财 118.AU9999(上金所 Au99.99 现货, 官家10-27给的金投网jjs_hj9999对应东财secid, 贴截图869)
+    try:
+        url = ("https://push2.eastmoney.com/api/qt/stock/get"
+               "?secid=118.AU9999&fields=f43,f57,f58,f86")
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
+        data = d.get("data") or {}
+        f43 = data.get("f43")
+        if f43 is not None:
+            price = f43 / 100.0 if f43 > 10000 else f43
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au9999_sge"}
+    except Exception:
+        pass
+    # ② 备源: 金投网 jijinhao Au9999 现货 code(JO_283972, 官家给的金投网 jjs_hj9999 页)
+    r = _fetch_au0_jijinhao()
+    if r:
+        return r
+    # ② 备源: 东财 113.AUM(期货主连, 官家10-27降为参考; 现货源挂时用, 贴曲合网主力口径)
     try:
         url = ("https://push2.eastmoney.com/api/qt/stock/get"
                "?secid=113.AUM&fields=f43,f57,f58,f86")
@@ -51,18 +69,22 @@ def _fetch_au0_realtime() -> dict:
         f43 = data.get("f43")
         if f43:
             price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au2710"}
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au0_futures_ref"}
     except Exception:
         pass
-    # ② 备源: 金投网 jijinhao 实时 code(官家 m.cngold.org/quote/gjs/ 页, JO_283972=858.77 实时在跳, 贴现货口径)
-    r = _fetch_au0_jijinhao()
+    # ③ 备源: 上金所官网 Dailyhq(权威, 拉到才用, 本机网络常超时→自动跳过不阻塞)
+    r = _fetch_sge_dailyhq()
     if r:
         return r
-    # ③ 备源: 七河期货 shfe-aum(PW 渲染, 官家 m.quheqihuo.com 页, 东财挂时用)
+    # ④ 备源: 七河 shfe-aum(PW 渲染, 官家 m.quheqihuo.com 页)
     r = _fetch_au0_quhe()
     if r:
         return r
-    # ④ 兜底: au0 akshare 日线(全挂时用, 周末=周五收盘)
+    # ⑤ 备源: 腾讯 hf_GC 国际金×汇率估算(拉到才用, 差基差明标估算, 末位)
+    r = _fetch_tencent_fx_est()
+    if r:
+        return r
+    # ⑥ 兜底: au0 akshare 日线(全挂时用, 周末=周五收盘)
     au0 = _fetch_au0(2)
     if au0:
         return {"price": round(au0[0][-1], 2), "ts": "", "src": "au0_daily"}
@@ -174,6 +196,40 @@ def _fetch_intl_silver() -> dict:
         pass
     return {}
 
+
+
+def _fetch_sge_dailyhq() -> dict:
+    """上金所官网 Dailyhq(权威, 官家10-27给). 拉到才用, 本机网络常超时→自动跳过不阻塞.
+    返回 {price, ts, src} 或 {}。"""
+    try:
+        import urllib.request as _ur, re as _re, time as _time
+        req = _ur.Request("https://www.sge.com.cn/graph/Dailyhq",
+                          headers={"User-Agent": "Mozilla/5.0", "Referer": "https://www.sge.com.cn/"})
+        r = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
+        m = _re.findall(r'Au99\.99[^0-9]{0,40}?([0-9]{3}\.[0-9]{1,3})', r)
+        if m:
+            return {"price": round(float(m[0]), 2), "ts": "", "src": "sge_dailyhq"}
+    except Exception:
+        pass
+    return {}
+
+
+def _fetch_tencent_fx_est() -> dict:
+    """腾讯 hf_GC 国际金 × 汇率估算上海金(官家10-27给, 末位备源). 拉到才用, 差基差→明标估算.
+    返回 {price, ts, src, est} 或 {}。"""
+    try:
+        import urllib.request as _ur
+        req = _ur.Request("https://qt.gtimg.cn/q=hf_GC", headers={"User-Agent": "Mozilla/5.0"})
+        t = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
+        f = t.split("~")
+        if len(f) > 3 and f[3]:
+            usd = float(f[3])
+            FX = 7.10; G = 31.1035
+            sh = round(usd * FX / G, 2)
+            return {"price": sh, "ts": f[6] if len(f) > 6 else "", "src": "tencent_hf_GC_fx_est", "est": True}
+    except Exception:
+        pass
+    return {}
 def _fetch_au0_quhe() -> dict:
     """七河期货 shfe-aum(沪金主力)PW 渲染取价, 东财 AUM 的备源。返回 {price, ts, src} 或 {}。"""
     try:
