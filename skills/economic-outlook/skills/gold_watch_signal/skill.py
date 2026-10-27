@@ -41,7 +41,7 @@ def _fetch_au0(n_days=120):
 def _fetch_au0_realtime() -> dict:
     """沪金主连实时价降级链(官家 10-26: 东财AUM主 + 金投网实时备 + 七河PW渲染 + au0日线兜底, 贴 UI 实盘 862)。
     盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
-    # ① 主源: 东财 113.AUM(沪金主连, 官家 gold.eastmoney.com 页的 secid, 862.58)
+    # ① 主源: 东财 113.AUM(沪金2710, 官家10-27拍板锚主力, 贴中行卖出价862.62/曲合网沪金主力863.64口径)
     try:
         url = ("https://push2.eastmoney.com/api/qt/stock/get"
                "?secid=113.AUM&fields=f43,f57,f58,f86")
@@ -51,7 +51,7 @@ def _fetch_au0_realtime() -> dict:
         f43 = data.get("f43")
         if f43:
             price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au0"}
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au2710"}
     except Exception:
         pass
     # ② 备源: 金投网 jijinhao 实时 code(官家 m.cngold.org/quote/gjs/ 页, JO_283972=858.77 实时在跳, 贴现货口径)
@@ -111,7 +111,7 @@ def _fetch_au0_jijinhao() -> dict:
 def _fetch_agm_realtime() -> dict:
     """沪银主连实时价降级链(官家 10-26: 东财AGM主 + 金投网jijinhao备 + au1日线兜底, 类比黄金链)。
     单位: 元/千克(沪银口径)。盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
-    # ① 主源: 东财 113.AGM(沪银主连)
+    # ① 主源: 东财 113.ag2612(沪银2612, 官家10-27截图实盘合约, 130.23 元/克; 上期所12999元/千克=12.999元/克同口径)
     try:
         url = ("https://push2.eastmoney.com/api/qt/stock/get"
                "?secid=113.AGM&fields=f43,f57,f58,f86")
@@ -121,7 +121,7 @@ def _fetch_agm_realtime() -> dict:
         f43 = data.get("f43")
         if f43:
             price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_agm"}
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_ag2612"}
     except Exception:
         pass
     # ② 备源: 金投网 jijinhao 沪银 code(JO_9754=13021 元/千克 一带, 从 quote/gjs/ 页扒)
