@@ -39,49 +39,32 @@ def _fetch_au0(n_days=120):
         return None
 
 def _fetch_au0_realtime() -> dict:
-    """沪金现货实时价降级链(官家10-27拍板'期货不对,要现货'):
-    ① 金投网 jijinhao 现货(实时在跳, 贴官家实盘上海金862~865) ② 东财113.AUM(期货主连, 降为参考)
-    ③ 七河PW渲染 ④ au0日线兜底。盘中分钟级在跳; 周末=周五收盘。返回 {price, ts, src} 或空 dict。"""
-    # ① 主源: 东财 118.AU9999(上金所 Au99.99 现货, 官家10-27给的金投网jjs_hj9999对应东财secid, 贴截图869)
-    try:
-        url = ("https://push2.eastmoney.com/api/qt/stock/get"
-               "?secid=118.AU9999&fields=f43,f57,f58,f86")
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
-        data = d.get("data") or {}
-        f43 = data.get("f43")
-        if f43 is not None:
-            price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货"}
-    except Exception:
-        pass
-    # ② 备源: 金投网 jijinhao Au9999 现货 code(JO_283972, 官家给的金投网 jjs_hj9999 页)
-    r = _fetch_au0_jijinhao()
-    if r:
-        return r
-    # ② 备源: 东财 113.AUM(期货主连, 官家10-27降为参考; 现货源挂时用, 贴曲合网主力口径)
-    try:
-        url = ("https://push2.eastmoney.com/api/qt/stock/get"
-               "?secid=113.AUM&fields=f43,f57,f58,f86")
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
-        data = d.get("data") or {}
-        f43 = data.get("f43")
-        if f43:
-            price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "东财·沪金主力期货(参考)", "src_cn": "东财·沪金主力期货(参考)"}
-    except Exception:
-        pass
-    # ③ 备源: au0 akshare 日线兜底(全挂时用, 周末=周五收盘)
-    # 官家10-28: 砍掉上金所Dailyhq(6s拉空)/七河PW(8.4s慢)/腾讯(拉不通)三个拖超时的源,
-    # 主链只留 东财AU9999(3s主)+金投网备+au0兜底, 最坏~20s 撞不上 cron 超时
-    # (下面三个慢源保留函数定义, 需要时再手动挂回)
-    # r = _fetch_sge_dailyhq();  if r: return r
-    # r = _fetch_au0_quhe();     if r: return r
-    # r = _fetch_tencent_fx_est(); if r: return r
+    """沪金现货实时价降级链(官家10-28彻底修正: 只认真实现货口径, 宁静默勿冒充):
+    ① 东财 118.AU9999(上金所现货, 多节点重试) ② au0日线兜底(收盘口径)
+    官家10-28: 金投网 JO_283972 实为"农行纸黄金 ABCCNYAU"(871.22, 虚高~5元), 不是现货,
+    已全部剔除; 纸黄金/金条/国际金折算 一律不得当现货基准。拉不到真实现货价 → 返回空 dict,
+    上层静默, 绝不冒值。"""
+    # ① 主源: 东财 118.AU9999(上金所现货), 多 host 重试(16:07 实测 push2 单机 SSL 持续抖)
+    for host in ["push2", "2", "3", "4", "5", "11"]:
+        try:
+            url = (f"https://{host}.eastmoney.com/api/qt/stock/get"
+                   "?secid=118.AU9999&fields=f43,f57,f58,f86")
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            d = json.loads(urllib.request.urlopen(req, timeout=5).read().decode("utf-8", "ignore"))
+            data = d.get("data") or {}
+            f43 = data.get("f43")
+            if f43 is not None:
+                price = f43 / 100.0 if f43 > 10000 else f43
+                return {"price": round(price, 2), "ts": data.get("f86", ""),
+                        "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货",
+                        "host": host}
+        except Exception:
+            pass
+    # ② 兜底: au0 akshare 日线(收盘口径, 仅东财全节点拉空时用; 周末=周五收盘)
     au0 = _fetch_au0(2)
     if au0:
-        return {"price": round(au0[0][-1], 2), "ts": "", "src": "沪金日线(收盘兜底)", "src_cn": "沪金日线(收盘兜底)"}
+        return {"price": round(au0[0][-1], 2), "ts": "",
+                "src": "沪金日线(收盘兜底)", "src_cn": "沪金日线(收盘兜底)", "stale": True}
     return {}
 
 
