@@ -60,7 +60,12 @@ def _fetch_au0_realtime() -> dict:
                         "host": host}
         except Exception:
             pass
-    # ② 兜底: au0 akshare 日线(收盘口径, 仅东财全节点拉空时用; 周末=周五收盘)
+    # ② 备源(官家10-28 17:18: 用官家给的金投网口, 组合成实时链): 金投网 JO_9753 黄金T+D
+    #    (上金所 Au(T+D), 实时自动刷新, 贴现货 866 一带; 纸黄金/金条 code 已剔除)
+    jj = _fetch_au0_jijinhao()
+    if jj:
+        return jj
+    # ③ 兜底: au0 akshare 日线(收盘口径, 东财+金投网全拉空才用; 周末=周五收盘)
     au0 = _fetch_au0(2)
     if au0:
         return {"price": round(au0[0][-1], 2), "ts": "",
@@ -68,38 +73,40 @@ def _fetch_au0_realtime() -> dict:
     return {}
 
 
-def _fetch_au0_jijinhao() -> dict:
-    """金投网 jijinhao 沪金/上海金实时 code(官家 10-26 给的 m.cngold.org/quote/gjs/ 页)。
-    从页面 JS 里扒真实 code: JO_283972(858.77 实时在跳) → 现货口径, JO_9753(863.38 贴UI) 备。
-    返回 {price, ts, src} 或 {}。"""
+def _fetch_au0_jijinhao(code=None) -> dict:
+    """金投网 jijinhao 实时 code(官家 10-26 给的 m.cngold.org/quote/gjs/ 页)。
+    官家10-28 17:18 修正: 按 showName 挑真现货口径 code, 不盲目取 8xx 最新时间戳:
+      JO_9753 黄金T+D(上金所 Au(T+D), 贴现货 860 一带) = 可用现货口径
+      JO_283972 农行纸黄金 ABCCNYAU / JO_42760 工行纸黄金 CNYAAU = 纸黄金虚高~5元, 禁用
+      金条零售价(传世之宝/如意/龙鼎/和谐平安) = 禁用
+    code=指定code拉; code=None 自动选 黄金T+D(JO_9753) 优先。返回 {price, ts, src} 或 {}。"""
     try:
         import urllib.request as _ur, re as _re
-        # 先抓页面里的 code(认真分析, 不猜): 列表页 quote/gjs/ 的 JO_ code
         base = "https://m.cngold.org/quote/gjs/"
         req = _ur.Request(base, headers={"User-Agent": "Mozilla/5.0"})
         page = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         codes = sorted(set(_re.findall(r'JO_\d{4,6}', page)))
         if not codes:
             return {}
-        # 批量拉价格
         url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
         req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
         raw = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
-        # 取 8xx 元/克(沪金/上海金口径)的 code, 优先实时(时间戳最近的)
-        best = None
-        for m in _re.finditer(r'"(JO_\d{4,6})"\s*:\s*\{(.{0,400})', raw):
-            code, seg = m.group(1), m.group(2)
+        # 官家10-28: 只认 黄金T+D(上金所口径), 禁纸黄金/金条(虚高冒充现货)
+        PREFER = ["JO_9753"]   # 黄金T+D = 上金所 Au(T+D), 贴现货 866 一带
+        for want in (PREFER if code is None else [code]):
+            m = _re.search(r'"' + want + r'"\s*:\s*\{(.{0,500})', raw)
+            if not m: continue
+            seg = m.group(1)
             q2 = _re.search(r'"q2"\s*:\s*([\d.]+)', seg)
             tm = _re.search(r'"time"\s*:\s*(\d+)', seg)
+            nm = _re.search(r'"showName"\s*:\s*"([^"]+)"', seg)
             if q2:
                 val = float(q2.group(1))
-                if 800 < val < 950:  # 沪金/上海金 口径区间
-                    ts_int = int(tm.group(1)) if tm else 0
-                    cand = {"price": round(val, 2), "ts": ts_int, "src": "金投网·上金所现货", "src_cn": "金投网·上金所现货", "code": code}
-                    if best is None or ts_int > best["ts"]:
-                        best = cand
-        if best:
-            return best
+                if 800 < val < 950:
+                    return {"price": round(val, 2), "ts": int(tm.group(1)) if tm else 0,
+                            "src": "金投网·" + (nm.group(1) if nm else "黄金T+D"),
+                            "src_cn": "金投网·" + (nm.group(1) if nm else "黄金T+D"),
+                            "code": want}
     except Exception:
         pass
     return {}
