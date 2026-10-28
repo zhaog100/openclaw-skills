@@ -407,8 +407,17 @@ class GoldWatchSignalSkill(BaseSkill):
             # 基准 = 东财118.AU9999 现货实时价(au0_rt 主源已是现货), 档位 = 现货K线 20/60日高低
             # (au0_rt 此时是 _fetch_au0_realtime() 主源=东财118.AU9999现货, 故 base 即现货价)
             # 官家10-28断根877: 现货价(au0_rt)拉不到时, 基准=K线收盘c_last(现货口径), 绝不回退国际金折算价
+            # 官家10-28: 基准只认现货(au0_rt东财现货价 / K线收盘c_last), 现货拉不到=静默, 绝不回退国际金折算价
             base = round(au0_rt["price"], 2) if au0_rt.get("price") else round(c_last, 2)
+            # 现货价(au0_rt)缺失 且 现货K线也缺失 → 本轮静默, 不出基准/不触发申购
+            if not au0_rt.get("price") and not au9999_k:
+                out["success"] = False
+                out["price_basis"] = "现货价不可用, 本轮静默(不触发申购)"
+                out["intl_ref_only"] = {"usd": xau, "sh_conv": round(xau * FX / G_PER_OZ, 2) if xau else None,
+                                          "note": "仅国际金参考, 绝不冒充现货/不触发申购"}
+                return out
             if rt.get("spot_usd"):
+                # 国际金只进 intl_realtime 当参考展示, 绝不赋 sh_equiv/不触发申购; sh_equiv=现货 base
                 out.update({
                     "success": True, "source": "沪金基准+国际金盘中参考",
                     "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",

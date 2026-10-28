@@ -1,0 +1,29 @@
+{
+  "watch_shgold_spot": {
+    "note": "官家未实际建仓。看中【国泰黄金ETF联接 A 000218(打底) / C 004253(波段)】，中行 App 代申(场外基金净值口径,跟 518880/上海金走)。",
+    "status": "已建仓成本903(中行积存金), 点差16.6(10-22 22:14实测), 回本线919.6",
+    "cost_basis": 903,
+    "spread": 16.6,
+    "breakeven": 919.6,
+    "channel": "中行 App 代申国泰ETF联接(场外基金,净值口径;基金页显示净值而非金价,正常)",
+    "fund": {
+      "A": "000218",
+      "C": "004253",
+      "etf_ref": "518880"
+    },
+    "dynamic": {
+      "band1_offset": 5,
+      "band2_offset": 5,
+      "lookback_1": 20,
+      "lookback_2": 60,
+      "targets": [
+        "hi20",
+        "hi60"
+      ],
+      "no_chase": "hi20",
+      "min_target": 920
+    },
+    "bank_premium": 21,
+    "boc_spot": null
+  }
+}
