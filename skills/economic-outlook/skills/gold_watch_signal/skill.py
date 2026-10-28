@@ -395,6 +395,15 @@ class GoldWatchSignalSkill(BaseSkill):
         lb1 = int(dyn.get("lookback_1", 20))
         lb2 = int(dyn.get("lookback_2", 60))
         # 官家10-28: 档位全锚现货Au9999 K线(东财118.AU9999), au0期货日线降为兜底
+        # 官家10-28 861根子: 基准只认真实现货实时价(au0_rt=东财118.AU9999/金投网现货),
+        # 现货K线拉空只影响档位、绝不退 au0期货日线(861) 或国际金折算(877) 当基准
+        if not au0_rt.get("price"):
+            out["success"] = False
+            out["price_basis"] = "现货实时价不可用, 本轮静默(不触发申购, 不退期货au0/国际金折算)"
+            out["intl_ref_only"] = {"usd": xau, "sh_conv": round(xau * FX / G_PER_OZ, 2) if xau else None,
+                                      "note": "仅国际金参考, 绝不冒充现货/不触发申购"}
+            return out
+        base = round(au0_rt["price"], 2)   # 基准=现货实时价(东财118.AU9999 865.9/866一带), 永不退期货861/国际金877
         use_au9999 = bool(au9999_k and len(au9999_k[0]) >= lb2)
         use_au0 = (not use_au9999) and bool(au0 and len(au0[0]) >= lb2)
         if use_au9999:
@@ -403,19 +412,10 @@ class GoldWatchSignalSkill(BaseSkill):
             hi1, lo1 = max(high[-lb1:]), min(low[-lb1:])
             hi2, lo2 = max(high[-lb2:]), min(low[-lb2:])
             mid1 = statistics.median(close[-lb1:])
-            # 官家10-28: 整套全锚现货Au9999口径 —— 基准+档位都用现货
-            # 基准 = 东财118.AU9999 现货实时价(au0_rt 主源已是现货), 档位 = 现货K线 20/60日高低
-            # (au0_rt 此时是 _fetch_au0_realtime() 主源=东财118.AU9999现货, 故 base 即现货价)
-            # 官家10-28断根877: 现货价(au0_rt)拉不到时, 基准=K线收盘c_last(现货口径), 绝不回退国际金折算价
-            # 官家10-28: 基准只认现货(au0_rt东财现货价 / K线收盘c_last), 现货拉不到=静默, 绝不回退国际金折算价
-            base = round(au0_rt["price"], 2) if au0_rt.get("price") else round(c_last, 2)
-            # 现货价(au0_rt)缺失 且 现货K线也缺失 → 本轮静默, 不出基准/不触发申购
-            if not au0_rt.get("price") and not au9999_k:
-                out["success"] = False
-                out["price_basis"] = "现货价不可用, 本轮静默(不触发申购)"
-                out["intl_ref_only"] = {"usd": xau, "sh_conv": round(xau * FX / G_PER_OZ, 2) if xau else None,
-                                          "note": "仅国际金参考, 绝不冒充现货/不触发申购"}
-                return out
+            # 官家10-28: 基准=现货实时价 base(东财865.9/金投网866), 档位=现货K线20/60日高低
+            # K线拉空不影响基准, 基准永不退期货au0(861)/国际金折算(877)
+            # 现货实时价缺失 → 已在上方 return success=False, 不会走到这里
+            c_last_ref = c_last   # K线收盘仅作参考展示, 不作基准
             if rt.get("spot_usd"):
                 # 国际金只进 intl_realtime 当参考展示, 绝不赋 sh_equiv/不触发申购; sh_equiv=现货 base
                 out.update({
