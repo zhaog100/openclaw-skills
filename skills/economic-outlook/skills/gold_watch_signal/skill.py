@@ -482,17 +482,17 @@ class GoldWatchSignalSkill(BaseSkill):
                 },
             })
         else:
-            # AU0 拉不到 → 退回实盘价/国际金折算, 动态均线退化为 config 固定档
+            # AU0/现货拉不到 → 现货价缺失, 绝不回退国际金折算价(官家10-28: 877虚警根子)
+            # 只保留中行实盘价(boc, 现货口径); 国际金XAU 仅作展示, 不赋 sh_equiv(避免冒充现货触发申购)
             boc = cfg.get("boc_spot") or {}
             if boc.get("buy"):
-                out.update({"success": True, "source": "boc_spot", "price_basis": "中行实盘客户买入价(AU0不可用)",
+                out.update({"success": True, "source": "boc_spot", "price_basis": "中行实盘客户买入价(现货口径)",
                             "sh_equiv": float(boc["buy"]), "boc_buy": boc["buy"], "boc_ts": boc.get("ts", "")})
-            elif xau is not None:
-                out.update({"success": True, "source": xau_src or "rest", "price_basis": "XAUUSD折算(AU0/实盘均不可用,近似)",
-                            "sh_equiv": round(xau * FX / G_PER_OZ, 2)})
             else:
-                out.update({"success": False, "source": "unavailable", "price_basis": "无可用源",
-                            "error": "AU0/实盘价/国际金 均不可用, 本轮不用过期价"})
+                # 现货/实盘全不可用 → 明标, 不参与破档判定(宁可静默, 不用国际折算价冒充现货)
+                out.update({"success": False, "source": "unavailable", "price_basis": "现货/实盘价不可用, 本轮不判定",
+                            "intl_ref_only": {"usd": xau, "sh_conv": round(xau * FX / G_PER_OZ, 2) if xau else None,
+                                               "note": "仅国际金参考, 不作基准/不触发申购"}})
                 return out
             # 退级: 动态档算不出, 用 config 里现有固定档(若没有则无动态档, 仅提示)
             out.setdefault("dyn_buy1", cfg.get("buy1"))
