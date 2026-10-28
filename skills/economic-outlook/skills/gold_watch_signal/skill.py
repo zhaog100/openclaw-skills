@@ -224,6 +224,29 @@ def _fetch_tencent_fx_est() -> dict:
     except Exception:
         pass
     return {}
+
+
+def _fetch_au9999_kline(n_days=130):
+    """东财 118.AU9999(上金所现货) 日线K线(官家10-28给的 quote.eastmoney 118.AU9999 有K线, fqt=0)。
+    返回 (close, high, low) 最近 n_days 日, 供算现货 20/60 日高低点档位; 失败 None。
+    口径: 现货 Au9999(贴官家截图), 替代 au0 期货日线算档, 整套全锚现货。"""
+    try:
+        import urllib.request as _ur, json as _json
+        url = ("https://92.push2his.eastmoney.com/api/qt/stock/kline/get?"
+               "secid=118.AU9999&fields1=f1,f2,f3,f4,f5,f6&fields2=f51,f52,f53,f54,f55,f56,f57,f58"
+               "&klt=101&fqt=0&end=20500101&lmt=%d" % n_days)
+        req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://quote.eastmoney.com/"})
+        d = _json.loads(_ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        kl = ((d.get("data") or {}).get("klines")) or []
+        if not kl:
+            return None
+        close, high, low = [], [], []
+        for k in kl:
+            f = k.split(",")
+            close.append(float(f[2])); high.append(float(f[3])); low.append(float(f[4]))
+        return (close, high, low)
+    except Exception:
+        return None
 def _fetch_au0_quhe() -> dict:
     """七河期货 shfe-aum(沪金主力)PW 渲染取价, 东财 AUM 的备源。返回 {price, ts, src} 或 {}。"""
     try:
@@ -351,6 +374,7 @@ class GoldWatchSignalSkill(BaseSkill):
 
         xau, xau_src = self._fetch_xau()
         au0 = _fetch_au0()
+        au9999_k = _fetch_au9999_kline()   # 官家10-28: 现货Au9999 K线(东财118.AU9999), 档位全锚现货
         au0_rt = _fetch_au0_realtime()
         agm_rt = _fetch_agm_realtime()      # 官家 10-26: 白银也接进来(东财AGM主 + 金投网备 + au1日线兜底)
         intl_ag = _fetch_intl_silver()      # 国际银 XAG 盘中参考(类比黄金 gold-api XAU)
@@ -370,17 +394,18 @@ class GoldWatchSignalSkill(BaseSkill):
         off2 = dyn.get("band2_offset", 5)
         lb1 = int(dyn.get("lookback_1", 20))
         lb2 = int(dyn.get("lookback_2", 60))
-        use_au0 = bool(au0 and len(au0[0]) >= lb2)
-        if use_au0:
-            close, high, low = au0
+        # 官家10-28: 档位全锚现货Au9999 K线(东财118.AU9999), au0期货日线降为兜底
+        use_au9999 = bool(au9999_k and len(au9999_k[0]) >= lb2)
+        use_au0 = (not use_au9999) and bool(au0 and len(au0[0]) >= lb2)
+        if use_au9999:
+            close, high, low = au9999_k
             c_last = close[-1]
             hi1, lo1 = max(high[-lb1:]), min(low[-lb1:])
             hi2, lo2 = max(high[-lb2:]), min(low[-lb2:])
             mid1 = statistics.median(close[-lb1:])
-            # 口径铁律(官家10-24): 推给官家的买卖基准 = au0 国内沪金(贴实盘), 国际金实时价只作盘中参考
-            # 均线档永远 au0 日线算; 实时国际金价 vs au0 折算交叉验证, 差>30元报警
-            # C 双轨: 基准 = au0 沪金(官家 UI 862 实盘口径)
-            # 盘中优先东财 113.AUM 实时价(分钟级在跳), 全挂退 au0 日线(周五收盘)
+            # 官家10-28: 整套全锚现货Au9999口径 —— 基准+档位都用现货
+            # 基准 = 东财118.AU9999 现货实时价(au0_rt 主源已是现货), 档位 = 现货K线 20/60日高低
+            # (au0_rt 此时是 _fetch_au0_realtime() 主源=东财118.AU9999现货, 故 base 即现货价)
             base = round(au0_rt["price"], 2) if au0_rt.get("price") else round(c_last, 2)
             if rt.get("spot_usd"):
                 out.update({

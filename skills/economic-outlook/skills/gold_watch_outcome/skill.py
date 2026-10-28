@@ -51,8 +51,9 @@ class GoldWatchOutcomeSkill(BaseSkill):
         if not xau:
             return {"triggered": False, "reason": "无实时金价, 静默", "xauusd": None}
         # 基准价对齐 signal 层: 有实盘价(中行客户买入价)就用它, 否则退回 sh_equiv(XAUUSD 折算)
-        sh = sig.get("boc_buy") or sig.get("sh_equiv", round(xau * FX / G_PER_OZ, 2))
-        price_basis = sig.get("price_basis", "boc_spot" if sig.get("boc_buy") else "xau_conv")
+        # 官家10-28: 破档判定锚"上金所Au9999现货"(东财118.AU9999), 不用国际金折算价(虚高~15元)
+        sh = sig.get("boc_buy") or sig.get("au0_realtime") or sig.get("sh_equiv", round(xau * FX / G_PER_OZ, 2))
+        price_basis = sig.get("price_basis", "sge_au9999_spot" if sig.get("au0_realtime") else ("boc_spot" if sig.get("boc_buy") else "xau_conv"))
 
         # 动态买卖点(读 signal 透传的 target 结构 + 当前行情高低点)
         # 简化: 用当前 sh 附近的固定档位(903 成本/919.6 回本线对应), 精确动态值由 signal 算
@@ -63,7 +64,9 @@ class GoldWatchOutcomeSkill(BaseSkill):
         sell1 = sig.get("dyn_sell1") or cfg.get("sell1", 951)
         sell2 = sig.get("dyn_sell2") or cfg.get("sell2", 1007)
         tier_mode = "dynamic" if sig.get("dyn_buy1") else "fixed"
-        if sig.get("sh_equiv"):
+        if sig.get("au0_realtime"):
+            sh = sig["au0_realtime"]
+        elif sig.get("sh_equiv"):
             sh = sig["sh_equiv"]
         else:
             sh = sig.get("boc_buy") or sig.get("au0_last") or (xau * FX / G_PER_OZ if xau else None)
@@ -106,7 +109,7 @@ class GoldWatchOutcomeSkill(BaseSkill):
             if os.path.exists(gw):
                 tmp = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
                 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                tmp.write("\n".join(msgs) + f"\n({now} 国际金XAU ${xau:.0f}/oz→沪金≈¥{sh:.0f}/克, 实盘按中行实时价)\n⚠️ 仅供参考, 不构成投资建议")
+                tmp.write("\n".join(msgs) + f"\n({now} 上金所Au9999现货≈¥{sh:.2f}/克, 实盘按上金所现货价)\n⚠️ 仅供参考, 不构成投资建议")
                 tmp.close()
                 try:
                     r = subprocess.run(["python3", gw, tmp.name],
