@@ -19,7 +19,7 @@ o = GoldWatchOutcomeSkill().execute({"gold_watch_signal": r}).data
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 price = r.get("sh_equiv", 0)
 agm = r.get("agm_realtime", "")
-src = r.get("au0_realtime_src", "")
+src = r.get("au0_realtime_src", "")  # 已是 src_cn 中文(官家10-28"英文是什么")
 state_f = os.path.join(os.getcwd(), "data", "gold_watch_state.json")
 last_key = ""
 if os.path.exists(state_f):

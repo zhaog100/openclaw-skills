@@ -52,7 +52,7 @@ def _fetch_au0_realtime() -> dict:
         f43 = data.get("f43")
         if f43 is not None:
             price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au9999_sge"}
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货"}
     except Exception:
         pass
     # ② 备源: 金投网 jijinhao Au9999 现货 code(JO_283972, 官家给的金投网 jjs_hj9999 页)
@@ -69,25 +69,19 @@ def _fetch_au0_realtime() -> dict:
         f43 = data.get("f43")
         if f43:
             price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_au0_futures_ref"}
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "东财·沪金主力期货(参考)", "src_cn": "东财·沪金主力期货(参考)"}
     except Exception:
         pass
-    # ③ 备源: 上金所官网 Dailyhq(权威, 拉到才用, 本机网络常超时→自动跳过不阻塞)
-    r = _fetch_sge_dailyhq()
-    if r:
-        return r
-    # ④ 备源: 七河 shfe-aum(PW 渲染, 官家 m.quheqihuo.com 页)
-    r = _fetch_au0_quhe()
-    if r:
-        return r
-    # ⑤ 备源: 腾讯 hf_GC 国际金×汇率估算(拉到才用, 差基差明标估算, 末位)
-    r = _fetch_tencent_fx_est()
-    if r:
-        return r
-    # ⑥ 兜底: au0 akshare 日线(全挂时用, 周末=周五收盘)
+    # ③ 备源: au0 akshare 日线兜底(全挂时用, 周末=周五收盘)
+    # 官家10-28: 砍掉上金所Dailyhq(6s拉空)/七河PW(8.4s慢)/腾讯(拉不通)三个拖超时的源,
+    # 主链只留 东财AU9999(3s主)+金投网备+au0兜底, 最坏~20s 撞不上 cron 超时
+    # (下面三个慢源保留函数定义, 需要时再手动挂回)
+    # r = _fetch_sge_dailyhq();  if r: return r
+    # r = _fetch_au0_quhe();     if r: return r
+    # r = _fetch_tencent_fx_est(); if r: return r
     au0 = _fetch_au0(2)
     if au0:
-        return {"price": round(au0[0][-1], 2), "ts": "", "src": "au0_daily"}
+        return {"price": round(au0[0][-1], 2), "ts": "", "src": "沪金日线(收盘兜底)", "src_cn": "沪金日线(收盘兜底)"}
     return {}
 
 
@@ -118,7 +112,7 @@ def _fetch_au0_jijinhao() -> dict:
                 val = float(q2.group(1))
                 if 800 < val < 950:  # 沪金/上海金 口径区间
                     ts_int = int(tm.group(1)) if tm else 0
-                    cand = {"price": round(val, 2), "ts": ts_int, "src": "jijinhao", "code": code}
+                    cand = {"price": round(val, 2), "ts": ts_int, "src": "金投网·上金所现货", "src_cn": "金投网·上金所现货", "code": code}
                     if best is None or ts_int > best["ts"]:
                         best = cand
         if best:
@@ -143,7 +137,7 @@ def _fetch_agm_realtime() -> dict:
         f43 = data.get("f43")
         if f43:
             price = f43 / 100.0 if f43 > 10000 else f43
-            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "eastmoney_ag2612"}
+            return {"price": round(price, 2), "ts": data.get("f86", ""), "src": "东财·沪银主力", "src_cn": "东财·沪银主力"}
     except Exception:
         pass
     # ② 备源: 金投网 jijinhao 沪银 code(JO_9754=13021 元/千克 一带, 从 quote/gjs/ 页扒)
@@ -164,7 +158,7 @@ def _fetch_agm_realtime() -> dict:
                 val = float(q2.group(1))
                 if 10000 < val < 15000:  # 沪银 元/千克 区间
                     ts_int = int(tm.group(1)) if tm else 0
-                    cand = {"price": round(val, 2), "ts": ts_int, "src": "jijinhao_silver"}
+                    cand = {"price": round(val, 2), "ts": ts_int, "src": "金投网·沪银", "src_cn": "金投网·沪银"}
                     if best is None or ts_int > best.get("ts", 0):
                         best = cand
         if best:
@@ -208,7 +202,7 @@ def _fetch_sge_dailyhq() -> dict:
         r = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         m = _re.findall(r'Au99\.99[^0-9]{0,40}?([0-9]{3}\.[0-9]{1,3})', r)
         if m:
-            return {"price": round(float(m[0]), 2), "ts": "", "src": "sge_dailyhq"}
+            return {"price": round(float(m[0]), 2), "ts": "", "src": "上金所官网(日行情)", "src_cn": "上金所官网(日行情)"}
     except Exception:
         pass
     return {}
@@ -226,7 +220,7 @@ def _fetch_tencent_fx_est() -> dict:
             usd = float(f[3])
             FX = 7.10; G = 31.1035
             sh = round(usd * FX / G, 2)
-            return {"price": sh, "ts": f[6] if len(f) > 6 else "", "src": "tencent_hf_GC_fx_est", "est": True}
+            return {"price": sh, "ts": f[6] if len(f) > 6 else "", "src": "腾讯国际金×汇率估算", "src_cn": "腾讯国际金×汇率估算", "est": True}
     except Exception:
         pass
     return {}
@@ -257,7 +251,7 @@ def _fetch_au0_quhe() -> dict:
         cands = [x for x in nums if 840 <= x <= 900]
         if not cands:
             return {}
-        return {"price": round(max(cands), 2), "ts": "", "src": "quheqihuo_shfe_aum"}
+        return {"price": round(max(cands), 2), "ts": "", "src": "七河·沪金(PW渲染)", "src_cn": "七河·沪金(PW渲染)"}
     except Exception:
         return {}
 
@@ -294,7 +288,7 @@ def _fetch_realtime_spot() -> dict:
         spot = float(f[2]) if len(f) > 2 else None
         if not spot:
             return {}
-        return {"spot_usd": spot, "ts": "", "src": "jijinhao"}
+        return {"spot_usd": spot, "ts": "", "src": "金投网·上金所现货", "src_cn": "金投网·上金所现货"}
     except Exception:
         return {}
 
@@ -394,11 +388,10 @@ class GoldWatchSignalSkill(BaseSkill):
                     "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
                     "sh_equiv": base,
                     "au0_realtime": au0_rt.get("price"),
-                    "au0_realtime_src": au0_rt.get("src", ""),
+                    "au0_realtime_src": au0_rt.get("src_cn") or au0_rt.get("src", ""),
                     "agm_realtime": agm_rt.get("price"),
                     "agm_realtime_src": agm_rt.get("src", ""),
                     "intl_silver": intl_ag,
-                    "au0_realtime_src": au0_rt.get("src", "au0_daily"),
                     "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
                                        "ts": rt.get("ts", ""), "src": rt.get("src")},
                     "au0_last": round(c_last, 2),
