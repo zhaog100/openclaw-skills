@@ -406,6 +406,7 @@ class GoldWatchSignalSkill(BaseSkill):
             # 官家10-28: 整套全锚现货Au9999口径 —— 基准+档位都用现货
             # 基准 = 东财118.AU9999 现货实时价(au0_rt 主源已是现货), 档位 = 现货K线 20/60日高低
             # (au0_rt 此时是 _fetch_au0_realtime() 主源=东财118.AU9999现货, 故 base 即现货价)
+            # 官家10-28断根877: 现货价(au0_rt)拉不到时, 基准=K线收盘c_last(现货口径), 绝不回退国际金折算价
             base = round(au0_rt["price"], 2) if au0_rt.get("price") else round(c_last, 2)
             if rt.get("spot_usd"):
                 out.update({
@@ -420,7 +421,7 @@ class GoldWatchSignalSkill(BaseSkill):
                     "intl_realtime": {"usd": rt["spot_usd"], "sh_conv": sh_rt,
                                        "ts": rt.get("ts", ""), "src": rt.get("src")},
                     "au0_last": round(c_last, 2),
-                    "au0_note": "盘中基准=东财113.AUM沪金主连实时(贴官家UI 862); 周末退au0日线周五收盘",
+                    "au0_note": "基准=东财118.AU9999现货(贴官家两网站869口径); 现货拉空时退K线收盘, 绝不回退国际金折算价",
                 })
                 # 交叉验证: 国际金折算 vs 沪金实时, 差>30 提示口径/汇率漂移(仅提示不改基准)
                 diff = abs(sh_rt - base)
