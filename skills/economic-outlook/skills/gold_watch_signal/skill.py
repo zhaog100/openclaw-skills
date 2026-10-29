@@ -44,24 +44,32 @@ def _fetch_au0_realtime() -> dict:
     官家10-28: 金投网 JO_283972 实为"农行纸黄金 ABCCNYAU"(871.22, 虚高~5元), 不是现货,
     已全部剔除; 纸黄金/金条/国际金折算 一律不得当现货基准。拉不到真实现货价 → 返回空 dict,
     上层静默, 绝不冒值。"""
-    # ① 主源: 东财 118.AU9999(上金所现货), 多 host 重试(16:07 实测 push2 单机 SSL 持续抖)
-    for host in ["push2", "2", "3", "4", "5", "11"]:
+    # ① 主源: 东财 118.AU9999(上金所现货), 多 host 并发+单节点2s超时
+    # 官家10-29 9:20修正: 6节点串行各等4s=24s拖超时; 改并发+2s, 全通<3s, 502时快速落到②③
+    import concurrent.futures as _cf
+    def _try_host(host):
         try:
             url = (f"https://{host}.eastmoney.com/api/qt/stock/get"
                    "?secid=118.AU9999&fields=f43,f57,f58,f86")
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-            d = json.loads(urllib.request.urlopen(req, timeout=5).read().decode("utf-8", "ignore"))
+            d = json.loads(urllib.request.urlopen(req, timeout=2).read().decode("utf-8", "ignore"))
             data = d.get("data") or {}
             f43 = data.get("f43")
             if f43 is not None:
                 price = f43 / 100.0 if f43 > 10000 else f43
-                return {"price": round(price, 2), "ts": data.get("f86", ""),
-                        "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货",
-                        "host": host}
+                return (round(price, 2), data.get("f86", ""), host)
         except Exception:
             pass
-    # ② 备源(官家10-28 17:18: 用官家给的金投网口, 组合成实时链): 金投网 JO_9753 黄金T+D
-    #    (上金所 Au(T+D), 实时自动刷新, 贴现货 866 一带; 纸黄金/金条 code 已剔除)
+        return None
+    with _cf.ThreadPoolExecutor(max_workers=6) as _ex:
+        for _res in _ex.map(_try_host, ["push2", "2", "3", "4", "5", "11"]):
+            if _res:
+                p, ts, host = _res
+                return {"price": p, "ts": ts,
+                        "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货",
+                        "host": host}
+    # ② 备源(官家10-28 17:18: 用官家给的金投网口, 组合成实时链): 金投网 JO_92226 m黄金T+D
+    #    (上金所 Au(T+D) 实时自动刷新, 贴现货 866 一带; 纸黄金/金条 code 已剔除)
     jj = _fetch_au0_jijinhao()
     if jj:
         return jj
@@ -82,17 +90,19 @@ def _fetch_au0_jijinhao(code=None) -> dict:
     code=指定code拉; code=None 自动选 黄金T+D(JO_9753) 优先。返回 {price, ts, src} 或 {}。"""
     try:
         import urllib.request as _ur, re as _re
-        base = "https://m.cngold.org/quote/gjs/"
-        req = _ur.Request(base, headers={"User-Agent": "Mozilla/5.0"})
-        page = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
-        codes = sorted(set(_re.findall(r'JO_\d{4,6}', page)))
-        if not codes:
-            return {}
+        # 官家10-29: JO_71 不在列表口54code里, 直接指定code拉 realTime(该口可单code拉通)
+        codes = ["JO_71"]
         url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
         req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
         raw = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
         # 官家10-28: 只认 黄金T+D(上金所口径), 禁纸黄金/金条(虚高冒充现货)
-        PREFER = ["JO_9753"]   # 黄金T+D = 上金所 Au(T+D), 贴现货 866 一带
+        # 官家10-28 22:48: 按官家给的金投网黄金9999页(jjs_hj9999.html)的 code,
+        # JO_92225 [i黄金9999] = 真·黄金9999现货口径(865.6, 贴官家网页866)
+        # 弃 JO_9753(黄金T+D, 口径偏) 和 JO_283972/42760(纸黄金, 虚高~5元)
+        # 官家10-29 10:13 锁死: 金投网黄金9999页(jjs_hj9999.html)主报价code=JO_71 [黄金9999](868.99, 贴官家网页869)
+        # 弃 JO_92226/JO_9753(黄金T+D, 口径偏)、纸黄金/金条(虚高冒充现货)
+        # 金投网 10:12 实拉: JO_71=868.99[黄金9999] 主报价口, 列表口(54code)无JO_71, 须单独指定
+        PREFER = ["JO_71"]   # 黄金9999 = 上金所 Au9999 现货, 贴官家网页 869 一带
         for want in (PREFER if code is None else [code]):
             m = _re.search(r'"' + want + r'"\s*:\s*\{(.{0,500})', raw)
             if not m: continue
