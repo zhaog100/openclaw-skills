@@ -62,7 +62,9 @@ def _fetch_au0_realtime() -> dict:
             pass
         return None
     with _cf.ThreadPoolExecutor(max_workers=6) as _ex:
-        for _res in _ex.map(_try_host, ["push2", "2", "3", "4", "5", "11"]):
+        # 官家10-29 14:59: push2his(92节点) 14:11 拉到864.0, 加入东财节点列表;
+        # 东财任一节点通即返东财现货价, 绝不顶金投网JO_71(868.99偏高口径)
+        for _res in _ex.map(_try_host, ["push2", "2", "3", "4", "5", "11", "push2his"]):
             if _res:
                 p, ts, host = _res
                 return {"price": p, "ts": ts,
@@ -83,15 +85,11 @@ def _fetch_au0_realtime() -> dict:
 
 def _fetch_au0_jijinhao(code=None) -> dict:
     """金投网 jijinhao 实时 code(官家 10-26 给的 m.cngold.org/quote/gjs/ 页)。
-    官家10-28 17:18 修正: 按 showName 挑真现货口径 code, 不盲目取 8xx 最新时间戳:
-      JO_9753 黄金T+D(上金所 Au(T+D), 贴现货 860 一带) = 可用现货口径
-      JO_283972 农行纸黄金 ABCCNYAU / JO_42760 工行纸黄金 CNYAAU = 纸黄金虚高~5元, 禁用
-      金条零售价(传世之宝/如意/龙鼎/和谐平安) = 禁用
-    code=指定code拉; code=None 自动选 黄金T+D(JO_9753) 优先。返回 {price, ts, src} 或 {}。"""
+    官家10-29 15:06: 只认 JO_71[黄金9999](页面主报价口, 贴现货口径); 纸黄金/金条/T+D 全弃
+    code=指定code拉; code=None 默认 JO_71。返回 {price, ts, src} 或 {}。"""
     try:
         import urllib.request as _ur, re as _re
-        # 官家10-29: JO_71 不在列表口54code里, 直接指定code拉 realTime(该口可单code拉通)
-        codes = ["JO_71"]
+        codes = [code or "JO_71"]
         url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
         req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
         raw = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
