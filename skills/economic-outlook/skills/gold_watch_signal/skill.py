@@ -70,16 +70,9 @@ def _fetch_au0_realtime() -> dict:
                 return {"price": p, "ts": ts,
                         "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货",
                         "host": host}
-    # ② 备源(官家10-28 17:18: 用官家给的金投网口, 组合成实时链): 金投网 JO_92226 m黄金T+D
-    #    (上金所 Au(T+D) 实时自动刷新, 贴现货 866 一带; 纸黄金/金条 code 已剔除)
-    jj = _fetch_au0_jijinhao()
-    if jj:
-        return jj
-    # ③ 兜底: au0 akshare 日线(收盘口径, 东财+金投网全拉空才用; 周末=周五收盘)
-    au0 = _fetch_au0(2)
-    if au0:
-        return {"price": round(au0[0][-1], 2), "ts": "",
-                "src": "沪金日线(收盘兜底)", "src_cn": "沪金日线(收盘兜底)", "stale": True}
+    # ② 官家10-29 16:55拍板: 东财502时不再顶金投网JO_71(868.99比现货高~4元, 偏口径冒充现货)
+    #    东财任一节点通即返东财现货; 全502 → 直接静默(返回空dict, 上层不出价), 宁缺勿错
+    #    弃 JO_71/T+D/纸黄金; au0日线收盘也弃(旧值冒充实时)
     return {}
 
 
