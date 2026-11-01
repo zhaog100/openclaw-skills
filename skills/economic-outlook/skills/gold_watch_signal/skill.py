@@ -39,13 +39,12 @@ def _fetch_au0(n_days=120):
         return None
 
 def _fetch_au0_realtime() -> dict:
-    """沪金现货实时价降级链(官家10-28彻底修正: 只认真实现货口径, 宁静默勿冒充):
-    ① 东财 118.AU9999(上金所现货, 多节点重试) ② au0日线兜底(收盘口径)
-    官家10-28: 金投网 JO_283972 实为"农行纸黄金 ABCCNYAU"(871.22, 虚高~5元), 不是现货,
-    已全部剔除; 纸黄金/金条/国际金折算 一律不得当现货基准。拉不到真实现货价 → 返回空 dict,
-    上层静默, 绝不冒值。"""
-    # ① 主源: 东财 118.AU9999(上金所现货), 多 host 并发+单节点2s超时
-    # 官家10-29 9:20修正: 6节点串行各等4s=24s拖超时; 改并发+2s, 全通<3s, 502时快速落到②③
+    """沪金现货实时价降级链(官家11-01 13:58 拍板, 新加坡机海外IP):
+    ① 东财 118.AU9999(上金所现货, 多节点) —— 通即用
+    ② 东财 502/拉空 → 金投网 JO_71 [黄金9999](上金所现货口径, 新加坡机能拉, 200OK)
+    ③ 两条全拉空 → 返回空 dict, 上层静默(不冒T+D/纸黄金/折算/旧值)
+    弃: T+D(JO_9753/92226)、纸黄金(JO_283972/42760)、金条、877折算、861期货、867昨收"""
+    # ① 主源: 东财 118.AU9999, 多 host 并发+单节点2s超时
     import concurrent.futures as _cf
     def _try_host(host):
         try:
@@ -62,18 +61,17 @@ def _fetch_au0_realtime() -> dict:
             pass
         return None
     with _cf.ThreadPoolExecutor(max_workers=6) as _ex:
-        # 官家10-29 14:59: push2his(92节点) 14:11 拉到864.0, 加入东财节点列表;
-        # 东财任一节点通即返东财现货价, 绝不顶金投网JO_71(868.99偏高口径)
         for _res in _ex.map(_try_host, ["push2", "2", "3", "4", "5", "11", "push2his"]):
             if _res:
                 p, ts, host = _res
-                return {"price": p, "ts": ts,
-                        "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货",
-                        "host": host}
-    # ② 官家10-29 16:55拍板: 东财502时不再顶金投网JO_71(868.99比现货高~4元, 偏口径冒充现货)
-    #    东财任一节点通即返东财现货; 全502 → 直接静默(返回空dict, 上层不出价), 宁缺勿错
-    #    弃 JO_71/T+D/纸黄金; au0日线收盘也弃(旧值冒充实时)
+                return {"price": p, "ts": ts, "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货", "host": host}
+    # ② 东财 502 → 金投网 JO_71 [黄金9999](上金所现货口径, 官家11-01 13:58 验证新加坡机可拉)
+    jj = _fetch_au0_jijinhao()
+    if jj and ("黄金9999" in jj.get("src", "") or "Au9999" in jj.get("src", "")):
+        return jj
+    # ③ 两条全拉空 → 静默, 绝不拿 T+D/纸黄金/旧值冒充现货
     return {}
+
 
 
 def _fetch_au0_jijinhao(code=None) -> dict:
@@ -98,16 +96,21 @@ def _fetch_au0_jijinhao(code=None) -> dict:
             m = _re.search(r'"' + want + r'"\s*:\s*\{(.{0,500})', raw)
             if not m: continue
             seg = m.group(1)
-            q2 = _re.search(r'"q2"\s*:\s*([\d.]+)', seg)
+            # 官家11-01 14:00拍板: 金投网JO_71黄金9999 取 q5(最新成交现价), 不是我之前误用的 q2(昨收/结算)
+            # q5=最新成交(贴盘面833一带), 拉不到退 q4, 再退 q63
+            q5 = _re.search(r'"q5"\s*:\s*([\d.]+)', seg)
+            q4 = _re.search(r'"q4"\s*:\s*([\d.]+)', seg)
+            q63 = _re.search(r'"q63"\s*:\s*([\d.]+)', seg)
             tm = _re.search(r'"time"\s*:\s*(\d+)', seg)
             nm = _re.search(r'"showName"\s*:\s*"([^"]+)"', seg)
-            if q2:
-                val = float(q2.group(1))
+            val_q = (q5 or q4 or q63)
+            if val_q:
+                val = float(val_q.group(1))
                 if 800 < val < 950:
+                    name = nm.group(1) if nm else "黄金9999"
                     return {"price": round(val, 2), "ts": int(tm.group(1)) if tm else 0,
-                            "src": "金投网·" + (nm.group(1) if nm else "黄金T+D"),
-                            "src_cn": "金投网·" + (nm.group(1) if nm else "黄金T+D"),
-                            "code": want}
+                            "src": "金投网·" + name, "src_cn": "金投网·" + name,
+                            "code": want, "field": val_q.re.group(0).split('"')[1] if val_q else "q5"}
     except Exception:
         pass
     return {}
