@@ -38,12 +38,38 @@ def _fetch_au0(n_days=120):
     except Exception:
         return None
 
+def _fetch_au0_tmini() -> dict:
+    """Tmini 无key黄金行情(官家 11-01 18:07 拍板, 新加坡机实测拉通)。
+    源: tmini.net/api/gold-price (限流5次/分, 准实时, 1分钟级更新)。
+    取 "黄金_9999" 的 today_price(833, 现货口径, 贴东财f43/金投网q5)。
+    弃: T+D/纸黄金/金条/折算/昨收。返回 {price, ts, src} 或 {}。"""
+    try:
+        import urllib.request as _ur, json as _json, re as _re
+        url = "https://tmini.net/api/gold-price"
+        req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://tmini.net/"})
+        raw = _ur.urlopen(req, timeout=12).read().decode("utf-8", "ignore")
+        d = _json.loads(raw)
+        for m in d.get("metals", []):
+            nm = m.get("name", "")
+            if "9999" in nm or "Au" in nm:
+                tp = m.get("today_price")
+                if tp and 800 < float(tp) < 950:
+                    ts_ms = m.get("updated_at") or 0
+                    return {"price": round(float(tp), 2), "ts": int(ts_ms) // 1000 if ts_ms else 0,
+                            "src": "Tmini·" + nm, "src_cn": "Tmini·" + nm,
+                            "unit": m.get("unit", "元/克"), "code": "tmini_gold_9999"}
+    except Exception:
+        pass
+    return {}
+
+
 def _fetch_au0_realtime() -> dict:
-    """沪金现货实时价降级链(官家11-01 13:58 拍板, 新加坡机海外IP):
-    ① 东财 118.AU9999(上金所现货, 多节点) —— 通即用
-    ② 东财 502/拉空 → 金投网 JO_71 [黄金9999](上金所现货口径, 新加坡机能拉, 200OK)
-    ③ 两条全拉空 → 返回空 dict, 上层静默(不冒T+D/纸黄金/折算/旧值)
-    弃: T+D(JO_9753/92226)、纸黄金(JO_283972/42760)、金条、877折算、861期货、867昨收"""
+    """沪金现货实时价降级链(官家11-01 18:07 拍板, 新加坡机海外IP):
+    ① 东财 118.AU9999(上金所现货, 多节点) —— 通即用, 取 f43
+    ② 东财 502/拉空 → Tmini 黄金_9999(无key准实时, 1分钟级, 新加坡机稳拉通, today_price=833)
+    ③ Tmini 限流/拉空 → 金投网 JO_71 [黄金9999] 取 q5(最新成交, 抖但兜底)
+    ④ 三条全拉空 → 返回空 dict, 上层静默(不冒T+D/纸黄金/折算/旧值)
+    弃: 上金所官方Dailyhq(静态快照+超时)、T+D、纸黄金、金条、877折算、861期货、867昨收、f60/q2昨收"""
     # ① 主源: 东财 118.AU9999, 多 host 并发+单节点2s超时
     import concurrent.futures as _cf
     def _try_host(host):
@@ -65,11 +91,15 @@ def _fetch_au0_realtime() -> dict:
             if _res:
                 p, ts, host = _res
                 return {"price": p, "ts": ts, "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货", "host": host}
-    # ② 东财 502 → 金投网 JO_71 [黄金9999](上金所现货口径, 官家11-01 13:58 验证新加坡机可拉)
+    # ② 东财 502 → Tmini 黄金_9999(官家11-01 18:07 拍板, 无key准实时, 新加坡机稳拉通, today=833)
+    tmini = _fetch_au0_tmini()
+    if tmini:
+        return tmini
+    # ③ Tmini 限流/拉空 → 金投网 JO_71 [黄金9999] 取 q5(最新成交, 抖但兜底)
     jj = _fetch_au0_jijinhao()
     if jj and ("黄金9999" in jj.get("src", "") or "Au9999" in jj.get("src", "")):
         return jj
-    # ③ 两条全拉空 → 静默, 绝不拿 T+D/纸黄金/旧值冒充现货
+    # ④ 三条全拉空 → 静默, 绝不拿 T+D/纸黄金/旧值冒充现货
     return {}
 
 
