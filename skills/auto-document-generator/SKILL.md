@@ -59,7 +59,6 @@ auto-doc-generator init --project myproject
 - AI增强失败 → 确保Ollama运行 `ollama pull llama3`
 - 文档为空 → 检查代码注释完整性
 
-> 详细代码示例、配置模板、性能指标见 `references/skill-details.md`
 
 ---
 

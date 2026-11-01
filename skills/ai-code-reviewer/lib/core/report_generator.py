@@ -171,11 +171,7 @@ class ReportGenerator:
                 f.write(report)
             return True
         except Exception as e:
-<<<<<<< HEAD
             logger.error(f'保存报告失败：{e}')
-=======
-            print(f'保存报告失败：{e}')
->>>>>>> skills/main
             return False
 
 
@@ -216,11 +212,7 @@ if __name__ == '__main__':
     report = generator.generate(test_issues, test_suggestions, 'test.py')
     
     # 输出报告
-<<<<<<< HEAD
     logger.info(report)
-=======
-    print(report)
->>>>>>> skills/main
     
     # 保存报告
     # generator.save_report(report, 'code_review_report.md')

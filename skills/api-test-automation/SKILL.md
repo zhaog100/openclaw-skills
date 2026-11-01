@@ -1,9 +1,9 @@
+---
+name: api-test-automation
+description: API 自动化测试技能: OpenAPI/Postman 文档转可执行测试套件, 功能/契约测试, 多格式报告。
+---
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
-<<<<<<< HEAD
 version: 2.0.0
-=======
-version: 1.2.0
->>>>>>> skills/main
 # api-test-automation v1.2.0
 
 API 自动化测试技能 — MVP v1.0

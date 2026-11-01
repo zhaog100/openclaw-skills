@@ -1,11 +1,8 @@
 ---
-name: xiaohongshu-ops
+name: xiaohongshu-ops-skill
 description: "小红书相关操作,覆盖账号定位、选题研究、内容生产、发布执行与复盘修复的小红书全链路运营技能。凡是小红书的浏览/搜索/发布/评论任务,默认必须使用 OpenClaw 内置浏览器流程并指定 profile=\"openclaw\";除非用户明确要求,否则不要使用系统 open 或外部浏览器。"
-<<<<<<< HEAD
 version: 1.1.0
 
-=======
->>>>>>> skills/main
 ---
 
 # Openclaw 小红书运营技能(通用版)
@@ -197,9 +194,6 @@ version: 1.1.0
 - 或 `examples/<vertical>/README.md`
 
 
-- `examples/lifestyle/`(待补充)
-- `examples/cosmetics/`(待补充)
-- `examples/fitness/`(待补充)
 
 ---
 
@@ -224,9 +218,6 @@ version: 1.1.0
 
 | 模板 | 文件 | 说明 |
 |------|------|------|
-| 商贸产品推广模板 | `examples/commerce/product-promo-template.md` | 蒸汽眼罩专属推广内容（标题/钩子/正文/互动/标签/封面） |
-| 跨平台协同话术 | `examples/commerce/cross-platform-scripts.md` | 小红书→闲鱼引流话术库（咨询/下单/发货/售后） |
-| 闲鱼上架文案 | `examples/commerce/xianyu-listing-template.md` | 闲鱼上架模板（标题/正文/定价/图片/标签/擦亮） |
 
 ### 触发词（商贸专属）
 
@@ -245,13 +236,11 @@ version: 1.1.0
 4. 输出供应商对比报告 + 推荐供应商
 
 **闲鱼上架流程**:
-1. 读取闲鱼上架模板（`examples/commerce/xianyu-listing-template.md`）
 2. 选择规格（10片/20片/30片）
 3. 生成文案（标题+正文+价格+标签）
 4. 输出上架建议（图片数量/擦亮时间）
 
 **跨平台协同流程**:
-1. 读取话术库（`examples/commerce/cross-platform-scripts.md`）
 2. 根据场景选择话术类型（引流/咨询/下单/发货/售后）
 3. 个性化调整（产品信息/价格/规格）
 4. 输出可用话术

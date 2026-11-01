@@ -1,3 +1,7 @@
+---
+name: ai-api-test
+description: API 测试服务: 接口自动化测试、性能测试。
+---
 <!--
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 -->

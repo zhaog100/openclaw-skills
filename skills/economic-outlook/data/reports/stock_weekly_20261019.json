@@ -1,0 +1,194 @@
+{
+  "workflow": "stock_query",
+  "results": {
+    "pmi_orders": {
+      "success": true,
+      "data": {
+        "direction": "neutral",
+        "strength": 0.0,
+        "new_order": 50.1,
+        "delta": 0.30000000000000426,
+        "ma3_delta": -0.06666666666666525,
+        "valid_until": "2026-10-31"
+      },
+      "error": ""
+    },
+    "credit_impulse": {
+      "success": true,
+      "data": {
+        "direction": "bearish_cyclical",
+        "strength": 1.0,
+        "impulse": -0.1337,
+        "impulse_change": -0.0348,
+        "valid_until": "2026-05-15"
+      },
+      "error": ""
+    },
+    "china_us_spread": {
+      "success": true,
+      "data": {
+        "direction": "low",
+        "strength": 1.0,
+        "spread_10y": -3.442,
+        "spread_2y": -3.485,
+        "percentile_10y": 0.01,
+        "percentile_2y": 0.02,
+        "bond_signal": "利空债券",
+        "equity_signal": "中性偏谨慎",
+        "fx_signal": "人民币承压",
+        "valid_until": "2026-11-18"
+      },
+      "error": ""
+    },
+    "etf_flow": {
+      "success": true,
+      "data": {
+        "direction": "bearish",
+        "strength": 0.75,
+        "top_sectors": [
+          {
+            "name": "医药",
+            "percentile": 0.5,
+            "signal": "看多"
+          },
+          {
+            "name": "半导体",
+            "percentile": 1.0,
+            "signal": "看多"
+          }
+        ],
+        "bottom_sectors": [
+          {
+            "name": "半导体",
+            "percentile": 1.0,
+            "signal": "看空"
+          },
+          {
+            "name": "医药",
+            "percentile": 0.5,
+            "signal": "看空"
+          }
+        ],
+        "valid_until": "2026-11-01"
+      },
+      "error": ""
+    },
+    "macro_state": {
+      "success": true,
+      "data": {
+        "horizon": "8Q",
+        "total_score": 58,
+        "dimensions": {
+          "liquidity": 50,
+          "sentiment": 70,
+          "real_estate": 45,
+          "inflation": 50,
+          "gold_silver": 50,
+          "policy": 66,
+          "employment": 68,
+          "consumption": 45,
+          "exports": 70,
+          "financial": 50
+        },
+        "gdp": {
+          "2026": 63,
+          "2027": 48
+        },
+        "forecast_q": {
+          "Q1": 68,
+          "Q2": 65,
+          "Q3": 61,
+          "Q4": 58,
+          "Q5": 54,
+          "Q6": 50,
+          "Q7": 47,
+          "Q8": 43
+        },
+        "scenario_prob": {
+          "基准": 0.55,
+          "乐观": 0.25,
+          "悲观": 0.2
+        },
+        "drivers": [
+          "景气",
+          "外需",
+          "就业",
+          "政策",
+          "房地产"
+        ]
+      },
+      "error": ""
+    },
+    "stock_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "stock",
+        "score": -0.4,
+        "direction": "bearish",
+        "confidence": 0.38,
+        "cycle_position": "收缩",
+        "style": "防御",
+        "overweight": [],
+        "underweight": [],
+        "top_signals": [
+          {
+            "name": "etf_flow",
+            "contribution": -0.15,
+            "direction": "bearish",
+            "strength": 0.75
+          },
+          {
+            "name": "credit_impulse",
+            "contribution": -0.15,
+            "direction": "bearish_cyclical",
+            "strength": 1.0
+          },
+          {
+            "name": "china_us_spread",
+            "contribution": -0.1,
+            "direction": "low",
+            "strength": 1.0
+          }
+        ],
+        "conflicts": [],
+        "recommendation": "股票：看空（中等，评分 -0.40）。主要驱动：etf_flow、credit_impulse。",
+        "disclaimer": "行业景气参考，不构成投资建议。不推荐个股，不提供买卖点。"
+      },
+      "error": ""
+    }
+  },
+  "final_output": {
+    "outcome": "stock",
+    "score": -0.4,
+    "direction": "bearish",
+    "confidence": 0.38,
+    "cycle_position": "收缩",
+    "style": "防御",
+    "overweight": [],
+    "underweight": [],
+    "top_signals": [
+      {
+        "name": "etf_flow",
+        "contribution": -0.15,
+        "direction": "bearish",
+        "strength": 0.75
+      },
+      {
+        "name": "credit_impulse",
+        "contribution": -0.15,
+        "direction": "bearish_cyclical",
+        "strength": 1.0
+      },
+      {
+        "name": "china_us_spread",
+        "contribution": -0.1,
+        "direction": "low",
+        "strength": 1.0
+      }
+    ],
+    "conflicts": [],
+    "recommendation": "股票：看空（中等，评分 -0.40）。主要驱动：etf_flow、credit_impulse。",
+    "disclaimer": "行业景气参考，不构成投资建议。不推荐个股，不提供买卖点。"
+  },
+  "errors": []
+}

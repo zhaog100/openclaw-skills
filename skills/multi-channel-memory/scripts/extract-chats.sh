@@ -1,8 +1,5 @@
 #!/bin/bash
-<<<<<<< HEAD
 # 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
-=======
->>>>>>> skills/main
 # 多通道对话提取脚本 - Multi-Channel Chat Extractor
 # ===================================================
 #

@@ -1,5 +1,5 @@
 ---
-name: freeride
+name: free-ride
 description: Manages free AI models from OpenRouter for OpenClaw. Automatically ranks models by quality, configures fallbacks for rate-limit handling, and updates openclaw.json. Use when the user mentions free AI, OpenRouter, model switching, rate limits, or wants to reduce AI costs.
 version: 1.0.5
 ---

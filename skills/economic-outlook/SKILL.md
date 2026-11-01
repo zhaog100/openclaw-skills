@@ -281,7 +281,6 @@ shared/sources/
 ```
 
 **设计要点**（按官家采集文档）：
-- 每个官方源独立适配器，统一输出 `list[DataPoint]`，`core/data_loader` 不感知底层差异
 - `config/sources.yaml` 配置指标走哪个适配器 + 采集参数（retry/timeout/sleep）
 - 礼貌采集：`_sleep(0.5)` + 3 次重试
 - **降级策略**：官方源（cid 未填/412/结构变动）失败 → 返回空，主流程仍走 akshare 21 源

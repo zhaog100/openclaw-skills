@@ -1,0 +1,42 @@
+🌅 **小米椒早报** — 2026-09-03 13:12
+
+### 系统状态
+| 项目 | 状态 |
+|------|------|
+| 内存 | 944Mi/1.9Gi |
+| 负载 | 0.04, 0.12 0.67 |
+| 运行时间 | 18 hours, 9 minutes |
+| 磁盘 | 26% |
+| 安全 | Status: inactive |
+
+### PR清单
+✅ 无 Open PR
+
+### 今日待办
+| 状态 | 数量 |
+|------|------|
+| **待完成** | 3 |
+| **已完成** | 7 |
+
+**待办事项:**
+- - [ ] 添加邮件读取功能（需用户提供邮箱凭据）
+- - [ ] QMD向量使用Gemini API（❌ 不支持，QMD仅支持本地GGUF模型）
+- - [ ] 添加邮件读取功能（需用户提供邮箱凭据）
+
+### 📧 邮件摘要
+
+**未读邮件**: 5 封
+
+- rafaio1: Re: [capofficial/client] Add indicators like MA, RSI, MACD, etc.
+ (Issue #16) (Wed, 02 Se)
+- rafaio1: Re: [claude-builders-bounty/claude-builders-bounty] [BOUNTY $150]
+ AGENT: Claud (Wed, 02 Se)
+- rafaio1: Re: [claude-builders-bounty/claude-builders-bounty] [BOUNTY $200] WORKFLOW: n8n  (Wed, 02 Se)
+- rafaio1: Re: [capofficial/client] Add indicators like MA, RSI, MACD, etc.
+ (Issue #16) (Wed, 02 Se)
+- erdazhou: Re: [claude-builders-bounty/claude-builders-bounty] [BOUNTY $200] WORKFLOW: n8n  (Wed, 02 Se)
+
+
+---
+*🌶️ 小米椒早报生成时间: 2026-09-03 13:12:40*
+

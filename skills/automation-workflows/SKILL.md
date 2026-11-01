@@ -46,7 +46,6 @@ TRIGGER → CONDITIONS(可选) → ACTIONS → ERROR HANDLING
 - 始终配置错误通知
 - 充分测试后再上线
 
-> 详细的步骤说明、高级工作流示例见 `references/skill-details.md`
 
 ---
 

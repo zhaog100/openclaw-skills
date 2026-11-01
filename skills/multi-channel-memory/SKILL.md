@@ -141,10 +141,8 @@ skills/multi-channel-memory/
 
 ```bash
 # 午间回顾 (12:10 CST)
-10 12 * * * bash ~/.openclaw/workspace/scripts/daily_review.sh morning
 
 # 晚间回顾 (23:30 CST)
-30 23 * * * bash ~/.openclaw/workspace/scripts/daily_review.sh evening
 ```
 
 **自动执行**:

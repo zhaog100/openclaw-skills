@@ -49,7 +49,6 @@ CPU利用率、内存利用率、公网出/入带宽、系统盘读/写IO、公�
 - execute_command最大2048字符
 - 错误时用 `setup.sh --check-only` 或 `self_test` 诊断
 
-> 详细API参数、告警策略配置、完整示例见 `references/skill-details.md`
 
 ---
 

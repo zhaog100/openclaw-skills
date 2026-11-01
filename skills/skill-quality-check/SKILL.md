@@ -185,7 +185,6 @@ git add -A && git commit -m "..." && git push origin main
 ## 📅 定时报告接入门面调度器（2026-10-05 沉淀）
 
 给门面/调度器加"定时出报告"时，**登记配置 ≠ 生效**——必须把三件都做全并各验一次：
-1. `config/schedules.yaml` 登记任务（workflow 名 + cron 频率）
 2. `openclaw cron add` 真正建 job：`--command-argv '["bash","..."]'`（JSON 数组串）或 agentTurn message 调 `entry.py --schedule <workflow名>`；`--channel qqbot --to <open_id>` 固定推送目标（别走 `last`，会 fail-closed 静默失败）
 3. **实跑一次 `entry.py --schedule <workflow名>` 确认出报告**（exit=0）再算接完
 

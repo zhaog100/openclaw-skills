@@ -65,7 +65,6 @@ image-content-extractor/
 - OCR引擎：Tesseract + AI备用
 - 最大图片尺寸：50000px
 
-> 详细配置选项、使用场景、更新日志见 `references/skill-details.md`
 
 ---
 

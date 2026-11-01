@@ -16,13 +16,10 @@ version: 2.1.1
 ### Bounty 批量开发流程
 ```bash
 # 1. 扫描发现
-bash ../github-bounty-hunter/scripts/bounty_quick_scan.sh
 
 # 2. 批量开发（最多 5 个并行）
-bash ../github-bounty-hunter/scripts/bounty_batch_dev.sh <owner/repo> 11,29,30 5
 
 # 3. 批量提交 PR
-bash ../github-bounty-hunter/scripts/bounty_submit_batch.sh <work_dir>
 ```
 
 ### 优先级策略

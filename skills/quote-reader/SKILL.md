@@ -73,7 +73,6 @@ quote-reader/
 - 启用缓存避免重复检索
 - 异步处理不阻塞AI回复
 
-> 详细的技术实现、使用示例、性能指标、故障排除见 `references/skill-details.md`
 
 ---
 ⚠️ **安全提示**：

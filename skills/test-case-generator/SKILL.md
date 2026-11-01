@@ -37,13 +37,10 @@ version: 1.0.0
 
 ```bash
 # 生成 Python 测试用例
-./skill.sh generate --lang python src/my_module.py
 
 # 生成 Bash 测试用例
-./skill.sh generate --lang bash scripts/my_script.sh
 
 # 生成 JavaScript 测试用例
-./skill.sh generate --lang javascript src/my_module.js
 
 # 指定测试框架
 ./skill.sh generate --lang python --framework pytest src/

@@ -1,26 +1,13 @@
-<<<<<<< HEAD
 import logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-#!/usr/bin/env python3
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 """
 石油黄金报告生成器 - 超时保护版 v3.4
-=======
-#!/usr/bin/env python3
+包装 report_text.py, 带超时保护和降级机制
+Copyright (c) 2026 思捷娅科技 (SJYKJ), License: MIT
 """
-石油黄金报告生成器 - 超时保护版 v3.3
->>>>>>> skills/main
-包装 report_text.py，带超时保护和降级机制
-
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-License: MIT
-"""
-<<<<<<< HEAD
-# 版本: v3.4 | 石油黄金白银相关性分析
-=======
-# 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import subprocess
 import sys
@@ -32,11 +19,8 @@ REPORT_TIMEOUT = 300  # 5分钟超时
 
 def main():
     start = time.time()
-<<<<<<< HEAD
     logger.info(f"[{time.strftime('%H:%M:%S')}] 开始生成报告（超时 {REPORT_TIMEOUT}s）...")
-=======
     print(f"[{time.strftime('%H:%M:%S')}] 开始生成报告（超时 {REPORT_TIMEOUT}s）...")
->>>>>>> skills/main
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
     script_path = os.path.join(script_dir, 'report_text.py')
@@ -49,7 +33,6 @@ def main():
             capture_output=False,
         )
         elapsed = time.time() - start
-<<<<<<< HEAD
         logger.info(f"\n✅ 报告生成完成（{elapsed:.0f}s）")
         return result.returncode
     except subprocess.TimeoutExpired:
@@ -58,7 +41,6 @@ def main():
         return 1
     except Exception as e:
         logger.info(f"\n❌ 报告生成失败: {e}")
-=======
         print(f"\n✅ 报告生成完成（{elapsed:.0f}s）")
         return result.returncode
     except subprocess.TimeoutExpired:
@@ -67,7 +49,6 @@ def main():
         return 1
     except Exception as e:
         print(f"\n❌ 报告生成失败: {e}")
->>>>>>> skills/main
         return 1
 
 if __name__ == '__main__':

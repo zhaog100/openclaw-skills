@@ -1,5 +1,5 @@
 ---
-name: long-context
+name: long-context-v2
 description: Minimize startup context by loading MEMORY-LITE.md instead of full MEMORY.md. Use for session bootstrap optimization.
 version: 2.0.0
 ---

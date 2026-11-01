@@ -1,0 +1,37 @@
+{
+  "workflow": "gold_watch",
+  "results": {
+    "gold_watch_signal": {
+      "success": true,
+      "data": {
+        "cost_basis": 903,
+        "spread": 16.6,
+        "breakeven": 919.6,
+        "xauusd": 3876.399902,
+        "success": false,
+        "price_basis": "现货实时价不可用, 本轮静默(不触发申购, 不退期货au0/国际金折算)",
+        "intl_ref_only": {
+          "usd": 3876.399902,
+          "sh_conv": 884.87,
+          "note": "仅国际金参考, 绝不冒充现货/不触发申购"
+        }
+      },
+      "error": ""
+    },
+    "gold_watch_outcome": {
+      "success": true,
+      "data": {
+        "triggered": false,
+        "reason": "signal 拉价失败, 跳过(不用过期价)",
+        "xauusd": 3876.399902
+      },
+      "error": ""
+    }
+  },
+  "final_output": {
+    "triggered": false,
+    "reason": "signal 拉价失败, 跳过(不用过期价)",
+    "xauusd": 3876.399902
+  },
+  "errors": []
+}

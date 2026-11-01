@@ -1,5 +1,5 @@
 ---
-name: api-tester
+name: rest-api-test-cli
 description: "REST API testing and validation toolkit. Send requests, validate responses, benchmark performance, generate HTML reports. Use when the user wants to: (1) Test a REST API endpoint, (2) Validate API responses against expectations, (3) Benchmark API endpoint performance, (4) Test all endpoints from an OpenAPI/Swagger spec, (5) Generate API test reports, (6) Debug HTTP responses including status codes, headers, and bodies."
 version: 1.0.0
 copyright: "Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License"

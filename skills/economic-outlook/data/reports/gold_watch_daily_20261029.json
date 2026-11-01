@@ -1,0 +1,107 @@
+{
+  "workflow": "gold_watch",
+  "results": {
+    "gold_watch_signal": {
+      "success": true,
+      "data": {
+        "cost_basis": 903,
+        "spread": 16.6,
+        "breakeven": 919.6,
+        "xauusd": 4063.5,
+        "success": true,
+        "source": "沪金基准+国际金盘中参考",
+        "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
+        "sh_equiv": 867.4,
+        "au0_realtime": 867.4,
+        "au0_realtime_src": "沪金日线(收盘兜底)",
+        "agm_realtime": 13010.0,
+        "agm_realtime_src": "金投网·沪银",
+        "intl_silver": {
+          "usd": 53.978001,
+          "ts": "2026-10-29T02:01:29Z",
+          "src": "gold-api-XAG"
+        },
+        "intl_realtime": {
+          "usd": 4061.600098,
+          "sh_conv": 927.14,
+          "ts": "2026-10-29T02:01:30Z",
+          "src": "gold-api"
+        },
+        "au0_last": 867.4,
+        "au0_note": "基准=东财118.AU9999现货(贴官家两网站869口径); 现货拉空时退K线收盘, 绝不回退国际金折算价",
+        "cross_check": {
+          "diff": 59.7,
+          "alert": true,
+          "note": "国际金折算927.14 vs 沪金实时867.4 差60元, 口径/汇率漂移提示"
+        },
+        "dyn_buy1": 851.28,
+        "dyn_buy2": 851.28,
+        "dyn_sell1": 944.76,
+        "dyn_sell2": 1015.38,
+        "dyn_hi1": 944.76,
+        "dyn_lo1": 856.28,
+        "dyn_hi2": 1015.38,
+        "dyn_lo2": 856.28,
+        "dyn_mid1": 897.71,
+        "dyn_note": "档位=au0沪金20/60日高低(贴官家UI实盘口径), 国际金实时作盘中参考",
+        "trend_state": "跌势",
+        "trend": {
+          "ma20_now": 895.29,
+          "ma20_prev": 955.79,
+          "ma20_slope": -60.5,
+          "rsi14": 35.7,
+          "dist_to_lo1": 11.12,
+          "note": "跌势=MA20斜率<-2且RSI<45; 买点触发在跌势中需官家确认防半山腰"
+        },
+        "targets": [
+          "hi20",
+          "hi60"
+        ],
+        "min_target": 919.6,
+        "bank_premium": 21
+      },
+      "error": ""
+    },
+    "gold_watch_outcome": {
+      "success": true,
+      "data": {
+        "triggered": false,
+        "sh_equiv": 867.4,
+        "cost_basis": 903,
+        "breakeven": 919.6,
+        "spread": 16.6,
+        "tier_mode": "dynamic",
+        "dyn": {
+          "buy1": 851.28,
+          "buy2": 851.28,
+          "sell1": 944.76,
+          "sell2": 1015.38
+        },
+        "trend_state": "跌势",
+        "source": "沪金基准+国际金盘中参考",
+        "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
+        "reason": "沪金 867 未破买点二档 851.28 也未到卖点一档 944.76(跌势中,防半山腰) (成本903/回本线919.6), 静默"
+      },
+      "error": ""
+    }
+  },
+  "final_output": {
+    "triggered": false,
+    "sh_equiv": 867.4,
+    "cost_basis": 903,
+    "breakeven": 919.6,
+    "spread": 16.6,
+    "tier_mode": "dynamic",
+    "dyn": {
+      "buy1": 851.28,
+      "buy2": 851.28,
+      "sell1": 944.76,
+      "sell2": 1015.38
+    },
+    "trend_state": "跌势",
+    "source": "沪金基准+国际金盘中参考",
+    "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
+    "reason": "沪金 867 未破买点二档 851.28 也未到卖点一档 944.76(跌势中,防半山腰) (成本903/回本线919.6), 静默"
+  },
+  "errors": []
+}

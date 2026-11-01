@@ -1,0 +1,224 @@
+{
+  "workflow": "stock_query",
+  "results": {
+    "credit_impulse": {
+      "success": true,
+      "data": {
+        "direction": "bearish_cyclical",
+        "strength": 1.0,
+        "impulse": -0.1337,
+        "impulse_change": -0.0348,
+        "valid_until": "2026-05-15"
+      },
+      "error": ""
+    },
+    "pmi_orders": {
+      "success": true,
+      "data": {
+        "direction": "neutral",
+        "strength": 0.0,
+        "new_order": 50.1,
+        "delta": 0.30000000000000426,
+        "ma3_delta": -0.06666666666666525,
+        "valid_until": "2026-10-31"
+      },
+      "error": ""
+    },
+    "china_us_spread": {
+      "success": true,
+      "data": {
+        "direction": "low",
+        "strength": 1.0,
+        "spread_10y": -3.36,
+        "spread_2y": -3.445,
+        "percentile_10y": 0.02,
+        "percentile_2y": 0.02,
+        "bond_signal": "利空债券",
+        "equity_signal": "中性偏谨慎",
+        "fx_signal": "人民币承压",
+        "valid_until": "2026-11-25"
+      },
+      "error": ""
+    },
+    "etf_flow": {
+      "success": true,
+      "data": {
+        "direction": "neutral",
+        "strength": 0.0,
+        "top_sectors": [
+          {
+            "name": "钢铁",
+            "percentile": 0.09,
+            "signal": "看多"
+          },
+          {
+            "name": "汽车",
+            "percentile": 0.18,
+            "signal": "看多"
+          },
+          {
+            "name": "地产",
+            "percentile": 0.27,
+            "signal": "看多"
+          },
+          {
+            "name": "新能源",
+            "percentile": 0.36,
+            "signal": "看多"
+          },
+          {
+            "name": "消费",
+            "percentile": 0.45,
+            "signal": "看多"
+          }
+        ],
+        "bottom_sectors": [
+          {
+            "name": "半导体",
+            "percentile": 1.0,
+            "signal": "看空"
+          },
+          {
+            "name": "证券",
+            "percentile": 0.91,
+            "signal": "看空"
+          },
+          {
+            "name": "银行",
+            "percentile": 0.82,
+            "signal": "看空"
+          },
+          {
+            "name": "煤炭",
+            "percentile": 0.73,
+            "signal": "看空"
+          },
+          {
+            "name": "有色金属",
+            "percentile": 0.64,
+            "signal": "看空"
+          }
+        ],
+        "valid_until": "2026-11-08"
+      },
+      "error": ""
+    },
+    "macro_state": {
+      "success": true,
+      "data": {
+        "horizon": "8Q",
+        "total_score": 57,
+        "dimensions": {
+          "liquidity": 50,
+          "sentiment": 70,
+          "real_estate": 45,
+          "inflation": 50,
+          "gold_silver": 45,
+          "policy": 66,
+          "employment": 68,
+          "consumption": 45,
+          "exports": 70,
+          "financial": 50
+        },
+        "gdp": {
+          "2026": 62,
+          "2027": 48
+        },
+        "forecast_q": {
+          "Q1": 67,
+          "Q2": 64,
+          "Q3": 60,
+          "Q4": 57,
+          "Q5": 53,
+          "Q6": 50,
+          "Q7": 46,
+          "Q8": 43
+        },
+        "scenario_prob": {
+          "基准": 0.55,
+          "乐观": 0.25,
+          "悲观": 0.2
+        },
+        "drivers": [
+          "景气",
+          "外需",
+          "就业",
+          "政策",
+          "房地产"
+        ]
+      },
+      "error": ""
+    },
+    "stock_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "stock",
+        "score": -0.25,
+        "direction": "bearish",
+        "confidence": 0.25,
+        "cycle_position": "收缩",
+        "style": "防御",
+        "overweight": [],
+        "underweight": [],
+        "top_signals": [
+          {
+            "name": "credit_impulse",
+            "contribution": -0.15,
+            "direction": "bearish_cyclical",
+            "strength": 1.0
+          },
+          {
+            "name": "china_us_spread",
+            "contribution": -0.1,
+            "direction": "low",
+            "strength": 1.0
+          },
+          {
+            "name": "pmi_orders",
+            "contribution": 0.0,
+            "direction": "neutral",
+            "strength": 0.0
+          }
+        ],
+        "conflicts": [],
+        "recommendation": "股票：看空（弱，评分 -0.25）。主要驱动：credit_impulse、china_us_spread。",
+        "disclaimer": "行业景气参考，不构成投资建议。不推荐个股，不提供买卖点。"
+      },
+      "error": ""
+    }
+  },
+  "final_output": {
+    "outcome": "stock",
+    "score": -0.25,
+    "direction": "bearish",
+    "confidence": 0.25,
+    "cycle_position": "收缩",
+    "style": "防御",
+    "overweight": [],
+    "underweight": [],
+    "top_signals": [
+      {
+        "name": "credit_impulse",
+        "contribution": -0.15,
+        "direction": "bearish_cyclical",
+        "strength": 1.0
+      },
+      {
+        "name": "china_us_spread",
+        "contribution": -0.1,
+        "direction": "low",
+        "strength": 1.0
+      },
+      {
+        "name": "pmi_orders",
+        "contribution": 0.0,
+        "direction": "neutral",
+        "strength": 0.0
+      }
+    ],
+    "conflicts": [],
+    "recommendation": "股票：看空（弱，评分 -0.25）。主要驱动：credit_impulse、china_us_spread。",
+    "disclaimer": "行业景气参考，不构成投资建议。不推荐个股，不提供买卖点。"
+  },
+  "errors": []
+}

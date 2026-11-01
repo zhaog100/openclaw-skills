@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-=======
->>>>>>> skills/main
 #!/usr/bin/env python3
 """
 Twelve Data 数据源
@@ -14,11 +11,8 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
-=======
 # 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import os
 import requests
@@ -75,11 +69,8 @@ def fetch_td_timeseries(symbol, interval="1day", outputsize=90):
         data = resp.json()
 
         if "status" in data and data["status"] == "error":
-<<<<<<< HEAD
             logger.info(f"  ⚠️ Twelve Data ({symbol}): {data.get('message', '未知错误')}")
-=======
             print(f"  ⚠️ Twelve Data ({symbol}): {data.get('message', '未知错误')}")
->>>>>>> skills/main
             return None
 
         values = data.get("values", [])
@@ -101,11 +92,8 @@ def fetch_td_timeseries(symbol, interval="1day", outputsize=90):
         return df if not df.empty else None
 
     except Exception as e:
-<<<<<<< HEAD
         logger.info(f"  ⚠️ Twelve Data ({symbol}): {e}")
-=======
         print(f"  ⚠️ Twelve Data ({symbol}): {e}")
->>>>>>> skills/main
         return None
 
 

@@ -1,0 +1,628 @@
+{
+  "workflow": "full_report",
+  "results": {
+    "pmi_orders": {
+      "success": true,
+      "data": {
+        "direction": "neutral",
+        "strength": 0.0,
+        "new_order": 50.1,
+        "delta": 0.30000000000000426,
+        "ma3_delta": -0.06666666666666525,
+        "valid_until": "2026-10-31"
+      },
+      "error": ""
+    },
+    "export_category": {
+      "success": true,
+      "data": {
+        "top_categories": [
+          "汽车",
+          "锂电池",
+          "光伏",
+          "集成电路",
+          "船舶"
+        ],
+        "bottom_categories": [
+          "服装",
+          "鞋帽",
+          "家具"
+        ],
+        "categories": [],
+        "employment_hint": [
+          {
+            "category": "汽车",
+            "roles": [
+              "装配工",
+              "工程师",
+              "外贸"
+            ]
+          }
+        ],
+        "startup_hint": [
+          {
+            "category": "汽车",
+            "directions": [
+              "二手车出口",
+              "海外售后"
+            ]
+          }
+        ],
+        "investment_hint": [
+          "汽车出口链",
+          "锂电出口链",
+          "光伏出口链"
+        ],
+        "direction": "bullish",
+        "strength": 0.6
+      },
+      "error": ""
+    },
+    "domestic_category": {
+      "success": true,
+      "data": {
+        "top_categories": [
+          "汽车",
+          "家电",
+          "化妆品",
+          "通讯器材",
+          "金银珠宝"
+        ],
+        "bottom_categories": [
+          "建筑装潢",
+          "家具",
+          "服装鞋帽"
+        ],
+        "categories": [],
+        "employment_hint": [
+          {
+            "category": "汽车",
+            "roles": [
+              "4S店销售",
+              "维修技师"
+            ]
+          }
+        ],
+        "startup_hint": [
+          {
+            "category": "汽车",
+            "directions": [
+              "新能源汽车服务",
+              "充电桩运营"
+            ]
+          }
+        ],
+        "investment_hint": [
+          {
+            "category": "汽车",
+            "sectors": [
+              "汽车ETF",
+              "新能源车ETF"
+            ]
+          }
+        ],
+        "direction": "bullish",
+        "strength": 0.6
+      },
+      "error": ""
+    },
+    "credit_impulse": {
+      "success": true,
+      "data": {
+        "direction": "bearish_cyclical",
+        "strength": 1.0,
+        "impulse": -0.1337,
+        "impulse_change": -0.0348,
+        "valid_until": "2026-05-15"
+      },
+      "error": ""
+    },
+    "china_us_spread": {
+      "success": true,
+      "data": {
+        "direction": "low",
+        "strength": 1.0,
+        "spread_10y": -3.545,
+        "spread_2y": -3.529,
+        "percentile_10y": 0.01,
+        "percentile_2y": 0.01,
+        "bond_signal": "利空债券",
+        "equity_signal": "中性偏谨慎",
+        "fx_signal": "人民币承压",
+        "valid_until": "2026-11-13"
+      },
+      "error": ""
+    },
+    "recruitment": {
+      "success": true,
+      "data": {
+        "direction": "neutral",
+        "strength": 0.0,
+        "pmi_employment": 48.5,
+        "salary_index": 2.5,
+        "hot_industries": [
+          {
+            "name": "高端制造",
+            "score": 85
+          },
+          {
+            "name": "半导体",
+            "score": 80
+          }
+        ],
+        "hot_cities": [
+          {
+            "name": "深圳",
+            "score": 88
+          },
+          {
+            "name": "上海",
+            "score": 85
+          }
+        ],
+        "hot_skills": [
+          {
+            "name": "AI工程",
+            "score": 90
+          },
+          {
+            "name": "嵌入式",
+            "score": 85
+          }
+        ],
+        "valid_until": "2026-11-13"
+      },
+      "error": ""
+    },
+    "etf_flow": {
+      "success": false,
+      "data": {},
+      "error": "ETF 资金流数据为空"
+    },
+    "global_pmi": {
+      "success": true,
+      "data": {
+        "direction": "expanding",
+        "strength": 0.88,
+        "global_pmi": 53.0,
+        "china_export_order": 0.0,
+        "export_chain_signal": "看多出口链（汽车、家电、光伏、锂电）",
+        "commodity_signal": "看多大宗（铜、铝、原油）",
+        "overseas_signal": "全球风险偏好上升，新兴市场受益",
+        "valid_until": "2026-11-13"
+      },
+      "error": ""
+    },
+    "macro_state": {
+      "success": true,
+      "data": {
+        "horizon": "8Q",
+        "total_score": 58,
+        "dimensions": {
+          "liquidity": 50,
+          "sentiment": 70,
+          "real_estate": 45,
+          "inflation": 50,
+          "gold_silver": 50,
+          "policy": 66,
+          "employment": 68,
+          "consumption": 45,
+          "exports": 70,
+          "financial": 50
+        },
+        "gdp": {
+          "2026": 63,
+          "2027": 48
+        },
+        "forecast_q": {
+          "Q1": 68,
+          "Q2": 65,
+          "Q3": 61,
+          "Q4": 58,
+          "Q5": 54,
+          "Q6": 50,
+          "Q7": 47,
+          "Q8": 43
+        },
+        "scenario_prob": {
+          "基准": 0.55,
+          "乐观": 0.25,
+          "悲观": 0.2
+        },
+        "drivers": [
+          "景气",
+          "外需",
+          "就业",
+          "政策",
+          "房地产"
+        ]
+      },
+      "error": ""
+    },
+    "trigger_engine": {
+      "success": true,
+      "data": {
+        "results": [
+          {
+            "scenario": "reduce",
+            "scenario_cn": "减仓",
+            "triggered": true,
+            "action": "股票仓位 -10%（防御/现金）",
+            "position_change": -10,
+            "target_position": 50.0,
+            "priority": 1,
+            "valid_until": "2026-10-21",
+            "notes": [
+              "信用收缩 + 汇率承压，降低风险敞口"
+            ]
+          },
+          {
+            "scenario": "wait",
+            "scenario_cn": "观望",
+            "triggered": true,
+            "action": "维持仓位，等待确认",
+            "position_change": 0,
+            "target_position": 60.0,
+            "priority": 3,
+            "valid_until": "2026-10-21",
+            "notes": [
+              "信号方向冲突，等待确认"
+            ]
+          },
+          {
+            "scenario": "add",
+            "scenario_cn": "加仓",
+            "triggered": false,
+            "action": "不触发",
+            "position_change": 0,
+            "target_position": 60.0,
+            "priority": 1,
+            "valid_until": "2026-10-21",
+            "notes": []
+          },
+          {
+            "scenario": "switch",
+            "scenario_cn": "切换",
+            "triggered": false,
+            "action": "不触发",
+            "position_change": 0,
+            "target_position": 60.0,
+            "priority": 2,
+            "valid_until": "2026-10-21",
+            "notes": []
+          }
+        ],
+        "base_position": 60.0
+      },
+      "error": ""
+    },
+    "history_analogy": {
+      "success": true,
+      "data": {
+        "best_match": {
+          "code": "B",
+          "name": "信用收缩 + 外需走弱",
+          "similarity": 0.26,
+          "historical_period": "2018Q3-2019Q2",
+          "subsequent_returns": {
+            "stock_cyclical": -0.18,
+            "stock_defensive": 0.1,
+            "bond": 0.06,
+            "commodity": -0.15,
+            "rmb": -0.04
+          },
+          "key_signals": [
+            "credit_impulse",
+            "global_pmi",
+            "china_us_spread"
+          ]
+        },
+        "all_matches": [
+          {
+            "code": "B",
+            "name": "信用收缩 + 外需走弱",
+            "similarity": 0.26,
+            "historical_period": "2018Q3-2019Q2",
+            "subsequent_returns": {
+              "stock_cyclical": -0.18,
+              "stock_defensive": 0.1,
+              "bond": 0.06,
+              "commodity": -0.15,
+              "rmb": -0.04
+            },
+            "key_signals": [
+              "credit_impulse",
+              "global_pmi",
+              "china_us_spread"
+            ]
+          },
+          {
+            "code": "E",
+            "name": "外部冲击",
+            "similarity": 0.247,
+            "historical_period": "2022Q1-2022Q3",
+            "subsequent_returns": {
+              "stock_cyclical": -0.22,
+              "stock_defensive": -0.05,
+              "bond": 0.04,
+              "commodity": 0.15,
+              "rmb": -0.08
+            },
+            "key_signals": [
+              "china_us_spread",
+              "global_pmi",
+              "credit_impulse"
+            ]
+          },
+          {
+            "code": "A",
+            "name": "信用扩张 + 外需改善",
+            "similarity": -0.249,
+            "historical_period": "2016Q1-2016Q4",
+            "subsequent_returns": {
+              "stock_cyclical": 0.25,
+              "stock_defensive": 0.08,
+              "bond": -0.02,
+              "commodity": 0.3,
+              "rmb": 0.03
+            },
+            "key_signals": [
+              "credit_impulse",
+              "global_pmi",
+              "pmi_orders"
+            ]
+          },
+          {
+            "code": "D",
+            "name": "政策强刺激",
+            "similarity": -0.539,
+            "historical_period": "2020Q2-2020Q4",
+            "subsequent_returns": {
+              "stock_cyclical": 0.35,
+              "stock_defensive": 0.15,
+              "bond": -0.05,
+              "commodity": 0.4,
+              "rmb": 0.05
+            },
+            "key_signals": [
+              "credit_impulse",
+              "policy_engine",
+              "global_pmi"
+            ]
+          },
+          {
+            "code": "C",
+            "name": "信用扩张 + 内需疲弱",
+            "similarity": -0.719,
+            "historical_period": "2019Q1-2019Q4",
+            "subsequent_returns": {
+              "stock_cyclical": 0.08,
+              "stock_defensive": 0.12,
+              "bond": 0.03,
+              "commodity": 0.05,
+              "rmb": 0.01
+            },
+            "key_signals": [
+              "credit_impulse",
+              "domestic_category"
+            ]
+          }
+        ],
+        "current_vector": {
+          "credit_impulse": -1.0,
+          "global_pmi": 0.88,
+          "pmi_new_order": 0.0,
+          "china_us_spread": -1.0
+        },
+        "recommendation": "当前最像锚点 B：信用收缩 + 外需走弱（历史区间 2018Q3-2019Q2）\n相似度：26.0%\n\n历史后续表现（参考）：\n  周期板块：-18.0%\n  防御板块：+10.0%\n  债券：+6.0%\n  大宗：-15.0%\n  人民币：-4.0%\n\n关键信号：credit_impulse、global_pmi、china_us_spread\n⚠️ 历史类比是找相似情景的历史路径，非精确预测；信号一旦变化锚点应切换。"
+      },
+      "error": ""
+    },
+    "employment_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "employment",
+        "score": 0.15,
+        "direction": "neutral",
+        "confidence": 0.25,
+        "hot_industries": [
+          "科技/AI",
+          "高端制造",
+          "新能源"
+        ],
+        "hot_cities": [
+          "一线（北上广深）",
+          "新一线（成都/杭州/苏州）",
+          "二三线"
+        ],
+        "hot_skills": [
+          "AI/大模型工程",
+          "新能源三电",
+          "半导体工艺",
+          "数据分析",
+          "出海业务"
+        ],
+        "top_signals": [
+          {
+            "name": "export_category",
+            "contribution": 0.15,
+            "direction": "bullish",
+            "strength": 0.6
+          },
+          {
+            "name": "recruitment",
+            "contribution": 0.0,
+            "direction": "neutral",
+            "strength": 0.0
+          }
+        ],
+        "conflicts": [],
+        "recommendation": "就业：中性（弱，评分 +0.15）。主要驱动：export_category、recruitment。",
+        "disclaimer": "就业参考，不承诺薪资或录用。"
+      },
+      "error": ""
+    },
+    "startup_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "startup",
+        "score": 0.3,
+        "direction": "bullish",
+        "confidence": 0.5,
+        "hot_directions": [],
+        "top_signals": [
+          {
+            "name": "export_category",
+            "contribution": 0.15,
+            "direction": "bullish",
+            "strength": 0.6
+          },
+          {
+            "name": "domestic_category",
+            "contribution": 0.15,
+            "direction": "bullish",
+            "strength": 0.6
+          }
+        ],
+        "conflicts": [],
+        "recommendation": "创业：看多（中等，评分 +0.30）。主要驱动：export_category、domestic_category。",
+        "disclaimer": "创业方向参考，不承诺成功或收益。"
+      },
+      "error": ""
+    },
+    "overseas_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "overseas",
+        "score": -0.08,
+        "direction": "neutral",
+        "confidence": 0.0,
+        "allocation": {
+          "人民币资产": "中性偏多",
+          "美元资产": "偏多",
+          "黄金": "中性",
+          "新兴市场": "偏多"
+        },
+        "top_signals": [
+          {
+            "name": "china_us_spread",
+            "contribution": -0.3,
+            "direction": "low",
+            "strength": 1.0
+          },
+          {
+            "name": "global_pmi",
+            "contribution": 0.22,
+            "direction": "expanding",
+            "strength": 0.88
+          }
+        ],
+        "conflicts": [
+          "global_pmi（看多）与 china_us_spread（看空）方向冲突"
+        ],
+        "recommendation": "海外配置：中性（弱，评分 -0.08）。主要驱动：china_us_spread、global_pmi；注意：global_pmi（看多）与 china_us_spread（看空）方向冲突。",
+        "disclaimer": "海外配置参考，不构成投资建议。"
+      },
+      "error": ""
+    },
+    "commodity_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "commodity",
+        "score": 0.064,
+        "direction": "neutral",
+        "confidence": 0.0,
+        "demand": "上行",
+        "items": [
+          "铜",
+          "铝",
+          "原油",
+          "铁矿石"
+        ],
+        "top_signals": [
+          {
+            "name": "global_pmi",
+            "contribution": 0.264,
+            "direction": "expanding",
+            "strength": 0.88
+          },
+          {
+            "name": "credit_impulse",
+            "contribution": -0.2,
+            "direction": "bearish_cyclical",
+            "strength": 1.0
+          }
+        ],
+        "conflicts": [
+          "global_pmi（看多）与 credit_impulse（看空）方向冲突"
+        ],
+        "recommendation": "大宗：中性（弱，评分 +0.06）。主要驱动：global_pmi、credit_impulse；注意：global_pmi（看多）与 credit_impulse（看空）方向冲突。",
+        "disclaimer": "大宗商品方向参考，不构成投资建议。"
+      },
+      "error": ""
+    },
+    "stock_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "stock",
+        "score": 0.0,
+        "direction": "neutral",
+        "confidence": 0.0,
+        "cycle_position": "收缩",
+        "style": "防御",
+        "overweight": [],
+        "underweight": [],
+        "top_signals": [],
+        "conflicts": [],
+        "recommendation": "股票：中性（弱，评分 +0.00）。主要驱动：无。",
+        "disclaimer": "行业景气参考，不构成投资建议。不推荐个股，不提供买卖点。"
+      },
+      "error": ""
+    },
+    "fund_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "fund",
+        "score": 0.0,
+        "direction": "neutral",
+        "confidence": 0.0,
+        "equity_bias": "中性",
+        "etf_rotation": [],
+        "top_signals": [],
+        "conflicts": [],
+        "recommendation": "基金：中性（弱，评分 +0.00）。主要驱动：无。",
+        "disclaimer": "基金配置参考，不推荐具体基金，不提供买卖点。"
+      },
+      "error": ""
+    },
+    "weekly_report": {
+      "success": true,
+      "data": {
+        "text": "【宏观周报】2026-10-14\n├── 状态向量: 综合评分 58/100 | 8季度预测 Q1-Q8 | horizon 8Q\n├── 信号层:\n  PMI新订单: 新订单 50.1，月度变化 +0.3\n  信用脉冲: 信用脉冲 -0.1337，月度变化 -0.0348\n  ETF资金流: 整体 bearish，看多 ['新能源']\n  出口品类: 上行 ['汽车', '锂电池', '光伏']，下行 ['服装', '鞋帽']\n  国内品类: 上行 ['汽车', '家电', '化妆品']，下行 ['建筑装潢', '家具']\n  中美利差: 10Y利差 -3.545%，分位数 1%\n  招聘指数: PMI从业人员 48.5，方向 neutral\n  全球PMI: 全球PMI 53.0，方向 expanding\n├── 历史类比: 当前最像 锚点A（相似度 5%，历史区间 2016Q1-2016Q4）\n  后续参考: 周期+25.0% 防御+8.0% 债券-2.0% 大宗+30.0% 人民币+3.0%\n  次相似: 锚点E（3%）\n├── 触发器:\n  ⚪ 待触发 加仓: credit_impulse=bullish_cyclical + pmi_orders=bullish_cyclical → 不触发（仓位 +0% → 60%）\n  ✅ 已激活 减仓: credit_impulse=bearish_cyclical + china_us_spread=low → 股票仓位 -10%（防御/现金）（仓位 -10% → 50%）\n  ⚪ 待触发 切换: global_pmi=cross_50 → 不触发（仓位 +0% → 60%）\n  ✅ 已激活 观望: conflict=any → 维持仓位，等待确认（仓位 +0% → 60%）\n├── 决策出口:\n  stock: -0.24 (bearish)\n  fund: -0.36 (bearish)\n  startup: +0.14 (neutral)\n  employment: +0.26 (bullish)\n  commodity: +0.24 (bullish)\n  overseas: -0.00 (neutral)\n└── 风险提示:\n  ⚠️ 全球PMI（看多）与 ETF资金流（看空）方向冲突\n  ⚠️ 国内品类（看多）与 ETF资金流（看空）方向冲突\n  ⚠️ 出口品类（看多）与 信用脉冲（看空）方向冲突\n  ⚠️ 出口品类（看多）与 信用脉冲（看空）方向冲突\n  ⚠️ 全球PMI（看多）与 信用脉冲（看空）方向冲突\n  ⚠️ 全球PMI（看多）与 中美利差（看空）方向冲突\n\n├── 今日重大政策事件（多源实时）:\n  · 8% 保持良好发展势头 9月份CPI同比上涨0（新华通讯社/经济日报，多源✓）\n  · 9% PPI同比上涨5（新华通讯社/经济日报，多源✓）\n  · 近年来，我国与共建“一带一路”国家经贸合作不断加深，双边贸易规模稳步扩大（第一财经/界面新闻，多源✓）\n  覆盖 22/24 源可达\n\n⚠️ 宏观信号参考，不构成投资建议/商业决策。\n",
+        "sections": [
+          "状态向量",
+          "信号层",
+          "历史类比",
+          "行动触发器",
+          "决策出口",
+          "风险提示"
+        ],
+        "generated_at": "2026-10-14T11:07:31.172895"
+      },
+      "error": ""
+    }
+  },
+  "final_output": {
+    "text": "【宏观周报】2026-10-14\n├── 状态向量: 综合评分 58/100 | 8季度预测 Q1-Q8 | horizon 8Q\n├── 信号层:\n  PMI新订单: 新订单 50.1，月度变化 +0.3\n  信用脉冲: 信用脉冲 -0.1337，月度变化 -0.0348\n  ETF资金流: 整体 bearish，看多 ['新能源']\n  出口品类: 上行 ['汽车', '锂电池', '光伏']，下行 ['服装', '鞋帽']\n  国内品类: 上行 ['汽车', '家电', '化妆品']，下行 ['建筑装潢', '家具']\n  中美利差: 10Y利差 -3.545%，分位数 1%\n  招聘指数: PMI从业人员 48.5，方向 neutral\n  全球PMI: 全球PMI 53.0，方向 expanding\n├── 历史类比: 当前最像 锚点A（相似度 5%，历史区间 2016Q1-2016Q4）\n  后续参考: 周期+25.0% 防御+8.0% 债券-2.0% 大宗+30.0% 人民币+3.0%\n  次相似: 锚点E（3%）\n├── 触发器:\n  ⚪ 待触发 加仓: credit_impulse=bullish_cyclical + pmi_orders=bullish_cyclical → 不触发（仓位 +0% → 60%）\n  ✅ 已激活 减仓: credit_impulse=bearish_cyclical + china_us_spread=low → 股票仓位 -10%（防御/现金）（仓位 -10% → 50%）\n  ⚪ 待触发 切换: global_pmi=cross_50 → 不触发（仓位 +0% → 60%）\n  ✅ 已激活 观望: conflict=any → 维持仓位，等待确认（仓位 +0% → 60%）\n├── 决策出口:\n  stock: -0.24 (bearish)\n  fund: -0.36 (bearish)\n  startup: +0.14 (neutral)\n  employment: +0.26 (bullish)\n  commodity: +0.24 (bullish)\n  overseas: -0.00 (neutral)\n└── 风险提示:\n  ⚠️ 全球PMI（看多）与 ETF资金流（看空）方向冲突\n  ⚠️ 国内品类（看多）与 ETF资金流（看空）方向冲突\n  ⚠️ 出口品类（看多）与 信用脉冲（看空）方向冲突\n  ⚠️ 出口品类（看多）与 信用脉冲（看空）方向冲突\n  ⚠️ 全球PMI（看多）与 信用脉冲（看空）方向冲突\n  ⚠️ 全球PMI（看多）与 中美利差（看空）方向冲突\n\n├── 今日重大政策事件（多源实时）:\n  · 8% 保持良好发展势头 9月份CPI同比上涨0（新华通讯社/经济日报，多源✓）\n  · 9% PPI同比上涨5（新华通讯社/经济日报，多源✓）\n  · 近年来，我国与共建“一带一路”国家经贸合作不断加深，双边贸易规模稳步扩大（第一财经/界面新闻，多源✓）\n  覆盖 22/24 源可达\n\n⚠️ 宏观信号参考，不构成投资建议/商业决策。\n",
+    "sections": [
+      "状态向量",
+      "信号层",
+      "历史类比",
+      "行动触发器",
+      "决策出口",
+      "风险提示"
+    ],
+    "generated_at": "2026-10-14T11:07:31.172895"
+  },
+  "errors": []
+}

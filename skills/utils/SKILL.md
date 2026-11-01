@@ -1,5 +1,5 @@
 ---
-name: error-handler
+name: utils
 description: 通用错误处理库。为所有技能提供统一的错误处理、告警过滤、日志记录。支持 GraphQL 警告过滤、Python 安全调用、API 重试、Git 安全操作。
 version: 1.3.1
 ---
@@ -52,7 +52,6 @@ utils/
 └── tests/test-error-handler.sh  # 13个测试
 ```
 
-> 详细集成示例、迁移清单、测试详情见 `references/skill-details.md`
 
 ---
 

@@ -128,7 +128,6 @@ Unknown model → 检查 models.json 是否包含该 provider 定义
 2. > 75%: 预防性 `/compact`
 3. > 85%: 切换大窗口模型 + `/compact`
 4. > 90%: 保存记忆 → `agentTurn` 新会话
-5. 检查 LongCat 额度（运行 `scripts/longcat-monitor.sh`）
 6. 额度不足时自动切换到备用模型
 
 ## ⚠️ 注意

@@ -1,0 +1,4 @@
+WARNING:gold_watch:报告未读到支撑/阻力位，本次盯价仅按能读到的项
+Traceback (most recent call last):
+  File "<stdin>", line 75, in <module>
+NameError: name 'alert' is not defined. Did you mean: 'anext'?

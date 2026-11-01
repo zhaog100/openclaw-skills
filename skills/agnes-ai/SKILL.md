@@ -1,3 +1,7 @@
+---
+name: agnes-ai
+description: Agnes AI API 接入支持与问题排查: 新用户接入配置、计费/用量/鉴权排查、模型选型。Trigger on 'agnes'、'agnes-api'、'agnes 接入'。
+---
 <!--
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 -->
@@ -1029,28 +1033,20 @@ $env:AGNES_API_KEY="YOUR_API_KEY"
 **使用示例：**
 ```bash
 # 文本生成
-python scripts/agnes_api.py text --prompt "Write a product tagline for an AI assistant."
 
 # 文生图
-python scripts/agnes_api.py image --prompt "A luminous floating city above a misty canyon at sunrise, cinematic realism" --size 1024x768
 
 # 图生图
-python scripts/agnes_api.py image --prompt "Turn the scene into a rainy cyberpunk night" --image https://example.com/input.png
 
 # 文生视频（默认 num_frames=121, frame_rate=24）
-python scripts/agnes_api.py video --prompt "A cinematic shot of a cat walking on the beach at sunset" --poll
 
 # 图生视频
-python scripts/agnes_api.py video --prompt "Animate subtle camera movement" --image https://example.com/image.png --poll
 
 # 多图 / 关键帧视频
-python scripts/agnes_api.py video --prompt "Create a smooth transition" --image https://example.com/a.png --image https://example.com/b.png --mode keyframes --poll
 
 # 查询视频任务
-python scripts/agnes_api.py video-get task_123456
 
 # 运行测试
-python scripts/agnes_api.py smoke-test
 ```
 
 **⚠️ 重要提醒：**
@@ -1100,16 +1096,12 @@ export AGNES_API_KEY="your_api_key_here"
 **使用示例：**
 ```bash
 # 文本
-python3 agnes-free-text/scripts/agnes_text.py chat --message "解释 Agent skill 是什么"
 
 # 图片
-python3 agnes-free-image/scripts/agnes_image.py generate --prompt "科技感插画，干净明亮"
 
 # 视频
-python3 agnes-free-video/scripts/agnes_video.py create --prompt "竖屏短视频，医疗科普画面"
 
 # 视频轮询并下载
-python3 agnes-free-video/scripts/agnes_video.py status --task-id task_123456 --wait --download-dir downloads
 ```
 
 ---
@@ -2007,7 +1999,6 @@ agnes-2.0-flash
 - 将顶层 `model` 改为 `agnes/agnes-2.0-flash`
 
 **Q: Desktop 和 CLI 配置冲突？**
-- CLI 配置保存在 `~/.config/opencode/` 或项目目录的 `.opencode` 文件夹中
 - Desktop 配置保存在应用内部设置中
 - 两者独立，不会互相覆盖
 

@@ -1,11 +1,7 @@
 ---
 name: wool-gathering
 description: "薅羊毛综合技能 - 自动签到、价格监控、优惠券推送。支持阿里云盘、百度网盘、B站、爱奇艺、京东等平台。包括青龙面板部署、dailycheckin配置、价格爬虫开发。"
-<<<<<<< HEAD
 version: 1.2.4
-=======
-version: 1.2.3
->>>>>>> skills/main
 ---
 
 # 薅羊毛综合技能 v2.3
@@ -55,7 +51,6 @@ wool-gathering/
 - ❌ 恶意抢券、爬虫滥用、刷单刷评违规
 - Cookie定期更新，使用小号测试
 
-> 详细平台列表、Cookie获取教程、价格监控开发指南见 `references/skill-details.md`
 
 ---
 

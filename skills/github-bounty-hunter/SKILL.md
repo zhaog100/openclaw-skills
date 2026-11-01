@@ -1,6 +1,5 @@
 ---
 name: github-bounty-hunter
-<<<<<<< HEAD
 description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v8.1 新增已合并 PR 催款 + 开放 PR 催审双轨跟进策略（2026-09-28）"
 version: 8.1.0
 author: 思捷娅科技 (SJYKJ)/zhaog100
@@ -8,14 +7,6 @@ lessons_updated: 2026-09-28
 ---
 
 # GitHub Bounty Hunter v8.1
-=======
-description: "GitHub 赏金猎人。自动监控 GitHub bounty，支持 Algora/UbiquityOS/RustChain 平台。v8.0 新增 RustChain 付款确认 + secondary rate limit 策略（2026-08-03）"
-version: 8.0.0
-author: 思捷娅科技 (SJYKJ)/zhaog100
----
-
-# GitHub Bounty Hunter v8.0.0
->>>>>>> skills/main
 
 自动化 GitHub 赏金/Grant 接单、开发、提交 PR + 工作区结构化管理。
 
@@ -101,13 +92,10 @@ ${GITHUB_USERNAME:-your_username}|Scottcjn|rustchain|solfoundry|aporthq|rohitdas
 
 ```bash
 # 快速扫描（3 轮，180 秒完成）
-bash scripts/bounty_quick_scan.sh [max_pages]
 
 # 分阶段开发（4 阶段，每阶段 2 分钟，进度持久化）
-bash scripts/bounty_dev_phased.sh <owner/repo> <issue> [amount]
 
 # 进度恢复（超时后继续）
-bash scripts/bounty_resume.sh <work_dir>
 ```
 
 ### 传统命令（v2.2）
@@ -128,17 +116,12 @@ github-bounty-hunter qmd-update        # 更新 QMD 索引
 github-bounty-hunter audit-structure   # 生成结构审计报告
 
 # 预检/扫描/开发脚本
-bash scripts/bounty_preflight.sh <owner/repo> <issue>  # 预检（推荐）
 bash scripts/bounty_scan.sh                    # 扫描（推荐）
-bash scripts/bounty_dev.sh <owner/repo> <issue>  # 开发
 
 # ⚠️ 已废弃 (DEPRECATED)
 bash scripts/bounty_claim.sh <owner/repo> <issue> <pr>  # ❌ 不要使用 - /attempt 是危险 bot 行为
 
 # 工作区管理脚本（v2.2 新增）
-bash scripts/workspace-sync.sh
-bash scripts/qmd-update.sh
-bash scripts/structure-audit.sh
 ```
 
 ## 🔧 环境变量
@@ -290,7 +273,6 @@ secrets/
 
 自动记录错误/经验/功能需求到 `.learnings/` 目录：
 ```bash
-bash scripts/error-detector.sh error|learn|feature|review|stats
 ```
 
 ## ⚡ v3.0 优化特性
@@ -364,7 +346,6 @@ if time_remaining < 30s:
 
 ```bash
 # 1. 扫描发现 bounty
-bash scripts/bounty_quick_scan.sh
 
 # 2. 自动评分（按策略）
 for each bounty:
@@ -536,7 +517,6 @@ for bounty in sorted_list:
 
 ```bash
 # 快速扫描（3 轮，180 秒）
-bash scripts/bounty_quick_scan.sh [max_pages]
 
 # 输出：Top 5 推荐（按金额和竞争度排序）
 ```
@@ -554,13 +534,10 @@ bash scripts/bounty_quick_scan.sh [max_pages]
 
 ```bash
 # 单任务开发（4 阶段，不超时）
-bash scripts/bounty_dev_phased.sh <owner/repo> <issue> [amount]
 
 # 批量开发（最多 5 个并行）
-bash scripts/bounty_batch_dev.sh <owner/repo> 11,29,30 5
 
 # 批量提交 PR
-bash scripts/bounty_submit_batch.sh <work_dir> [owner/repo]
 ```
 
 ---
@@ -592,7 +569,6 @@ export USDT_WALLET='your_wallet_address'
 
 PM 代理（发现→评估→接单）↔ Dev 代理（设计→开发→PR→跟进）
 
-> 详细 STATE.yaml 格式、错误自学习、平台集成细节见 `references/skill-details.md`
 
 ---
 
@@ -908,7 +884,6 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 
 ## 🧠 经验教训库 (持续更新)
 
-<<<<<<< HEAD
 ### 2026-09-28 RustChain 双轨跟进策略 ⭐⭐⭐
 
 #### 已合并 PR 催款 + 开放 PR 催审双轨策略
@@ -957,8 +932,6 @@ RustChain 仓库（Scottcjn/Rustchain）存在两类未完结 PR：
 ---
 
 
-=======
->>>>>>> skills/main
 ### 2026-08-03 实战经验
 
 #### RustChain 付款确认

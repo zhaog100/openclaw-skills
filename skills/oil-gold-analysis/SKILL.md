@@ -1,15 +1,15 @@
 ---
 name: "oil-gold-analysis"
-description: "石油黄金分析：运行analysis.py+report_text.py生成报告，send_qq.sh推送QQ。触发：用户询问或cron定时。"
+description: "石油黄金分析：analysis.py + report_text.py 生成报告，Gateway 推送 QQ；数据源降级链与口径纪律。"
 ---
 
-# 石油黄金分析技能
+# 石油黄金分析
 
-## 触发条件
+## 触发
 - 用户询问黄金/石油价格或分析
-- cron定时任务执行（每日4次）
+- cron 定时任务（4 个 openclaw cron：oil-gold-morning/daily/evening/us）
 
-## 核心路径
+## 核心流程
 
 ### 1. 数据获取与分析
 ```bash
@@ -27,68 +27,93 @@ cd /home/ubuntu/.openclaw/workspace && \
 PYTHONPATH=/home/ubuntu/.local/lib/python3.12/site-packages \
 python3 skills/oil-gold-correlation/scripts/report_text.py
 ```
-输出保存到: `skills/oil-gold-correlation/reports/report_text_latest.txt`
+输出：`skills/oil-gold-correlation/reports/report_text_latest.txt`，完成后 `stat -c %Y` 核对 mtime 真更新。
 
-### 3. 发送QQ通知
-**注意**：qqbot 插件 preload.cjs 有 bug，CLI 不支持 qqbot 频道。必须使用 Gateway REST API 发送：
+### 3. 发送 QQ 通知
+qqbot 插件 preload.cjs 有 bug，CLI 不支持 qqbot 频道。必须使用 Gateway REST API：
 
 ```bash
-# 方法1：通过 Gateway REST API（推荐）
+# 方法 1（推荐）
 python3 skills/oil-gold-correlation/scripts/send_qq_gw.py
 
-# 方法2：通过 cron wrapper（已集成）
+# 方法 2（cron wrapper，已集成）
 bash skills/oil-gold-correlation/scripts/run_report.sh
 ```
 
-send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），改用 send_qq_gw.py
-
-**send_qq_gw.py 修复记录 (2026-09-08 21:30)**：
-- 问题：QQ_TARGET_USER_ID 环境变量未设置，导致 target 为空
-- 修复：第26行硬编码默认 target `${QQ_OPEN_ID:-unset}`
-- 同时修复 target 格式：从 `qqbot:c2c:{target}` 改为直接使用 `{target}`（open_id）
-- Gateway 要求 target 格式为 open_id，不要加 `qqbot:c2c:` 前缀
-
-## 正确Cron配置
-```
-0 10 * * * /bin/bash /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/run_report.sh >> /home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log 2>&1
-30 15 * * * /bin/bash /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/run_report.sh >> /home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log 2>&1
-0 23 * * * /bin/bash /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts/run_report.sh >> /home/ubuntu/.openclaw/workspace/logs/oil-gold-report-cron.log 2>&1
-```
-
-## 定时任务时间说明
-- 早间报告：10:00
-- 午间报告：15:30
-- 晚间报告：23:00（用户期望22:30，需确认是否调整）
+send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），不要再用。
 
 ## 关键路径
-- 数据脚本: `skills/oil-gold-correlation/scripts/analysis.py`
-- 报告生成: `skills/oil-gold-correlation/scripts/report_text.py`
-- 发送脚本: `skills/oil-gold-correlation/scripts/send_qq.sh`
-- 报告目录: `skills/oil-gold-correlation/reports/`
-- 日志目录: `logs/oil-gold-*.log`
 
-## 环境变量
-```bash
-export PYTHONPATH="/home/ubuntu/.local/lib/python3.12/site-packages"
-```
+- 数据脚本：`skills/oil-gold-correlation/scripts/analysis.py`
+- 报告生成：`skills/oil-gold-correlation/scripts/report_text.py`
+- 推送：`skills/oil-gold-correlation/scripts/send_qq_gw.py` / `run_report.sh`
+- 报告目录：`skills/oil-gold-correlation/reports/`
+- 日志：`logs/oil-gold-*.log`
+
+环境变量：`export PYTHONPATH="/home/ubuntu/.local/lib/python3.12/site-packages"`；`QQ_TARGET_USER_ID` 缺失则拒绝推送并 exit 1（已脱敏去硬编码）。
+
+## cron 配置
+
+- 4 个任务：`oil-gold-morning` 10:00、`oil-gold-daily` 15:30、`oil-gold-evening` 23:00、`oil-gold-us`（美盘）
+- 每个任务必须 `--command-env QQ_TARGET_USER_ID=<open_id>`，否则触发时静默 exit 1
+- 改动前先 `openclaw cron list` 核对 4 个任务存在；投递目标 `--channel qqbot --to <open_id> --announce`（不走 `last`，会 fail-closed）
+- 一次性任务：`openclaw cron add --name "xxx" --at "<ISO 带时区>" --delete-after-run --agent main --channel qqbot --to <open_id> --announce --message "拉取…出报告推给官家"`（无 `--once` 选项；payload 四选一：`--system-event`/`--message`/`--command`/`--script`）
+
+## 推送脚本静默规则
+
+推送类脚本 logger 必须静默：`logger.setLevel(CRITICAL)` + `logger.addHandler(NullHandler())` + `logger.propagate = False`，绝不打 stdout/stderr；诊断信息只写文件日志。修完模拟跑一遍确认 stdout/stderr 零输出。进推送文案的状态字段值必须中文化，改值时同步改 signal 层赋值与 outcome 层比较字面量两处，验证 = 跑一遍 outcome 输出 `json.dumps` 后正则扫 `[A-Za-z]{6,}` 无残留英文串。
+
+## 数据源降级链（盯价用）
+
+- 盯价沪金现货基准 = 东财 `118.AU9999`（上金所 Au9999 现货，贴官家网页口径）；`113.AUM` 是上期所期货主力，只作档位/参考，**不是现货基准**
+- 海外服务器（新加坡等）访问东财全线 502/被风控：这是 IP 问题不是接口坏，别反复重拉。备用通道优先级：CF Worker 中转（`worker.js` 已入库，CF 网页可能建不出纯 Worker、"Workers for Platforms" 是付费 $25/月，建前先确认）→ 国内小主机 `gold_proxy.py` 转发（8899 端口）→ 官家网页报数。CF/国内机均未就绪前，东财 502 = 静默，不拿 T+D/纸黄金/JO_71/昨收/折算冒充
+- `f43` 是 ×100 放大的整数（862.58 → 86258），取价 `/100.0`
+- 降级：东财 `113.AUM` → 金投网 jijinhao `codes=JO_283972` → 七河 `m.quheqihuo.com/quote/shfe-aum.html` → au0 日线（akshare，周五收盘兜底）
+- 国际金实时 `PAXG` Binance / `api.gold-api.com/price/XAU` 只作盘中参考，**不进买卖判定**
+- 沪银：东财 `113.AGM` → 金投网 jijinhao → akshare `futures_main_sina("AG0")` 日线兜底
+
+## 金投网 jijinhao 正确参数
+
+- 批量接口 `quoteCenter/realTime.htm` 参数名必须是**复数 `codes=`**（单数 `code=` 报错）
+- 值用页面里真实 `JO_xxxxx` 完整 code，**不猜短名**
+- 用法：HTTP 拉 `https://m.cngold.org/quote/gjs/` → 正则挖全部 `JO_\d{4,6}` → `codes=` 逗号批量拉
+
+## 现货基准静默规则
+
+- 盯价基准只认真实现货实时价，绝不退 au0 期货日线或国际金 XAU 折算价当现货基准
+- 现货 K 线拉空只影响动态档位计算，不影响基准
+- 两条现货实时源全拉空 → `success=False`，静默不推送、不触发申购，绝不顶脏缓存值
+- `boc_spot` 字段存旧值视为脏数据，禁用；`boc_spot=None` 走静默
+- 金投网 code 必须逐个核 `showName` 定品种（8xx 区间多为银行纸黄金/金条，非上金所现货），接前实拉打印 `showName` 核对含"上金所/Au9999"字样
+
+## 报价口径纪律
+
+1. 截图只作"值"的证据，绝不作实时基准/对齐目标；实时基准只认自动源拉到的数
+2. 三口径严格区分不混用：① 上金所现货 `Au99.99`（东财 `118.AU9999`）② 上期所期货主力（东财 `113.AUM`）③ 具体远月合约；官家没指定前默认锚①现货
+3. 单位跟上期所官方口径：沪金=元/克（8xx）；沪银=元/千克（1xxxx）；报完先看量级对不对
+4. 同一份报告内所有引用同一品种的段落必须同口径同单位同数值来源，生成后 grep 关键价核对再推
+
+## 死源清单（别再试）
+
+- 东财 SGE 现货 `113.AU9999`/`113.AU9995`/`113.SHGM`/`8.AUxxxx` → 502 / data=null
+- 中财网 `gold.10jqka.com.cn` → DNS 解析失败；`stock.10jqka.com.cn/gold/` → 404
+- TickDB / 探数 / QOS / adona → 全要 key 或本地部署，等官家申请 `TICKDB_KEY` 后填入降级链
+
+## 拉不到实时价时
+
+明标"⚠️数据源不可用，以下为旧数据"，绝不静默回退缓存推给官家（官家 2026-10-23 起反复强调）。
 
 ## 故障排查
-1. 日志为空 → 检查cron是否执行，查看 `/var/log/syslog`
-2. 报告未生成 → 确认 report_text.py 能独立运行
-3. QQ发送失败 → openclaw message send CLI 不支持 qqbot 通道，需改用 send_qq_ws.py 或手动推送
-4. Gateway WebSocket 认证 → client.mode 必须为 "operator" 或 "backend"，需携带 device 信息
 
-## 数据源受限环境（腾讯云）排障（2026-09-29）
-官方数据源（NBS/海关/央行/东财行情/新浪 retail）在本机多为"接口本身被墙/风控"而非代码 bug，按此顺序判别，避免空盯或误改代码：
-1. 先分层探活：主站可通（`curl -o /dev/null -w '%{http_code}'` 得 200）但数据子域返回 `HTTP 000`/412/RemoteDisconnected，即该子域被限，**不是断网**——其它 akshare 源（如 macro_usa_pmi）能拉通即可佐证。
-2. 官方源拉不到时**一律走降级**：宏观 21 个 akshare 源兜底、出口品类/国内品类/招聘走占位+总额兜底、信号层捕获异常降级 neutral，主流程不崩、周报照常出。
-3. 别为此改代码或加代理硬拉：换国内网络/代理后官方源自动生效，代码零改动。排障结论按此记录即可。
-4. 测试/全链路验证被官方源超时时，用 mock 信号（不联网）快速验逻辑不崩，再跑全量测试；别因超时误判为逻辑错。
+1. 日志为空 → 检查 cron 是否执行，查看 `/var/log/syslog`
+2. 报告未生成 → 确认 `report_text.py` 能独立运行，`stat -c %Y` 核对 mtime
+3. QQ 发送失败 → openclaw CLI 不支持 qqbot 通道，改用 `send_qq_gw.py` 或手动推送
+4. Gateway 认证 → `client.mode` 必须为 `operator` 或 `backend`，需携带 device 信息
+5. 门面调度器接管定时任务 → 微技能里"调 `report_text.py`"用子进程独立执行并落盘，不得依赖旧产物文件作旁路；切换后首个触发点前手动带 env 实跑一次并确认产物 mtime 推进
 
-## 定时推送与门面集成（2026-09-30）
+## 脱敏改动同步调用方
 
-- **每日 4 次推送时间不变**：早盘 10:00 / 日盘 15:00 / 晚盘 21:00 / 美盘 22:00，各自是一个 openclaw cron 任务（名字 `oil-gold-morning/daily/evening/us`，实际路径 `skills/oil-gold-correlation/scripts/run_report.sh`，非系统 crontab）。改动前先 `openclaw cron list` 核对这 4 个任务。
-- **推送目标必须固定**：delivery 的 channel 用 `qqbot`、to 用 `qqbot:c2c:C099848DC9A60BF60A7BE31626822790`。若任务是 `channel=last`，`openclaw cron list` 会显示 `will fail-closed`（静默失败、用户收不到）；用 `openclaw cron edit <id> --channel qqbot --to qqbot:c2c:<open_id>` 修复。修完以 list 不再出现 fail-closed 为准。
-- **门面集成**：本 skill 已作为 economic-outlook 门面平台的微技能 `skills/oil_gold`（第 19 个）挂入，`orchestrator/registry.py` 自动发现；配置登记在 `skills/economic-outlook/config/schedules.yaml` 的 `oil_gold_push`。推送时间调整只改 openclaw cron，保持 schedules.yaml 与实际 cron 一致。
-- **脱敏去硬编码后必须同步注入环境变量（2026-09-30 教训）**：`run_report.sh`/`send_qq_gw.py` 的 open_id 已去硬编码，改为"读 `QQ_TARGET_USER_ID` 环境变量，缺失则拒绝推送并 exit 1"。因此 4 个 openclaw cron 任务（oil-gold-morning/daily/evening/us）必须带 `--command-env QQ_TARGET_USER_ID=<open_id>`，否则 cron 触发时脚本直接 exit 1、报告静默不推（症状：automation `lastRunStatus=error`，diagnostics 报"QQ_TARGET_USER_ID 未设置"）。**规则：任何把硬编码凭证改成环境变量/config 读取的脱敏改动，落地时必须同步给每个调用方（cron/CI/上游脚本）注入该变量，并以"手动带 env 跑一次该脚本全链路成功"为完成标准，再验证下一次 cron 触发。**
-- **门面调度入口的运行时环境 = 老 cron 链路环境（2026-10-04 教训）**：把 cron payload 从独立脚本（`run_report.sh`）切到门面调度入口（`run_oil_gold_via_facade.sh` → `skills/oil_gold` 微技能）时，老 wrapper 里的运行时环境（`PYTHONPATH=site-packages`、`HOME`、正确的 `cwd`、`OIL_GOLD_SKILL_DIR`）不会自动迁移——微技能里"调 `report_text.py` 生成报告"若只做 import 调 `main()` 或子进程但环境不全，会静默拉不到数据、报告不更新（文件 mtime 停留旧值），推送又因"报告未生成/旧"被跳过 → 连续多天全静默漏推而 cron 仍显示 `status=ok`。**规则：切调度链路时必须核对新入口带全老链路的环境变量（对照老 `run_report.sh` 的 export 段逐项）；"报告生成"用子进程独立跑 `report_text.py`（等价老 cron，真自拉数据落盘）；完成标准 = 跑一次后报告文件 mtime 真更新 + 推送成功；并给入口加"漏推/报告旧 → 写 ERROR 进 cron 可见日志"告警，且别把 stdout 清空清掉可观测信号——静默化的是刷到聊天窗口的技术状态，不是日志。** 验证命令：`stat -c %Y reports/report_text_latest.txt` 前后对比确认 mtime 更新。
+去硬编码 open_id/secret 是"代码侧去硬编码 + 调用方注入替代值"两件事，只做一半即线上故障：
+1. 代码改成读环境变量后，立即给每个调用方（cron/CI/上游脚本）注入该变量
+2. 注入后手动带 env 跑一次全链路确认 `exit=0`，再算脱敏完成
+3. 每次排查"没收到推送"先查报告产物文件 mtime 与脚本日志是否当日更新，而非只看 cron 状态

@@ -47,7 +47,6 @@ bash scripts/update.sh <skill-name>
 ### 批量发布流程（实战优化）
 ```bash
 # 1. 版权检查（强制）
-bash scripts/add_copyright.sh <skill-name>
 
 # 2. 测试验证
 pytest  # 必须全绿
@@ -76,4 +75,3 @@ clawhub publish <skill-path>
 - 创建`.clawhubignore`排除venv/node_modules/logs
 - 参考文档：`references/clawhub-api.md`, `references/best-practices.md`
 
-> 详细脚本说明、整合策略、故障排除见 `references/skill-details.md`

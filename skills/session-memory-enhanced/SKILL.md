@@ -18,7 +18,6 @@ version: 4.2.1
 ```bash
 # 安装
 cd skills/session-memory-enhanced
-cp config/unified.json.example config/unified.json
 
 # 自动模式（crontab）
 0 * * * * $(pwd)/skills/session-memory-enhanced/scripts/session-memory-enhanced.sh
@@ -53,7 +52,6 @@ python3 python/searcher.py --query "关键词" --db memory/agents/main/vectors.d
 session-memory-enhanced/
 ├── scripts/session-memory-enhanced.sh  # 主脚本
 ├── python/extractor.py, embedder.py, searcher.py
-├── config/unified.json
 └── docs/
 ```
 
@@ -99,7 +97,6 @@ read MEMORY.md  # 绝对禁止！
 
 - `OPENAI_API_KEY`：向量嵌入和AI摘要（不提供时降级为纯文本模式）
 
-> 详细功能对比、安装步骤、Python集成指南见 `references/skill-details.md`
 
 ---
 

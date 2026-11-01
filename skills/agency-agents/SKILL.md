@@ -56,4 +56,3 @@ AGENCY_AGENTS_QA_LEVEL=3           # 1-5
 AGENCY_AGENTS_MAX_RETRIES=3
 ```
 
-> 详细的输出格式、最佳实践、编排器文档见 `references/skill-details.md`

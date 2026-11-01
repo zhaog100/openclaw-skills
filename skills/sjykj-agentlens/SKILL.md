@@ -1,6 +1,6 @@
 ---
 version: 1.0.0
-name: agentlens
+name: sjykj-agentlens
 description: AI Agent调试与可观测性平台 — 零接入Agent追踪+失败分析+浪费检测+子代理监控
 metadata:
   {

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/bash
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
 # 无感会话切换脚本
@@ -6,10 +5,6 @@
 # 更新时间：2026-07-02
 # 功能：上下文超过阈值时，自动保存记忆并通过 cron agentTurn 创建新会话
 # 版本：v2.9.0
-=======
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
-#!/bin/bash
->>>>>>> skills/main
 # 无感会话切换脚本
 # 创建时间：2026-03-04
 # 更新时间：2026-07-02

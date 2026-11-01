@@ -1,0 +1,34 @@
+{
+  "thresholds": {
+    "dialog": 70,
+    "auto_switch": 90,
+    "startup_warning": 30,
+    "error_per_hour": 5
+  },
+  "monitor": {
+    "active_session_window_minutes": 120,
+    "max_retries": 3,
+    "retry_delay_seconds": 5,
+    "api_timeout_seconds": 30
+  },
+  "notifications": {
+    "cooldown_seconds": 3600,
+    "feishu_channel": "feishu",
+    "feishu_account": "main",
+    "feishu_target": "",
+    "qq_channel": "qqbot",
+    "qq_account": "default",
+    "qq_target": ""
+  },
+  "paths": {
+    "switch_log": "logs/seamless-switch.log",
+    "daily_log_dir": "memory",
+    "data_dir": "data",
+    "log_dir": "logs"
+  },
+  "compaction": {
+    "enabled": true,
+    "memory_md_size_warning": 20000,
+    "auto_compact_threshold": 15000
+  }
+}

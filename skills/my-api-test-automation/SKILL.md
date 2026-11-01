@@ -1,5 +1,5 @@
 ---
-name: api-test-automation
+name: my-api-test-automation
 description: Generate complete automated API test cases from interface documentation such as OpenAPI, Swagger exports, Postman collections, Markdown API docs, or endpoint tables. Use when Codex needs to analyze interface docs, generate executable API test cases, add configurable pre-request scripts and post-response assertion scripts, adapt the suite to a user-provided runtime environment, execute the generated tests, and produce a complete test report with pass/fail details, diagnostics, and environment summary.
 version: 1.0.0
 copyright: "Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License"

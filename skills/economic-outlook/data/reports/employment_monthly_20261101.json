@@ -1,0 +1,236 @@
+{
+  "workflow": "employment_query",
+  "results": {
+    "domestic_category": {
+      "success": true,
+      "data": {
+        "top_categories": [
+          "汽车",
+          "家电",
+          "化妆品",
+          "通讯器材",
+          "金银珠宝"
+        ],
+        "bottom_categories": [
+          "建筑装潢",
+          "家具",
+          "服装鞋帽"
+        ],
+        "categories": [],
+        "employment_hint": [
+          {
+            "category": "汽车",
+            "roles": [
+              "4S店销售",
+              "维修技师"
+            ]
+          }
+        ],
+        "startup_hint": [
+          {
+            "category": "汽车",
+            "directions": [
+              "新能源汽车服务",
+              "充电桩运营"
+            ]
+          }
+        ],
+        "investment_hint": [
+          {
+            "category": "汽车",
+            "sectors": [
+              "汽车ETF",
+              "新能源车ETF"
+            ]
+          }
+        ],
+        "direction": "bullish",
+        "strength": 0.6
+      },
+      "error": ""
+    },
+    "export_category": {
+      "success": true,
+      "data": {
+        "top_categories": [
+          "汽车",
+          "锂电池",
+          "光伏",
+          "集成电路",
+          "船舶"
+        ],
+        "bottom_categories": [
+          "服装",
+          "鞋帽",
+          "家具"
+        ],
+        "categories": [],
+        "employment_hint": [
+          {
+            "category": "汽车",
+            "roles": [
+              "装配工",
+              "工程师",
+              "外贸"
+            ]
+          }
+        ],
+        "startup_hint": [
+          {
+            "category": "汽车",
+            "directions": [
+              "二手车出口",
+              "海外售后"
+            ]
+          }
+        ],
+        "investment_hint": [
+          "汽车出口链",
+          "锂电出口链",
+          "光伏出口链"
+        ],
+        "direction": "bullish",
+        "strength": 0.6
+      },
+      "error": ""
+    },
+    "recruitment": {
+      "success": true,
+      "data": {
+        "direction": "neutral",
+        "strength": 0.0,
+        "pmi_employment": 48.5,
+        "salary_index": 2.5,
+        "hot_industries": [
+          {
+            "name": "高端制造",
+            "score": 85
+          },
+          {
+            "name": "半导体",
+            "score": 80
+          }
+        ],
+        "hot_cities": [
+          {
+            "name": "深圳",
+            "score": 88
+          },
+          {
+            "name": "上海",
+            "score": 85
+          }
+        ],
+        "hot_skills": [
+          {
+            "name": "AI工程",
+            "score": 90
+          },
+          {
+            "name": "嵌入式",
+            "score": 85
+          }
+        ],
+        "valid_until": "2026-12-01"
+      },
+      "error": ""
+    },
+    "employment_outcome": {
+      "success": true,
+      "data": {
+        "outcome": "employment",
+        "score": 0.27,
+        "direction": "bullish",
+        "confidence": 0.33,
+        "hot_industries": [
+          "科技/AI",
+          "高端制造",
+          "新能源"
+        ],
+        "hot_cities": [
+          "一线（北上广深）",
+          "新一线（成都/杭州/苏州）",
+          "二三线"
+        ],
+        "hot_skills": [
+          "AI/大模型工程",
+          "新能源三电",
+          "半导体工艺",
+          "数据分析",
+          "出海业务"
+        ],
+        "top_signals": [
+          {
+            "name": "export_category",
+            "contribution": 0.15,
+            "direction": "bullish",
+            "strength": 0.6
+          },
+          {
+            "name": "domestic_category",
+            "contribution": 0.12,
+            "direction": "bullish",
+            "strength": 0.6
+          },
+          {
+            "name": "recruitment",
+            "contribution": 0.0,
+            "direction": "neutral",
+            "strength": 0.0
+          }
+        ],
+        "conflicts": [],
+        "recommendation": "就业：看多（中等，评分 +0.27）。主要驱动：export_category、domestic_category。",
+        "disclaimer": "就业参考，不承诺薪资或录用。"
+      },
+      "error": ""
+    }
+  },
+  "final_output": {
+    "outcome": "employment",
+    "score": 0.27,
+    "direction": "bullish",
+    "confidence": 0.33,
+    "hot_industries": [
+      "科技/AI",
+      "高端制造",
+      "新能源"
+    ],
+    "hot_cities": [
+      "一线（北上广深）",
+      "新一线（成都/杭州/苏州）",
+      "二三线"
+    ],
+    "hot_skills": [
+      "AI/大模型工程",
+      "新能源三电",
+      "半导体工艺",
+      "数据分析",
+      "出海业务"
+    ],
+    "top_signals": [
+      {
+        "name": "export_category",
+        "contribution": 0.15,
+        "direction": "bullish",
+        "strength": 0.6
+      },
+      {
+        "name": "domestic_category",
+        "contribution": 0.12,
+        "direction": "bullish",
+        "strength": 0.6
+      },
+      {
+        "name": "recruitment",
+        "contribution": 0.0,
+        "direction": "neutral",
+        "strength": 0.0
+      }
+    ],
+    "conflicts": [],
+    "recommendation": "就业：看多（中等，评分 +0.27）。主要驱动：export_category、domestic_category。",
+    "disclaimer": "就业参考，不承诺薪资或录用。"
+  },
+  "errors": []
+}

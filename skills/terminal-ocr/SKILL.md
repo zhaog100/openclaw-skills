@@ -46,19 +46,15 @@ bash install.sh
 ./scripts/terminal-ocr.sh /path/to/screenshot.png
 
 # 输出文本内容
-./scripts/extract-text.sh /path/to/screenshot.png
 ```
 
 ### 3. 高级分析
 ```bash
 # 命令行分析
-./scripts/analyze-commands.sh /path/to/screenshot.png
 
 # 日志分析  
-./scripts/analyze-logs.sh /path/to/screenshot.png
 
 # 错误诊断
-./scripts/diagnose-errors.sh /path/to/screenshot.png
 ```
 
 ## 🛠️ 技术实现

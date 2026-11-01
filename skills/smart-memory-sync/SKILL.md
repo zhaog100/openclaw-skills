@@ -72,7 +72,6 @@ smart-memory-sync/
 - 与Context Manager互补，不替代
 - 日志：`logs/monitor.log`
 
-> 详细的技术架构、性能指标、使用场景、版本规划见 `references/skill-details.md`
 
 ---
 

@@ -1,0 +1,220 @@
+PR编号,仓库,状态,标题,创建时间,更新时间,关闭时间,合并时间,评论数,标签,金额,付款地址,付款状态,PR链接,来源
+,.github,closed,[BOUNTY #5886] Plugin Health Monitor,2026-03-20,2026-03-20,2026-03-20,,1,,,,,https://github.com/ubiquity-os/.github/pull/21,bounty-scan-2026-08-31
+732,1712n/dn-institute,closed,[BOUNTY #277] 🌰 Comprehensive Guide: Wash Trading - Detectio,2026-03-23,2026-06-01,,,,,,,,https://github.com/1712n/dn-institute/pull/732,pr_updater-daily
+,AncientBeast,closed,fix: location confirmation slide issue,2026-03-27,2026-03-27,2026-03-27,,3,,,,,https://github.com/FreezingMoon/AncientBeast/pull/2933,bounty-scan-2026-08-31
+,App,closed,[50] Fix distance expense map preview cropping start/finish points,2026-03-19,2026-03-19,2026-03-19,,1,,,,,https://github.com/Expensify/App/pull/85736,bounty-scan-2026-08-31
+,AutoPrompt,open,[SECURITY] Upgrade nltk to 3.9.4 to fix 7 vulnerabilities,2026-03-28,2026-03-28,,,0,,,,,https://github.com/rsoreq/AutoPrompt/pull/80,bounty-scan-2026-08-31
+,Awesome-AI-Security,open,Add APort - Agent identity verification and policy enforcement,2026-03-20,2026-03-20,,,0,,,,,https://github.com/DeepSpaceHarbor/Awesome-AI-Security/pull/23,bounty-scan-2026-08-31
+24600,BerriAI/litellm,closed,security: Make /metrics endpoint authentication required by ,2026-03-26,2026-07-09,,,,,,,,https://github.com/BerriAI/litellm/pull/24600,pr_updater-daily
+24977,BerriAI/litellm,closed,Security: Fix metrics endpoint authentication & PII exposure,2026-04-02,2026-07-10,,,,,,,,https://github.com/BerriAI/litellm/pull/24977,pr_updater-daily
+,BigNuten_Vanilla,closed,[BOUNTY #111] Unified UTC Logging with User-Selectable Local Timezone (Water Tracker/General),2026-03-21,2026-03-21,2026-03-21,,0,,,,,https://github.com/TheJollyLaMa/BigNuten_Vanilla/pull/120,bounty-scan-2026-08-31
+2615,ClankerNation/OpenAgents,closed,fix(AMMPool): add indexed events for off-chain indexing comp,2026-05-21,2026-05-22,,,,,,,,https://github.com/ClankerNation/OpenAgents/pull/2615,pr_updater-daily
+,ComfyUI,open,[BOUNTY #8899] Add JSON Schema for Prompt API Format,2026-03-21,2026-03-22,,,2,,,,,https://github.com/Comfy-Org/ComfyUI/pull/13094,bounty-scan-2026-08-31
+,Contracts,open,[BOUNTY #12] 🎯 Solo Staking Implementation - 32 ETH Direct Staking with SGT Bond,2026-03-23,2026-03-23,,,0,,,,,https://github.com/SharedStake/Contracts/pull/26,bounty-scan-2026-08-31
+,Databuddy,closed,[BOUNTY #267] feat: Complete Alarms System - Database， API & Dashboard UI,2026-03-23,2026-04-03,2026-04-03,,6,,,,,https://github.com/databuddy-analytics/Databuddy/pull/356,bounty-scan-2026-08-31
+,DeepSeek-V3,open,feat: add on-device persistent memory module,2026-03-31,2026-03-31,,,0,,$265,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/deepseek-ai/DeepSeek-V3/pull/1182,bounty-scan-2026-08-31
+,Encina,closed,[BOUNTY #94] [FEATURE] Create SECURITY.md - vulnerability reporting,2026-03-21,2026-03-21,2026-03-21,,2,,,,,https://github.com/dlrivada/Encina/pull/848,bounty-scan-2026-08-31
+,FinMind,closed,feat: Resilient background job retry & monitoring,2026-03-19,2026-03-22,2026-03-22,,1,,,,,https://github.com/rohitdash08/FinMind/pull/519,bounty-scan-2026-08-31
+,GeneralsGameCode,closed,[BOUNTY #2434] Fix GLA Cash Bounty using incorrect value for China Red Guard,2026-03-22,2026-03-26,2026-03-26,,5,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/TheSuperHackers/GeneralsGameCode/pull/2485,bounty-scan-2026-08-31
+579,Kozea/pygal,closed,Feat 426: Add OHLC Candlestick Chart support,2026-03-22,2026-06-02,,,,,,,,https://github.com/Kozea/pygal/pull/579,pr_updater-daily
+,Nobay-Protocol,open,feat: Build Listing Discovery Engine (PWA/React UI),2026-03-27,2026-03-27,,,0,,,,,https://github.com/Nobayprotocol/Nobay-Protocol/pull/7,bounty-scan-2026-08-31
+,OpenAgents,closed,fix(AMMPool): add indexed events for off-chain indexing compatibility,2026-05-21,2026-05-22,2026-05-22,,1,,$4900,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/ClankerNation/OpenAgents/pull/2615,bounty-scan-2026-08-31
+,PrivacyLayer,closed,[BOUNTY #43] Fix documentation typo in README,2026-03-21,2026-03-22,2026-03-22,,1,,,,,https://github.com/ANAVHEOBA/PrivacyLayer/pull/103,bounty-scan-2026-08-31
+,Rustchain,closed,[UTXO-BUG] Critical Security Vulnerabilities - Genesis Race & Integer Overflow,2026-04-07,2026-04-24,2026-04-07,,2,BCOS-L1；size/L；node,100 RTC,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/Scottcjn/Rustchain/pull/2165,bounty-scan-2026-08-31
+315,SecureBananaLabs/bug-bounty,open,Add pixel art for bounty issue #80,2026-05-19,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/315,pr_updater-daily
+316,SecureBananaLabs/bug-bounty,open,Add poem for bounty issue #76,2026-05-19,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/316,pr_updater-daily
+719,SecureBananaLabs/bug-bounty,open,feat: Add API benchmark suite — Bounty #714 ($750),2026-05-26,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/719,pr_updater-daily
+720,SecureBananaLabs/bug-bounty,open,feat: Implement Stripe PaymentIntent integration — Bounty #7,2026-05-26,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/720,pr_updater-daily
+1016,SecureBananaLabs/bug-bounty,open,feat: Complete Admin Panel implementation for bounty #29,2026-05-28,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/1016,pr_updater-daily
+244,SigNoz/dashboards,closed,[BOUNTY #6036] AWS MSK Cluster Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/244,pr_updater-daily
+245,SigNoz/dashboards,closed,[BOUNTY #6023] cert-manager Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/245,pr_updater-daily
+246,SigNoz/dashboards,closed,[BOUNTY #6026] Kafka Server Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/246,pr_updater-daily
+247,SigNoz/dashboards,closed,[BOUNTY #6025] Istio Service Mesh Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/247,pr_updater-daily
+248,SigNoz/dashboards,closed,[BOUNTY #6028] Kong Gateway Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/248,pr_updater-daily
+250,SigNoz/dashboards,closed,[BOUNTY #5996] ASP.NET Metrics Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/250,pr_updater-daily
+252,SigNoz/dashboards,closed,Add Kong Gateway Monitoring Dashboard,2026-03-19,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/252,pr_updater-daily
+253,SigNoz/dashboards,closed,Add Istio Monitoring Dashboard,2026-03-19,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/253,pr_updater-daily
+254,SigNoz/dashboards,closed,Add AWS MSK Cluster Monitoring Dashboard,2026-03-19,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/254,pr_updater-daily
+255,SigNoz/dashboards,closed,Add Kafka Server Monitoring Dashboard,2026-03-19,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/255,pr_updater-daily
+108,Space-Nebula/stellar-nebula-nomad,closed,feat: Add automated bug bounty payout engine,2026-04-06,2026-09-28,,,,,,,,https://github.com/Space-Nebula/stellar-nebula-nomad/pull/108,pr_updater-daily
+936,Spectral-Finance/lux,open,feat: Cargo Package Management Integration (#100),2026-07-20,2026-07-23,,,,,,,,https://github.com/Spectral-Finance/lux/pull/936,pr_updater-daily
+937,Spectral-Finance/lux,open,feat: Webhook & Event System (#94),2026-07-20,2026-07-22,,,,,,,,https://github.com/Spectral-Finance/lux/pull/937,pr_updater-daily
+938,Spectral-Finance/lux,open,feat: API Design & OpenAPI Spec Generation (#101),2026-07-20,2026-07-22,,,,,,,,https://github.com/Spectral-Finance/lux/pull/938,pr_updater-daily
+939,Spectral-Finance/lux,open,feat: Auth & Security Module (#102),2026-07-20,2026-07-23,,,,,,,,https://github.com/Spectral-Finance/lux/pull/939,pr_updater-daily
+940,Spectral-Finance/lux,open,feat: Testing & CI/CD Module (#103),2026-07-20,2026-07-21,,,,,,,,https://github.com/Spectral-Finance/lux/pull/940,pr_updater-daily
+941,Spectral-Finance/lux,open,feat: Logging & Monitoring Module (#99),2026-07-20,2026-07-21,,,,,,,,https://github.com/Spectral-Finance/lux/pull/941,pr_updater-daily
+,Stellar-Guilds,closed,[CONTRACT] Implement Contract Integration Layer,2026-03-24,2026-04-12,2026-04-12,,2,,,,,https://github.com/GalactiGuild/Stellar-Guilds/pull/143,bounty-scan-2026-08-31
+,SwapTrade-Backend,closed,[BOUNTY #201] feat: Admin API for Waitlist and Referral Management,2026-03-22,2026-03-26,2026-03-26,,1,,,,,https://github.com/StelTade/SwapTrade-Backend/pull/209,bounty-scan-2026-08-31
+,TentOfTrials-bounty-67,open,bounty #1: config generator tests + SENSITIVE_KEYS dedup,2026-08-19,2026-08-19,,,0,,,,,https://github.com/Thecesar85/TentOfTrials-bounty-67/pull/15,bounty-scan-2026-08-31
+15,Thecesar85/TentOfTrials-bounty-67,open,bounty #1: config generator tests + SENSITIVE_KEYS dedup,2026-08-19,2026-08-19,,,,,,,,https://github.com/Thecesar85/TentOfTrials-bounty-67/pull/15,pr_updater-daily
+,V-Achilles,open,fix: upgrade mongoose to 8.9.5 to resolve 5 security vulnerabilities,2026-03-24,2026-03-24,,,0,,,,,https://github.com/amaybaum-prod/V-Achilles/pull/253,bounty-scan-2026-08-31
+,agentfolio-mcp-server,open,feat: add agentfolio_beacon_lookup - unified Beacon + SATP lookup (Bounty #2890),2026-04-29,2026-04-29,,,0,,75 RTC,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/0xbrainkid/agentfolio-mcp-server/pull/5,bounty-scan-2026-08-31
+,ai-research,closed,fix: Path Traversal (#10)， Open Redirect (#15)， CSRF (#17) - 3 bounty fixes,2026-07-06,2026-07-07,2026-07-07,,0,path-traversal；csrf；needs-review,$10,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/zhangjiayang6835-cyber/ai-research/pull/466,bounty-scan-2026-08-31
+,aport-integrations,closed,feat: LangGraph Checkpoint Guardrails integration,2026-03-19,2026-03-22,2026-03-22,,1,,,,,https://github.com/aporthq/aport-integrations/pull/48,bounty-scan-2026-08-31
+,arbitrage-bot,open,feat: Arbitrage Bot - Issue #3 ($600),2026-04-09,2026-04-22,,,2,,$600,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity/arbitrage-bot/pull/9,bounty-scan-2026-08-31
+28,aukilabs/splatter-server,open,Add preview image and video generation for splatter node,2026-05-16,2026-06-25,,,,,,,,https://github.com/aukilabs/splatter-server/pull/28,pr_updater-daily
+,awesome-ai-agents,open,Add APort - Agent identity verification and policy enforcement,2026-03-20,2026-03-20,,,0,,,,,https://github.com/e2b-dev/awesome-ai-agents/pull/515,bounty-scan-2026-08-31
+,awesome-ai-devtools,closed,Add APort - agent identity verification and policy enforcement,2026-03-20,2026-03-26,2026-03-26,,0,,,,,https://github.com/jamesmurdza/awesome-ai-devtools/pull/318,bounty-scan-2026-08-31
+,awesome-api-tools,open,Add APort - Agent identity verification API,2026-03-20,2026-03-20,,,0,,,,,https://github.com/elangosundar/awesome-api-tools/pull/12,bounty-scan-2026-08-31
+,awesome-claude-skills,closed,Add APort agent identity verification skill,2026-03-20,2026-03-22,2026-03-22,,1,,,,,https://github.com/ComposioHQ/awesome-claude-skills/pull/436,bounty-scan-2026-08-31
+,awesome-depin,open,Add RustChain to DePIN Compute section,2026-04-10,2026-06-25,,,1,,,,,https://github.com/iotexproject/awesome-depin/pull/33,bounty-scan-2026-08-31
+,awesome-devtools,open,Add APort - Agent identity verification and policy enforcement,2026-03-20,2026-03-20,,,0,,,,,https://github.com/devtoolsd/awesome-devtools/pull/109,bounty-scan-2026-08-31
+,awesome-mcp-servers,closed,Add RustChain Beacon MCP server,2026-04-10,2026-04-23,2026-04-23,,4,missing-glama；valid-name；missing-emoji,,,,https://github.com/punkpeye/awesome-mcp-servers/pull/4471,bounty-scan-2026-08-31
+,awesome-rust,closed,Add RustChain to Blockchain section,2026-04-30,2026-04-30,2026-04-30,,0,,,,,https://github.com/rust-unofficial/awesome-rust/pull/2444,bounty-scan-2026-08-31
+,beacon-skill,closed,Docs: Add zhaog100 to contributors,2026-03-30,2026-04-25,2026-03-30,,3,size/XS,,,,https://github.com/Scottcjn/beacon-skill/pull/179,bounty-scan-2026-08-31
+50,bitaps-com/jsbtc,open,security: Fix invalid threshold input validation (#48),2026-03-26,2026-07-02,,,,,,,,https://github.com/bitaps-com/jsbtc/pull/50,pr_updater-daily
+145,bolivian-peru/baozi-openclaw,closed,[BOUNTY] Night Kitchen — Bilingual Market Report Agent,2026-03-17,2026-06-07,,,,,,,,https://github.com/bolivian-peru/baozi-openclaw/pull/145,pr_updater-daily
+,bottube,closed,feat(query-validator): shared query param validator for BoTTube API (closes #16254),2026-07-20,2026-08-22,2026-08-22,,2,python；tests,,,,https://github.com/Scottcjn/bottube/pull/1585,bounty-scan-2026-08-31
+,bug-bounty,open,Add pixel art for bounty issue #80,2026-05-19,2026-08-15,,,1,🙋 Bounty claim,$780,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/SecureBananaLabs/bug-bounty/pull/315,bounty-scan-2026-08-31
+,bugbounty-operator-toolkit-V2,open,[BOUNTY #1] 📚 Complete README Documentation - Professional Guide,2026-03-23,2026-03-23,,,0,,,,,https://github.com/shi2n/bugbounty-operator-toolkit-V2/pull/2,bounty-scan-2026-08-31
+,business-development,closed,feat: GitHub Based Marketing Prospector - Bounty #90,2026-04-09,2026-04-09,2026-04-09,,1,,,,,https://github.com/ubiquity/business-development/pull/204,bounty-scan-2026-08-31
+,claude-builders-bounty,open,feat: Add pre-tool-use hook to block destructive commands,2026-04-02,2026-04-29,,,1,,$100,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/400,bounty-scan-2026-08-31
+1375,claude-builders-bounty/claude-builders-bounty,open,PR Review Agent CLI + GitHub Action (50 bounty),2026-05-15,2026-05-15,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/1375,pr_updater-daily
+2678,claude-builders-bounty/claude-builders-bounty,open,feat: add destructive command blocker hook - Bounty #3,2026-06-11,2026-06-11,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/2678,pr_updater-daily
+2679,claude-builders-bounty/claude-builders-bounty,open,feat: add PR reviewer with structured Markdown output - Boun,2026-06-11,2026-06-11,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/2679,pr_updater-daily
+2680,claude-builders-bounty/claude-builders-bounty,open,feat: add CHANGELOG generator from git history - Bounty #1,2026-06-11,2026-06-11,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/2680,pr_updater-daily
+2681,claude-builders-bounty/claude-builders-bounty,open,feat: add CLAUDE.md template for Next.js + SQLite - Bounty #,2026-06-11,2026-06-11,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/2681,pr_updater-daily
+3541,claude-builders-bounty/claude-builders-bounty,open,feat: Pre-tool-use Hook to Block Destructive Bash Commands (,2026-07-20,2026-07-20,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/3541,pr_updater-daily
+3542,claude-builders-bounty/claude-builders-bounty,open,feat: Production-ready CLAUDE.md for Next.js 15 + SQLite Saa,2026-07-20,2026-07-20,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/3542,pr_updater-daily
+3543,claude-builders-bounty/claude-builders-bounty,open,feat: Add CHANGELOG generator script (#1),2026-07-20,2026-07-20,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/3543,pr_updater-daily
+3544,claude-builders-bounty/claude-builders-bounty,open,feat: Add CLAUDE.md at repo root (#3539),2026-07-20,2026-07-20,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/3544,pr_updater-daily
+3545,claude-builders-bounty/claude-builders-bounty,open,feat: OpenClaw/Hermes workflow integration scaffold (#3540),2026-07-20,2026-07-20,,,,,,,,https://github.com/claude-builders-bounty/claude-builders-bounty/pull/3545,pr_updater-daily
+,clawrtc-rs,closed,test: add integration test suite for clawrtc-rs (closes #16256),2026-07-20,2026-07-28,2026-07-28,,1,,,,,https://github.com/Scottcjn/clawrtc-rs/pull/48,bounty-scan-2026-08-31
+,command-demo,open,feat: DEMO Currency Nudge Flow - Bounty #15 ($150),2026-04-08,2026-04-08,,,1,,$150,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity-os/command-demo/pull/28,bounty-scan-2026-08-31
+,conflux-bounties,closed,[BOUNTY #12] Token/NFT Gated Site Boilerplate,2026-03-20,2026-03-23,2026-03-23,,1,,,,,https://github.com/conflux-fans/conflux-bounties/pull/42,bounty-scan-2026-08-31
+,contributors,closed,Register zhaog100 (小米粒) as contributor,2026-04-20,2026-04-24,2026-04-20,,0,,5 RTC,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/Scottcjn/contributors/pull/58,bounty-scan-2026-08-31
+,conxius-platform,closed,feat(ops): Add bounty payout enablement runbook,2026-03-30,2026-04-16,2026-04-16,,0,,,,,https://github.com/Conxian/conxius-platform/pull/306,bounty-scan-2026-08-31
+,core,closed,[BOUNTY #86] Fix same-net traces not visually merged in schematic,2026-03-25,2026-03-29,2026-03-29,,3,no-pr-activity,,,,https://github.com/tscircuit/core/pull/2074,bounty-scan-2026-08-31
+,curated-erc,closed,[BOUNTY #12] docs: add SECURITY.md vulnerability disclosure policy,2026-03-21,2026-03-22,2026-03-22,,2,,,,,https://github.com/jose-compu/curated-erc/pull/35,bounty-scan-2026-08-31
+,dApp-idea-board,closed,[Tutorial] Building an Unshielded Token dApp with UI,2026-04-22,2026-04-22,2026-04-22,,1,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/385,bounty-scan-2026-08-31
+,daemon-pricing,closed,[BOUNTY #5020] Scraper: Create Time Estimate Training Dataset,2026-03-20,2026-03-22,2026-03-22,,0,,,,,https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/163,bounty-scan-2026-08-31
+,devpool-directory,open,feat: add Plugin Health Monitor script,2026-03-31,2026-03-31,,,0,,$450,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/zhaog100/devpool-directory/pull/1,bounty-scan-2026-08-31
+,devpool-directory-tasks,open,feat: Matchmaking UI - Issue #63 ($900),2026-04-09,2026-04-11,,,1,,$900,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/devpool-directory/devpool-directory-tasks/pull/66,bounty-scan-2026-08-31
+,dn-institute,closed,[BOUNTY #277] 🌰 Comprehensive Guide: Wash Trading - Detection， Case Studies & Prevention,2026-03-23,2026-06-01,2026-06-01,,1,,,,,https://github.com/1712n/dn-institute/pull/732,bounty-scan-2026-08-31
+53568,dotnet/sdk,closed,[BOUNTY #53563] Fix CS0660 false positive for partial classe,2026-03-23,2026-06-04,,,,,,,,https://github.com/dotnet/sdk/pull/53568,pr_updater-daily
+,dumpstore,closed,feat(auth): migrate password hashing from bcrypt to argon2id,2026-04-08,2026-04-13,2026-04-13,,0,,,,,https://github.com/langerma/dumpstore/pull/68,bounty-scan-2026-08-31
+,echo,open,feat: add Vercel AI Gateway as a provider,2026-03-19,2026-03-19,,,1,,,,,https://github.com/Merit-Systems/echo/pull/745,bounty-scan-2026-08-31
+,flipcash-program,open,[BOUNTY #5] Add USDF acquisition tools and bounty hunter guide,2026-03-23,2026-03-23,,,0,,,,,https://github.com/code-payments/flipcash-program/pull/9,bounty-scan-2026-08-31
+,fluxer,open,feat: implement Threads and Polls bounty tasks,2026-06-23,2026-06-23,,,0,,$750,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/zhaog100/fluxer/pull/1,bounty-scan-2026-08-31
+,foremetric,closed,[BOUNTY #4] [BOUNTY] Signal Passport — TEE nullifier implementation,2026-03-21,2026-03-21,2026-03-21,,1,,,,,https://github.com/foremetric/foremetric/pull/9,bounty-scan-2026-08-31
+,galxe-contracts,open,feat: add gas-optimized versions of SpaceStationV2 and StarNFTV3,2026-03-27,2026-03-27,,,0,,,,,https://github.com/Galxe/galxe-contracts/pull/19,bounty-scan-2026-08-31
+,generator-jhipster,open,[BOUNTY #17550] Fix: Add configurable JWK retrieval timeout for Okta/Auth0,2026-03-19,2026-03-19,,,0,theme: java,,,,https://github.com/jhipster/generator-jhipster/pull/32768,bounty-scan-2026-08-31
+,gh-pmu,closed,[BOUNTY #788] Add SECURITY.md security policy,2026-03-25,2026-03-25,2026-03-25,,1,,,,,https://github.com/rubrical-worker/gh-pmu/pull/790,bounty-scan-2026-08-31
+,grainlify,closed,feat(program-escrow): dispute resolution hooks (Closes #745),2026-03-24,2026-04-20,2026-04-20,,1,,,,,https://github.com/Jagadeeshftw/grainlify/pull/815,bounty-scan-2026-08-31
+,grants-and-bounties,open,[BOUNTY #1200] feat: Tolk MCP Server - Model Context Protocol Implementation,2026-03-23,2026-03-26,,,6,,,,,https://github.com/ton-society/grants-and-bounties/pull/1217,bounty-scan-2026-08-31
+,group-buying-data-monitor,open,feat: 团购+外卖实时数据监测系统,2026-04-09,2026-04-09,,,0,,,,,https://github.com/fengking-li/group-buying-data-monitor/pull/13,bounty-scan-2026-08-31
+,homelab-stack,closed,[BOUNTY #3] Storage Stack - Nextcloud + MinIO + FileBrowser + Syncthing,2026-03-22,2026-03-22,2026-03-22,,1,,,,,https://github.com/illbnm/homelab-stack/pull/222,bounty-scan-2026-08-31
+,hotline-darons,open,feat: Add PDF support to RAG knowledge base,2026-04-02,2026-04-02,,,0,,,,,https://github.com/versila22/hotline-darons/pull/4,bounty-scan-2026-08-31
+489,illbnm/homelab-stack,open,[BOUNTY 70] Productivity Stack — Gitea + Vaultwarden,2026-04-22,2026-06-25,,,,,,,,https://github.com/illbnm/homelab-stack/pull/489,pr_updater-daily
+,inlinegui,closed,Fix layout selector to use only layouts collection,2026-05-18,2026-05-22,2026-05-22,,0,,$50,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/zhaog100/inlinegui/pull/1,bounty-scan-2026-08-31
+33,iotexproject/awesome-depin,open,Add RustChain to DePIN Compute section,2026-04-10,2026-06-25,,,,,,,,https://github.com/iotexproject/awesome-depin/pull/33,pr_updater-daily
+,ipaship-audit,closed,[BOUNTY #2] 🎨 Logo Design - Modern AI-Powered Compliance Auditor Identity,2026-03-23,2026-04-24,2026-04-23,,4,,,,,https://github.com/atharvnaik1/ipaship-audit/pull/7,bounty-scan-2026-08-31
+,jhipster.github.io,open,[BOUNTY #27215] Improve API First Development documentation,2026-03-20,2026-03-20,,,1,,,,,https://github.com/jhipster/jhipster.github.io/pull/1572,bounty-scan-2026-08-31
+32768,jhipster/generator-jhipster,closed,[BOUNTY #17550] Fix: Add configurable JWK retrieval timeout ,2026-03-19,2026-09-28,,,,,,,,https://github.com/jhipster/generator-jhipster/pull/32768,pr_updater-daily
+1572,jhipster/jhipster.github.io,open,[BOUNTY #27215] Improve API First Development documentation,2026-03-20,2026-09-28,,,,,,,,https://github.com/jhipster/jhipster.github.io/pull/1572,pr_updater-daily
+36,jose-compu/curated-erc,merged,feat(auth): add structured ERC-4361 SIWE message parser,2026-03-27,2026-08-23,2026-08-23,2026-08-23,,,,,,https://github.com/jose-compu/curated-erc/pull/36,pr_updater-daily
+,jsbtc,open,security: Fix invalid threshold input validation (#48),2026-03-26,2026-07-02,,,3,,,,,https://github.com/bitaps-com/jsbtc/pull/50,bounty-scan-2026-08-31
+,la-tanda-web,closed,[BOUNTY #154] ♿ Add aria-labels to Icon Buttons - Accessibility Improvement,2026-03-23,2026-03-23,2026-03-23,,2,first-time contributor,,,,https://github.com/INDIGOAZUL/la-tanda-web/pull/195,bounty-scan-2026-08-31
+,litellm,closed,security: Make /metrics endpoint authentication required by default (#24530),2026-03-26,2026-07-09,2026-07-09,,5,stale,,,,https://github.com/BerriAI/litellm/pull/24600,bounty-scan-2026-08-31
+,lobster-rewards,open,[BOUNTY #1] 修复测试套件，确保所有测试通过,2026-03-23,2026-03-23,,,0,,,,,https://github.com/zhuzhushiwojia/lobster-rewards/pull/3,bounty-scan-2026-08-31
+,lux,open,feat: Cargo Package Management Integration (#100),2026-07-20,2026-07-23,,,1,,,,,https://github.com/Spectral-Finance/lux/pull/936,bounty-scan-2026-08-31
+138,mangdangroboticsclub/mini_pupper_ros,closed,[BOUNTY #125] 🤖 ROS2 Humble to Jazzy Upgrade - Complete Guid,2026-03-23,2026-08-15,,,,,,,,https://github.com/mangdangroboticsclub/mini_pupper_ros/pull/138,pr_updater-daily
+,marketplace-service-template,closed,[BOUNTY #284] LinkedIn People & Company Enrichment API — Complete Implementation,2026-03-23,2026-04-28,2026-04-28,,1,,$0,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/bolivian-peru/marketplace-service-template/pull/288,bounty-scan-2026-08-31
+,matchpack,open,[BOUNTY #15] Specialized Layout for Decoupling Capacitors,2026-03-25,2026-03-25,,,1,🙋 Bounty claim,,,,https://github.com/tscircuit/matchpack/pull/49,bounty-scan-2026-08-31
+,mcp-catalog,closed,feat: add execution_market.yaml — AI bounty MCP server,2026-03-22,2026-04-09,2026-04-09,,2,,,,,https://github.com/obot-platform/mcp-catalog/pull/1199,bounty-scan-2026-08-31
+,memanto,closed,BOUNTY #639: Contract Reconciliation Memory Benchmark,2026-06-08,2026-07-10,2026-07-10,,4,Bounty#4,,,,https://github.com/moorcheh-ai/memanto/pull/698,bounty-scan-2026-08-31
+,mergefund-hackathon-kit,open,feat: Implement Advanced Bounty Discovery Algorithm,2026-03-27,2026-03-27,,,0,,,,,https://github.com/gbabaisaac/mergefund-hackathon-kit/pull/68,bounty-scan-2026-08-31
+387,midnightntwrk/dApp-idea-board,closed,"[Tutorial] Shielded Token Operations: Mint, Transfer & Burn ",2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/387,pr_updater-daily
+388,midnightntwrk/dApp-idea-board,closed,[Tutorial] Building a Shielded Token dApp with UI,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/388,pr_updater-daily
+389,midnightntwrk/dApp-idea-board,closed,[Tutorial] Midnight vs Other Privacy Chains: Architecture Co,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/389,pr_updater-daily
+390,midnightntwrk/dApp-idea-board,closed,"[Tutorial] Running a Midnight Node: Setup, Sync & Monitoring",2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/390,pr_updater-daily
+391,midnightntwrk/dApp-idea-board,closed,"[Tutorial] Getting NIGHT Tokens: Exchanges, Bridging & Walle",2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/391,pr_updater-daily
+392,midnightntwrk/dApp-idea-board,closed,[Tutorial] Handling Midnight SDK Breaking Changes,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/392,pr_updater-daily
+393,midnightntwrk/dApp-idea-board,closed,[Tutorial] When Proofs Fail: Debugging Proof Server Errors,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/393,pr_updater-daily
+394,midnightntwrk/dApp-idea-board,closed,[Tutorial] Decoding Error 1010: Invalid Transaction,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/394,pr_updater-daily
+395,midnightntwrk/dApp-idea-board,closed,[Tutorial] Security Checklist for Midnight dApps,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/395,pr_updater-daily
+396,midnightntwrk/dApp-idea-board,closed,[Tutorial] Building an Unshielded Token dApp with UI,2026-04-22,2026-08-03,,,,,,,,https://github.com/midnightntwrk/dApp-idea-board/pull/396,pr_updater-daily
+,mini_pupper_ros,closed,[BOUNTY #125] 🤖 ROS2 Humble to Jazzy Upgrade - Complete Guide & Automation Script,2026-03-23,2026-08-15,2026-08-15,,0,,,,,https://github.com/mangdangroboticsclub/mini_pupper_ros/pull/138,bounty-scan-2026-08-31
+698,moorcheh-ai/memanto,closed,BOUNTY #639: Contract Reconciliation Memory Benchmark,2026-06-08,2026-07-10,,,,,,,,https://github.com/moorcheh-ai/memanto/pull/698,pr_updater-daily
+,nuclei,closed,[BOUNTY #6398] Fix: Use OrderedMap in Path.Parse() for deterministic fuzzing iteration,2026-03-19,2026-03-20,2026-03-20,,3,,,,,https://github.com/projectdiscovery/nuclei/pull/7273,bounty-scan-2026-08-31
+,nutshell,closed,security: Fix unsafe deserialization in mint cache (#926),2026-03-26,2026-03-27,2026-03-27,,0,,,,,https://github.com/cashubtc/nutshell/pull/945,bounty-scan-2026-08-31
+,omi,closed,[BOUNTY #3919] feat: One-click deployment for omi system,2026-03-28,2026-03-30,2026-03-30,,3,,,,,https://github.com/BasedHardware/omi/pull/6093,bounty-scan-2026-08-31
+9437,onyx-dot-app/onyx,open,[BOUNTY #2281] Jira Service Management Connector,2026-03-18,2026-07-14,,,,,,,,https://github.com/onyx-dot-app/onyx/pull/9437,pr_updater-daily
+,openclaw-skills,closed,🚀 v6.1.1: github-bounty-hunter 技能更新 - 双重过滤 + 2026-04-09 实战验证,2026-04-10,2026-04-10,2026-04-10,,0,,10 RTC,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/zhaog100/openclaw-skills/pull/33,bounty-scan-2026-08-31
+,openui-creator-program,closed,Written Content: Three Articles ($150-300),2026-04-09,2026-05-20,2026-05-20,,3,,,,,https://github.com/thesysdev/openui-creator-program/pull/18,bounty-scan-2026-08-31
+,os-moda,closed,[BOUNTY #2] Add demo scripts and guide for video submission,2026-03-23,2026-05-14,2026-05-14,,1,,,,,https://github.com/bolivian-peru/os-moda/pull/12,bounty-scan-2026-08-31
+,pay.ubq.fi,closed,[BOUNTY #5911] Self Invalidation - Allow All Owners to Invalidate Permits,2026-03-20,2026-03-25,2026-03-25,,0,,,,,https://github.com/ubiquity/pay.ubq.fi/pull/458,bounty-scan-2026-08-31
+,permit-generation,open,feat: Cloudflare Worker Conversion,2026-04-09,2026-04-09,,,2,,,,,https://github.com/ubiquity-os/permit-generation/pull/124,bounty-scan-2026-08-31
+,picker,open,Add automatic closing of previous day's daily issue,2026-03-24,2026-03-24,,,0,,,,,https://github.com/BruceFeIix/picker/pull/2335,bounty-scan-2026-08-31
+,plugin-template,open,feat: Reusable Knip and Jest Workflows - Bounty #13 ($1200),2026-04-08,2026-04-28,,,3,,$1200,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity-os/plugin-template/pull/66,bounty-scan-2026-08-31
+,plugins-wishlist,closed,feat: Config Protection Proposal - Bounty #30 ($75),2026-04-08,2026-04-13,2026-04-13,,2,,$75,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/ubiquity-os/plugins-wishlist/pull/83,bounty-scan-2026-08-31
+698,potpie-ai/potpie,closed,[BOUNTY #223] Hash-based inference caching with branch-aware,2026-03-18,2026-05-21,,,,,,,,https://github.com/potpie-ai/potpie/pull/698,pr_updater-daily
+,pygal,closed,Feat 426: Add OHLC Candlestick Chart support,2026-03-22,2026-06-02,2026-06-02,,6,,,,,https://github.com/Kozea/pygal/pull/579,bounty-scan-2026-08-31
+,quest-contract,closed,feat: Add puzzle crowdfund contract for community bounties (#130),2026-03-25,2026-03-26,2026-03-26,,0,,,,,https://github.com/MindFlowInteractive/quest-contract/pull/136,bounty-scan-2026-08-31
+,recon-extension,closed,feat: add Dynamic Replacement panel for Setup.sol constants,2026-03-19,2026-04-17,2026-04-17,,0,,,,,https://github.com/Recon-Fuzz/recon-extension/pull/98,bounty-scan-2026-08-31
+,research,closed,Research: MEV on L2 Rollups + Stablecoin Depeg Analysis,2026-04-09,2026-04-15,2026-04-15,,0,,,,,https://github.com/kcolbchain/research/pull/7,bounty-scan-2026-08-31
+,ripgrim,closed,[BOUNTY #15] Fix issue,2026-03-21,2026-03-21,2026-03-21,,1,,,,,https://github.com/ripgrim/ripgrim/pull/16,bounty-scan-2026-08-31
+,rustchain-bounties,closed,[BOUNTY #747] Bounty Verification Bot — Wallet， Article， and Duplicate Claim Checks,2026-03-21,2026-03-27,2026-03-25,,3,,10 RTC,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/Scottcjn/rustchain-bounties/pull/2315,bounty-scan-2026-08-31
+,rustchain-vintage-x86,closed,Add Non-RDTSC timing fallback for vintage x86 (486/386),2026-07-21,2026-08-25,2026-08-25,,3,,,,,https://github.com/Scottcjn/rustchain-vintage-x86/pull/5,bounty-scan-2026-08-31
+,sdk,closed,[BOUNTY #53563] Fix CS0660 false positive for partial classes with source-generated members on Linux,2026-03-23,2026-06-04,2026-06-04,,1,stale,,,,https://github.com/dotnet/sdk/pull/53568,bounty-scan-2026-08-31
+,shopware,open,[BOUNTY #148] Fix issue,2026-03-21,2026-03-22,,,1,,,,,https://github.com/amaybaum-prod/shopware/pull/205,bounty-scan-2026-08-31
+,solfoundry,closed,feat(webhooks): GitHub webhook receiver with signature verification,2026-03-19,2026-03-20,2026-03-20,,2,missing-wallet,,,,https://github.com/SolFoundry/solfoundry/pull/42,bounty-scan-2026-08-31
+,sovereign-genesis,open,feat: CI Pipeline - Bounty #17,2026-04-09,2026-04-09,,,2,,,,,https://github.com/Jennycruzy/sovereign-genesis/pull/38,bounty-scan-2026-08-31
+,splatter-server,open,Add preview image and video generation for splatter node,2026-05-16,2026-06-25,,,3,,,,,https://github.com/aukilabs/splatter-server/pull/28,bounty-scan-2026-08-31
+,stellar-bounty-board,closed,feat: Add notification service hooks for bounty lifecycle (#33),2026-03-25,2026-03-26,2026-03-26,,2,,,,,https://github.com/ritik4ever/stellar-bounty-board/pull/44,bounty-scan-2026-08-31
+,stellar-creator-portfolio,closed,[BOUNTY #25] 📊 Bounty Milestone Tracking & Progress Updates,2026-03-23,2026-03-25,2026-03-25,,1,,,,,https://github.com/yosemite01/stellar-creator-portfolio/pull/34,bounty-scan-2026-08-31
+,stellar-docs,closed,[BOUNTY #2284] Application to Contribute to Stellar Docs – Open Source Developer & Former Bounty Participant,2026-03-21,2026-03-21,2026-03-21,,1,,,,,https://github.com/stellar/stellar-docs/pull/2318,bounty-scan-2026-08-31
+,stellar-nebula-nomad,open,feat: Add automated bug bounty payout engine,2026-04-06,2026-04-26,,,1,,,,,https://github.com/Space-Nebula/stellar-nebula-nomad/pull/108,bounty-scan-2026-08-31
+,stellar-trust-escrow,closed,docs: Security model， privacy， and bug bounty documentation,2026-03-28,2026-03-28,2026-03-28,,0,,,,,https://github.com/Stellar-Trust-Escrow/stellar-trust-escrow/pull/534,bounty-scan-2026-08-31
+,supabase-payments-audit,closed,feat: Historical Permit Backfill - Issue #4,2026-04-22,2026-04-22,2026-04-22,,2,,,,,https://github.com/ubiquity/supabase-payments-audit/pull/5,bounty-scan-2026-08-31
+,text-conversation-rewards,closed,[BOUNTY #5887] Fix: Exclude bot accounts from collaborative reward check,2026-03-20,2026-03-22,2026-03-22,,0,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/497,bounty-scan-2026-08-31
+18,thesysdev/openui-creator-program,closed,Written Content: Three Articles ($150-300),2026-04-09,2026-05-20,,,,,,,,https://github.com/thesysdev/openui-creator-program/pull/18,pr_updater-daily
+,trashclaw,closed,Fix typos/docs， add comprehensive tests， add CI,2026-03-19,2026-03-20,2026-03-20,,1,,,,,https://github.com/Scottcjn/trashclaw/pull/111,bounty-scan-2026-08-31
+,tt-metal,closed,[BOUNTY #40494] Lifting Wavelet Transform (LWT) Implementation,2026-03-23,2026-03-23,2026-03-23,,0,,,,,https://github.com/tenstorrent/tt-metal/pull/40495,bounty-scan-2026-08-31
+,tt-wavelet,closed,Implement Lifting Wavelet Transform (LWT) and Inverse LWT for Haar wavelet,2026-03-24,2026-03-24,2026-03-24,,0,invalid/bot,,,,https://github.com/ke1rro/tt-wavelet/pull/5,bounty-scan-2026-08-31
+,ubiquity-dollar,closed,fix: Storage Layout Check CI for New Contracts - Bounty #972,2026-04-09,2026-04-09,2026-04-09,,1,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/ubiquity/ubiquity-dollar/pull/1020,bounty-scan-2026-08-31
+,ubiquity-os-kernel,open,feat: Unified Plugin API with Event Handlers - Bounty #261 ($300),2026-04-09,2026-07-14,,,18,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/340,bounty-scan-2026-08-31
+513,ubiquity-os-marketplace/text-conversation-rewards,open,feat: Structured Outputs for LLM responses,2026-04-12,2026-06-16,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/513,pr_updater-daily
+,ubiquity-os-plugin-installer,open,feat: Premade Configurations for Partners - Bounty #43 ($300),2026-04-08,2026-04-08,,,1,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/51,bounty-scan-2026-08-31
+87,ubiquity-os/plugins-wishlist,closed,feat: Auto Time Label Estimator - Bounty #76 ($450),2026-04-12,2026-06-04,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/87,pr_updater-daily
+85,ubiquity-os/plugins-wishlist,open,feat: command-plan Plugin - Bounty #78 ($600),2026-04-09,2026-07-14,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/85,pr_updater-daily
+88,ubiquity-os/plugins-wishlist,open,feat: Contributor Class Plugin - Bounty #48 ($300),2026-04-12,2026-07-14,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/88,pr_updater-daily
+340,ubiquity-os/ubiquity-os-kernel,open,feat: Unified Plugin API with Event Handlers - Bounty #261 (,2026-04-09,2026-07-14,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/340,pr_updater-daily
+359,ubiquity-os/ubiquity-os-kernel,open,fix: Guard empty plugin config in comment routing — kernel #,2026-05-26,2026-06-25,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/359,pr_updater-daily
+53,ubiquity-os/ubiquity-os-plugin-installer,closed,feat: Premade Plugin Configs for Partners,2026-04-12,2026-05-20,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/53,pr_updater-daily
+9,ubiquity/arbitrage-bot,closed,feat: Arbitrage Bot - Issue #3 ($600),2026-04-09,2026-09-22,,,,,,,,https://github.com/ubiquity/arbitrage-bot/pull/9,pr_updater-daily
+1030,ubiquity/ubiquity-dollar,open,fix: Skip storage layout check for newly added contracts - B,2026-04-13,2026-07-14,,,,,,,,https://github.com/ubiquity/ubiquity-dollar/pull/1030,pr_updater-daily
+11,ubiquity/ubq.fi-router,closed,[BOUNTY #5906] Dynamic Sitemap (Apps & Plugins),2026-03-20,2026-09-22,,,,,,,,https://github.com/ubiquity/ubq.fi-router/pull/11,pr_updater-daily
+12,ubiquity/ubq.fi-router,closed,[BOUNTY #5905] Health Dashboard,2026-03-20,2026-09-22,,,,,,,,https://github.com/ubiquity/ubq.fi-router/pull/12,pr_updater-daily
+48,ubiquity/uusd.ubq.fi,closed,feat: CoWSwap Improvements - Issue #47,2026-04-09,2026-09-22,,,,,,,,https://github.com/ubiquity/uusd.ubq.fi/pull/48,pr_updater-daily
+,ubq.fi-router,open,[BOUNTY #5906] Dynamic Sitemap (Apps & Plugins),2026-03-20,2026-03-20,,,1,,,,,https://github.com/ubiquity/ubq.fi-router/pull/11,bounty-scan-2026-08-31
+,uusd.ubq.fi,open,feat: CoWSwap Improvements - Issue #47,2026-04-09,2026-04-09,,,1,,$1,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity/uusd.ubq.fi/pull/48,bounty-scan-2026-08-31
+,v4-core,open,security: Add zero address validation in ERC6909 transfers (#1028),2026-03-26,2026-05-05,,,0,,,,,https://github.com/Uniswap/v4-core/pull/1032,bounty-scan-2026-08-31
+,vagas,closed,[BOUNTY #12194] [Remoto] Especialista Back-end (NestJS/Prisma) - Wizebot,2026-03-21,2026-03-22,2026-03-22,,1,,,,,https://github.com/backend-br/vagas/pull/12213,bounty-scan-2026-08-31
+,vllm-omni,open,[BOUNTY #2015] feat: CI Benchmark and Performance Tracking for HunYuanImage,2026-03-23,2026-08-31,,,2,enhancement；diffusion,,,,https://github.com/vllm-project/vllm-omni/pull/2080,bounty-scan-2026-08-31
+2080,vllm-project/vllm-omni,closed,[BOUNTY #2015] feat: CI Benchmark and Performance Tracking f,2026-03-23,2026-09-30,,,,,,,,https://github.com/vllm-project/vllm-omni/pull/2080,pr_updater-daily
+1426,zhangjiayang6835-cyber/ai-research,closed,fix: Replace ECB with AES-GCM encryption (#1420),2026-07-20,2026-07-23,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1426,pr_updater-daily
+1427,zhangjiayang6835-cyber/ai-research,closed,fix: S3 Bucket public access remediation (#1425),2026-07-20,2026-07-23,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1427,pr_updater-daily
+1433,zhangjiayang6835-cyber/ai-research,closed,fix(sql-injection): parameterized query for users table (clo,2026-07-20,2026-07-24,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1433,pr_updater-daily
+1453,zhangjiayang6835-cyber/ai-research,closed,fix: #1444 Java RMI Deserialization fix,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1453,pr_updater-daily
+1454,zhangjiayang6835-cyber/ai-research,closed,fix: #1437 Pickle Deserialization fix,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1454,pr_updater-daily
+1455,zhangjiayang6835-cyber/ai-research,closed,fix: #1435 Prototype Pollution fix,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1455,pr_updater-daily
+1456,zhangjiayang6835-cyber/ai-research,closed,fix: #1439 Race Condition / Distributed Lock fix,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1456,pr_updater-daily
+1457,zhangjiayang6835-cyber/ai-research,closed,fix: #1452:Web Cache Deception,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1457,pr_updater-daily
+1458,zhangjiayang6835-cyber/ai-research,closed,fix: #1450:Blind Command Injection,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1458,pr_updater-daily
+1459,zhangjiayang6835-cyber/ai-research,closed,fix: #1449:Web Cache Poisoning,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1459,pr_updater-daily
+1460,zhangjiayang6835-cyber/ai-research,closed,fix: #1448:GraphQL IDOR,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1460,pr_updater-daily
+1461,zhangjiayang6835-cyber/ai-research,closed,fix: #1446:Zip Slip,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1461,pr_updater-daily
+1462,zhangjiayang6835-cyber/ai-research,closed,fix: #1442:Blind XXE SVG,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1462,pr_updater-daily
+1463,zhangjiayang6835-cyber/ai-research,closed,fix: #1441:OAuth CSRF,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1463,pr_updater-daily
+1464,zhangjiayang6835-cyber/ai-research,closed,fix: #1438:MongoDB NoSQL,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1464,pr_updater-daily
+1465,zhangjiayang6835-cyber/ai-research,closed,fix: #1436:GraphQL Batch Rate Limit,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1465,pr_updater-daily
+1466,zhangjiayang6835-cyber/ai-research,closed,fix: #1434:DNS Rebinding SSRF,2026-07-22,2026-07-25,,,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/1466,pr_updater-daily
+466,zhangjiayang6835-cyber/ai-research,merged,"fix: Path Traversal (#10), Open Redirect (#15), CSRF (#17) -",2026-07-06,2026-07-07,2026-07-07,2026-07-07,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/466,pr_updater-daily
+467,zhangjiayang6835-cyber/ai-research,merged,"fix: IDOR (#12), SSTI (#13), Insecure File Upload (#19) - 3 ",2026-07-06,2026-07-07,2026-07-07,2026-07-07,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/467,pr_updater-daily
+468,zhangjiayang6835-cyber/ai-research,merged,fix: NoSQL Injection in Login (#20) - $25 bounty,2026-07-06,2026-07-07,2026-07-07,2026-07-07,,,,,,https://github.com/zhangjiayang6835-cyber/ai-research/pull/468,pr_updater-daily
+1,zhaog100/beacon-skill,closed,fix(#2890): address review feedback,2026-08-05,2026-08-31,,,,,,,,https://github.com/zhaog100/beacon-skill/pull/1,pr_updater-daily
+2,zhaog100/claude-builders-bounty,open,feat: claude-review PR Review Agent (#4),2026-07-20,2026-07-20,,,,,,,,https://github.com/zhaog100/claude-builders-bounty/pull/2,pr_updater-daily
+3,zhaog100/claude-builders-bounty,open,feat: n8n Weekly Dev Summary workflow (#5),2026-07-20,2026-07-20,,,,,,,,https://github.com/zhaog100/claude-builders-bounty/pull/3,pr_updater-daily
+1,zhaog100/fluxer,open,feat: implement Threads and Polls bounty tasks,2026-06-23,2026-06-23,,,,,,,,https://github.com/zhaog100/fluxer/pull/1,pr_updater-daily
+1,zhaog100/inlinegui,merged,Fix layout selector to use only layouts collection,2026-05-18,2026-05-22,2026-05-22,2026-05-22,,,,,,https://github.com/zhaog100/inlinegui/pull/1,pr_updater-daily

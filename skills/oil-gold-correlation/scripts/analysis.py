@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-=======
->>>>>>> skills/main
 #!/usr/bin/env python3
 """
 石油黄金相关性分析引擎
@@ -14,11 +11,8 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
-=======
 # 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import argparse
 import json
@@ -47,11 +41,8 @@ def load_data(period: str = "1y") -> pd.DataFrame:
 
     raw = fetch_data(period=period)
     if "gold" not in raw or "wti" not in raw:
-<<<<<<< HEAD
         logger.info("❌ 缺少黄金或原油数据")
-=======
         print("❌ 缺少黄金或原油数据")
->>>>>>> skills/main
         return pd.DataFrame()
 
     df = pd.DataFrame({
@@ -110,11 +101,8 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
     results = {}
     # oil → gold
     try:
-<<<<<<< HEAD
         test_og = grangercausalitytests(df[["gold_ret", "wti_ret"]], maxlag=maxlag)
-=======
         test_og = grangercausalitytests(df[["gold_ret", "wti_ret"]], maxlag=maxlag, verbose=False)
->>>>>>> skills/main
         pvals_og = [test_og[lag][0]["ssr_ftest"][1] for lag in range(1, maxlag + 1)]
         results["oil_causes_gold"] = {
             "min_pvalue": round(min(pvals_og), 6),
@@ -126,11 +114,8 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
 
     # gold → oil
     try:
-<<<<<<< HEAD
         test_go = grangercausalitytests(df[["wti_ret", "gold_ret"]], maxlag=maxlag)
-=======
         test_go = grangercausalitytests(df[["wti_ret", "gold_ret"]], maxlag=maxlag, verbose=False)
->>>>>>> skills/main
         pvals_go = [test_go[lag][0]["ssr_ftest"][1] for lag in range(1, maxlag + 1)]
         results["gold_causes_oil"] = {
             "min_pvalue": round(min(pvals_go), 6),
@@ -176,7 +161,6 @@ def interpret_correlation(r: float) -> str:
 
 def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     """运行全部分析"""
-<<<<<<< HEAD
     logger.info("=" * 50)
     logger.info("📊 石油-黄金相关性分析报告")
     logger.info("=" * 50)
@@ -207,7 +191,6 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     logger.info(f"\n--- {window}日滚动相关系数 ---")
     logger.info(f"  当前: {rc.iloc[-1]:.4f}")
     logger.info(f"  区间: [{rc.min():.4f}, {rc.max():.4f}]")
-=======
     print("=" * 50)
     print("📊 石油-黄金相关性分析报告")
     print("=" * 50)
@@ -238,14 +221,12 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     print(f"\n--- {window}日滚动相关系数 ---")
     print(f"  当前: {rc.iloc[-1]:.4f}")
     print(f"  区间: [{rc.min():.4f}, {rc.max():.4f}]")
->>>>>>> skills/main
     rc_clean = rc.dropna()
     if len(rc_clean) >= 2:
         trend_ref = float(rc_clean.iloc[0])
         trend = '上升↗' if rc.iloc[-1] > trend_ref else '下降↘' if rc.iloc[-1] < trend_ref else '持平→'
     else:
         trend = '数据不足'
-<<<<<<< HEAD
     logger.info(f"  趋势: {trend}")
 
     # 5. Granger
@@ -267,7 +248,6 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     else:
         logger.info(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
         logger.info(f"  结论: {ci['interpretation']}")
-=======
     print(f"  趋势: {trend}")
 
     # 5. Granger
@@ -289,7 +269,6 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     else:
         print(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
         print(f"  结论: {ci['interpretation']}")
->>>>>>> skills/main
 
     return {
         "pearson": p,
@@ -308,11 +287,8 @@ if __name__ == "__main__":
     
     # 超时控制：30分钟强制退出，防止残留进程
     def timeout_handler(signum, frame):
-<<<<<<< HEAD
         logger.info(f"\n⚠️ 超时（30分钟），强制退出")
-=======
         print(f"\n⚠️ 超时（30分钟），强制退出")
->>>>>>> skills/main
         os._exit(1)
     
     signal.signal(signal.SIGALRM, timeout_handler)
@@ -340,16 +316,9 @@ if __name__ == "__main__":
                 "cointegration": cointegration_test,
             }
             result = func_map[args.method](df)
-<<<<<<< HEAD
             logger.info(json.dumps(result, indent=2, default=str))
     except Exception as e:
         logger.info(f"\n❌ 分析失败: {e}")
-=======
-            print(json.dumps(result, indent=2, default=str))
-    except Exception as e:
-        print(f"\n❌ 分析失败: {e}")
->>>>>>> skills/main
-        sys.exit(1)
     finally:
         signal.alarm(0)  # 取消超时
 
