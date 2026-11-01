@@ -11,11 +11,8 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
-=======
 # 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import argparse
 import json
@@ -45,6 +42,7 @@ def load_data(period: str = "1y") -> pd.DataFrame:
     raw = fetch_data(period=period)
     if "gold" not in raw or "wti" not in raw:
         logger.info("❌ 缺少黄金或原油数据")
+        print("❌ 缺少黄金或原油数据")
         return pd.DataFrame()
 
     df = pd.DataFrame({
@@ -104,6 +102,7 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
     # oil → gold
     try:
         test_og = grangercausalitytests(df[["gold_ret", "wti_ret"]], maxlag=maxlag)
+        test_og = grangercausalitytests(df[["gold_ret", "wti_ret"]], maxlag=maxlag, verbose=False)
         pvals_og = [test_og[lag][0]["ssr_ftest"][1] for lag in range(1, maxlag + 1)]
         results["oil_causes_gold"] = {
             "min_pvalue": round(min(pvals_og), 6),
@@ -116,6 +115,7 @@ def granger_test(df: pd.DataFrame, maxlag: int = 5) -> dict:
     # gold → oil
     try:
         test_go = grangercausalitytests(df[["wti_ret", "gold_ret"]], maxlag=maxlag)
+        test_go = grangercausalitytests(df[["wti_ret", "gold_ret"]], maxlag=maxlag, verbose=False)
         pvals_go = [test_go[lag][0]["ssr_ftest"][1] for lag in range(1, maxlag + 1)]
         results["gold_causes_oil"] = {
             "min_pvalue": round(min(pvals_go), 6),
@@ -172,15 +172,9 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
 
     # 1. Pearson
     p = pearson_corr(df)
-<<<<<<< HEAD
     logger.info(f"\n--- Pearson 相关系数 ---")
     logger.info(f"  result = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
     logger.info(f"  解读: {interpret_correlation(p['pearson_r'])}")
-=======
-    print(f"\n--- Pearson 相关系数 ---")
-    print(f"  result = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
-    print(f"  解读: {interpret_correlation(p['pearson_r'])}")
->>>>>>> skills/main
 
     # 2. Spearman
     s = spearman_corr(df)
@@ -197,6 +191,36 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     logger.info(f"\n--- {window}日滚动相关系数 ---")
     logger.info(f"  当前: {rc.iloc[-1]:.4f}")
     logger.info(f"  区间: [{rc.min():.4f}, {rc.max():.4f}]")
+    print("=" * 50)
+    print("📊 石油-黄金相关性分析报告")
+    print("=" * 50)
+
+    # 基础统计
+    print(f"\n📅 数据范围: {df.index[0].date()} ~ {df.index[-1].date()}")
+    print(f"📈 样本数: {len(df)} 个交易日")
+    print(f"🥇 黄金: ${df['gold'].iloc[-1]:,.2f} | WTI: ${df['wti'].iloc[-1]:,.2f}")
+
+    # 1. Pearson
+    p = pearson_corr(df)
+    print(f"\n--- Pearson 相关系数 ---")
+    print(f"  result = {p['pearson_r']} (p={p['p_value']}) {'✅ 显著' if p['significant'] else '❌ 不显著'}")
+    print(f"  解读: {interpret_correlation(p['pearson_r'])}")
+
+    # 2. Spearman
+    s = spearman_corr(df)
+    print(f"\n--- Spearman 秩相关 ---")
+    print(f"  ρ = {s['spearman_r']} (p={s['p_value']}) {'✅ 显著' if s['significant'] else '❌ 不显著'}")
+
+    # 3. Kendall
+    k = kendall_corr(df)
+    print(f"\n--- Kendall 秩相关 ---")
+    print(f"  τ = {k['kendall_tau']} (p={k['p_value']}) {'✅ 显著' if k['significant'] else '❌ 不显著'}")
+
+    # 4. 滚动相关
+    rc = rolling_corr(df, window)
+    print(f"\n--- {window}日滚动相关系数 ---")
+    print(f"  当前: {rc.iloc[-1]:.4f}")
+    print(f"  区间: [{rc.min():.4f}, {rc.max():.4f}]")
     rc_clean = rc.dropna()
     if len(rc_clean) >= 2:
         trend_ref = float(rc_clean.iloc[0])
@@ -213,11 +237,7 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
             logger.info(f"  {direction}: ⚠️ {result['error']}")
         else:
             sig = '✅' if result['significant'] else '❌'
-<<<<<<< HEAD
             logger.info(f"  {direction}: period={result['min_pvalue']}"
-=======
-            print(f"  {direction}: period={result['min_pvalue']}"
->>>>>>> skills/main
                   f" (lag={result['best_lag']}) {sig}")
 
     # 6. 协整
@@ -226,13 +246,29 @@ def run_all(df: pd.DataFrame, window: int = 30) -> dict:
     if "error" in ci:
         logger.info(f"  ⚠️ {ci['error']}")
     else:
-<<<<<<< HEAD
         logger.info(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
         logger.info(f"  结论: {ci['interpretation']}")
-=======
+    print(f"  趋势: {trend}")
+
+    # 5. Granger
+    print(f"\n--- Granger 因果检验 ---")
+    g = granger_test(df)
+    for direction, result in g.items():
+        if "error" in result:
+            print(f"  {direction}: ⚠️ {result['error']}")
+        else:
+            sig = '✅' if result['significant'] else '❌'
+            print(f"  {direction}: period={result['min_pvalue']}"
+                  f" (lag={result['best_lag']}) {sig}")
+
+    # 6. 协整
+    print(f"\n--- 协整检验 ---")
+    ci = cointegration_test(df)
+    if "error" in ci:
+        print(f"  ⚠️ {ci['error']}")
+    else:
         print(f"  统计量: {ci['coint_stat']} | period={ci['p_value']}")
         print(f"  结论: {ci['interpretation']}")
->>>>>>> skills/main
 
     return {
         "pearson": p,
@@ -252,6 +288,7 @@ if __name__ == "__main__":
     # 超时控制：30分钟强制退出，防止残留进程
     def timeout_handler(signum, frame):
         logger.info(f"\n⚠️ 超时（30分钟），强制退出")
+        print(f"\n⚠️ 超时（30分钟），强制退出")
         os._exit(1)
     
     signal.signal(signal.SIGALRM, timeout_handler)
@@ -282,6 +319,9 @@ if __name__ == "__main__":
             logger.info(json.dumps(result, indent=2, default=str))
     except Exception as e:
         logger.info(f"\n❌ 分析失败: {e}")
+            print(json.dumps(result, indent=2, default=str))
+    except Exception as e:
+        print(f"\n❌ 分析失败: {e}")
         sys.exit(1)
     finally:
         signal.alarm(0)  # 取消超时

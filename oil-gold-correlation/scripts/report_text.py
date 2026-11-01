@@ -1,23 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+石油黄金投资参考 - 纯文本报告生成器 v3.4
+Copyright (c) 2026 思捷娅科技 (SJYKJ)
+"""
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-
-#!/usr/bin/env python3
-"""
-石油黄金投资参考 - 纯文本报告生成器 v3.4
-优化：信号灯颜色更清晰 + 趋势箭头文字化 + 信息密度精简
-
-Copyright (c) 2026 思捷娅科技 (SJYKJ)
-License: MIT
-<<<<<<< HEAD
-版本: v3.4 | 石油黄金白银相关性分析
-=======
->>>>>>> skills/main
-"""
-
 import sys
 from pathlib import Path
 from datetime import datetime
+import re
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -55,6 +48,140 @@ def trend_arrow(score, rsi=50):
     elif score <= 35 and rsi <= 30: return '看跌📉⚠️'
     else: return '震荡➡️'
 
+
+
+
+def _fetch_eastmoney_realtime(secid, div=100.0):
+    """东财实时价(113.AUM沪金主连/113.AGM沪银主连, 官家10-26给的secid, 贴UI实盘)。
+    盘中分钟级在跳, 周末=周五收盘。返回 float 价或 None。
+    div: AUM沪金 f43=86436→/100=864.36; AGM沪银 f43=130.72(已是元/千克, 直接取, div=1)"""
+    try:
+        import urllib.request, json
+        url = f"https://push2.eastmoney.com/api/qt/stock/get?secid={secid}&fields=f43,f86"
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
+        data = d.get("data") or {}
+        f43 = data.get("f43")
+        if not f43:
+            return None
+        # 沪金 f43 是 8xxxx(×100), 沪银 f43 是 130.xx(×1) → 按 f43 量级自动判断, 不再硬传 div
+        if f43 > 1000:
+            price = f43 / 100.0   # 沪金 86436 → 864.36
+        else:
+            price = f43           # 沪银 130.72 直接取
+        return round(price, 2)
+    except Exception:
+        return None
+
+
+def _fetch_live_price(key, fallback_result):
+    """报告行情段取价: 优先东财实时(AUM/AGM, 贴官家UI), 失败退 akshare 日线(缓存)。
+    返回 (最新价, 日涨跌%, 30日%, YTD%, 口径标签) """
+    import akshare as ak
+    secid_map = {"gold": "113.AUM", "silver": "113.AGM"}
+    live = None
+    if key in secid_map:
+        live = _fetch_eastmoney_realtime(secid_map[key], div=100.0)
+    # 拉 akshare 日线算 30日/YTD(历史走势还是用日线, 实时价只作"最新")
+    df = fetch_data(key, period="365d")
+    try:
+        if df is not None and not df.empty:
+            latest = df['Close'].iloc[-1]
+            change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
+            change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
+            change_1d = df['Close'].pct_change().iloc[-1] * 100
+            if live:
+                # 日涨跌: 实时价 vs akshare前一日收盘(同量级)。
+                # 白银: akshare白银Close=元/千克(12763), 东财AGM f43=13164→÷100=131.64 是"元/克"量级
+                #       → 东财白银×100 对齐到元/千克再比(131.64×100≈13164 元/千克, 贴上期所12999)
+                # 沪金: 东财AUM f43=8xxxx÷100=864.x 是"元/克", akshare黄金Close=元/克量级, 直接比
+                prev = df['Close'].iloc[-2] if len(df) >= 2 else latest
+                if key == "silver":
+                    live_cmp = live * 100.0   # 东财AGM 元/克 ×100 → 元/千克, 和 akshare 白银(元/千克)同量级
+                    latest = live_cmp          # 报告显 元/千克(贴上期所12999, 官家10-27纠错)
+                    change_1d = (live_cmp / prev - 1) * 100
+                else:
+                    change_1d = (live / prev - 1) * 100
+                    latest = live
+                tag = "实时(东财)"
+            else:
+                tag = "日线"
+            return latest, change_1d, change_30d, change_ytd, tag
+    except Exception:
+        pass
+    # 全失败退缓存
+    return (fallback_result.get("latest", 0), 0.0, 0.0, 0.0, "缓存")
+
+
+def _fetch_intl_gold():
+    """国际现货金（美元/盎司）第二口径。GoldAPI 优先，失败降级，不硬造。"""
+    import json
+    try:
+        import requests
+        r = requests.get("https://api.gold-api.com/price/XAU",
+                         headers={"User-Agent": "Mozilla/5.0 Chrome/120"}, timeout=12)
+        if r.status_code == 200:
+            d = r.json()
+            price = d.get("price")
+            chg = d.get("change") or d.get("changePercentage")
+            chg_txt = f" 日{chg:+.2f}%" if isinstance(chg, (int, float)) else ""
+            return {"ok": True, "price": price, "change": chg_txt,
+                    "source": "GoldAPI", "updatedAt": d.get("updatedAt", "")}
+        return {"ok": False, "err": f"HTTP {r.status_code}"}
+    except Exception as e:
+        return {"ok": False, "err": str(e)[:40]}
+
+
+
+def _fetch_etf_gold_wave():
+    """拉 518880 黄金ETF 现价 + 20日区间，用于波段参考；失败返回 None（不硬造）"""
+    import akshare as ak
+    try:
+        df = ak.fund_etf_hist_em(symbol="518880", period="daily", adjust="")
+        close = df['收盘'].astype(float)
+        cur = close.iloc[-1]
+        lo = close.tail(20).min()
+        hi = close.tail(20).max()
+        return {"cur": round(cur, 3), "lo": round(lo, 3), "hi": round(hi, 3)}
+    except Exception:
+        return None
+
+def _calc_gold_spread(intl_price, gold_result):
+    """内外价差：国际价换算人民币克价 vs 沪金，判贴水/升水。需汇率，取不到则降级。"""
+    try:
+        g_latest = None
+        if isinstance(gold_result, dict):
+            g_latest = gold_result.get("latest")
+        if not g_latest:
+            return ""
+        # 汇率：走 GoldAPI 同源或取缓存；拉不到用 7.1 估算并标注
+        usd_cny = _fetch_usd_cny()
+        fx_note = "" if usd_cny.get("ok") else "（汇率估算）"
+        rate = usd_cny.get("price", 7.1)
+        per_gram_cny = intl_price / 31.1035 * rate   # 国际换算成 人民币/克
+        diff = per_gram_cny - g_latest
+        if abs(diff) < 1:
+            return f"持平（换算≈¥{per_gram_cny:.0f}）{fx_note}"
+        direction = "贴水" if diff > 0 else "升水"   # 国际换算>沪金=贴水(国内便宜)
+        return f"{direction} ¥{abs(diff):.0f}/克（国际换算≈¥{per_gram_cny:.0f} vs 沪金¥{g_latest:.0f}）{fx_note}"
+    except Exception:
+        return ""
+
+
+def _fetch_usd_cny():
+    """美元兑人民币。多源，失败降级返回估算。"""
+    try:
+        import requests
+        r = requests.get("https://open.er-api.com/v6/latest/USD",
+                         headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+        if r.status_code == 200:
+            d = r.json()
+            cny = d.get("rates", {}).get("CNY")
+            if cny:
+                return {"ok": True, "price": cny}
+        return {"ok": False, "price": 7.1}
+    except Exception:
+        return {"ok": False, "price": 7.1}
 def fetch_data(ak_key, period="90d"):
     from config import CACHE_DIR
     import os, pickle
@@ -72,7 +199,9 @@ def fetch_data(ak_key, period="90d"):
             with open(cache_file, 'wb') as f: pickle.dump(df, f)
         return df
     except Exception as e:
-        logger.info(f"[fetch_data] {ak_key} 失败: {e}")
+        try: logger.info(f"[fetch_data] {ak_key} 失败: {e}")
+        except NameError: print(f"[fetch_data] {ak_key} 失败: {e}")
+        _STALE_SOURCES.append(ak_key)  # 记失效源, 报告头显式标"旧数据"
         return None
 
 def get_tech_summary(result):
@@ -188,6 +317,7 @@ def generate_report():
         _generate_report_inner()
     except ReportTimeout:
         logger.info("\n⚠️ 报告生成超时，输出缓存数据...")
+        print("\n⚠️ 报告生成超时，输出缓存数据...")
         _generate_report_cached()
     finally:
         signal.alarm(0)
@@ -199,6 +329,9 @@ def _generate_report_inner():
 
     # ========== 顶部摘要卡（优化：信号灯颜色+分数独立行） ==========
     lines.append(f'📊 石油黄金投资参考 {now.strftime("%Y-%m-%d %H:%M")}')
+    # 数据新鲜度标注(官家10-24: 实时源失效时明标旧数据, 绝不冒充实时)
+    if _STALE_SOURCES:
+        lines.append(f'⚠️ 数据源 {",".join(_STALE_SOURCES)} 本轮拉取失败, 以下含缓存旧数据(非实时, 仅供参考)')
     lines.append('')
 
     gold_result = _analyze_instrument('沪金期货', period="90d", horizon=3)
@@ -243,20 +376,38 @@ def _generate_report_inner():
 
     for label, key, result in instruments_data:
         try:
-            df = fetch_data(key, period="365d")
-            if df is not None and not df.empty:
-                latest = df['Close'].iloc[-1]
-                change_1d = df['Close'].pct_change().iloc[-1] * 100
-                change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
-                change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
-                lines.append(f'  {label} ¥{latest:,.0f}/克'
-                             f'  日{change_1d:+.2f}%'
-                             f'  30日{change_30d:+.1f}%'
-                             f'  年初至今{change_ytd:+.1f}%')
-            else:
-                lines.append(f'  {label} ¥{result.get("latest", 0):,.0f}/克  (缓存)')
+            latest, c1, c30, cytd, tag = _fetch_live_price(key, result)
+            unit = '/千克' if key == 'silver' else '/克'
+            lines.append(f'  {label} ¥{latest:,.0f}{unit}  [{tag}]'
+                         f'  日{c1:+.2f}%'
+                         f'  30日{c30:+.1f}%'
+                         f'  年初至今{cytd:+.1f}%')
         except Exception as e:
             lines.append(f'  {label} 错误: {e}')
+    # 国际美元金价（第二口径，与人民币沪金对比；失败降级不硬造）
+    intl = _fetch_intl_gold()
+    if intl.get("ok"):
+        lines.append(f'  🌍 国际现货金 ${intl["price"]:.2f}/盎司  {intl.get("change", "n/a")}')
+        # 内外价差（贴水/升水）：换算值 vs 沪金；需汇率，取最近报告值或降级
+        spread_txt = _calc_gold_spread(intl["price"], gold_result)
+        if spread_txt:
+            lines.append(f'  ⚖️ 内外价差: {spread_txt}  （价差为相对参考，非无风险套利信号）')
+    else:
+        lines.append(f'  🌍 国际现货金: 数据源不可用（{intl.get("err","?")}），仅人民币口径')
+    # 波段参考：518880 黄金ETF（动态拉，失败降级占位不硬造）
+    wave = _fetch_etf_gold_wave()
+    if wave:
+        lines.append('')
+        lines.append('>> 📈 波段参考（518880 黄金ETF）')
+        lines.append(f'  现价 ¥{wave["cur"]}  20日区间 ¥{wave["lo"]}~¥{wave["hi"]}')
+        buy_lo = wave["lo"] + 0.05
+        stop = round(wave["lo"] - 0.10, 2)
+        tgt1 = round(wave["lo"] + (wave["hi"] - wave["lo"]) * 0.5, 2)
+        tgt2 = wave["hi"]
+        lines.append(f'  买入区 ¥{buy_lo:.2f}  止损 ¥{stop}  目标 ¥{tgt1}/¥{tgt2}')
+    else:
+        lines.append('')
+        lines.append('>> 📈 波段参考（518880）: ETF 数据源暂不可用')
     lines.append('')
 
     # ========== 仪表盘（趋势箭头文字化） ==========
@@ -268,13 +419,16 @@ def _generate_report_inner():
             score = result.get('score', 50)
             rsi = result.get('rsi', 50) or 50
             verdict, v_emoji = score_verdict(score)
-            price = f'¥{result.get("latest", 0):,.0f}'
+            _lp = _fetch_live_price(key, result)[0]  # 官家10-27: 仪表盘和行情段同一口(东财实时优先), 不再各取各的
+            price = f'¥{_lp:,.0f}'
             sig = result.get('macd', {}).get('signal', '+0') if isinstance(result.get('macd'), dict) else '+0'
             bar = score_to_bar(score)
             arrow = trend_arrow(score, rsi)
             lines.append(f'  {label} {price}  {v_emoji}{verdict}  {arrow}')
             lines.append(f'    {bar} {score}/100  RSI={rsi:.0f}  信号{sig}')
         else:
+            # 数据不足：保留占位行（避免某品种突然从仪表盘消失，官家 2026-10-15 要求）
+            lines.append(f'  {label} 数据源暂不可用（本轮拉取失败，下轮重试）')
             lines.append(f'  {label} 数据不足')
     lines.append('')
 
@@ -383,15 +537,28 @@ def _generate_report_inner():
     if gold_adj >= 60 and oil_score < 40:
         ratio = '5:2:3（黄金防守为主）'
     elif gold_adj >= 60 and oil_score >= 40:
+        ratio = '3:4:3（黄金打底+波段，跌有实物托底）'
         ratio = '4:3:3（均衡偏防守）'
     elif gold_adj < 40 and oil_score >= 50:
         ratio = '3:2:5（原油偏强）'
     elif gold_adj < 40 and oil_score < 40:
         ratio = '5:3:2（黄金防守为主）'
     else:
-        ratio = '4:3:3（均衡配置）'
+        ratio = '3:4:3（黄金打底+波段，跌有实物托底）'
 
-    lines.append(f'  组合建议：黄金:白银:原油 = {ratio}')
+    lines.append(f'  组合建议（三品种）：黄金:白银:原油 = {ratio}')
+    # 单黄金分批建仓节奏（只买黄金的用法，跟三品种组合区分开）
+    # 依据: 当前沪金价 vs 支撑/阻力，分三笔 3:4:3（越跌越敢加）
+    lines.append('')
+    lines.append('  单黄金分批节奏（只配黄金）:')
+    lines.append('    30% 现价先上  →  40% 跌一段补  →  30% 低位重仓捡')
+    lines.append('    （越跌越敢加；盯价按 20日/60日 行情动态算买点卖点，自动推送）')
+    lines.append('')
+    lines.append('  黄金实物+波段配置（官家 1w 方案，2026-10-15 定版）:')
+    lines.append('    实物打底 7000（国泰A 000218）: 3:4:3 分批买入，长期拿不卖')
+    lines.append('    波段进取 3000（国泰C）: 只低位进，按卖点分三档兑现')
+    lines.append('      卖点目标1 减1/3 / 目标2 再减1/3 / 目标3 清掉')
+    lines.append('    买点/卖点每次按 20日/60日 高低动态滚动（盯价 cron 自动推，不写死）')
     lines.append('')
 
     # ========== 历史阶段定位（精简：一句话） ==========
@@ -456,6 +623,7 @@ def _generate_report_inner():
 
     # 优先检查回避品种数量，避免"可考虑"掩盖"回避"信号
     if avoid_count >= 2:
+        conclusion = '多品种偏弱，强烈建议观望，等评分回升、信号转多。'
         conclusion = '多品种偏弱，强烈建议观望，等信号灯转正。'
     elif avoid_count == 1 and buy_count >= 2:
         # 有回避品种但其他两个可考虑 → 不能笼统说"偏强"
@@ -483,11 +651,32 @@ def _generate_report_inner():
     full = '\n'.join(lines)
     logger.info(full)
 
+    # 精简模式（OIL_GOLD_BRIEF=1）：按"段"白名单裁剪，波段参考拉不到就降级占位行、仍出精简版（方案A）
+    import os
+    if os.environ.get('OIL_GOLD_BRIEF') == '1':
+        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📈 波段参考', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+        out, in_keep = [], False
+        for line in lines:
+            s = line.strip()
+            if s.startswith('>>') or s.startswith('📊 石油黄金'):
+                in_keep = any((m in s) or (m in line) for m in keep_sections)
+            elif s.startswith('┌') or s.startswith('└') or s.startswith('📡'):
+                in_keep = False
+            if in_keep:
+                out.append(line)
+        full = re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip() + '\n'
+        logger.info('OIL_GOLD_BRIEF=1 → 输出精简版（波段参考不可用则占位行，不回退完整版）')
+    print(full)
+
     from config import REPORT_TEXT, ensure_dirs
     ensure_dirs()
     with open(REPORT_TEXT, 'w') as f:
         f.write(full)
-    logger.info(f'\n已保存: {REPORT_TEXT}')
+    logger.info(f'\n已保存: {REPORT_TEXT}（{"精简" if os.environ.get("OIL_GOLD_BRIEF")=="1" else "完整"}）')
+    print(f'\n已保存: {REPORT_TEXT}')
+
+# 数据源失效标记(官家10-24: 不给旧数据冒充实时): fetch_data 失败记入, 报告头显式标"旧数据"
+_STALE_SOURCES = []
 
 if __name__ == '__main__':
     generate_report()

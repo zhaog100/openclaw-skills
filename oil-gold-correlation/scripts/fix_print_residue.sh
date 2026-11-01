@@ -1,7 +1,7 @@
 #!/bin/bash
-# 批量修复石油黄金技能print残留问题
+# 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)# 技能: oil-gold-correlation/scripts/fix_print_residue# 批量修复石油黄金技能print残留问题
 
-cd /home/ubuntu/.openclaw/workspace/skills/oil-gold-correlation/scripts
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "=== 开始批量修复print残留 ==="
 

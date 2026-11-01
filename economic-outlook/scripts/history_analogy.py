@@ -190,15 +190,13 @@ class HistoryAnalogy:
         return "\n".join(lines)
 
     def print_analogy(self, result: dict = None):
+        """返回历史类比分析文本（不 print，调用方自行决定是否输出）。"""
         if result is None:
             result = self.match()
-        print("=" * 60)
-        print("历史类比分析")
-        print("=" * 60)
-        print(result["recommendation"])
-        print("\n所有锚点相似度：")
+        lines = ["=" * 60, "历史类比分析", "=" * 60, result["recommendation"], "\n所有锚点相似度："]
         for m in result["all_matches"]:
-            print(f"  [{m['code']}] {m['name']}: {m['similarity']:.1%}")
+            lines.append(f"  [{m['code']}] {m['name']}: {m['similarity']:.1%}")
+        return "\n".join(lines)
 
 
 # ============ 兼容旧接口（保留 build_current_profile / analyze / format_report）============

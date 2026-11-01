@@ -26,3 +26,15 @@
 
 ## 回测/验证
 15. **官方源超时会让全量测试撞 timeout（exit 124）非报错** → 用 mock 信号（不联网）快速验逻辑不崩，再跑全量；别因超时误判为逻辑错。
+
+## 脱敏改动必须同步调用方（2026-09-30 踩坑）
+16. **去硬编码 open_id/secret 时，必须同步确认调用方（cron/CI/上游脚本）注入了替代的环境变量或 config**，否则线上直接挂。
+    - 实例：run_report.sh 改成"QQ_TARGET_USER_ID 缺失即拒绝推送"（合规正确），但 4 个石油黄金 cron automation 没注入该变量 → 15:00 日盘 exit 1 报告没推。
+    - 修法：openclaw cron edit <id> --command-env "QQ_TARGET_USER_ID=..." 给每个 automation 注入（cron 级配置，不进代码仓库，合规不破）。
+    - 教训：脱敏是"代码去硬编码 + 调用方注入变量"两件事，缺一即线上故障。改完脱敏必须手动带 env 跑一次全链路验证。
+
+## 脚本执行位（2026-10-10 踩坑）
+17. **改 cron 调用的 .sh 时，"临时文件重写 + mv 回去"会丢 +x 执行位** → cron `sh -lc` 执行报 Permission denied (exit 126)。
+    - 实例：10-08 补 open_id 脱敏/版权头用 `> tmp && mv tmp f` 重写，重建文件丢可执行位，morning-report.sh 挂 2 天。
+    - 修法：批量 `find skills -name "*.sh" -type f ! -perm -u+x | xargs chmod +x`，再用 `sh -lc <脚本>` 模拟 cron 执行验证 exit=0。
+    - 教训：改完任何 cron 调用的 .sh，提交前必 `bash -n` + `chmod +x` 复核执行位，别只查内容。
