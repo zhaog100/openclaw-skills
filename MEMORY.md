@@ -342,7 +342,7 @@ _最后更新: 2026-08-22 11:08 CST_
 
 ## 2026-09-02 变更记录
 - **Provider 配置更新**: 恢复 OpenRouter key (73 chars)
-- **SenseNova key 更新**: sk-8Kc7OwS...VpYe (35 chars)
+- **SenseNova key 更新**: sk-****REDACTED****...VpYe (35 chars)
 - **Groq provider 配置**: gsk_Jn...fyn5 (56 chars, 测试401)
 - **模型可用性测试**: 5/18 可用 (agnesai: 2, sensenova: 3, openrouter: 3)
 - **QMD 数据库**: 973 chunks, 116 sources ✅
