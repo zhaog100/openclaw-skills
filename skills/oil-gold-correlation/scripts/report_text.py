@@ -82,7 +82,7 @@ def _fetch_au9999_spot():
     for host in ("push2.eastmoney.com", "push2delay.eastmoney.com"):
         try:
             req = urllib.request.Request(
-                f"http://{host}/api/qt/stock/get?secid=118.AU9999&fields=f43,f86",
+                f"https://{host}/api/qt/stock/get?secid=118.AU9999&fields=f43,f86",
                 headers={"User-Agent": "Mozilla/5.0"})
             d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
             f43 = (d.get("data") or {}).get("f43")
@@ -125,10 +125,18 @@ def _fetch_live_price(key, fallback_result):
     if not live:
         try:
             import importlib
+            import os as _os
             from pathlib import Path as _P
-            # 动态解析 workspace 根(report_text.py 往上: scripts→oil-gold-correlation→skills→workspace), 不硬编码绝对路径
-            _ws = _P(__file__).resolve().parents[3]
-            sys.path.insert(0, str(_ws / "skills" / "economic-outlook"))
+            # 跨平台: 盯价 skill 根可配(OIL_GOLD_SKILLS_ROOT), 默认按"同 workspace 布局"往上4级自动找
+            _root_env = _os.environ.get("OIL_GOLD_SKILLS_ROOT")
+            if _root_env:
+                _root = _P(_root_env)
+            else:
+                _root = _P(__file__).resolve().parents[2]   # skills/ 目录(可移植布局: 两个 skill 同级)
+            for cand in (str(_root / "economic-outlook"), str(_root / "skills" / "economic-outlook")):
+                if _P(cand, "skills", "gold_watch_signal", "skill.py").is_file():
+                    sys.path.insert(0, cand)
+                    break
             gws = importlib.import_module("skills.gold_watch_signal.skill")
             rt = gws._fetch_au0_realtime()
             if rt and rt.get("price"):

@@ -288,3 +288,25 @@ export TWELVE_DATA_API_KEY=your_key
 ---
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+
+## 跨平台说明（官家11-02 20:49 优化）
+
+任何机器装完依赖即可跑，不绑定单一部署布局：
+
+```
+# 1. 装依赖
+pip install -r requirements.txt   # numpy/pandas/scipy/akshare
+
+# 2. 跑报告(门面)
+python3 scripts/report_text.py
+
+# 3. 可选环境变量(缺省=自动探测, 不设也能跑)
+OIL_GOLD_CACHE_DIR     缓存目录(Windows 无 /tmp 时必设)
+OIL_GOLD_SKILLS_ROOT   盯价 skill 根(同 workspace 布局可自动探测, 跨机部署时设)
+```
+
+**黄金取价四段降级链**（跨平台通用，海外 IP 也能跑）：
+1. 东财 AUM/AGM 实时
+2. 东财 502 → Tmini 主链（835 准实时）
+3. Tmini 拉空 → _fetch_au9999_spot()（东财 118.AU9999 → 金投网 JO_71 q5）
+4. 全拉空 → 退日线，黄金标「期货口径, 现货不可用偏高~22元」
