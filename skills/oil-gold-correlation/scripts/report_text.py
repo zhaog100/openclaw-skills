@@ -75,13 +75,31 @@ def _fetch_eastmoney_realtime(secid, div=100.0):
 
 
 def _fetch_live_price(key, fallback_result):
-    """报告行情段取价: 优先东财实时(AUM/AGM, 贴官家UI), 失败退 akshare 日线(缓存)。
+    """报告行情段取价(官家 11-02 16:40 A+B 版):
+    ① 东财实时(AUM/AGM) —— 通即用
+    ② 东财 502/拉空 → 盯价实时主链(东财现货118.AU9999→Tmini→金投网, 跟盯价同口径, 准实时)
+    ③ 主链也拉空 → 退 akshare 日线, 且标注日期 [日线·MM-DD收盘], 不冒"最新"
     返回 (最新价, 日涨跌%, 30日%, YTD%, 口径标签) """
-    import akshare as ak
     secid_map = {"gold": "113.AUM", "silver": "113.AGM"}
     live = None
     if key in secid_map:
         live = _fetch_eastmoney_realtime(secid_map[key], div=100.0)
+    # A: 东财502 → 盯价实时主链兜底(跟盯价同口径, 沪金=Au9999现货/Tmini黄金9999, 准实时)
+    live2 = None
+    live_src = ""
+    if not live:
+        try:
+            sys.path.insert(0, "/home/ubuntu/.openclaw/workspace/skills/economic-outlook")
+            import importlib
+            gws = importlib.import_module("skills.gold_watch_signal.skill")
+            rt = gws._fetch_au0_realtime()
+            if rt and rt.get("price"):
+                # 主链只覆盖黄金(沪金 Au9999); 白银仍走东财AGM/日线
+                if key == "gold":
+                    live2 = rt.get("price")
+                    live_src = rt.get("src_cn", "实时主链")
+        except Exception:
+            pass
     # 拉 akshare 日线算 30日/YTD(历史走势还是用日线, 实时价只作"最新")
     df = fetch_data(key, period="365d")
     try:
@@ -90,22 +108,36 @@ def _fetch_live_price(key, fallback_result):
             change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
             change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
             change_1d = df['Close'].pct_change().iloc[-1] * 100
+            # B: 日线缓存对应日期(给退日线时标注用)
+            try:
+                import pandas as _pd
+                last_day = str(df.index[-1])[:10]
+            except Exception:
+                last_day = ""
+            prev = df['Close'].iloc[-2] if len(df) >= 2 else latest
             if live:
-                # 日涨跌: 实时价 vs akshare前一日收盘(同量级)。
-                # 白银: akshare白银Close=元/千克(12763), 东财AGM f43=13164→÷100=131.64 是"元/克"量级
-                #       → 东财白银×100 对齐到元/千克再比(131.64×100≈13164 元/千克, 贴上期所12999)
-                # 沪金: 东财AUM f43=8xxxx÷100=864.x 是"元/克", akshare黄金Close=元/克量级, 直接比
-                prev = df['Close'].iloc[-2] if len(df) >= 2 else latest
+                # 日涨跌: 东财实时价 vs akshare前一日收盘(同量级)
                 if key == "silver":
-                    live_cmp = live * 100.0   # 东财AGM 元/克 ×100 → 元/千克, 和 akshare 白银(元/千克)同量级
-                    latest = live_cmp          # 报告显 元/千克(贴上期所12999, 官家10-27纠错)
+                    live_cmp = live * 100.0
+                    latest = live_cmp
                     change_1d = (live_cmp / prev - 1) * 100
                 else:
                     change_1d = (live / prev - 1) * 100
                     latest = live
                 tag = "实时(东财)"
+            elif live2:
+                # A: 东财502, 走盯价主链(准实时, 跟盯价同口径)
+                if key == "silver":
+                    live_cmp = live2 * 100.0
+                    latest = live_cmp
+                    change_1d = (live_cmp / prev - 1) * 100
+                else:
+                    change_1d = (live2 / prev - 1) * 100
+                    latest = live2
+                tag = f"实时({live_src})"
             else:
-                tag = "日线"
+                # B: 全退日线, 标注日期(几号收盘), 不冒"最新"
+                tag = f"日线{('·' + last_day + '收盘') if last_day else ''}"
             return latest, change_1d, change_30d, change_ytd, tag
     except Exception:
         pass
