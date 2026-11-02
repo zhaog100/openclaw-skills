@@ -89,8 +89,11 @@ def _fetch_live_price(key, fallback_result):
     live_src = ""
     if not live:
         try:
-            sys.path.insert(0, "/home/ubuntu/.openclaw/workspace/skills/economic-outlook")
             import importlib
+            from pathlib import Path as _P
+            # 动态解析 workspace 根(report_text.py 往上: scripts→oil-gold-correlation→skills→workspace), 不硬编码绝对路径
+            _ws = _P(__file__).resolve().parents[3]
+            sys.path.insert(0, str(_ws / "skills" / "economic-outlook"))
             gws = importlib.import_module("skills.gold_watch_signal.skill")
             rt = gws._fetch_au0_realtime()
             if rt and rt.get("price"):
