@@ -74,6 +74,41 @@ def _fetch_eastmoney_realtime(secid, div=100.0):
         return None
 
 
+def _fetch_au9999_spot():
+    """上金所 Au9999 现货价(贴官家实盘下单锚)。优先东财118.AU9999, 拉不到退金投网JO_71 q5。
+    返回 (价, 口径标签) 或 (None, None)。"""
+    import urllib.request, json, time
+    # 1) 东财 118.AU9999 (f43 单位随接口可能为"元/克"或"x100分", 按量级自适应)
+    for host in ("push2.eastmoney.com", "push2delay.eastmoney.com"):
+        try:
+            req = urllib.request.Request(
+                f"http://{host}/api/qt/stock/get?secid=118.AU9999&fields=f43,f86",
+                headers={"User-Agent": "Mozilla/5.0"})
+            d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
+            f43 = (d.get("data") or {}).get("f43")
+            if f43:
+                p2 = float(f43)
+                if p2 > 1000:
+                    p2 = p2 / 100.0
+                return (p2, "现货(Au9999·东财118)")
+        except Exception:
+            pass
+    # 2) 金投网 JO_71 q5 (现货, 东财挂时的降级口径)
+    try:
+        ts = int(time.time() * 1000)
+        req = urllib.request.Request(
+            f"https://api.jijinhao.com/quoteCenter/realTime.htm?codes=JO_71&_={ts}",
+            headers={"User-Agent": "Mozilla/5.0"})
+        r = json.loads(urllib.request.urlopen(req, timeout=8).read().decode("utf-8", "ignore"))
+        rows = r.get("data", {}).get("rows") or []
+        q5 = rows[0].get("q5") if rows else None
+        if q5:
+            return (float(q5), "现货(Au9999·金投网降级)")
+    except Exception:
+        pass
+    return (None, None)
+
+
 def _fetch_live_price(key, fallback_result):
     """报告行情段取价(官家 11-02 16:40 A+B 版):
     ① 东财实时(AUM/AGM) —— 通即用
@@ -101,6 +136,12 @@ def _fetch_live_price(key, fallback_result):
                 if key == "gold":
                     live2 = rt.get("price")
                     live_src = rt.get("src_cn", "实时主链")
+            # 合流: Tmini主链也拉空时, 接 _fetch_au9999_spot()(东财118.AU9999→金投网JO_71 q5)再兜一层
+            if key == "gold" and not live2:
+                spot = _fetch_au9999_spot()
+                if spot and spot[0]:
+                    live2 = spot[0]
+                    live_src = "现货(" + (spot[1] or "Au9999") + ")"
         except Exception:
             pass
     # 拉 akshare 日线算 30日/YTD(历史走势还是用日线, 实时价只作"最新")
@@ -140,7 +181,11 @@ def _fetch_live_price(key, fallback_result):
                 tag = f"实时({live_src})"
             else:
                 # B: 全退日线, 标注日期(几号收盘), 不冒"最新"
-                tag = f"日线{('·' + last_day + '收盘') if last_day else ''}"
+                # 官家11-02强化: 黄金退日线时是期货口径(AUM), 虚高~22元 vs 现货, 必须标明白防误读
+                if key == "gold":
+                    tag = f"日线{('·' + last_day + '收盘') if last_day else ''}(期货口径, 现货不可用偏高~22元)"
+                else:
+                    tag = f"日线{('·' + last_day + '收盘') if last_day else ''}"
             return latest, change_1d, change_30d, change_ytd, tag
     except Exception:
         pass
