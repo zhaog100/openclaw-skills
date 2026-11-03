@@ -27,12 +27,12 @@ class GoldWatchOutcomeSkill(BaseSkill):
 
     def _cfg(self):
         base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        p = os.path.join(os.path.dirname(base), "oil-gold-correlation", "data", "gold_watch.json")
+        p = os.path.join(os.path.dirname(base), "economic-outlook", "data", "gold_watch.json")
         return json.load(open(p)).get("watch_shgold_spot", {}) if os.path.exists(p) else {}
 
     def _gw_path(self):
         base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        p = os.path.join(os.path.dirname(base), "oil-gold-correlation", "scripts", "send_qq_gw.py")
+        p = os.path.join(os.path.dirname(base), "economic-outlook", "scripts", "send_qq_gw.py")
         return p
 
     def run(self, context: dict) -> dict:
@@ -74,6 +74,9 @@ class GoldWatchOutcomeSkill(BaseSkill):
         if sh is None:
             return {"triggered": False, "reason": "无可用金价(signal 未出基准价), 静默", "xauusd": xau}
 
+        # 官家11-01安全闸门: 东财全挂走金投网降级口径(偏高)时, 只展示不自动触发申购/赎回
+        # 依据: signal source 标记"(K线挂, 动态档退config)"且 au0_realtime_src 含"降级"=低置信口径, 不冒自动申购
+        is_degraded = bool(sig.get("degraded_basis"))
         msgs, triggered = [], False
         trend_state = sig.get("trend_state", "横盘")
         # 趋势过滤器(官家 10-24): 跌势中破档=防半山腰, 文案升级需官家确认
@@ -81,6 +84,16 @@ class GoldWatchOutcomeSkill(BaseSkill):
             if trend_state in ("跌势", "downtrend"):
                 return f"⚠️ 沪金≈¥{sh:.0f}/克, 破{buy_ref}买点(跌势中,MA20斜率下行/RSI弱势,防半山腰) → 申购 {fund.get('A','国泰A')} {amt_desc} 需官家确认"
             return f"⚡️ 沪金≈¥{sh:.0f}/克, 破{buy_ref}买点 → 申购 {fund.get('A','国泰A')} {amt_desc}"
+        if is_degraded:
+            # 官家11-01安全闸门: 降级口径(金投网偏高)命中破档 → 只展示提示, 不自动触发申购/赎回(需官家确认)
+            tag = "破第3笔买点" if sh <= buy2 else ("破第2笔买点" if sh <= buy1 else ("到卖点二档" if sh >= sell2 else "到卖点一档"))
+            out = {"triggered": False, "sh_equiv": sh, "cost_basis": cost,
+                   "breakeven": breakeven, "spread": spread, "tier_mode": tier_mode,
+                   "dyn": {"buy1": buy1, "buy2": buy2, "sell1": sell1, "sell2": sell2},
+                   "trend_state": trend_state, "degraded_basis": True,
+                   "source": sig.get("source"), "price_basis": sig.get("price_basis"),
+                   "reason": f"沪金 {sh:.0f} {tag}, 但基准为降级口径(金投网偏高~22元), 只展示不自动触发(需东财实盘确认), 静默"}
+            return out
         if sh <= buy2:
             msgs.append(_buy_tag("第3笔", "第3笔(低位重仓30%)")); triggered = True
         elif sh <= buy1:

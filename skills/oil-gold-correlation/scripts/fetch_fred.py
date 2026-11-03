@@ -1,16 +1,16 @@
-import logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
-
+#!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-"""
-FRED 美联储经济数据 数据源 v3.4
-美国官方宏观经济数据 + 美股市场全维度分析
-覆盖: 核心市场指数(标普500/道琼斯/纳斯达克), 宏观经济指标(利率/CPI/就业/GDP),
-估值指标(巴菲特指标/信用利差), 技术与情绪指标(VIX/收益率曲线)
-数据来源: https://fred.stlouisfed.org
-免费 API Key: https://fred.stlouisfed.org/docs/api/api_key.html
-"""
+# FRED（美联储经济数据）数据源 v3.4
+# FRED(美联储经济数据)数据源 v3.3
+# 美国官方宏观经济数据 + 美股市场全维度分析
+# 
+# 覆盖：
+# - 核心市场指数(标普500/道琼斯/纳斯达克)
+# - 宏观经济指标(利率/CPI/就业/GDP)
+# - 估值指标(巴菲特指标/信用利差)
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 import os
 import json

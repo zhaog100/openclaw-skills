@@ -305,8 +305,9 @@ OIL_GOLD_CACHE_DIR     缓存目录(Windows 无 /tmp 时必设)
 OIL_GOLD_SKILLS_ROOT   盯价 skill 根(同 workspace 布局可自动探测, 跨机部署时设)
 ```
 
-**黄金取价四段降级链**（跨平台通用，海外 IP 也能跑）：
-1. 东财 AUM/AGM 实时
-2. 东财 502 → Tmini 主链（835 准实时）
-3. Tmini 拉空 → _fetch_au9999_spot()（东财 118.AU9999 → 金投网 JO_71 q5）
-4. 全拉空 → 退日线，黄金标「期货口径, 现货不可用偏高~22元」
+**黄金取价五级降级链**（本机最全, 海外 IP 也能跑）：
+1. 东财 118.AU9999 实时现货(https, f43 量级自适应)
+2. 金投网 JO_71 q5 现货
+3. 上金所官网挂牌 akshare spot_quotations_sge
+4. 上金所官网直连 /graph/quotations(与 3 互校取更新)
+5. 全挂 → 盯价实时主链(OIL_GOLD_SKILLS_ROOT 探测) → 仍无则退日线, 黄金标「期货口径, 现货不可用偏高~22元」

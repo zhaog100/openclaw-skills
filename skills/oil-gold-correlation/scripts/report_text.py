@@ -78,7 +78,7 @@ def _fetch_au9999_spot():
     """上金所 Au9999 现货价(贴官家实盘下单锚)。优先东财118.AU9999, 拉不到退金投网JO_71 q5。
     返回 (价, 口径标签) 或 (None, None)。"""
     import urllib.request, json, time
-    # 1) 东财 118.AU9999 (f43 单位随接口可能为"元/克"或"x100分", 按量级自适应)
+    # 1) 东财 118.AU9999 (f43 单位随接口可能为"元/克"或"×100分", 按量级自适应)
     for host in ("push2.eastmoney.com", "push2delay.eastmoney.com"):
         try:
             req = urllib.request.Request(
@@ -87,10 +87,11 @@ def _fetch_au9999_spot():
             d = json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
             f43 = (d.get("data") or {}).get("f43")
             if f43:
-                p2 = float(f43)
-                if p2 > 1000:
-                    p2 = p2 / 100.0
-                return (p2, "现货(Au9999·东财118)")
+                p = float(f43)
+                # 量级自适应: 沪金现货正常 700~1000 元/克, f43 若 >1000 则按 ×100 分母处理
+                if p > 1000:
+                    p = p / 100.0
+                return (p, "现货(Au9999·东财118)")
         except Exception:
             pass
     # 2) 金投网 JO_71 q5 (现货, 东财挂时的降级口径)
@@ -106,7 +107,7 @@ def _fetch_au9999_spot():
             return (float(q5), "现货(Au9999·金投网降级)")
     except Exception:
         pass
-    # 3) 官家11-01: 上金所官方实时挂牌(akshare spot_quotations_sge), 东财/金投网全挂时顶
+    # 3) 官家11-01: 上金所官方实时挂牌(akshare spot_quotations_sge), 东财/金投网全挂时顶 833
     _sge_ak = None
     try:
         import akshare as _ak
@@ -116,7 +117,8 @@ def _fetch_au9999_spot():
             _sge_ak = (float(rows.iloc[-1]["现价"]), "现货(Au9999·上金所官方·akshare)")
     except Exception:
         pass
-    # 4) 官家11-01: 上金所官网直连 /graph/quotations, 与 akshare 互校取更新的
+    # 4) 官家11-01: 上金所官网直连 /graph/quotations (heyue=Au99.99 现货, 末值=最新价),
+    #    与 akshare 互校, 取时间戳更新的那个(避免周五旧缓存顶掉夜盘新价)
     _sge_direct = None
     try:
         import urllib.request as _ur, json as _js
@@ -129,56 +131,68 @@ def _fetch_au9999_spot():
                 _sge_direct = (_last, "现货(Au9999·上金所官网直连)")
     except Exception:
         pass
+    # akshare 与官网直连都拿到 → 取价更接近当前盘口的(官网末值常=白盘挂单价, akshare=夜盘成交)
     if _sge_ak and _sge_direct:
+        # 官网直连末值更贴最近挂单, 若与 akshare 差<=3 视为一致取 akshare(更权威夜盘成交), 否则取官网
         return _sge_ak if abs(_sge_ak[0]-_sge_direct[0])<=3 else _sge_direct
     if _sge_ak: return _sge_ak
     if _sge_direct: return _sge_direct
     return (None, None)
 
 
+def _fetch_realtime_mainchain():
+    """盯价实时主链(官家11-02 23:12 提到取价链首位): 东财Tmini秒级盘口, 比官网挂牌价新。
+    跨平台: OIL_GOLD_SKILLS_ROOT 可配, 缺省自动探测同级 skill。返回 (价, 口径标签) 或 (None, None)。"""
+    try:
+        import importlib
+        import os as _os
+        from pathlib import Path as _P
+        _root_env = _os.environ.get("OIL_GOLD_SKILLS_ROOT")
+        _root = _P(_root_env) if _root_env else _P(__file__).resolve().parents[2]
+        for cand in (str(_root / "economic-outlook"), str(_root / "skills" / "economic-outlook"),
+                     str(_root / "skills" / "oil-gold-correlation")):
+            if _P(cand, "skills", "gold_watch_signal", "skill.py").is_file():
+                if cand not in sys.path:
+                    sys.path.insert(0, cand)
+                break
+        gws = importlib.import_module("skills.gold_watch_signal.skill")
+        rt = gws._fetch_au0_realtime()
+        if rt and rt.get("price"):
+            return (rt.get("price"), f"实时({rt.get('src_cn', '盯价主链')})")
+    except Exception:
+        pass
+    return (None, None)
+
+
 def _fetch_live_price(key, fallback_result):
-    """报告行情段取价(官家 11-02 16:40 A+B 版):
-    ① 东财实时(AUM/AGM) —— 通即用
-    ② 东财 502/拉空 → 盯价实时主链(东财现货118.AU9999→Tmini→金投网, 跟盯价同口径, 准实时)
-    ③ 主链也拉空 → 退 akshare 日线, 且标注日期 [日线·MM-DD收盘], 不冒"最新"
-    返回 (最新价, 日涨跌%, 30日%, YTD%, 口径标签) """
+    """报告行情段取价: ①盯价实时主链(秒级, 官家11-02提到首位) ②东财118.AU9999现货
+    ③金投网JO_71现货 ④上金所官网挂牌(akshare/官网直连) ⑤日线兜底。
+    返回 (最新价, 日涨跌%, 30日%, YTD%, 口径标签)"""
+    import akshare as ak
     secid_map = {"gold": "113.AUM", "silver": "113.AGM"}
     live = None
     if key in secid_map:
         live = _fetch_eastmoney_realtime(secid_map[key], div=100.0)
-    # A: 东财502 → 盯价实时主链兜底(跟盯价同口径, 沪金=Au9999现货/Tmini黄金9999, 准实时)
-    live2 = None
-    live_src = ""
-    if not live:
-        try:
-            import importlib
-            import os as _os
-            from pathlib import Path as _P
-            # 跨平台: 盯价 skill 根可配(OIL_GOLD_SKILLS_ROOT), 默认按"同 workspace 布局"往上4级自动找
-            _root_env = _os.environ.get("OIL_GOLD_SKILLS_ROOT")
-            if _root_env:
-                _root = _P(_root_env)
-            else:
-                _root = _P(__file__).resolve().parents[2]   # skills/ 目录(可移植布局: 两个 skill 同级)
-            for cand in (str(_root / "economic-outlook"), str(_root / "skills" / "economic-outlook")):
-                if _P(cand, "skills", "gold_watch_signal", "skill.py").is_file():
-                    sys.path.insert(0, cand)
-                    break
-            gws = importlib.import_module("skills.gold_watch_signal.skill")
-            rt = gws._fetch_au0_realtime()
-            if rt and rt.get("price"):
-                # 主链只覆盖黄金(沪金 Au9999); 白银仍走东财AGM/日线
-                if key == "gold":
-                    live2 = rt.get("price")
-                    live_src = rt.get("src_cn", "实时主链")
-            # 合流: Tmini主链也拉空时, 接 _fetch_au9999_spot()(东财118.AU9999→金投网JO_71 q5)再兜一层
-            if key == "gold" and not live2:
-                spot = _fetch_au9999_spot()
-                if spot and spot[0]:
-                    live2 = spot[0]
-                    live_src = "现货(" + (spot[1] or "Au9999") + ")"
-        except Exception:
-            pass
+    # 官家11-02 23:12: 取价顺序重排——实时源(盯价主链)排最前, 官网挂牌价降为兜底。
+    # 原顺序 _fetch_au9999_spot 先官网挂牌(833旧值)导致 846 实时价用不上。
+    _AU9999_TAG = None
+    if key == "gold":
+        live = None
+        _AU9999_TAG = None
+        # 1) 盯价实时主链(东财Tmini秒级, 最贴盘口, 优先吃这个)
+        rt = _fetch_realtime_mainchain()
+        if rt:
+            live = rt[0]
+            _AU9999_TAG = rt[1]
+        # 2) 东财/金投网/上金所官网现货链(实时主链挂时顶上)
+        if not live:
+            spot = _fetch_au9999_spot()
+            if spot:
+                live = spot[0]
+                _AU9999_TAG = spot[1]
+        # 3) 全挂 → 退日线, 明确标现货不可用
+        if not live:
+            _AU9999_TAG = "现货不可用, 退日线(期货口径, 偏高~22元)"
     # 拉 akshare 日线算 30日/YTD(历史走势还是用日线, 实时价只作"最新")
     df = fetch_data(key, period="365d")
     try:
@@ -187,40 +201,27 @@ def _fetch_live_price(key, fallback_result):
             change_30d = (df['Close'].iloc[-1] / df['Close'].iloc[-30] - 1) * 100
             change_ytd = (df['Close'].iloc[-1] / df['Close'].iloc[0] - 1) * 100
             change_1d = df['Close'].pct_change().iloc[-1] * 100
-            # B: 日线缓存对应日期(给退日线时标注用)
-            try:
-                import pandas as _pd
-                last_day = str(df.index[-1])[:10]
-            except Exception:
-                last_day = ""
-            prev = df['Close'].iloc[-2] if len(df) >= 2 else latest
             if live:
-                # 日涨跌: 东财实时价 vs akshare前一日收盘(同量级)
+                # 日涨跌: 实时价 vs akshare前一日收盘(同量级)。
+                # 白银: akshare白银Close=元/千克(12763), 东财AGM f43=130.72(已是元/千克量级, 直接取)
+                # 黄金: 官家11-01改现货口径。东财118.AU9999 / 金投网JO_71 q5 都是"元/克"量级(833.x),
+                #       与 akshare黄金Close(元/克)直接比, 不÷100(期货AUM才是8xxxx÷100, 已弃用)。
+                prev = df['Close'].iloc[-2] if len(df) >= 2 else latest
                 if key == "silver":
-                    live_cmp = live * 100.0
-                    latest = live_cmp
-                    change_1d = (live_cmp / prev - 1) * 100
-                else:
+                    latest = live          # 东财AGM f43 已是元/千克量级, 直接取
                     change_1d = (live / prev - 1) * 100
+                else:  # gold: 现货 833.x, 不÷100
                     latest = live
-                tag = "实时(东财)"
-            elif live2:
-                # A: 东财502, 走盯价主链(准实时, 跟盯价同口径)
-                if key == "silver":
-                    live_cmp = live2 * 100.0
-                    latest = live_cmp
-                    change_1d = (live_cmp / prev - 1) * 100
-                else:
-                    change_1d = (live2 / prev - 1) * 100
-                    latest = live2
-                tag = f"实时({live_src})"
-            else:
-                # B: 全退日线, 标注日期(几号收盘), 不冒"最新"
-                # 官家11-02强化: 黄金退日线时是期货口径(AUM), 虚高~22元 vs 现货, 必须标明白防误读
+                    change_1d = (live / prev - 1) * 100
+                tag = "现货" if key == "gold" else "实时(东财)"
                 if key == "gold":
-                    tag = f"日线{('·' + last_day + '收盘') if last_day else ''}(期货口径, 现货不可用偏高~22元)"
+                    tag = _AU9999_TAG if '_AU9999_TAG' in dir() else "现货(Au9999)"
+            else:
+                # 现货源全挂, 回退 akshare 日线。黄金此时是期货口径(虚高~22元), 必须标明白不冒充现货
+                if key == "gold" and _AU9999_TAG:
+                    tag = _AU9999_TAG
                 else:
-                    tag = f"日线{('·' + last_day + '收盘') if last_day else ''}"
+                    tag = "日线"
             return latest, change_1d, change_30d, change_ytd, tag
     except Exception:
         pass
@@ -261,12 +262,12 @@ def _fetch_etf_gold_wave():
     except Exception:
         return None
 
-def _calc_gold_spread(intl_price, gold_result, live_hint=None):
-    """内外价差：国际价换算人民币克价 vs 沪金，判贴水/升水。需汇率，取不到则降级。
-    官家11-03: 沪金价优先用 live_hint(实时 Tmini/东财), 没有才退 akshare latest, 不让隔日缓存冒"现价"。"""
+def _calc_gold_spread(intl_price, gold_result, spot_price=None):
+    """内外价差：国际价换算人民币克价 vs 沪金现货，判贴水/升水。需汇率，取不到则降级。
+    官家11-01: 对标上金所现货价(spot_price=833), 不用期货主力(855)。"""
     try:
-        g_latest = live_hint
-        if not g_latest and isinstance(gold_result, dict):
+        g_latest = spot_price if spot_price else None
+        if g_latest is None and isinstance(gold_result, dict):
             g_latest = gold_result.get("latest")
         if not g_latest:
             return ""
@@ -350,27 +351,48 @@ def get_tech_summary(result):
         parts.append(f"ADX={adx:.0f}{adx_regime}")
     return " | ".join(parts) if parts else "数据不足"
 
-def get_entry_exit(result, geo_risk=0):
+def get_entry_exit(result, geo_risk=0, spot_price=None):
+    """官家11-01: 黄金买卖点按"上金所现货价 + 20日/60日高低点动态滚动"算, 不写死期货价。
+    spot_price 传上金所现货(833); result['sr'] 的 support/resistance 来自日线 SR, 用现货价重锚。"""
     if result is None:
         return None, None, None
     latest = result.get('latest', 0)
+    # 黄金: 优先用现货价(833)当"现价锚"; 没传则退回日线 latest
+    base = spot_price if spot_price else latest
     sr = result.get('sr', {})
     boll = result.get('boll', {})
     score = result.get('score', 50)
-    support1 = sr.get('support1')
-    support2 = sr.get('support2')
-    resistance1 = sr.get('resistance1')
+    # 官家11-01: 黄金现货口径 → 支撑/阻力用"现货价"重锚(日线 SR 是期货 855, 现货已破它)
+    # 买点=现货价下方一档, 卖点/目标=现货价上方 MA20 区, 全跟现货 833 走
+    if spot_price:
+        support1 = round(spot_price * 0.985, 1)   # 买点: 现货 -1.5%(低位加仓档)
+        support2 = round(spot_price * 0.95, 1)    # 极端位: 现货 -5%(破档加仓)
+        resistance1 = round(spot_price * 1.06, 1) # 目标一档: 现货 +6%(反弹 MA20)
+    else:
+        support1 = sr.get('support1')
+        support2 = sr.get('support2')
+        resistance1 = sr.get('resistance1')
+    # 现货价已在支撑/阻力下方 → 按"破档"语义提示, 锚点用 20日/60日高低而非最新 close
     if not support1 and isinstance(boll, dict): support1 = boll.get('lower')
     if not resistance1 and isinstance(boll, dict): resistance1 = boll.get('upper')
+    # 现价 vs 档位: 现货已破支撑 → 提示"已破, 低位加仓/等企稳"; 未破 → 常规回踩
+    below_s1 = support1 and base <= support1
     if score >= 60:
-        entry = support1 if support1 else latest * 0.98
-        entry_note = f"回踩¥{entry:.0f}附近分批建仓"
+        if below_s1:
+            entry = support1
+            entry_note = f"已破支撑¥{support1:.0f}, 低位分批加仓(越跌越敢加)"
+        else:
+            entry = support1
+            entry_note = f"回踩¥{entry:.0f}附近分批建仓"
     elif score >= 40:
-        if support1:
+        if below_s1:
+            entry = support2 or support1
+            entry_note = f"已破支撑¥{support1:.0f}, 等¥{entry:.0f}再考虑(低位加仓档)"
+        elif support1:
             entry = support1 * 0.99
             entry_note = f"等¥{entry:.0f}附近再考虑"
         else:
-            entry = latest * 0.97
+            entry = base * 0.97
             entry_note = f"等¥{entry:.0f}以下再考虑"
     else:
         if support2:
@@ -389,13 +411,13 @@ def get_entry_exit(result, geo_risk=0):
     elif isinstance(boll, dict) and boll.get('lower'):
         stop_loss = boll['lower']
     else:
-        stop_loss = latest * 0.95
+        stop_loss = base * 0.95
     if resistance1:
         target = resistance1
     elif isinstance(boll, dict) and boll.get('upper'):
         target = boll['upper']
     else:
-        target = latest * 1.05
+        target = base * 1.05
     return entry_note, stop_loss, target
 
 def _compute_macro_label():
@@ -490,9 +512,12 @@ def _generate_report_inner():
         ('🛢️ 原油', 'wti', oil_result),
     ]
 
+    _gold_spot = None   # 官家11-01: 黄金现货口径价(833), 供内外价差/操作建议用
     for label, key, result in instruments_data:
         try:
             latest, c1, c30, cytd, tag = _fetch_live_price(key, result)
+            if key == "gold":
+                _gold_spot = latest
             unit = '/千克' if key == 'silver' else '/克'
             lines.append(f'  {label} ¥{latest:,.0f}{unit}  [{tag}]'
                          f'  日{c1:+.2f}%'
@@ -505,12 +530,7 @@ def _generate_report_inner():
     if intl.get("ok"):
         lines.append(f'  🌍 国际现货金 ${intl["price"]:.2f}/盎司  {intl.get("change", "n/a")}')
         # 内外价差（贴水/升水）：换算值 vs 沪金；需汇率，取最近报告值或降级
-        # 修: 价差栏"沪金"必须走同一份现价(实时优先), 不许用 akshare 隔日缓存旧值
-        try:
-            _g_live, _g_tag = _fetch_live_price("gold", gold_result)[0], _fetch_live_price("gold", gold_result)[4]
-        except Exception:
-            _g_live, _g_tag = None, ""
-        spread_txt = _calc_gold_spread(intl["price"], gold_result, live_hint=_g_live)
+        spread_txt = _calc_gold_spread(intl["price"], gold_result, _gold_spot)
         if spread_txt:
             lines.append(f'  ⚖️ 内外价差: {spread_txt}  （价差为相对参考，非无风险套利信号）')
     else:
@@ -541,6 +561,9 @@ def _generate_report_inner():
             rsi = result.get('rsi', 50) or 50
             verdict, v_emoji = score_verdict(score)
             _lp = _fetch_live_price(key, result)[0]  # 官家10-27: 仪表盘和行情段同一口(东财实时优先), 不再各取各的
+            # 官家11-01: 黄金仪表盘也用现货口径(_gold_spot=833), 不显示期货 855
+            if key == 'gold' and _gold_spot:
+                _lp = _gold_spot
             price = f'¥{_lp:,.0f}'
             sig = result.get('macd', {}).get('signal', '+0') if isinstance(result.get('macd'), dict) else '+0'
             bar = score_to_bar(score)
@@ -645,7 +668,8 @@ def _generate_report_inner():
         if result:
             score = result.get('score', 50)
             verdict, v_emoji = score_verdict(score)
-            entry_note, stop_loss, target = get_entry_exit(result, geo_risk=risk_score)
+            _sp = _gold_spot if key == 'gold' else None   # 黄金传现货价, 白银/原油不用现货
+            entry_note, stop_loss, target = get_entry_exit(result, geo_risk=risk_score, spot_price=_sp)
             lines.append(f'  {label} {v_emoji} {verdict}')
             if entry_note:
                 lines.append(f'    策略: {entry_note}')

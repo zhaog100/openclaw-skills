@@ -318,7 +318,8 @@ if __name__ == "__main__":
             result = func_map[args.method](df)
             logger.info(json.dumps(result, indent=2, default=str))
     except Exception as e:
-        logger.info(f"\n❌ 分析失败: {e}")
+        print(f"\n❌ 分析失败: {e}")
+        sys.exit(1)
     finally:
         signal.alarm(0)  # 取消超时
 

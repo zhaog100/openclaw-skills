@@ -107,9 +107,9 @@ def analyze():
             'resist': resist_30,
         }
         logger.info()
-    
+
     # 联动性分析
-    logger.info('=== 联动性分析 ===')
+    print('=== 联动性分析 ===')
     gold_df = _fetch_akshare_single('gold', '90d')
     silver_df = _fetch_akshare_single('silver', '90d')
     oil_df = _fetch_akshare_single('wti', '90d')

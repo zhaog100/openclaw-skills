@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 # -*- coding: utf-8 -*-
 """
 经济分析平台 V3.1 — gold_watch_signal 微技能（单一职责）
@@ -39,109 +38,173 @@ def _fetch_au0(n_days=120):
     except Exception:
         return None
 
-def _fetch_au0_tmini() -> dict:
-    """Tmini 无key黄金行情(官家 11-01 18:07 拍板, 新加坡机实测拉通)。
-    源: tmini.net/api/gold-price (限流5次/分, 准实时, 1分钟级更新)。
-    取 "黄金_9999" 的 today_price(833, 现货口径, 贴东财f43/金投网q5)。
-    弃: T+D/纸黄金/金条/折算/昨收。返回 {price, ts, src} 或 {}。"""
+def _em_parse(raw: bytes) -> dict:
+    """东财 stock/get 响应解析: 兼容纯JSON / jQuery JSONP / utf-8-sig BOM。返 data dict 或 {}."""
+    s = raw.decode("utf-8-sig", "ignore").lstrip()
+    if s.startswith("jQuery") or s[0] == "(":
+        i = s.index("("); j = s.rfind(")"); s = s[i+1:j if j > 0 else len(s)]
+    if not s or s[0] != "{":
+        return {}
     try:
-        import urllib.request as _ur, json as _json, re as _re
-        url = "https://tmini.net/api/gold-price"
-        req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://tmini.net/"})
-        raw = _ur.urlopen(req, timeout=12).read().decode("utf-8", "ignore")
-        d = _json.loads(raw)
-        for m in d.get("metals", []):
-            nm = m.get("name", "")
-            if "9999" in nm or "Au" in nm:
-                tp = m.get("today_price")
-                if tp and 800 < float(tp) < 950:
-                    ts_ms = m.get("updated_at") or 0
-                    return {"price": round(float(tp), 2), "ts": int(ts_ms) // 1000 if ts_ms else 0,
-                            "src": "Tmini·" + nm, "src_cn": "Tmini·" + nm,
-                            "unit": m.get("unit", "元/克"), "code": "tmini_gold_9999"}
+        return (json.loads(s).get("data")) or {}
+    except Exception:
+        return {}
+
+
+def _em_scale(v):
+    """东财 118 市场字段: >10000 视为 ×100(2位小数), 否则原值。"""
+    if v is None:
+        return None
+    return round(v / 100, 2) if v > 10000 else v
+
+
+def _fetch_au0_realtime() -> dict:
+    """沪金现货实时价降级链(官家11-01定稿, 按官方UI实盘口径):
+    ① 主源: 东财 118.AU9999(上金所现货), 取 f43(最新价)。多节点并发+单节点2.5s超时。
+       官家11-01实探: https 裸直连被防爬断连; http://push2 + push2delay 可通(833.0)。
+    ② 降级: 东财全挂 → 金投网 jijinhao JO_71, 取 q5(最新价)。q2 是昨收, 勿混(854.76虚高~22元根子)。
+    官家10-28锁死: 纸黄金/金条/国际金折算 一律不当现货基准; 两源都空才静默, 绝不冒值。"""
+    import concurrent.futures as _cf
+    UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+          "Referer": "https://quote.eastmoney.com/", "Accept": "*/*"}
+    def _try_node(node):
+        try:
+            raw = urllib.request.urlopen(urllib.request.Request(node["url"], headers=UA), timeout=2.5).read()
+            data = _em_parse(raw)
+            f43 = data.get("f43")
+            if f43 is None and data.get("f19") is not None:
+                f43 = data.get("f19")   # f43/f19/f45 三者一致=最新价, 互为冗余验证
+            if f43 is not None:
+                price = _em_scale(f43)
+                return (price, data.get("f86", ""), node["name"],
+                        _em_scale(data.get("f19")), _em_scale(data.get("f45")))
+        except Exception:
+            pass
+        return None
+    F = "?invt=2&fltt=1&fields=f43,f57,f58,f44,f45,f46,f19,f60,f86&secid=118.AU9999&ut=fa5fd1943c7b386f172d6893dbfba10b"
+    # 官家11-01: http push2 优先(实测最稳) + push2delay + 其余 https 节点兜底
+    nodes = [
+        {"name": "push2(http)", "url": "http://push2.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "push2delay(https)", "url": "https://push2delay.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "push2(https)", "url": "https://push2.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "2(https)", "url": "https://2.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "3(https)", "url": "https://3.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "4(https)", "url": "https://4.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "5(https)", "url": "https://5.eastmoney.com/api/qt/stock/get" + F},
+        {"name": "11(https)", "url": "https://11.eastmoney.com/api/qt/stock/get" + F},
+    ]
+    with _cf.ThreadPoolExecutor(max_workers=8) as _ex:
+        for _res in _ex.map(_try_node, nodes):
+            if _res:
+                p, ts, name, f19v, f45v = _res
+                out = {"price": p, "ts": ts,
+                       "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货(" + name + ")",
+                       "host": name}
+                # 官家11-01: f43/f19/f45 交叉验证(官方UI实盘口径, 三者应一致=最新价)
+                out["em_verify"] = {"f43": p, "f19": f19v, "f45": f45v,
+                                     "consistent": all(x is not None and abs(x - p) < 0.5 for x in (f19v, f45v))}
+                return out
+    # ② 降级: 东财全挂 → 金投网 jijinhao JO_71, 取 q5(最新价), 绝不用 q2(昨收, 虚高~22元根子)
+    jj = _fetch_au0_jijinhao()
+    if jj.get("price"):
+        jj["degraded"] = True   # 降级口径标记, outcome 层据此"只展示不自动触发"
+        return dict(jj)
+    # 官家11-01修正: Dailyhq 是日终快照/静态日行情(非实时), 不挂实时降级链, 只当 K线/档位基准
+    # ③ 降级: 上金所官网实时挂牌 /graph/quotations (heyue=Au99.99 现货, 准实时快照)
+    sd = _fetch_sge_direct()
+    if sd.get("price"):
+        sd["degraded"] = True   # 降级口径标记, outcome 层据此"只展示不自动触发"
+        return dict(sd)
+    return {}
+
+
+JH_MOB_UA = ("Mozilla/5.0 (Linux; Android 16; Pixel 10) AppleWebKit/537.36 "
+             "(KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36")
+
+
+def _fetch_sge_dailyhq() -> dict:
+    """上金所官网官方日行情 /graph/Dailyhq (官家11-01给, 仅作 K线/档位基准, 不作实时下单锚).
+    POST instid=Au99.99, 返回 time=[[date,open,high,low,close],...], 取末行 close=最新官方日价.
+    **口径=日终快照/静态日行情, 非实时**(末行是最近交易日日收, 如 10-30 收 867, 比实时 833 偏高,
+    若当实时锚会误判破档). 用作 20/60 日高低点/MA/档位计算的历史日线源; 非交易时段/休市返回上次行情."""
+    try:
+        import urllib.request as _ur, json as _js, urllib.parse as _up
+        data = _up.urlencode({"instid": "Au99.99"}).encode()
+        req = _ur.Request("https://www.sge.com.cn/graph/Dailyhq", data=data,
+            headers={"User-Agent":"Mozilla/5.0","Referer":"https://www.sge.com.cn/",
+                     "X-Requested-With":"XMLHttpRequest","Content-Type":"application/x-www-form-urlencoded"})
+        d = _js.loads(_ur.urlopen(req, timeout=10).read().decode("utf-8","ignore"))
+        rows = d.get("time")
+        if rows:
+            last = rows[-1]   # [date, open, high, low, close]
+            close = float(last[4])
+            if close:
+                return {"price": close, "ts": last[0],
+                        "src":"上金所官网官方日行情Au9999","src_cn":"上金所官网官方日行情Au9999","host":"sge.com.cn"}
     except Exception:
         pass
     return {}
 
 
-def _fetch_au0_realtime() -> dict:
-    """沪金现货实时价降级链(官家11-01 18:07 拍板, 新加坡机海外IP):
-    ① 东财 118.AU9999(上金所现货, 多节点) —— 通即用, 取 f43
-    ② 东财 502/拉空 → Tmini 黄金_9999(无key准实时, 1分钟级, 新加坡机稳拉通, today_price=833)
-    ③ Tmini 限流/拉空 → 金投网 JO_71 [黄金9999] 取 q5(最新成交, 抖但兜底)
-    ④ 三条全拉空 → 返回空 dict, 上层静默(不冒T+D/纸黄金/折算/旧值)
-    弃: 上金所官方Dailyhq(静态快照+超时)、T+D、纸黄金、金条、877折算、861期货、867昨收、f60/q2昨收"""
-    # ① 主源: 东财 118.AU9999, 多 host 并发+单节点2s超时
-    import concurrent.futures as _cf
-    def _try_host(host):
-        try:
-            url = (f"https://{host}.eastmoney.com/api/qt/stock/get"
-                   "?secid=118.AU9999&fields=f43,f57,f58,f86")
-            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-            d = json.loads(urllib.request.urlopen(req, timeout=2).read().decode("utf-8", "ignore"))
-            data = d.get("data") or {}
-            f43 = data.get("f43")
-            if f43 is not None:
-                price = f43 / 100.0 if f43 > 10000 else f43
-                return (round(price, 2), data.get("f86", ""), host)
-        except Exception:
-            pass
-        return None
-    with _cf.ThreadPoolExecutor(max_workers=6) as _ex:
-        for _res in _ex.map(_try_host, ["push2", "2", "3", "4", "5", "11", "push2his"]):
-            if _res:
-                p, ts, host = _res
-                return {"price": p, "ts": ts, "src": "东财·上金所Au9999现货", "src_cn": "东财·上金所Au9999现货", "host": host}
-    # ② 东财 502 → Tmini 黄金_9999(官家11-01 18:07 拍板, 无key准实时, 新加坡机稳拉通, today=833)
-    tmini = _fetch_au0_tmini()
-    if tmini:
-        return tmini
-    # ③ Tmini 限流/拉空 → 金投网 JO_71 [黄金9999] 取 q5(最新成交, 抖但兜底)
-    jj = _fetch_au0_jijinhao()
-    if jj and ("黄金9999" in jj.get("src", "") or "Au9999" in jj.get("src", "")):
-        return jj
-    # ④ 三条全拉空 → 静默, 绝不拿 T+D/纸黄金/旧值冒充现货
+def _fetch_sge_direct() -> dict:
+    """上金所官网直连 sge.com.cn /graph/quotations (第3路降级, 国内直连, 官家11-01加).
+    heyue 字段=当前标的(Au99.99 现货), data 末值=最新挂单价。
+    **口径=官网准实时快照/第三方转源, 非 tick 级官方实时**(上金所无面向公众的官方实时API, tick 只走会员终端/Wind/Bloomberg)。
+    东财/金投网全挂时顶上, 绝不用 au0期货日线。返回 {price, ts, src, src_cn, host} 或 {}."""
+    try:
+        import urllib.request as _ur, json as _js
+        req = _ur.Request(
+            "https://www.sge.com.cn/graph/quotations",
+            headers={"User-Agent": "Mozilla/5.0", "Referer": "https://www.sge.com.cn/",
+                     "X-Requested-With": "XMLHttpRequest"})
+        d = _js.loads(_ur.urlopen(req, timeout=10).read().decode("utf-8", "ignore"))
+        if d.get("heyue") == "Au99.99" and d.get("data"):
+            last = float(str(d["data"][-1]).replace(",", "") or 0)
+            if last:
+                return {"price": last, "ts": d.get("delaystr", ""),
+                        "src": "上金所官网直连Au9999现货", "src_cn": "上金所官网直连Au9999现货",
+                        "host": "sge.com.cn"}
+    except Exception:
+        pass
     return {}
 
 
-
 def _fetch_au0_jijinhao(code=None) -> dict:
-    """金投网 jijinhao 实时 code(官家 10-26 给的 m.cngold.org/quote/gjs/ 页)。
-    官家10-29 15:06: 只认 JO_71[黄金9999](页面主报价口, 贴现货口径); 纸黄金/金条/T+D 全弃
-    code=指定code拉; code=None 默认 JO_71。返回 {price, ts, src} 或 {}。"""
+    """金投网 jijinhao 实时(官家 10-26 给 m.cngold.org/quote/gjs/ 页; 官家 11-01 定稿)。
+    接口 = quoteCenter/realTime.htm?codes=... (官家 11-01 指定, 多 code 一次拉全量行情)。
+    只认 JO_71[黄金9999]=上金所 Au9999 现货主报价口; 纸黄金/金条/T+D 全弃。
+    **取 q5(最新价)**, 绝不用 q2(昨收/前结算, 虚高~22元, 是 854.76 vs 833 偏高根子)。
+    响应是 `var quote_json = {...}` 包装(官家 11-01 实测), 须剥壳再按 code 匹配。
+    code=None 默认 JO_71。返回 {price, ts, src} 或 {}。"""
     try:
         import urllib.request as _ur, re as _re
-        codes = [code or "JO_71"]
-        url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ",".join(codes)
-        req = _ur.Request(url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://m.cngold.org/"})
+        want = code or "JO_71"
+        # 官家11-01指定: 多 code 全量行情口(官方页面一次拉 17 个 code), JO_71 在内
+        ALL = ("JO_9753,JO_92226,JO_9754,JO_71,JO_70,JO_73,JO_72,JO_75,JO_9751,JO_9752,"
+               "JO_92224,JO_92225,JO_92276,JO_76,JO_74,JO_92277,JO_92278")
+        url = "https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + ALL + "&_=" + str(__import__("time").time_ns() // 10**6)
+        req = _ur.Request(url, headers={"User-Agent": JH_MOB_UA, "Referer": "https://m.cngold.org/"})
         raw = _ur.urlopen(req, timeout=6).read().decode("utf-8", "ignore")
-        # 官家10-28: 只认 黄金T+D(上金所口径), 禁纸黄金/金条(虚高冒充现货)
-        # 官家10-28 22:48: 按官家给的金投网黄金9999页(jjs_hj9999.html)的 code,
-        # JO_92225 [i黄金9999] = 真·黄金9999现货口径(865.6, 贴官家网页866)
-        # 弃 JO_9753(黄金T+D, 口径偏) 和 JO_283972/42760(纸黄金, 虚高~5元)
-        # 官家10-29 10:13 锁死: 金投网黄金9999页(jjs_hj9999.html)主报价code=JO_71 [黄金9999](868.99, 贴官家网页869)
-        # 弃 JO_92226/JO_9753(黄金T+D, 口径偏)、纸黄金/金条(虚高冒充现货)
-        # 金投网 10:12 实拉: JO_71=868.99[黄金9999] 主报价口, 列表口(54code)无JO_71, 须单独指定
-        PREFER = ["JO_71"]   # 黄金9999 = 上金所 Au9999 现货, 贴官家网页 869 一带
-        for want in (PREFER if code is None else [code]):
-            m = _re.search(r'"' + want + r'"\s*:\s*\{(.{0,500})', raw)
-            if not m: continue
+        # 直接对整段 raw 匹配: `var quote_json = {...}` 里的 "JO_71" 带引号在原文中完整存在,
+        # 不必剥壳(贪婪 \{[\s\S]*\} 会把前引号吃掉导致带引号匹配失败)
+        m = _re.search(r'"' + want + r'"\s*:\s*\{(.{0,600})', raw)
+        if m:
             seg = m.group(1)
-            # 官家11-01 14:00拍板: 金投网JO_71黄金9999 取 q5(最新成交现价), 不是我之前误用的 q2(昨收/结算)
-            # q5=最新成交(贴盘面833一带), 拉不到退 q4, 再退 q63
+            # 官家11-01定稿: 最新价 = q5(=q4=q63=833 同族); q2/q64=昨收854.76 绝不用
             q5 = _re.search(r'"q5"\s*:\s*([\d.]+)', seg)
             q4 = _re.search(r'"q4"\s*:\s*([\d.]+)', seg)
             q63 = _re.search(r'"q63"\s*:\s*([\d.]+)', seg)
             tm = _re.search(r'"time"\s*:\s*(\d+)', seg)
             nm = _re.search(r'"showName"\s*:\s*"([^"]+)"', seg)
-            val_q = (q5 or q4 or q63)
-            if val_q:
-                val = float(val_q.group(1))
+            if q5:
+                val = float(q5.group(1))
                 if 800 < val < 950:
-                    name = nm.group(1) if nm else "黄金9999"
+                    src = "金投网·" + (nm.group(1) if nm else "黄金9999")
                     return {"price": round(val, 2), "ts": int(tm.group(1)) if tm else 0,
-                            "src": "金投网·" + name, "src_cn": "金投网·" + name,
-                            "code": want, "field": val_q.re.group(0).split('"')[1] if val_q else "q5"}
+                            "src": src, "src_cn": src, "code": want, "q5": val,
+                            # q5/q4/q63 交叉验证(官方UI口径, 三者应一致=最新价 833)
+                            "jh_verify": {"q5": val, "q4": float(q4.group(1)) if q4 else None,
+                                          "q63": float(q63.group(1)) if q63 else None}}
     except Exception:
         pass
     return {}
@@ -424,13 +487,21 @@ class GoldWatchSignalSkill(BaseSkill):
         # 现货K线拉空只影响档位、绝不退 au0期货日线(861) 或国际金折算(877) 当基准
         # 15:12实拉: au0_rt=866.69拉到但sh_equiv=None → else分支(503行)把拉到价丢了
         # 修死: K线拉空时基准仍用 au0_rt, 档位退 au0期货日线算; 两现货源全空才静默
-        if not au0_rt.get("price"):
+        # 官家11-01降级: 东财AU9999全挂时, 第二现货源=金投网jijinhao realTime JO_71(黄金9999现货, 准实时)
+        au0_rt_eff = au0_rt   # 兼容: 若 au0_rt 为空, _fetch_au0_realtime 已自动降级到 jijinhao, 这里 au0_rt_eff 即降级结果
+        if not au0_rt_eff.get("price"):
             out["success"] = False
-            out["price_basis"] = "现货实时价不可用, 本轮静默(不触发申购, 不退期货au0/国际金折算)"
+            out["price_basis"] = "现货实时价不可用(东财AU9999+金投网jijinhao全挂), 本轮静默(不触发申购, 不退期货au0/国际金折算)"
             out["intl_ref_only"] = {"usd": xau, "sh_conv": round(xau * FX / G_PER_OZ, 2) if xau else None,
                                       "note": "仅国际金参考, 绝不冒充现货/不触发申购"}
             return out
-        base = round(au0_rt["price"], 2)   # 基准=现货实时价(东财118.AU9999 865.9/866一带), 永不退期货861/国际金877
+        base = round(au0_rt_eff["price"], 2)   # 基准=现货实时价(东财AU9999优先, 挂则金投网jijinhao JO_71降级), 永不退期货861/国际金877
+        out["au0_realtime"] = base
+        # 官家11-01: _fetch_au0_realtime 已在降级时(东财全挂→金投网)给 dict 打 degraded=True
+        # 直接读那个标记; 不要再用 not price and price 反推(au0_rt_eff==au0_rt 时恒 False, 14:24 实测坑)
+        _is_degraded = bool(au0_rt_eff.get("degraded"))
+        out["au0_realtime_src"] = ((au0_rt_eff.get("src_cn") or au0_rt_eff.get("src", "")) + ("(降级)" if _is_degraded else ""))
+        out["degraded_basis"] = _is_degraded
         use_au9999 = bool(au9999_k and len(au9999_k[0]) >= lb2)
         use_au0 = (not use_au9999) and bool(au0 and len(au0[0]) >= lb2)
         if use_au9999 or use_au0:   # K线或期货日线任一拉到, 档位就能算, 基准都用 base(现货价)
@@ -450,8 +521,8 @@ class GoldWatchSignalSkill(BaseSkill):
                     "success": True, "source": "沪金基准+国际金盘中参考",
                     "price_basis": "基准=沪金(盘中=东财AUM实时862, 贴官家UI实盘; 周末=au0周五收盘), 国际金实时(7x24)仅作盘中参考",
                     "sh_equiv": base,
-                    "au0_realtime": au0_rt.get("price"),
-                    "au0_realtime_src": au0_rt.get("src_cn") or au0_rt.get("src", ""),
+                    "au0_realtime": base,
+                    "au0_realtime_src": out.get("au0_realtime_src", au0_rt_eff.get("src_cn") or au0_rt_eff.get("src", "")),
                     "agm_realtime": agm_rt.get("price"),
                     "agm_realtime_src": agm_rt.get("src", ""),
                     "intl_silver": intl_ag,
@@ -520,19 +591,13 @@ class GoldWatchSignalSkill(BaseSkill):
                 },
             })
         else:
-            # AU0/现货拉不到 → 现货价缺失, 绝不回退国际金折算价(官家10-28: 877虚警根子)
-            # 只保留中行实盘价(boc, 现货口径); 国际金XAU 仅作展示, 不赋 sh_equiv(避免冒充现货触发申购)
-            boc = cfg.get("boc_spot") or {}
-            if boc.get("buy"):
-                out.update({"success": True, "source": "boc_spot", "price_basis": "中行实盘客户买入价(现货口径)",
-                            "sh_equiv": float(boc["buy"]), "boc_buy": boc["buy"], "boc_ts": boc.get("ts", "")})
-            else:
-                # 现货/实盘全不可用 → 明标, 不参与破档判定(宁可静默, 不用国际折算价冒充现货)
-                out.update({"success": False, "source": "unavailable", "price_basis": "现货/实盘价不可用, 本轮不判定",
-                            "intl_ref_only": {"usd": xau, "sh_conv": round(xau * FX / G_PER_OZ, 2) if xau else None,
-                                               "note": "仅国际金参考, 不作基准/不触发申购"}})
-                return out
-            # 退级: 动态档算不出, 用 config 里现有固定档(若没有则无动态档, 仅提示)
+            # K线档位源全挂但基准 base 已拉到(东财 或 降级金投网 jijinhao) → 退 config 固定档, 基准不丢, success=True
+            # 绝不能静默: 基准价已拿到, 只用固定档, 照样能跑破档判定
+            out.update({
+                "success": True, "source": "沪金现货基准+固定档(K线挂, 动态档退config)",
+                "price_basis": "基准=沪金现货(东财AU9999优先/挂则金投网jijinhao降级); K线档位挂退固定档, 国际金仅作盘中参考",
+                "sh_equiv": base, "au0_realtime": base,
+            })
             out.setdefault("dyn_buy1", cfg.get("buy1"))
             out.setdefault("dyn_buy2", cfg.get("buy2"))
             out.setdefault("dyn_sell1", cfg.get("sell1"))

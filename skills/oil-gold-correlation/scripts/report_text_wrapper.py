@@ -1,13 +1,15 @@
-import logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
-
+#!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-"""
-石油黄金报告生成器 - 超时保护版 v3.4
-包装 report_text.py, 带超时保护和降级机制
-Copyright (c) 2026 思捷娅科技 (SJYKJ), License: MIT
-"""
+# 石油黄金报告生成器 - 超时保护版 v3.4
+# 石油黄金报告生成器 - 超时保护版 v3.3
+# 包装 report_text.py，带超时保护和降级机制
+# 
+# 石油黄金相关性分析模块 v3.4
+# # 版本: v3.3 | 石油黄金白银相关性分析
+# 
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 import subprocess
 import sys

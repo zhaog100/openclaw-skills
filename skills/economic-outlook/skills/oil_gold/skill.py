@@ -15,9 +15,16 @@ from skills.base import BaseSkill
 
 # 石油黄金 skill 实际路径（workspace 下，用相对定位避免硬编码绝对路径）
 def _oil_gold_dir() -> str:
+    """油金报告源真实位置。官家 11-01: 顶层 oil-gold-correlation 已按官家要求归进门面,
+    现指门面内 economic-outlook/ 自身根目录(analysis.py / report_text.py / scripts/ 都在此)。
+    旧顶层目录已删, 旧路径返回空串导致 oil_gold 全降级, 此修断链。"""
+    # 官家11-01: 油金真实脚本在 workspace 顶层 oil-gold-correlation/(analysis.py 等),
+    # 门面内 skills/economic-outlook/ 只是子技能壳, 不持有 analysis.py。
+    # __file__ = .../economic-outlook/skills/oil_gold/skill.py
+    #   dirname x3 = .../economic-outlook ; 再 dirname x1 = .../workspace/skills ; 再 dirname = workspace
     base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    ws = os.path.dirname(base)  # skills/ -> workspace
-    p = os.path.join(ws, "oil-gold-correlation")
+    workspace = os.path.dirname(os.path.dirname(base))   # economic-outlook -> skills -> workspace
+    p = os.path.join(workspace, "oil-gold-correlation")
     return p if os.path.isdir(p) else ""
 
 
@@ -89,7 +96,16 @@ class OilGoldSkill(BaseSkill):
             out["report_text"] = out.get("report_text", "") + "（推送旧报告，陈旧）"
 
         # 4. QQ 推送（门面统一推送：走 send_qq_gw.py，open_id 从 context/env 读）
+        # 回落链：context > 环境变量 > config/oil_gold.json（不硬编码 open_id 进代码）
         target = context.get("qq_target_user_id") or os.environ.get("QQ_TARGET_USER_ID", "")
+        if not target:
+            try:
+                _cf = os.path.expanduser("~/.openclaw/workspace/config/oil_gold.json")
+                import json as _json
+                _cd = _json.load(open(_cf, encoding="utf-8"))
+                target = _cd.get("qq_target_user_id", "")
+            except Exception:
+                pass
         out["push"] = {"channel": "qqbot", "method": "send_qq_gw.py (Gateway REST)",
                        "unified": True}
         if target and os.path.exists(out["report_text_path"]):

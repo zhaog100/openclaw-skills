@@ -1,13 +1,14 @@
+#!/usr/bin/env python3
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+# 石油黄金报告卡片模块 v3.4
+# 石油黄金报告卡片模块 v3.3
+# 大间距防手机重叠
+# 
+# 石油黄金相关性分析模块 v3.4
+# # 版本: v3.3 | 石油黄金白银相关性分析
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-"""
-石油黄金报告卡片模块 v3.4
-大间距防手机重叠
-Copyright (c) 2026 思捷娅科技 (SJYKJ), License: MIT, Author: 小米粒 - AI Agent
-"""
 
 import sys
 from pathlib import Path
