@@ -17,9 +17,12 @@ from skills.base import BaseSkill
 
 
 def _lottery_dir() -> str:
-    """核心代码与 skill.py 同目录(A方案, 官家11-03 18:02: 核心代码直接挪进门面微技能目录)"""
-    p = os.path.dirname(os.path.abspath(__file__))
-    return p if os.path.isfile(os.path.join(p, "lottery_stats.py")) else ""
+    """独立技能实际路径(官家11-03 18:05: 跟油金_oil_gold_dir同构, 核心代码在独立技能目录, 门面只挂适配器)"""
+    # 本文件在 economic-outlook/skills/lottery_analysis/skill.py
+    base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    ws = os.path.dirname(base)  # economic-outlook -> workspace
+    p = os.path.join(ws, "lottery-analysis")
+    return p if os.path.isdir(p) else ""
 
 
 class LotteryAnalysisSkill(BaseSkill):
