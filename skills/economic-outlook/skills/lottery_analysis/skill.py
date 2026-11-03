@@ -4,11 +4,11 @@
 """
 经济分析平台 V3.1 - lottery_analysis 微技能 (大乐透/双色球数理分析适配器)
 
-把 workspace 下 skills/lottery-analysis/lottery_stats.py 包成门面平台的一个微技能,
+核心代码(统计/曼德尔/公式/综合出号)与本适配器同目录(A方案, 官家11-03 18:02), 包成门面平台的一个微技能,
 registry 自动发现后与 oil_gold 等微技能并列。单一职责: 只做彩票 5 项数理统计
 (卡方独立性/奇偶比/大小比/和值分布/连号), 摇奖独立不预测, 输出带免责声明。
 
-照 oil_gold 适配器写法: 子进程跑 lottery_stats.py dlt|ssq, 失败隔离, 门面统一推送。
+照 oil_gold 适配器写法: 子进程跑 combined_ticket.py dlt|ssq(统计+曼德尔+纯随机综合出号), 失败隔离, 门面统一推送。
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
@@ -17,12 +17,9 @@ from skills.base import BaseSkill
 
 
 def _lottery_dir() -> str:
-    """lottery-analysis skill 实际路径(workspace 下, 相对定位不硬编码绝对路径)"""
-    # 本文件在 economic-outlook/skills/lottery_analysis/skill.py
-    base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    ws = os.path.dirname(base)  # economic-outlook -> workspace
-    p = os.path.join(ws, "lottery-analysis")
-    return p if os.path.isdir(p) else ""
+    """核心代码与 skill.py 同目录(A方案, 官家11-03 18:02: 核心代码直接挪进门面微技能目录)"""
+    p = os.path.dirname(os.path.abspath(__file__))
+    return p if os.path.isfile(os.path.join(p, "lottery_stats.py")) else ""
 
 
 class LotteryAnalysisSkill(BaseSkill):
@@ -40,9 +37,12 @@ class LotteryAnalysisSkill(BaseSkill):
             out["error"] = "lottery-analysis 目录不存在"
             out["degraded"] = True
             return out
-        script = os.path.join(og, "lottery_stats.py")
+        # A方案: 综合出号入口(统计+曼德尔+纯随机), 回退到纯统计
+        script = os.path.join(og, "combined_ticket.py")
         if not os.path.exists(script):
-            out["error"] = "lottery_stats.py 不存在"
+            script = os.path.join(og, "lottery_stats.py")
+        if not os.path.exists(script):
+            out["error"] = "combined_ticket.py/lottery_stats.py 不存在"
             out["degraded"] = True
             return out
 
