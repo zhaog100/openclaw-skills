@@ -138,5 +138,24 @@ def main():
     print("\n⚠️ 免责声明: 以上为统计描述, 摇奖独立, 历史分布不预测未来, 不构成购彩建议, 彩票本质是随机游戏")
 
 
+
+
+def random_note(kind="ssq"):
+    """纯随机生成一注(官家11-03: 严格按游戏规则无放回抽样, random.sample 均匀无偏)。
+    红球=1-33无放回抽6, 蓝球=1-16抽1(双色球); 大乐透=前区35无放回抽5+后区12抽2。
+    核心: random.sample 保证每个组合等概率, 不重复。
+    纪律: 均匀随机=公平, 但绝不改变开奖本身的随机性, 任何算法都无法预测。"""
+    import random
+    if kind == "ssq":
+        red = sorted(random.sample(range(1, 34), 6))
+        blue = random.randint(1, 16)
+        return {"kind": "双色球", "red": [f"{n:02d}" for n in red], "blue": f"{blue:02d}",
+                "note": "无放回随机(每组合等概率), 不影响开奖随机性, 不构成购彩建议"}
+    front = sorted(random.sample(range(1, 36), 5))
+    back = sorted(random.sample(range(1, 13), 2))
+    return {"kind": "大乐透", "front": [f"{n:02d}" for n in front], "back": [f"{n:02d}" for n in back],
+            "note": "无放回随机(每组合等概率), 不影响开奖随机性, 不构成购彩建议"}
+
+
 if __name__ == "__main__":
     main()
