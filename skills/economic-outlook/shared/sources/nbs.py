@@ -45,13 +45,18 @@ class NBSAdapter(BaseAdapter):
         suffix = {"M": "MM", "Q": "SS", "Y": "YY"}.get(freq, "MM")
         dts = f"{start}{suffix}-{end}{suffix}"
         payload = {"cid": cid, "indicatorIds": indicator_ids, "dts": dts, "das": [], "showType": "1"}
-        r = self.session.post(
-            url, json=payload,
-            headers={**self.headers, "Content-Type": "application/json"},
-            timeout=30,
-        )
-        r.raise_for_status()
-        return r.json().get("data", {}).get("list", [])
+        try:
+            r = self.session.post(
+                url, json=payload,
+                headers={**self.headers, "Content-Type": "application/json"},
+                timeout=30,
+            )
+            r.raise_for_status()
+            return r.json().get("data", {}).get("list", [])
+        except Exception as e:
+            # 降级容错(官家11-03): 拉不到不抛错, 返回 [None] 标记让上层明标'数据不可用', 绝不静默空
+            import logging; logging.getLogger(__name__).warning("stats.gov.cn 拉取失败: %s", str(e)[:60])
+            return [None]
 
     def fetch(self, indicator: str, **kwargs) -> list:
         preset = PRESET_CIDS.get(indicator, {})
@@ -60,14 +65,14 @@ class NBSAdapter(BaseAdapter):
             try:
                 cands = self.search_indicator(indicator)
                 if not cands:
-                    return []
+                    return self._unavailable("stats.gov.cn 指标匹配失败(403/超时)")
                 leaf = next((c for c in cands if c["isLeaf"]), cands[0])
                 cid = leaf["_id"]
                 indicators = self.get_indicators(cid)
                 indicator_ids = [i["_id"] for i in indicators[:1]]
                 freq = "M"
             except Exception:
-                return []
+                return self._unavailable("stats.gov.cn 指标匹配异常")
         else:
             cid = preset["cid"]
             indicator_ids = preset.get("indicator_ids", [])
@@ -77,6 +82,10 @@ class NBSAdapter(BaseAdapter):
         end = kwargs.get("end", "202609")
         rows = self.query_data(cid, indicator_ids, start, end, freq)
         self._sleep()
+
+        # 降级标记(rows 含 None) → 明标不可用, 不静默空
+        if any(r is None for r in (rows or [])):
+            return [{"__unavailable__": True, "source": "国家统计局", "reason": "stats.gov.cn 拉取失败(403/超时)"}]
 
         points = []
         for row in rows:

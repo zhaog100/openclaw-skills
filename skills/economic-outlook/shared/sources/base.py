@@ -16,6 +16,15 @@ class DataPoint:
     updated_at: str = ""
 
 
+class SourceUnavailable(Exception):
+    """数据源拉取失败标记(官家11-03降级纪律): 拉不到就明标'不可用/陈旧',
+    绝不静默返回[]让上层拿旧缓存冒最新。"""
+    def __init__(self, source: str, reason: str = ""):
+        self.source = source
+        self.reason = reason
+        super().__init__(f"{source}: {reason}")
+
+
 class BaseAdapter(ABC):
     name = "base"
 
@@ -35,6 +44,11 @@ class BaseAdapter(ABC):
 
     def _sleep(self, seconds: float = 0.5):
         time.sleep(seconds)
+
+    def _unavailable(self, reason: str = ""):
+        """降级标注(官家11-03): 本源拉不到 → 返回带 __unavailable__ 标记,
+        上层据此明标'数据不可用/陈旧', 绝不拿旧缓存冒最新。"""
+        return [{"__unavailable__": True, "source": self.name, "reason": reason}]
 
     def _safe_get(self, session, url: str, **kwargs):
         for attempt in range(3):

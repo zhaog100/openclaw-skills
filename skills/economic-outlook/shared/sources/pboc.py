@@ -105,15 +105,24 @@ class PBOCAdapter(BaseAdapter):
                 return points
         except Exception:
             pass
-        return []
+        # 降级容错(官家11-03): 拉不到返回 None 标记, fetch 识别后明标'不可用', 不静默空
+        return [None]
+
+    def _unavailable(self, reason):
+        return [{"__unavailable__": True, "source": "央行", "reason": reason}]
 
     def fetch(self, indicator: str, **kwargs) -> list:
         if indicator == "社融":
             try:
-                return self.fetch_social_financing(year=kwargs.get("year"))
+                pts = self.fetch_social_financing(year=kwargs.get("year"))
+                if pts and not (len(pts) == 1 and pts[0] is None):
+                    return pts
             except Exception as e:
                 print(f"[央行] 社融采集失败: {e}")
-                return []
+            return self._unavailable("pbc.gov.cn 拉取失败(404/超时)")
         if indicator in ("m1", "m2", "m0"):
-            return self.fetch_money_supply()
+            pts = self.fetch_money_supply()
+            if pts and not (len(pts) == 1 and pts[0] is None):
+                return pts
+            return self._unavailable("央行货币供应数据拉取失败")
         return []

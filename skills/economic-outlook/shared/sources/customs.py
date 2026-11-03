@@ -49,7 +49,7 @@ class CustomsAdapter(BaseAdapter):
             r.raise_for_status()
         except Exception as e:
             print(f"[海关] 请求失败: {e}")
-            return []
+            return [None]   # 降级标记: 拉不到→None, fetch 识别后明标'不可用'
         try:
             rows = r.json().get("data", {}).get("list", [])
         except Exception:
@@ -79,8 +79,13 @@ class CustomsAdapter(BaseAdapter):
         partner = partner or "美国"
 
         rows = self.query_trade(partner=partner)
+        # 降级标记(rows 含 None) → 明标不可用, 不静默空
+        if any(r is None for r in (rows or [])):
+            return [{"__unavailable__": True, "source": "海关总署", "reason": "customs.gov.cn 拉取失败(412/超时)"}]
         points = []
         for row in rows:
+            if row is None:
+                continue
             period = row.get("年份") or row.get("时间") or row.get("date", "")
             value_str = row.get("出口额") or row.get("金额") or row.get("value", "")
             if not period or not value_str:
