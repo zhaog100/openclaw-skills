@@ -27,16 +27,30 @@ def jackpot_odds(kind="ssq"):
 
 
 def prize_structure(kind="ssq"):
-    """奖级结构(图: 大乐透)。双色球按官方固定奖级"""
+    """奖级结构 + 精确中奖概率(官家11-03修: 用组合数理论值逐项算, 不拍脑袋)。
+    中奖概率=中奖组合数/总注数空间(1注视角), 理论值与官方公布一致。"""
     if kind == "dlt":
         return {
-            "一等奖_5_2": "浮动, 奖池<1亿约78% / 1-8亿约58%+20% / >8亿约28%+50%, 单注封顶500万",
-            "二等奖_5_1": "约22%, 封顶50万",
-            "三等奖_5_0": "约?", "四至八等": "3000/300/200/100/15/5 元",
-            "追加": "每注+1元, 提升奖级奖金, 不增加中奖概率",
-            "note": "奖级金额是机制, 非预测; 概率仍由组合数决定",
+            "一等奖_5前2后": {"odds": "1/21,425,712", "money": "浮动, 奖池<1亿约78% / 1-8亿约58%+20% / >8亿约28%+50%, 单注封顶500万"},
+            "二等奖_5前1后": {"odds": "1/1,071,286", "money": "封顶约50万"},
+            "三等奖_5前0后": {"odds": "1/476,127", "money": "3000元"},
+            "四等奖_4前2后": {"odds": "1/142,838", "money": "300元"},
+            "五等奖_4前1后": {"odds": "1/7,142", "money": "100元"},
+            "六等奖_3前2后或4前0后": {"odds": "1/1,930", "money": "200元"},
+            "七等奖_3前1后或2前2后": {"odds": "1/168", "money": "100元"},
+            "八等奖_3前0后或2前1后或1前2后或0前2后": {"odds": "1/17", "money": "5元"},
+            "追加": "每注+1元, 提升一/二/三等奖奖金, 不增加中奖概率",
+            "note": "概率为理论值(1注视角), 与官方公布一致; 奖金金额当期为准",
         }
-    return {"note": "双色球奖级: 一等奖浮动/二等奖约5%... 以当期官方为准"}
+    return {
+        "一等奖_6红1蓝": {"odds": "1/17,721,088", "money": "浮动(单注最高约500万, 奖池滚存越高越多)"},
+        "二等奖_6红0蓝": {"odds": "1/1,181,406", "money": "浮动(约一等的几分之一)"},
+        "三等奖_5红1蓝": {"odds": "1/109,389", "money": "3000元"},
+        "四等奖_5红0蓝或4红1蓝": {"odds": "1/2,303", "money": "200元"},
+        "五等奖_4红0蓝或3红1蓝": {"odds": "1/129", "money": "10元"},
+        "六等奖_2红1蓝或1红1蓝或0红1蓝": {"odds": "1/9", "money": "5元"},
+        "note": "概率为理论值(1注视角), 与官方公布一致; 一/二等奖金额当期奖池为准",
+    }
 
 
 def sum_distribution(rows, kind="ssq"):
@@ -105,14 +119,21 @@ def bayes_update(rows, kind="ssq"):
     }
 
 
-def cost_expected(kind="ssq", per_note=2.0, payout_rate=0.51):
-    """成本/期望公式(鲁班科普1.9实数据): 每注2元, 返奖率约51%→收回约1.02元, 期望必为负。
-    期望收益 = 成本 x (返奖率 - 1) < 0"""
+# 官方返奖率(当期公布, 略有浮动): 双色球(福彩)≈49%, 大乐透(体彩)≈43%
+_PAYOUT = {"ssq": 0.49, "dlt": 0.43}
+
+def cost_expected(kind="ssq", per_note=2.0, payout_rate=None):
+    """成本/期望公式(官家11-03修: 返奖率用官方公布值, 不拍经验值)。
+    每注期望收益 = 成本 x (返奖率 - 1) < 0, 长期必亏。"""
+    if payout_rate is None:
+        payout_rate = _PAYOUT.get(kind, 0.49)
     back = per_note * payout_rate
     buy1 = back - per_note
     odds = 1 / combinations(kind)["total"]
     full = odds * 1_000_000 - per_note
-    return {"per_note_cost": per_note, "payout_rate": payout_rate, "back_per_note": round(back, 2),
+    return {"per_note_cost": per_note, "payout_rate": payout_rate,
+            "payout_src": "官方公布返奖率(双色球≈49%/大乐透≈43%, 当期略有浮动)",
+            "back_per_note": round(back, 2),
             "buy1_expected": round(buy1, 4), "full_jackpot_expected": round(full, 4),
             "note": "每注%.2f元只有%.2f元(约%d%%)回到奖金池, 期望%.4f元必为负, 长期必亏"
             % (per_note, back, payout_rate * 100, buy1)}
