@@ -33,7 +33,7 @@ class ChinaUSSpreadSignal:
 
 
 class ChinaUSSpreadCalculator:
-    """中美利差计算器（华宝证券分位数方法）。"""
+    """中美利差计算器（分位数法: 3年回看, 利差落在历史分布的第几百分位, 80/20 分档）。出处"华宝证券"未查证, 不挂名。"""
 
     def __init__(self, lookback_years: int = 3):
         self.adapter = ChinaUSSpreadAdapter({})
