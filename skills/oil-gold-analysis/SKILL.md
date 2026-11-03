@@ -68,7 +68,9 @@ send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），不要再用。
 - 盯价沪金现货基准 = 东财 `118.AU9999`（上金所 Au9999 现货，贴官家网页口径）；`113.AUM` 是上期所期货主力，只作档位/参考，**不是现货基准**
 - 海外服务器（新加坡等）访问东财全线 502/被风控：这是 IP 问题不是接口坏，别反复重拉。备用通道优先级：CF Worker 中转（`worker.js` 已入库，CF 网页可能建不出纯 Worker、"Workers for Platforms" 是付费 $25/月，建前先确认）→ 国内小主机 `gold_proxy.py` 转发（8899 端口）→ 官家网页报数。CF/国内机均未就绪前，东财 502 = 静默，不拿 T+D/纸黄金/JO_71/昨收/折算冒充
 - `f43` 是 ×100 放大的整数（862.58 → 86258），取价 `/100.0`
-- 降级：东财 `113.AUM` → 金投网 jijinhao `codes=JO_283972` → 七河 `m.quheqihuo.com/quote/shfe-aum.html` → au0 日线（akshare，周五收盘兜底）
+- 降级（官家 2026-11-01 拍板最终版）：东财 502 → Tmini `tmini.net/api/gold-price` 无 key 准实时（`黄金_9999` 取 `today_price`，1 分钟级，海外机稳拉通；限流 5 次/分，拉空再退下一层）→ 金投网 jijinhao `JO_71` [黄金9999]（海外机能拉，时通时抖，只兜底）→ 全拉空静默。
+- 金投网 `JO_71` 取价字段（官家 2026-11-01 14:00 拍板）：取 `q5`（最新成交现价），拉不到退 `q4`/`q63`；`q2`/`q64` 是昨收/结算（854.76 一类），绝不当现价基准。东财侧 `f43`/`f19`/`f45` 三字段同指现价可互证，`f60` 是昨收弃用。
+- 报告（`report_text.py`）取价链（官家 2026-11-02 16:40 A+B 版）：东财 AUM/AGM 实时 → 东财 502 时退盯价主链（复用 `economic-outlook` 的 `_fetch_au0_realtime`，动态解析 workspace 根加进 `sys.path` 后 import，不许写死绝对路径——pre-push 关卡拦硬编码路径）→ 仍拉空才退 akshare 日线，且口径标签必须带日期 `[日线·YYYY-MM-DD收盘]`，防隔日旧价冒充最新（旧版东财 502 直接退隔日日线，报过 855 vs 实盘 835 的旧价坑）。改后单跑 `_fetch_live_price` 验证：gold 应出 `实时(Tmini·黄金_9999)`，退日线品种应见 `日线·…收盘` 标签。上金所官方 `sge.com.cn/graph/Dailyhq` 无实时 API，返日终/静态快照且海外机常超时，不进链；弃 T+D/纸黄金/金条/877 折算/861 期货/昨收 `f60`/`q2`。原 `JO_283972`（银行纸黄金，虚高冒充现货）已弃用
 - 国际金实时 `PAXG` Binance / `api.gold-api.com/price/XAU` 只作盘中参考，**不进买卖判定**
 - 沪银：东财 `113.AGM` → 金投网 jijinhao → akshare `futures_main_sina("AG0")` 日线兜底
 

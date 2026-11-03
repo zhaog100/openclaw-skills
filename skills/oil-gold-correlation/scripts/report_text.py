@@ -106,6 +106,33 @@ def _fetch_au9999_spot():
             return (float(q5), "现货(Au9999·金投网降级)")
     except Exception:
         pass
+    # 3) 官家11-01: 上金所官方实时挂牌(akshare spot_quotations_sge), 东财/金投网全挂时顶
+    _sge_ak = None
+    try:
+        import akshare as _ak
+        r = _ak.spot_quotations_sge()
+        rows = r[r["品种"] == "Au99.99"]
+        if len(rows) and rows.iloc[-1].get("现价"):
+            _sge_ak = (float(rows.iloc[-1]["现价"]), "现货(Au9999·上金所官方·akshare)")
+    except Exception:
+        pass
+    # 4) 官家11-01: 上金所官网直连 /graph/quotations, 与 akshare 互校取更新的
+    _sge_direct = None
+    try:
+        import urllib.request as _ur, json as _js
+        _req = _ur.Request("https://www.sge.com.cn/graph/quotations",
+            headers={"User-Agent":"Mozilla/5.0","Referer":"https://www.sge.com.cn/","X-Requested-With":"XMLHttpRequest"})
+        _d = _js.loads(_ur.urlopen(_req, timeout=10).read().decode("utf-8","ignore"))
+        if _d.get("heyue") == "Au99.99" and _d.get("data"):
+            _last = float(str(_d["data"][-1]).replace(",","") or 0)
+            if _last:
+                _sge_direct = (_last, "现货(Au9999·上金所官网直连)")
+    except Exception:
+        pass
+    if _sge_ak and _sge_direct:
+        return _sge_ak if abs(_sge_ak[0]-_sge_direct[0])<=3 else _sge_direct
+    if _sge_ak: return _sge_ak
+    if _sge_direct: return _sge_direct
     return (None, None)
 
 
@@ -234,11 +261,12 @@ def _fetch_etf_gold_wave():
     except Exception:
         return None
 
-def _calc_gold_spread(intl_price, gold_result):
-    """内外价差：国际价换算人民币克价 vs 沪金，判贴水/升水。需汇率，取不到则降级。"""
+def _calc_gold_spread(intl_price, gold_result, live_hint=None):
+    """内外价差：国际价换算人民币克价 vs 沪金，判贴水/升水。需汇率，取不到则降级。
+    官家11-03: 沪金价优先用 live_hint(实时 Tmini/东财), 没有才退 akshare latest, 不让隔日缓存冒"现价"。"""
     try:
-        g_latest = None
-        if isinstance(gold_result, dict):
+        g_latest = live_hint
+        if not g_latest and isinstance(gold_result, dict):
             g_latest = gold_result.get("latest")
         if not g_latest:
             return ""
@@ -477,7 +505,12 @@ def _generate_report_inner():
     if intl.get("ok"):
         lines.append(f'  🌍 国际现货金 ${intl["price"]:.2f}/盎司  {intl.get("change", "n/a")}')
         # 内外价差（贴水/升水）：换算值 vs 沪金；需汇率，取最近报告值或降级
-        spread_txt = _calc_gold_spread(intl["price"], gold_result)
+        # 修: 价差栏"沪金"必须走同一份现价(实时优先), 不许用 akshare 隔日缓存旧值
+        try:
+            _g_live, _g_tag = _fetch_live_price("gold", gold_result)[0], _fetch_live_price("gold", gold_result)[4]
+        except Exception:
+            _g_live, _g_tag = None, ""
+        spread_txt = _calc_gold_spread(intl["price"], gold_result, live_hint=_g_live)
         if spread_txt:
             lines.append(f'  ⚖️ 内外价差: {spread_txt}  （价差为相对参考，非无风险套利信号）')
     else:
