@@ -175,7 +175,10 @@ def _fetch_au0_jijinhao(code=None) -> dict:
     只认 JO_71[黄金9999]=上金所 Au9999 现货主报价口; 纸黄金/金条/T+D 全弃。
     **取 q5(最新价)**, 绝不用 q2(昨收/前结算, 虚高~22元, 是 854.76 vs 833 偏高根子)。
     响应是 `var quote_json = {...}` 包装(官家 11-01 实测), 须剥壳再按 code 匹配。
-    code=None 默认 JO_71。返回 {price, ts, src} 或 {}。"""
+    code=None 默认 JO_71。返回 {price, ts, src} 或 {}。
+    官家11-04: 权威口径页= https://m.cngold.org/quote/gjs/jjs_hj9999.html
+    (金投网黄金9999官方页, 该页报价即走本函数 api.jijinhao.com?codes=JO_71 的 q5,
+     查"降级链取的哪个口径"对着这页验)。"""
     try:
         import urllib.request as _ur, re as _re
         want = code or "JO_71"
