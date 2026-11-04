@@ -190,6 +190,37 @@ def send(message: str, target: str = QQ_TARGET) -> bool:
     return False
 
 
+def lottery_text(kind="ssq") -> str:
+    """彩票推送文案模板(官家11-04 P3): 调 lottery_analysis skill 出号 + 必带免责声明。"""
+    import sys, os, importlib
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    eo = os.path.join(os.path.dirname(os.path.dirname(base)), "economic-outlook")
+    for pp in (eo, os.path.join(eo, "skills", "lottery_analysis")):
+        if pp not in sys.path:
+            sys.path.insert(0, pp)
+    try:
+        m = importlib.import_module("skills.lottery_analysis.skill")
+        out = m.LotteryAnalysisSkill().run({"kind": kind})
+        if not out.get("success"):
+            return f"⚠️ {kind} 彩票分析降级: {out.get('error', '')}\n\n⚠️ 仅供参考，理性购彩。摇奖独立, 历史统计不改变中奖概率, 不构成购彩建议"
+        cost = out.get("cost", {})
+        lines = [
+            f"🎱 {out.get('kind_cn', kind)} 综合出号参考（{out.get('periods')} 期统计）",
+            f"  Top5: {out.get('top5')}",
+            f"  和值区间: {out.get('sum_range')}",
+            f"  贝叶斯: {out.get('bayes')}",
+            f"  曼德尔: {out.get('mandel')}",
+            f"  纯随机: {out.get('random')}",
+            f"  总组合 {out.get('comb_total', 0):,} / 每注 {cost.get('per_note_cost', 2.0)}元",
+            f"  返奖率 {cost.get('payout_rate', 0):.0%} / 单注期望 {cost.get('buy1_expected', 0):+.2f}元",
+        ]
+        lines.append("")
+        lines.append("⚠️ 仅供参考，理性购彩。" + out.get("disclaimer", "摇奖独立, 历史统计不改变中奖概率, 不构成购彩建议"))
+        return "\n".join(lines)
+    except Exception as e:
+        return f"⚠️ {kind} 彩票分析异常: {e}\n\n⚠️ 仅供参考，理性购彩。摇奖独立, 历史统计不改变中奖概率, 不构成购彩建议"
+
+
 def main():
     report_file = sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).parent.parent / "reports" / "report_text_latest.txt")
 
