@@ -26,7 +26,10 @@ class ChinaUSSpreadAdapter(BaseAdapter):
         try:
             df = ak.bond_zh_us_rate(start_date=start_date)
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "中美利差拉取失败"
+            return df
         col_map = {
             "日期": "date",
             "中国国债收益率2年": "cn_2y", "中国国债收益率5年": "cn_5y",
@@ -66,7 +69,10 @@ class ChinaUSSpreadAdapter(BaseAdapter):
             df = df[df["date"] >= pd.to_datetime(start_date)]
             return df.set_index("date")["usd_cny"].dropna()
         except Exception:
-            return pd.Series(dtype=float)
+            s = pd.Series(dtype=float)
+            s.attrs["__unavailable__"] = True
+            s.attrs["reason"] = "中美利差拉取失败"
+            return s
 
 
 def fetch_spread() -> pd.Series:

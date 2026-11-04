@@ -31,7 +31,10 @@ def fetch_etf_monthly(etf_code: str = "512400", start: str = "20170101", end: st
         ret.name = f"etf_{etf_code}"
         return ret
     except Exception:
-        return pd.Series(dtype=float)
+        s = pd.Series(dtype=float)
+        s.attrs["__unavailable__"] = True
+        s.attrs["reason"] = "行情拉取失败(11-03降级纪律)"
+        return s
 
 
 def fetch_hs300_monthly(start: str = "20170101", end: str = None) -> pd.Series:
@@ -47,7 +50,10 @@ def fetch_hs300_monthly(start: str = "20170101", end: str = None) -> pd.Series:
         ret.name = "hs300"
         return ret
     except Exception:
-        return pd.Series(dtype=float)
+        s = pd.Series(dtype=float)
+        s.attrs["__unavailable__"] = True
+        s.attrs["reason"] = "行情拉取失败(11-03降级纪律)"
+        return s
 
 
 def fetch_sector_returns(etf_code: str = "512400", start: str = "20170101", end: str = None) -> pd.DataFrame:
@@ -75,7 +81,10 @@ def fetch_sw_monthly(sw_code: str = "801050", start: str = "20100101", end: str 
         returns.name = f"sw_{sw_code}"
         return returns
     except Exception:
-        return pd.Series(dtype=float)
+        s = pd.Series(dtype=float)
+        s.attrs["__unavailable__"] = True
+        s.attrs["reason"] = "行情拉取失败(11-03降级纪律)"
+        return s
 
 
 def fetch_sector_returns_sw(sw_code: str = "801050", start: str = "20100101", end: str = None) -> pd.DataFrame:

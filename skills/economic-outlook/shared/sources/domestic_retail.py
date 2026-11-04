@@ -44,7 +44,10 @@ class DomesticRetailAdapter(BaseAdapter):
             df = df.rename(columns={"月份": "period", "当月": "total", "同比增长": "yoy"})
             return df
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "社零拉取失败"
+            return df
 
     def fetch_all_categories(self) -> pd.DataFrame:
         """获取所有分品类（当前占位，需统计局/天软）。"""

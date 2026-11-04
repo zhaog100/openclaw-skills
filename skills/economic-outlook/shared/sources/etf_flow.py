@@ -46,7 +46,10 @@ class ETFFlowAdapter(BaseAdapter):
             df["date"] = pd.to_datetime(df["date"])
             return df.sort_values("date")
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "ETF 行情拉取失败"
+            return df
 
     def fetch_sector_flow(self, sector: str, start: str = "20200101", freq: str = "W") -> pd.Series:
         """获取行业 ETF 资金流汇总。"""

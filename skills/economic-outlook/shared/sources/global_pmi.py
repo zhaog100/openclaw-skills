@@ -37,14 +37,21 @@ class GlobalPMIAdapter(BaseAdapter):
                 return df.sort_values("date")
             except Exception:
                 continue
-        return pd.DataFrame()
+        # 降级容错(11-03纪律): global/us 两个 PMI 源全挂 → 明标不可用, 不静默空
+        df = pd.DataFrame()
+        df.attrs["__unavailable__"] = True
+        df.attrs["reason"] = "global_pmi/us_pmi 全拉取失败"
+        return df
 
     def fetch_us_pmi(self) -> pd.DataFrame:
         """获取美国制造业 PMI。"""
         try:
             return ak.macro_usa_pmi()
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "akshare macro_usa_pmi 拉取失败"
+            return df
 
 
 def fetch_global_pmi() -> pd.DataFrame:

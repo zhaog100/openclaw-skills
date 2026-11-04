@@ -44,7 +44,10 @@ class ExportCategoryAdapter(BaseAdapter):
         try:
             return ak.macro_china_exports_yoy()
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "海关出口拉取失败"
+            return df
 
     def fetch_category_volume_price(self, category: str) -> dict:
         """获取品类量价拆分（占位，需海关统计月报/CEIC）。"""

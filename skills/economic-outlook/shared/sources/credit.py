@@ -23,7 +23,14 @@ class CreditAdapter(BaseAdapter):
 
     def fetch_social_financing(self) -> pd.DataFrame:
         """社融增量月度数据。"""
-        df = ak.macro_china_shrzgm()
+        try:
+            df = ak.macro_china_shrzgm()
+        except Exception:
+            # 降级容错(11-03纪律): akshare 拉不到 → 返回带 __unavailable__ 标记的 df, 上层明标'央行社融不可用'
+            df = pd.DataFrame(columns=["period","total","rmb_loan","corp_bond","equity","gov_bond"])
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "akshare macro_china_shrzgm 拉取失败"
+            return df
         col_map = {"月份": "period", "社会融资规模增量": "total", "人民币贷款": "rmb_loan",
                    "企业债券": "corp_bond", "股票融资": "equity", "政府债券": "gov_bond"}
         return df.rename(columns={k: v for k, v in col_map.items() if k in df.columns})

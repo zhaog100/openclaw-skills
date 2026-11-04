@@ -39,7 +39,10 @@ class RecruitmentAdapter(BaseAdapter):
             df["date"] = pd.to_datetime(df["date"])
             return df
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "招聘/PMI 拉取失败"
+            return df
 
     def fetch_pmi_employment(self) -> pd.DataFrame:
         """获取 PMI 从业人员指数。"""
@@ -51,7 +54,10 @@ class RecruitmentAdapter(BaseAdapter):
                 return pd.DataFrame(columns=["period", "employment"])
             return df[["period", "employment"]].dropna()
         except Exception:
-            return pd.DataFrame()
+            df = pd.DataFrame()
+            df.attrs["__unavailable__"] = True
+            df.attrs["reason"] = "招聘/PMI 拉取失败"
+            return df
 
 
 def fetch_recruitment() -> pd.DataFrame:

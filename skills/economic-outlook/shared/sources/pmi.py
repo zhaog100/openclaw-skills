@@ -18,7 +18,11 @@ class PMIAdapter(BaseAdapter):
 
     def fetch(self, indicator: str = "pmi_new_order", **kwargs) -> list:
         """获取 PMI 数据历史。macro_china_pmi 仅总值，new_order 缺失时退回制造业总值代理。"""
-        df = ak.macro_china_pmi()
+        try:
+            df = ak.macro_china_pmi()
+        except Exception as e:
+            # 降级容错(11-03纪律): PMI 源拉不到 → 返回标记, 不崩 skill
+            return [{"__unavailable__": True, "source": "国家统计局/akshare", "reason": f"macro_china_pmi 拉取失败: {str(e)[:60]}"}]
         col_map = {
             "月份": "period", "制造业PMI": "pmi", "制造业-指数": "pmi",
             "非制造业-指数": "non_pmi",
