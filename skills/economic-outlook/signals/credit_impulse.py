@@ -26,6 +26,7 @@ class CreditImpulseSignal:
     historical_hit_rate: float
     time_horizon: str = "medium"
     affected_outcomes: list = None
+    unavailable_reason: str = ""
 
     def __post_init__(self):
         if self.affected_outcomes is None:
@@ -42,7 +43,16 @@ class CreditImpulseCalculator:
         """计算当前信用脉冲。"""
         sf = self.adapter.fetch_credit_impulse_data()
         if sf.empty:
-            raise ValueError("社融数据为空")
+            # 官家11-04 P1: 拉空返回降级 signal
+            import datetime as _dt
+            today = _dt.datetime.now().strftime("%Y-%m")
+            return CreditImpulseSignal(
+            period=today, impulse=0.0, impulse_prev=0.0, impulse_change=0.0,
+            direction="unknown", strength=0.0,
+            valid_until=today, invalidation="数据不可用",
+            historical_hit_rate=0.0,
+            unavailable_reason="社融数据源拉空 (akshare 失败/限流, 5min 后可重试)",
+            )
         sf = sf.sort_values("period")
         sf["rolling_12m_credit"] = sf["broad_credit"].rolling(12).sum()
 

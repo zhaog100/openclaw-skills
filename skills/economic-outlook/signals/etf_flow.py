@@ -25,6 +25,7 @@ class ETFFlowSignal:
     historical_hit_rate: float
     time_horizon: str = "short"
     affected_outcomes: list = field(default_factory=lambda: ["stock", "fund"])
+    unavailable_reason: str = ""
 
 
 class ETFFlowCalculator:
@@ -38,7 +39,17 @@ class ETFFlowCalculator:
         """计算当前 ETF 资金流信号。"""
         flows = self.adapter.fetch_all_sector_flows(freq="W")
         if flows.empty:
-            raise ValueError("ETF 资金流数据为空")
+            # 官家11-04 P1: 拉空不再 raise, 返回降级 signal(unavailable_reason 非空), skill 层显式标注
+            import pandas as _pd
+            today = _pd.Timestamp.now().strftime("%Y-%m-%d")
+            return ETFFlowSignal(
+                period=today, direction="unknown", strength=0.0,
+                top_sectors=[], bottom_sectors=[],
+                valid_until=today,
+                invalidation="数据不可用",
+                historical_hit_rate=0.0,
+                unavailable_reason="东财 push2 限流/akshare ETF 份额数据拉空 (5min 后可重试)",
+            )
 
         flows = flows.tail(self.lookback_weeks)
         latest = flows.iloc[-1]

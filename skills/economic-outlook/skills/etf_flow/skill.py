@@ -19,6 +19,12 @@ class EtfFlowSkill(BaseSkill):
         sys.path.insert(0, base); sys.path.insert(0, os.path.join(base, "shared")); sys.path.insert(0, os.path.join(base, "signals"))
         from signals.etf_flow import ETFFlowCalculator
         sig = ETFFlowCalculator().compute()
-        return {"direction": sig.direction, "strength": sig.strength,
+        out = {"direction": sig.direction, "strength": sig.strength,
                 "top_sectors": sig.top_sectors, "bottom_sectors": sig.bottom_sectors,
                 "valid_until": sig.valid_until}
+        # 官家11-04 P1: 拉空降级标注(不出纯空 report)
+        if getattr(sig, "unavailable_reason", ""):
+            out["__unavailable__"] = True
+            out["degraded"] = True
+            out["unavailable_reason"] = sig.unavailable_reason
+        return out

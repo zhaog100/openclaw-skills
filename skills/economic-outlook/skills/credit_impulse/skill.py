@@ -19,6 +19,12 @@ class CreditImpulseSkill(BaseSkill):
         sys.path.insert(0, base); sys.path.insert(0, os.path.join(base, "shared")); sys.path.insert(0, os.path.join(base, "signals"))
         from signals.credit_impulse import CreditImpulseCalculator
         sig = CreditImpulseCalculator().compute()
-        return {"direction": sig.direction, "strength": sig.strength,
+        out = {"direction": sig.direction, "strength": sig.strength,
                 "impulse": sig.impulse, "impulse_change": sig.impulse_change,
                 "valid_until": sig.valid_until}
+        # 官家11-04 P1: 拉空降级标注
+        if getattr(sig, "unavailable_reason", ""):
+            out["__unavailable__"] = True
+            out["degraded"] = True
+            out["unavailable_reason"] = sig.unavailable_reason
+        return out

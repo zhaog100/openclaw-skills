@@ -26,6 +26,7 @@ class PMISignal:
     historical_hit_rate: float
     time_horizon: str = "short"
     affected_outcomes: list = None
+    unavailable_reason: str = ""
 
     def __post_init__(self):
         if self.affected_outcomes is None:
@@ -42,7 +43,16 @@ class PMIOrdersSignal:
         """计算当前 PMI 新订单信号。"""
         points = self.adapter.fetch()
         if len(points) < 4:
-            raise ValueError("PMI 数据不足")
+            # 官家11-04 P1: 拉空返回降级 signal
+            import datetime as _dt
+            today = _dt.datetime.now().strftime("%Y-%m")
+            return PMISignal(
+                period=today, new_order=0.0, delta=0.0, ma3_delta=0.0,
+                direction="unknown", strength=0.0,
+                valid_until=today, invalidation="数据不可用",
+                historical_hit_rate=0.0,
+                unavailable_reason="PMI 数据源拉空/样本不足 (akshare 失败/限流, 5min 后可重试)",
+            )
         df = pd.DataFrame([{"period": p.period, "value": p.value} for p in points])
         df["delta"] = df["value"].diff()
         df["ma3_delta"] = df["delta"].rolling(3).mean()
