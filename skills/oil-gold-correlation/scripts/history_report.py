@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 石油黄金相关性分析模块 v3.4
-# 历史走势增强版报告 — 在 v3.4 基础上增加：
-# # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 历史走势增强版报告 — 在 v3.3 基础上增加：
-# 1. 历史区间统计(近期高低点、回撤幅度)
-# 2. 波动率对比(哪个品种更颠簸)
-# 3. 趋势强度量化(MA偏离度)
-# 4. 关键价位汇总卡(支撑/阻力一目了然)
+# 历史走势增强版报告 v3.4
+# 1. 历史区间统计(近期高低点、回撤幅度)  2. 波动率对比  3. 趋势强度量化(MA偏离度)  4. 关键价位汇总卡
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 import sys
 import numpy as np

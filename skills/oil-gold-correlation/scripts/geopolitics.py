@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 石油黄金相关性分析模块 v3.4
-# 地缘政治分析模块 v3.3
+# 地缘政治分析模块 v3.4
 # 自动采集新闻 -> 评估对石油黄金的影响
-# 
-# 石油黄金相关性分析模块 v3.4
-# # 版本: v3.3 | 石油黄金白银相关性分析
-# 
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 import warnings
 warnings.filterwarnings('ignore')
