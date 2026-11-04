@@ -42,6 +42,18 @@ class PMIOrdersSignal:
     def compute(self, lookback_months: int = 60) -> PMISignal:
         """计算当前 PMI 新订单信号。"""
         points = self.adapter.fetch()
+        # 降级容错: 数据源拉空时 adapter 返回 [dict](带 __unavailable__), 不是 [DataPoint], 兼容两种形态
+        first = points[0] if points else None
+        if first is not None and isinstance(first, dict) and first.get("__unavailable__"):
+            import datetime as _dt
+            today = _dt.datetime.now().strftime("%Y-%m")
+            return PMISignal(
+                period=today, new_order=0.0, delta=0.0, ma3_delta=0.0,
+                direction="unknown", strength=0.0,
+                valid_until=today, invalidation="数据不可用",
+                historical_hit_rate=0.0,
+                unavailable_reason=f"PMI 源不可用: {first.get('reason','拉取失败')}",
+            )
         if len(points) < 4:
             # 官家11-04 P1: 拉空返回降级 signal
             import datetime as _dt
