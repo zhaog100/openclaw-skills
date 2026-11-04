@@ -101,9 +101,11 @@ if not msgs:
     buy_hint = action_map.get(f"buy_{round(buy1)}", "申购国泰A（打底仓）")
     sell_hint = action_map.get(f"sell_{round(sell_pts[0])}", "赎回国泰C（波段仓）")
     # 建议买入价（银行口径）= 沪金现货 + 银行加价
+    # 取价时间戳(官家11-04: 摘要标"这是几点的价", 一眼看出非旧缓存)
+    price_ts = datetime.datetime.now().strftime("%H:%M")
     summary = (
         f"📊 黄金盯价摘要（{now}）\n"
-        f"沪金现货 ¥{cur:.0f}/克，区间内未触发\n"
+        f"沪金现货 ¥{cur:.0f}/克 [价@{price_ts}]，区间内未触发\n"
         f"  离买点1(沪金¥{buy1:.0f}/建议¥{buy1_bank:.0f}) 还差 {d_buy1:.0f} 元\n"
         f"  离卖点1(沪金¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
         f"  今天: 区间内持有，到价才动\n"

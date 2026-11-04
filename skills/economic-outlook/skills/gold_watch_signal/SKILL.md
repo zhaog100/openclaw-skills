@@ -36,3 +36,5 @@ Au99.99 / Au99.95 / Au100g / Au(T+D) / mAu(T+D) / Ag(T+D) / Pt99.95。
 
 ## 不接的东西（避免过度设计）
 探数/极速/GoldAPI 等**第三方付费聚合 API（要 AppCode/appkey、限流 429、口径杂、合规灰）**——现有免费准实时转源已够低频分批需求，不引入。
+
+> 权威口径页(金投网黄金9999): https://m.cngold.org/quote/gjs/jjs_hj9999.html (官家11-04确认, 降级链q5与此页报价同源)
