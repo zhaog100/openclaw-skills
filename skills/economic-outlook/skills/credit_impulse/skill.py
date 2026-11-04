@@ -10,7 +10,7 @@ from skills.base import BaseSkill
 
 class CreditImpulseSkill(BaseSkill):
     name = "credit_impulse"
-    description = "信用脉冲信号（社融/名义GDP同比, 流动性周期）→ 周期方向"
+    description = "信用脉冲信号（Biggs 公式）→ 周期方向"
     version = "1.0.0"
 
     def run(self, context: dict) -> dict:
