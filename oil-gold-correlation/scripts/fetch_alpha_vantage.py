@@ -11,11 +11,8 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
-=======
 # 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import os
 import time
@@ -68,6 +65,7 @@ def fetch_av_daily(symbol, period="90d"):
             # 可能是限流或无效 key
             note = data.get("Note", data.get("Error Message", "未知错误"))
             logger.info(f"  ⚠️ Alpha Vantage ({symbol}): {note}")
+            print(f"  ⚠️ Alpha Vantage ({symbol}): {note}")
             return None
 
         ts = data["Time Series (Daily)"]
@@ -89,6 +87,7 @@ def fetch_av_daily(symbol, period="90d"):
 
     except Exception as e:
         logger.info(f"  ⚠️ Alpha Vantage ({symbol}): {e}")
+        print(f"  ⚠️ Alpha Vantage ({symbol}): {e}")
         return None
 
 

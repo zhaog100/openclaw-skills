@@ -11,11 +11,8 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
-=======
 # 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -71,6 +68,7 @@ class MultiSourceManager:
                 src.available = False
             status = "✅" if src.available else "❌"
             logger.info(f"  {status} 数据源 {name} ({src.currency}): {'可用' if src.available else '不可用'}")
+            print(f"  {status} 数据源 {name} ({src.currency}): {'可用' if src.available else '不可用'}")
         self._availability_checked = True
 
     def fetch(self, instrument, period="90d"):
@@ -102,6 +100,7 @@ class MultiSourceManager:
                     results[src.name] = df
             except Exception as e:
                 logger.info(f"  ⚠️ {src.name}({instrument}): {e}")
+                print(f"  ⚠️ {src.name}({instrument}): {e}")
 
         self.cache[cache_key] = results
         return results
@@ -226,6 +225,7 @@ def create_default_manager():
         })
     except ImportError:
         logger.info("  ⚠️ yfinance 未安装，跳过")
+        print("  ⚠️ yfinance 未安装，跳过")
 
     # 2. akshare（国内品种，CNY）
     try:
@@ -269,6 +269,7 @@ def create_default_manager():
         })
     except ImportError:
         logger.info("  ⚠️ akshare 未安装，跳过")
+        print("  ⚠️ akshare 未安装，跳过")
 
     # 3. Alpha Vantage（需 API Key）
     try:
@@ -325,5 +326,12 @@ if __name__ == "__main__":
             cons = mgr.consensus(data)
             if cons:
                 logger.info(f"  共识价: {cons['price']} ({cons['sources']} 源)")
+            print(f"\n  {inst}: {len(data)} 个源, 最佳={src}, {len(best)} 条记录")
+            validation = mgr.cross_validate(data)
+            if validation["anomalies"]:
+                print(f"  ⚠️ 异常: {validation['anomalies']}")
+            cons = mgr.consensus(data)
+            if cons:
+                print(f"  共识价: {cons['price']} ({cons['sources']} 源)")
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)

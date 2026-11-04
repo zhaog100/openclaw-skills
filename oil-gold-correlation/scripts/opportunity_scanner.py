@@ -11,11 +11,8 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-<<<<<<< HEAD
 # 版本: v3.4 | 石油黄金白银相关性分析
-=======
 # 版本: v3.3 | 石油黄金白银相关性分析
->>>>>>> skills/main
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -363,5 +360,6 @@ class OpportunityScanner:
 
 if __name__ == "__main__":
     logger.info("OpportunityScanner 模块 — 请通过 advisor.py 调用")
+    print("OpportunityScanner 模块 — 请通过 advisor.py 调用")
 
 # MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
