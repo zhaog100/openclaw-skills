@@ -27,6 +27,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     script_path = os.path.join(script_dir, 'report_text.py')
     
+    result = None
     try:
         result = subprocess.run(
             [sys.executable, script_path],
@@ -39,18 +40,14 @@ def main():
         return result.returncode
     except subprocess.TimeoutExpired:
         elapsed = time.time() - start
-        logger.info(f"\n⚠️ 报告生成超时（{elapsed:.0f}s > {REPORT_TIMEOUT}s），降级为缓存版")
+        msg = f"\n⚠️ 报告生成超时（{elapsed:.0f}s > {REPORT_TIMEOUT}s），降级为缓存版"
+        logger.info(msg)
+        print(msg)
         return 1
     except Exception as e:
-        logger.info(f"\n❌ 报告生成失败: {e}")
-        print(f"\n✅ 报告生成完成（{elapsed:.0f}s）")
-        return result.returncode
-    except subprocess.TimeoutExpired:
-        elapsed = time.time() - start
-        print(f"\n⚠️ 报告生成超时（{elapsed:.0f}s > {REPORT_TIMEOUT}s），降级为缓存版")
-        return 1
-    except Exception as e:
-        print(f"\n❌ 报告生成失败: {e}")
+        msg = f"\n❌ 报告生成失败: {e}"
+        logger.info(msg)
+        print(msg)
         return 1
 
 if __name__ == '__main__':
