@@ -11,7 +11,7 @@
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
-import os, json, datetime, tempfile, subprocess
+import os, json, re, datetime, tempfile, subprocess
 from skills.base import BaseSkill
 
 FX = 7.10
@@ -47,6 +47,32 @@ class GoldWatchOutcomeSkill(BaseSkill):
         if not sig.get("success"):
             return {"triggered": False, "reason": "signal 拉价失败, 跳过(不用过期价)",
                     "xauusd": sig.get("xauusd")}
+
+        # 官家11-05: 采集时间戳格式化(兼容5种输入→HH:MM), 降级时标"这价是哪一刻采的"
+        def _fmt_price_ts(raw):
+            s = str(raw or "").strip()
+            if not s:
+                return "未知时间"
+            # 已是 14:22 / 14:22:08 / 2026-11-05 14:22:08 → 取 HH:MM
+            m = re.search(r"(\d{1,2}):(\d{2})(?::\d{2})?", s)
+            if m and ("/" not in s and "-" not in s or "-" in s):
+                hh = m.group(1).zfill(2)
+                if int(hh) <= 23 and int(m.group(2)) <= 59:
+                    return f"{hh}:{m.group(2)}"
+            # unix ms (13位) / s (10位)
+            if s.isdigit():
+                try:
+                    val = int(s)
+                    if val > 1e12:  # ms
+                        val = val / 1000
+                    return datetime.datetime.fromtimestamp(val).strftime("%H:%M")
+                except Exception:
+                    return "未知时间"
+            return s[:5]
+        price_ts = _fmt_price_ts(sig.get("au0_realtime_ts"))
+        degraded_flag_note = (
+            f"⚠️ 东财限流, 当前价为 [价@{price_ts}] 时的降级链报价({sig.get('au0_realtime_src','')})"
+            if sig.get("degraded_basis") else "")
         xau = sig.get("xauusd")
         if not xau:
             return {"triggered": False, "reason": "无实时金价, 静默", "xauusd": None}
@@ -92,7 +118,7 @@ class GoldWatchOutcomeSkill(BaseSkill):
                    "dyn": {"buy1": buy1, "buy2": buy2, "sell1": sell1, "sell2": sell2},
                    "trend_state": trend_state, "degraded_basis": True,
                    "source": sig.get("source"), "price_basis": sig.get("price_basis"),
-                   "reason": f"沪金 {sh:.0f} {tag}, 但基准为降级口径(金投网偏高~22元), 只展示不自动触发(需东财实盘确认), 静默"}
+                   "reason": f"沪金 {sh:.0f} {tag}, {degraded_flag_note}, 只展示不自动触发(需东财实盘确认), 静默"}
             return out
         if sh <= buy2:
             msgs.append(_buy_tag("第3笔", "第3笔(低位重仓30%)")); triggered = True
@@ -122,7 +148,8 @@ class GoldWatchOutcomeSkill(BaseSkill):
             if os.path.exists(gw):
                 tmp = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False)
                 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                tmp.write("\n".join(msgs) + f"\n({now} 上金所Au9999现货≈¥{sh:.2f}/克, 实盘按上金所现货价)\n⚠️ 仅供参考, 不构成投资建议")
+                degraded_line = (f"\n{degraded_flag_note}" if degraded_flag_note else "")
+                tmp.write("\n".join(msgs) + f"\n({now} 上金所Au9999现货≈¥{sh:.2f}/克, 实盘按上金所现货价){degraded_line}\n⚠️ 仅供参考, 不构成投资建议")
                 tmp.close()
                 try:
                     r = subprocess.run(["python3", gw, tmp.name],

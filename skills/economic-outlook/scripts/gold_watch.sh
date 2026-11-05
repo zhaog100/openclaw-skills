@@ -35,13 +35,32 @@ else:
     log.warning("报告未读到支撑/阻力位，本次盯价仅按能读到的项")
 
 # 官家 10-26: 全部以新链路为准 → 东财 AUM/AGM + gold_watch_signal + gold_watch_outcome(含白银)
+# 官家11-05修: 取价段套 try/except 降级兜底(东财挂→门面降级链退金投网/上金所, 全挂则静默不推, 不裸 return 1)
 from skills.gold_watch_signal.skill import GoldWatchSignalSkill
 from skills.gold_watch_outcome.skill import GoldWatchOutcomeSkill
-sig = GoldWatchSignalSkill().execute({}).data
-out = GoldWatchOutcomeSkill().execute({"gold_watch_signal": sig}).data
+price = None
+agm = ""
+sig = {}
+out = {}
+try:
+    sig = GoldWatchSignalSkill().execute({}).data or {}
+except Exception as _e:
+    log.warning("gold_watch_signal 取价失败(降级兜底): %s", _e)
+sig = sig if isinstance(sig, dict) else {}
+try:
+    out = GoldWatchOutcomeSkill().execute({"gold_watch_signal": sig}).data or {}
+except Exception as _e:
+    log.warning("gold_watch_outcome 计算失败(降级兜底): %s", _e)
+out = out if isinstance(out, dict) else {}
 price = sig.get("sh_equiv") or out.get("sh_equiv")
 agm = sig.get("agm_realtime", "")
+# 降级口径标记: 东财挂走金投网/上金所时 sig 带 degraded, outcome 只展示不自动触发(门面既有逻辑)
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+if price is None:
+    # 全源都挂(东财+金投网+上金所都空) → 静默不推, 不写脏 state, 不 error(官家11-05修: 不裸 return 1)
+    log.info("取价全降级(东财/金投网/上金所均空), 本次静默跳过盯价, 不推不写state")
+    print("SKIP_UNAVAILABLE")
+    sys.exit(0)
 
 # 读上次的去重 key
 last_key = ""
@@ -82,6 +101,13 @@ if out.get("triggered"):
     else:
         print("TRIGGERED_NO_TARGET")
 else:
-    log.info("未触发（%s），沪金 %s", alert.get("reason","?"), price if price else "?")
+    # 官家11-05修: 原 alert.get(...) 引用未定义变量 alert(NameError→退出码1, 2个盯价task error根因), 改为 out.get
+    log.info("未触发（%s），沪金 %s, 降级=%s", out.get("reason","?"), price if price else "?", sig.get("degraded_basis") or "无")
+    # 未触发也写一次干净 state(防旧脏数据残留), 只写真 JSON 不混 Traceback
+    try:
+        os.makedirs("data", exist_ok=True)
+        json.dump({"last_alert_key": last_key, "at": now, "price": price, "degraded": bool(sig.get("degraded_basis"))}, open(state_f, "w"))
+    except Exception as _e:
+        log.warning("写 state 失败(不影响主链): %s", _e)
     print("OK")
 PY

@@ -1,14 +1,12 @@
+#!/usr/bin/env python3
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
+# 历史走势分析报告 v3.4 — 收集黄金石油近期走势数据, 发现报告优化点
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-#!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-"""
-历史走势分析报告 — 收集黄金石油近期走势数据，发现报告优化点
-"""
 # 版本: v3.4 | 石油黄金白银相关性分析
-# 版本: v3.3 | 石油黄金白银相关性分析
 import sys
 import numpy as np
 import pandas as pd
@@ -107,11 +105,7 @@ def analyze():
             'resist': resist_30,
         }
         logger.info()
-    
-    # 联动性分析
-    logger.info('=== 联动性分析 ===')
-        print()
-    
+
     # 联动性分析
     print('=== 联动性分析 ===')
     gold_df = _fetch_akshare_single('gold', '90d')

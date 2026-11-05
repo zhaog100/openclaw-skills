@@ -2,6 +2,7 @@
 
 ---
 name: oil-gold-correlation
+description: 石油黄金白银实时相关性分析: 多数据源交叉验证 + 多周期共振 + 隐藏机遇扫描 + 智能建议引擎。盯价+油金报告推QQ。
 石油黄金白银实时相关性分析。多数据源交叉验证 + 隐藏机遇扫描 + 智能建议引擎。
 version: 3.5.0
 author: 小米辣 🌶️
@@ -287,3 +288,26 @@ export TWELVE_DATA_API_KEY=your_key
 ---
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ) — MIT License
+
+## 跨平台说明（官家11-02 20:49 优化）
+
+任何机器装完依赖即可跑，不绑定单一部署布局：
+
+```
+# 1. 装依赖
+pip install -r requirements.txt   # numpy/pandas/scipy/akshare
+
+# 2. 跑报告(门面)
+python3 scripts/report_text.py
+
+# 3. 可选环境变量(缺省=自动探测, 不设也能跑)
+OIL_GOLD_CACHE_DIR     缓存目录(Windows 无 /tmp 时必设)
+OIL_GOLD_SKILLS_ROOT   盯价 skill 根(同 workspace 布局可自动探测, 跨机部署时设)
+```
+
+**黄金取价五级降级链**（本机最全, 海外 IP 也能跑）：
+1. 东财 118.AU9999 实时现货(https, f43 量级自适应)
+2. 金投网 JO_71 q5 现货
+3. 上金所官网挂牌 akshare spot_quotations_sge
+4. 上金所官网直连 /graph/quotations(与 3 互校取更新)
+5. 全挂 → 盯价实时主链(OIL_GOLD_SKILLS_ROOT 探测) → 仍无则退日线, 黄金标「期货口径, 现货不可用偏高~22元」

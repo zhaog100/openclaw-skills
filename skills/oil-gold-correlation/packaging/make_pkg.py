@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 """
 make_pkg.py — 固定口径打包脚本（两边共用，保证口径 100% 一致）
 

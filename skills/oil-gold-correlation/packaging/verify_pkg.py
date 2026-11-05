@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 """
 verify_pkg.py — 打包前校验 + 两边一致性核对（固定口径，保证每版一致）
 
