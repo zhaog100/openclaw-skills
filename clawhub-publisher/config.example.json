@@ -1,6 +1,0 @@
-{
-  "clawhub_user": "",
-  "publish_js_path": "/usr/lib/node_modules/clawhub/dist/cli/commands/publish.js",
-  "temp_base": "/tmp/clawhub",
-  "github_org": "openclaw"
-}
