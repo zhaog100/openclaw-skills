@@ -46,3 +46,10 @@ workflows:
       - {skill: gold_watch_signal}
       - {skill: gold_watch_outcome, depends_on: [gold_watch_signal]}
     output: gold_watch_outcome
+
+  lottery_ss:
+    description: "彩票双色球/大乐透综合出号(摇奖独立不预测, 合规disclaimer)"
+    timeout_seconds: 60
+    nodes:
+      - {skill: lottery_analysis}
+    output: lottery_analysis
