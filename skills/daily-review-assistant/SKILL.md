@@ -1,6 +1,5 @@
 ---
 name: daily-review-assistant
-description: 定时回顾更新助手: 早晚报、记忆整理、待办同步。
 version: 1.1.0
 ---
 

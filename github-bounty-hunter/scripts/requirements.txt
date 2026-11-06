@@ -1,5 +1,0 @@
-# GitHub Bounty Hunter - Python Dependencies
-# Install with: pip3 install -r requirements.txt
-
-pyyaml>=5.4.0
-requests>=2.25.0

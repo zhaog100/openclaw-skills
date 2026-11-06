@@ -1,7 +1,0 @@
-# autoflow .gitignore
-__pycache__/
-*.pyc
-data/
-config.json
-.env
-*.db

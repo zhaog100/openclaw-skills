@@ -107,6 +107,8 @@ send_qq.sh 已失效（CLI 报 `Unknown channel "qqbot"`），不要再用。
 
 ## 故障排查
 
+- 盯价壳脚本（`gold_watch.sh` 等 `bash` 包 python heredoc 的）：定时任务状态 error 但实跑时好时坏、退出码 1 无日志 → 先抓真实 Traceback 再修，别只信 cron 状态；已知坑=未触发分支引用未定义变量（`alert` 应为 `out`）NameError，且 heredoc `1>"$STATE"` 会把异常栈写进 state.json 混脏数据。修法定式：取价段套 try/except 走门面降级链、全源拉空 `print SKIP_UNAVAILABLE; sys.exit(0)` 静默不裸退 1、state 只写纯 JSON、修后连跑 3 次全 exit 0 才收口（2026-11-05 双副本/双 error task 实修）。
+
 1. 日志为空 → 检查 cron 是否执行，查看 `/var/log/syslog`
 2. 报告未生成 → 确认 `report_text.py` 能独立运行，`stat -c %Y` 核对 mtime
 3. QQ 发送失败 → openclaw CLI 不支持 qqbot 通道，改用 `send_qq_gw.py` 或手动推送

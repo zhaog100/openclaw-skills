@@ -10,7 +10,11 @@ registry 自动发现后与 18 个微技能并列。单一职责：只做石油�
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
-import os
+import os, sys
+# 官家11-05: 平级解开(v4包)时 cwd 可能不在 economic-outlook 根, 先补根到 sys.path 再 import, 才解析得到 skills.base
+_EO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if _EO_ROOT not in sys.path:
+    sys.path.insert(0, _EO_ROOT)
 from skills.base import BaseSkill
 
 # 石油黄金 skill 实际路径（workspace 下，用相对定位避免硬编码绝对路径）

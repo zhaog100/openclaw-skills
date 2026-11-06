@@ -39,8 +39,22 @@ def levenshtein_similarity(s1, s2):
 
 
 def tokenize(text):
-    """分词：转小写 + 按非字母数字拆分"""
-    return [w.lower() for w in re.findall(r'\b\w+\b', text)]
+    r"""分词：支持中英文混合文本
+
+    - 中文：按字符切分（单字粒度，中文无空格）
+    - 英文：按单词切分（\b\w+\b）
+    """
+    if not text:
+        return []
+    # 检测是否包含中文字符
+    has_chinese = bool(re.search(r'[\u4e00-\u9fff]', text))
+    if has_chinese:
+        # 中英文混合：先提取中文部分按字切分，再提取英文部分按词切分
+        chinese_chars = re.findall(r'[\u4e00-\u9fff]', text)
+        english_words = [w.lower() for w in re.findall(r'\b[a-zA-Z]+\b', text)]
+        return chinese_chars + english_words
+    else:
+        return [w.lower() for w in re.findall(r'\b\w+\b', text)]
 
 
 def tfidf_cosine_similarity(text_a, text_b):
