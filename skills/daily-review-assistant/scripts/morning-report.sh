@@ -27,20 +27,40 @@ REPORT="🌅 **小米椒早报** — $DATE $TIME\n\n"
 # 1. 系统状态
 log "检查系统状态..."
 MEM=$(free -h | awk '/^Mem:/{print $3"/"$2}')
+MEMPCT=$(free -h | awk '/^Mem:/{printf "%.0f", $3/$2*100}')
+SWAP=$(free -h | awk '/^Swap:/{print $3"/"$2}')
 LOAD=$(cat /proc/loadavg | awk '{print $1", "$2, $3}')
+CPU_CORES=$(nproc 2>/dev/null || echo "?")
 UPT=$(uptime -p 2>/dev/null | sed 's/up //')
-DISK=$(df -h / | awk 'NR==2{print $5}')
+DISK_HUMAN=$(df -h / | awk 'NR==2 {printf "%s 用 / 剩 %s (%s)\n", $5, $4, $2}')
+DISK_PCT=$(df -h / | awk 'NR==2{print $5}')
 SEC=$(sudo ufw status 2>/dev/null | head -1)
+[ -z "$SEC" ] && SEC="⚠️ ufw 状态未知"
 # 系统软件更新
-SYS_UPDATE=$(apt list --upgradable 2>/dev/null | wc -l | tr -d ' ')
+SYS_UPDATE=$(apt list --upgradable 2>/dev/null | grep -v "^Listing\|^Reading" | wc -l | tr -d ' ')
 [ "$SYS_UPDATE" = "0" ] && SYS_UPDATE_STR="✅ 无待更新" || SYS_UPDATE_STR="⚠️ $SYS_UPDATE 个待更新"
-# 其他软件更新
-FLATPAK_UPDATE=$(flatpak list --updates 2>/dev/null | wc -l | tr -d ' ')
-SNAP_UPDATE=$(snap refresh --list 2>/dev/null | tail -n +4 | wc -l | tr -d ' ')
+# 其他软件更新(flatpak/snap 可能未装, 0 计为无)
+FLATPAK_UPDATE=0; command -v flatpak >/dev/null 2>&1 && FLATPAK_UPDATE=$(flatpak list --updates 2>/dev/null | grep -v "^New application" | wc -l | tr -d ' ')
+SNAP_UPDATE=0; command -v snap >/dev/null 2>&1 && SNAP_UPDATE=$(snap refresh --list 2>/dev/null | grep -vE "Name|Note" | grep -c "[0-9]" 2>/dev/null)
 PKG_UPDATE=$((SYS_UPDATE + FLATPAK_UPDATE + SNAP_UPDATE))
-[ "$PKG_UPDATE" -eq 0 ] 2>/dev/null && PKG_UPDATE_STR="✅ 全部已更新" || PKG_UPDATE_STR="⚠️ 共 $PKG_UPDATE 个待更新"
+[ "$PKG_UPDATE" -eq 0 ] 2>/dev/null && PKG_UPDATE_STR="✅ 全部已更新" || PKG_UPDATE_STR="⚠️ 共 $PKG_UPDATE 个待更新(系统$SYS_UPDATE/flatpak$FLATPAK_UPDATE/snap$SNAP_UPDATE)"
+# 关键服务状态: OpenClaw Gateway
+GW_PORT=18789
+if ss -ltn 2>/dev/null | grep -q ":$GW_PORT"; then GW_STR="✅ Gateway 运行中(端口 $GW_PORT)"; else GW_STR="❌ Gateway 未监听(端口 $GW_PORT)"; fi
+OPENCLAW_PROC=$(pgrep -fc "openclaw|OpenClaw" 2>/dev/null || echo 0)
+# 日志大小
+LOG_DIR="$WORKSPACE/skills/daily-review-assistant/logs"
+LOG_SIZE="0B"; [ -d "$LOG_DIR" ] && LOG_SIZE=$(du -sh "$LOG_DIR" 2>/dev/null | awk '{print $1}')
+SYSLOG_SIZE=$(du -sh /var/log 2>/dev/null | awk '{print $1}'); [ -z "$SYSLOG_SIZE" ] && SYSLOG_SIZE="未知"
+# 磁盘健康判定(带具体用量)
+DISK_PCT_NUM=${DISK_PCT%\%}
+if [ "${DISK_PCT_NUM:-0}" -le 60 ] 2>/dev/null; then
+  DISK_STR="✅ $DISK_HUMAN"
+else
+  DISK_STR="⚠️ $DISK_HUMAN (偏高, 建议清理)"
+fi
 
-if [ "$SECTION_SYSTEM" != "true" ]; then SYS_SECTION=""; else SYS_SECTION="### 🖥️ 系统运行状态\n| 项目 | 状态 |\n|------|------|\n"
+if [ "$SECTION_SYSTEM" != "true" ]; then SYS_SECTION=""; else SYS_SECTION="### 🖥️ 系统运行状态\n| 项目 | 状态 |\n|------|------|\n| 内存 | $MEM (${MEMPCT}%) |\n| CPU 负载 | $LOAD (${CPU_CORES}核) |\n| 磁盘 | $DISK_STR |\n| 安全(UFW) | $SEC |\n| 系统软件更新 | $SYS_UPDATE_STR |\n| 其他软件更新 | $( [ $PKG_UPDATE -eq 0 ] && echo '✅ 无' || echo "⚠️ flatpak:$FLATPAK_UPDATE snap:$SNAP_UPDATE" ) |\n| OpenClaw Gateway | $GW_STR |\n| 进程(openclaw) | ${OPENCLAW_PROC} 个 |\n| 日志大小 | 技能日志 $LOG_SIZE / 系统 /var/log $SYSLOG_SIZE |\n| 运行时长 | $UPT |\n"
 fi
 REPORT+="$SYS_SECTION\n"
 
