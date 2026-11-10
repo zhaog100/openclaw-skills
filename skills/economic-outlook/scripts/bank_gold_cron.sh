@@ -21,11 +21,19 @@ body = "\n".join(lines)
 if not body.strip():
     sys.exit(0)
 msg = "🏦 银行黄金成本项感知(每日9:00)\n" + body[:1500]
+# send_qq_gw.py 的 argv[1] 是"报告文件路径"(它内部 open() 读文件), 不能直接喂文本
+# → 写临时文件, 传路径, 跑完清理
+import tempfile
+tf = tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8")
+tf.write(msg); tf.close()
 env = dict(os.environ)
-r = subprocess.run(
-    [sys.executable, os.path.join(os.environ["HOME"], ".openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py"),
-     msg],
-    capture_output=True, text=True, timeout=60, env=env,
-)
+try:
+    r = subprocess.run(
+        [sys.executable, os.path.join(os.environ["HOME"], ".openclaw/workspace/skills/oil-gold-correlation/scripts/send_qq_gw.py"),
+         tf.name],
+        capture_output=True, text=True, timeout=330, env=env,
+    )
+finally:
+    import os as _os; _os.unlink(tf.name)
 print("推送:", "OK" if r.returncode == 0 else f"FAIL {r.stderr[:100]}")
 PY

@@ -28,8 +28,11 @@ from pathlib import Path
 # 配置 - 从环境变量读取敏感信息
 GATEWAY_HOST = "127.0.0.1"
 GATEWAY_PORT = 18789
-TOKEN_FILE = Path.home() / ".openclaw" / "openclaw.json"
-QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "").strip()
+# 注意: 不用 Path.home() — cron 隔离 session 的 HOME 变量可能指向别处,
+# 导致读不到 openclaw.json 里的 QQ 凭证(appId/clientSecret) → 主路 11001 拒。
+# 用绝对路径 /home/ubuntu/.openclaw/openclaw.json, 彻底不依赖运行时 HOME。
+TOKEN_FILE = Path("/home/ubuntu/.openclaw/openclaw.json")
+QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "").strip().split(";")[0].strip()
 if not QQ_TARGET:
     # 无环境变量则从 config 读，仍空则报错（不硬编码 open_id 进公开仓库）
     try:
@@ -143,39 +146,9 @@ def send_via_qqbot(message: str, target: str = QQ_TARGET) -> bool:
 
 
 def send_via_gateway(message: str, target: str = QQ_TARGET) -> bool:
-    """降级路: Gateway REST API 发送（message 工具可用时）"""
-    token = get_gateway_token()
-    if not token:
-        return False
-    payload = {
-        "tool": "message",
-        "action": "send",
-        "args": {
-            "channel": "qqbot",
-            "target": target,
-            "message": message
-        }
-    }
-    url = f"http://{GATEWAY_HOST}:{GATEWAY_PORT}/tools/invoke"
-    try:
-        data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(
-            url, data=data,
-            headers={"Content-Type": "application/json", "Authorization": f"QQBot {token}"},
-            method="POST")
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read().decode("utf-8"))
-            if result.get("ok") or "result" in result:
-                return True
-            print(f"[WARN] Gateway 发送失败: {str(result)[:200]}", file=sys.stderr)
-            return False
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"[WARN] Gateway HTTP {e.code}（message 工具不可用），回落 QQ 开放平台直发", file=sys.stderr)
-        return False
-    except Exception as e:
-        print(f"[WARN] Gateway 发送异常: {e}，回落 QQ 开放平台直发", file=sys.stderr)
-        return False
+    """降级路: 原 /tools/invoke 的 message 工具未注册(not_found), Bearer 也过不了权限,
+    故此路当前不可用; 保留函数签名, 直接返回 False 让调用方走主路。"""
+    return False
 
 
 def send(message: str, target: str = QQ_TARGET) -> bool:
@@ -191,6 +164,12 @@ def send(message: str, target: str = QQ_TARGET) -> bool:
 
 
 def main():
+    # 先修正被 cron --command-env 污染的 HOME: 隔离 session 的 HOME 变量可能指向别处,
+    # 导致 _qq_creds 读 openclaw.json 失败(11001)。硬设回 /home/ubuntu。
+    os.environ["HOME"] = "/home/ubuntu"
+    global TOKEN_FILE
+    TOKEN_FILE = Path("/home/ubuntu/.openclaw/openclaw.json")
+
     report_file = sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).parent.parent / "reports" / "report_text_latest.txt")
 
     # 读取报告
@@ -205,16 +184,16 @@ def main():
         print("[ERROR] 报告内容为空", file=sys.stderr)
         sys.exit(1)
 
-    # 容错: 双路互备, 单路失败自动回落另一路(重试 2 次), 全失败才退出 1
+    # 容错: 主路 QQ 开放平台直发为主, 4 次递增退避重试(30s/60s/90s/120s), 防 cron 窗口内多任务撞限流(11001)
     success = False
-    for attempt in range(2):
+    for attempt in range(4):
         if attempt > 0:
-            time.sleep(10)  # 重试间隔, 防瞬时网络抖动
+            time.sleep(30 + 30 * attempt)  # 30s, 60s, 90s, 120s 递增, 给限流窗口充分冷却
         if send(message):
             success = True
             break
     if not success:
-        print("[ERROR] 双路 2 次重试均失败, 放弃本次推送(下次 cron 再试)", file=sys.stderr)
+        print("[ERROR] 主路 QQ 开放平台 4 次退避重试均失败, 放弃本次推送(下次 cron 再试)", file=sys.stderr)
     sys.exit(0 if success else 1)
 
 
