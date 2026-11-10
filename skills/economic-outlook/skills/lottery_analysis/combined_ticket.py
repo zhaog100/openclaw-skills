@@ -6,8 +6,39 @@
 
 import sys, json, random
 from collections import Counter
-from lottery_stats import fetch_history, random_note
+from lottery_stats import fetch_history, random_note, chi_square, odd_even, sum_range, consecutive
 from formulas import combinations, cost_expected, sum_distribution, mandel, bayes_update
+
+
+def _history_analysis(rows, kind):
+    """历史号分析(官家11-10): 每次出号附历史维度, 看清"最近开出啥/什么结构居多", 纯描述不预测。
+    输出: 最新3期实际开奖 / 高频前3 / 低频前3 / 奇偶比 / 和值分布 / 连号占比 / 大小比。"""
+    from collections import Counter
+    if not rows:
+        return {"ok": False}
+    pool, pick = (33, 6) if kind == "ssq" else (35, 5)
+    cnt = Counter(n for r in rows for n in r["front"])
+    last3 = [{"period": r["period"], "date": r["date"],
+              "front": [f"{n:02d}" for n in r["front"]],
+              "back": [f"{n:02d}" for n in r["back"]]} for r in rows[-3:]]
+    high = [(f"{n:02d}", c) for n, c in cnt.most_common(3)]
+    low = [(f"{n:02d}", c) for n, c in sorted(cnt.items(), key=lambda x: x[1])[:3]]
+    total = len(rows) * pick
+    odd = sum(1 for r in rows for n in r["front"] if n % 2 == 1)
+    big = sum(1 for r in rows for n in r["front"] if n > pool / 2)
+    sums = sorted(sum(r["front"]) for r in rows)
+    q1, q3 = sums[len(sums)//4], sums[3*len(sums)//4]
+    cons = sum(1 for r in rows if any(b-a==1 for a, b in zip(sorted(r["front"]), sorted(r["front"])[1:])))
+    return {
+        "ok": True,
+        "last3": last3,
+        "high": high, "low": low,
+        "odd_pct": round(odd/total*100, 1), "even_pct": round((total-odd)/total*100, 1),
+        "big_pct": round(big/total*100, 1),
+        "sum_mean": round(sum(sums)/len(sums), 1), "sum_range": [q1, q3],
+        "consec_pct": round(cons/len(rows)*100, 1),
+        "note": "历史描述, 摇奖独立, 不预测未来, 仅供结构参照",
+    }
 
 
 def _sum_constrained_front(bank, kind, target_range, pool=None, pick=None):
@@ -214,6 +245,7 @@ def generate(kind="ssq", n_mandel=2):
         "full_multi": full_multi,
         "danchi": danchi,
         "forms": locals().get("forms_data"),
+        "history": _history_analysis(rows, kind),
         "random": random_note(kind),
         "disclaimer": "摇奖独立, 历史统计不改变中奖概率, 任意合法组合头奖概率相同, 不构成购彩建议",
     }
@@ -317,6 +349,20 @@ def print_report(kind="ssq"):
         print(f"  前区 {' '.join(rnd['front'])}  后区 {' '.join(rnd['back'])}")
     else:
         print(f"  红球 {' '.join(rnd['red'])}  蓝 {rnd['blue']}")
+    # 历史号分析(官家11-10)
+    ha = r.get("history") or {}
+    if ha.get("ok"):
+        print(f"\n【历史号分析】(基于最近{r['N']}期, 纯描述不预测)")
+        l3 = " | ".join(f"{x['period']}({x['date'][5:]}) {' '.join(x['front'])}+{' '.join(x['back'])}" for x in ha["last3"])
+        print(f"  最新3期: {l3}")
+        hi = " ".join(f"{n}({c})" for n, c in ha["high"])
+        lo = " ".join(f"{n}({c})" for n, c in ha["low"])
+        print(f"  高频: {hi}   低频: {lo}")
+        if "双色球" in r.get("kind_cn",""):
+            print(f"  奇偶: 奇{ha['odd_pct']}%/偶{ha['even_pct']}%  大小: 大{ha['big_pct']}%  连号占比{ha['consec_pct']}%")
+        else:
+            print(f"  奇偶: 奇{ha['odd_pct']}%/偶{ha['even_pct']}%  大小: 大{ha['big_pct']}%  连号占比{ha['consec_pct']}%  和值均值{ha['sum_mean']}(常见{ha['sum_range']})")
+        print(f"  ⚠️ {ha['note']}")
     print(f"\n⚠️ {r['disclaimer']}")
 
 
