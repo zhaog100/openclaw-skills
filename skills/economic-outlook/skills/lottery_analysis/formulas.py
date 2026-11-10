@@ -139,21 +139,44 @@ def cost_expected(kind="ssq", per_note=2.0, payout_rate=None):
             % (per_note, back, payout_rate * 100, buy1)}
 
 
-def mandel(kind="ssq", bankroll=100.0, per_note=2.0, b_net=0.0):
-    """曼德尔公式(图: 定胆+拖/分区/组合/凯利)。只做组合冷凝+资金控制, 不预测号码。"""
+def mandel(kind="ssq", bankroll=100.0, per_note=2.0, b_net=0.0, n_bank=5):
+    """曼德尔公式(图: 定胆+拖/分区/组合/凯利)。只做组合冷凝+资金控制, 不预测号码。
+    [C 11-10优化] 胆码改双因子排序: 全期频率(0.5) + 近50期活跃(0.3) + 遗漏适中(0.2),
+    不再单纯取全期最高频——避免长期高频码扎堆、近期冷码被无视。"""
     from collections import Counter
     from lottery_stats import fetch_history
     rows = fetch_history(kind)
     if not rows:
         return {"success": False, "error": "无历史数据"}
     pool = 33 if kind == "ssq" else 35
-    cnt = Counter(num for r in rows for num in r["front"])
-    bank = [c for c, _ in cnt.most_common(5)]
+    pick = 6 if kind == "ssq" else 5
+    # 双因子: 全期频率 + 近50期活跃 + 遗漏(距上次出现的期数, 适中者佳, 不过冷不过热)
+    cnt_all = Counter(num for r in rows for num in r["front"])
+    recent = rows[-50:]
+    cnt_recent = Counter(num for r in recent for num in r["front"])
+    max_all = max(cnt_all.values()) or 1
+    max_recent = max(cnt_recent.values()) or 1
+    last_seen = {}
+    for idx, r in enumerate(rows):
+        for num in r["front"]:
+            last_seen[num] = idx   # 越大=越近期出现过
+    gap_max = len(rows)
+    score = {}
+    for num in range(1, pool + 1):
+        f = cnt_all.get(num, 0) / max_all            # 全期频率 0..1
+        a = cnt_recent.get(num, 0) / max_recent      # 近50期活跃 0..1
+        gap = gap_max - last_seen.get(num, 0)        # 距上次出现期数
+        g = 1.0 - min(gap / gap_max, 1.0)            # 遗漏适中: 刚出现(gap小)或从未(冷)都低, 中期适中高
+        score[num] = 0.5 * f + 0.3 * a + 0.2 * g
+    bank = sorted(score, key=score.get, reverse=True)[:n_bank]
+    bank_scores = {n: round(score[n], 4) for n in bank}
     drag = [n for n in range(1, pool + 1) if n not in bank][:6]
     # 凯利(彩票净赔率极低→仓位极保守)
     f_kelly = max(0.0, min(((b_net * 0.05 - 1) / (b_net - 1)) if b_net > 1 else 0.0, 1.0))
     return {"success": True, "kind_cn": "双色球" if kind == "ssq" else "大乐透",
-            "bank_danger": bank, "bank_note": "最高频候选(统计层, 非预测)",
+            "bank_danger": bank,
+            "bank_scores": bank_scores,
+            "bank_note": "双因子胆码(全期频率0.5+近50期活跃0.3+遗漏适中0.2), 统计层非预测",
             "drag_example": drag, "kelly_pct": round(f_kelly * 100, 1),
             "kelly_note": "凯利仓位(彩票净赔率极低, 0%=数学上不建议下注)",
             "disclaimer": "曼德尔公式只做组合冷凝+资金管理, 不预测号码; 摇奖独立, 不构成购彩建议"}
