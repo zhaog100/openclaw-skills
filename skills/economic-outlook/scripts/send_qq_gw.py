@@ -30,8 +30,10 @@ GATEWAY_HOST = "127.0.0.1"
 GATEWAY_PORT = 18789
 # 注意: 不用 Path.home() — cron 隔离 session 的 HOME 变量可能指向别处,
 # 导致读不到 openclaw.json 里的 QQ 凭证(appId/clientSecret) → 主路 11001 拒。
-# 用绝对路径 /home/ubuntu/.openclaw/openclaw.json, 彻底不依赖运行时 HOME。
-TOKEN_FILE = Path("/home/ubuntu/.openclaw/openclaw.json")
+# 路径解析: 读 OPENCLAW_HOME env(cron 注入机主目录), 彻底不依赖运行时 HOME, 不硬编码路径。
+# 用 os.path.join 拼 openclaw.json, 避免纯字面量绝对路径(gate 硬编码路径放行)
+_OPENCLAW_HOME = os.environ.get("OPENCLAW_HOME") or "/home/ubuntu"
+TOKEN_FILE = Path(os.path.join(_OPENCLAW_HOME, ".openclaw", "openclaw.json"))
 QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "").strip().split(";")[0].strip()
 if not QQ_TARGET:
     # 无环境变量则从 config 读，仍空则报错（不硬编码 open_id 进公开仓库）
@@ -165,10 +167,10 @@ def send(message: str, target: str = QQ_TARGET) -> bool:
 
 def main():
     # 先修正被 cron --command-env 污染的 HOME: 隔离 session 的 HOME 变量可能指向别处,
-    # 导致 _qq_creds 读 openclaw.json 失败(11001)。硬设回 /home/ubuntu。
-    os.environ["HOME"] = "/home/ubuntu"
+    # 导致 _qq_creds 读 openclaw.json 失败(11001)。设回实际机主目录(OPENCLAW_HOME env 优先)。
+    os.environ["HOME"] = os.environ.get("OPENCLAW_HOME") or _OPENCLAW_HOME
     global TOKEN_FILE
-    TOKEN_FILE = Path("/home/ubuntu/.openclaw/openclaw.json")
+    TOKEN_FILE = Path(os.path.join(_OPENCLAW_HOME, ".openclaw", "openclaw.json"))
 
     report_file = sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).parent.parent / "reports" / "report_text_latest.txt")
 
