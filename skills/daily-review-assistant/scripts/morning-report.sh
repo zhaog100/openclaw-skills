@@ -117,9 +117,16 @@ if [ -f "$WORKSPACE/skills/daily-review-assistant/.env" ]; then
     if [ -n "$GMAIL_USER" ] && [ -n "$GMAIL_APP_PASSWORD" ]; then
         EMAIL_RESULT=$(GMAIL_USER="$GMAIL_USER" GMAIL_APP_PASSWORD="$GMAIL_APP_PASSWORD" python3 "$SCRIPT_DIR/email-reader.py" 5 2>/dev/null)
         if [ -n "$EMAIL_RESULT" ]; then
+            # 据实显示: email-reader.py 输出首行 [已读标记] 未读X封,已标Y封
+            MARK_LINE=$(echo "$EMAIL_RESULT" | grep "已读标记" | head -1)
             EMAIL_SECTION+="$EMAIL_RESULT\n"
-            # 标记为已读（通过email-reader.py完成）
-            EMAIL_SECTION+="\n✅ 未读邮件已更新为已读\n"
+            if echo "$EMAIL_RESULT" | grep -q "已读标记.*已标已读[1-9]"; then
+                EMAIL_SECTION+="\n✅ 未读邮件已标已读（$MARK_LINE）\n"
+            elif echo "$EMAIL_RESULT" | grep -q "未读0封"; then
+                EMAIL_SECTION+="\n✅ 当前无未读邮件\n"
+            else
+                EMAIL_SECTION+="\n⚠️ 本次未成功标已读（$MARK_LINE），未读邮件保留，下轮再试\n"
+            fi
         else
             EMAIL_SECTION+="⚠️ 邮件读取失败\n"
         fi

@@ -72,7 +72,8 @@ def read_gmail(username, password, max_emails=10, full_content=False):
         email_ids = messages[0].split()
         if not email_ids:
             logger.info("无未读邮件")
-            return []
+            mail.logout()
+            return {"emails": [], "marked": 0, "total_unseen": 0}
         
         recent_ids = email_ids[-max_emails:][::-1]
         emails = []
@@ -103,22 +104,23 @@ def read_gmail(username, password, max_emails=10, full_content=False):
                         
                         emails.append(email_data)
         
-        # 标记为已读（避免下次早报重读同一批未读邮件）
+        # 标记为已读: 搜到多少 UNSEEN 就标多少(不全依赖 max_emails 截断), 据实回报
         marked = 0
-        for eid in recent_ids:
+        # 标记目标 = 全部 UNSEEN(不限 5 封), 避免漏标导致"没更新为已读"
+        for eid in email_ids:
             try:
                 mail.store(eid, '+FLAGS', r'(' + chr(92) + 'Seen)')
                 marked += 1
             except Exception as e:
                 logger.warning(f"标记已读失败 id={eid}: {e}")
-        if marked:
-            logger.info(f"已标记 {marked} 封邮件为已读")
+        total_unseen = len(email_ids)
+        logger.info(f"UNSEEN 共 {total_unseen} 封, 已标已读 {marked} 封")
         
         mail.logout()
-        return emails
+        return {"emails": emails, "marked": marked, "total_unseen": total_unseen}
     except Exception as e:
         logger.error(f"读取邮件失败: {e}")
-        return None
+        return {"emails": [], "marked": 0, "total_unseen": -1}
 
 if __name__ == "__main__":
     env_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "skills", "daily-review-assistant", ".env")
@@ -142,7 +144,12 @@ if __name__ == "__main__":
         logger.error("缺少邮箱凭据")
         sys.exit(1)
     
-    emails = read_gmail(username, password, max_count, full_content)
+    result = read_gmail(username, password, max_count, full_content)
+    emails = result.get("emails", []) if isinstance(result, dict) else (result or [])
+    marked = result.get("marked", 0) if isinstance(result, dict) else 0
+    total_unseen = result.get("total_unseen", 0) if isinstance(result, dict) else 0
+    # 据实回报标记情况(供早报动态显示)
+    print(f"[已读标记] 未读{total_unseen}封, 已标已读{marked}封")
     
     if emails:
         print(f"\n**未读邮件**: {len(emails)} 封\n")
