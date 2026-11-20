@@ -421,6 +421,44 @@ def _generate_report_inner():
     macro_label = _compute_macro_label()
     lines.append(f'│  🌍地缘风险 {risk_label}  宏观面:{macro_label:<7} │')
     lines.append(f'└────────────────────────────────────────────┘')
+
+    # ========== 黄金多维结构分析（官家11-20 借鉴 trading-assistant）==========
+    # 三个新维度: Volume Profile(量分布) + SMC结构(破位预警) + 交易者方程(期望值校验)
+    try:
+        import advisor as _adv
+        # 官家11-20: 用 fetch_data 拉 K线(不走 _fetch_akshare_single 缓存), 避免 90d 缓存被拦
+        _gdf = fetch_data('gold', period='90d')
+        if _gdf is not None and len(_gdf) >= 20:
+            _gc = _gdf['Close'].astype(float)
+            _gh = _gdf['High'].astype(float) if 'High' in _gdf.columns else _gc
+            _gl = _gdf['Low'].astype(float) if 'Low' in _gdf.columns else _gc
+            _gv = _gdf['Volume'].astype(float) if 'Volume' in _gdf.columns else None
+            lines.append('')
+            lines.append('>> 🧭 黄金多维结构（量分布/SMC/期望值）')
+            lines.append('')
+            # ① Volume Profile
+            vp = _adv.calc_volume_profile(_gc, _gh, _gl, _gv) if _gv is not None else None
+            if vp:
+                lines.append(f'  【量分布】POC {vp["poc"]}  VAH {vp["vah"]}/VAL {vp["val"]}  HVN {vp["hvn"]} LVN {vp["lvn"]}')
+                lines.append(f'       现价 {vp["cur"]} 处{vp["position"]}')
+            else:
+                lines.append('  【量分布】成交量数据不足, 本轮跳过')
+            # ② SMC 结构
+            smc = _adv.calc_smc_structure(_gc)
+            if smc:
+                lines.append(f'  【SMC结构】{smc["structure"]}  近高{smc["last_high"]} 近低{smc["last_low"]}  现价{smc["current"]}')
+                for ev in smc["events"]:
+                    lines.append(f'       ⚡ {ev}')
+                if not smc["events"]:
+                    lines.append(f'       现价未破近高/近低, 结构未变')
+            else:
+                lines.append('  【SMC结构】摆动点不足, 本轮跳过')
+            # ③ 交易者方程: 给当前"破位买入"场景算期望值(胜率0.4, 赔率1.5 R:R)
+            te = _adv.calc_trader_equation(0.40, 1.5)
+            if te:
+                lines.append(f'  【交易者方程】胜率{te["win"]:.0%}×赔率{te["rr"]}R vs 败率{te["lose"]:.0%}×1R → 期望{te["edge"]:+.2f} → {te["verdict"]}')
+    except Exception as _e:
+        lines.append(f'  ⚠️ 多维结构分析异常: {str(_e)[:50]}')
     lines.append('')
 
     # ========== 行情数据（精简：去掉30日区间） ==========
@@ -713,7 +751,7 @@ def _generate_report_inner():
     # 精简模式（OIL_GOLD_BRIEF=1）：按"段"白名单裁剪，波段参考拉不到就降级占位行、仍出精简版（方案A）
     import os
     if os.environ.get('OIL_GOLD_BRIEF') == '1':
-        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 📊 行情数据', '>> 📈 波段参考', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
+        keep_sections = ['📊 石油黄金', '>> 🎯 仪表盘', '>> 🧭 黄金多维结构', '>> 📊 行情数据', '>> 📈 波段参考', '>> 📝 操作建议', '>> 💡 结论', '>> ⚠️ 仅供参考']
         out, in_keep = [], False
         for line in lines:
             s = line.strip()

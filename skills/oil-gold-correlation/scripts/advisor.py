@@ -4,14 +4,14 @@ logger = logging.getLogger(__name__)
 
 #!/usr/bin/env python3
 """
-石油黄金投资建议模块 v3.4
+石油黄金投资建议模块 v3.5
 短期（1天~1周）为主 + 中长期（1月~6月）补充
 
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.4 | 石油黄金白银相关性分析
+# 版本: v3.5 | 石油黄金白银相关性分析
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -302,6 +302,133 @@ def calc_support_resistance(close, high_series, low_series, boll_upper, boll_low
         return None
 
 
+def calc_volume_profile(close, high, low, volume, lookback=60, value_area_pct=0.70):
+    """官家11-20: Volume Profile 借鉴 trading-assistant — 按价位分桶算成交量分布,
+    找 POC(最大成交价位)/VAH/VAL(70%价值区边界)/HVN/LVN(高/低成交量节点)。
+    用途: 判断当前价是否落在成交密集区(HVN托底) 还是真空区(LVN加速穿越)。
+    全部用现有 OHLCV 数据, 不引入新数据源。"""
+    try:
+        import numpy as np
+        sub = close.tail(lookback).reset_index(drop=True)
+        h = high.tail(lookback).reset_index(drop=True)
+        l = low.tail(lookback).reset_index(drop=True)
+        v = volume.tail(lookback).reset_index(drop=True)
+        if v.sum() <= 0:
+            return None
+        # 价位分桶: 桶宽 = (最高-最低)/20, 把每根K线的量按 开/高/低/收 4 价位均摊进桶
+        lo_min, hi_max = float(l.min()), float(h.max())
+        if hi_max <= lo_min:
+            return None
+        nbins = 20
+        width = (hi_max - lo_min) / nbins
+        bins = [lo_min + i * width for i in range(nbins + 1)]
+        hist = np.zeros(nbins)
+        for i in range(len(sub)):
+            o4 = [float(sub.iloc[i])] * 1  # 简化: 用收盘价 + 高低中点 3 个价位分摊
+            pts = [float(sub.iloc[i]), (float(h.iloc[i]) + float(l.iloc[i])) / 2, float(sub.iloc[i])]
+            for p in pts:
+                b = min(int((p - lo_min) / width), nbins - 1)
+                hist[b] += float(v.iloc[i]) / 3.0
+        total = hist.sum()
+        if total <= 0:
+            return None
+        # POC: 量最大桶的价位中点
+        poc_i = int(hist.argmax())
+        poc = round((bins[poc_i] + bins[poc_i + 1]) / 2, 2)
+        # 价值区 VAH/VAL: 从 POC 向两侧累加到覆盖 value_area_pct
+        covered = [0.0] * nbins
+        covered[poc_i] = hist[poc_i]
+        lo_i, hi_i = poc_i, poc_i
+        while (covered[lo_i] + covered[hi_i]) / total < value_area_pct and (lo_i > 0 or hi_i < nbins - 1):
+            # 交替向两侧扩
+            if lo_i > 0 and hist[lo_i - 1] >= hist[hi_i + 1] if hi_i < nbins - 1 else True:
+                lo_i -= 1
+                covered[lo_i] = hist[lo_i]
+            elif hi_i < nbins - 1:
+                hi_i += 1
+                covered[hi_i] = hist[hi_i]
+            if (sum(covered) / total) >= value_area_pct:
+                break
+        vah = round((bins[hi_i] + bins[hi_i + 1]) / 2, 2)
+        val = round((bins[lo_i] + bins[lo_i + 1]) / 2, 2)
+        # HVN/LVN: 按 3 桶滑动平均找极值
+        import numpy as _np
+        smooth = _np.convolve(hist, _np.ones(3) / 3, mode="same")
+        hvn_i = int(smooth.argmax()); lvn_i = int(smooth.argmin())
+        hvn = round((bins[hvn_i] + bins[hvn_i + 1]) / 2, 2)
+        lvn = round((bins[lvn_i] + bins[lvn_i + 1]) / 2, 2)
+        cur = float(close.iloc[-1])
+        # 当前价相对 POC/VA 的位置
+        pos = "价值区内(平衡态,均值回归)" if val <= cur <= vah else ("价值区上(偏多)" if cur > vah else "价值区下(偏空)")
+        return {"poc": poc, "vah": vah, "val": val, "hvn": hvn, "lvn": lvn,
+                "cur": round(cur, 2), "position": pos, "lookback": lookback}
+    except Exception:
+        return None
+
+
+def calc_smc_structure(close, swing_len=3):
+    """官家11-20: SMC 结构识别 — 找摆动高/低点, 判 BOS(结构破位=趋势延续)/CHoCH(反转预警)。
+    比单看 MA 拐头更早: 破最近 swing low = 下行结构确认。"""
+    try:
+        c = close.tail(swing_len * 8).reset_index(drop=True)
+        n = len(c)
+        swings_hi, swings_lo = [], []
+        for i in range(swing_len, n - swing_len):
+            window_hi = c.iloc[i - swing_len:i + swing_len + 1]
+            window_lo = c.iloc[i - swing_len:i + swing_len + 1]
+            if c.iloc[i] == window_hi.max() and (c.iloc[i] > c.iloc[i - 1] and c.iloc[i] > c.iloc[i + 1]):
+                swings_hi.append((i, float(c.iloc[i])))
+            if c.iloc[i] == window_lo.min() and (c.iloc[i] < c.iloc[i - 1] and c.iloc[i] < c.iloc[i + 1]):
+                swings_lo.append((i, float(c.iloc[i])))
+        if not swings_hi or not swings_lo:
+            return None
+        last_hi = swings_hi[-1][1]
+        last_lo = swings_lo[-1][1]
+        prev_hi = swings_hi[-2][1] if len(swings_hi) >= 2 else last_hi
+        prev_lo = swings_lo[-2][1] if len(swings_lo) >= 2 else last_lo
+        cur = float(c.iloc[-1])
+        # 结构判断
+        if prev_lo < last_lo:
+            structure = "HH+HL 上升结构"
+        elif prev_hi > last_hi:
+            structure = "LH+LL 下降结构"
+        else:
+            structure = "横盘/无清晰结构"
+        # BOS/CHoCH
+        events = []
+        if cur > last_hi:
+            events.append(f"破近期高{last_hi:.0f}=BOS向上(若处于上升结构则趋势延续)")
+        if cur < last_lo:
+            events.append(f"破近期低{last_lo:.0f}=破位下行(若处于下降结构则延续/或CHoCH反转预警)")
+        return {"last_high": round(last_hi, 2), "last_low": round(last_lo, 2),
+                "current": round(cur, 2), "structure": structure,
+                "events": events, "swing_len": swing_len}
+    except Exception:
+        return None
+
+
+def calc_trader_equation(prob_win, reward_risk_ratio, risk_pct=1.0):
+    """官家11-20: Al Brooks 交易者方程 — 期望值 = 胜率×(赔率×风险) - 败率×风险。
+    正期望才值得入场。reward_risk_ratio = 目标幅度/止损幅度(R:R)。
+    返回 {edge, verdict, win, lose, rr}。"""
+    try:
+        win = max(0.0, min(1.0, prob_win))
+        rr = reward_risk_ratio
+        edge = win * rr - (1 - win) * 1.0   # 单位风险期望
+        if edge > 0.25:
+            verdict = "正期望(可入场)"
+        elif edge > 0:
+            verdict = "弱正期望(小仓试错)"
+        elif edge > -0.25:
+            verdict = "接近中性(观望)"
+        else:
+            verdict = "负期望(不入场)"
+        return {"edge": round(edge, 3), "verdict": verdict,
+                "win": round(win, 2), "lose": round(1 - win, 2), "rr": rr}
+    except Exception:
+        return None
+
+
 def calc_multi_timeframe(symbol, batch_3mo=None, batch_1y=None):
     """多时间框架分析"""
     result = {}
@@ -490,7 +617,7 @@ def calc_ichimoku_signal(high, low, close):
     }
 
 
-# ==================== v3.4 智能建议引擎 ====================
+# ==================== v3.5 智能建议引擎 ====================
 
 def calc_dynamic_weights(macd_result, boll, atr, price):
     """根据市场环境动态调整指标权重"""
@@ -662,7 +789,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     fib = calc_fibonacci(float(high.tail(30).max()), float(low.tail(30).min()), price)
     sr = calc_support_resistance(close, high, low, boll["upper"], boll["lower"], price)
 
-    # === v3.4 增强指标 ===
+    # === v3.5 增强指标 ===
     adx_val, adx_regime = calc_adx(high, low, close)
     williams_r, wr_signal = calc_williams_r(high, low, close)
     ichimoku = calc_ichimoku_signal(high, low, close)
@@ -706,7 +833,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         score += fib["score_impact"]
         signals.append(f"Fib区间: {fib['zone']}")
 
-    # === v3.4 ADX 趋势强度加权 ===
+    # === v3.5 ADX 趋势强度加权 ===
     if adx_val > 50:
         # 强趋势：趋势指标权重加大
         if macd["signal"] in ("金叉↗", "多头"):
@@ -724,7 +851,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
         elif rsi > 70:
             score -= 5
 
-    # === v3.4 Williams %R 交叉验证 ===
+    # === v3.5 Williams %R 交叉验证 ===
     if wr_signal == "超买" and rsi > 65:
         score -= 8  # 双超买确认，加空
         signals.append(f"W%R={williams_r}+RSI={rsi:.0f}双超卖")
@@ -736,7 +863,7 @@ def analyze_short_term(symbol, days=3, batch_data=None):
     elif wr_signal == "超卖" and rsi > 50:
         signals.append(f"W%R超卖但RSI未确认→分歧")
 
-    # === v3.4 一目均衡表 ===
+    # === v3.5 一目均衡表 ===
     if ichimoku:
         score += ichimoku["score_impact"]
         signals.append(f"一目: {ichimoku['trend']}")
@@ -845,13 +972,13 @@ def analyze_medium_long_term(symbol, batch_data=None):
 # ==================== 每日推送报告 ====================
 
 def generate_daily_report(days=3):
-    """v3.4 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
+    """v3.5 多数据源报告：akshare优先 → yfinance备用 → 机遇扫描 → 永不返回None"""
     horizon = f"{days}天"
     now = datetime.now()
     lines = []
 
     lines.append("=" * 50)
-    lines.append("💰 石油黄金每日投资参考 v3.4")
+    lines.append("💰 石油黄金每日投资参考 v3.5")
     lines.append(f"📅 {now.strftime('%Y-%m-%d %H:%M')} | 短期{horizon} + 中长期")
 
     # ━━━ 数据获取：多源 + 永不失败 ━━━
@@ -1047,7 +1174,7 @@ def generate_daily_report(days=3):
 
     # ━━━ 六、综合投资建议 ━━━
     lines.append(f"\n{'━' * 50}")
-    lines.append("🎯 六、综合投资建议（智能引擎 v3.4）")
+    lines.append("🎯 六、综合投资建议（智能引擎 v3.5）")
     lines.append(f"{'━' * 50}")
 
     asset_groups = [("🥇 黄金", gold_dict, 0.3), ("🥈 白银", silver_dict, 0.25), ("🛢️ 原油", oil_dict, 0.2)]
@@ -1150,7 +1277,7 @@ def generate_daily_report(days=3):
         opp_impact = scanner.get_total_score_impact()
 
         lines.append(f"\n{'━' * 50}")
-        lines.append("🔍 七、隐藏机遇扫描（v3.4）")
+        lines.append("🔍 七、隐藏机遇扫描（v3.5）")
         lines.append(f"{'━' * 50}")
         for ol in opp_lines:
             lines.append(ol)
@@ -1166,7 +1293,7 @@ def generate_daily_report(days=3):
     lines.append("  • 技术分析+地缘分析仅供参考，不构成投资建议")
     lines.append("  • 期货有杠杆风险，新手从ETF开始")
     lines.append("  • 单品种仓位 ≤ 10%，总仓位 ≤ 30%")
-    lines.append("  • v3.4: 多源交叉验证 + 隐藏机遇扫描")
+    lines.append("  • v3.5: 多源交叉验证 + 隐藏机遇扫描")
 
     report = "\n".join(lines)
     logger.info(report)
@@ -1378,7 +1505,7 @@ def _analyze_instrument(name, period="90d", horizon=3):
     except Exception as e:
         sr_data = None
 
-    # === v3.4 增强指标 ===
+    # === v3.5 增强指标 ===
     adx_val, adx_regime = calc_adx(high, low, close)
     williams_r, wr_signal = calc_williams_r(high, low, close)
     ichimoku = calc_ichimoku_signal(high, low, close)
@@ -1433,7 +1560,7 @@ def _analyze_instrument(name, period="90d", horizon=3):
             if divergence == "底背离": score += 10; signals.append("OBV底背离（看涨）")
             elif divergence == "顶背离": score -= 10; signals.append("OBV顶背离（看跌）")
 
-    # === v3.4 ADX 趋势强度加权 ===
+    # === v3.5 ADX 趋势强度加权 ===
     if adx_val > 50:
         if macd_data and isinstance(macd_data, dict):
             sig = macd_data.get("signal", "")
@@ -1444,13 +1571,13 @@ def _analyze_instrument(name, period="90d", horizon=3):
         if rsi < 30: score += 5
         elif rsi > 70: score -= 5
 
-    # === v3.4 Williams %R 交叉验证 ===
+    # === v3.5 Williams %R 交叉验证 ===
     if wr_signal == "超买" and rsi > 65:
         score -= 6; signals.append(f"W%R={williams_r}+RSI双超买")
     elif wr_signal == "超卖" and rsi < 35:
         score += 6; signals.append(f"W%R={williams_r}+RSI双超卖")
 
-    # === v3.4 一目均衡表 ===
+    # === v3.5 一目均衡表 ===
     if ichimoku:
         score += ichimoku["score_impact"]
         signals.append(f"一目: {ichimoku['trend']}")
@@ -1574,7 +1701,7 @@ def run_advisor_akshare(days=3):
         if r.get("signals"):
             logger.info(f"  信号: {', '.join(r['signals'])}")
 
-        # v3.4 增强指标
+        # v3.5 增强指标
         if r.get("adx_regime"):
             logger.info(f"  ADX: {r.get('adx', '?')} ({r['adx_regime']})")
         if r.get("wr_signal"):
