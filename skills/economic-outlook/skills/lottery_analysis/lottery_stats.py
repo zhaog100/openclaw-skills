@@ -14,22 +14,57 @@ CACHES = {"dlt": "/tmp/lottery_cache_dlt.json", "ssq": "/tmp/lottery_cache_ssq.j
 
 
 def fetch_history(kind):
-    """拉官方历史开奖. dlt=大乐透(17500 dlt_asc), ssq=双色球(17500 ssq_asc). 带缓存"""
-    url = {"dlt": "https://data.17500.cn/dlt_asc.txt", "ssq": "https://data.17500.cn/ssq_asc.txt"}[kind]
+    """拉历史开奖. 降级链(官家11-20): 官方 sporttery API → 17500 第三方 → /tmp 本地缓存。
+    哪个源通用哪个, 全挂退缓存, 绝不因数据源挂导致出号/回测失败。"""
     cache = CACHES[kind]
     raw = None
+    source = ""
+    # ① 官方 sporttery.cn API(数据最可靠, 带 Referer 头)
+    sport_url = {"dlt": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?lotteryGameNum=85&provinceId=00&pageSize=30&pageNo=1&isVerify=1",
+                 "ssq": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?lotteryGameNum=84&provinceId=00&pageSize=30&pageNo=1&isVerify=1"}[kind]
     try:
-        req = urllib.request.Request(url, headers=UA)
-        raw = urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "ignore")
-        with open(cache, "w", encoding="utf-8") as f:
-            f.write(raw)
-    except Exception as e:
-        print(f"⚠️ 拉取失败({e}), 用缓存", end=" ")
+        import json as _json
+        req = urllib.request.Request(sport_url, headers={"User-Agent": UA["User-Agent"], "Referer": "https://www.sporttery.cn/", "Accept": "application/json"})
+        d = _json.loads(urllib.request.urlopen(req, timeout=10).read())
+        val = d.get("value", {})
+        lst = val.get("list", []) if isinstance(val, dict) else []
+        if lst:
+            # 官方返回 JSON, 转成 17500 的 txt 行格式喂给下面解析(兼容现有解析逻辑)
+            lines = []
+            for r in lst:
+                res = r.get("lotteryDrawResult", "").split()
+                date = (r.get("lotteryDrawTime") or "")[:10]
+                period = r.get("lotteryDrawIssue", "")
+                if kind == "dlt":
+                    lines.append(" ".join([period, date] + [f"{int(x):02d}" for x in res]))
+                else:
+                    lines.append(" ".join([period, date] + [f"{int(x):02d}" for x in res]))
+            raw = "\n".join(lines)
+            source = "官方sporttery"
+            with open(cache, "w", encoding="utf-8") as f:
+                f.write(raw)
+    except Exception:
+        pass
+    # ② 17500 第三方(官方不通时)
+    if raw is None:
+        url = {"dlt": "https://data.17500.cn/dlt_asc.txt", "ssq": "https://data.17500.cn/ssq_asc.txt"}[kind]
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")
+            source = "17500"
+            with open(cache, "w", encoding="utf-8") as f:
+                f.write(raw)
+        except Exception:
+            pass
+    # ③ 本地缓存(前两个都挂, 含 429 限流)
+    if raw is None:
+        source = "缓存"
         try:
             raw = open(cache, encoding="utf-8").read()
         except Exception:
-            print(" 且无缓存 → 退出")
+            print(f"⚠️ {kind} 三源全挂且无缓存, 退出")
             return []
+    print(f"[{kind}] 数据源: {source}", end=" ")
     rows = []
     for line in raw.strip().split("\n"):
         t = line.split()
