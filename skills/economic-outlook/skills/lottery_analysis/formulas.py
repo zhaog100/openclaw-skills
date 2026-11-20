@@ -6,6 +6,7 @@
 
 from math import comb
 import statistics
+import os, datetime, hashlib   # 官家11-20玄学加权依赖
 
 
 def combinations(kind="ssq"):
@@ -173,13 +174,69 @@ def mandel(kind="ssq", bankroll=100.0, per_note=2.0, b_net=0.0, n_bank=5):
     drag = [n for n in range(1, pool + 1) if n not in bank][:6]
     # 凯利(彩票净赔率极低→仓位极保守)
     f_kelly = max(0.0, min(((b_net * 0.05 - 1) / (b_net - 1)) if b_net > 1 else 0.0, 1.0))
-    return {"success": True, "kind_cn": "双色球" if kind == "ssq" else "大乐透",
-            "bank_danger": bank,
-            "bank_scores": bank_scores,
-            "bank_note": "双因子胆码(全期频率0.5+近50期活跃0.3+遗漏适中0.2), 统计层非预测",
-            "drag_example": drag, "kelly_pct": round(f_kelly * 100, 1),
-            "kelly_note": "凯利仓位(彩票净赔率极低, 0%=数学上不建议下注)",
-            "disclaimer": "曼德尔公式只做组合冷凝+资金管理, 不预测号码; 摇奖独立, 不构成购彩建议"}
+    # ── 官家11-20借鉴玄学: 术数加权(仅调权重, 不替代统计, 明确标注"非预测") ──
+    # ① 梅花易数·时间数: 以开奖日期的年月日时做种子, 对每个号码生成确定性"易数"
+    #    摇奖独立, 这不改变任何真实概率, 只是把玄学作为可复现的加权因子并入双因子
+    # ② 紫微斗数·天干地支: 以日期干支做五行(金木水火土)对 1..33/1..35 号码的亲和度
+    # ③ 周易·八卦: 以"当期序号 mod 8"映射八卦, 取卦象对应方位数字做偏好
+    # 全部因子 ∈[0,1], 与双因子(0.5f+0.3a+0.2g)同量纲, 按官方"玄学加成权重"合入
+    xuansen = os.environ.get("LOTTERY_XUANXUE", "1") == "1"
+    if xuansen:
+        try:
+            now = datetime.datetime.now()
+            seed = hashlib.md5(f"{now.year}{now.month:02d}{now.day:02d}{now.hour:02d}{kind}".encode()).digest()
+            day_mod8 = (now.year * 10000 + now.month * 100 + now.day) % 8
+            # 五行亲和度(紫微): 号码按 1-5 循环分五行, 与当期干支日主相生加分
+            day_element = ["金", "木", "水", "火", "土"][(now.day + now.month) % 5]
+            num_elements = {n: ["金", "木", "水", "火", "土"][(n - 1) % 5] for n in range(1, pool + 1)}
+            # 梅花易数·方位偏好(八卦): 当期序号 mod 8 → 偏好某组数字
+            gua_pref = [list(range(1, pool + 1, 7)), list(range(2, pool + 1, 7)),
+                         list(range(3, pool + 1, 7)), list(range(4, pool + 1, 7)),
+                         list(range(5, pool + 1, 7)), list(range(6, pool + 1, 7)),
+                         list(range(1, pool + 1, 6)), list(range(2, pool + 1, 6))]
+            gua_set = set(gua_pref[day_mod8])
+            xuanscore = {}
+            for num in range(1, pool + 1):
+                s = 0.0
+                # 五行相生: 生我者/我生者 +0.3, 同五行 +0.15
+                if num_elements[num] == day_element:
+                    s += 0.15
+                else:
+                    # 简化: 相生关系(金生水/水生木/木生火/火生土/土生金)
+                    order = ["金", "水", "木", "火", "土"]
+                    if order[(order.index(num_elements[num]) + 1) % 5] == day_element or order[(order.index(day_element) + 1) % 5] == num_elements[num]:
+                        s += 0.3
+                # 八卦方位偏好
+                if num in gua_set:
+                    s += 0.1
+                # 梅花易数·时间数: 用 seed 派生确定性 0..1 (同一期同结果, 跨期变化)
+                s += (seed[num % 16] / 255.0) * 0.45
+                xuanscore[num] = round(s, 4)
+            # 合入总分: 官方权重 玄学 0.15, 统计因子相应降为 0.85 系数
+            for num in range(1, pool + 1):
+                score[num] = 0.85 * score[num] + 0.15 * min(1.0, xuanscore.get(num, 0))
+            bank = sorted(score, key=score.get, reverse=True)[:n_bank]
+            bank_scores = {n: round(score[n], 4) for n in bank}
+            x_note = "玄学加权(梅花易数方位0.10+紫微五行相生0.30+周易时间数0.45, 官方合计权重0.15), 统计+术数, 非预测"
+            bank_note = "双因子统计(0.85) + 玄学加权(0.15), 摇奖独立, 不构成购彩建议"
+        except Exception:
+            x_note = "玄学加权异常, 回退纯统计"
+            bank_note = "双因子胆码(纯统计), 摇奖独立, 不构成购彩建议"
+    else:
+        x_note = "玄学加权关闭(LOTTERY_XUANXUE=0), 纯统计"
+        bank_note = "双因子胆码(全期频率0.5+近50期活跃0.3+遗漏适中0.2), 统计层非预测"
+
+    out = {"success": True, "kind_cn": "双色球" if kind == "ssq" else "大乐透",
+           "bank_danger": bank,
+           "bank_scores": bank_scores,
+           "bank_note": bank_note,
+           "drag_example": drag, "kelly_pct": round(f_kelly * 100, 1),
+           "kelly_note": "凯利仓位(彩票净赔率极低, 0%=数学上不建议下注)",
+           "xuansen_note": x_note,
+           "disclaimer": "摇奖独立, 历史统计+术数加权均不改变中奖概率, 不构成购彩建议"}
+    if xuansen:
+        out["xuansen"] = "on"
+    return out
 
 
 if __name__ == "__main__":
