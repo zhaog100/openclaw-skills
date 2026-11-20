@@ -40,7 +40,7 @@ print("✅ 校验全过，开始打包")
 
 # ② 收集文件
 pairs = [
-    (os.path.join(W, "oil-gold-correlation"), "oil-gold-correlation"),
+    (os.path.join(W, "oil-gold-correlation") if os.path.isdir(os.path.join(W, "oil-gold-correlation")) else os.path.join(W, "skills", "oil-gold-correlation"), "oil-gold-correlation"),
     (os.path.join(W, "skills", "economic-outlook"), "economic-outlook"),
 ]
 files = []

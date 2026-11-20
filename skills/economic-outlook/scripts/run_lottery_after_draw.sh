@@ -17,8 +17,11 @@ python3 skills/lottery_analysis/lottery_stats.py "$kind" > /dev/null 2>&1
 python3 skills/lottery_analysis/combined_ticket.py "$kind" > /tmp/lottery_report_$kind.txt 2>&1
 rc=$?
 echo "[$(date '+%F %T')] 出号 exit=$rc" >> "$CLOG"
-# ③ 推 QQ(走门面 send_qq_gw 双路)
-if [ $rc -eq 0 ]; then
-  python3 skills/oil-gold-correlation/scripts/send_qq_gw.py /tmp/lottery_report_$kind.txt >> "$CLOG" 2>&1
+# ③ 推 QQ(走门面 send_qq_gw 双路; send_qq_gw 在上层 skills/oil-gold-correlation, 不走 $EO 内嵌路径)
+GW="\$WS/skills/oil-gold-correlation/scripts/send_qq_gw.py"
+if [ $rc -eq 0 ] && [ -f "\$GW" ]; then
+  python3 "\$GW" /tmp/lottery_report_$kind.txt >> "$CLOG" 2>&1
   echo "[$(date '+%F %T')] 推送: $?" >> "$CLOG"
+elif [ $rc -eq 0 ]; then
+  echo "[$(date '+%F %T')] 推送跳过: 找不到 \$GW" >> "$CLOG"
 fi

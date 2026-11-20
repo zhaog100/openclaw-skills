@@ -11,7 +11,7 @@
 
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
-import os, json, re, datetime, tempfile, subprocess
+import os, json, datetime, tempfile, subprocess
 from skills.base import BaseSkill
 
 FX = 7.10
@@ -44,35 +44,37 @@ class GoldWatchOutcomeSkill(BaseSkill):
 
         # 读 signal 结果
         sig = context.get("gold_watch_signal") or {}
+        # P2后半(官家11-04): 降级链报价时间戳格式化 [价@HH:MM]
+        # au0_realtime_ts 可能是 unix ms / s / "HH:MM:SS" / "YYYY-MM-DD HH:MM" 等, 统一成 HH:MM
+        def _fmt_price_ts(ts_raw):
+            if not ts_raw:
+                return "未知时间"
+            s = str(ts_raw).strip()
+            import re as _re_p2
+            # 已是 HH:MM / HH:MM:SS
+            m = _re_p2.match(r"^(\d{2}):\d{2}(:\d{2})?$", s)
+            if m:
+                return s[:5]
+            # unix ms / s
+            if s.isdigit():
+                try:
+                    import datetime as _dt_p2
+                    v = int(s)
+                    if v > 10**12: v = v // 1000
+                    if v > 10**9: v = v // 1000
+                    return _dt_p2.datetime.fromtimestamp(v).strftime("%H:%M")
+                except Exception:
+                    pass
+            # 含 HH:MM 子串(如 2026-11-05 14:22 / 14:22:08)
+            m2 = _re_p2.search(r"(\d{2}:\d{2})", s)
+            if m2:
+                return m2.group(1)
+            return s[:5]
+        price_ts = _fmt_price_ts(sig.get("au0_realtime_ts"))
+        degraded_flag_note = f"⚠️ 东财限流, 当前价为 [价@{price_ts}] 时的降级链报价({sig.get('au0_realtime_src','')})" if sig.get("degraded_basis") else ""
         if not sig.get("success"):
             return {"triggered": False, "reason": "signal 拉价失败, 跳过(不用过期价)",
                     "xauusd": sig.get("xauusd")}
-
-        # 官家11-05: 采集时间戳格式化(兼容5种输入→HH:MM), 降级时标"这价是哪一刻采的"
-        def _fmt_price_ts(raw):
-            s = str(raw or "").strip()
-            if not s:
-                return "未知时间"
-            # 已是 14:22 / 14:22:08 / 2026-11-05 14:22:08 → 取 HH:MM
-            m = re.search(r"(\d{1,2}):(\d{2})(?::\d{2})?", s)
-            if m and ("/" not in s and "-" not in s or "-" in s):
-                hh = m.group(1).zfill(2)
-                if int(hh) <= 23 and int(m.group(2)) <= 59:
-                    return f"{hh}:{m.group(2)}"
-            # unix ms (13位) / s (10位)
-            if s.isdigit():
-                try:
-                    val = int(s)
-                    if val > 1e12:  # ms
-                        val = val / 1000
-                    return datetime.datetime.fromtimestamp(val).strftime("%H:%M")
-                except Exception:
-                    return "未知时间"
-            return s[:5]
-        price_ts = _fmt_price_ts(sig.get("au0_realtime_ts"))
-        degraded_flag_note = (
-            f"⚠️ 东财限流, 当前价为 [价@{price_ts}] 时的降级链报价({sig.get('au0_realtime_src','')})"
-            if sig.get("degraded_basis") else "")
         xau = sig.get("xauusd")
         if not xau:
             return {"triggered": False, "reason": "无实时金价, 静默", "xauusd": None}
@@ -113,6 +115,7 @@ class GoldWatchOutcomeSkill(BaseSkill):
         if is_degraded:
             # 官家11-01安全闸门: 降级口径(金投网偏高)命中破档 → 只展示提示, 不自动触发申购/赎回(需官家确认)
             tag = "破第3笔买点" if sh <= buy2 else ("破第2笔买点" if sh <= buy1 else ("到卖点二档" if sh >= sell2 else "到卖点一档"))
+            # P2后半: 降级报价必带 [价@HH:MM] 采集时间戳 + 东财限流标注, 避免把降级链缓存价当最新价
             out = {"triggered": False, "sh_equiv": sh, "cost_basis": cost,
                    "breakeven": breakeven, "spread": spread, "tier_mode": tier_mode,
                    "dyn": {"buy1": buy1, "buy2": buy2, "sell1": sell1, "sell2": sell2},

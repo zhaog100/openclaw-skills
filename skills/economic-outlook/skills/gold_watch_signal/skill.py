@@ -505,7 +505,7 @@ class GoldWatchSignalSkill(BaseSkill):
         _is_degraded = bool(au0_rt_eff.get("degraded"))
         out["au0_realtime_src"] = ((au0_rt_eff.get("src_cn") or au0_rt_eff.get("src", "")) + ("(降级)" if _is_degraded else ""))
         out["degraded_basis"] = _is_degraded
-        # 官家11-05: 透传采集时间戳, outcome 层可标"这价是哪一刻采的"(各降级源本就带 ts)
+        # P2后半(官家11-04): 透传各来源采集时间戳, 供 outcome 层在降级报价时标注 [价@HH:MM]
         out["au0_realtime_ts"] = au0_rt_eff.get("ts", "")
         use_au9999 = bool(au9999_k and len(au9999_k[0]) >= lb2)
         use_au0 = (not use_au9999) and bool(au0 and len(au0[0]) >= lb2)

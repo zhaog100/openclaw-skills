@@ -24,17 +24,75 @@ if not dyn:
     print("无动态算法配置，跳过")
     sys.exit(0)
 
-# 拉沪金期货(元/克) 最近 60 日
+# 拉沪金现货(元/克) 最近 60 日 + 实时价 —— 官家11-17 B方案: 盯价/报告统一现货口径
+# ① 主源: 东财 118.AU9999 现货(和 report_text.py 同口径, 多节点并发抢通)
+# ② 降级: 东财全挂 → 金投网 jijinhao JO_71(上金所Au9999现货口径, 不偏高)
+# ③ 末级: 金投网也挂 → akshare 期货 AU0(偏高~20元, 标降级, 仅供参考不自动触发)
+import concurrent.futures as _cf, re as _re
+import urllib.request, json as _json
+def _em_get(host):
+    req = urllib.request.Request(f"https://{host}/api/qt/stock/get?secid=118.AU9999&fields=f43,f86",
+                                 headers={"User-Agent": "Mozilla/5.0"})
+    d = _json.loads(urllib.request.urlopen(req, timeout=6).read().decode("utf-8", "ignore"))
+    return (d.get("data") or {})
+def _jijinhao_get(code="JO_71"):
+    req = urllib.request.Request("https://api.jijinhao.com/quoteCenter/realTime.htm?codes=" + code,
+                                 headers={"User-Agent": "Mozilla/5.0 (Linux; Android 16)",
+                                           "Referer": "https://m.cngold.org/"})
+    raw = urllib.request.urlopen(req, timeout=10).read().decode("utf-8", "ignore")
+    m = _re.search(r'"' + code + r'"\s*:\s*\{(.{0,400})', raw)
+    if m:
+        q5 = _re.search(r'"q5"\s*:\s*([\d.]+)', m.group(1))
+        if q5: return float(q5.group(1))
+    return None
+
+cur, cur_src, cur_degraded = None, "", False
+# 历史 K 线(算动态区间高低点, 期货 AU0 日线作历史基准)
 try:
     import akshare as ak
     end = datetime.datetime.now().strftime("%Y%m%d")
     df = ak.futures_main_sina(symbol="AU0", start_date="20260701", end_date=end)
     close = df['收盘价'].astype(float)
 except Exception:
-    print("沪金期货价不可用，本轮静默跳过（不推、不用过期价）")
-    sys.exit(0)
+    close = None
 
-cur = close.iloc[-1]
+# ① 主源: 东财 AU9999 现货
+try:
+    with _cf.ThreadPoolExecutor(max_workers=4) as _ex:
+        for _f in _cf.as_completed([_ex.submit(_em_get, h) for h in
+                                    ["push2.eastmoney.com","push2delay.eastmoney.com"]]):
+            try:
+                f43 = _f.result().get("f43")
+                if f43 and f43 > 1000:
+                    cur = round(f43 / 100.0, 2)
+                    cur_src = "东财AU9999现货"
+                    break
+            except Exception:
+                continue
+except Exception:
+    pass
+
+# ② 降级: 东财全挂 → 金投网 Au9999 现货(同口径, 不偏高)
+if cur is None:
+    try:
+        jprice = _jijinhao_get()
+        if jprice and 500 < jprice < 2000:
+            cur = jprice
+            cur_src = "金投网Au9999现货(降级)"
+            cur_degraded = True
+    except Exception:
+        pass
+
+# ③ 末级: 金投网也挂 → akshare 期货 AU0(偏高~20元, 标降级)
+if cur is None:
+    if close is not None and len(close) > 0:
+        cur = float(close.iloc[-1])
+        cur_src = "akshare AU0期货(降级)"
+        cur_degraded = True
+    else:
+        print("沪金现货/期货价均不可用，本轮静默跳过（不推、不用过期价）")
+        sys.exit(0)
+
 # 银行加价（中行客户买入价 - 沪金现货基准价），建议价 = 沪金现货 + 银行加价
 bank_premium = w.get("bank_premium", 21)
 lb1 = dyn.get("lookback_1", 20)
@@ -101,9 +159,14 @@ if not msgs:
     buy_hint = action_map.get(f"buy_{round(buy1)}", "申购国泰A（打底仓）")
     sell_hint = action_map.get(f"sell_{round(sell_pts[0])}", "赎回国泰C（波段仓）")
     # 建议买入价（银行口径）= 沪金现货 + 银行加价
+    # 取价时间戳(官家11-04: 摘要标"这是几点的价", 一眼看出非旧缓存)
+    price_ts = datetime.datetime.now().strftime("%H:%M")
+    src_tag = cur_src + ("(偏高~20元,仅供参考不自动触发)" if (cur_degraded and "期货" in cur_src) else "")
+    degraded_note = "⚠️ 东财限流, 当前价为期货AU0降级价(偏高~20元), 仅供参考不自动触发\n" if (cur_degraded and "期货" in cur_src) else ("⚠️ 东财限流, 当前为降级价(现货口径), 仅供参考\n" if cur_degraded else "")
     summary = (
         f"📊 黄金盯价摘要（{now}）\n"
-        f"沪金现货 ¥{cur:.0f}/克，区间内未触发\n"
+        f"{degraded_note}"
+        f"沪金 ¥{cur:.0f}/克 [{src_tag}@{price_ts}]，区间内未触发\n"
         f"  离买点1(沪金¥{buy1:.0f}/建议¥{buy1_bank:.0f}) 还差 {d_buy1:.0f} 元\n"
         f"  离卖点1(沪金¥{sell_pts[0]:.0f}) 还差 {d_sell1:.0f} 元\n"
         f"  今天: 区间内持有，到价才动\n"
@@ -111,7 +174,8 @@ if not msgs:
         f"  到卖点 → 沪金¥{sell_pts[0]:.0f}，{sell_hint}"
     )
     sell_str = "/".join(f"{s:.0f}" for s in sell_pts)
-    print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克 | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_str} 别追 {no_chase:.0f}")
+    tail_src = f" [金投网·降级 现货口径]" if (cur_degraded and "金投网" in cur_src) else (f" [akshare期货·降级 偏高~20元]" if cur_degraded else "")
+    print(f"未触发（{now}）沪金现货 ¥{cur:.0f}/克{tail_src} | 买点 {buy1:.0f}/{buy2:.0f} 卖点 {sell_str} 别追 {no_chase:.0f}")
     target = os.environ.get("QQ_TARGET_USER_ID", "")
     if not target:
         print("SUMMARY_NO_TARGET")

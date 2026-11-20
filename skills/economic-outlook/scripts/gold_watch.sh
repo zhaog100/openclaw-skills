@@ -42,6 +42,14 @@ out = GoldWatchOutcomeSkill().execute({"gold_watch_signal": sig}).data
 price = sig.get("sh_equiv") or out.get("sh_equiv")
 agm = sig.get("agm_realtime", "")
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+# 数据源不可用检测(中文原因, 防静默 exit 1): 拉不到现货价就明确说明
+if not sig.get("success") or not price:
+    basis = sig.get("price_basis", "现货实时价不可用")
+    src = sig.get("au0_realtime_src", "东财AU9999/金投网")
+    print(f"⚠️ 黄金盯价本轮跳过: {basis}")
+    print(f"  数据源 {src} 拉取失败(502/超时/DNS), 本次不推送, 等下轮重试")
+    log.warning("黄金盯价数据源不可用, 跳过本轮: %s", basis)
+    import sys; sys.exit(1)
 
 # 读上次的去重 key
 last_key = ""
@@ -82,6 +90,6 @@ if out.get("triggered"):
     else:
         print("TRIGGERED_NO_TARGET")
 else:
-    log.info("未触发（%s），沪金 %s", alert.get("reason","?"), price if price else "?")
+    log.info("未触发（%s），沪金 %s", out.get("reason","?"), price if price else "?")
     print("OK")
 PY

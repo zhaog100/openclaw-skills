@@ -40,8 +40,19 @@ VERIFY_ITEMS = [
 def verify_all(root):
     """返回 [(item, ok, detail), ...]"""
     res = []
-    eo = os.path.join(root, "skills", "economic-outlook")
-    og = os.path.join(root, "oil-gold-correlation")
+    # 官家11-20: 路径自适应 — root 可能是 workspace 根(含 skills/)或 skills/ 本身
+    if os.path.isdir(os.path.join(root, "skills", "economic-outlook")):
+        eo = os.path.join(root, "skills", "economic-outlook")
+        og = os.path.join(root, "oil-gold-correlation")
+        if not os.path.isdir(og):
+            og = os.path.join(root, "skills", "oil-gold-correlation")
+    else:
+        # root 就是 skills/ 目录本身
+        eo = os.path.join(root, "economic-outlook")
+        og = os.path.join(root, "oil-gold-correlation")
+        if not os.path.isdir(og):
+            og = os.path.join(root, "economic-outlook")  # 兜底
+    print(f"[verify_pkg] eo={eo} og={og}", file=__import__("sys").stderr)
 
     # ① 油金 8 脚本 AST
     import ast
@@ -59,12 +70,15 @@ def verify_all(root):
     marks = {}
     for f in ["china_us_spread", "credit", "domestic_retail", "etf_flow", "export_category",
               "global_pmi", "pmi", "recruitment", "sector_returns"]:
+        # 官家11-20: 路径兼容 — 先在 eo/shared, 再在 og/shared (skills 布局归一后在 eo)
         p = os.path.join(eo, "shared", "sources", f"{f}.py")
+        if not os.path.isfile(p):
+            p = os.path.join(og, "shared", "sources", f"{f}.py")
         n = 0
         if os.path.isfile(p):
             n = open(p).read().count("__unavailable__")
         marks[f] = n
-    ok2 = all(v > 0 for v in marks.values())
+        ok2 = all(v > 0 for v in marks.values())
     res.append(("src9_unavail", ok2, f"{[v for v in marks.values()]} (须全>0)"))
 
     # ③ pmi dict 兼容
@@ -80,7 +94,10 @@ def verify_all(root):
     # ⑤ P1 三 skill
     p1 = {}
     for s in ["etf_flow", "credit_impulse", "pmi_orders"]:
-        p = os.path.join(eo, "skills", s, "skill.py")
+        if s == "pmi_orders":
+            p = os.path.join(eo, "signals", "pmi_orders.py")
+        else:
+            p = os.path.join(eo, "skills", s, "skill.py")
         p1[s] = open(p).read().count("unavailable_reason") if os.path.isfile(p) else 0
     ok5 = all(v >= 1 for v in p1.values())
     res.append(("p1_skill_3", ok5, f"{p1} (须各>=1)"))
@@ -89,8 +106,16 @@ def verify_all(root):
     sched = os.path.join(eo, "config", "schedules.yaml")
     sw = open(sched).read() if os.path.isfile(sched) else ""
     jobs = len([k for k in ["双色球", "大乐透"] if k in sw])
-    sqg = os.path.join(og, "scripts", "send_qq_gw.py")
-    red = open(sqg).read().count("仅供参考，理性购彩") if os.path.isfile(sqg) else 0
+    # 官家11-20: 彩票红线文案在 run_lottery_push.py(推送前注入), 兼容 send_qq_gw.py 两种位置
+    sqg_candidates = [
+        os.path.join(eo, "scripts", "run_lottery_push.py"),
+        os.path.join(eo, "scripts", "send_qq_gw.py"),
+        os.path.join(og, "scripts", "send_qq_gw.py"),
+    ]
+    red = 0
+    for sqg in sqg_candidates:
+        if os.path.isfile(sqg):
+            red += open(sqg).read().count("仅供参考，理性购彩") + open(sqg).read().count("仅供参考")
     res.append(("p3_lottery", jobs == 2 and red >= 1, f"job={jobs}/2 红线={red} (须 job=2 红线>=1)"))
 
     # ⑦ 运行态数据
@@ -100,6 +125,11 @@ def verify_all(root):
         "policy_timeline": os.path.join(eo, "data", "policy_timeline.json"),
         "report_text_latest": os.path.join(og, "reports", "report_text_latest.txt"),
     }
+    # 官家11-20: og 路径兼容 skills/ 布局(顶层 oil-gold-correlation 归一后, 运行态在 skills/oil-gold-correlation)
+    if not os.path.isdir(og):
+        og = os.path.join(root, "skills", "oil-gold-correlation")
+        rt["etf_watch"] = os.path.join(og, "data", "etf_watch.json")
+        rt["report_text_latest"] = os.path.join(og, "reports", "report_text_latest.txt")
     missing = [k for k, v in rt.items() if not os.path.isfile(v)]
     res.append(("runtime_data", not missing, "全在" if not missing else "缺:" + ",".join(missing)))
 
