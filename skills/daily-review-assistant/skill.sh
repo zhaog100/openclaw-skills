@@ -866,7 +866,21 @@ generate_execution_summary() {
         [ -f "$pr_ledger" ] && merged_cnt=$(awk -F, 'NR>1 && $3=="merged"{c++} END{print c+0}' "$pr_ledger")
         local summary="🌙 小米椒晚报 — $date\n整体评价: $rating\n完成 $tasks_completed 项任务 / Git 提交 $commits 次 / 遗漏 $gaps_found 个\nPR台账: open $open_prs / merged $merged_cnt\n*生成 $(date '+%H:%M')*"
         log_info "📡 推送晚报摘要到QQ Bot"
-        python3 "$_SCRIPTS_DIR/send_qq_msg.py" "$summary" "$qq_id" >> "$_CURRENT_LOG_FILE" 2>&1 || log_warn "QQ推送失败"
+        # 官家11-20: 晚报推送加 3 次重试 + 失败写"待补推"标记(不静默丢, 下轮/手动可补)
+        local _pushed=0 _attempt
+        for _attempt in 1 2 3; do
+            if python3 "$_SCRIPTS_DIR/send_qq_msg.py" "$summary" "$qq_id" >> "$_CURRENT_LOG_FILE" 2>&1; then
+                _pushed=1; break
+            fi
+            sleep 5
+        done
+        if [ "$_pushed" = "1" ]; then
+            rm -f "$_SCRIPTS_DIR/../data/.evening_pending_push" 2>/dev/null
+        else
+            log_warn "QQ推送失败(3次重试仍失败), 写待补推标记"
+            # 写待补推文件(下轮早报/手动补推可读)
+            printf '%s\n' "$_CURRENT_LOG_FILE" > "$_SCRIPTS_DIR/../data/.evening_pending_push" 2>/dev/null
+        fi
     else
         log_warn "QQ_TARGET_USER_ID 未设置，晚报跳过推送（不硬编码 open_id）"
     fi

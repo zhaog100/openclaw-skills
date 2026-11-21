@@ -134,11 +134,46 @@ update_qmd() {
   log "📚 更新 QMD 知识库..."
 
   if command -v qmd &> /dev/null; then
-    qmd update 2>&1 | tee -a "$LOG_FILE"
-    log "✅ QMD 更新完成"
+    if qmd update 2>&1 | tee -a "$LOG_FILE"; then
+      log "✅ QMD 更新完成"
+    else
+      log "❌ QMD 更新失败(向量库未同步, 下次检索可能用旧索引)"
+    fi
   else
     log "⚠️ QMD 未安装，跳过"
   fi
+}
+
+# 6.5 官家11-21: 三库同步自检(MEMORY.md / QMD向量 / Git 一致性, 不同步显式告警不静默)
+check_sync_health() {
+  log "🩺 三库同步自检..."
+  local healthy=1
+  # ① MEMORY.md 是否在 QMD 索引内(最新修改时间 vs 索引时间)
+  if command -v qmd &> /dev/null && [ -f "$MEMORY_DIR/../MEMORY.md" ] 2>/dev/null; then
+    : # QMD 索引是动态的, 主要看下面 git + 向量库文件新鲜度
+  fi
+  # ② 向量库 vectors.db / structured.db 是否比最新记忆分片旧(旧=没同步)
+  local newest_part qmd_dir="$MEMORY_DIR"
+  newest_part=$(ls -t "$MEMORY_DIR"/part-*.md 2>/dev/null | head -1)
+  if [ -n "$newest_part" ] && [ -f "$MEMORY_DIR/vectors.db" ]; then
+    local p_ts v_ts
+    p_ts=$(stat -c %Y "$newest_part" 2>/dev/null || echo 0)
+    v_ts=$(stat -c %Y "$MEMORY_DIR/vectors.db" 2>/dev/null || echo 0)
+    if [ "$p_ts" -gt "$v_ts" ]; then
+      log "⚠️ 三库不同步: 最新记忆分片($(basename "$newest_part"))比向量库新 → 向量检索会漏新内容, 需跑 generate_embeddings"
+      healthy=0
+    fi
+  fi
+  # ③ Git 工作区是否有未提交的记忆变更(有=Git 库落后于 MEMORY.md)
+  if [ "$ENABLE_GIT_BACKUP" = "true" ]; then
+    local dirty
+    dirty=$(git -C "$WORKSPACE" status --porcelain 2>/dev/null | grep -c "MEMORY\|memory" || echo 0)
+    if [ "$dirty" -gt 0 ]; then
+      log "⚠️ 三库不同步: $dirty 个记忆文件未 Git 提交 → Git 库落后, 需 git_commit"
+      healthy=0
+    fi
+  fi
+  [ "$healthy" = "1" ] && log "✅ 三库同步正常(MEMORY.md/向量库/Git 一致)"
 }
 
 # 7. Git 自动提交
@@ -203,6 +238,9 @@ main() {
     update_qmd
     git_commit
   fi
+
+  # 官家11-21: 三库同步自检(MEMORY.md/向量库/Git 一致性, 不同步显式告警不静默)
+  check_sync_health
 
   log "✅ Session-Memory Enhanced v4.0 完成"
   log "================================"

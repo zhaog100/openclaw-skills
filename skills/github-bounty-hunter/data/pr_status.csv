@@ -21,11 +21,22 @@ PR编号,仓库,状态,标题,创建时间,更新时间,关闭时间,合并时�
 ,OpenAgents,closed,fix(AMMPool): add indexed events for off-chain indexing compatibility,2026-05-21,2026-05-22,2026-05-22,,1,,$4900,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/ClankerNation/OpenAgents/pull/2615,bounty-scan-2026-08-31
 ,PrivacyLayer,closed,[BOUNTY #43] Fix documentation typo in README,2026-03-21,2026-03-22,2026-03-22,,1,,,,,https://github.com/ANAVHEOBA/PrivacyLayer/pull/103,bounty-scan-2026-08-31
 ,Rustchain,closed,[UTXO-BUG] Critical Security Vulnerabilities - Genesis Race & Integer Overflow,2026-04-07,2026-04-24,2026-04-07,,2,BCOS-L1；size/L；node,100 RTC,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/Scottcjn/Rustchain/pull/2165,bounty-scan-2026-08-31
+8025,Scottcjn/Rustchain,closed,[BOUNTY #16251] Fix install script — wrong paths + macOS cra,2026-07-20,2026-09-05,,,,,,,,https://github.com/Scottcjn/Rustchain/pull/8025,pr_updater-daily
+2207,Scottcjn/Rustchain,merged,[Security Audit #2867] Real Code PoC — Mining Reward Type Co,2026-04-10,2026-07-16,2026-04-12,2026-04-12,,,,,,https://github.com/Scottcjn/Rustchain/pull/2207,pr_updater-daily
+4101,Scottcjn/Rustchain,merged,[UTXO-BUG] Race condition and TOCTOU test cases for #2819,2026-05-07,2026-07-16,2026-05-10,2026-05-10,,,,,,https://github.com/Scottcjn/Rustchain/pull/4101,pr_updater-daily
+907,Scottcjn/beacon-skill,closed,feat: complete #2890 migration importer + landing page + blo,2026-07-21,2026-08-11,,,,,,,,https://github.com/Scottcjn/beacon-skill/pull/907,pr_updater-daily
+915,Scottcjn/beacon-skill,closed,fix(#2890): address review feedback,2026-08-05,2026-10-05,,,,,,,,https://github.com/Scottcjn/beacon-skill/pull/915,pr_updater-daily
+1585,Scottcjn/bottube,closed,feat(query-validator): shared query param validator for BoTT,2026-07-20,2026-08-22,,,,,,,,https://github.com/Scottcjn/bottube/pull/1585,pr_updater-daily
+48,Scottcjn/clawrtc-rs,closed,test: add integration test suite for clawrtc-rs (closes #162,2026-07-20,2026-07-28,,,,,,,,https://github.com/Scottcjn/clawrtc-rs/pull/48,pr_updater-daily
+16274,Scottcjn/rustchain-bounties,closed,fix: Add link checker + CI workflow (#16248),2026-07-20,2026-09-05,,,,,,,,https://github.com/Scottcjn/rustchain-bounties/pull/16274,pr_updater-daily
+16554,Scottcjn/rustchain-bounties,closed,fix: address reviewer feedback for #16248 (subshell/grep/CI ,2026-08-24,2026-09-05,,,,,,,,https://github.com/Scottcjn/rustchain-bounties/pull/16554,pr_updater-daily
+5,Scottcjn/rustchain-vintage-x86,closed,Add Non-RDTSC timing fallback for vintage x86 (486/386),2026-07-21,2026-08-25,,,,,,,,https://github.com/Scottcjn/rustchain-vintage-x86/pull/5,pr_updater-daily
+7,Scottcjn/rustchain-vintage-x86,open,Add Non-RDTSC timing fallback for vintage x86 (486/386),2026-08-25,2026-09-16,,,,,,,,https://github.com/Scottcjn/rustchain-vintage-x86/pull/7,pr_updater-daily
+1016,SecureBananaLabs/bug-bounty,open,feat: Complete Admin Panel implementation for bounty #29,2026-05-28,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/1016,pr_updater-daily
 315,SecureBananaLabs/bug-bounty,open,Add pixel art for bounty issue #80,2026-05-19,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/315,pr_updater-daily
 316,SecureBananaLabs/bug-bounty,open,Add poem for bounty issue #76,2026-05-19,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/316,pr_updater-daily
 719,SecureBananaLabs/bug-bounty,open,feat: Add API benchmark suite — Bounty #714 ($750),2026-05-26,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/719,pr_updater-daily
 720,SecureBananaLabs/bug-bounty,open,feat: Implement Stripe PaymentIntent integration — Bounty #7,2026-05-26,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/720,pr_updater-daily
-1016,SecureBananaLabs/bug-bounty,open,feat: Complete Admin Panel implementation for bounty #29,2026-05-28,2026-08-15,,,,,,,,https://github.com/SecureBananaLabs/bug-bounty/pull/1016,pr_updater-daily
 244,SigNoz/dashboards,closed,[BOUNTY #6036] AWS MSK Cluster Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/244,pr_updater-daily
 245,SigNoz/dashboards,closed,[BOUNTY #6023] cert-manager Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/245,pr_updater-daily
 246,SigNoz/dashboards,closed,[BOUNTY #6026] Kafka Server Monitoring Dashboard,2026-03-18,2026-06-17,,,,,,,,https://github.com/SigNoz/dashboards/pull/246,pr_updater-daily
@@ -90,6 +101,7 @@ PR编号,仓库,状态,标题,创建时间,更新时间,关闭时间,合并时�
 ,daemon-pricing,closed,[BOUNTY #5020] Scraper: Create Time Estimate Training Dataset,2026-03-20,2026-03-22,2026-03-22,,0,,,,,https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/163,bounty-scan-2026-08-31
 ,devpool-directory,open,feat: add Plugin Health Monitor script,2026-03-31,2026-03-31,,,0,,$450,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/zhaog100/devpool-directory/pull/1,bounty-scan-2026-08-31
 ,devpool-directory-tasks,open,feat: Matchmaking UI - Issue #63 ($900),2026-04-09,2026-04-11,,,1,,$900,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/devpool-directory/devpool-directory-tasks/pull/66,bounty-scan-2026-08-31
+5947,devpool-directory/devpool-directory,closed,feat: add Plugin Health Monitor script,2026-03-31,2026-10-18,,,,,,,,https://github.com/devpool-directory/devpool-directory/pull/5947,pr_updater-daily
 ,dn-institute,closed,[BOUNTY #277] 🌰 Comprehensive Guide: Wash Trading - Detection， Case Studies & Prevention,2026-03-23,2026-06-01,2026-06-01,,1,,,,,https://github.com/1712n/dn-institute/pull/732,bounty-scan-2026-08-31
 53568,dotnet/sdk,closed,[BOUNTY #53563] Fix CS0660 false positive for partial classe,2026-03-23,2026-06-04,,,,,,,,https://github.com/dotnet/sdk/pull/53568,pr_updater-daily
 ,dumpstore,closed,feat(auth): migrate password hashing from bcrypt to argon2id,2026-04-08,2026-04-13,2026-04-13,,0,,,,,https://github.com/langerma/dumpstore/pull/68,bounty-scan-2026-08-31
@@ -107,11 +119,11 @@ PR编号,仓库,状态,标题,创建时间,更新时间,关闭时间,合并时�
 ,hotline-darons,open,feat: Add PDF support to RAG knowledge base,2026-04-02,2026-04-02,,,0,,,,,https://github.com/versila22/hotline-darons/pull/4,bounty-scan-2026-08-31
 489,illbnm/homelab-stack,open,[BOUNTY 70] Productivity Stack — Gitea + Vaultwarden,2026-04-22,2026-06-25,,,,,,,,https://github.com/illbnm/homelab-stack/pull/489,pr_updater-daily
 ,inlinegui,closed,Fix layout selector to use only layouts collection,2026-05-18,2026-05-22,2026-05-22,,0,,$50,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/zhaog100/inlinegui/pull/1,bounty-scan-2026-08-31
-33,iotexproject/awesome-depin,open,Add RustChain to DePIN Compute section,2026-04-10,2026-06-25,,,,,,,,https://github.com/iotexproject/awesome-depin/pull/33,pr_updater-daily
+33,iotexproject/awesome-depin,closed,Add RustChain to DePIN Compute section,2026-04-10,2026-10-20,,,,,,,,https://github.com/iotexproject/awesome-depin/pull/33,pr_updater-daily
 ,ipaship-audit,closed,[BOUNTY #2] 🎨 Logo Design - Modern AI-Powered Compliance Auditor Identity,2026-03-23,2026-04-24,2026-04-23,,4,,,,,https://github.com/atharvnaik1/ipaship-audit/pull/7,bounty-scan-2026-08-31
 ,jhipster.github.io,open,[BOUNTY #27215] Improve API First Development documentation,2026-03-20,2026-03-20,,,1,,,,,https://github.com/jhipster/jhipster.github.io/pull/1572,bounty-scan-2026-08-31
 32768,jhipster/generator-jhipster,closed,[BOUNTY #17550] Fix: Add configurable JWK retrieval timeout ,2026-03-19,2026-09-28,,,,,,,,https://github.com/jhipster/generator-jhipster/pull/32768,pr_updater-daily
-1572,jhipster/jhipster.github.io,open,[BOUNTY #27215] Improve API First Development documentation,2026-03-20,2026-09-28,,,,,,,,https://github.com/jhipster/jhipster.github.io/pull/1572,pr_updater-daily
+1572,jhipster/jhipster.github.io,closed,[BOUNTY #27215] Improve API First Development documentation,2026-03-20,2026-11-17,,,,,,,,https://github.com/jhipster/jhipster.github.io/pull/1572,pr_updater-daily
 36,jose-compu/curated-erc,merged,feat(auth): add structured ERC-4361 SIWE message parser,2026-03-27,2026-08-23,2026-08-23,2026-08-23,,,,,,https://github.com/jose-compu/curated-erc/pull/36,pr_updater-daily
 ,jsbtc,open,security: Fix invalid threshold input validation (#48),2026-03-26,2026-07-02,,,3,,,,,https://github.com/bitaps-com/jsbtc/pull/50,bounty-scan-2026-08-31
 ,la-tanda-web,closed,[BOUNTY #154] ♿ Add aria-labels to Icon Buttons - Accessibility Improvement,2026-03-23,2026-03-23,2026-03-23,,2,first-time contributor,,,,https://github.com/INDIGOAZUL/la-tanda-web/pull/195,bounty-scan-2026-08-31
@@ -174,13 +186,31 @@ PR编号,仓库,状态,标题,创建时间,更新时间,关闭时间,合并时�
 ,tt-wavelet,closed,Implement Lifting Wavelet Transform (LWT) and Inverse LWT for Haar wavelet,2026-03-24,2026-03-24,2026-03-24,,0,invalid/bot,,,,https://github.com/ke1rro/tt-wavelet/pull/5,bounty-scan-2026-08-31
 ,ubiquity-dollar,closed,fix: Storage Layout Check CI for New Contracts - Bounty #972,2026-04-09,2026-04-09,2026-04-09,,1,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,已关闭,https://github.com/ubiquity/ubiquity-dollar/pull/1020,bounty-scan-2026-08-31
 ,ubiquity-os-kernel,open,feat: Unified Plugin API with Event Handlers - Bounty #261 ($300),2026-04-09,2026-07-14,,,18,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/340,bounty-scan-2026-08-31
-513,ubiquity-os-marketplace/text-conversation-rewards,open,feat: Structured Outputs for LLM responses,2026-04-12,2026-06-16,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/513,pr_updater-daily
+169,ubiquity-os-marketplace/daemon-pricing,closed,feat: Issue Thread Scraper - Bounty #82 ($300),2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/169,pr_updater-daily
+170,ubiquity-os-marketplace/daemon-pricing,closed,fix: README code blocks and dataset count update (CodeRabbit,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/daemon-pricing/pull/170,pr_updater-daily
+508,ubiquity-os-marketplace/text-conversation-rewards,closed,fix: Implement Differential Reward Distribution for Reopened,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/508,pr_updater-daily
+509,ubiquity-os-marketplace/text-conversation-rewards,closed,fix: Validate reward generation requires human collaborator ,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/509,pr_updater-daily
+510,ubiquity-os-marketplace/text-conversation-rewards,closed,feat: Differential Reward Distribution - Bounty #301 ($600),2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/510,pr_updater-daily
+512,ubiquity-os-marketplace/text-conversation-rewards,closed,fix: Validate reward generation requires multi-role particip,2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/512,pr_updater-daily
+513,ubiquity-os-marketplace/text-conversation-rewards,closed,feat: Structured Outputs for LLM responses,2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os-marketplace/text-conversation-rewards/pull/513,pr_updater-daily
 ,ubiquity-os-plugin-installer,open,feat: Premade Configurations for Partners - Bounty #43 ($300),2026-04-08,2026-04-08,,,1,,$300,RTC2f0e423eafe70cb9394ba929fd11ff4d11bd515d,待验收,https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/51,bounty-scan-2026-08-31
+31,ubiquity-os/.github,closed,feat: Sprint Management Dashboard - Bounty #14,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os/.github/pull/31,pr_updater-daily
+28,ubiquity-os/command-demo,closed,feat: DEMO Currency Nudge Flow - Bounty #15 ($150),2026-04-08,2026-10-29,,,,,,,,https://github.com/ubiquity-os/command-demo/pull/28,pr_updater-daily
+29,ubiquity-os/command-demo,closed,feat: nudge to claim demo currency,2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os/command-demo/pull/29,pr_updater-daily
+124,ubiquity-os/permit-generation,closed,feat: Cloudflare Worker Conversion,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os/permit-generation/pull/124,pr_updater-daily
+66,ubiquity-os/plugin-template,closed,feat: Reusable Knip and Jest Workflows - Bounty #13 ($1200),2026-04-08,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugin-template/pull/66,pr_updater-daily
+84,ubiquity-os/plugins-wishlist,closed,feat: Deadlines Incentive Plugin - Bounty #66,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/84,pr_updater-daily
+85,ubiquity-os/plugins-wishlist,closed,feat: command-plan Plugin - Bounty #78 ($600),2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/85,pr_updater-daily
+86,ubiquity-os/plugins-wishlist,closed,feat: Webhook Rewards No Config - Bounty #46 ($300),2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/86,pr_updater-daily
 87,ubiquity-os/plugins-wishlist,closed,feat: Auto Time Label Estimator - Bounty #76 ($450),2026-04-12,2026-06-04,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/87,pr_updater-daily
-85,ubiquity-os/plugins-wishlist,open,feat: command-plan Plugin - Bounty #78 ($600),2026-04-09,2026-07-14,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/85,pr_updater-daily
-88,ubiquity-os/plugins-wishlist,open,feat: Contributor Class Plugin - Bounty #48 ($300),2026-04-12,2026-07-14,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/88,pr_updater-daily
-340,ubiquity-os/ubiquity-os-kernel,open,feat: Unified Plugin API with Event Handlers - Bounty #261 (,2026-04-09,2026-07-14,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/340,pr_updater-daily
-359,ubiquity-os/ubiquity-os-kernel,open,fix: Guard empty plugin config in comment routing — kernel #,2026-05-26,2026-06-25,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/359,pr_updater-daily
+88,ubiquity-os/plugins-wishlist,closed,feat: Contributor Class Plugin - Bounty #48 ($300),2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/88,pr_updater-daily
+89,ubiquity-os/plugins-wishlist,closed,feat: Old Proposal Handler - Bounty #70 ($75),2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/89,pr_updater-daily
+90,ubiquity-os/plugins-wishlist,closed,feat: Contributor Rewards Config v3 - Bounty #47 ($300),2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/90,pr_updater-daily
+91,ubiquity-os/plugins-wishlist,closed,feat: Config Protection Plugin - Bounty #30 ($75),2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/91,pr_updater-daily
+92,ubiquity-os/plugins-wishlist,closed,test: Comprehensive Unit Tests for Contributor Role Rewards ,2026-04-12,2026-10-29,,,,,,,,https://github.com/ubiquity-os/plugins-wishlist/pull/92,pr_updater-daily
+340,ubiquity-os/ubiquity-os-kernel,closed,feat: Unified Plugin API with Event Handlers - Bounty #261 (,2026-04-09,2026-10-29,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/340,pr_updater-daily
+359,ubiquity-os/ubiquity-os-kernel,closed,fix: Guard empty plugin config in comment routing — kernel #,2026-05-26,2026-10-29,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-kernel/pull/359,pr_updater-daily
+51,ubiquity-os/ubiquity-os-plugin-installer,closed,feat: Premade Configurations for Partners - Bounty #43 ($300,2026-04-08,2026-10-29,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/51,pr_updater-daily
 53,ubiquity-os/ubiquity-os-plugin-installer,closed,feat: Premade Plugin Configs for Partners,2026-04-12,2026-05-20,,,,,,,,https://github.com/ubiquity-os/ubiquity-os-plugin-installer/pull/53,pr_updater-daily
 9,ubiquity/arbitrage-bot,closed,feat: Arbitrage Bot - Issue #3 ($600),2026-04-09,2026-09-22,,,,,,,,https://github.com/ubiquity/arbitrage-bot/pull/9,pr_updater-daily
 1030,ubiquity/ubiquity-dollar,open,fix: Skip storage layout check for newly added contracts - B,2026-04-13,2026-07-14,,,,,,,,https://github.com/ubiquity/ubiquity-dollar/pull/1030,pr_updater-daily

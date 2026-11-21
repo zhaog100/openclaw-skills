@@ -11,16 +11,27 @@ import urllib.request
 
 def _token() -> str:
     """token 优先级: 环境变量 > workspace/.env > bounty/.env"""
-    env_tok = os.environ.get("GITHUB_TOKEN", "")
+    env_tok = os.environ.get("GITHUB_TOKEN", "") or os.environ.get("GH_TOKEN", "")
     if env_tok and len(env_tok) == 40:
         return env_tok
-    # 相对定位（脚本在 skills/github-bounty-hunter/scripts/ → 上溯 2 层到 skills/ → 再上溯 1 层到 workspace/.env）
-    _here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    for p in [os.path.join(_here, ".env"),
-              os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")]:
+    # 官家11-20修: 相对路径校正 — 脚本在 workspace/skills/github-bounty-hunter/scripts/,
+    # 上溯 3 层 = workspace/, 有效 40 位 token 在 workspace/.env(不是 skills/.env 占位短值)。
+    # 按优先级扫: 环境变量 → workspace/.env → bounty/.env → 任意祖先 .env, 取第一个 40 位的
+    _here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # workspace 根
+    cand = [os.path.join(_here, ".env"),
+            os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")]
+    # 兜底: 向上找所有祖先 .env(防布局变动)
+    _d = os.path.dirname(os.path.abspath(__file__))
+    while True:
+        cand.append(os.path.join(_d, ".env"))
+        _parent = os.path.dirname(_d)
+        if _parent == _d:
+            break
+        _d = _parent
+    for p in cand:
         if os.path.exists(p):
-            for l in open(p):
-                if l.startswith("GITHUB_TOKEN="):
+            for l in open(p, encoding="utf-8", errors="ignore"):
+                if l.startswith("GITHUB_TOKEN=") or l.startswith("GH_TOKEN="):
                     v = l.strip().split("=", 1)[1].strip()
                     if len(v) == 40:
                         return v
@@ -45,7 +56,18 @@ def main():
     a = ap.parse_args()
     tok = _token()
     if not tok:
-        print("ERROR: GITHUB_TOKEN 未设置"); sys.exit(1)
+        # 官家11-20: 显式标记失败原因(不静默 exit), 供周报/台账标 unavailable_reason
+        import os as _os
+        _diag = []
+        if not _os.environ.get("GITHUB_TOKEN") and not _os.environ.get("GH_TOKEN"):
+            _diag.append("环境变量 GITHUB_TOKEN/GH_TOKEN 未设")
+        _here2 = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        for _p in [os.path.join(_here2, ".env"), os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")]:
+            if os.path.exists(_p):
+                _has = any(l.strip().startswith("GITHUB_TOKEN=") or l.strip().startswith("GH_TOKEN=") for l in open(_p, encoding="utf-8", errors="ignore"))
+                _diag.append(f"{_p}: {'有token行' if _has else '无token行'}")
+        print(f"ERROR: GITHUB_TOKEN 不可用({'; '.join(_diag) or '各源均无40位token'}) → 台账本轮跳过, 不更新, 待token配齐再刷新")
+        sys.exit(1)
 
     # 1. 列仓库
     repos = _api(f"users/{a.owner}/repos?per_page=100&type=owner", tok)
@@ -134,7 +156,8 @@ def main():
     # 合并: 新覆盖旧
     for key, r in new_by_key.items():
         existing[key] = r
-    final = sorted(existing.values(), key=lambda r: (r.get("仓库", ""), r.get("状态", ""), r.get("PR编号", "")))
+    # 官家11-20修: 排序键统一转 str, 防旧CSV(全str)与新映射(混int)混排 TypeError
+    final = sorted(existing.values(), key=lambda r: (str(r.get("仓库", "")), str(r.get("状态", "")), str(r.get("PR编号", ""))))
 
     with open(a.out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=HEADER, extrasaction="ignore")
