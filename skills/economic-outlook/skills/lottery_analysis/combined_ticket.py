@@ -41,6 +41,70 @@ def _history_analysis(rows, kind):
     }
 
 
+def _retro_analysis(rows, kind):
+    """反推复盘(官家11-10): 最新一期新号出来后, 反推"为什么开出这几个号"——
+    对照历史分布标出该期在 和值/奇偶/大小/连号/冷号 各维度的偏离, 产出偏差信号反哺下期出号。
+    纪律: 摇奖独立, 反推是结构复盘(该期相对历史的偏离), 不预测下期; 偏差信号只做权重微调, 不改随机性。"""
+    from collections import Counter
+    if len(rows) < 10:
+        return {"ok": False}
+    pool, pick = (33, 6) if kind == "ssq" else (35, 5)
+    hist = rows[:-1]                      # 历史(不含最新一期)
+    last = rows[-1]                       # 最新一期(该反推它)
+    last_front = sorted(last["front"])
+    # 历史基线
+    hist_sums = sorted(sum(r["front"]) for r in hist)
+    hs_mean = sum(hist_sums)/len(hist_sums)
+    hs_q1, hs_q3 = hist_sums[len(hist_sums)//4], hist_sums[3*len(hist_sums)//4]
+    last_sum = sum(last_front)
+    # 奇偶/大小基线
+    hist_odd = sum(1 for r in hist for n in r["front"] if n%2==1)/(len(hist)*pick*100)
+    hist_big = sum(1 for r in hist for n in r["front"] if n>pool/2)/(len(hist)*pick*100)
+    last_odd = sum(1 for n in last_front if n%2==1)/pick
+    last_big = sum(1 for n in last_front if n>pool/2)/pick
+    # 连号
+    has_consec = any(b-a==1 for a,b in zip(last_front, last_front[1:]))
+    # 冷号回补: 该期前区里遗漏值(距上次出现期数)大的
+    last_seen = {}
+    for i, r in enumerate(hist):
+        for n in r["front"]:
+            last_seen[n] = i
+    gaps = []
+    for n in last_front:
+        gap = (len(hist)-1) - last_seen.get(n, -1)   # 距上次出现的期数
+        gaps.append((n, gap))
+    cold_picks = [n for n,g in sorted(gaps, key=lambda x:x[1], reverse=True) if g >= len(hist)*0.3][:3]
+    # 偏差信号(反哺下期): 该期和值偏高→下期往均值拉
+    if last_sum > hs_q3:
+        sum_signal = "上期和值偏高(%.0f>上分位%.0f), 下期和值约束往均值%.0f靠" % (last_sum, hs_q3, hs_mean)
+        sum_shift = -1
+    elif last_sum < hs_q1:
+        sum_signal = "上期和值偏低(%.0f<下分位%.0f), 下期和值约束往均值%.0f靠" % (last_sum, hs_q1, hs_mean)
+        sum_shift = 1
+    else:
+        sum_signal = "上期和值在常见区间[%.0f~%.0f]内, 下期按常态区间" % (hs_q1, hs_q3)
+        sum_shift = 0
+    # 奇偶偏差
+    odd_signal = "上期奇偶%.0f%%(历史基线%.0f%%), 偏%s" % (last_odd*100, hist_odd*100, "奇" if last_odd>hist_odd else "偶")
+    reasons = [
+        "和值 %.0f (历史均值%.0f, 常见%.0f~%.0f)" % (last_sum, hs_mean, hs_q1, hs_q3),
+        "奇偶 %.0f%% 奇 (基线%.0f%%)" % (last_odd*100, hist_odd*100),
+        "大小 %.0f%% 大 (基线%.0f%%)" % (last_big*100, hist_big*100),
+        "连号" if has_consec else "无连号",
+        ("冷号回补: " + "、".join(f"{n:02d}(遗漏{g}期)" for n,g in sorted(gaps,key=lambda x:x[1],reverse=True)[:3])) if cold_picks else "无显著冷号",
+    ]
+    return {
+        "ok": True, "period": last["period"], "date": last["date"],
+        "last_front": [f"{n:02d}" for n in last_front],
+        "last_back": [f"{n:02d}" for n in last.get("back",[])],
+        "reasons": reasons,
+        "sum_signal": sum_signal, "sum_shift": sum_shift,
+        "odd_signal": odd_signal,
+        "cold_picks": cold_picks,
+        "note": "反推是该期相对历史的结构复盘, 摇奖独立, 不预测下期; 偏差信号只做权重微调",
+    }
+
+
 def _sum_constrained_front(bank, kind, target_range, pool=None, pick=None):
     """[A 11-10优化] 和值约束出号: 拖码不再机械取最小号, 改从"和值落在常见区间"的组合里选。
     bank=已定胆码, 补齐到 pick 个时和值必须落在 target_range(和值常见区间 q1~q3),
@@ -89,15 +153,24 @@ def generate(kind="ssq", n_mandel=2):
 
     bank = mand["bank_danger"][:5]
     target = srange["common_range"]
+    # 反推复盘(官家11-10): 最新一期反推 + 偏差信号反哺下期
+    retro = _retro_analysis(rows, kind)
+    if retro.get("ok") and retro["sum_shift"] != 0:
+        lo, hi = target
+        mean_s = srange["mean"]
+        shift = (mean_s - lo) * 0.3 if retro["sum_shift"] == -1 else (hi - mean_s) * 0.3
+        target = [int(lo + (shift if retro["sum_shift"]==1 else -shift)), int(hi - (shift if retro["sum_shift"]==-1 else shift))]
     if kind == "ssq":
-        # [B] 蓝球多值: 前3高频 + 1冷号轮换(覆盖度), 不再只押 1 个最高频
+        # [B] 蓝球多值: 官家11-21改"高频并列全保留" — TOP3差≤5视为并列, 全进推荐不单押
         blue_cnt = Counter(r["back"][0] for r in rows)
-        blue_hot = [c for c, _ in blue_cnt.most_common(3)]
+        top3 = blue_cnt.most_common(3)
+        blue_hot = [c for c, _ in top3]
+        top_vals = [v for _, v in top3]
+        tie_band = sorted([c for c, v in top3 if top_vals[0] - v <= 5], key=lambda c: (-blue_cnt.get(c, 0), c))
         all_blues = set(range(1, 17))
         cold = [b for b in all_blues if b not in blue_cnt]
-        blue_cold = [c for c, _ in blue_cnt.most_common(1)]
-        blue_pool = blue_hot + ([cold[0] % 16 + 1] if cold else [])
-        blue_pool = sorted(set(blue_pool))[:3] or [blue_hot[0]]
+        blue_pool = tie_band + ([cold[0] % 16 + 1] if cold else [])
+        blue_pool = sorted(set(blue_pool))[:4] or [blue_hot[0]]
         # [A] 和值约束出号: 多组拖码, 每组和值落常见区间
         fronts = _sum_constrained_front(bank, kind, target, pool=33, pick=6)
         notes = [{"front": f, "back": [blue_pool[i % len(blue_pool)]]} for i, f in enumerate(fronts[:max(n_mandel, 2)])]
@@ -185,6 +258,11 @@ def generate(kind="ssq", n_mandel=2):
             for n in r["back"]:
                 backcnt[n] += 1
         back_top = sorted([c for c, _ in backcnt.most_common(2)])
+        if retro.get("ok") and retro["sum_shift"] != 0:
+            lo, hi = target
+            mean_s = srange["mean"]
+            shift = (mean_s - lo) * 0.3 if retro["sum_shift"] == -1 else (hi - mean_s) * 0.3
+            target = [int(lo + (shift if retro["sum_shift"]==1 else -shift)), int(hi - (shift if retro["sum_shift"]==-1 else shift))]
         fronts = _sum_constrained_front(sorted(bank[:5]), kind, target, pool=35, pick=5)
         notes = [{"front": f, "back": back_top} for f in fronts[:max(n_mandel, 2)]]
         blue_pool_used = back_top
@@ -245,7 +323,9 @@ def generate(kind="ssq", n_mandel=2):
         "full_multi": full_multi,
         "danchi": danchi,
         "forms": locals().get("forms_data"),
+        "blue_pool_used": locals().get("blue_pool_used", []),
         "history": _history_analysis(rows, kind),
+        "retro": retro if retro.get("ok") else None,
         "random": random_note(kind),
         "disclaimer": "摇奖独立, 历史统计不改变中奖概率, 任意合法组合头奖概率相同, 不构成购彩建议",
     }
@@ -254,15 +334,17 @@ def generate(kind="ssq", n_mandel=2):
 def print_report(kind="ssq"):
     r = generate(kind)
     print("=" * 46)
-    print(f"📊 {r['kind_cn']} 综合出号 (基于 {r['N']} 期历史)")
+    print(f"📊 {r['kind_cn']} 推荐报告 (基于 {r['N']} 期历史)")
     print("=" * 46)
-    print(f"【统计】 高频前区码Top5: {r['top5']}")
-    print(f"          和值常见区间: {r['sum_range']}, 均值 {r['sum_mean']}")
-    print(f"          贝叶斯: θ={r['bayes']['theta']}, 全落CI内={r['bayes']['all_in']}")
-    print(f"【曼德尔】双因子胆码: {r['mandel']['bank_danger']} (分数 {r['mandel'].get('bank_scores',{})})")
-    print(f"          拖码参考: {r['mandel']['drag_example']}  凯利仓位: {r['mandel']['kelly_pct']}%")
-    print(f"【概率】 头奖 1/{r['comb_total']:,}, 每注期望 {r['cost']['buy1_expected']}元")
-    print(f"\n【曼德尔出号(双因子胆码+和值约束+蓝球多值)】")
+    # 上期反推复盘(该期为什么开出这几个号 + 偏差信号)
+    rt = r.get("retro")
+    if rt:
+        print(f"【上期反推】{rt['period']}({rt['date'][5:]}) 开出: {' '.join(rt['last_front'])} {' '.join(rt['last_back'])}")
+        for reason in rt["reasons"]:
+            print(f"  · {reason}")
+        print(f"  → {rt['sum_signal']}")
+        print(f"  ⚠️ {rt['note']}")
+    print(f"\n【推荐号码】")
     for i, n in enumerate(r["notes"], 1):
         fs = " ".join(f"{x:02d}" for x in n["front"])
         bs = " ".join(f"{x:02d}" for x in n["back"])
@@ -344,25 +426,27 @@ def print_report(kind="ssq"):
                 print(f"后区胆码：{_fmt(d['back_bank'])}")
                 print(f"后区拖码：{_fmt(d['back_drag'])}")
     rnd = r["random"]
+    # 官家11-21: 结论段(该买几注/预算/覆盖策略) — 不再只有号码, 明确告诉官家怎么买
+    # 蓝球多值从 r["blue_pool_used"] 取(generate 已暴露并列全保留的蓝球池)
+    _blue_all = r.get("blue_pool_used", []) or []
+    print(f"\n【结论 / 购买建议】")
+    if kind == "ssq":
+        _bstr = '、'.join(f'{b:02d}' for b in _blue_all[:4]) if _blue_all else '见上'
+        print(f"  · 本期蓝球多值: {_bstr} (高频并列全保留, 不单押1个)")
+        print(f"  · 性价比之选: 单式(2元/注) 2-4 注 或 蓝球6+2复式(4元/2注) 覆盖多蓝球")
+        print(f"  · 想提高命中面: 红球7+1复式(14元/7注) 或 胆拖4胆4拖(12元/6注)")
+        print(f"  · 预算建议: 2-4 注(4-8元) 理性购彩, 蓝球别只押1个, 用多蓝覆盖")
+    else:
+        print(f"  · 性价比之选: 基本投注(2元/注) 或 追加投注(3元/注) 2-4 注")
+        print(f"  · 想提高命中面: 前区复式(7前+2后) 或 前区胆拖")
+        print(f"  · 预算建议: 2-4 注(4-12元) 理性购彩")
+    print(f"  · 提醒: 摇奖独立, 以上结构优化只提覆盖度/成本效率, 不改变中奖概率, 量力而行")
     print(f"\n【纯随机对照(无放回,中奖概率与上面完全相同)】")
     if "front" in rnd:
         print(f"  前区 {' '.join(rnd['front'])}  后区 {' '.join(rnd['back'])}")
     else:
         print(f"  红球 {' '.join(rnd['red'])}  蓝 {rnd['blue']}")
-    # 历史号分析(官家11-10)
-    ha = r.get("history") or {}
-    if ha.get("ok"):
-        print(f"\n【历史号分析】(基于最近{r['N']}期, 纯描述不预测)")
-        l3 = " | ".join(f"{x['period']}({x['date'][5:]}) {' '.join(x['front'])}+{' '.join(x['back'])}" for x in ha["last3"])
-        print(f"  最新3期: {l3}")
-        hi = " ".join(f"{n}({c})" for n, c in ha["high"])
-        lo = " ".join(f"{n}({c})" for n, c in ha["low"])
-        print(f"  高频: {hi}   低频: {lo}")
-        if "双色球" in r.get("kind_cn",""):
-            print(f"  奇偶: 奇{ha['odd_pct']}%/偶{ha['even_pct']}%  大小: 大{ha['big_pct']}%  连号占比{ha['consec_pct']}%")
-        else:
-            print(f"  奇偶: 奇{ha['odd_pct']}%/偶{ha['even_pct']}%  大小: 大{ha['big_pct']}%  连号占比{ha['consec_pct']}%  和值均值{ha['sum_mean']}(常见{ha['sum_range']})")
-        print(f"  ⚠️ {ha['note']}")
+    # 历史分析静默参与出号(高频/和值/蓝球多值已用历史算), 报告只出最终推荐, 不展示历史段
     print(f"\n⚠️ {r['disclaimer']}")
 
 
