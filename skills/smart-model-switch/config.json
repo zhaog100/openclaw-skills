@@ -24,10 +24,6 @@
       "id": "sensenova/deepseek-v4-flash",
       "description": "超长上下文，1024k窗口，适合长文档/代码库分析",
       "context_window": 1048576
-    },
-    "agnes-fallback-1": {
-      "id": "custom-apihub-agnes-ai-com/agnes-2.5-flash",
-      "description": "Agnes AI 备用 1，2.5 flash（免费主力）"
     }
   },
   "complexity_analysis": {

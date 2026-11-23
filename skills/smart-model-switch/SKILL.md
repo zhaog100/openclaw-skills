@@ -16,18 +16,16 @@ version: 2.0.0
 - Flash 默认切换到 sensenova-6.8-flash-lite（免费+多模态）
 - Coding 切换至 deepseek-v4-flash（1M上下文+thinking模式）
 - Complex/Long-context 使用 glm-5.2（1M上下文，旗舰模型）
-- Fallback 链：agnes-2.5-flash → sensenova-6.8-flash-lite → agnes-2.0-flash
+- Fallback 链：agnes-2.0-flash → sensenova-6.8-flash-lite → agnes-2.0-flash
 
 ## v2.2.0 更新（2026-09-04）
 
 - 更新 Agnes AI 备用模型库（enterprise distributor 分组）
-- 新增备用模型：agnes-2.5-pro, agnes-2.5-pro-alpha, agnes-2.5-pro-beta
-- Fallback 链更新：agnes-2.0-flash (主力) → agnes-2.5-flash (备用)，两者均免费
 
 ## v2.0.0 更新（2026-07-20）
 
 - 主力模型升级为 `agnes/agnes-2.0-flash`
-- Fallback 链：`agnes/agnes-1.5-flash` → `agnes/agnes-2.5-flash`
+- Fallback 链：`agnes/agnes-1.5-flash` → `agnes/agnes-2.0-flash`
 - 清理过时脚本引用，聚焦核心 fallback 逻辑
 
 ### 1. 增强关键词规则库
@@ -51,11 +49,8 @@ version: 2.0.0
 **优先级**：forceRule > complexityScore > defaultModel
 
 **降级策略（Fallback Chain）**：
-1. 默认使用 `custom-apihub-agnes-ai-com/agnes-2.5-flash`（主力）
-2. 报错/超时 → 切换到 `custom-apihub-agnes-ai-com/agnes-2.5-pro`
-3. 2.5-pro 不可用 → 切换到 `custom-apihub-agnes-ai-com/agnes-2.5-pro-alpha`
-4. alpha 不可用 → 切换到 `custom-apihub-agnes-ai-com/agnes-2.5-pro-beta`
-5. beta 不可用 → 切换到 `custom-apihub-agnes-ai-com/agnes-2.0-flash`
+1. 默认使用 `custom-apihub-agnes-ai-com/agnes-2.0-flash`（主力，免费）
+2. 报错/超时 → 降级到 `sensenova/sensenova-6.8-flash-lite`（多模态备用）
 6. 全部不可用 → 通知用户，停止自动切换
 
 **GLM / CogView 备用档（视觉/多模态备用, 按需切换, 无需放量）**：
@@ -76,7 +71,7 @@ version: 2.0.0
 ```json
 {
   "model": "agnes/agnes-2.0-flash",
-  "fallbacks": ["agnes/agnes-1.5-flash", "agnes/agnes-2.5-flash"]
+  "fallbacks": ["agnes/agnes-1.5-flash", "agnes/agnes-2.0-flash"]
 }
 ```
 

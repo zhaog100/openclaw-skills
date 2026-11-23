@@ -5,7 +5,7 @@
       "description": "快速响应，轻量多模态，适合简单问题（免费）"
     },
     "main": {
-      "id": "custom-apihub-agnes-ai-cn/agnes-2.5-flash",
+      "id": "custom-apihub-agnes-ai-com/agnes-2.0-flash",
       "description": "主力模型，平衡性能和质量"
     },
     "coding": {

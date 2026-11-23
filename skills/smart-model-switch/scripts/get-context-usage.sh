@@ -14,7 +14,7 @@ if command -v openclaw &> /dev/null; then
     # 使用 --deep 模式获取更详细的输出
     status_output=$(openclaw status --deep 2>/dev/null)
     
-    # 解析表格格式：| agent:main:main | direct | 2m ago | agnes-2.5-flash | OpenClaw Default | 34k/128k (26%)    |
+    # 解析表格格式：| agent:main:main | direct | 2m ago | agnes-2.0-flash | OpenClaw Default | 34k/128k (26%)    |
     # 提取百分比数字
     usage=$(echo "$status_output" | grep -oP '\|\s*\d+k/\d+k\s+\(\K[0-9]+' | head -1)
     if [ -n "$usage" ] && [[ "$usage" =~ ^[0-9]+$ ]]; then
