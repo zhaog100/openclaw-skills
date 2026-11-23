@@ -35,12 +35,23 @@ def generate(kind):
 
 
 def build_text(kind, r):
-    """组装推送文案。"""
+    """组装推送文案。[官家11-23 定版] 改用详版优化格式(官家11-10模板):
+    直接调 combined_ticket.build_report_text, 不再用精简版。
+    含上期反推/推荐号码/投注形式(双色球10种/大乐透7种)/结论购买建议/纯随机对照/免责。
+    兜底: 详版生成失败时退回精简版(保证推送不断链)。"""
+    try:
+        from skills.lottery_analysis.combined_ticket import build_report_text
+        detailed = build_report_text(kind)
+        if detailed:
+            log(f"{kind} 用详版优化格式(官家11-10模板)推送")
+            return detailed
+    except Exception as e:
+        log(f"{kind} 详版生成失败, 退回精简版: {e}")
+    # 精简版兜底(原逻辑)
     lines = []
     title = {"ssq": "🔴 双色球", "dlt": "🔵 大乐透"}.get(kind, kind)
     lines.append(f"【彩票分析】{title} · {datetime.date.today().strftime('%m-%d')} 出号建议")
     if r.get("top5"):
-        # top5 是最高频号码列表(非组合), random 才有完整 6+1/6+2 组合
         lines.append(f"🎯 最高频号码 Top5: {' '.join(str(x) for x in r['top5'])}")
     m = r.get("mandel")
     if m:
@@ -55,10 +66,8 @@ def build_text(kind, r):
             lines.append(f"📐 曼德尔: {m}")
     if r.get("random"):
         rd = r["random"]
-        # 双色球: red(6)+blue(1) | 大乐透: red(5)+blue(2) 之类
         if isinstance(rd, dict):
             parts = []
-            # 双色球: red/blue | 大乐透: front/back
             front = rd.get("red") or rd.get("front")
             back = rd.get("blue") or rd.get("back")
             if front: parts.append(f"前区 {' '.join(front)}")

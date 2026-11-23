@@ -659,9 +659,8 @@ def _generate_report_inner():
     lines.append('')
 
     # ========== 历史阶段定位（精简：一句话） ==========
-    lines.append('>> 📊 历史阶段定位')
-    lines.append('')
-
+    # 先收集内容, 有任一才打标题(避免数据缺失时空标题占位)
+    hist_lines = []
     try:
         if gold_df is not None and len(gold_df) >= 60:
             g_close = gold_df['Close']
@@ -676,7 +675,7 @@ def _generate_report_inner():
                 gold_phase = '趋势转换期'
             high_30 = g_close.tail(30).max()
             dd_30 = (g_latest / high_30 - 1) * 100
-            lines.append(f'  黄金: {gold_phase} | 距30日高点回撤{dd_30:.1f}%')
+            hist_lines.append(f'  黄金: {gold_phase} | 距30日高点回撤{dd_30:.1f}%')
     except:
         pass
 
@@ -694,10 +693,14 @@ def _generate_report_inner():
                 oil_phase = '趋势转换期'
             high_30 = o_close.tail(30).max()
             dd_30 = (o_latest / high_30 - 1) * 100
-            lines.append(f'  原油: {oil_phase} | 距30日高点回撤{dd_30:.1f}%')
+            hist_lines.append(f'  原油: {oil_phase} | 距30日高点回撤{dd_30:.1f}%')
     except:
         pass
-    lines.append('')
+
+    if hist_lines:
+        lines.append('>> 📊 历史阶段定位')
+        lines.extend(hist_lines)
+        lines.append('')
 
     # ========== 多周期共振分析 ==========
     try:

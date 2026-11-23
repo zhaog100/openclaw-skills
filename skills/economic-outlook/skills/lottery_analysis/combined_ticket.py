@@ -3,6 +3,20 @@
 # 综合出号: 统计层(高频/和值/贝叶斯) + 曼德尔公式(定胆+拖/凯利) + 纯随机对照
 # 用法: python3 combined_ticket.py ssq|dlt
 # 纪律: 摇奖独立, 任何选号法不提升中奖概率, 输出带免责声明
+#
+# ===== 详版格式定版(官家11-23, build_report_text 输出) =====
+# 结构: 上期反推 + 推荐号码 + 投注形式(双色球10种/大乐透7种) + 结论购买建议 + 纯随机对照 + 免责
+# 双色球 forms 输出规范:
+#   · 例子行用 "- " bullet(如 "- 红球：04、06、14、18、22、24")
+#   · 每种加"说明： "行写组合逻辑(如 "从7个红球中任选6个, 共\\(C(7,6)=7\\) 注", LaTeX包裹)
+#   · 注数/金额拆两行(纯结果数: "注数： 7注" / "金额： 14元", 不写含逗号组合式)
+#   · 全蓝形式(6+16全蓝): 蓝球全列16个(01、02、…、16), 不展开
+#   · 7+1展开7注; 8+1/全复式不展开只给一注示例; 4胆4拖/胆拖复式展开或给示例
+# 大乐透 7 种措辞(固定模板):
+#   单式基本投注 / 前区复式(前区选6个及以上,后区固定选2个) / 后区复式(后区选3个及以上。)
+#   / 双区复式(前区选6个及以上,同时后区选3个及以上。) / 前区胆拖(1—4胆码+拖码合计至少6个)
+#   / 后区胆拖(1胆码+2拖码及以上) / 双区胆拖(前后区同时胆拖)
+# 注: 推送 run_lottery_push.build_text(kind,r) 调 build_report_text(kind), 精简版兜底
 
 import sys, json, random
 from collections import Counter
@@ -217,7 +231,7 @@ def generate(kind="ssq", n_mandel=2):
         n616 = 16
         forms.append({"name": "蓝球复式：6+16全蓝", "desc": f"红球：{'、'.join(f'{x:02d}' for x in base_red)}\n蓝球：全包16个",
                       "note": f"{n616}注, {n616*2}元",
-                      "expand": [dict(red=base_red, blue=b) for b in b16][:4]})
+                      "expand": []})  # [官家11-23] 全蓝不展开, 只全列16蓝球
         # 6 全复式 7+2
         n72 = _comb(7, 6) * 2
         forms.append({"name": "全复式：7+2", "desc": f"红球：{'、'.join(f'{x:02d}' for x in red7)}\n蓝球：{'、'.join(f'{x:02d}' for x in blue2)}",
@@ -331,123 +345,162 @@ def generate(kind="ssq", n_mandel=2):
     }
 
 
-def print_report(kind="ssq"):
+def build_report_text(kind="ssq"):
+    """[官家11-23 定版] 详版优化格式(官家11-10模板): 返回完整报告文本(上期反推/推荐号码/投注形式/结论/纯随机/免责)。
+    推送脚本 run_lottery_push.py 直接调这个, 不再用精简版。"""
     r = generate(kind)
-    print("=" * 46)
-    print(f"📊 {r['kind_cn']} 推荐报告 (基于 {r['N']} 期历史)")
-    print("=" * 46)
-    # 上期反推复盘(该期为什么开出这几个号 + 偏差信号)
+    out = []
+    out.append("=" * 46)
+    out.append(f"📊 {r['kind_cn']} 推荐报告 (基于 {r['N']} 期历史)")
+    out.append("=" * 46)
     rt = r.get("retro")
     if rt:
-        print(f"【上期反推】{rt['period']}({rt['date'][5:]}) 开出: {' '.join(rt['last_front'])} {' '.join(rt['last_back'])}")
+        out.append(f"【上期反推】{rt['period']}({rt['date'][5:]}) 开出: {' '.join(rt['last_front'])} {' '.join(rt['last_back'])}")
         for reason in rt["reasons"]:
-            print(f"  · {reason}")
-        print(f"  → {rt['sum_signal']}")
-        print(f"  ⚠️ {rt['note']}")
-    print(f"\n【推荐号码】")
+            out.append(f"  · {reason}")
+        out.append(f"  → {rt['sum_signal']}")
+        out.append(f"  ⚠️ {rt['note']}")
+    out.append(f"\n【推荐号码】")
     for i, n in enumerate(r["notes"], 1):
         fs = " ".join(f"{x:02d}" for x in n["front"])
         bs = " ".join(f"{x:02d}" for x in n["back"])
-        print(f"  {i}. 前区 {fs}  后区 {bs}")
-    # 三式投注: 按彩种分叉(双色球=红蓝, 大乐透=前后区 基本/追加/复式三型/胆拖三型)
+        out.append(f"  {i}. 前区 {fs}  后区 {bs}")
     if r["kind"] == "ssq" and r.get("forms"):
+        # [官家11-23 定版] 双色球10种形式: bullet例子 + 说明行(组合逻辑) + 注数/金额拆两行
+        # 说明行从 note 里的组合式提取(如 C(7,6)=7 → "从7个红球中任选6个, 共\\(C(7,6)=7\\) 注")
+        def _explan(f):
+            """按形式名给固定说明文案(组合逻辑)."""
+            n = f["name"]
+            if "7+1" in n: return f"说明： 从7个红球中任选6个，共 \\(C(7,6)=7\\) 注。"
+            if "8+1" in n: return f"说明： 从8个红球中任选6个，共 \\(C(8,6)=28\\) 注。"
+            if "6+2" in n: return f"说明： 6个红球固定，分别搭配2个蓝球，共2注。"
+            if "全蓝" in n: return f"说明： 蓝球全包，共16注。"
+            if "7+2" in n: return f"说明： 红球7选6有7种，蓝球2个，共 \\(7×2=14\\) 注。"
+            if "8+2" in n: return f"说明： 红球8选6有 \\(C(8,6)=28\\) 种，蓝球2个，共 \\(28×2=56\\) 注。"
+            if "4胆4拖+1蓝" in n: return f"说明： 每注必须包含4个胆码，再从4个拖码中选2个，组合数为 \\(C(4,2)=6\\)。"
+            if "3胆7拖" in n: return f"说明： 每注包含3个胆码，再从7个拖码中选3个，组合数为 \\(C(7,3)=35\\)。"
+            if "4胆4拖+2蓝" in n: return f"说明： 红球组合 \\(C(4,2)=6\\) 注，蓝球2个，共 \\(6×2=12\\) 注。"
+            if "单式" in n: return f"说明： 1个红球组合配1个蓝球，共1注。"
+            return ""
+        # 全蓝全列16个: 给 forms[4](6+16全蓝) 补完整蓝球列
+        def _all_blue():
+            return "、".join(f"{b:02d}" for b in range(1,17))
         idx = 1
         for f in r["forms"]:
-            print(f"\n{idx}. {f['name']}")
-            print(f"例子：")
+            out.append(f"\n{idx}. {f['name']}")
+            out.append("")
+            out.append("例子：")
+            # 例子行加 - bullet; 全蓝形式把"全包16个"换成全列
             for line in f["desc"].split("\n"):
-                print(f"  {line}")
-            print(f"注数/金额： {f['note']}")
+                if "全包16个" in line:
+                    out.append(f"- 蓝球：{_all_blue()}")
+                else:
+                    out.append(f"- {line}")
+            exp_line = _explan(f)
+            if exp_line:
+                out.append("")
+                out.append(exp_line)
+            # 注数/金额拆两行: 从 note 提取结果数(note 可能含 "C(7,6)=7注, 14元" 这类带逗号组合式)
+            import re as _re
+            _mm = _re.search(r'=?(\d+)注', f["note"])
+            _cnt = _mm.group(1) + "注" if _mm else f["note"].split(",")[-1]
+            _am = _re.search(r'=?(\d+)元', f["note"].replace(_cnt, ""))
+            _amt = _am.group(1) + "元" if _am else "2元"
+            out.append("")
+            out.append(f"注数： {_cnt}")
+            out.append(f"金额： {_amt}")
             exp = f.get("expand", [])
             if exp:
                 if len(exp) <= 8:
-                    print(f"展开后的{len(exp)}注红球为：")
+                    out.append(f"\n展开后的{len(exp)}注红球为：")
                     for i2, e in enumerate(exp, 1):
                         if isinstance(e, dict):
-                            print(f"  {i2}. 红球 {'、'.join(f'{x:02d}' for x in e['red'])}，蓝球 {e['blue']:02d}")
+                            out.append(f"{i2}. 红球 {'、'.join(f'{x:02d}' for x in e['red'])}，蓝球 {e['blue']:02d}")
                         else:
-                            print(f"  {i2}. {'、'.join(f'{x:02d}' for x in e)}")
+                            out.append(f"{i2}. {'、'.join(f'{x:02d}' for x in e)}")
                     if f.get("blue"):
-                        print(f"蓝球均为：{f['blue']:02d}")
+                        out.append(f"\n蓝球均为：{f['blue']:02d}")
                 else:
-                    print(f"其中一注示例：")
+                    out.append(f"\n其中一注示例：")
                     e = exp[0]
                     if isinstance(e, dict):
-                        print(f"  红球：{'、'.join(f'{x:02d}' for x in e['red'])}")
-                        print(f"  蓝球：{e['blue']:02d}")
+                        out.append(f"- 红球：{'、'.join(f'{x:02d}' for x in e['red'])}")
+                        out.append(f"- 蓝球：{e['blue']:02d}")
                     else:
-                        print(f"  红球：{'、'.join(f'{x:02d}' for x in e)}")
-                        print(f"  蓝球：{f.get('blue', '?'):02d}")
+                        out.append(f"- 红球：{'、'.join(f'{x:02d}' for x in e)}")
+                        out.append(f"- 蓝球：{f.get('blue', '?'):02d}")
             idx += 1
     else:
-        # 大乐透: 单式基本 + 复式三型 + 胆拖三型(官家11-10模板, 分隔用顿号"、")
         def _fmt(nums, width=2):
             return "、".join(f"{x:0{width}d}" for x in nums)
         if r.get("single"):
             sg = r["single"]
-            print(f"\n单式基本投注")
-            print(f"前区：{_fmt(sg['front'])}")
-            print(f"后区：{_fmt(sg['back'])}")
+            out.append(f"\n单式基本投注")
+            out.append(f"前区：{_fmt(sg['front'])}")
+            out.append(f"后区：{_fmt(sg['back'])}")
         if r.get("front_only"):
             f1 = r["front_only"]
-            print(f"\n前区复式投注：前区选 {len(f1['front'])}个，后区固定选2个")
-            print(f"前区：{_fmt(f1['front'])}")
-            print(f"后区：{_fmt(f1['back'])}")
+            out.append(f"\n前区复式投注：前区选 6个及以上，后区固定选2个")
+            out.append(f"前区：{_fmt(f1['front'])}")
+            out.append(f"后区：{_fmt(f1['back'])}")
         if r.get("back_only"):
             b1 = r["back_only"]
-            print(f"\n后区复式投注：前区固定选5个，后区选 {len(b1['back'])}个")
-            print(f"前区：{_fmt(b1['front'])}")
-            print(f"后区：{_fmt(b1['back'])}")
+            out.append(f"\n后区复式投注：前区固定选5个，后区选 3个及以上。")
+            out.append(f"前区：{_fmt(b1['front'])}")
+            out.append(f"后区：{_fmt(b1['back'])}")
         if r.get("dual_multi"):
             d1 = r["dual_multi"]
-            print(f"\n双区复式：前区选{len(d1['front'])}个，后区选{len(d1['back'])}个")
-            print(f"前区：{_fmt(d1['front'])}")
-            print(f"后区：{_fmt(d1['back'])}")
+            out.append(f"\n双区复式：前区选6个及以上，同时后区选3个及以上。")
+            out.append(f"前区：{_fmt(d1['front'])}")
+            out.append(f"后区：{_fmt(d1['back'])}")
         if r.get("danchi"):
             dc = r["danchi"]
-            print(f"\n胆拖投注")
+            out.append(f"\n胆拖投注")
             if dc.get("front"):
                 f = dc["front"]
-                print(f"前区胆拖：前区选{len(f['bank'])}个胆码 + {len(f['drag'])}个拖码（合计{len(f['bank'])+len(f['drag'])}个），后区选2个")
-                print(f"前区胆码：{_fmt(f['bank'])}（{len(f['bank'])}个胆码，每注都必须包含）")
-                print(f"前区拖码：{_fmt(f['drag'])}（{len(f['drag'])}个拖码）")
-                print(f"后区固定：{_fmt(f['back'])}")
+                out.append(f"前区胆拖：前区选 1—4个胆码，再选拖码（胆码与拖码合计至少6个），后区选2个。")
+                out.append(f"前区胆码：{_fmt(f['bank'])}（{len(f['bank'])}个胆码，每注都必须包含）")
+                out.append(f"前区拖码：{_fmt(f['drag'])}（{len(f['drag'])}个拖码）")
+                out.append(f"后区固定：{_fmt(f['back'])}")
             if dc.get("back"):
                 b = dc["back"]
-                print(f"后区胆拖：前区选5个，后区选{len(b['bank'])}个胆码 + {len(b['drag'])}个拖码")
-                print(f"前区固定：{_fmt(b['front'])}")
-                print(f"后区胆码：{_fmt(b['bank'])}（{len(b['bank'])}个胆码，每注都必须包含）")
-                print(f"后区拖码：{_fmt(b['drag'])}（{len(b['drag'])}个拖码）")
+                out.append(f"后区胆拖：前区选5个，后区选 1个胆码，再选2个及以上拖码。")
+                out.append(f"前区固定：{_fmt(b['front'])}")
+                out.append(f"后区胆码：{_fmt(b['bank'])}（{len(b['bank'])}个胆码，每注都必须包含）")
+                out.append(f"后区拖码：{_fmt(b['drag'])}（{len(b['drag'])}个拖码）")
             if dc.get("dual"):
                 d = dc["dual"]
-                print(f"双区胆拖：前区和后区同时采用胆拖方式")
-                print(f"前区胆码：{_fmt(d['front_bank'])}")
-                print(f"前区拖码：{_fmt(d['front_drag'])}")
-                print(f"后区胆码：{_fmt(d['back_bank'])}")
-                print(f"后区拖码：{_fmt(d['back_drag'])}")
+                out.append(f"双区胆拖：前区和后区同时采用胆拖方式")
+                out.append(f"前区胆码：{_fmt(d['front_bank'])}")
+                out.append(f"前区拖码：{_fmt(d['front_drag'])}")
+                out.append(f"后区胆码：{_fmt(d['back_bank'])}")
+                out.append(f"后区拖码：{_fmt(d['back_drag'])}")
     rnd = r["random"]
-    # 官家11-21: 结论段(该买几注/预算/覆盖策略) — 不再只有号码, 明确告诉官家怎么买
-    # 蓝球多值从 r["blue_pool_used"] 取(generate 已暴露并列全保留的蓝球池)
     _blue_all = r.get("blue_pool_used", []) or []
-    print(f"\n【结论 / 购买建议】")
+    out.append(f"\n【结论 / 购买建议】")
     if kind == "ssq":
         _bstr = '、'.join(f'{b:02d}' for b in _blue_all[:4]) if _blue_all else '见上'
-        print(f"  · 本期蓝球多值: {_bstr} (高频并列全保留, 不单押1个)")
-        print(f"  · 性价比之选: 单式(2元/注) 2-4 注 或 蓝球6+2复式(4元/2注) 覆盖多蓝球")
-        print(f"  · 想提高命中面: 红球7+1复式(14元/7注) 或 胆拖4胆4拖(12元/6注)")
-        print(f"  · 预算建议: 2-4 注(4-8元) 理性购彩, 蓝球别只押1个, 用多蓝覆盖")
+        out.append(f"  · 本期蓝球多值: {_bstr} (高频并列全保留, 不单押1个)")
+        out.append(f"  · 性价比之选: 单式(2元/注) 2-4 注 或 蓝球6+2复式(4元/2注) 覆盖多蓝球")
+        out.append(f"  · 想提高命中面: 红球7+1复式(14元/7注) 或 胆拖4胆4拖(12元/6注)")
+        out.append(f"  · 预算建议: 2-4 注(4-8元) 理性购彩, 蓝球别只押1个, 用多蓝覆盖")
     else:
-        print(f"  · 性价比之选: 基本投注(2元/注) 或 追加投注(3元/注) 2-4 注")
-        print(f"  · 想提高命中面: 前区复式(7前+2后) 或 前区胆拖")
-        print(f"  · 预算建议: 2-4 注(4-12元) 理性购彩")
-    print(f"  · 提醒: 摇奖独立, 以上结构优化只提覆盖度/成本效率, 不改变中奖概率, 量力而行")
-    print(f"\n【纯随机对照(无放回,中奖概率与上面完全相同)】")
+        out.append(f"  · 性价比之选: 基本投注(2元/注) 或 追加投注(3元/注) 2-4 注")
+        out.append(f"  · 想提高命中面: 前区复式(7前+2后) 或 前区胆拖")
+        out.append(f"  · 预算建议: 2-4 注(4-12元) 理性购彩")
+    out.append(f"  · 提醒: 摇奖独立, 以上结构优化只提覆盖度/成本效率, 不改变中奖概率, 量力而行")
+    out.append(f"\n【纯随机对照(无放回,中奖概率与上面完全相同)】")
     if "front" in rnd:
-        print(f"  前区 {' '.join(rnd['front'])}  后区 {' '.join(rnd['back'])}")
+        out.append(f"  前区 {' '.join(rnd['front'])}  后区 {' '.join(rnd['back'])}")
     else:
-        print(f"  红球 {' '.join(rnd['red'])}  蓝 {rnd['blue']}")
-    # 历史分析静默参与出号(高频/和值/蓝球多值已用历史算), 报告只出最终推荐, 不展示历史段
-    print(f"\n⚠️ {r['disclaimer']}")
+        out.append(f"  红球 {' '.join(rnd['red'])}  蓝 {rnd['blue']}")
+    out.append(f"\n⚠️ {r['disclaimer']}")
+    return "\n".join(out)
+
+
+def print_report(kind="ssq"):
+    """保留原 CLI 入口(兼容 python combined_ticket.py ssq/dlt), 内容同 build_report_text。"""
+    print(build_report_text(kind))
 
 
 if __name__ == "__main__":
