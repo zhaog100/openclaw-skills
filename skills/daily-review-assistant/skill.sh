@@ -877,9 +877,10 @@ generate_execution_summary() {
         if [ "$_pushed" = "1" ]; then
             rm -f "$_SCRIPTS_DIR/../data/.evening_pending_push" 2>/dev/null
         else
-            log_warn "QQ推送失败(3次重试仍失败), 写待补推标记"
-            # 写待补推文件(下轮早报/手动补推可读)
-            printf '%s\n' "$_CURRENT_LOG_FILE" > "$_SCRIPTS_DIR/../data/.evening_pending_push" 2>/dev/null
+            log_warn "QQ推送失败(3次重试仍失败), 写待补推标记(推送失败不阻塞回顾, 不 exit 1)"
+            # 写待补推文件(下轮早报/手动补推可读); 官家11-23: 先建 data 目录(原缺目录致 line 882 No such file, 连带 exit 1)
+            mkdir -p "$_SCRIPTS_DIR/../data" 2>/dev/null
+            printf '%s\n' "$_CURRENT_LOG_FILE" > "$_SCRIPTS_DIR/../data/.evening_pending_push" 2>/dev/null || true
         fi
     else
         log_warn "QQ_TARGET_USER_ID 未设置，晚报跳过推送（不硬编码 open_id）"

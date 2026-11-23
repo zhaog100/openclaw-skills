@@ -9,6 +9,14 @@ REPORT_FILE="${REPORT_DIR}/report_text_latest.txt"
 LOG_FILE="${OIL_GOLD_LOG:-$SCRIPT_DIR/../../..}/logs/oil-gold-report-cron.log"
 LOG_FILE="${OIL_GOLD_LOG:-$(cd "$SCRIPT_DIR/../../.." && pwd)/logs/oil-gold-report-cron.log}"
 
+# 加载技能 .env（提供 QQ_TARGET_USER_ID 等，cron 环境无交互 shell 时必需）
+_OL_ENV="$SCRIPT_DIR/../.env"
+if [ -f "$_OL_ENV" ]; then
+  set -a
+  . "$_OL_ENV"
+  set +a
+fi
+
 if [ -z "$QQ_TARGET_USER_ID" ]; then
   echo "[ERROR] QQ_TARGET_USER_ID 未设置，拒绝推送（不硬编码 open_id）" >&2
   exit 1

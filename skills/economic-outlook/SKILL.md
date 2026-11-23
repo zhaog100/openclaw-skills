@@ -1,12 +1,11 @@
-# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-
 ---
 name: economic-outlook
 description: "经济形势综合分析：多源宏观数据 + 政策引擎 + 多维评分 + 半年/1年/2年三情景预测。周报推送 QQ。"
-version: 3.3.0
-author: 小米椒 🌶️
-lessons_updated: 2026-09-28
 ---
+
+
+
+# Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
 
 # 经济形势综合分析 v3.3（PRD V2.0 + 官方源真实采集适配器层）
 

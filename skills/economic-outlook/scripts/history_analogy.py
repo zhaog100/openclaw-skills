@@ -1,3 +1,4 @@
+from shared.ak_compat import call as _akcall
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -239,7 +240,7 @@ def build_current_profile() -> dict:
     except Exception:
         profile["_data_gaps"].append("PMI")
     try:
-        exp = ak.macro_china_exports_yoy()
+        exp = _akcall('macro_china_exports_yoy')
         if "今值" in exp.columns:
             profile["_export_yoy"] = float(exp.iloc[0]["今值"])
             profile["export_weak"] = profile["_export_yoy"] < 3.0

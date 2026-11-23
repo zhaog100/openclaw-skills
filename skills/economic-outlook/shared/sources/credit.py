@@ -7,6 +7,9 @@
 """
 from .base import BaseAdapter
 import akshare as ak
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from shared.ak_compat import call as _akcall
 import pandas as pd
 
 
@@ -24,7 +27,7 @@ class CreditAdapter(BaseAdapter):
     def fetch_social_financing(self) -> pd.DataFrame:
         """社融增量月度数据。"""
         try:
-            df = ak.macro_china_shrzgm()
+            df = _akcall('macro_china_shrzgm')
         except Exception:
             # 降级容错(11-03纪律): akshare 拉不到 → 返回带 __unavailable__ 标记的 df, 上层明标'央行社融不可用'
             df = pd.DataFrame(columns=["period","total","rmb_loan","corp_bond","equity","gov_bond"])

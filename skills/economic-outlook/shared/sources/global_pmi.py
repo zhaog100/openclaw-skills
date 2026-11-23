@@ -7,6 +7,9 @@
 """
 from .base import BaseAdapter
 import akshare as ak
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from shared.ak_compat import call as _akcall
 import pandas as pd
 
 
@@ -46,7 +49,7 @@ class GlobalPMIAdapter(BaseAdapter):
     def fetch_us_pmi(self) -> pd.DataFrame:
         """获取美国制造业 PMI。"""
         try:
-            return ak.macro_usa_pmi()
+            return _akcall('macro_usa_pmi')
         except Exception:
             df = pd.DataFrame()
             df.attrs["__unavailable__"] = True

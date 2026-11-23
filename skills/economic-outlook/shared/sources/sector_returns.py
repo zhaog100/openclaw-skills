@@ -6,6 +6,9 @@
 版权: MIT License | Copyright (c) 2026 思捷娅科技 (SJYKJ)
 """
 import akshare as ak
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from shared.ak_compat import call as _akcall
 import pandas as pd
 from datetime import datetime
 
@@ -42,7 +45,7 @@ def fetch_hs300_monthly(start: str = "20170101", end: str = None) -> pd.Series:
     if end is None:
         end = datetime.now().strftime("%Y%m%d")
     try:
-        df = ak.stock_zh_index_daily(symbol="sh000300")
+        df = _akcall('stock_zh_index_daily', symbol="sh000300")
         df = df.rename(columns={"date": "date", "close": "close"})
         df["date"] = pd.to_datetime(df["date"])
         df = df[df["date"] >= pd.to_datetime(start)]

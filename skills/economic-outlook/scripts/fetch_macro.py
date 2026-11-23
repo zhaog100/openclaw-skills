@@ -1,3 +1,6 @@
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from shared.ak_compat import call as _akcall
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -75,7 +78,7 @@ def fetch_m2():
     if c is not None:
         return c
     import akshare as ak
-    df = ak.macro_china_money_supply()
+    df = _akcall('macro_china_money_supply')
     _save_cache('m2', df)
     return df
 
@@ -95,7 +98,7 @@ def fetch_shrzgm():
     if c is not None:
         return c
     import akshare as ak
-    df = ak.macro_china_shrzgm()
+    df = _akcall('macro_china_shrzgm')
     _save_cache('shrzgm', df)
     return df
 
@@ -105,7 +108,7 @@ def fetch_shibor():
     if c is not None:
         return c
     import akshare as ak
-    df = ak.macro_china_shibor_all()
+    df = _akcall('macro_china_shibor_all')
     _save_cache('shibor', df)
     return df
 
@@ -115,7 +118,7 @@ def fetch_lpr():
     if c is not None:
         return c
     import akshare as ak
-    df = ak.macro_china_lpr()
+    df = _akcall('macro_china_lpr')
     _save_cache('lpr', df)
     return df
 
@@ -207,6 +210,11 @@ def fetch_imports():
     if c is not None:
         return c
     import akshare as ak
+    import pandas as pd
+    # akshare>=1.20.42 移除 macro_china_imports_yoy，降级空表
+    if not hasattr(ak, 'macro_china_imports_yoy'):
+        print(f'[fetch_macro] WARNING: macro_china_imports_yoy 已移除(akshare {ak.__version__})，imports 降级为空', flush=True)
+        return pd.DataFrame()
     df = ak.macro_china_imports_yoy()
     _save_cache('imports', df)
     return df
@@ -218,6 +226,10 @@ def fetch_fx_reserves():
     if c is not None:
         return c
     import akshare as ak
+    import pandas as pd
+    if not hasattr(ak, 'macro_china_fx_reserves_yearly'):
+        print(f'[fetch_macro] WARNING: macro_china_fx_reserves_yearly 已移除(akshare {ak.__version__})，fx_reserves 降级为空', flush=True)
+        return pd.DataFrame()
     df = ak.macro_china_fx_reserves_yearly()
     _save_cache('fx_reserves', df)
     return df
@@ -240,6 +252,10 @@ def fetch_usa_pmi():
     if c is not None:
         return c
     import akshare as ak
+    import pandas as pd
+    if not hasattr(ak, 'macro_usa_pmi'):
+        print(f'[fetch_macro] WARNING: macro_usa_pmi 已移除(akshare {ak.__version__})，usa_pmi 降级为空', flush=True)
+        return pd.DataFrame()
     df = ak.macro_usa_pmi()
     _save_cache('usa_pmi', df)
     return df

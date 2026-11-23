@@ -64,8 +64,9 @@ def score_liquidity(data):
 
     # LPR 方向（最近 6 个月是否降息）
     if lpr is not None and len(lpr) > 6:
-        # LPR 1Y
-        lpr1 = lpr['LPR1Y'].dropna()
+        # LPR 1Y 列名自适应（旧: LPR1Y / 新接口: 1年期LPR）
+        lpr1_col = 'LPR1Y' if 'LPR1Y' in lpr.columns else '1年期LPR'
+        lpr1 = lpr[lpr1_col].dropna() if lpr1_col in lpr.columns else pd.Series(dtype='float64')
         if len(lpr1) >= 2:
             recent, older = lpr1.iloc[-1], lpr1.iloc[-7] if len(lpr1) >= 7 else lpr1.iloc[0]
             if recent < older - 0.05:  # 降息

@@ -7,6 +7,9 @@
 """
 from .base import BaseAdapter
 import akshare as ak
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from shared.ak_compat import call as _akcall
 import pandas as pd
 
 
@@ -34,7 +37,7 @@ class RecruitmentAdapter(BaseAdapter):
     def fetch_salary_index(self) -> pd.DataFrame:
         """获取财新新经济行业入职平均工资水平。"""
         try:
-            df = ak.index_neaw_cx()
+            df = _akcall('index_neaw_cx')
             df = df.rename(columns={"日期": "date", "新经济行业入职平均工资水平": "salary_index"})
             df["date"] = pd.to_datetime(df["date"])
             return df

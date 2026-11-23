@@ -7,6 +7,9 @@
 """
 from .base import BaseAdapter
 import akshare as ak
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from shared.ak_compat import call as _akcall
 import pandas as pd
 from datetime import datetime
 
@@ -32,17 +35,17 @@ class ExportCategoryAdapter(BaseAdapter):
     def fetch_summary(self) -> pd.DataFrame:
         """获取海关进出口汇总。"""
         try:
-            return ak.macro_china_hgjck()
+            return _akcall('macro_china_hgjck')
         except Exception:
             try:
-                return ak.macro_china_exports_yoy()
+                return _akcall('macro_china_exports_yoy')
             except Exception:
                 return pd.DataFrame()
 
     def fetch_total_exports_yoy(self) -> pd.DataFrame:
         """获取出口总额同比（akshare 有）。"""
         try:
-            return ak.macro_china_exports_yoy()
+            return _akcall('macro_china_exports_yoy')
         except Exception:
             df = pd.DataFrame()
             df.attrs["__unavailable__"] = True

@@ -32,7 +32,20 @@ GATEWAY_PORT = 18789
 # 导致读不到 openclaw.json 里的 QQ 凭证(appId/clientSecret) → 主路 11001 拒。
 # 路径解析: 读 OPENCLAW_HOME env(cron 注入机主目录), 彻底不依赖运行时 HOME, 不硬编码路径。
 # 用 os.path.join 拼 openclaw.json, 避免纯字面量绝对路径(gate 硬编码路径放行)
-_OPENCLAW_HOME = os.environ.get("OPENCLAW_HOME") or "/home/ubuntu"
+# 默认机主目录: OPENCLAW_HOME 优先 → 当前 HOME → 探测 /home 下实际存在 .openclaw 的用户目录
+def _detect_openclaw_home():
+    v = os.environ.get("OPENCLAW_HOME")
+    if v and Path(v, ".openclaw", "openclaw.json").exists():
+        return v
+    home = os.environ.get("HOME")
+    if home and Path(home, ".openclaw", "openclaw.json").exists():
+        return home
+    # 兜底: 扫 /home 下带 .openclaw/openclaw.json 的目录
+    import glob
+    for d in sorted(glob.glob("/home/*/.openclaw/openclaw.json")):
+        return Path(d).parent.parent
+    return home or "/home/ubuntu"
+_OPENCLAW_HOME = _detect_openclaw_home()
 TOKEN_FILE = Path(os.path.join(_OPENCLAW_HOME, ".openclaw", "openclaw.json"))
 QQ_TARGET = os.environ.get("QQ_TARGET_USER_ID", "").strip().split(";")[0].strip()
 if not QQ_TARGET:

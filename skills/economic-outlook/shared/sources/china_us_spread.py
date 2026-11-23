@@ -7,6 +7,9 @@
 """
 from .base import BaseAdapter
 import akshare as ak
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from shared.ak_compat import call as _akcall
 import pandas as pd
 
 
@@ -24,7 +27,7 @@ class ChinaUSSpreadAdapter(BaseAdapter):
     def fetch_yields(self, start_date: str = "20150101") -> pd.DataFrame:
         """获取中美国债收益率，计算各期限利差。"""
         try:
-            df = ak.bond_zh_us_rate(start_date=start_date)
+            df = _akcall('bond_zh_us_rate', start_date=start_date)
         except Exception:
             df = pd.DataFrame()
             df.attrs["__unavailable__"] = True
@@ -63,7 +66,7 @@ class ChinaUSSpreadAdapter(BaseAdapter):
     def fetch_rmb_fixing(self, start_date: str = "20150101") -> pd.Series:
         """获取美元兑人民币中间价。"""
         try:
-            df = ak.currency_boc_safe()
+            df = _akcall('currency_boc_safe')
             df = df.rename(columns={"日期": "date", "美元": "usd_cny"})
             df["date"] = pd.to_datetime(df["date"])
             df = df[df["date"] >= pd.to_datetime(start_date)]
