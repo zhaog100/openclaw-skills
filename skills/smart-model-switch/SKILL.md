@@ -58,7 +58,7 @@ version: 2.0.0
 5. beta 不可用 → 切换到 `custom-apihub-agnes-ai-com/agnes-2.0-flash`
 6. 全部不可用 → 通知用户，停止自动切换
 
-**GLM / CogView 备用档（官家11-21: 标注待平台放行）**：
+**GLM / CogView 备用档（视觉/多模态备用, 按需切换, 无需放量）**：
 - `glm-bigmodel/glm-4.6v-flash` — 🟡 待平台放行（11-16 实测 401, 平台未对该 API key 放量）
 - `glm-bigmodel/cogview-3-flash` — 🟡 待平台放行（11-16 实测 401, 同上）
 - 这两档在 fallback 链中**暂不自动启用**（401 会中断链），待平台放量后移除 🟡 标记即可激活
