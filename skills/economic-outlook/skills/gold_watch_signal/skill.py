@@ -433,10 +433,72 @@ class GoldWatchSignalSkill(BaseSkill):
     depends_on: list = []
 
     def _cfg_path(self):
-        base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        ws = os.path.dirname(base)   # economic-outlook -> workspace
-        p = os.path.join(ws, "oil-gold-correlation", "data", "gold_watch.json")
-        return p
+        base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # economic-outlook
+        ws = os.path.dirname(base)   # workspace
+        # 官家11-24: 修路径 — 实际 gold_watch.json 在 skills/economic-outlook/data/, 不在 workspace/oil-gold-correlation/data/
+        cands = [
+            os.path.join(base, "data", "gold_watch.json"),          # skills/economic-outlook/data/
+            os.path.join(ws, "skills", "economic-outlook", "data", "gold_watch.json"),
+            os.path.join(ws, "oil-gold-correlation", "data", "gold_watch.json"),  # 旧路径兜底
+        ]
+        for p in cands:
+            if os.path.exists(p):
+                return p
+        return cands[0]
+
+    def _write_dynamic_zones(self, lo1, lo2, hi1, hi2, off1, off2, base):
+        """官家11-24: 动态点位回写 gold_watch.json — buy/sell/down_targets 随行情滚动, 写死值只当 K线挂了的兜底.
+        数据源降级(K线挂)时保留旧值 + 标 degraded=True, 不静默覆盖."""
+        import json, os, datetime
+        p = self._cfg_path()
+        try:
+            data = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            data = {}
+        w = data.setdefault("watch_shgold_spot", {})
+        now = datetime.datetime.now().strftime("%F %H:%M")
+        # 动态买点/卖点 (au0 沪金 20/60 日高低点滚动)
+        dyn_buy1 = round(lo1 - off1, 2)
+        dyn_buy2 = round(lo2 - off2, 2)
+        dyn_sell1 = round(hi1, 2)
+        dyn_sell2 = round(hi2, 2)
+        # 动态下行 5 档 (基于当前 20日低/60日低/斐波那契, 实时算, 不写死)
+        # 斐波那契基于 60日区间
+        lo60 = lo2  # 60日低
+        hi60 = hi2  # 60日高
+        fib_span = max(hi60 - lo60, 1)
+        fib_levels = [0.0, 0.382, 0.5, 0.618, 0.786, 1.0]
+        # 下行档: 现价往下, 斐波那契回撤位 + 关键支撑
+        cur = base if base else hi60
+        down_targets = [
+            {"price": round(max(lo60 - 2, cur - 5), 0), "label": "第1档·20日低下方(动态)", "is_dynamic": True, "note": "近20日低-2, 短期最近支撑"},
+            {"price": round(lo60 - 5, 0), "label": "第2档·60日低破位(动态)", "is_dynamic": True, "note": "近60日低-5, 破位进无人区"},
+            {"price": round(lo60 - fib_span*0.382, 0), "label": "第3档·斐波那契38.2%(动态)", "is_dynamic": True, "note": "60日区间回撤38.2%, 强支撑"},
+            {"price": round(lo60 - fib_span*0.618, 0), "label": "第4档·斐波那契61.8%(动态)", "is_dynamic": True, "note": "60日区间回撤61.8%, 极端位"},
+            {"price": round(lo60 - fib_span*0.786, 0), "label": "第5档·斐波那契78.6%(动态)", "is_dynamic": True, "note": "60日区间回撤78.6%, 深回撤"},
+        ]
+        # 写回 (保留官家手动标的"纪律"字段, 只更新价格 + 标记动态)
+        old_buy = {b["price"]: b for b in w.get("buy_zones", [])}
+        old_sell = {s["price"]: s for s in w.get("sell_zones", [])}
+        w["buy_zones"] = [
+            {"price": dyn_buy1, "label": "买点一档(动态·20日低-offset)", "action": old_buy.get(dyn_buy1,{}).get("action","动态买点, 跌势中需收复+MA5拐头确认才加仓"), "is_dynamic": True},
+            {"price": dyn_buy2, "label": "买点二档(动态·60日低-offset)", "action": old_buy.get(dyn_buy2,{}).get("action","动态买点, 低位区"), "is_dynamic": True},
+        ]
+        w["sell_zones"] = [
+            {"price": dyn_sell1, "label": "卖点一档(动态·20日高)", "action": old_sell.get(dyn_sell1,{}).get("action","反弹到20日高减1/3"), "is_dynamic": True},
+            {"price": dyn_sell2, "label": "卖点二档(动态·60日高)", "action": old_sell.get(dyn_sell2,{}).get("action","反弹到60日高再减"), "is_dynamic": True},
+        ]
+        w["down_targets"] = down_targets
+        w["down_alerts"] = [t["price"] for t in down_targets[1:]]  # 第2档起提醒
+        w["dynamic_zones"] = {
+            "updated_at": now, "is_dynamic": True,
+            "dyn_buy1": dyn_buy1, "dyn_buy2": dyn_buy2, "dyn_sell1": dyn_sell1, "dyn_sell2": dyn_sell2,
+            "lo20": lo1, "lo60": lo2, "hi20": hi1, "hi60": hi2, "current": cur,
+            "note": "官家11-24定: 补仓/卖点/下行档全部动态随行情滚动, 写死值仅当K线挂了的兜底(degraded时)",
+        }
+        with open(p, "w", encoding="utf-8") as fh:
+            json.dump(data, fh, ensure_ascii=False, indent=2)
+
 
     def _load_cfg(self):
         p = self._cfg_path()
@@ -561,6 +623,8 @@ class GoldWatchSignalSkill(BaseSkill):
                 "dyn_mid1": round(mid1, 2),
                 "dyn_note": "档位=au0沪金20/60日高低(贴官家UI实盘口径), 国际金实时作盘中参考",
             })
+            # 官家11-24: 动态点位回写 gold_watch.json — buy_zones/sell_zones/down_targets 随行情滚动, 写死值只当 K线挂了的兜底
+            self._write_dynamic_zones(lo1, lo2, hi1, hi2, off1, off2, base)
             # 趋势过滤器(官家 10-24 要求: 均线要分析出"在跌", 不只给档位)
             # MA20 斜率(近段 vs 前段) + RSI14 + 现价 vs 20日低点 → 输出 trend_state
             ma20_now = statistics.mean(close[-lb1:]) if len(close) >= lb1 else None
@@ -596,17 +660,39 @@ class GoldWatchSignalSkill(BaseSkill):
                 },
             })
         else:
-            # K线档位源全挂但基准 base 已拉到(东财 或 降级金投网 jijinhao) → 退 config 固定档, 基准不丢, success=True
-            # 绝不能静默: 基准价已拿到, 只用固定档, 照样能跑破档判定
-            out.update({
-                "success": True, "source": "沪金现货基准+固定档(K线挂, 动态档退config)",
-                "price_basis": "基准=沪金现货(东财AU9999优先/挂则金投网jijinhao降级); K线档位挂退固定档, 国际金仅作盘中参考",
-                "sh_equiv": base, "au0_realtime": base,
-            })
-            out.setdefault("dyn_buy1", cfg.get("buy1"))
-            out.setdefault("dyn_buy2", cfg.get("buy2"))
-            out.setdefault("dyn_sell1", cfg.get("sell1"))
-            out.setdefault("dyn_sell2", cfg.get("sell2"))
+            # K线档位源全挂但基准 base 已拉到(东财 或 降级金投网 jijinhao)
+            # 官家11-24: 不直接退写死 config, 先用 au0 期货日线算动态档位(能拉就动态滚动), 拉不到才退 config 兜底
+            _dyn_ok = False
+            try:
+                _au0 = _fetch_au0()
+                _close = _au0[0] if _au0 else None   # _fetch_au0 返回 (close,high,low), 取 [0] 是 close
+                if _close and len(_close) >= lb2:
+                    _lo1 = min(_close[-lb1:]); _lo2 = min(_close[-lb2:])
+                    _hi1 = max(_close[-lb1:]); _hi2 = max(_close[-lb2:])
+                    self._write_dynamic_zones(_lo1, _lo2, _hi1, _hi2, off1, off2, base)
+                    out.update({
+                        "success": True, "source": "沪金现货基准+动态档(au0期货日线兜底算, 现货K线挂)",
+                        "price_basis": "基准=沪金现货(东财AU9999优先/挂则金投网jijinhao降级); 现货K线档位挂退 au0期货日线算动态档",
+                        "sh_equiv": base, "au0_realtime": base,
+                        "dyn_buy1": round(_lo1-off1,2), "dyn_buy2": round(_lo2-off2,2),
+                        "dyn_sell1": round(_hi1,2), "dyn_sell2": round(_hi2,2),
+                        "dyn_degraded": True, "dyn_degraded_note": "现货K线挂, 动态档用au0期货日线算, 口径偏期货非现货",
+                    })
+                    _dyn_ok = True
+            except Exception as _e:
+                out["dyn_degraded"] = True
+            if not _dyn_ok:
+                # au0 也拉不到 → 才退 config 写死兜底, 不静默
+                out.update({
+                    "success": True, "source": "沪金现货基准+固定档(K线挂, 动态档退config)",
+                    "price_basis": "基准=沪金现货(东财AU9999优先/挂则金投网jijinhao降级); K线档位挂退固定档, 国际金仅作盘中参考",
+                    "sh_equiv": base, "au0_realtime": base,
+                    "dyn_degraded": True, "dyn_degraded_note": "au0日线也拉不到, 退回config写死兜底, 需恢复数据源后重新算动态档",
+                })
+                out.setdefault("dyn_buy1", cfg.get("buy1"))
+                out.setdefault("dyn_buy2", cfg.get("buy2"))
+                out.setdefault("dyn_sell1", cfg.get("sell1"))
+                out.setdefault("dyn_sell2", cfg.get("sell2"))
 
         out["targets"] = dyn.get("targets", ["hi20", "hi60"])
         out["min_target"] = cfg.get("breakeven", breakeven)  # 卖点须 ≥ 回本线
