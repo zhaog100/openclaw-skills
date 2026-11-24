@@ -69,3 +69,4 @@ tail -f ~/.openclaw/workspace/logs/gmail_payment_monitor.log
 - 连接失败: 检查IMAP服务器地址和端口
 - 认证失败: 确认使用应用专用密码（非登录密码）
 - 搜索超时: 增加timeout参数或减少关键词数量
+- 未读邮件未标已读: 先手动跑 `python3 email-reader.py 5` 确认 store 逻辑正常；若成功再查定时任务调用链（morning-report.sh 传了 `2>/dev/null` 会吞掉 store 异常，导致标已读静默失败）

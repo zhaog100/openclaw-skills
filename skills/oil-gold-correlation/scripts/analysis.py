@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 石油黄金相关性分析引擎 v3.4
+# 石油黄金相关性分析引擎 v3.5
 # 支持: Pearson, Spearman, Kendall, Rolling, Granger, Cointegration, DCC-GARCH
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# 版本: v3.4 | 石油黄金白银相关性分析
+# 版本: v3.5 | 石油黄金白银相关性分析
 
 import argparse
 import json

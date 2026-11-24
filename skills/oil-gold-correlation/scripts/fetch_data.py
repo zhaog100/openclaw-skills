@@ -11,7 +11,7 @@ Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
 """
-# 版本: v3.4 | 石油黄金白银相关性分析
+# 版本: v3.5 | 石油黄金白银相关性分析
 
 import argparse
 import json
@@ -83,7 +83,8 @@ def fetch_akshare(period="1y", interval="1d"):
     import akshare as ak
     import socket
     old_timeout = socket.getdefaulttimeout()
-    socket.setdefaulttimeout(15)
+    # 官家11-09: 15s→8s, 单源最坏挂起压缩, 防 3 次 regen × 多源叠加超 cron 600s 被 SIGTERM
+    socket.setdefaulttimeout(8)
     try:
         start_date, end_date = _period_to_dates(period)
         result = {}
@@ -183,7 +184,7 @@ def fetch_yfinance(period="1y", interval="1d"):
         for attempt in range(2):
             try:
                 ticker = yf.Ticker(symbol)
-                df = t.history(period=period, interval=interval)
+                df = ticker.history(period=period, interval=interval)
                 parsed = _parse_ticker_data(symbol, df)
                 if parsed and parsed["close"]:
                     result[name] = parsed

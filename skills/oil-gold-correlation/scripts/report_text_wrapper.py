@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 石油黄金报告生成器 - 超时保护版 v3.4
+# 石油黄金报告生成器 - 超时保护版 v3.5
 # 包装 report_text.py, 带超时保护和降级机制
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

@@ -17,8 +17,11 @@ make_pkg.py — 固定口径打包脚本（两边共用，保证口径 100% 一�
 """
 import os, sys, json, hashlib, zipfile, datetime, re
 
-W = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # workspace 根
-sys.path.insert(0, os.path.join(W, "oil-gold-correlation", "packaging"))
+# 官家11-21: W 须指到含 skills/economic-outlook + skills/oil-gold-correlation 的目录, 即 workspace/skills 层
+# make_pkg.py 在 <workspace>/skills/oil-gold-correlation/packaging/ 下, 上溯 3 层到 skills/
+# 原写法错指 workspace/skills/skills(多一层) 导致 economic_daily 整个被漏
+W = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # workspace/skills 层
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))
 from verify_pkg import verify_all, VERIFY_ITEMS
 
 EXC_DIRS = {"__pycache__", "cache", "logs", ".git"}
@@ -39,9 +42,10 @@ if not allpass:
 print("✅ 校验全过，开始打包")
 
 # ② 收集文件
+# 官家11-21: W 现指 workspace/skills 层, 两个技能都直接在 W 下, 原 economic-outlook 误写 W/skills/... 多套一层致漏打
 pairs = [
     (os.path.join(W, "oil-gold-correlation") if os.path.isdir(os.path.join(W, "oil-gold-correlation")) else os.path.join(W, "skills", "oil-gold-correlation"), "oil-gold-correlation"),
-    (os.path.join(W, "skills", "economic-outlook"), "economic-outlook"),
+    (os.path.join(W, "economic-outlook") if os.path.isdir(os.path.join(W, "economic-outlook")) else os.path.join(W, "skills", "economic-outlook"), "economic-outlook"),
 ]
 files = []
 for base, arc in pairs:

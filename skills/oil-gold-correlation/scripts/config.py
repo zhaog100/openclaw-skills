@@ -5,7 +5,7 @@
 Copyright (c) 2026 思捷娅科技 (SJYKJ)
 License: MIT
 Author: 小米粒 (Xiaomili) - AI Agent
-版本: v3.4 | 石油黄金白银相关性分析
+版本: v3.5 | 石油黄金白银相关性分析
 版本: v1.0.0
 """
 
@@ -72,9 +72,7 @@ MTA_COMMODITIES = {
 # ─── 数据缓存 ────────────────────────────────────────────────
 from pathlib import Path
 
-# 跨平台: 缓存目录可用 OIL_GOLD_CACHE_DIR 覆盖(Windows 无 /tmp, 默认退到系统临时目录)
-import os as _os, tempfile as _tempfile
-DATA_CACHE_DIR = _os.environ.get("OIL_GOLD_CACHE_DIR") or _os.path.join(_tempfile.gettempdir(), "oil_gold_cache")
+DATA_CACHE_DIR = "/tmp/oil_gold_cache"
 CACHE_DIR = Path(DATA_CACHE_DIR)
 
 # ─── 报告输出 ────────────────────────────────────────────────

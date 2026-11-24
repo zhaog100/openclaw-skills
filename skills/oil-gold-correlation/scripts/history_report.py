@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 历史走势增强版报告 v3.4
+# 历史走势增强版报告 v3.5
 # 1. 历史区间统计(近期高低点、回撤幅度)  2. 波动率对比  3. 趋势强度量化(MA偏离度)  4. 关键价位汇总卡
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

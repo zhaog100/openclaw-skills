@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 石油黄金投资参考 - 精简版 v3.4
+# 石油黄金投资参考 - 精简版 v3.5
 # 定位: 一页纸快速扫一眼, 30秒看完; 只保留: 信号灯 + 仪表盘 + 操作建议 + 结论
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

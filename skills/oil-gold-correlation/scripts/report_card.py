@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 思捷娅科技 (SJYKJ) | MIT License
-# 石油黄金报告卡片模块 v3.4
+# 石油黄金报告卡片模块 v3.5
 # 大间距防手机重叠
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
