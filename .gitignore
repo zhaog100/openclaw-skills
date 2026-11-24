@@ -1,0 +1,59 @@
+# 个人信息目录
+AGENTS.md
+MEMORY.md
+SOUL.md
+IDENTITY.md
+TOOLS.md
+USER.md
+HEARTBEAT.md
+README.md
+
+# 记忆和知识
+memory/
+agents/
+intel/
+docs/
+proactivity/
+knowledge-base/
+backup/
+
+# 媒体和脚本
+media/
+products/
+
+# 配置文件
+openclaw-workspace-state.json
+package.json
+package-lock.json
+
+# 嵌套 git 仓库
+openclaw-skills/
+
+# 缓存和临时文件
+.clawhub/
+.env
+*.log
+logs/
+data/
+.git-credentials
+
+
+# 新增忽略规则
+node_modules/
+secrets/
+self-improving/
+reports/
+projects/萤火燃天/
+<<<<<<< HEAD
+__pycache__/
+*.pyc
+*.pyo
+terminal-ocr/venv/
+skills/economic-outlook/cache/
+ghp_*
+venv/
+/cache/
+/data/
+.trash-backup-*/
+=======
+>>>>>>> skills/main
