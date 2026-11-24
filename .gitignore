@@ -57,3 +57,4 @@ venv/
 .trash-backup-*/
 =======
 >>>>>>> skills/main
+.archive/
