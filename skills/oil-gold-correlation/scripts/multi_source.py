@@ -216,8 +216,18 @@ def create_default_manager():
             symbol = yf_instruments.get(instrument)
             if not symbol:
                 return None
-            data = yf.download(symbol, period=p, interval="1d", progress=False)
-            return data if not data.empty else None
+            try:
+                data = yf.download(symbol, period=p, interval="1d", progress=False)
+                return data if not data.empty else None
+            except Exception as ye:
+                # 官家11-24: Yahoo 429 限流/网络异常 → 不硬重试拖死, 降级返回 None
+                # 让 multi_source 走 akshare 日线/缓存兜底, 标"降级"不阻塞报告(防 cron 超时)
+                msg = str(ye)
+                if "429" in msg or "RateLimit" in msg or "Too Many Requests" in msg:
+                    logger.info(f"  ⚠️ yfinance {symbol} 限流429, 降级跳过(不硬重试)")
+                else:
+                    logger.info(f"  ⚠️ yfinance {symbol} 拉取异常({msg[:40]}), 降级跳过")
+                return None
 
         mgr.register_source("yfinance", _yf_fetch, priority=5, currency="USD", instruments={
             "gold_futures": "GC=F", "wti_futures": "CL=F", "brent_futures": "BZ=F",
