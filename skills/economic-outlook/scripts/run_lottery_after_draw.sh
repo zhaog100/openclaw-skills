@@ -19,8 +19,10 @@ rc=$?
 echo "[$(date '+%F %T')] 出号 exit=$rc" >> "$CLOG"
 # ③ 推 QQ(走门面 send_qq_gw 双路; send_qq_gw 在上层 skills/oil-gold-correlation)
 # 官家11-21修: 之前 \$GW/\$WS 被反斜杠转义不展开, 推送永远失败 → 改实际路径 + 存在性校验
+# 官家11-25修: send_qq_gw.py 读 QQ_TARGET_USER_ID 环境变量, 子进程需显式继承(cron env 不一定传入)
 GW="$WS/skills/oil-gold-correlation/scripts/send_qq_gw.py"
 if [ $rc -eq 0 ] && [ -f "$GW" ]; then
+  export QQ_TARGET_USER_ID="${QQ_TARGET_USER_ID:-C099848DC9A60BF60A7BE31626822790}"
   python3 "$GW" /tmp/lottery_report_$kind.txt >> "$CLOG" 2>&1
   echo "[$(date '+%F %T')] 推送: $?" >> "$CLOG"
 else
