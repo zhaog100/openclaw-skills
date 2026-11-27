@@ -27,13 +27,13 @@
     "boc_spot": null,
     "buy_zones": [
       {
-        "price": 763.56,
+        "price": 732.92,
         "label": "买点一档(动态·20日低-offset)",
         "action": "动态买点, 跌势中需收复+MA5拐头确认才加仓",
         "is_dynamic": true
       },
       {
-        "price": 763.56,
+        "price": 732.92,
         "label": "买点二档(动态·60日低-offset)",
         "action": "动态买点, 低位区",
         "is_dynamic": true
@@ -51,13 +51,13 @@
     ],
     "sell_zones": [
       {
-        "price": 887.54,
+        "price": 890.94,
         "label": "卖点一档(动态·20日高)",
         "action": "反弹到20日高减1/3",
         "is_dynamic": true
       },
       {
-        "price": 1004.22,
+        "price": 1005.26,
         "label": "卖点二档(动态·60日高)",
         "action": "反弹到60日高再减",
         "is_dynamic": true
@@ -65,54 +65,54 @@
     ],
     "down_targets": [
       {
-        "price": 775.0,
+        "price": 774.0,
         "label": "第1档·20日低下方(动态)",
         "is_dynamic": true,
         "note": "近20日低-2, 短期最近支撑"
       },
       {
-        "price": 764.0,
+        "price": 733.0,
         "label": "第2档·60日低破位(动态)",
         "is_dynamic": true,
         "note": "近60日低-5, 破位进无人区"
       },
       {
-        "price": 679.0,
+        "price": 636.0,
         "label": "第3档·斐波那契38.2%(动态)",
         "is_dynamic": true,
         "note": "60日区间回撤38.2%, 强支撑"
       },
       {
-        "price": 623.0,
+        "price": 573.0,
         "label": "第4档·斐波那契61.8%(动态)",
         "is_dynamic": true,
         "note": "60日区间回撤61.8%, 极端位"
       },
       {
-        "price": 583.0,
+        "price": 528.0,
         "label": "第5档·斐波那契78.6%(动态)",
         "is_dynamic": true,
         "note": "60日区间回撤78.6%, 深回撤"
       }
     ],
     "down_alerts": [
-      764.0,
-      679.0,
-      623.0,
-      583.0
+      733.0,
+      636.0,
+      573.0,
+      528.0
     ],
     "dynamic_zones": {
-      "updated_at": "2026-11-24 22:34",
+      "updated_at": "2026-11-27 11:30",
       "is_dynamic": true,
-      "dyn_buy1": 763.56,
-      "dyn_buy2": 763.56,
-      "dyn_sell1": 887.54,
-      "dyn_sell2": 1004.22,
-      "lo20": 768.56,
-      "lo60": 768.56,
-      "hi20": 887.54,
-      "hi60": 1004.22,
-      "current": 780.42,
+      "dyn_buy1": 732.92,
+      "dyn_buy2": 732.92,
+      "dyn_sell1": 890.94,
+      "dyn_sell2": 1005.26,
+      "lo20": 737.92,
+      "lo60": 737.92,
+      "hi20": 890.94,
+      "hi60": 1005.26,
+      "current": 778.5,
       "note": "官家11-24定: 补仓/卖点/下行档全部动态随行情滚动, 写死值仅当K线挂了的兜底(degraded时)"
     }
   }

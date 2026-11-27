@@ -1,0 +1,1 @@
+../skills/scripts/check_gmail_payments.sh
