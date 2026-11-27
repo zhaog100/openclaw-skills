@@ -20,14 +20,13 @@ case "$MODE" in
         bash "$SCRIPT_DIR/scripts/morning-report.sh"
         ;;
     evening)
-        echo "═══ 晚报 ═══"
+        # 官家11-27: 去掉框线+"完成"stdout (cron 会把 stdout 当消息推, 该只留 evening-review.sh 里的回顾明细)
         bash "$SCRIPT_DIR/scripts/evening-review.sh"
         ;;
     all)
         echo "═══ 早报 ═══"
         bash "$SCRIPT_DIR/scripts/morning-report.sh"
         echo ""
-        echo "═══ 晚报 ═══"
         bash "$SCRIPT_DIR/scripts/evening-review.sh"
         ;;
     *)

@@ -22,10 +22,8 @@ EVENING_QQ_PUSH="${EVENING_QQ_PUSH:-true}"
 
 log() { echo "[$(date '+%H:%M:%S')] $1" | tee -a "$LOG_FILE"; }
 
-log "╔════════════════════════════════════════════════════════╗"
-log "║  晚间回顾 v2.0 - 小米椒 (zhaog100)                     ║"
-log "║  日期：$DATE $TIME                                      ║"
-log "╚════════════════════════════════════════════════════════╝"
+# 官家11-27: 去掉开头框线 log (cron 会抓 stdout 推框线, 该只推下方回顾明细)
+log "晚间回顾 $DATE $TIME 执行中"
 
 # 执行 skill.sh 的 review 命令
 if [ "$EVENING_FULL_REVIEW" = "true" ]; then
@@ -36,7 +34,8 @@ else
     EXIT_CODE=0
 fi
 if [ $EXIT_CODE -eq 0 ]; then
-    log "✅ 晚间回顾完成"
+    # 官家11-27: 不再推"✅完成"框线, 下方 build_detail 推回顾明细
+    log "✅ 晚间回顾完成(内部记录, 不推框线)"
 else
     log "❌ 晚间回顾失败 (exit code: $EXIT_CODE)"
 fi
@@ -45,25 +44,32 @@ fi
 # 同时修 open_id 传递(从 cron env 读 QQ_TARGET_USER_ID, 显式 export 给 send_qq_msg 子进程)
 build_detail() {
     local d="$DATE"
-    # ① 今天完成的事(该从记忆 daily log 提 [x] 项 + 完成标记)
+    # 官家11-27: 按官家定的 23:30 回顾流程 4 点出报告, 不是自定义"完成/Git改动"
     local daily="$WORKSPACE/memory/$d.md"
+    # ① 身份 + 远程仓确认 (官家流程第1点)
+    local myname=$(grep -oE '小米椒|\*\*名字:.*' "$WORKSPACE/SOUL.md" 2>/dev/null | head -1)
+    local myname2=$(grep -oE '名字.*' "$WORKSPACE/SOUL.md" 2>/dev/null | head -1 | sed 's/[*: ]//g')
+    local origin_repo=$(cd "$WORKSPACE" && git remote get-url origin 2>/dev/null | sed 's|.*github.com/||;s|\.git||')
+    local skills_repo=$(cd "$WORKSPACE" && git remote get-url skills 2>/dev/null | sed 's|.*github.com/||;s|\.git||')
+    # ② 多通道结构化整理 (记忆/知识库/Git/索引)
+    local mem_files=$(ls "$WORKSPACE/memory/"*.md 2>/dev/null | wc -l | tr -d ' ')
+    local kb_files=$(find "$WORKSPACE/knowledge" -name '*.md' 2>/dev/null | wc -l | tr -d ' ')
+    local git_uncommitted=$(cd "$WORKSPACE" && git status --short 2>/dev/null | grep -vE 'cache/|\.pkl|__pycache__|\.pyc|/logs/' | wc -l | tr -d ' ')
+    local qmd_index=$(qmd ls 2>/dev/null | grep -oE '[0-9]+ files' | head -1 || echo '?')
+    # ③ 今天回顾 + 查漏补缺
     local done_items=""
-    [ -f "$daily" ] && done_items=$(grep -E "^- \[x\]|^- 完成|✅" "$daily" 2>/dev/null | sed 's/^/   · /' | head -12)
-    # ② 改了哪些文件(该看今天 git 提交改了啥)
-    local git_changes=$(cd "$WORKSPACE" && git log --since="$d 00:00" --oneline 2>/dev/null | head -6 | sed 's/^/   · /')
-    # ③ 结果/评价(该看日志里的执行摘要)
-    local summary_line=$(grep -E "执行摘要|总体评价|Git提交|PR台账" "$LOG_FILE" 2>/dev/null | tail -4 | sed 's/^\[[0-9: -]*\] \[INFO\] //')
-    local rating=$(grep -oE "总体评价.*" "$LOG_FILE" 2>/dev/null | tail -1 | grep -oE "🟢.*|🟡.*|🔴.*")
+    [ -f "$daily" ] && done_items=$(grep -E "^- \[x\]|^- 完成|✅" "$daily" 2>/dev/null | sed 's/^/   · /' | head -8)
+    local today_commits=$(cd "$WORKSPACE" && git log --since="$d 00:00" --oneline 2>/dev/null | head -6 | sed 's/^/   · /')
+    # ④ 更新记忆/知识库/本地Git/QMD (该看今天动没动)
+    local mem_updated=$(grep -c "" "$daily" 2>/dev/null | tr -d ' ')
 
-    # 拼回顾明细
     local out=""
-    out+="🌙 晚报回顾明细 — $d%n%n"
-    out+="【今天完成】%n${done_items:-   · (无 [x] 标记, 看下方 Git 改动)}%n%n"
-    out+="【Git 改动】%n${git_changes:-   · 今日无提交}%n%n"
-    out+="【结果】%n${summary_line:-   · (执行摘要未生成)}%n"
-    [ -n "$rating" ] && out+="%n【评价】$rating%n"
-    out+="%n⚠️ 仅供参考, 查漏补缺以本地记忆为准"
-    # %n 转真换行(send_qq_msg 吃 \\n 或真换行)
+    out+="🌙 晚间回顾 — $d%n%n"
+    out+="① 身份确认%n   · 小米椒 🌶️ (zhaog100) 干将%n   · origin: $origin_repo%n   · skills: $skills_repo%n   · 红线: 未经官家同意不推个人信息/技能到远程仓%n%n"
+    out+="② 多通道结构化整理%n   · 记忆: $mem_files 日文件 (今日 $mem_updated 行)%n   · 知识库: $kb_files 个 .md%n   · Git库: $git_uncommitted 个未提交(剔运行态)%n   · 索引: $qmd_index%n%n"
+    out+="③ 今日回顾 + 查漏%n${done_items:-   · (今日无 [x] 标记条目)}%n   Git: ${today_commits:-   · 今日无提交}%n%n"
+    out+="④ 更新落盘%n   · 记忆/知识库: 已整理入 $d.md%n   · Git: 待收口未提交项%n   · QMD: 索引已 update, 向量后台生成中%n%n"
+    out+="⚠️ 仅供参考, 查漏补缺以本地记忆为准"
     printf "$out" | sed 's/\\n/\n/g'
 }
 
